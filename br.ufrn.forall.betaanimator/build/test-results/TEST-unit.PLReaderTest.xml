@@ -1,0 +1,19 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<testsuite name="unit.PLReaderTest" tests="13" failures="0" errors="0" timestamp="2014-07-08T13:00:56" hostname="kaylee.local" time="0.034">
+  <properties/>
+  <testcase name="shouldReadInputDataFromPLFile" classname="unit.PLReaderTest" time="0.0"/>
+  <testcase name="shouldSplitParameterDataString1" classname="unit.PLReaderTest" time="0.0"/>
+  <testcase name="shouldSplitParameterDataString2" classname="unit.PLReaderTest" time="0.0"/>
+  <testcase name="shouldSplitParameterDataString3" classname="unit.PLReaderTest" time="0.0"/>
+  <testcase name="shouldSplitParameterDataString4" classname="unit.PLReaderTest" time="0.0"/>
+  <testcase name="shouldSplitParameterDataString5" classname="unit.PLReaderTest" time="0.0"/>
+  <testcase name="shouldSplitParameterDataString6" classname="unit.PLReaderTest" time="0.0"/>
+  <testcase name="shouldSplitParameterDataString7" classname="unit.PLReaderTest" time="0.0"/>
+  <testcase name="shouldSplitParameterDataString8" classname="unit.PLReaderTest" time="0.0"/>
+  <testcase name="shouldSplitParameterDataString9" classname="unit.PLReaderTest" time="0.0"/>
+  <testcase name="shouldReadInputDataForOperationWithTwoParameters" classname="unit.PLReaderTest" time="0.0"/>
+  <testcase name="shouldReadInputDataForOperation" classname="unit.PLReaderTest" time="0.027"/>
+  <testcase name="shouldReturnEmptyListWhenOperationDoestExist" classname="unit.PLReaderTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

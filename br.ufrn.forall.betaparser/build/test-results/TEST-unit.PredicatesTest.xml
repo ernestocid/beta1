@@ -1,0 +1,7 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<testsuite name="unit.PredicatesTest" tests="1" failures="0" errors="0" timestamp="2014-07-08T13:01:00" hostname="kaylee.local" time="0.011">
+  <properties/>
+  <testcase name="shouldParseAllKindsOfPredicate" classname="unit.PredicatesTest" time="0.011"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

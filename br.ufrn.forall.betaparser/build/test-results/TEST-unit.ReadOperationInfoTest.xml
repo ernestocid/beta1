@@ -1,0 +1,25 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<testsuite name="unit.ReadOperationInfoTest" tests="19" failures="0" errors="0" timestamp="2014-07-08T13:01:01" hostname="kaylee.local" time="0.143">
+  <properties/>
+  <testcase name="shouldGetSelectCommandConditions" classname="unit.ReadOperationInfoTest" time="0.016"/>
+  <testcase name="canGetOperationParameters" classname="unit.ReadOperationInfoTest" time="0.007"/>
+  <testcase name="shouldGetIfCommandVariables" classname="unit.ReadOperationInfoTest" time="0.008"/>
+  <testcase name="shouldGetIfCommandConditions" classname="unit.ReadOperationInfoTest" time="0.008"/>
+  <testcase name="canGetOperationPrecondition" classname="unit.ReadOperationInfoTest" time="0.005"/>
+  <testcase name="shouldReturnEmptyWhenGettingReturnVariablesForOperationWithoutReturn" classname="unit.ReadOperationInfoTest" time="0.006"/>
+  <testcase name="shouldGetCaseCommandConditions" classname="unit.ReadOperationInfoTest" time="0.007"/>
+  <testcase name="shouldReturnListOfReturnVariablesWhenOperationHasOneReturnVariable" classname="unit.ReadOperationInfoTest" time="0.008"/>
+  <testcase name="shouldGetIfCommandConditionsInsideParallelSubstitution" classname="unit.ReadOperationInfoTest" time="0.014"/>
+  <testcase name="shouldGetSelectCommandVariables" classname="unit.ReadOperationInfoTest" time="0.006"/>
+  <testcase name="shouldGetCaseCommandVariables" classname="unit.ReadOperationInfoTest" time="0.006"/>
+  <testcase name="shouldGetNestedIfCommandVariables" classname="unit.ReadOperationInfoTest" time="0.008"/>
+  <testcase name="shouldGetStateVariablesMentionedOnBody" classname="unit.ReadOperationInfoTest" time="0.009"/>
+  <testcase name="shouldGetConditionsCommandFromMachineWithNoPrecondition" classname="unit.ReadOperationInfoTest" time="0.007"/>
+  <testcase name="shouldGetIfElsifCommandVariables" classname="unit.ReadOperationInfoTest" time="0.006"/>
+  <testcase name="shouldReturnListOfReturnVariablesWhenOperationHasManyReturnVariable" classname="unit.ReadOperationInfoTest" time="0.006"/>
+  <testcase name="canGetOperationName" classname="unit.ReadOperationInfoTest" time="0.004"/>
+  <testcase name="shouldGetMachineFromOperation" classname="unit.ReadOperationInfoTest" time="0.005"/>
+  <testcase name="shouldGetIfElsifCommandConditions" classname="unit.ReadOperationInfoTest" time="0.006"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

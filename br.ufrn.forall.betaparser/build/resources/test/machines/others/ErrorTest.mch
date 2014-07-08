@@ -1,0 +1,10 @@
+MACHINE ErrorTest
+
+VARIABLES xx
+
+INITIALISATION xx:=1
+
+OPERATIONS
+  Set(yy) = PRE yy:NAT THEN skip END
+END
+

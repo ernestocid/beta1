@@ -1,0 +1,11 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<testsuite name="unit.TestMachineBuilderTest" tests="5" failures="0" errors="0" timestamp="2014-07-08T13:00:41" hostname="kaylee.local" time="0.022">
+  <properties/>
+  <testcase name="shouldGenerateTestMachineForOperationsOnMachinesWithSees" classname="unit.TestMachineBuilderTest" time="0.006"/>
+  <testcase name="shouldGenerateTestMachineForOperationsOnMachinesWithUses" classname="unit.TestMachineBuilderTest" time="0.003"/>
+  <testcase name="shouldGenerateTestMachineForOperationsOnMachinesWithIncludes" classname="unit.TestMachineBuilderTest" time="0.004"/>
+  <testcase name="shouldGenerateTestMachineForOperationsOnMachinesWithExtends" classname="unit.TestMachineBuilderTest" time="0.003"/>
+  <testcase name="shouldGenerateTestMachineForFormula" classname="unit.TestMachineBuilderTest" time="0.006"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

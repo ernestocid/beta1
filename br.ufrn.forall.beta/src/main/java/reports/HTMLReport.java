@@ -1,11 +1,16 @@
 package reports;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import org.apache.commons.io.IOUtils;
 
 import parser.decorators.predicates.MyPredicate;
 import testgeneration.BETATestCase;
@@ -277,17 +282,19 @@ public class HTMLReport {
 	private String getReportTemplate() {
 		String templateText = "";
 		
-		File htmlReportTemplate = new File("src/main/resources/report_template.html");
+//		File htmlReportTemplate = new File("src/main/resources/report_template.html");
 		
-		templateText = FileTools.getFileContent(htmlReportTemplate);
+//		File htmlReportTemplate = new File(HTMLReport.class.getResource("src/main/resources/report_template.html").getPath());
 		
-//		InputStream template = HTMLReport.class.getResourceAsStream("src/main/resources/report_template.html");
-//		
-//		try {
-//			templateText = IOUtils.toString(template, "UTF-8");
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
+//		templateText = FileTools.getFileContent(htmlReportTemplate);
+		
+		InputStream template = this.getClass().getClassLoader().getResourceAsStream("report_template.html");
+		
+		try {
+			templateText = IOUtils.toString(template, "UTF-8");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		return templateText;
 	}
@@ -296,20 +303,23 @@ public class HTMLReport {
 	
 	private String getTestCaseBlockTemplate() {
 		String templateText = "";
+
+		// Try putting it on the source folder
 		
-		File testCaseBlockTemplate = new File("src/main/resources/testcase_block_template.html");
+//		File testCaseBlockTemplate = new File(HTMLReport.class.getResource("src/main/resources/testcase_block_template.html").getPath());
+//		File testCaseBlockTemplate = new File("src/main/resources/testcase_block_template.html");
 		
-		templateText = FileTools.getFileContent(testCaseBlockTemplate);
+//		templateText = FileTools.getFileContent(testCaseBlockTemplate);
 		
-//		InputStream template = HTMLReport.class.getResourceAsStream("src/main/resources/testcase_block_template.html");
-//		
-//		System.out.println(template);
-//		
-//		try {
-//			templateText = IOUtils.toString(template, "UTF-8");
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
+		InputStream template = this.getClass().getClassLoader().getResourceAsStream("testcase_block_template.html");
+		
+		System.out.println("template " + template);
+		
+		try {
+			templateText = IOUtils.toString(template, "UTF-8");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		return templateText;
 	}

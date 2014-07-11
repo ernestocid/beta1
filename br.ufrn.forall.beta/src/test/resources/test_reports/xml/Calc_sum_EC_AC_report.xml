@@ -29,6 +29,7 @@
                     </values>
                 </parameter>
             </operation-parameters>
+            <expected-state-values/>
             <return-variables>
                 <variable>
                     <identifier>rr</identifier>

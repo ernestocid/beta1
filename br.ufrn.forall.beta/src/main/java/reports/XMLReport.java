@@ -6,9 +6,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.Map;
 
 import testgeneration.BETATestCase;
 import testgeneration.BETATestSuite;
+import testgeneration.OracleEvaluation;
 import configurations.Configurations;
 import nu.xom.Document;
 import nu.xom.Element;
@@ -143,9 +145,31 @@ public class XMLReport {
 		testCaseElement.appendChild(createIsNegativeElement(testCase));
 		testCaseElement.appendChild(createStateVariablesElement(testCase));
 		testCaseElement.appendChild(createParametersElement(testCase));
+		testCaseElement.appendChild(createExpectedStateValues(testCase));
 		testCaseElement.appendChild(createReturnVariablesElement(testCase));
 		
 		return testCaseElement;
+	}
+
+
+
+	private Element createExpectedStateValues(BETATestCase testCase) {
+		Element expectedStateValuesElement = new Element("expected-state-values");
+		
+		if(testCase.isNegative()) {
+			for(String variable : testCase.getStateValues().keySet()) {
+				expectedStateValuesElement.appendChild(createVariableElement(variable, "unknown"));
+			}
+		} else {
+			OracleEvaluation oracleEvaluation = new OracleEvaluation(testCase, this.testSuite.getOperationUnderTest());
+			Map<String, String> expectedStateValues = oracleEvaluation.getExpectedStateValues();
+
+			for(String variable : expectedStateValues.keySet()) {
+				expectedStateValuesElement.appendChild(createVariableElement(variable, expectedStateValues.get(variable)));
+			}
+		}
+		
+		return expectedStateValuesElement;
 	}
 
 

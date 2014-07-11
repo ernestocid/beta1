@@ -33,6 +33,14 @@
                     </values>
                 </parameter>
             </operation-parameters>
+            <expected-state-values>
+                <variable>
+                    <identifier>floor</identifier>
+                    <values>
+                        <value>unknown</value>
+                    </values>
+                </variable>
+            </expected-state-values>
             <return-variables/>
         </test-case>
         <test-case>
@@ -55,6 +63,14 @@
                     </values>
                 </parameter>
             </operation-parameters>
+            <expected-state-values>
+                <variable>
+                    <identifier>floor</identifier>
+                    <values>
+                        <value>unknown</value>
+                    </values>
+                </variable>
+            </expected-state-values>
             <return-variables/>
         </test-case>
     </test-cases>

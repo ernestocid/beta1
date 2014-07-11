@@ -1,0 +1,9 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<testsuite name="unit.OracleEvaluationTest" tests="1" failures="0" errors="0" timestamp="1970-01-01T00:00:00" hostname="kaylee.local" time="1.404983004832E9">
+  <properties/>
+  <testcase name="shouldGetOracleValuesForOperationWithNoParameters" classname="unit.OracleEvaluationTest" time="3.121"/>
+  <system-out><![CDATA[null
+Setting state to: overflow = FALSE & value = 1
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

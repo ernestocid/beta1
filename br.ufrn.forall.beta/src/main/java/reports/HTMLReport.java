@@ -7,10 +7,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-
 import parser.decorators.predicates.MyPredicate;
 import testgeneration.BETATestCase;
 import testgeneration.BETATestSuite;
+import testgeneration.OracleEvaluation;
 import tools.FileTools;
 
 public class HTMLReport {
@@ -109,21 +109,73 @@ public class HTMLReport {
 		StringBuffer testCaseListHTML = new StringBuffer("");
 
 		for (int i = 0; i < this.testSuite.getTestCases().size(); i++) {
+			BETATestCase testCase = this.testSuite.getTestCases().get(i);
 			Map<String, String> tags = new HashMap<String, String>();
-			tags.put("{{TESTCASE_ID}}", Integer.toString(i + 1) + " " + isNegativeOrPositive(this.testSuite.getTestCases().get(i)));
-			tags.put("{{TESTCASE_FORMULA}}", this.testSuite.getTestCases().get(i).getTestFormulaWithoutInvariant());
-			tags.put("{{STATE_VARIABLES_LIST}}", generateStateVariablesList(this.testSuite.getTestCases().get(i)));
-			tags.put("{{INPUT_VALUES_LIST}}", generateInputParametersList(this.testSuite.getTestCases().get(i)));
+			
+			tags.put("{{TESTCASE_ID}}", Integer.toString(i + 1) + " " + isNegativeOrPositive(testCase));
+			tags.put("{{TESTCASE_FORMULA}}", testCase.getTestFormulaWithoutInvariant());
+			tags.put("{{STATE_VARIABLES_LIST}}", generateStateVariablesList(testCase));
+			tags.put("{{INPUT_VALUES_LIST}}", generateInputParametersList(testCase));
+			tags.put("{{EXPECTED_STATE_VARIABLES_LIST}}", generateExpectedStateVariablesList(testCase));
 			tags.put("{{RETURN_VARIABLES_LIST}}", generateReturnVariablesList(this.testSuite));
 			
 			testCaseListHTML.append(replaceTagsWithParameters(tags, getTestCaseBlockTemplate()));
 		}
-
+		
 		return testCaseListHTML.toString();
 	}
 
 	
 	
+	private String generateExpectedStateVariablesList(BETATestCase testCase) {
+		StringBuffer stateVariablesList = new StringBuffer("");
+		
+		Map<String, String> expectedStateValues;
+		
+		if(testCase.isNegative()) {
+			expectedStateValues = generateExpectedStateValuesForNegativeTestCase(testCase);
+		} else {
+			OracleEvaluation oracleEvaluation = new OracleEvaluation(testCase, this.testSuite.getOperationUnderTest());
+			expectedStateValues = oracleEvaluation.getExpectedStateValues();
+		}
+		
+		if(expectedStateValues.isEmpty()) {
+			stateVariablesList.append("<tr class=\"even\"><td colspan=\"2\"><center><i>No related state variables for this operation</i></center></td></tr>");
+		} else {
+			int varCounter = 0;
+			
+			for (String variable : expectedStateValues.keySet()) {
+				if (varCounter % 2 == 0) {
+					stateVariablesList.append("<tr class=\"even\">" + "\n");
+				} else {
+					stateVariablesList.append("\t\t\t<tr class=\"odd\">" + "\n");
+				}
+				
+				stateVariablesList.append("\t\t\t\t<td>" + variable + "</td>" + "\n");
+				stateVariablesList.append("\t\t\t\t<td><i>" + expectedStateValues.get(variable) + "</i></td>" + "\n");
+				
+				stateVariablesList.append("\t\t\t</tr>" + "\n");
+				varCounter++;
+			}
+		}
+
+		return stateVariablesList.toString();
+	}
+
+
+
+	private Map<String, String> generateExpectedStateValuesForNegativeTestCase(BETATestCase testCase) {
+		Map<String, String> expectedStateValues = new HashMap<String, String>();
+		
+		for(String stateVariable : testCase.getStateValues().keySet()) {
+			expectedStateValues.put(stateVariable, "Unknown");
+		}
+		
+		return expectedStateValues;
+	}
+
+
+
 	private String isNegativeOrPositive(BETATestCase betaTestCase) {
 		if(betaTestCase.isNegative()) {
 			return "(Negative)";

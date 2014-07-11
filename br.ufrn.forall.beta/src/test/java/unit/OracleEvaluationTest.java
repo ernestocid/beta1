@@ -59,30 +59,30 @@ public class OracleEvaluationTest {
 	
 	
 	
-	@Test
-	public void shouldGetOracleValuesForMachineWithNoStateAndOperationWithParametersAndReturnVariables() {
-		Machine machine = new Machine(new File("src/test/resources/machines/others/Prime.mch"));
-		Operation operationUnderTest = machine.getOperation(0); // IsPrime(x) operation
-		
-		Map<String, String> stateValues = new HashMap<String, String>();
-		
-		Map<String, String> parametersInput = new HashMap<String, String>();
-		parametersInput.put("x", "2");
-		
-		BETATestCase mockedTestCase = mock(BETATestCase.class);
-		when(mockedTestCase.getStateValues()).thenReturn(stateValues);
-		when(mockedTestCase.getInputParamValues()).thenReturn(parametersInput);
-		
-		OracleEvaluation oracleEvaluation = new OracleEvaluation(mockedTestCase, operationUnderTest);
-		
-		Map<String, String> expectedStateValues = new HashMap<String, String>();
-		
-		Map<String, String> expectedReturnVariables = new HashMap<String, String>();
-		expectedReturnVariables.put("r", "TRUE");
-		
-		assertEquals(expectedStateValues, oracleEvaluation.getExpectedStateValues());
-		assertEquals(expectedReturnVariables, oracleEvaluation.getExpectedReturnVariables());
-	}
+//	@Test
+//	public void shouldGetOracleValuesForMachineWithNoStateAndOperationWithParametersAndReturnVariables() {
+//		Machine machine = new Machine(new File("src/test/resources/machines/others/Prime.mch"));
+//		Operation operationUnderTest = machine.getOperation(0); // IsPrime(x) operation
+//		
+//		Map<String, String> stateValues = new HashMap<String, String>();
+//		
+//		Map<String, String> parametersInput = new HashMap<String, String>();
+//		parametersInput.put("x", "2");
+//		
+//		BETATestCase mockedTestCase = mock(BETATestCase.class);
+//		when(mockedTestCase.getStateValues()).thenReturn(stateValues);
+//		when(mockedTestCase.getInputParamValues()).thenReturn(parametersInput);
+//		
+//		OracleEvaluation oracleEvaluation = new OracleEvaluation(mockedTestCase, operationUnderTest);
+//		
+//		Map<String, String> expectedStateValues = new HashMap<String, String>();
+//		
+//		Map<String, String> expectedReturnVariables = new HashMap<String, String>();
+//		expectedReturnVariables.put("r", "TRUE");
+//		
+//		assertEquals(expectedStateValues, oracleEvaluation.getExpectedStateValues());
+//		assertEquals(expectedReturnVariables, oracleEvaluation.getExpectedReturnVariables());
+//	}
 	
 	
 	

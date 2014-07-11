@@ -1,24 +1,24 @@
 <?xml version="1.1" encoding="UTF-8"?>
-<testsuite name="unit.BVBlockBuilderTest" tests="18" failures="0" errors="0" timestamp="2014-07-08T13:00:40" hostname="kaylee.local" time="0.748">
+<testsuite name="unit.BVBlockBuilderTest" tests="18" failures="0" errors="0" timestamp="2014-07-10T09:03:20" hostname="kaylee.local" time="0.729">
   <properties/>
-  <testcase name="shouldGenerateBoundaryValuesBlocksForImplicationCharacteristic" classname="unit.BVBlockBuilderTest" time="0.195"/>
-  <testcase name="shouldGenerateBoundaryValuesBlocksForExistentialCharacteristic" classname="unit.BVBlockBuilderTest" time="0.045"/>
-  <testcase name="shouldGenerateBlocksForTypingMemberOfCharacteristics" classname="unit.BVBlockBuilderTest" time="0.047"/>
-  <testcase name="shouldNotGenerateBoundaryBlocksForInvariantClauses" classname="unit.BVBlockBuilderTest" time="0.027"/>
-  <testcase name="shouldGenerateBoundaryValuesForRangesWithMaxInt" classname="unit.BVBlockBuilderTest" time="0.012"/>
-  <testcase name="shouldGenerateBoundaryValuesBlocksForNotStrictSubsetCharacteristic" classname="unit.BVBlockBuilderTest" time="0.046"/>
-  <testcase name="shouldGenerateBoundaryValuesBlocksForNegationCharacteristic" classname="unit.BVBlockBuilderTest" time="0.029"/>
-  <testcase name="shouldGenerateBoundaryValuesBlocksForNotMemberOfCharacteristic" classname="unit.BVBlockBuilderTest" time="0.03"/>
-  <testcase name="shouldGenerateBoundaryValuesBlocksForRelationalCharacteristic" classname="unit.BVBlockBuilderTest" time="0.068"/>
-  <testcase name="shouldGenerateBoundaryValuesBlocksForDisjunctionCharacteristic" classname="unit.BVBlockBuilderTest" time="0.032"/>
-  <testcase name="shouldGenerateBoundaryValuesBlocksForUniversalCharacteristic" classname="unit.BVBlockBuilderTest" time="0.026"/>
-  <testcase name="shouldGenerateBoundaryValuesBlocksForEqualsCharacteristic" classname="unit.BVBlockBuilderTest" time="0.03"/>
-  <testcase name="shouldGenerateBoundaryValuesBlocksForNotSubsetStrictCharacteristic" classname="unit.BVBlockBuilderTest" time="0.029"/>
+  <testcase name="shouldGenerateBoundaryValuesBlocksForImplicationCharacteristic" classname="unit.BVBlockBuilderTest" time="0.199"/>
+  <testcase name="shouldGenerateBoundaryValuesBlocksForExistentialCharacteristic" classname="unit.BVBlockBuilderTest" time="0.043"/>
+  <testcase name="shouldGenerateBlocksForTypingMemberOfCharacteristics" classname="unit.BVBlockBuilderTest" time="0.044"/>
+  <testcase name="shouldNotGenerateBoundaryBlocksForInvariantClauses" classname="unit.BVBlockBuilderTest" time="0.025"/>
+  <testcase name="shouldGenerateBoundaryValuesForRangesWithMaxInt" classname="unit.BVBlockBuilderTest" time="0.01"/>
+  <testcase name="shouldGenerateBoundaryValuesBlocksForNotStrictSubsetCharacteristic" classname="unit.BVBlockBuilderTest" time="0.04"/>
+  <testcase name="shouldGenerateBoundaryValuesBlocksForNegationCharacteristic" classname="unit.BVBlockBuilderTest" time="0.03"/>
+  <testcase name="shouldGenerateBoundaryValuesBlocksForNotMemberOfCharacteristic" classname="unit.BVBlockBuilderTest" time="0.031"/>
+  <testcase name="shouldGenerateBoundaryValuesBlocksForRelationalCharacteristic" classname="unit.BVBlockBuilderTest" time="0.063"/>
+  <testcase name="shouldGenerateBoundaryValuesBlocksForDisjunctionCharacteristic" classname="unit.BVBlockBuilderTest" time="0.03"/>
+  <testcase name="shouldGenerateBoundaryValuesBlocksForUniversalCharacteristic" classname="unit.BVBlockBuilderTest" time="0.031"/>
+  <testcase name="shouldGenerateBoundaryValuesBlocksForEqualsCharacteristic" classname="unit.BVBlockBuilderTest" time="0.031"/>
+  <testcase name="shouldGenerateBoundaryValuesBlocksForNotSubsetStrictCharacteristic" classname="unit.BVBlockBuilderTest" time="0.026"/>
   <testcase name="shouldGenerateBoundaryValuesBlocksForNotEqualsCharacteristic" classname="unit.BVBlockBuilderTest" time="0.025"/>
-  <testcase name="shouldGenerateBoundaryValuesBlocksForSubsetCharacteristic" classname="unit.BVBlockBuilderTest" time="0.03"/>
-  <testcase name="shouldGenerateBoundaryValuesBlocksForSubsetStrictCharacteristic" classname="unit.BVBlockBuilderTest" time="0.026"/>
-  <testcase name="shouldGenerateBoundaryValuesBlocksForEquivalenceCharacteristic" classname="unit.BVBlockBuilderTest" time="0.021"/>
-  <testcase name="shouldGenerateBoundaryValuesBlocksForNotSubsetCharacteristic" classname="unit.BVBlockBuilderTest" time="0.025"/>
+  <testcase name="shouldGenerateBoundaryValuesBlocksForSubsetCharacteristic" classname="unit.BVBlockBuilderTest" time="0.027"/>
+  <testcase name="shouldGenerateBoundaryValuesBlocksForSubsetStrictCharacteristic" classname="unit.BVBlockBuilderTest" time="0.025"/>
+  <testcase name="shouldGenerateBoundaryValuesBlocksForEquivalenceCharacteristic" classname="unit.BVBlockBuilderTest" time="0.02"/>
+  <testcase name="shouldGenerateBoundaryValuesBlocksForNotSubsetCharacteristic" classname="unit.BVBlockBuilderTest" time="0.023"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

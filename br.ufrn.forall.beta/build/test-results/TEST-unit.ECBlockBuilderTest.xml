@@ -1,25 +1,25 @@
 <?xml version="1.1" encoding="UTF-8"?>
-<testsuite name="unit.ECBlockBuilderTest" tests="19" failures="0" errors="0" timestamp="2014-07-08T13:00:41" hostname="kaylee.local" time="0.525">
+<testsuite name="unit.ECBlockBuilderTest" tests="19" failures="0" errors="0" timestamp="2014-07-10T09:03:21" hostname="kaylee.local" time="0.385">
   <properties/>
   <testcase name="shouldGenerateBlocksForMemberOfCharacteristics" classname="unit.ECBlockBuilderTest" time="0.032"/>
-  <testcase name="shouldGenerateEquivalenceClassesBlocksForNegationCharacteristic" classname="unit.ECBlockBuilderTest" time="0.019"/>
+  <testcase name="shouldGenerateEquivalenceClassesBlocksForNegationCharacteristic" classname="unit.ECBlockBuilderTest" time="0.022"/>
   <testcase name="shouldGenerateEquivalenceClassesBlocksForNotMemberOfCharacteristic" classname="unit.ECBlockBuilderTest" time="0.022"/>
-  <testcase name="shouldGenerateEquivalenceClassBlocksForRangesWithMaxInt" classname="unit.ECBlockBuilderTest" time="0.005"/>
-  <testcase name="shouldGenerateEquivalenceClassesBlocksForNotSubsetStrictCharacteristic" classname="unit.ECBlockBuilderTest" time="0.027"/>
-  <testcase name="shouldGenerateEquivalenceClassesBlocksForDisjunctionCharacteristic" classname="unit.ECBlockBuilderTest" time="0.021"/>
+  <testcase name="shouldGenerateEquivalenceClassBlocksForRangesWithMaxInt" classname="unit.ECBlockBuilderTest" time="0.006"/>
+  <testcase name="shouldGenerateEquivalenceClassesBlocksForNotSubsetStrictCharacteristic" classname="unit.ECBlockBuilderTest" time="0.036"/>
+  <testcase name="shouldGenerateEquivalenceClassesBlocksForDisjunctionCharacteristic" classname="unit.ECBlockBuilderTest" time="0.02"/>
   <testcase name="shouldGenerateEquivalenceClassesBlocksForEqualsCharacteristic" classname="unit.ECBlockBuilderTest" time="0.022"/>
   <testcase name="shouldNotGenerateBoundaryBlocksForInvariantClauses" classname="unit.ECBlockBuilderTest" time="0.009"/>
-  <testcase name="shouldGenerateEquivalenceClassesBlocksForSubsetCharacteristic" classname="unit.ECBlockBuilderTest" time="0.022"/>
-  <testcase name="shouldGenerateEquivalenceClassesBlocksForEquivalenceCharacteristic" classname="unit.ECBlockBuilderTest" time="0.026"/>
-  <testcase name="shouldGenerateEquivalenceClassesBlocksForUniversalCharacteristic" classname="unit.ECBlockBuilderTest" time="0.023"/>
-  <testcase name="shouldGenerateEquivalenceClassesBlocksForRelationalCharacteristic" classname="unit.ECBlockBuilderTest" time="0.025"/>
-  <testcase name="shouldGenerateEquivalenceClassesBlocksForNotEqualsCharacteristic" classname="unit.ECBlockBuilderTest" time="0.02"/>
-  <testcase name="shouldGenerateEquivalenceClassesBlocksForImplicationCharacteristic" classname="unit.ECBlockBuilderTest" time="0.019"/>
-  <testcase name="shouldGenerateEquivalenceClassesBlocksForNotSubsetCharacteristic" classname="unit.ECBlockBuilderTest" time="0.153"/>
-  <testcase name="shouldGenerateEquivalenceClassesForCounter" classname="unit.ECBlockBuilderTest" time="0.008"/>
-  <testcase name="shouldGenerateEquivalenceClassesBlocksForSubsetStrictCharacteristic" classname="unit.ECBlockBuilderTest" time="0.027"/>
-  <testcase name="shouldGenerateEquivalenceClassesBlocksForExistentialCharacteristic" classname="unit.ECBlockBuilderTest" time="0.021"/>
-  <testcase name="shouldCreateEquivalenceClassBlocksForOperationsWithNoPreconditions" classname="unit.ECBlockBuilderTest" time="0.016"/>
+  <testcase name="shouldGenerateEquivalenceClassesBlocksForSubsetCharacteristic" classname="unit.ECBlockBuilderTest" time="0.021"/>
+  <testcase name="shouldGenerateEquivalenceClassesBlocksForEquivalenceCharacteristic" classname="unit.ECBlockBuilderTest" time="0.025"/>
+  <testcase name="shouldGenerateEquivalenceClassesBlocksForUniversalCharacteristic" classname="unit.ECBlockBuilderTest" time="0.02"/>
+  <testcase name="shouldGenerateEquivalenceClassesBlocksForRelationalCharacteristic" classname="unit.ECBlockBuilderTest" time="0.035"/>
+  <testcase name="shouldGenerateEquivalenceClassesBlocksForNotEqualsCharacteristic" classname="unit.ECBlockBuilderTest" time="0.019"/>
+  <testcase name="shouldGenerateEquivalenceClassesBlocksForImplicationCharacteristic" classname="unit.ECBlockBuilderTest" time="0.016"/>
+  <testcase name="shouldGenerateEquivalenceClassesBlocksForNotSubsetCharacteristic" classname="unit.ECBlockBuilderTest" time="0.021"/>
+  <testcase name="shouldGenerateEquivalenceClassesForCounter" classname="unit.ECBlockBuilderTest" time="0.005"/>
+  <testcase name="shouldGenerateEquivalenceClassesBlocksForSubsetStrictCharacteristic" classname="unit.ECBlockBuilderTest" time="0.021"/>
+  <testcase name="shouldGenerateEquivalenceClassesBlocksForExistentialCharacteristic" classname="unit.ECBlockBuilderTest" time="0.015"/>
+  <testcase name="shouldCreateEquivalenceClassBlocksForOperationsWithNoPreconditions" classname="unit.ECBlockBuilderTest" time="0.012"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

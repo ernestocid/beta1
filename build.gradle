@@ -4,26 +4,9 @@ subprojects {
     apply plugin: 'maven'
 //    group = 'br.ufrn.forall'
     version = '1.0'
-    sourceCompatibility = 1.6
+    sourceCompatibility = 1.6    
     
-    
-    // By default, the Java plugin assumes that production sources are located 
-    // under src/main/java/. If they are located under src/, you'll have to
-    // let Gradle know:
-    
-//  sourceSets {
-//    	main {
-//        	java {
-//            	srcDirs = ["src"]
-//        	}
-//    	}
-//	}
-    
-    repositories {
-//    	flatDir {
-//    		dirs '${rootProject.projectDir}/libs'
-//    	}
-    	
+    repositories {   	
         mavenCentral()
         
         maven {
@@ -77,14 +60,26 @@ project(':br.ufrn.forall.betagui') {
 	dependencies {
 		compile project(':br.ufrn.forall.beta'), project(':br.ufrn.forall.betaanimator'), project(':br.ufrn.forall.betacommon'), project(':br.ufrn.forall.betaparser'), project(':br.ufrn.forall.datacomb')
 		compile files('libs/unittestgenerator.jar')
-//		compile name: 'unittestgenerator'
 	}
 }
 
 project(':br.ufrn.forall.betaparser') {
 	dependencies {
 		compile files('libs/probcliparser-2.4.18-SNAPSHOT.jar')
-//		compile name: 'probcliparser-2.4.18-SNAPSHOT'
+	}
+}
+
+project('br.ufrn.forall.betagui') {
+	apply plugin: 'application'
+	mainClassName = "views.Application"
+	
+	task createPropertiesFile {
+		def propertiesFile = file("$buildDir/resources/main/config.properties")
+		outputs.file propertiesFile
+	}
+
+	applicationDistribution.from(createPropertiesFile) {
+    	into "bin"
 	}
 }
 

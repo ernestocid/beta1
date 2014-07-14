@@ -3,7 +3,6 @@ package reports;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -140,7 +139,7 @@ public class HTMLReport {
 		if(testCase.isNegative()) {
 			expectedStateValues = generateExpectedStateValuesForNegativeTestCase(testCase);
 		} else {
-			OracleEvaluation oracleEvaluation = new OracleEvaluation(testCase, this.testSuite.getOperationUnderTest());
+			OracleEvaluation oracleEvaluation = new OracleEvaluation(testCase, this.testSuite.getOperationUnderTest(), this.testSuite.getProbApi());
 			expectedStateValues = oracleEvaluation.getExpectedStateValues();
 		}
 		
@@ -312,8 +311,6 @@ public class HTMLReport {
 //		templateText = FileTools.getFileContent(testCaseBlockTemplate);
 		
 		InputStream template = this.getClass().getClassLoader().getResourceAsStream("testcase_block_template.html");
-		
-		System.out.println("template " + template);
 		
 		try {
 			templateText = IOUtils.toString(template, "UTF-8");

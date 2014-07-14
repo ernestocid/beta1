@@ -103,7 +103,8 @@ public class Application {
 	private void initialize() {
 		
 		frmBtest = new JFrame();
-		frmBtest.setIconImage(Toolkit.getDefaultToolkit().getImage(Application.class.getResource("/views/betaico.png")));
+//		frmBtest.setIconImage(Toolkit.getDefaultToolkit().getImage(Application.class.getResource("/views/betaico.png")));
+		frmBtest.setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getClassLoader().getResource("betaico.png")));
 		frmBtest.setTitle("BETA");
 		frmBtest.setBounds(100, 100, 1100, 600);
 		frmBtest.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

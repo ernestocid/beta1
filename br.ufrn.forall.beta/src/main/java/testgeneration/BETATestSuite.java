@@ -17,6 +17,8 @@ import criteria.AllCombinations;
 import criteria.Criteria;
 import criteria.EachChoice;
 import criteria.Pairwise;
+import de.prob.Main;
+import de.prob.scripting.Api;
 import animator.Animation;
 import animator.Animator;
 import animator.ConventionTools;
@@ -33,6 +35,7 @@ public class BETATestSuite {
 	private Operation operationUnderTest;
 	private PartitionStrategy partitionStrategy;
 	private CombinatorialCriterias combinatorialCriteria;
+	private Api probApi;
 
 	
 	public BETATestSuite(Operation operationUnderTest, PartitionStrategy partitionStrategy,	CombinatorialCriterias combinatorialCriteria) {
@@ -40,6 +43,7 @@ public class BETATestSuite {
 		this.partitionStrategy = partitionStrategy;
 		this.combinatorialCriteria = combinatorialCriteria;
 		this.testCases = new ArrayList<BETATestCase>();
+		this.probApi = Main.getInjector().getInstance(Api.class);
 		generateTestCases();
 	}
 
@@ -106,7 +110,8 @@ public class BETATestSuite {
 														 generateTestFormulaWithoutInvariant(animation.getPredicate()), 
 														 getAttributeValues(animationValues), 
 														 getParamValues(animationValues), 
-														 isNegativeTest(animation, mappingCombinationToTypeOfTest));
+														 isNegativeTest(animation, mappingCombinationToTypeOfTest),
+														 this);
 				
 				testCases.add(testCase);
 			}
@@ -205,7 +210,7 @@ public class BETATestSuite {
 		clausesAsStrings.removeAll(condesendInvariant);
 		Collections.sort(clausesAsStrings);
 		
-		// Montando a f�rmula
+		// Montando a f���rmula
 		
 		StringBuffer testFormulaWithoutInvariant = new StringBuffer();
 		
@@ -339,6 +344,12 @@ public class BETATestSuite {
 	
 	public List<String> getUnsolvableFormulas() {
 		return unsolvableFormulas;
+	}
+	
+	
+	
+	public Api getProbApi() {
+		return this.probApi;
 	}
 
 }

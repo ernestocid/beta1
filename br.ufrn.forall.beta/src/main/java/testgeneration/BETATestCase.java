@@ -10,19 +10,22 @@ public class BETATestCase implements Comparable<BETATestCase> {
 	private Map<String, String> stateValues;
 	private Map<String, String> inputParamValues;
 	private boolean negative;
+	private BETATestSuite testSuite;
 
 	
 	public BETATestCase(String testFormula, 
 						String testFormulaWithoutInvariant,
 						Map<String, String> stateValues,
 						Map<String, String> inputParamValues, 
-						boolean negative) {
+						boolean negative,
+						BETATestSuite testSuite) {
 
 		this.testFormula = testFormula;
 		this.testFormulaWithoutInvariant = testFormulaWithoutInvariant;
 		this.stateValues = stateValues;
 		this.inputParamValues = inputParamValues;
 		this.negative = negative;
+		this.testSuite = testSuite;
 	}
 
 
@@ -83,6 +86,12 @@ public class BETATestCase implements Comparable<BETATestCase> {
 	@Override
 	public int compareTo(BETATestCase testCase) {
 		return this.getTestFormula().compareTo(testCase.getTestFormula());
+	}
+
+
+
+	public BETATestSuite getTestSuite() {
+		return testSuite;
 	}
 
 }

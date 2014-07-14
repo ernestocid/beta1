@@ -7,8 +7,11 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.Before;
 import org.junit.Test;
 
+import de.prob.Main;
+import de.prob.scripting.Api;
 import parser.Machine;
 import parser.Operation;
 import testgeneration.BETATestCase;
@@ -16,6 +19,17 @@ import testgeneration.OracleEvaluation;
 
 public class OracleEvaluationTest {
 
+	
+//	private Api probApi = Main.getInjector().getInstance(Api.class);
+	private Api probApi = null;
+	
+	
+	@Before
+	public void setUp() {
+		this.probApi = Main.getInjector().getInstance(Api.class);
+	}
+	
+	
 	
 	@Test
 	public void shouldGetOracleValuesForMachineWithStateAndOperationWithNoParameters() {
@@ -29,7 +43,7 @@ public class OracleEvaluationTest {
 		BETATestCase mockedTestCase = mock(BETATestCase.class);
 		when(mockedTestCase.getStateValues()).thenReturn(stateValues);
 		
-		OracleEvaluation oracleEvaluation = new OracleEvaluation(mockedTestCase, operationUnderTest);
+		OracleEvaluation oracleEvaluation = new OracleEvaluation(mockedTestCase, operationUnderTest, probApi);
 		
 		Map<String, String> expectedResults = new HashMap<String, String>();
 		expectedResults.put("overflow", "FALSE");
@@ -52,7 +66,7 @@ public class OracleEvaluationTest {
 		BETATestCase mockedTestCase = mock(BETATestCase.class);
 		when(mockedTestCase.getStateValues()).thenReturn(stateValues);
 		
-		OracleEvaluation oracleEvaluation = new OracleEvaluation(mockedTestCase, operationUnderTest);
+		OracleEvaluation oracleEvaluation = new OracleEvaluation(mockedTestCase, operationUnderTest, probApi);
 		
 		assertEquals("TRUE", oracleEvaluation.getExpectedStateValues().get("overflow"));
 	}
@@ -105,7 +119,7 @@ public class OracleEvaluationTest {
 		Map<String, String> expectedResults = new HashMap<String, String>();
 		expectedResults.put("team", "{1,2,3,4,5,6,7,8,9,10,11}");
 		
-		OracleEvaluation oracleEvaluation = new OracleEvaluation(mockedTestCase, operationUnderTest);
+		OracleEvaluation oracleEvaluation = new OracleEvaluation(mockedTestCase, operationUnderTest, probApi);
 		
 		assertEquals(expectedResults, oracleEvaluation.getExpectedStateValues());
 	}

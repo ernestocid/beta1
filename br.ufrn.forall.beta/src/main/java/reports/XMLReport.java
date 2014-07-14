@@ -161,7 +161,7 @@ public class XMLReport {
 				expectedStateValuesElement.appendChild(createVariableElement(variable, "unknown"));
 			}
 		} else {
-			OracleEvaluation oracleEvaluation = new OracleEvaluation(testCase, this.testSuite.getOperationUnderTest());
+			OracleEvaluation oracleEvaluation = new OracleEvaluation(testCase, this.testSuite.getOperationUnderTest(), this.testSuite.getProbApi());
 			Map<String, String> expectedStateValues = oracleEvaluation.getExpectedStateValues();
 
 			for(String variable : expectedStateValues.keySet()) {

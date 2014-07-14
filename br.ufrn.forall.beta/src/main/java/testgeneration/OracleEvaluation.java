@@ -16,29 +16,33 @@ import de.prob.model.classicalb.ClassicalBModel;
 import de.prob.scripting.Api;
 import de.prob.statespace.StateSpace;
 import de.prob.statespace.Trace;
-import de.prob.webconsole.ServletContextListener;
 
 public class OracleEvaluation {
 
 	
 	private BETATestCase testCase;
 	private Operation operationUnderTest;
-	private Api probApi;
 	private Map<String, String> preferences;
 	private Map<String, String> expectedStateValues;
 	private Map<String, String> expectedReturnVariables;
+	private Api probApi;
 	
 	
-	public OracleEvaluation(BETATestCase testCase, Operation operationUnderTest) {
+	public OracleEvaluation(BETATestCase testCase, Operation operationUnderTest, Api probApi) {
 		this.testCase = testCase;
 		this.operationUnderTest = operationUnderTest;
-		this.probApi = ServletContextListener.INJECTOR.getInstance(Api.class);
+//		System.out.println(Configurations.getProBPath());
+//		System.setProperty("prob.home", "/Users/ernestocid/Downloads/ProB/lib/");
+//		this.probApi = ServletContextListener.INJECTOR.getInstance(Api.class);
+//		System.out.println(System.getProperty("prob.home"));
 		this.preferences = getProBPreferences();
+		this.probApi = probApi;
 		generateExpectedResults();
 	}
 	
 	
 	private void generateExpectedResults() {
+		
 		ClassicalBModel model = getModel();
 		Trace traceBeforeTest = getInitialTrace(model);
 		
@@ -72,7 +76,7 @@ public class OracleEvaluation {
 		ClassicalBModel model = null;
 		
 		try {
-			model = probApi.b_load(pathToMachine, this.preferences);
+			model = getProbApi().b_load(pathToMachine, this.preferences);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (BException e) {
@@ -173,6 +177,12 @@ public class OracleEvaluation {
 
 	public Map<String, String> getExpectedReturnVariables() {
 		return expectedReturnVariables;
+	}
+	
+	
+	
+	public Api getProbApi() {
+		return this.probApi;
 	}
 
 }

@@ -333,8 +333,6 @@ public class XMLReport {
 		createValuesListElement(parameterValuesElement, values);
 		parameterElement.appendChild(parameterValuesElement);
 		
-//		parameterElement.appendChild(createValuesListElement(values));
-		
 		return parameterElement;
 	}
 

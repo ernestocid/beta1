@@ -6,7 +6,7 @@ import org.apache.commons.configuration.PropertiesConfiguration;
 public class Configurations {
 
 	
-	private static String PATH_TO_PROPERTIES_FILE = "config.properties";
+	private static String PATH_TO_PROPERTIES_FILE = "./config.properties";
 	
 	
 	/**
@@ -15,7 +15,7 @@ public class Configurations {
 	 */
 	public static String getProBPath() {
 		String probPath = null;
-
+		
 		try {
 			PropertiesConfiguration config = new PropertiesConfiguration(PATH_TO_PROPERTIES_FILE);
 			probPath = config.getString("prob_path");

@@ -1,10 +1,10 @@
-<?xml version="1.1" encoding="UTF-8"?>
-<testsuite name="integration.HTMLReportGenerationTest" tests="4" failures="0" errors="0" timestamp="1970-01-01T00:00:00" hostname="kaylee.local" time="1.40498298971E9">
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="integration.HTMLReportGenerationTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2014-07-15T11:58:59" hostname="kaylee.local" time="19.215">
   <properties/>
-  <testcase name="shouldGenerateReportForMachineWithoutState" classname="integration.HTMLReportGenerationTest" time="6.082"/>
-  <testcase name="shouldGenerateHTMLReportForOperationWithReturnValues" classname="integration.HTMLReportGenerationTest" time="1.507"/>
-  <testcase name="shouldGenerateTestReportForBoundaryValuesAllCombinations" classname="integration.HTMLReportGenerationTest" time="2.073"/>
-  <testcase name="shouldGenerateTestReportForOperationUnderTest" classname="integration.HTMLReportGenerationTest" time="2.055"/>
+  <testcase name="shouldGenerateReportForMachineWithoutState" classname="integration.HTMLReportGenerationTest" time="9.923"/>
+  <testcase name="shouldGenerateHTMLReportForOperationWithReturnValues" classname="integration.HTMLReportGenerationTest" time="3.0"/>
+  <testcase name="shouldGenerateTestReportForBoundaryValuesAllCombinations" classname="integration.HTMLReportGenerationTest" time="2.957"/>
+  <testcase name="shouldGenerateTestReportForOperationUnderTest" classname="integration.HTMLReportGenerationTest" time="3.331"/>
   <system-out><![CDATA[Executing: /Users/ernestocid/Tools/BETA Demo/ProB/probcli -init -mc 1 -p MAX_INITIALISATIONS 1 -p MAX_OPERATIONS 1 -p MININT -1 -p MAXINT 30 /Users/ernestocid/dev/beta/br.ufrn.forall.beta/src/test/resources/machines/others/TestsForOp_Set_From_NoState.mch -save /Users/ernestocid/dev/beta/br.ufrn.forall.beta/src/test/resources/machines/others/TestsForOp_Set_From_NoState.mch.pl  Executed!
 Executing: /Users/ernestocid/Tools/BETA Demo/ProB/probcli -init -mc 1 -p MAX_INITIALISATIONS 1 -p MAX_OPERATIONS 1 -p MININT -1 -p MAXINT 30 /Users/ernestocid/dev/beta/br.ufrn.forall.beta/src/test/resources/machines/others/TestsForOp_Set_From_NoState.mch -save /Users/ernestocid/dev/beta/br.ufrn.forall.beta/src/test/resources/machines/others/TestsForOp_Set_From_NoState.mch.pl  Executed!
 Executing: /Users/ernestocid/Tools/BETA Demo/ProB/probcli -init -mc 1 -p MAX_INITIALISATIONS 1 -p MAX_OPERATIONS 1 -p MININT -1 -p MAXINT 30 /Users/ernestocid/dev/beta/br.ufrn.forall.beta/src/test/resources/machines/others/TestsForOp_Set_From_NoState.mch -save /Users/ernestocid/dev/beta/br.ufrn.forall.beta/src/test/resources/machines/others/TestsForOp_Set_From_NoState.mch.pl  Executed!

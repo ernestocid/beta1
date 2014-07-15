@@ -281,12 +281,6 @@ public class HTMLReport {
 	private String getReportTemplate() {
 		String templateText = "";
 		
-//		File htmlReportTemplate = new File("src/main/resources/report_template.html");
-		
-//		File htmlReportTemplate = new File(HTMLReport.class.getResource("src/main/resources/report_template.html").getPath());
-		
-//		templateText = FileTools.getFileContent(htmlReportTemplate);
-		
 		InputStream template = this.getClass().getClassLoader().getResourceAsStream("report_template.html");
 		
 		try {
@@ -303,13 +297,6 @@ public class HTMLReport {
 	private String getTestCaseBlockTemplate() {
 		String templateText = "";
 
-		// Try putting it on the source folder
-		
-//		File testCaseBlockTemplate = new File(HTMLReport.class.getResource("src/main/resources/testcase_block_template.html").getPath());
-//		File testCaseBlockTemplate = new File("src/main/resources/testcase_block_template.html");
-		
-//		templateText = FileTools.getFileContent(testCaseBlockTemplate);
-		
 		InputStream template = this.getClass().getClassLoader().getResourceAsStream("testcase_block_template.html");
 		
 		try {

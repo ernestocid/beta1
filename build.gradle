@@ -3,7 +3,7 @@ subprojects {
 	apply plugin: 'java'
     apply plugin: 'maven'
 //    group = 'br.ufrn.forall'
-    version = '1.0'
+    version = '1.2'
     sourceCompatibility = 1.6    
     
     repositories {   	
@@ -79,7 +79,7 @@ project('br.ufrn.forall.betagui') {
 	}
 
 	applicationDistribution.from(createPropertiesFile) {
-    	into "bin"
+    	into "lib"
 	}
 }
 

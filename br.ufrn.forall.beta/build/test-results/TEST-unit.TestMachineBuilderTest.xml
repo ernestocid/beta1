@@ -1,11 +1,11 @@
-<?xml version="1.1" encoding="UTF-8"?>
-<testsuite name="unit.TestMachineBuilderTest" tests="5" failures="0" errors="0" timestamp="2014-07-10T09:03:25" hostname="kaylee.local" time="0.06">
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="unit.TestMachineBuilderTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2014-07-15T11:59:41" hostname="kaylee.local" time="0.025">
   <properties/>
-  <testcase name="shouldGenerateTestMachineForOperationsOnMachinesWithSees" classname="unit.TestMachineBuilderTest" time="0.007"/>
-  <testcase name="shouldGenerateTestMachineForOperationsOnMachinesWithUses" classname="unit.TestMachineBuilderTest" time="0.007"/>
-  <testcase name="shouldGenerateTestMachineForOperationsOnMachinesWithIncludes" classname="unit.TestMachineBuilderTest" time="0.008"/>
+  <testcase name="shouldGenerateTestMachineForOperationsOnMachinesWithSees" classname="unit.TestMachineBuilderTest" time="0.004"/>
+  <testcase name="shouldGenerateTestMachineForOperationsOnMachinesWithUses" classname="unit.TestMachineBuilderTest" time="0.004"/>
+  <testcase name="shouldGenerateTestMachineForOperationsOnMachinesWithIncludes" classname="unit.TestMachineBuilderTest" time="0.007"/>
   <testcase name="shouldGenerateTestMachineForOperationsOnMachinesWithExtends" classname="unit.TestMachineBuilderTest" time="0.003"/>
-  <testcase name="shouldGenerateTestMachineForFormula" classname="unit.TestMachineBuilderTest" time="0.032"/>
+  <testcase name="shouldGenerateTestMachineForFormula" classname="unit.TestMachineBuilderTest" time="0.006"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

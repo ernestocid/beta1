@@ -26,6 +26,14 @@
                 </variable>
             </state-variables>
             <operation-parameters/>
+            <expected-state-values>
+                <variable>
+                    <identifier>temp</identifier>
+                    <values>
+                        <value>unknown</value>
+                    </values>
+                </variable>
+            </expected-state-values>
             <return-variables/>
         </test-case>
         <test-case>
@@ -43,6 +51,16 @@
                 </variable>
             </state-variables>
             <operation-parameters/>
+            <expected-state-values>
+                <variable>
+                    <identifier>temp</identifier>
+                    <values>
+                        <value>1</value>
+                        <value>2</value>
+                        <value>3</value>
+                    </values>
+                </variable>
+            </expected-state-values>
             <return-variables/>
         </test-case>
     </test-cases>

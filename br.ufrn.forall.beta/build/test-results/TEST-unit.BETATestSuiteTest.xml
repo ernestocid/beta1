@@ -1,8 +1,8 @@
-<?xml version="1.1" encoding="UTF-8"?>
-<testsuite name="unit.BETATestSuiteTest" tests="2" failures="0" errors="0" timestamp="1970-01-01T00:00:00" hostname="kaylee.local" time="1.404983000578E9">
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="unit.BETATestSuiteTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2014-07-15T11:59:30" hostname="kaylee.local" time="5.143">
   <properties/>
-  <testcase name="shouldIdentifyPositiveAndNegativeTestCases" classname="unit.BETATestSuiteTest" time="3.154"/>
-  <testcase name="shouldGenerateTestCasesForSingleCharacteristics" classname="unit.BETATestSuiteTest" time="1.487"/>
+  <testcase name="shouldIdentifyPositiveAndNegativeTestCases" classname="unit.BETATestSuiteTest" time="3.585"/>
+  <testcase name="shouldGenerateTestCasesForSingleCharacteristics" classname="unit.BETATestSuiteTest" time="1.557"/>
   <system-out><![CDATA[Executing: /Users/ernestocid/Tools/BETA Demo/ProB/probcli -init -mc 1 -p MAX_INITIALISATIONS 1 -p MAX_OPERATIONS 1 -p MININT -1 -p MAXINT 30 /Users/ernestocid/dev/beta/br.ufrn.forall.beta/src/test/resources/machines/others/TestsForOp_inc_From_counter.mch -save /Users/ernestocid/dev/beta/br.ufrn.forall.beta/src/test/resources/machines/others/TestsForOp_inc_From_counter.mch.pl  Executed!
 Executing: /Users/ernestocid/Tools/BETA Demo/ProB/probcli -init -mc 1 -p MAX_INITIALISATIONS 1 -p MAX_OPERATIONS 1 -p MININT -1 -p MAXINT 30 /Users/ernestocid/dev/beta/br.ufrn.forall.beta/src/test/resources/machines/others/TestsForOp_inc_From_counter.mch -save /Users/ernestocid/dev/beta/br.ufrn.forall.beta/src/test/resources/machines/others/TestsForOp_inc_From_counter.mch.pl  Executed!
 Executing: /Users/ernestocid/Tools/BETA Demo/ProB/probcli -init -mc 1 -p MAX_INITIALISATIONS 1 -p MAX_OPERATIONS 1 -p MININT -1 -p MAXINT 30 /Users/ernestocid/dev/beta/br.ufrn.forall.beta/src/test/resources/machines/others/TestsForOp_inc_From_counter.mch -save /Users/ernestocid/dev/beta/br.ufrn.forall.beta/src/test/resources/machines/others/TestsForOp_inc_From_counter.mch.pl  Executed!

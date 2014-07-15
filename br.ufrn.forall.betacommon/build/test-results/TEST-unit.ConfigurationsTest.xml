@@ -1,9 +1,9 @@
-<?xml version="1.1" encoding="UTF-8"?>
-<testsuite name="unit.ConfigurationsTest" tests="3" failures="0" errors="0" timestamp="2014-07-10T09:03:42" hostname="kaylee.local" time="0.056">
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="unit.ConfigurationsTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2014-07-15T11:59:57" hostname="kaylee.local" time="0.096">
   <properties/>
-  <testcase name="shouldGetMinIntValue" classname="unit.ConfigurationsTest" time="0.052"/>
-  <testcase name="shouldGetMaxIntValue" classname="unit.ConfigurationsTest" time="0.002"/>
-  <testcase name="shouldGetProBPath" classname="unit.ConfigurationsTest" time="0.001"/>
+  <testcase name="shouldGetMinIntValue" classname="unit.ConfigurationsTest" time="0.091"/>
+  <testcase name="shouldGetMaxIntValue" classname="unit.ConfigurationsTest" time="0.001"/>
+  <testcase name="shouldGetProBPath" classname="unit.ConfigurationsTest" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

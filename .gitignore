@@ -3,3 +3,5 @@ bin/
 prob_log.txt
 .classpath
 .project
+.gradle/
+.settings/

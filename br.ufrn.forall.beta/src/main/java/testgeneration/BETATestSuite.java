@@ -43,6 +43,7 @@ public class BETATestSuite {
 		this.partitionStrategy = partitionStrategy;
 		this.combinatorialCriteria = combinatorialCriteria;
 		this.testCases = new ArrayList<BETATestCase>();
+		System.setProperty("prob.home", Configurations.getProBPath());
 		this.probApi = Main.getInjector().getInstance(Api.class);
 		generateTestCases();
 	}

@@ -1,5 +1,8 @@
 package configurations;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 
@@ -227,6 +230,24 @@ public class Configurations {
 		} catch (ConfigurationException e) {
 			System.err.println("Could not set value for maxint: " + e.getMessage());
 		}
+	}
+	
+	
+	
+	/**
+	 * Creates a Map that represents the preferences used by ProB Api
+	 * @return prob api preferences
+	 */
+	public static Map<String, String> getProBApiPreferences() {
+		Map<String, String> probApiPrefs = new HashMap<String, String>();
+		
+		probApiPrefs.put("MAXINT", Integer.toString(getMaxIntProperties()));
+		probApiPrefs.put("MININT", Integer.toString(getMaxIntProperties()));
+		probApiPrefs.put("CLPFD", "true");
+		probApiPrefs.put("CHR", "false");
+		probApiPrefs.put("SYMBOLIC", "true");
+		
+		return probApiPrefs;
 	}
 
 }

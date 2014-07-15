@@ -10,6 +10,7 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
+import configurations.Configurations;
 import de.prob.Main;
 import de.prob.scripting.Api;
 import parser.Machine;
@@ -20,12 +21,13 @@ import testgeneration.OracleEvaluation;
 public class OracleEvaluationTest {
 
 	
-//	private Api probApi = Main.getInjector().getInstance(Api.class);
 	private Api probApi = null;
 	
 	
 	@Before
 	public void setUp() {
+		// TODO: think about including getProBApi on Configurations class and turn it into a Singleton
+		System.setProperty("prob.home", Configurations.getProBPath());
 		this.probApi = Main.getInjector().getInstance(Api.class);
 	}
 	

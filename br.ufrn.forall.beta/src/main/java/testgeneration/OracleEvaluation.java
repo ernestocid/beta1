@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import configurations.Configurations;
 import parser.Operation;
 import de.be4.classicalb.core.parser.exceptions.BException;
 import de.prob.animator.domainobjects.ClassicalB;
@@ -31,11 +32,7 @@ public class OracleEvaluation {
 	public OracleEvaluation(BETATestCase testCase, Operation operationUnderTest, Api probApi) {
 		this.testCase = testCase;
 		this.operationUnderTest = operationUnderTest;
-//		System.out.println(Configurations.getProBPath());
-//		System.setProperty("prob.home", "/Users/ernestocid/Downloads/ProB/lib/");
-//		this.probApi = ServletContextListener.INJECTOR.getInstance(Api.class);
-//		System.out.println(System.getProperty("prob.home"));
-		this.preferences = getProBPreferences();
+		this.preferences = Configurations.getProBApiPreferences();
 		this.probApi = probApi;
 		generateExpectedResults();
 	}
@@ -51,14 +48,6 @@ public class OracleEvaluation {
 		}
 
 		executeOperation(traceBeforeTest);
-	}
-
-
-
-	private Map<String, String> getProBPreferences() {
-		Map<String, String> preferences = new HashMap<String, String>();
-		preferences.put("MAXINT", "30");
-		return preferences;
 	}
 
 

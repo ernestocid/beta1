@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="unit.AnimatorTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2014-07-15T11:59:43" hostname="kaylee.local" time="13.457">
+<testsuite name="unit.AnimatorTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2014-07-15T13:11:20" hostname="kaylee.local" time="13.271">
   <properties/>
-  <testcase name="shouldGetListOfOperationsWithUnsolvablePreconditionPredicates" classname="unit.AnimatorTest" time="2.261"/>
-  <testcase name="shouldAnimateMachineAndRetrieveInputData" classname="unit.AnimatorTest" time="5.61"/>
-  <testcase name="shouldReturnEmptyListForOperationThatCantAnimate" classname="unit.AnimatorTest" time="5.585"/>
+  <testcase name="shouldGetListOfOperationsWithUnsolvablePreconditionPredicates" classname="unit.AnimatorTest" time="2.019"/>
+  <testcase name="shouldAnimateMachineAndRetrieveInputData" classname="unit.AnimatorTest" time="5.679"/>
+  <testcase name="shouldReturnEmptyListForOperationThatCantAnimate" classname="unit.AnimatorTest" time="5.572"/>
   <system-out><![CDATA[Executing: /Users/ernestocid/Tools/BETA Demo/ProB/probcli -init -mc 1 -p MAX_INITIALISATIONS 1 -p MAX_OPERATIONS 1 -p MININT -1 -p MAXINT 30 /Users/ernestocid/dev/beta/br.ufrn.forall.betaanimator/src/test/resources/machines/UnsolvablePredicates.mch -save /Users/ernestocid/dev/beta/br.ufrn.forall.betaanimator/src/test/resources/machines/UnsolvablePredicates.mch.pl  Executed!
 Executing: /Users/ernestocid/Tools/BETA Demo/ProB/probcli -init -mc 1 -p MAX_INITIALISATIONS 1 -p MAX_OPERATIONS 1 -p MININT -1 -p MAXINT 30 /Users/ernestocid/dev/beta/br.ufrn.forall.betaanimator/src/test/resources/machines/UnsolvablePredicates.mch -save /Users/ernestocid/dev/beta/br.ufrn.forall.betaanimator/src/test/resources/machines/UnsolvablePredicates.mch.pl  Executed!
 Executing: /Users/ernestocid/Tools/BETA Demo/ProB/probcli -init -mc 1 -p MAX_INITIALISATIONS 1 -p MAX_OPERATIONS 1 -p MININT -1 -p MAXINT 30 /Users/ernestocid/dev/beta/br.ufrn.forall.betaanimator/src/test/resources/machines/UnsolvablePredicates.mch -save /Users/ernestocid/dev/beta/br.ufrn.forall.betaanimator/src/test/resources/machines/UnsolvablePredicates.mch.pl  Executed!

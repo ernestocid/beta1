@@ -81,6 +81,11 @@ project('br.ufrn.forall.betagui') {
 	applicationDistribution.from(createPropertiesFile) {
     	into "lib"
 	}
+	
+	distZip {
+		archiveName "beta"+'-'+version+'-bin.zip'
+
+    }
 }
 
 

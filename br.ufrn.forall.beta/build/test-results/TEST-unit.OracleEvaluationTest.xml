@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="unit.OracleEvaluationTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2014-07-17T12:16:26" hostname="kaylee.local" time="2.045">
-  <properties/>
-  <testcase name="shouldGetOracleValuesForMachineWithStateAndOperationWithNoParameters" classname="unit.OracleEvaluationTest" time="0.668"/>
-  <testcase name="shouldGetOracleValuesForMachineWithStateAndOperationWithNoParameters2" classname="unit.OracleEvaluationTest" time="0.628"/>
-  <testcase name="shouldGetOracleValuesForOperationWithParameters" classname="unit.OracleEvaluationTest" time="0.749"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

@@ -1,5 +1,0 @@
-MACHINE SimpleGoods
-SETS
- GOODS
-END
-

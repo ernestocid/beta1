@@ -125,5 +125,30 @@ public class OracleEvaluationTest {
 		
 		assertEquals(expectedResults, oracleEvaluation.getExpectedStateValues());
 	}
+	
+	
+	
+	@Test
+	public void shouldGetOracleValuesForOperationWithParametersAndMachineWithState() {
+		Machine machine = new Machine(new File("src/test/resources/machines/others/Inc.mch"));
+		Operation operationUnderTest = machine.getOperation(0); // inc(nn) operation
+		
+		Map<String, String> stateValues = new HashMap<String, String>();
+		stateValues.put("value", "1");
+		
+		Map<String, String> parametersInput = new HashMap<String, String>();
+		parametersInput.put("nn", "2");
+		
+		BETATestCase mockedTestCase = mock(BETATestCase.class);
+		when(mockedTestCase.getStateValues()).thenReturn(stateValues);
+		when(mockedTestCase.getInputParamValues()).thenReturn(parametersInput);
+
+		Map<String, String> expectedResults = new HashMap<String, String>();
+		expectedResults.put("value", "3");
+		
+		OracleEvaluation oracleEvaluation = new OracleEvaluation(mockedTestCase, operationUnderTest, probApi);
+		
+		assertEquals(expectedResults, oracleEvaluation.getExpectedStateValues());
+	}
 
 }

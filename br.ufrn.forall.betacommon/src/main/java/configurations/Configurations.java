@@ -242,7 +242,7 @@ public class Configurations {
 		Map<String, String> probApiPrefs = new HashMap<String, String>();
 		
 		probApiPrefs.put("MAXINT", Integer.toString(getMaxIntProperties()));
-		probApiPrefs.put("MININT", Integer.toString(getMaxIntProperties()));
+		probApiPrefs.put("MININT", Integer.toString(getMinIntProperties()));
 		probApiPrefs.put("CLPFD", "true");
 		probApiPrefs.put("CHR", "false");
 		probApiPrefs.put("SYMBOLIC", "true");

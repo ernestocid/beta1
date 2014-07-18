@@ -48,20 +48,18 @@ public class HTMLReport {
 	
 	public void generateReport() {
 		Map<String, String> tagsAndReplacement = new HashMap<String, String>();
+		
 		tagsAndReplacement.put("{{MACHINE_NAME}}", this.testSuite.getOperationUnderTest().getMachine().getName());
 		tagsAndReplacement.put("{{OPERATION_NAME}}", this.testSuite.getOperationUnderTest().getName());
-
 		tagsAndReplacement.put("{{PARTITION_STRATEGY}}", this.testSuite.getPartitionStrategy().toString());
 		tagsAndReplacement.put("{{COMBINATION_STRATEGY}}", this.testSuite.getCombinatorialCriteria().toString());
-		
 		tagsAndReplacement.put("{{INVARIANT_CLAUSES}}", generateInvariantRestrictionsList());
-
 		tagsAndReplacement.put("{{TESTCASE_LIST}}", createTestCaseListHTML());
-
 		tagsAndReplacement.put("{{UNSOLVABLE_TEST_FORMULAS}}", createUnsolvableTestFormulasList());
 		
 		String textWithReplacement = replaceTagsWithParameters(tagsAndReplacement, getReportTemplate());
 
+		
 		FileTools.createFileWithContent(outputReport.getPath(), textWithReplacement);
 	}
 	
@@ -139,7 +137,7 @@ public class HTMLReport {
 		if(testCase.isNegative()) {
 			expectedStateValues = generateExpectedStateValuesForNegativeTestCase(testCase);
 		} else {
-			OracleEvaluation oracleEvaluation = new OracleEvaluation(testCase, this.testSuite.getOperationUnderTest(), this.testSuite.getProbApi());
+			OracleEvaluation oracleEvaluation = new OracleEvaluation(testCase, testCase.getTestSuite().getOperationUnderTest(), testCase.getTestSuite().getProbApi());
 			expectedStateValues = oracleEvaluation.getExpectedStateValues();
 		}
 		

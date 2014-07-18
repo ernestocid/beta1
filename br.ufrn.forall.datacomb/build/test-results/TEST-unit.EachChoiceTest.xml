@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="unit.EachChoiceTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2014-07-17T12:16:50" hostname="kaylee.local" time="0.008">
+  <properties/>
+  <testcase name="shouldGenerateCombinationsAsSets" classname="unit.EachChoiceTest" time="0.001"/>
+  <testcase name="shouldGenerateEachChoice" classname="unit.EachChoiceTest" time="0.0"/>
+  <testcase name="shouldGenerateEachChoice1" classname="unit.EachChoiceTest" time="0.0"/>
+  <testcase name="shouldGenerateEachChoice2" classname="unit.EachChoiceTest" time="0.001"/>
+  <testcase name="shouldGenerateEachChoice3" classname="unit.EachChoiceTest" time="0.001"/>
+  <testcase name="shouldGenerateEachChoice4" classname="unit.EachChoiceTest" time="0.0"/>
+  <testcase name="shouldGenerateEmptyListForEmptyInputValues" classname="unit.EachChoiceTest" time="0.0"/>
+  <testcase name="shouldGenerateEmptyListForOneParameterInput" classname="unit.EachChoiceTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

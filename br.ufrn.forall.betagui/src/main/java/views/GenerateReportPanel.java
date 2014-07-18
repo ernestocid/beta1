@@ -256,7 +256,6 @@ public class GenerateReportPanel extends JPanel implements ActionListener,
         
         private void createHTMLReportFile(Operation operationUnderTest, BETATestSuite testSuite) {
     		String sourceMachineDirectory = operationUnderTest.getMachine().getFile().getParent();
-    		
 			String reportFileName = ConventionTools.getReportFileName(operationUnderTest.getMachine().getName(), operationUnderTest.getName(), "html");
 			String outputFilePath = sourceMachineDirectory + System.getProperty("file.separator") + reportFileName;
 			

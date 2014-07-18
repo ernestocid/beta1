@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="unit.ReadMachineInfoTest" tests="32" skipped="0" failures="0" errors="0" timestamp="2014-07-17T12:16:48" hostname="kaylee.local" time="1.198">
+  <properties/>
+  <testcase name="shouldGetUsesText" classname="unit.ReadMachineInfoTest" time="0.015"/>
+  <testcase name="shouldGetCondensedInvariant" classname="unit.ReadMachineInfoTest" time="0.019"/>
+  <testcase name="shouldGetOperationByIndex" classname="unit.ReadMachineInfoTest" time="0.005"/>
+  <testcase name="shouldGetOperations" classname="unit.ReadMachineInfoTest" time="0.004"/>
+  <testcase name="shouldGetInitialisationText" classname="unit.ReadMachineInfoTest" time="0.008"/>
+  <testcase name="shouldGetEnumeratedSets" classname="unit.ReadMachineInfoTest" time="0.062"/>
+  <testcase name="shouldGetUsedMachines" classname="unit.ReadMachineInfoTest" time="0.009"/>
+  <testcase name="shoudGetSeesText" classname="unit.ReadMachineInfoTest" time="0.008"/>
+  <testcase name="shouldGetSetsText" classname="unit.ReadMachineInfoTest" time="0.059"/>
+  <testcase name="shouldGetInvariant" classname="unit.ReadMachineInfoTest" time="0.005"/>
+  <testcase name="shouldGetCondensedInvariant2" classname="unit.ReadMachineInfoTest" time="0.008"/>
+  <testcase name="shouldGetFile" classname="unit.ReadMachineInfoTest" time="0.005"/>
+  <testcase name="shouldGetDEFINTIONS" classname="unit.ReadMachineInfoTest" time="0.739"/>
+  <testcase name="shouldGetPromotedOperations" classname="unit.ReadMachineInfoTest" time="0.009"/>
+  <testcase name="shouldGetIncludesText" classname="unit.ReadMachineInfoTest" time="0.007"/>
+  <testcase name="shouldGetPropertiesText" classname="unit.ReadMachineInfoTest" time="0.007"/>
+  <testcase name="shouldGetDeferredSets" classname="unit.ReadMachineInfoTest" time="0.06"/>
+  <testcase name="shouldParseMachine" classname="unit.ReadMachineInfoTest" time="0.004"/>
+  <testcase name="shouldGetInvariantClauses" classname="unit.ReadMachineInfoTest" time="0.004"/>
+  <testcase name="shouldGetIncludedMachines" classname="unit.ReadMachineInfoTest" time="0.007"/>
+  <testcase name="shouldGetPropertiesClauses" classname="unit.ReadMachineInfoTest" time="0.007"/>
+  <testcase name="shouldGetExtendsMachines" classname="unit.ReadMachineInfoTest" time="0.012"/>
+  <testcase name="shouldGetExtendedOperations" classname="unit.ReadMachineInfoTest" time="0.014"/>
+  <testcase name="shouldGetVariablesText" classname="unit.ReadMachineInfoTest" time="0.009"/>
+  <testcase name="shouldGetConstantsText" classname="unit.ReadMachineInfoTest" time="0.008"/>
+  <testcase name="shouldGetSeenMachines" classname="unit.ReadMachineInfoTest" time="0.008"/>
+  <testcase name="shouldGetConstants" classname="unit.ReadMachineInfoTest" time="0.008"/>
+  <testcase name="shouldGetProperties" classname="unit.ReadMachineInfoTest" time="0.008"/>
+  <testcase name="shouldNotParseMachineWithSpecificationsErros" classname="unit.ReadMachineInfoTest" time="0.008"/>
+  <testcase name="shouldGetExtendsText" classname="unit.ReadMachineInfoTest" time="0.022"/>
+  <testcase name="shouldGetMachineVariables" classname="unit.ReadMachineInfoTest" time="0.035"/>
+  <testcase name="shouldGetEnumeratedSetElements" classname="unit.ReadMachineInfoTest" time="0.006"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Error while parsing the machine: Clause(s) missing: INVARIANT
+]]></system-err>
+</testsuite>

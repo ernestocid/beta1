@@ -211,7 +211,7 @@ public class BETATestSuite {
 		clausesAsStrings.removeAll(condesendInvariant);
 		Collections.sort(clausesAsStrings);
 		
-		// Montando a f���rmula
+		// Montando a f���������rmula
 		
 		StringBuffer testFormulaWithoutInvariant = new StringBuffer();
 		

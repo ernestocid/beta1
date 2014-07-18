@@ -94,4 +94,17 @@ public class BETATestCase implements Comparable<BETATestCase> {
 		return testSuite;
 	}
 
+	
+	
+	@Override
+	public String toString() {
+		StringBuffer testCaseRepresentation = new StringBuffer("");
+		
+		testCaseRepresentation.append("Test Formula: " + this.testFormula + "\n");
+		testCaseRepresentation.append("Input Params: " + this.inputParamValues + "\n");
+		testCaseRepresentation.append("State: " + this.stateValues + "\n");
+		testCaseRepresentation.append("Negative: " + this.negative + "\n");
+		
+		return testCaseRepresentation.toString();
+	}
 }

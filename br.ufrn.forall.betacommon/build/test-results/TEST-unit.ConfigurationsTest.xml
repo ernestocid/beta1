@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="unit.ConfigurationsTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2014-07-17T12:16:44" hostname="kaylee.local" time="0.084">
+  <properties/>
+  <testcase name="shouldGetMinIntValue" classname="unit.ConfigurationsTest" time="0.08"/>
+  <testcase name="shouldGetMaxIntValue" classname="unit.ConfigurationsTest" time="0.001"/>
+  <testcase name="shouldGetProBPath" classname="unit.ConfigurationsTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

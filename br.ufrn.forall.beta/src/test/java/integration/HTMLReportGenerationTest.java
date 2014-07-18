@@ -94,4 +94,42 @@ public class HTMLReportGenerationTest {
 		assertEquals(expectedReport, actualReport);
 	}
 	
+	
+	
+	@Test
+	public void shouldGenerateHTMLReportForOperationWithParametersAndMachineWithState() {
+		Machine machine = new Machine(new File("src/test/resources/machines/others/Inc.mch"));
+		
+		Operation operationUnderTest = machine.getOperation(0);
+		
+		BETATestSuite testSuite = new BETATestSuite(operationUnderTest, PartitionStrategy.EQUIVALENT_CLASSES, CombinatorialCriterias.ALL_COMBINATIONS);
+		
+		HTMLReport report = new HTMLReport(testSuite, new File("src/test/resources/test_reports/html/Inc_inc_EC_AC_report.html"));
+		report.generateReport();
+		
+		String expectedReport = FileTools.getFileContent(new File("src/test/resources/test_reports/html/expected_Inc_inc_EC_AC_report.html"));
+		String actualReport = FileTools.getFileContent(new File("src/test/resources/test_reports/html/Inc_inc_EC_AC_report.html"));
+		
+		assertEquals(expectedReport, actualReport);
+	}
+	
+	
+	
+	@Test
+	public void shouldGenerateHTMLReportForOperationWithParametersAndMachineWithState2() {
+		Machine machine = new Machine(new File("src/test/resources/machines/schneider/Player.mch"));
+		
+		Operation operationUnderTest = machine.getOperation(0);
+		
+		BETATestSuite testSuite = new BETATestSuite(operationUnderTest, PartitionStrategy.EQUIVALENT_CLASSES, CombinatorialCriterias.ALL_COMBINATIONS);
+		
+		HTMLReport report = new HTMLReport(testSuite, new File("src/test/resources/test_reports/html/Player_substitute_EC_AC_report.html"));
+		report.generateReport();
+		
+		String expectedReport = FileTools.getFileContent(new File("src/test/resources/test_reports/html/expected_Inc_inc_EC_AC_report.html"));
+		String actualReport = FileTools.getFileContent(new File("src/test/resources/test_reports/html/Player_substitute_EC_AC_report.html"));
+		
+		assertEquals(expectedReport, actualReport);
+	}
+	
 }

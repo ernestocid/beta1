@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-suite>
+    <machine-name>Calc</machine-name>
+    <operation-under-test>sum</operation-under-test>
+    <partition-strategy>Equivalence Classes</partition-strategy>
+    <combinatorial-criteria>All-Combinations</combinatorial-criteria>
+    <oracle-strategy>
+        <state-variables>true</state-variables>
+        <return-variables>true</return-variables>
+        <invariant-ok>true</invariant-ok>
+    </oracle-strategy>
+    <test-cases>
+        <test-case>
+            <id>1</id>
+            <formula>yy : INT &amp; xx : INT</formula>
+            <isNegative>false</isNegative>
+            <state-variables/>
+            <operation-parameters>
+                <parameter>
+                    <identifier>yy</identifier>
+                    <values>
+                        <value>-1</value>
+                    </values>
+                </parameter>
+                <parameter>
+                    <identifier>xx</identifier>
+                    <values>
+                        <value>-1</value>
+                    </values>
+                </parameter>
+            </operation-parameters>
+            <expected-state-values/>
+            <return-variables>
+                <variable>
+                    <identifier>rr</identifier>
+                </variable>
+            </return-variables>
+        </test-case>
+    </test-cases>
+</test-suite>

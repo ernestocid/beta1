@@ -38,6 +38,7 @@ public class OracleEvaluation {
 	}
 	
 	
+	
 	private void generateExpectedResults() {
 		
 		ClassicalBModel model = getModel();
@@ -62,6 +63,7 @@ public class OracleEvaluation {
 
 	private ClassicalBModel getModel() {
 		String pathToMachine = operationUnderTest.getMachine().getFile().getAbsolutePath();
+
 		ClassicalBModel model = null;
 		
 		try {

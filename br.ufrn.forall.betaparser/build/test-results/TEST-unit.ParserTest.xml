@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="unit.ParserTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2014-07-17T12:16:47" hostname="kaylee.local" time="0.909">
+  <properties/>
+  <testcase name="shouldExtractInvariantClauses" classname="unit.ParserTest" time="0.031"/>
+  <testcase name="shouldParseQueueInvariant" classname="unit.ParserTest" time="0.221"/>
+  <testcase name="shouldParseQuantifierPredicateClause" classname="unit.ParserTest" time="0.234"/>
+  <testcase name="shouldParseFreeRTOSMachine" classname="unit.ParserTest" time="0.236"/>
+  <testcase name="shouldExtractPreconditionClauses" classname="unit.ParserTest" time="0.006"/>
+  <testcase name="shouldParseQueueProperties" classname="unit.ParserTest" time="0.067"/>
+  <testcase name="shouldParseTaskMachine" classname="unit.ParserTest" time="0.065"/>
+  <testcase name="shouldParseImplicaltionFromOperationPreconditions" classname="unit.ParserTest" time="0.007"/>
+  <testcase name="shouldParseRelationalOperatorsFromOperationPreconditions" classname="unit.ParserTest" time="0.009"/>
+  <testcase name="shouldParseDisjunctFromOperationPreconditions" classname="unit.ParserTest" time="0.008"/>
+  <testcase name="shouldParseFalseAndTrueExpressions" classname="unit.ParserTest" time="0.006"/>
+  <testcase name="shouldParseConjunctFromOperationPreconditions" classname="unit.ParserTest" time="0.006"/>
+  <testcase name="shouldParseBelongsAndDoestBelongsToFromOperationPreconditions" classname="unit.ParserTest" time="0.007"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

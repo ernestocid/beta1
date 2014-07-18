@@ -1,4 +1,5 @@
 .DS_Store
+build/
 bin/
 prob_log.txt
 .classpath

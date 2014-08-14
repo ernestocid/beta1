@@ -2,7 +2,7 @@ subprojects {
     apply plugin: 'eclipse'
 	apply plugin: 'java'
     apply plugin: 'maven'
-//    group = 'br.ufrn.forall'
+//  group = 'br.ufrn.forall'
     version = '1.2'
     sourceCompatibility = 1.6    
     
@@ -88,4 +88,19 @@ project('br.ufrn.forall.betagui') {
     }
 }
 
+// Experiment projects
+
+project(':br.ufrn.forall.logicalcoverageexperiments') {
+	
+	def core_version = '2.0.0-milestone-14-SNAPSHOT'
+	
+	dependencies {
+		compile project(':br.ufrn.forall.betacommon'), project(':br.ufrn.forall.betaparser'), project(':br.ufrn.forall.datacomb')
+		compile group: "de.prob", name: "de.prob.core.kernel", version: core_version , changing: true
+		compile 'commons-io:commons-io:2.4'
+		compile 'commons-lang:commons-lang:2.2'
+		compile 'org.mockito:mockito-all:1.9.5'
+		compile 'com.io7m.xom:xom:1.2.10'
+	}
+}
 

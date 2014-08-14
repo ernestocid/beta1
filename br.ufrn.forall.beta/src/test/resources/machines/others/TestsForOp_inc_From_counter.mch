@@ -7,7 +7,7 @@ overflow,
 value
 ) =
 PRE
-not(value <= MAXINT) & 0 <= value & not(value < MAXINT) & overflow : BOOL & value : INT & ((overflow = TRUE) => (value = MAXINT)) /* NEGATIVE */
+0 <= value & not(value <= MAXINT) & not(value < MAXINT) & overflow : BOOL & value : INT & ((overflow = TRUE) => (value = MAXINT)) /* NEGATIVE */
 THEN
 skip
 END
@@ -18,7 +18,7 @@ overflow,
 value
 ) =
 PRE
-not(value <= MAXINT) & 0 <= value & value < MAXINT & overflow : BOOL & value : INT & ((overflow = TRUE) => (value = MAXINT)) /* NEGATIVE */
+0 <= value & not(value <= MAXINT) & value < MAXINT & overflow : BOOL & value : INT & ((overflow = TRUE) => (value = MAXINT)) /* NEGATIVE */
 THEN
 skip
 END
@@ -29,7 +29,7 @@ overflow,
 value
 ) =
 PRE
-value <= MAXINT & 0 <= value & not(value < MAXINT) & overflow : BOOL & value : INT & ((overflow = TRUE) => (value = MAXINT)) /* NEGATIVE */
+0 <= value & value <= MAXINT & not(value < MAXINT) & overflow : BOOL & value : INT & ((overflow = TRUE) => (value = MAXINT)) /* NEGATIVE */
 THEN
 skip
 END
@@ -40,7 +40,7 @@ overflow,
 value
 ) =
 PRE
-value <= MAXINT & 0 <= value & value < MAXINT & overflow : BOOL & value : INT & ((overflow = TRUE) => (value = MAXINT)) /* POSITIVE */
+0 <= value & value <= MAXINT & value < MAXINT & overflow : BOOL & value : INT & ((overflow = TRUE) => (value = MAXINT)) /* POSITIVE */
 THEN
 skip
 END

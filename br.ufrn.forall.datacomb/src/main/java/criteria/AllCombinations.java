@@ -78,9 +78,19 @@ public class AllCombinations<T> extends Criteria<T> {
 		Set<List<T>> combinations = new HashSet<List<T>>();
 		
 		if(getParametersInputValues().size() == 1) {
-			List<T> singleElement = new ArrayList<T>();
-			singleElement.add(getParametersInputValues().get(0).get(0));
-			combinations.add(singleElement);
+			
+			List<T> singleParameterValues = getParametersInputValues().get(0);
+			
+			for(T element : singleParameterValues) {
+				List<T> singleElementList = new ArrayList<T>();
+				singleElementList.add(element);
+				combinations.add(singleElementList);
+			}
+			
+			
+//			List<T> singleElement = new ArrayList<T>();
+//			singleElement.add(getParametersInputValues().get(0).get(0));
+//			combinations.add(singleElement);
 			return combinations;
 		} else {
 			return combinations;

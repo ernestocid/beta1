@@ -339,4 +339,48 @@ public class Operation {
 
 	     return null;
 	   }
+
+	
+
+	/**
+	 * This method builds a list containing all the conditions present on
+	 * a If-Elsif-Else statement. It takes the guard for each if or elsif branch
+	 * and adds to a list of predicates. The else branch does not have guard so a
+	 * predicate for its branch is not added to the final list.
+	 * 
+	 * @return a List of MyPredicate for the guards of a If-Elsif-Else statement.
+	 */
+	public List<MyPredicate> getIfElsifElsePredicates() {
+		List<MyPredicate> predicates = new ArrayList<MyPredicate>();
+		PSubstitution substitution = getBodyInsides(operation.getOperationBody());
+		
+		if(!(substitution instanceof AParallelSubstitution)) {
+			if (substitution instanceof AIfSubstitution) {
+				AIfSubstitution ifSubstitution = (AIfSubstitution) substitution;
+				MyPredicate ifCondition = MyPredicateFactory.convertPredicate(ifSubstitution.getCondition());
+
+				predicates.add(ifCondition);
+				predicates.addAll(getElsifConditions(ifSubstitution));
+			}
+		}
+		
+		return predicates;
+	}
+
+
+
+	private List<MyPredicate> getElsifConditions(AIfSubstitution ifSubstitution) {
+		List<MyPredicate> predicates = new ArrayList<MyPredicate>();
+		
+		for (PSubstitution subs : ifSubstitution.getElsifSubstitutions()) {
+			if(subs instanceof AIfElsifSubstitution) {
+				AIfElsifSubstitution elsifSubstitution = (AIfElsifSubstitution) subs;
+				MyPredicate elsifCondition = MyPredicateFactory.convertPredicate(elsifSubstitution.getCondition());
+				
+				predicates.add(elsifCondition);
+			}
+		}
+		
+		return predicates;
+	}
 }

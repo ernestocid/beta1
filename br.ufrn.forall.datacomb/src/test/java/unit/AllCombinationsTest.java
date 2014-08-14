@@ -31,7 +31,7 @@ public class AllCombinationsTest {
 	
 	
 	@Test
-	public void shouldGenerateEmptyListForInputValuesWithOneParameter() {
+	public void shouldGenerateCombinationsForInputValuesWithOneParameter() {
 		List<List<String>> parametersInputValues = new ArrayList<List<String>>();
 		parametersInputValues.add(new ArrayList<String>(Arrays.asList(new String[] {"a1", "a2"})));
 		
@@ -39,6 +39,7 @@ public class AllCombinationsTest {
 		
 		Set<List<String>> expectedCombinations = new HashSet<List<String>>();
 		expectedCombinations.add(new ArrayList<String>(Arrays.asList(new String[] {"a1"})));
+		expectedCombinations.add(new ArrayList<String>(Arrays.asList(new String[] {"a2"})));
 		
 		assertEquals(expectedCombinations, allCombinations.getCombinations());
 	}

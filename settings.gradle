@@ -1,1 +1,1 @@
-include 'br.ufrn.forall.beta', 'br.ufrn.forall.betaanimator', 'br.ufrn.forall.betacommon', 'br.ufrn.forall.betagui', 'br.ufrn.forall.betaparser', 'br.ufrn.forall.datacomb'
+include 'br.ufrn.forall.beta', 'br.ufrn.forall.betaanimator', 'br.ufrn.forall.betacommon', 'br.ufrn.forall.betagui', 'br.ufrn.forall.betaparser', 'br.ufrn.forall.datacomb', 'br.ufrn.forall.logicalcoverageexperiments'

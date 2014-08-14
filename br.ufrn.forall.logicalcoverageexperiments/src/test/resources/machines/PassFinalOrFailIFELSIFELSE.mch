@@ -6,7 +6,7 @@ OPERATIONS
   result <-- checkResult(averageGrade) = 
     PRE 
       averageGrade : 0..5 &
-      result : RESULT 
+      averageGrade : INT 
     THEN 
       IF averageGrade >= 4 THEN result := pass
       ELSIF averageGrade >= 2 & averageGrade < 4 THEN result := final

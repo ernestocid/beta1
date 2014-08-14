@@ -32,7 +32,7 @@ public class LogicalCoverageTest extends TestingUtils {
 		Set<MyPredicate> expectedPredicates = new HashSet<MyPredicate>();
 		
 		MyPredicate mockedPredicate1 = mock(MyPredicate.class);
-		when(mockedPredicate1.toString()).thenReturn("averageGrade : 0..5 & result : RESULT");
+		when(mockedPredicate1.toString()).thenReturn("averageGrade : 0..5 & averageGrade : INT");
 		
 		MyPredicate mockedPredicate2 = mock(MyPredicate.class);
 		when(mockedPredicate2.toString()).thenReturn("averageGrade >= 4");
@@ -63,7 +63,7 @@ public class LogicalCoverageTest extends TestingUtils {
 		List<MyPredicate> expectedPredicates = new ArrayList<MyPredicate>();
 		
 		MyPredicate mockedPredicate1 = mock(MyPredicate.class);
-		when(mockedPredicate1.toString()).thenReturn("averageGrade : 0..5 & result : RESULT");
+		when(mockedPredicate1.toString()).thenReturn("averageGrade : 0..5 & averageGrade : INT");
 		
 		MyPredicate mockedPredicate2 = mock(MyPredicate.class);
 		when(mockedPredicate2.toString()).thenReturn("averageGrade >= 2 & averageGrade < 4");
@@ -97,7 +97,7 @@ public class LogicalCoverageTest extends TestingUtils {
 		when(mockedClause1.toString()).thenReturn("averageGrade : 0..5");
 		
 		MyPredicate mockedClause2 = mock(MyPredicate.class);
-		when(mockedClause2.toString()).thenReturn("result : RESULT");
+		when(mockedClause2.toString()).thenReturn("averageGrade : INT");
 		
 		MyPredicate mockedClause3 = mock(MyPredicate.class);
 		when(mockedClause3.toString()).thenReturn("averageGrade >= 4");
@@ -136,16 +136,18 @@ public class LogicalCoverageTest extends TestingUtils {
 		when(mockedClause1.toString()).thenReturn("averageGrade : 0..5");
 		
 		MyPredicate mockedClause2 = mock(MyPredicate.class);
-		when(mockedClause2.toString()).thenReturn("averageGrade < 4");
+		when(mockedClause2.toString()).thenReturn("averageGrade : INT");
 		
 		MyPredicate mockedClause3 = mock(MyPredicate.class);
-		when(mockedClause3.toString()).thenReturn("averageGrade >= 2");
+		when(mockedClause3.toString()).thenReturn("averageGrade < 4");
 		
 		MyPredicate mockedClause4 = mock(MyPredicate.class);
-		when(mockedClause4.toString()).thenReturn("averageGrade >= 4");
+		when(mockedClause4.toString()).thenReturn("averageGrade >= 2");
 		
 		MyPredicate mockedClause5 = mock(MyPredicate.class);
-		when(mockedClause5.toString()).thenReturn("result : RESULT");
+		when(mockedClause5.toString()).thenReturn("averageGrade >= 4");
+		
+		
 		
 		expectedClauses.add(mockedClause1);
 		expectedClauses.add(mockedClause2);
@@ -176,7 +178,7 @@ public class LogicalCoverageTest extends TestingUtils {
 		when(mockedClause1.toString()).thenReturn("averageGrade : 0..5");
 		
 		MyPredicate mockedClause2 = mock(MyPredicate.class);
-		when(mockedClause2.toString()).thenReturn("result : RESULT");
+		when(mockedClause2.toString()).thenReturn("averageGrade : INT");
 
 		expectedClauses.add(mockedClause1);
 		expectedClauses.add(mockedClause2);

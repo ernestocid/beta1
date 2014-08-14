@@ -26,43 +26,18 @@ public class CombinatorialCoverageTest extends TestingUtils{
 		
 		Set<String> expectedTestFormulas = new HashSet<String>();
 
-//		expectedTestFormulas.add("averageGrade >= 4 & averageGrade : 0..5 & result : RESULT & averageGrade >= 2 & averageGrade < 4 & averageGrade >= 4");
-//		expectedTestFormulas.add("not(averageGrade < 4) & averageGrade >= 2 & averageGrade : 0..5 & result : RESULT & averageGrade >= 2 & averageGrade < 4 & averageGrade >= 4");
-//		expectedTestFormulas.add("not(averageGrade : 0..5) & result : RESULT & averageGrade : 0..5 & result : RESULT & averageGrade >= 2 & averageGrade < 4 & averageGrade >= 4");
-//		expectedTestFormulas.add("averageGrade < 4 & averageGrade >= 2 & averageGrade : 0..5 & result : RESULT & averageGrade >= 2 & averageGrade < 4 & averageGrade >= 4");
-//		expectedTestFormulas.add("not(averageGrade >= 4) & averageGrade : 0..5 & result : RESULT & averageGrade >= 2 & averageGrade < 4 & averageGrade >= 4");
-//		expectedTestFormulas.add("not(averageGrade < 4) & not(averageGrade >= 2) & averageGrade : 0..5 & result : RESULT & averageGrade >= 2 & averageGrade < 4 & averageGrade >= 4");
-//		expectedTestFormulas.add("averageGrade : 0..5 & result : RESULT & averageGrade : 0..5 & result : RESULT & averageGrade >= 2 & averageGrade < 4 & averageGrade >= 4");
-//		expectedTestFormulas.add("averageGrade : 0..5 & not(result : RESULT) & averageGrade : 0..5 & result : RESULT & averageGrade >= 2 & averageGrade < 4 & averageGrade >= 4");
-//		expectedTestFormulas.add("averageGrade < 4 & not(averageGrade >= 2) & averageGrade : 0..5 & result : RESULT & averageGrade >= 2 & averageGrade < 4 & averageGrade >= 4");
-//		expectedTestFormulas.add("not(averageGrade : 0..5) & not(result : RESULT) & averageGrade : 0..5 & result : RESULT & averageGrade >= 2 & averageGrade < 4 & averageGrade >= 4");
+		expectedTestFormulas.add("averageGrade : 0..5 & averageGrade : INT");
+		expectedTestFormulas.add("not(averageGrade : 0..5) & averageGrade : INT");
+		expectedTestFormulas.add("averageGrade : 0..5 & not(averageGrade : INT)");
+		expectedTestFormulas.add("not(averageGrade : 0..5) & not(averageGrade : INT)");
 		
-		expectedTestFormulas.add("averageGrade : 0..5 & result : RESULT");
-		expectedTestFormulas.add("not(averageGrade : 0..5) & result : RESULT");
-		expectedTestFormulas.add("averageGrade : 0..5 & not(result : RESULT)");
-		expectedTestFormulas.add("not(averageGrade : 0..5) & not(result : RESULT)");
+		expectedTestFormulas.add("averageGrade : 0..5 & averageGrade : INT & averageGrade < 4 & not(averageGrade >= 2)");
+		expectedTestFormulas.add("averageGrade : 0..5 & averageGrade : INT & not(averageGrade < 4) & averageGrade >= 2");
+		expectedTestFormulas.add("averageGrade : 0..5 & averageGrade : INT & averageGrade < 4 & averageGrade >= 2");
+		expectedTestFormulas.add("averageGrade : 0..5 & averageGrade : INT & not(averageGrade < 4) & not(averageGrade >= 2)");
 		
-		expectedTestFormulas.add("averageGrade : 0..5 & result : RESULT & averageGrade < 4 & not(averageGrade >= 2)");
-		expectedTestFormulas.add("averageGrade : 0..5 & result : RESULT & not(averageGrade < 4) & averageGrade >= 2");
-		expectedTestFormulas.add("averageGrade : 0..5 & result : RESULT & averageGrade < 4 & averageGrade >= 2");
-		expectedTestFormulas.add("averageGrade : 0..5 & result : RESULT & not(averageGrade < 4) & not(averageGrade >= 2)");
-		
-		expectedTestFormulas.add("averageGrade : 0..5 & result : RESULT & averageGrade >= 4");
-		expectedTestFormulas.add("averageGrade : 0..5 & result : RESULT & not(averageGrade >= 4)");
-		
-		
-//		averageGrade : 0..5 & result : RESULT
-//		not(averageGrade : 0..5) & result : RESULT
-//		averageGrade : 0..5 & not(result : RESULT)
-//		not(averageGrade : 0..5) & not(result : RESULT)
-//
-//		averageGrade : 0..5 & result : RESULT & averageGrade >= 2 & averageGrade < 4
-//		averageGrade : 0..5 & result : RESULT & not(averageGrade >= 2) & averageGrade < 4
-//		averageGrade : 0..5 & result : RESULT & averageGrade >= 2 & not(averageGrade < 4)
-//		averageGrade : 0..5 & result : RESULT & not(averageGrade >= 2) & not(averageGrade < 4)
-//
-//		averageGrade : 0..5 & result : RESULT & averageGrade >= 4
-//		averageGrade : 0..5 & result : RESULT & not(averageGrade >= 4)
+		expectedTestFormulas.add("averageGrade : 0..5 & averageGrade : INT & averageGrade >= 4");
+		expectedTestFormulas.add("averageGrade : 0..5 & averageGrade : INT & not(averageGrade >= 4)");
 		
 		// Assertions
 		

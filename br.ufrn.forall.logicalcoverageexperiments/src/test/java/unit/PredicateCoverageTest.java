@@ -15,7 +15,7 @@ import criteria.PredicateCoverage;
 public class PredicateCoverageTest extends TestingUtils {
 
 	@Test
-	public void shouldGetTestsForPredicateCoverage() {
+	public void shouldGetTestsFormulas() {
 		Machine machine = new Machine(new File("src/test/resources/machines/PassFinalOrFailIFELSIFELSE.mch"));
 		Operation operationUnderTest = machine.getOperation(0);
 

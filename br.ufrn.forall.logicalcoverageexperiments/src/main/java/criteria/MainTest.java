@@ -22,6 +22,7 @@ import parser.Operation;
 import parser.decorators.predicates.MyPredicate;
 
 public class MainTest {
+	
 
 	public static void main(String[] args) {
 		
@@ -50,6 +51,10 @@ public class MainTest {
 		System.out.println("\nCombinatorial Coverage (CoC) test formulas: ");
 		
 		printTestFormulas(new CombinatorialCoverage(operationUnderTest), probApi, operationUnderTest);
+		
+		System.out.println("\nActive Clause Coverage (ACC) test formulas: ");
+		
+		printTestFormulas(new ActiveClauseCoverage(operationUnderTest, probApi), probApi, operationUnderTest);
 		
 	}
 

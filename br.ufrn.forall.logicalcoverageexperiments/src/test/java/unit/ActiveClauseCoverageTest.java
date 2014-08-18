@@ -1,0 +1,74 @@
+package unit;
+
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+
+import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.junit.Test;
+
+import criteria.ActiveClauseCoverage;
+import de.prob.Main;
+import de.prob.scripting.Api;
+import parser.Machine;
+import parser.Operation;
+import parser.decorators.predicates.MyPredicate;
+
+public class ActiveClauseCoverageTest {
+
+	
+	private Api probApi = Main.getInjector().getInstance(Api.class);
+	
+	
+	@Test
+	public void shouldGetTestFormulas() {
+		Machine machine = new Machine(new File("src/test/resources/machines/PassFinalOrFailIFELSIFELSE.mch"));
+		Operation operationUnderTest = machine.getOperation(0);
+		
+		ActiveClauseCoverage acc = new ActiveClauseCoverage(operationUnderTest, probApi);
+		
+		// Setting up expected result
+		
+		Set<String> expectedTestFormulas = new HashSet<String>();
+		
+		expectedTestFormulas.add("averageGrade : 0..5 & averageGrade : INT & averageGrade >= 4");
+		expectedTestFormulas.add("averageGrade : 0..5 & averageGrade : INT & not(averageGrade >= 4)");
+		
+		expectedTestFormulas.add("averageGrade : 0..5 & averageGrade : INT & averageGrade >= 2 & 0 < 4");
+		expectedTestFormulas.add("averageGrade : 0..5 & averageGrade : INT & not(averageGrade >= 2) & 0 < 4");
+		
+		expectedTestFormulas.add("averageGrade : 0..5 & averageGrade : INT & averageGrade < 4 & 2 >= 2");
+		expectedTestFormulas.add("averageGrade : 0..5 & averageGrade : INT & not(averageGrade < 4) & 2 >= 2");
+
+		
+		assertEquals(expectedTestFormulas, acc.getTestFormulas());
+	}
+
+	
+	
+	@Test
+	public void shouldGetFormulasForMajorClause() {
+		Machine machine = new Machine(new File("src/test/resources/machines/PassFinalOrFailIFELSIFELSE.mch"));
+		Operation operationUnderTest = machine.getOperation(0);
+		
+		ActiveClauseCoverage acc = new ActiveClauseCoverage(operationUnderTest, probApi);
+		
+		// Setting up inputs
+		
+		MyPredicate majorClause = mock(MyPredicate.class);
+		when(majorClause.toString()).thenReturn("averageGrade >= 2");
+		
+		MyPredicate mockedPredicate = mock(MyPredicate.class);
+		when(mockedPredicate.toString()).thenReturn("averageGrade : 0..5 & averageGrade : INT & averageGrade >= 2 & averageGrade < 4");
+		
+		// Setting up expected outputs
+		
+		String expectedFormula = "((averageGrade : 0..5 & averageGrade : INT & 1=1 & averageGrade < 4) or (averageGrade : 0..5 & averageGrade : INT & 1=2 & averageGrade < 4)) & "
+								+ "not((averageGrade : 0..5 & averageGrade : INT & 1=1 & averageGrade < 4) & (averageGrade : 0..5 & averageGrade : INT & 1=2 & averageGrade < 4))";
+		
+		assertEquals(expectedFormula, acc.createFormulaToFindValuesForMinorClauses(majorClause, mockedPredicate));
+	}
+	
+}

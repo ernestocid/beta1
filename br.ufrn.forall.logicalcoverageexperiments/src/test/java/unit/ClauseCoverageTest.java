@@ -25,9 +25,8 @@ public class ClauseCoverageTest extends TestingUtils {
 		
 		Set<String> expectedTestFormulas = new HashSet<String>();
 
-		expectedTestFormulas.add("averageGrade : 0..5 & averageGrade : INT");
-		expectedTestFormulas.add("not(averageGrade : 0..5) & averageGrade : INT");
-		expectedTestFormulas.add("averageGrade : 0..5 & not(averageGrade : INT)");
+		expectedTestFormulas.add("averageGrade : 0..5 & averageGrade : INT"); // 5
+		expectedTestFormulas.add("not(averageGrade : 0..5) & averageGrade : INT"); // 6
 		
 		expectedTestFormulas.add("averageGrade : 0..5 & averageGrade : INT & averageGrade < 4");
 		expectedTestFormulas.add("averageGrade : 0..5 & averageGrade : INT & not(averageGrade < 4)");

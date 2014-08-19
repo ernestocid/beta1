@@ -21,7 +21,8 @@ public class ClauseCoverage extends LogicalCoverage {
 	 * It creates special formulas for the precondition clauses first: one formula where all 
 	 * clauses are true and then formulas negating each precondition clause individually. Then,
 	 * for the remainder of the clauses, it creates one formula in the form of precondition + clause
-	 * and another one in the form of precondition + not(clause).
+	 * and another one in the form of precondition + not(clause). If a clause is a typing clause 
+	 * we do not try to generate a false value for it.
 	 *  
 	 * @return a Set of test formulas that satisfy Clause Coverage.
 	 */
@@ -34,7 +35,10 @@ public class ClauseCoverage extends LogicalCoverage {
 		for(MyPredicate clause : getClauses()) {
 			if(!clauseBelongsToPredicate(clause, precondition)) {
 				testFormulas.add(precondition.toString() + " & " + clause.toString());
-				testFormulas.add(precondition.toString() + " & " + "not(" + clause.toString() + ")");
+
+				if(!clause.isTypingClause()) {
+					testFormulas.add(precondition.toString() + " & " + "not(" + clause.toString() + ")");
+				}
 			}
 		}
 		
@@ -67,7 +71,9 @@ public class ClauseCoverage extends LogicalCoverage {
 		StringBuffer testFomula = new StringBuffer("");
 		
 		for (int i = 0; i < clauses.size(); i++) {
-			if(i == clauseIndex) { 
+			boolean clauseIsATypingClause = clauses.get(i).isTypingClause();
+			
+			if(i == clauseIndex && !clauseIsATypingClause) { 
 				testFomula.append("not(" + clauses.get(i).toString() + ")");
 			} else {
 				testFomula.append(clauses.get(i).toString());

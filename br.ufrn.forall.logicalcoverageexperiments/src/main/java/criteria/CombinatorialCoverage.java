@@ -72,7 +72,10 @@ public class CombinatorialCoverage extends LogicalCoverage {
 			List<String> requirementsForClause = new ArrayList<String>();
 			
 			requirementsForClause.add(clause.toString());
-			requirementsForClause.add("not(" + clause.toString() + ")");
+			
+			if(!clause.isTypingClause()) {
+				requirementsForClause.add("not(" + clause.toString() + ")");
+			}
 			
 			testRequirements.add(requirementsForClause);
 		}

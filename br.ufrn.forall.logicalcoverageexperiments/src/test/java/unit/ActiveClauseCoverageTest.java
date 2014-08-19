@@ -61,7 +61,7 @@ public class ActiveClauseCoverageTest {
 		when(majorClause.toString()).thenReturn("averageGrade >= 2");
 		
 		MyPredicate mockedPredicate = mock(MyPredicate.class);
-		when(mockedPredicate.toString()).thenReturn("averageGrade : 0..5 & averageGrade : INT & averageGrade >= 2 & averageGrade < 4");
+		when(mockedPredicate.toString()).thenReturn("averageGrade >= 2 & averageGrade < 4");
 		
 		// Setting up expected outputs
 		

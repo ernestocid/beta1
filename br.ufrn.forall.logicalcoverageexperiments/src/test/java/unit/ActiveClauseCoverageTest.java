@@ -10,6 +10,7 @@ import java.util.Set;
 import org.junit.Test;
 
 import criteria.ActiveClauseCoverage;
+import criteria.CombinatorialCoverage;
 import de.prob.Main;
 import de.prob.scripting.Api;
 import parser.Machine;
@@ -42,6 +43,42 @@ public class ActiveClauseCoverageTest {
 		expectedTestFormulas.add("averageGrade : 0..5 & averageGrade : INT & averageGrade < 4 & 2 >= 2");
 		expectedTestFormulas.add("averageGrade : 0..5 & averageGrade : INT & not(averageGrade < 4) & 2 >= 2");
 
+		
+		assertEquals(expectedTestFormulas, acc.getTestFormulas());
+	}
+	
+	
+	
+	@Test
+	public void shouldGetTestFormulasForCaseStatement() {
+		Machine machine = new Machine(new File("src/test/resources/machines/CaseStmt.mch"));
+		Operation operationUnderTest = machine.getOperation(1);
+		
+		ActiveClauseCoverage acc = new ActiveClauseCoverage(operationUnderTest, probApi);
+		
+		// Setting up expected results
+		
+		Set<String> expectedTestFormulas = new HashSet<String>();
+		
+//		expectedTestFormulas.add("xx : ID & yy : ID");
+//		expectedTestFormulas.add("xx : ID & yy : ID & yy = aa");
+//		expectedTestFormulas.add("xx : ID & yy : ID & not(yy = aa)");
+//		expectedTestFormulas.add("xx : ID & yy : ID & yy = bb");
+//		expectedTestFormulas.add("xx : ID & yy : ID & not(yy = bb)");
+		
+		expectedTestFormulas.add("xx : ID & yy : ID & yy = aa");
+		expectedTestFormulas.add("xx : ID & yy : ID & not(yy = aa)");
+		
+		expectedTestFormulas.add("xx : ID & yy : ID & yy = bb");
+		expectedTestFormulas.add("xx : ID & yy : ID & not(yy = bb)");
+		
+//		xx : ID & yy : ID & yy = aa, 
+//		xx : ID & yy : ID & not(yy = aa), 
+
+//		xx : ID & yy : ID & yy = bb
+//		xx : ID & yy : ID & not(yy = bb), 
+		
+		// Assertions
 		
 		assertEquals(expectedTestFormulas, acc.getTestFormulas());
 	}

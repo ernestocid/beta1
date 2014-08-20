@@ -27,8 +27,12 @@ public class MainTest {
 	public static void main(String[] args) {
 		
 		Api probApi = Main.getInjector().getInstance(Api.class);
+		
 		Machine machine = new Machine(new File("src/test/resources/machines/PassFinalOrFailIFELSIFELSE.mch"));
 		Operation operationUnderTest = machine.getOperation(0);
+		
+//		Machine machine = new Machine(new File("src/test/resources/machines/CaseStmt.mch"));
+//		Operation operationUnderTest = machine.getOperation(1);
 		
 		System.out.println("Machine: " + machine.getName());
 		System.out.println("Operation under test: " + operationUnderTest.getName());
@@ -71,13 +75,15 @@ public class MainTest {
 			try {
 				trace = trace.execute("$setup_constants", new ArrayList<String>());
 			} catch (NullPointerException e) {
-//				System.err.println("This model has no constants so $setup_constants could not be executed");
+				System.err.println("This model has no constants so $setup_constants could not be executed");
 			}
 			
 			trace = trace.execute("$initialise_machine", new ArrayList<String>());
 			
 			if(operationUnderTest.getMachine().getVariables() != null) {
-				trace = stateSpace.getTraceToState(new ClassicalB(formula));
+//				IEvalResult evalCurrent = trace.evalCurrent(new ClassicalB(formula));
+//				trace = stateSpace.getTraceToState(new ClassicalB(formula));
+//				trace = stateSpace.getTraceToState(new ClassicalB(formula));
 			}
 			
 			IEvalResult evalCurrent = trace.evalCurrent(new ClassicalB(formula));

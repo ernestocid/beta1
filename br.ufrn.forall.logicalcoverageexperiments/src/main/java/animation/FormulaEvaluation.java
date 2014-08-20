@@ -75,7 +75,7 @@ public class FormulaEvaluation {
 
 	private Trace getTraceToState(StateSpace stateSpace, Trace trace) {
 		if(getMachine().getVariables() != null) {
-			trace = stateSpace.getTraceToState(new ClassicalB(formula));
+//			trace = stateSpace.getTraceToState(new ClassicalB(formula));
 		}
 		return trace;
 	}

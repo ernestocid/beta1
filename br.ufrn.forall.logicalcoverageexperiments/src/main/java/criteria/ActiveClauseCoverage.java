@@ -80,10 +80,12 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 		Set<String> testFormulas = new HashSet<String>();
 		
 		StringBuffer majorClauseTrueFormula = new StringBuffer("");
+		majorClauseTrueFormula.append(invariant());
 		majorClauseTrueFormula.append(precondition + " & " + majorClause.toString());
 		appendMinorClauses(majorClause, clauses, variableReplacements, majorClauseTrueFormula);
 		
 		StringBuffer majorClauseFalseFormula = new StringBuffer("");
+		majorClauseFalseFormula.append(invariant());
 		majorClauseFalseFormula.append(precondition + " & " + "not(" + majorClause.toString() + ")");
 		appendMinorClauses(majorClause, clauses, variableReplacements, majorClauseFalseFormula);
 		

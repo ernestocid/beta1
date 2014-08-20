@@ -225,4 +225,24 @@ public abstract class LogicalCoverage {
 		}
 	}
 	
+	
+	
+	protected String invariant() {
+		if(getMachineInvariant().equals("")) {
+			return "";
+		} else {
+			return getMachineInvariant() + " & ";
+		}
+	}
+	
+	
+	
+	protected String precondition() {
+		if(getOperationPrecondition().equals("")) {
+			return "";
+		} else {
+			return getOperationPrecondition() + " & ";
+		}
+	}
+	
 }

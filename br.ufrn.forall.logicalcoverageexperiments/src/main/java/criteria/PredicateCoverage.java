@@ -64,25 +64,5 @@ public class PredicateCoverage extends LogicalCoverage {
 		
 		return testFormulas;
 	}
-
-	
-
-	private String invariant() {
-		if(getMachineInvariant().equals("")) {
-			return "";
-		} else {
-			return getMachineInvariant() + " & ";
-		}
-	}
-	
-	
-	
-	private String precondition() {
-		if(getOperationPrecondition().equals("")) {
-			return "";
-		} else {
-			return getOperationPrecondition() + " & ";
-		}
-	}
 	
 }

@@ -106,11 +106,6 @@ public class LogicalCoverageTest extends TestingUtils {
 		expectedPredicates.add(mockedPredicate2);
 		expectedPredicates.add(mockedPredicate3);
 		
-		//	yy : ID
-		//	yy = aa
-		//	yy = bb
-		
-//		assertEquals(expectedPredicates, pc.getPredicates());
 		assertTrue(compare(expectedPredicates, pc.getPredicates()));
 	}
 

@@ -34,10 +34,10 @@ public class ClauseCoverage extends LogicalCoverage {
 		
 		for(MyPredicate clause : getClauses()) {
 			if(!clauseBelongsToPredicate(clause, precondition)) {
-				testFormulas.add(precondition.toString() + " & " + clause.toString());
+				testFormulas.add(invariant() + precondition() + clause.toString());
 
 				if(!clause.isTypingClause()) {
-					testFormulas.add(precondition.toString() + " & " + "not(" + clause.toString() + ")");
+					testFormulas.add(invariant() + precondition() + "not(" + clause.toString() + ")");
 				}
 			}
 		}
@@ -50,7 +50,7 @@ public class ClauseCoverage extends LogicalCoverage {
 	private Set<String> createTestFormulasForPrecondition(MyPredicate precondition) {
 		Set<String> testFormulas = new HashSet<String>();
 		
-		testFormulas.add(precondition.toString());
+		testFormulas.add(invariant() + precondition.toString());
 		
 		Set<MyPredicate> preconditionClauses = getPredicateClauses(precondition);
 		List<MyPredicate> sortedPreconditionClauses = sortPredicates(preconditionClauses);
@@ -58,7 +58,7 @@ public class ClauseCoverage extends LogicalCoverage {
 		String testFormula;
 		
 		for(int i = 0; i < sortedPreconditionClauses.size(); i++) {
-			testFormula = createTestFormulaNegatingAClause(sortedPreconditionClauses, i);
+			testFormula = invariant() + createTestFormulaNegatingAClause(sortedPreconditionClauses, i);
 			testFormulas.add(testFormula);
 		}
 		

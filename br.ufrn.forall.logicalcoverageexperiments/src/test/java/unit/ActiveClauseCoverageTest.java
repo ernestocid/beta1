@@ -10,7 +10,6 @@ import java.util.Set;
 import org.junit.Test;
 
 import criteria.ActiveClauseCoverage;
-import criteria.CombinatorialCoverage;
 import de.prob.Main;
 import de.prob.scripting.Api;
 import parser.Machine;

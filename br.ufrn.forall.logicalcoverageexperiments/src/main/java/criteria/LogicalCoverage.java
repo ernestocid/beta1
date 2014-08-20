@@ -87,6 +87,7 @@ public abstract class LogicalCoverage {
 		predicates.add(getOperationUnderTest().getPrecondition());
 		predicates.addAll(getOperationUnderTest().getIfElsifElsePredicates());
 		predicates.addAll(getOperationUnderTest().getCasePredicates());
+		predicates.addAll(getOperationUnderTest().getSelectPredicates());
 		
 		return predicates;
 	}

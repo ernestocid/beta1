@@ -1,7 +1,6 @@
 package parser;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -15,7 +14,6 @@ import parser.decorators.expressions.MyExpression;
 import parser.decorators.expressions.MyExpressionFactory;
 import parser.decorators.predicates.MyPredicate;
 import parser.decorators.predicates.MyPredicateFactory;
-import de.be4.classicalb.core.parser.node.ACaseOrSubstitution;
 import de.be4.classicalb.core.parser.node.ACaseSubstitution;
 import de.be4.classicalb.core.parser.node.AIdentifierExpression;
 import de.be4.classicalb.core.parser.node.AIfElsifSubstitution;
@@ -514,5 +512,52 @@ public class Operation {
 		};
 		
 		return orExpression;
+	}
+
+
+
+	/**
+	 * This methods creates a list of MyPredicate elements which represent the guards
+	 * of a SELECT statement. 
+	 * 
+	 * @return a List of MyPredicate containing the guards for a SELECT statement. 
+	 */
+	public List<MyPredicate> getSelectPredicates() {
+		List<MyPredicate> predicates = new ArrayList<MyPredicate>();
+		PSubstitution substitution = getBodyInsides(operation.getOperationBody());
+		
+		if(!(substitution instanceof AParallelSubstitution)) {
+			if(substitution instanceof ASelectSubstitution) {
+				ASelectSubstitution selectSubstitution = (ASelectSubstitution) substitution;
+				
+				predicates.add(getSelectPredicate(selectSubstitution));
+				predicates.addAll(getWhenPredicates(selectSubstitution));
+			}
+		}
+		
+		return predicates;
+	}
+
+
+
+	private List<MyPredicate> getWhenPredicates(ASelectSubstitution selectSubstitution) {
+		List<MyPredicate> predicates = new ArrayList<MyPredicate>();
+		
+		for(PSubstitution substitution : selectSubstitution.getWhenSubstitutions()) {
+			if(substitution instanceof ASelectWhenSubstitution) {
+				ASelectWhenSubstitution whenSubstitution = (ASelectWhenSubstitution) substitution;
+				MyPredicate whenPredicate = MyPredicateFactory.convertPredicate(whenSubstitution.getCondition());
+				predicates.add(whenPredicate);
+			}
+		}
+		
+		return predicates;
+	}
+
+
+
+	private MyPredicate getSelectPredicate(ASelectSubstitution selectSubstitution) {
+		MyPredicate selectCondition = MyPredicateFactory.convertPredicate(selectSubstitution.getCondition());
+		return selectCondition;
 	}
 }

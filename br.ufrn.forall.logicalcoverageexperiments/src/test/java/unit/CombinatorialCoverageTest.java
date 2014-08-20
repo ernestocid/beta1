@@ -41,5 +41,29 @@ public class CombinatorialCoverageTest extends TestingUtils{
 		
 		assertEquals(expectedTestFormulas, coc.getTestFormulas());
 	}
+	
+	
+	
+	@Test
+	public void shouldGetTestFormulasForCaseStatement() {
+		Machine machine = new Machine(new File("src/test/resources/machines/CaseStmt.mch"));
+		Operation operationUnderTest = machine.getOperation(1);
+		
+		CombinatorialCoverage coc = new CombinatorialCoverage(operationUnderTest);
+		
+		// Setting up expected results
+		
+		Set<String> expectedTestFormulas = new HashSet<String>();
+		
+		expectedTestFormulas.add("xx : ID & yy : ID");
+		expectedTestFormulas.add("xx : ID & yy : ID & yy = aa");
+		expectedTestFormulas.add("xx : ID & yy : ID & not(yy = aa)");
+		expectedTestFormulas.add("xx : ID & yy : ID & yy = bb");
+		expectedTestFormulas.add("xx : ID & yy : ID & not(yy = bb)");
+		
+		// Assertions
+		
+		assertEquals(expectedTestFormulas, coc.getTestFormulas());
+	}
 
 }

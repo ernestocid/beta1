@@ -3,7 +3,6 @@ package criteria;
 import java.util.HashSet;
 import java.util.Set;
 
-import parser.Invariant;
 import parser.Operation;
 import parser.decorators.predicates.MyPredicate;
 

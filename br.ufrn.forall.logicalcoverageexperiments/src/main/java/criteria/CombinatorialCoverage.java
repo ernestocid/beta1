@@ -34,21 +34,34 @@ public class CombinatorialCoverage extends LogicalCoverage {
 	@Override
 	public Set<String> getTestFormulas() {
 		Set<String> testFormulas = new HashSet<String>();
-		
 		MyPredicate precondition = getOperationUnderTest().getPrecondition();
-		Set<String> preconditionTestFormulas = createAllCombinationsOfClauses(precondition); 
-		testFormulas.addAll(preconditionTestFormulas);
+		
+		testFormulas.addAll(createPreconditionTestFormulas(precondition));
 		
 		for(MyPredicate predicate : getPredicates()) {
 			if(!comparePredicates(predicate, precondition)) {
 				Set<String> allCombinationsForPredicate = createAllCombinationsOfClauses(predicate);
 				
 				for (String combination : allCombinationsForPredicate) {
-					testFormulas.add(precondition.toString() + " & " + combination);
+					testFormulas.add(invariant() + precondition() + combination);
 				}
 			}
 		}
 
+		return testFormulas;
+	}
+
+
+
+	private Set<String> createPreconditionTestFormulas(MyPredicate precondition) {
+		Set<String> testFormulas = new HashSet<String>();
+		
+		Set<String> allCombinationsOfPreconditionClauses = createAllCombinationsOfClauses(precondition);
+		
+		for(String combination : allCombinationsOfPreconditionClauses) {
+			testFormulas.add(invariant() + combination);
+		}
+		
 		return testFormulas;
 	}
 

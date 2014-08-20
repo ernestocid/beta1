@@ -3,6 +3,7 @@ package criteria;
 import java.util.HashSet;
 import java.util.Set;
 
+import parser.Invariant;
 import parser.Operation;
 import parser.decorators.predicates.MyPredicate;
 
@@ -28,15 +29,14 @@ public class PredicateCoverage extends LogicalCoverage {
 	 */
 	public Set<String> getTestFormulas() {
 		Set<String> testFormulas = new HashSet<String>();
+
 		MyPredicate precondition = getOperationUnderTest().getPrecondition();
 		
 		for(MyPredicate predicate : getPredicates()) {
-			if(predicatesAreEqual(predicate, precondition)) {
-				testFormulas.add(predicate.toString());
-				testFormulas.add("not(" + predicate.toString() + ")");
+			if(comparePredicates(predicate, precondition)) {
+				testFormulas.addAll(createPreconditionFormulas(predicate));
 			} else {
-				testFormulas.add(precondition.toString() + " & " + predicate.toString());
-				testFormulas.add(precondition.toString() + " & " + "not(" + predicate.toString() + ")");
+				testFormulas.addAll(createPredicateFormulas(predicate));
 			}
 		}
 
@@ -45,8 +45,44 @@ public class PredicateCoverage extends LogicalCoverage {
 
 
 
-	private boolean predicatesAreEqual(MyPredicate predicateOne, MyPredicate predicateTwo) {
-		return predicateOne.toString().equals(predicateTwo.toString());
+	private Set<String> createPredicateFormulas(MyPredicate predicate) {
+		Set<String> testFormulas = new HashSet<String>();
+		
+		testFormulas.add(invariant() + precondition() + predicate.toString());
+		testFormulas.add(invariant() + precondition() + "not(" + predicate.toString() + ")");
+		
+		return testFormulas;
+	}
+
+
+
+	private Set<String> createPreconditionFormulas(MyPredicate predicate) {
+		Set<String> testFormulas = new HashSet<String>();
+		
+		testFormulas.add(invariant() + predicate.toString());
+		testFormulas.add(invariant() + "not(" + predicate.toString() + ")");
+		
+		return testFormulas;
+	}
+
+	
+
+	private String invariant() {
+		if(getMachineInvariant().equals("")) {
+			return "";
+		} else {
+			return getMachineInvariant() + " & ";
+		}
+	}
+	
+	
+	
+	private String precondition() {
+		if(getOperationPrecondition().equals("")) {
+			return "";
+		} else {
+			return getOperationPrecondition() + " & ";
+		}
 	}
 	
 }

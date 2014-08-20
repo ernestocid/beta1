@@ -1,6 +1,7 @@
 package parser;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -14,6 +15,7 @@ import parser.decorators.expressions.MyExpression;
 import parser.decorators.expressions.MyExpressionFactory;
 import parser.decorators.predicates.MyPredicate;
 import parser.decorators.predicates.MyPredicateFactory;
+import de.be4.classicalb.core.parser.node.ACaseOrSubstitution;
 import de.be4.classicalb.core.parser.node.ACaseSubstitution;
 import de.be4.classicalb.core.parser.node.AIdentifierExpression;
 import de.be4.classicalb.core.parser.node.AIfElsifSubstitution;
@@ -24,6 +26,7 @@ import de.be4.classicalb.core.parser.node.APreconditionSubstitution;
 import de.be4.classicalb.core.parser.node.ASelectSubstitution;
 import de.be4.classicalb.core.parser.node.ASelectWhenSubstitution;
 import de.be4.classicalb.core.parser.node.PExpression;
+import de.be4.classicalb.core.parser.node.PPredicate;
 import de.be4.classicalb.core.parser.node.PSubstitution;
 
 public class Operation {
@@ -382,5 +385,134 @@ public class Operation {
 		}
 		
 		return predicates;
+	}
+
+	
+
+	/**
+	 * This methods creates a list of MyPredicate elements which represent the guards
+	 * of a Case statement. Since in the AST the case statements are created using expressions
+	 * we have to transform them into predicates (that is why you are seeing some inner classes
+	 * here).
+	 * 
+	 * @return a List of MyPredicate containing the guards for a Case statement. 
+	 */
+	public List<MyPredicate> getCasePredicates() {
+		List<MyPredicate> predicates = new ArrayList<MyPredicate>();
+		PSubstitution substitution = getBodyInsides(operation.getOperationBody());
+		
+		if(!(substitution instanceof AParallelSubstitution)) {
+			if(substitution instanceof ACaseSubstitution) {
+				ACaseSubstitution caseSubstitution = (ACaseSubstitution) substitution;
+				
+				predicates.addAll(getEitherGuards(caseSubstitution));
+				predicates.addAll(getOrGuards(caseSubstitution));
+			}
+		}
+		
+		return predicates;
+	}
+
+
+
+	private List<MyPredicate> getOrGuards(ACaseSubstitution caseSubstitution) {
+		List<MyPredicate> predicates = new ArrayList<MyPredicate>();
+		MyExpression caseExpression = MyExpressionFactory.convertExpression(caseSubstitution.getExpression());
+		
+		for(PSubstitution orSubs : caseSubstitution.getOrSubstitutions()) {
+			MyExpression orExpression = createOrExpressionFromOrSubstitution(orSubs);
+			predicates.add(createPredicateForCase(caseExpression, orExpression));
+		}
+		
+		return predicates;
+	}
+
+
+
+	private List<MyPredicate> getEitherGuards(ACaseSubstitution caseSubstitution) {
+		List<MyPredicate> predicates = new ArrayList<MyPredicate>();
+		MyExpression caseExpression = MyExpressionFactory.convertExpression(caseSubstitution.getExpression());
+		
+		for(PExpression eitherExpr : caseSubstitution.getEitherExpr()) {
+			MyExpression eitherExpression = MyExpressionFactory.convertExpression(eitherExpr);
+			predicates.add(createPredicateForCase(caseExpression, eitherExpression));
+		}
+		
+		return predicates;
+	}
+
+
+
+	private MyPredicate createPredicateForCase(MyExpression caseExpression, MyExpression eitherOrExpression) {
+		final MyExpression caseExp = caseExpression;
+		final MyExpression eitherOrExp = eitherOrExpression;
+		
+		MyPredicate casePredicate = new MyPredicate() {
+
+			@Override
+			public PPredicate getNode() {	return null;	}
+			@Override
+			public boolean isTypingClause() {	return false;	}
+			@Override
+			public boolean isInterval() {	return false;	}
+			
+			@Override
+			public Set<String> getVariables() {
+				Set<String> variables = new HashSet<String>();
+				variables.add(caseExp.toString());
+				return variables;
+			}
+			
+			@Override
+			public void createClausesList(Set<MyPredicate> clauses) {
+				clauses.add(this);
+			}
+			
+			@Override
+			public String toString() {
+				return caseExp.toString() + " = " + eitherOrExp.toString();
+			}
+		};
+		
+		return casePredicate;
+	}
+
+
+
+	private MyExpression createOrExpressionFromOrSubstitution(PSubstitution orSubstitution) {
+		final PSubstitution orSubs = orSubstitution;
+		
+		MyExpression orExpression = new MyExpression() {
+			
+			@Override
+			public PExpression getNode() {	return null;	}
+			@Override
+			public boolean isInterval() {	return false;	}
+			@Override
+			public boolean isBasicType() {	return false;	}
+			
+			@Override
+			public Set<String> getVariables() {
+				Set<String> variables = new HashSet<String>();
+				String variable = getOrExpression(orSubs);
+				
+				variables.add(variable);
+				
+				return variables;
+			}
+
+			private String getOrExpression(final PSubstitution orSubs) {
+				int indexOfFirtWhitespace = orSubs.toString().indexOf(" ");
+				String variable = orSubs.toString().substring(0, indexOfFirtWhitespace);
+				return variable;
+			}
+			
+			@Override
+			public String toString() {
+				return getOrExpression(orSubs);
+			}
+		};
+		
+		return orExpression;
 	}
 }

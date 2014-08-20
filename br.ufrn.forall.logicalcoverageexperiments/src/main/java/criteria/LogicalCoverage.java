@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import parser.Invariant;
 import parser.Operation;
 import parser.decorators.predicates.MyPredicate;
 
@@ -30,6 +31,48 @@ public abstract class LogicalCoverage {
 	
 	
 	/**
+	 * This method returns the String representation of the machine's invariant.
+	 * If the machine has no invariant it returns an empty String "".
+	 * 
+	 * @return String representation of the machine's invariant.
+	 */
+	public String getMachineInvariant() {
+		boolean machineHasInvariant = this.operationUnderTest.getMachine().getInvariant() != null;
+
+		StringBuffer invariantText = new StringBuffer("");
+		
+		if(machineHasInvariant) {
+			Invariant invariant = getOperationUnderTest().getMachine().getInvariant();
+			invariantText.append(invariant.toString().trim());
+		}
+		
+		return invariantText.toString();
+	}
+	
+	
+	
+	/**
+	 * This method return the String representation of the operation's precondition.
+	 * If the operation has no precondition it returns an empty String "".
+	 * 
+	 * @return String representation of the operation's precondition.
+	 */
+	public String getOperationPrecondition() {
+		boolean operationHasPrecondition = getOperationUnderTest().getPrecondition() != null;
+		
+		StringBuffer preconditionText = new StringBuffer("");
+		
+		if(operationHasPrecondition) {
+			MyPredicate precondition = getOperationUnderTest().getPrecondition();
+			preconditionText.append(precondition.toString());
+		}
+		
+		return preconditionText.toString();
+	}
+	
+	
+	
+	/**
 	 * This methods builds a Set containing all the predicates related 
 	 * to the operation under test. This predicates are found on:
 	 * 		- Operation's precondition;
@@ -43,6 +86,7 @@ public abstract class LogicalCoverage {
 		
 		predicates.add(getOperationUnderTest().getPrecondition());
 		predicates.addAll(getOperationUnderTest().getIfElsifElsePredicates());
+		predicates.addAll(getOperationUnderTest().getCasePredicates());
 		
 		return predicates;
 	}

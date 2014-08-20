@@ -14,8 +14,9 @@ import criteria.PredicateCoverage;
 
 public class PredicateCoverageTest extends TestingUtils {
 
+	
 	@Test
-	public void shouldGetTestsFormulas() {
+	public void shouldGetTestsFormulasIfElsifElseStatement() {
 		Machine machine = new Machine(new File("src/test/resources/machines/PassFinalOrFailIFELSIFELSE.mch"));
 		Operation operationUnderTest = machine.getOperation(0);
 
@@ -34,6 +35,31 @@ public class PredicateCoverageTest extends TestingUtils {
 
 		// Assertions
 
+		assertEquals(expectedTestFormulas, pc.getTestFormulas());
+	}
+	
+	
+	
+	@Test
+	public void shouldGetTestFormulasForCaseStatement() {
+		Machine machine = new Machine(new File("src/test/resources/machines/CaseStmt.mch"));
+		Operation operationUnderTest = machine.getOperation(1);
+		
+		PredicateCoverage pc = new PredicateCoverage(operationUnderTest);
+		
+		// Setting up expected results
+		
+		Set<String> expectedTestFormulas = new HashSet<String>();
+		
+		expectedTestFormulas.add("xx : ID & yy : ID");
+		expectedTestFormulas.add("xx : ID & not(yy : ID)");
+		expectedTestFormulas.add("xx : ID & yy : ID & yy = aa");
+		expectedTestFormulas.add("xx : ID & yy : ID & not(yy = aa)");
+		expectedTestFormulas.add("xx : ID & yy : ID & yy = bb");
+		expectedTestFormulas.add("xx : ID & yy : ID & not(yy = bb)");
+		
+		// Assertions
+		
 		assertEquals(expectedTestFormulas, pc.getTestFormulas());
 	}
 

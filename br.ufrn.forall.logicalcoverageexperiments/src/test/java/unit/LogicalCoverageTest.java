@@ -83,6 +83,40 @@ public class LogicalCoverageTest extends TestingUtils {
 	
 	
 	@Test
+	public void shouldGetPredicatesForCaseStatement() {
+		Machine machine = new Machine(new File("src/test/resources/machines/CaseStmt.mch"));
+		Operation operationUnderTest = machine.getOperation(1);
+		
+		PredicateCoverage pc = new PredicateCoverage(operationUnderTest);
+		
+		// Setting up expected results
+		
+		Set<MyPredicate> expectedPredicates = new HashSet<MyPredicate>();
+		
+		MyPredicate mockedPredicate1 = mock(MyPredicate.class);
+		when(mockedPredicate1.toString()).thenReturn("yy : ID");
+		
+		MyPredicate mockedPredicate2 = mock(MyPredicate.class);
+		when(mockedPredicate2.toString()).thenReturn("yy = aa");
+		
+		MyPredicate mockedPredicate3 = mock(MyPredicate.class);
+		when(mockedPredicate3.toString()).thenReturn("yy = bb");
+		
+		expectedPredicates.add(mockedPredicate1);
+		expectedPredicates.add(mockedPredicate2);
+		expectedPredicates.add(mockedPredicate3);
+		
+		//	yy : ID
+		//	yy = aa
+		//	yy = bb
+		
+//		assertEquals(expectedPredicates, pc.getPredicates());
+		assertTrue(compare(expectedPredicates, pc.getPredicates()));
+	}
+
+	
+	
+	@Test
 	public void shouldGetClausesSet() {
 		Machine machine = new Machine(new File("src/test/resources/machines/PassFinalOrFailIFELSIFELSE.mch"));
 		Operation operationUnderTest = machine.getOperation(0);

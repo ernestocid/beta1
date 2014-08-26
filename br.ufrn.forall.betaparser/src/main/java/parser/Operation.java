@@ -16,6 +16,7 @@ import parser.decorators.expressions.MyExpressionFactory;
 import parser.decorators.predicates.MyPredicate;
 import parser.decorators.predicates.MyPredicateFactory;
 import de.be4.classicalb.core.parser.node.AAnySubstitution;
+import de.be4.classicalb.core.parser.node.AAssertionSubstitution;
 import de.be4.classicalb.core.parser.node.ACaseSubstitution;
 import de.be4.classicalb.core.parser.node.AIdentifierExpression;
 import de.be4.classicalb.core.parser.node.AIfElsifSubstitution;
@@ -334,87 +335,163 @@ public class Operation {
 	
 	
 	private  String matchesPattern(Pattern p,String sentence) {
-	     Matcher m = p.matcher(sentence);
+		Matcher m = p.matcher(sentence);
 
-	     if (m.find()) {
-	       return m.group();
-	     }
-
-	     return null;
-	   }
-
-	
-
-	/**
-	 * This method builds a list containing all the conditions present on
-	 * a If-Elsif-Else statement. It takes the guard for each if or elsif branch
-	 * and adds to a list of predicates. The else branch does not have guard so a
-	 * predicate for its branch is not added to the final list.
-	 * 
-	 * @return a List of MyPredicate for the guards of a If-Elsif-Else statement.
-	 */
-	public List<MyPredicate> getIfElsifElsePredicates() {
-		List<MyPredicate> predicates = new ArrayList<MyPredicate>();
-		PSubstitution substitution = getBodyInsides(operation.getOperationBody());
-		
-		if(!(substitution instanceof AParallelSubstitution)) {
-			if (substitution instanceof AIfSubstitution) {
-				AIfSubstitution ifSubstitution = (AIfSubstitution) substitution;
-				MyPredicate ifCondition = MyPredicateFactory.convertPredicate(ifSubstitution.getCondition());
-
-				predicates.add(ifCondition);
-				predicates.addAll(getElsifConditions(ifSubstitution));
-			}
+		if (m.find()) {
+			return m.group();
 		}
-		
-		return predicates;
-	}
 
-
-
-	private List<MyPredicate> getElsifConditions(AIfSubstitution ifSubstitution) {
-		List<MyPredicate> predicates = new ArrayList<MyPredicate>();
-		
-		for (PSubstitution subs : ifSubstitution.getElsifSubstitutions()) {
-			if(subs instanceof AIfElsifSubstitution) {
-				AIfElsifSubstitution elsifSubstitution = (AIfElsifSubstitution) subs;
-				MyPredicate elsifCondition = MyPredicateFactory.convertPredicate(elsifSubstitution.getCondition());
-				
-				predicates.add(elsifCondition);
-			}
-		}
-		
-		return predicates;
+		return null;
 	}
 
 	
-
+	
 	/**
-	 * This methods creates a list of MyPredicate elements which represent the guards
-	 * of a Case statement. Since in the AST the case statements are created using expressions
-	 * we have to transform them into predicates (that is why you are seeing some inner classes
-	 * here).
+	 * This method creates a list containing predicates from all substitutions
+	 * present on the body of the operation. It recursively searches for substitutions
+	 * nested inside other substitutions. The type of substitutions it searches for are:
+	 *		- IF-ELSIF-ELSE substitution;
+	 *		- ANY substitution;
+	 *		- SELECT-WHEN substitution;
+	 *		- ASSERT substitution;
+	 *		- CASE-EITHER-OR substitution
 	 * 
-	 * @return a List of MyPredicate containing the guards for a Case statement. 
+	 * @return
 	 */
-	public List<MyPredicate> getCasePredicates() {
+	public List<MyPredicate> getPredicatesFromOperationBody() {
 		List<MyPredicate> predicates = new ArrayList<MyPredicate>();
 		PSubstitution substitution = getBodyInsides(operation.getOperationBody());
+
+		return getPredicatesFromAllSubstitutions(substitution, predicates);
+	}
+
+
+
+	private List<MyPredicate> getPredicatesFromAllSubstitutions(PSubstitution substitution, List<MyPredicate> predicates) {
 		
-		if(!(substitution instanceof AParallelSubstitution)) {
-			if(substitution instanceof ACaseSubstitution) {
-				ACaseSubstitution caseSubstitution = (ACaseSubstitution) substitution;
-				
-				predicates.addAll(getEitherGuards(caseSubstitution));
-				predicates.addAll(getOrGuards(caseSubstitution));
-			}
+		if(substitution instanceof AIfSubstitution) {
+			
+			AIfSubstitution ifSubstitution = (AIfSubstitution) substitution;
+			getPredicatesFromIfSubstitution(predicates, ifSubstitution);
+			
+		} else if(substitution instanceof AIfElsifSubstitution) {
+			
+			AIfElsifSubstitution ifElsifSubstitution = (AIfElsifSubstitution) substitution;
+			getPredicatesFromElsifSubstitution(predicates, ifElsifSubstitution);
+			
+		} else if(substitution instanceof AAnySubstitution) {
+			
+			AAnySubstitution anySubstitution = (AAnySubstitution) substitution;
+			getPredicatesFromAnySubstitution(predicates, anySubstitution);
+			
+		} else if (substitution instanceof AAssertionSubstitution) {
+			
+			AAssertionSubstitution assertionSubstitution = (AAssertionSubstitution) substitution;
+			getPredicatesFromAssertSubstitution(predicates, assertionSubstitution);
+			
+		} else if (substitution instanceof ASelectSubstitution) {
+			
+			ASelectSubstitution selectSubstitution = (ASelectSubstitution) substitution;
+			getPredicatesFromSelectSubstitution(predicates, selectSubstitution);
+			
+		} if (substitution instanceof ASelectWhenSubstitution) {
+			
+			ASelectWhenSubstitution selectWhenSubstitution = (ASelectWhenSubstitution) substitution;
+			getPredicatesFromSelectWhenSubstitution(predicates, selectWhenSubstitution);
+			
+		} else if(substitution instanceof ACaseSubstitution) {
+
+			ACaseSubstitution caseSubstitution = (ACaseSubstitution) substitution;
+			getPredicatesFromCaseSubstitution(predicates, caseSubstitution);
+			
+		} else {
+			
+			return predicates;
+			
 		}
 		
 		return predicates;
 	}
 
+	
+	
+	private void getPredicatesFromIfSubstitution(List<MyPredicate> predicates, AIfSubstitution ifSubstitution) {
+		MyPredicate ifCondition = MyPredicateFactory.convertPredicate(ifSubstitution.getCondition());
+		predicates.add(ifCondition);
+		
+		for(PSubstitution sub : ifSubstitution.getElsifSubstitutions()) {
+			getPredicatesFromAllSubstitutions(sub, predicates);
+		}
+		
+		getPredicatesFromAllSubstitutions(ifSubstitution.getElse(), predicates);
+	}
+	
+	
+	
+	private void getPredicatesFromElsifSubstitution(List<MyPredicate> predicates, AIfElsifSubstitution ifElsifSubstitution) {
+		MyPredicate elsifPredicate = MyPredicateFactory.convertPredicate(ifElsifSubstitution.getCondition());
+		predicates.add(elsifPredicate);
+		
+		getPredicatesFromAllSubstitutions(ifElsifSubstitution.getThenSubstitution(), predicates);
+	}
+	
+	
+	
+	private void getPredicatesFromAnySubstitution(List<MyPredicate> predicates, AAnySubstitution anySubstitution) {
+		MyPredicate anyPredicate = MyPredicateFactory.convertPredicate(anySubstitution.getWhere());
+		predicates.add(anyPredicate);
+		
+		getPredicatesFromAllSubstitutions(anySubstitution.getThen(), predicates);
+	}
+	
+	
+	
+	private void getPredicatesFromAssertSubstitution(List<MyPredicate> predicates, AAssertionSubstitution assertionSubstitution) {
+		MyPredicate assertionPredicate = MyPredicateFactory.convertPredicate(assertionSubstitution.getPredicate());
+		predicates.add(assertionPredicate);
+		
+		getPredicatesFromAllSubstitutions(assertionSubstitution.getSubstitution(), predicates);
+	}
+	
+	
+	
+	private void getPredicatesFromSelectSubstitution(List<MyPredicate> predicates, ASelectSubstitution selectSubstitution) {
+		MyPredicate selectPredicate = MyPredicateFactory.convertPredicate(selectSubstitution.getCondition());
+		predicates.add(selectPredicate);
+		
+		for (PSubstitution subs : selectSubstitution.getWhenSubstitutions()) {
+			getPredicatesFromAllSubstitutions(subs, predicates);
+		}
+		
+		getPredicatesFromAllSubstitutions(selectSubstitution.getThen(), predicates);
+	}
 
 
+
+	private void getPredicatesFromSelectWhenSubstitution(List<MyPredicate> predicates, ASelectWhenSubstitution selectWhenSubstitution) {
+		MyPredicate selectWhenCondition = MyPredicateFactory.convertPredicate(selectWhenSubstitution.getCondition());
+		predicates.add(selectWhenCondition);
+		
+		getPredicatesFromAllSubstitutions(selectWhenSubstitution.getSubstitution(), predicates);
+	}
+
+	
+	
+	private void getPredicatesFromCaseSubstitution(List<MyPredicate> predicates, ACaseSubstitution caseSubstitution) {
+		predicates.addAll(getEitherGuards(caseSubstitution));
+		getPredicatesFromAllSubstitutions(caseSubstitution.getEitherSubst(), predicates);
+		
+		predicates.addAll(getOrGuards(caseSubstitution));
+		
+		for(PSubstitution orSubs : caseSubstitution.getOrSubstitutions()) {
+			getPredicatesFromAllSubstitutions(orSubs, predicates);
+		}
+		
+		getPredicatesFromAllSubstitutions(caseSubstitution.getElse(), predicates);
+	}
+	
+	
+	
 	private List<MyPredicate> getOrGuards(ACaseSubstitution caseSubstitution) {
 		List<MyPredicate> predicates = new ArrayList<MyPredicate>();
 		MyExpression caseExpression = MyExpressionFactory.convertExpression(caseSubstitution.getExpression());
@@ -515,74 +592,5 @@ public class Operation {
 		
 		return orExpression;
 	}
-
-
-
-	/**
-	 * This methods creates a list of MyPredicate elements which represent the guards
-	 * of a SELECT statement. 
-	 * 
-	 * @return a List of MyPredicate containing the guards for a SELECT statement. 
-	 */
-	public List<MyPredicate> getSelectPredicates() {
-		List<MyPredicate> predicates = new ArrayList<MyPredicate>();
-		PSubstitution substitution = getBodyInsides(operation.getOperationBody());
-		
-		if(!(substitution instanceof AParallelSubstitution)) {
-			if(substitution instanceof ASelectSubstitution) {
-				ASelectSubstitution selectSubstitution = (ASelectSubstitution) substitution;
-				
-				predicates.add(getSelectPredicate(selectSubstitution));
-				predicates.addAll(getWhenPredicates(selectSubstitution));
-			}
-		}
-		
-		return predicates;
-	}
-
-
-
-	private List<MyPredicate> getWhenPredicates(ASelectSubstitution selectSubstitution) {
-		List<MyPredicate> predicates = new ArrayList<MyPredicate>();
-		
-		for(PSubstitution substitution : selectSubstitution.getWhenSubstitutions()) {
-			if(substitution instanceof ASelectWhenSubstitution) {
-				ASelectWhenSubstitution whenSubstitution = (ASelectWhenSubstitution) substitution;
-				MyPredicate whenPredicate = MyPredicateFactory.convertPredicate(whenSubstitution.getCondition());
-				predicates.add(whenPredicate);
-			}
-		}
-		
-		return predicates;
-	}
-
-
-
-	private MyPredicate getSelectPredicate(ASelectSubstitution selectSubstitution) {
-		MyPredicate selectCondition = MyPredicateFactory.convertPredicate(selectSubstitution.getCondition());
-		return selectCondition;
-	}
-
 	
-
-	/**
-	 * This methods creates a list of MyPredicate elements which contain the guard of
-	 * a ANY statement. 
-	 * 
-	 * @return a List of MyPredicate containing the guard for a ANY statement. 
-	 */
-	public List<MyPredicate> getAnyPredicates() {
-		List<MyPredicate> predicates = new ArrayList<MyPredicate>();
-		PSubstitution substitution = getBodyInsides(operation.getOperationBody());
-		
-		if(!(substitution instanceof AParallelSubstitution)) {
-			if(substitution instanceof AAnySubstitution) {
-				AAnySubstitution anySubstitution = (AAnySubstitution) substitution;
-				MyPredicate anyPredicate = MyPredicateFactory.convertPredicate(anySubstitution.getWhere());
-				predicates.add(anyPredicate);
-			}
-		}
-		
-		return predicates;
-	}
 }

@@ -82,12 +82,18 @@ public abstract class LogicalCoverage {
 	 * operation under test.
 	 */
 	public Set<MyPredicate> getPredicates() {
-		Set<MyPredicate> predicates = new HashSet<MyPredicate>();
+		boolean operationHasPrecondition = getOperationUnderTest().getPrecondition() != null;
 		
-		predicates.add(getOperationUnderTest().getPrecondition());
+		Set<MyPredicate> predicates = new HashSet<MyPredicate>();
+
+		if(operationHasPrecondition) {
+			predicates.add(getOperationUnderTest().getPrecondition());
+		}
+		
 		predicates.addAll(getOperationUnderTest().getIfElsifElsePredicates());
 		predicates.addAll(getOperationUnderTest().getCasePredicates());
 		predicates.addAll(getOperationUnderTest().getSelectPredicates());
+		predicates.addAll(getOperationUnderTest().getAnyPredicates());
 		
 		return predicates;
 	}
@@ -243,6 +249,16 @@ public abstract class LogicalCoverage {
 			return "";
 		} else {
 			return getOperationPrecondition() + " & ";
+		}
+	}
+	
+	
+	
+	protected boolean operationHasPrecondition() {
+		if(getOperationUnderTest().getPrecondition() != null) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 	

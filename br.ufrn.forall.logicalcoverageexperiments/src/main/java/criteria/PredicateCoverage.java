@@ -32,7 +32,9 @@ public class PredicateCoverage extends LogicalCoverage {
 		MyPredicate precondition = getOperationUnderTest().getPrecondition();
 		
 		for(MyPredicate predicate : getPredicates()) {
-			if(comparePredicates(predicate, precondition)) {
+			boolean operationHasPrecondition = getOperationUnderTest().getPrecondition() != null;
+			
+			if(operationHasPrecondition && comparePredicates(predicate, precondition)) {
 				testFormulas.addAll(createPreconditionFormulas(predicate));
 			} else {
 				testFormulas.addAll(createPredicateFormulas(predicate));

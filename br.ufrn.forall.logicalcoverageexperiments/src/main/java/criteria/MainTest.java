@@ -28,11 +28,14 @@ public class MainTest {
 		
 		Api probApi = Main.getInjector().getInstance(Api.class);
 		
-		Machine machine = new Machine(new File("src/test/resources/machines/PassFinalOrFailIFELSIFELSE.mch"));
-		Operation operationUnderTest = machine.getOperation(0);
+//		Machine machine = new Machine(new File("src/test/resources/machines/PassFinalOrFailIFELSIFELSE.mch"));
+//		Operation operationUnderTest = machine.getOperation(0);
 		
 //		Machine machine = new Machine(new File("src/test/resources/machines/CaseStmt.mch"));
 //		Operation operationUnderTest = machine.getOperation(1);
+		
+		Machine machine = new Machine(new File("src/test/resources/machines/Any.mch"));
+		Operation operationUnderTest = machine.getOperation(0);
 		
 		System.out.println("Machine: " + machine.getName());
 		System.out.println("Operation under test: " + operationUnderTest.getName());

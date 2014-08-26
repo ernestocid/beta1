@@ -59,23 +59,11 @@ public class ActiveClauseCoverageTest {
 		
 		Set<String> expectedTestFormulas = new HashSet<String>();
 		
-//		expectedTestFormulas.add("xx : ID & yy : ID");
-//		expectedTestFormulas.add("xx : ID & yy : ID & yy = aa");
-//		expectedTestFormulas.add("xx : ID & yy : ID & not(yy = aa)");
-//		expectedTestFormulas.add("xx : ID & yy : ID & yy = bb");
-//		expectedTestFormulas.add("xx : ID & yy : ID & not(yy = bb)");
-		
 		expectedTestFormulas.add("xx : ID & yy : ID & yy = aa");
 		expectedTestFormulas.add("xx : ID & yy : ID & not(yy = aa)");
 		
 		expectedTestFormulas.add("xx : ID & yy : ID & yy = bb");
-		expectedTestFormulas.add("xx : ID & yy : ID & not(yy = bb)");
-		
-//		xx : ID & yy : ID & yy = aa, 
-//		xx : ID & yy : ID & not(yy = aa), 
-
-//		xx : ID & yy : ID & yy = bb
-//		xx : ID & yy : ID & not(yy = bb), 
+		expectedTestFormulas.add("xx : ID & yy : ID & not(yy = bb)"); 
 		
 		// Assertions
 		
@@ -106,5 +94,38 @@ public class ActiveClauseCoverageTest {
 		
 		assertEquals(expectedFormula, acc.createFormulaToFindValuesForMinorClauses(majorClause, mockedPredicate));
 	}
+	
+	
+	
+//	@Test
+//	public void shouldGenerateTestFormulasForSelectStatement() {
+//		Machine machine = new Machine(new File("src/test/resources/machines/Priorityqueue.mch"));
+//		Operation operationUnderTest = machine.getOperation(0);
+//		
+//		ActiveClauseCoverage acc = new ActiveClauseCoverage(operationUnderTest, probApi);
+//		
+//		// Setting up expected results
+//		
+//		Set<String> expectedTestFormulas = new HashSet<String>();
+//		
+////		expectedTestFormulas.add("queue : seq(NAT) & !(xx).((xx : 1..((size(queue) - 1))) => (queue(xx) <= queue((xx + 1)))) & nn : NAT");
+////		
+////		expectedTestFormulas.add("queue : seq(NAT) & !(xx).((xx : 1..((size(queue) - 1))) => (queue(xx) <= queue((xx + 1)))) & nn : NAT & queue = []");
+////		expectedTestFormulas.add("queue : seq(NAT) & !(xx).((xx : 1..((size(queue) - 1))) => (queue(xx) <= queue((xx + 1)))) & nn : NAT & not(queue = [])");
+////		
+////		expectedTestFormulas.add("queue : seq(NAT) & !(xx).((xx : 1..((size(queue) - 1))) => (queue(xx) <= queue((xx + 1)))) & nn : NAT & nn <= min(ran(queue)) & queue /= []");
+////		expectedTestFormulas.add("queue : seq(NAT) & !(xx).((xx : 1..((size(queue) - 1))) => (queue(xx) <= queue((xx + 1)))) & nn : NAT & nn <= min(ran(queue)) & not(queue /= [])");
+////		expectedTestFormulas.add("queue : seq(NAT) & !(xx).((xx : 1..((size(queue) - 1))) => (queue(xx) <= queue((xx + 1)))) & nn : NAT & not(nn <= min(ran(queue))) & queue /= []");
+////		expectedTestFormulas.add("queue : seq(NAT) & !(xx).((xx : 1..((size(queue) - 1))) => (queue(xx) <= queue((xx + 1)))) & nn : NAT & not(nn <= min(ran(queue))) & not(queue /= [])");
+////		
+////		expectedTestFormulas.add("queue : seq(NAT) & !(xx).((xx : 1..((size(queue) - 1))) => (queue(xx) <= queue((xx + 1)))) & nn : NAT & nn >= max(ran(queue)) & queue /= []");
+////		expectedTestFormulas.add("queue : seq(NAT) & !(xx).((xx : 1..((size(queue) - 1))) => (queue(xx) <= queue((xx + 1)))) & nn : NAT & nn >= max(ran(queue)) & not(queue /= [])");
+////		expectedTestFormulas.add("queue : seq(NAT) & !(xx).((xx : 1..((size(queue) - 1))) => (queue(xx) <= queue((xx + 1)))) & nn : NAT & not(nn >= max(ran(queue))) & queue /= []");
+////		expectedTestFormulas.add("queue : seq(NAT) & !(xx).((xx : 1..((size(queue) - 1))) => (queue(xx) <= queue((xx + 1)))) & nn : NAT & not(nn >= max(ran(queue))) & not(queue /= [])");
+//		
+//		// Assertions
+//		
+//		assertEquals(expectedTestFormulas, acc.getTestFormulas());
+//	}
 	
 }

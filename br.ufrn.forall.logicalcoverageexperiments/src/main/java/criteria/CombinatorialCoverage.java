@@ -18,16 +18,15 @@ public class CombinatorialCoverage extends LogicalCoverage {
 	}
 
 	
-	
 	/**
 	 * This method creates a set of test formulas that satisfy the 
 	 * Combinatorial Coverage criterion. The requirements for this criterion are:
 	 * for each predicate, we cover all combinations of truth values for its clauses.
 	 * 
-	 * First it creates separate formulas for the precondition, combining all possible 
-	 * truth values for its clauses. Then, for the remainder of the predicates, it creates
-	 * all the possible combinations of truth values for the clauses of the predicate and then
-	 * append each of the created formulas to the precondition. 
+	 * First it creates separate formulas for the precondition (if the operation has one), 
+	 * combining all possible truth values for its clauses. Then, for the remainder of the predicates, 
+	 * it creates all the possible combinations of truth values for the clauses of the predicate and then
+	 * append each of the created formulas to the invariant and the precondition (if possible). 
 	 * 
 	 * @return a Set of test formulas that satisfy Combinatorial Coverage.
 	 */
@@ -35,16 +34,16 @@ public class CombinatorialCoverage extends LogicalCoverage {
 	public Set<String> getTestFormulas() {
 		Set<String> testFormulas = new HashSet<String>();
 		MyPredicate precondition = getOperationUnderTest().getPrecondition();
-		
-		testFormulas.addAll(createPreconditionTestFormulas(precondition));
+
+		if(operationHasPrecondition()) {
+			testFormulas.addAll(createPreconditionTestFormulas(precondition));
+		}
 		
 		for(MyPredicate predicate : getPredicates()) {
-			if(!comparePredicates(predicate, precondition)) {
-				Set<String> allCombinationsForPredicate = createAllCombinationsOfClauses(predicate);
-				
-				for (String combination : allCombinationsForPredicate) {
-					testFormulas.add(invariant() + precondition() + combination);
-				}
+			if(operationHasPrecondition()) {
+				testFormulas.addAll(createFormulasForOtherPredicatesWithPrecondition(precondition, predicate));
+			} else {
+				testFormulas.addAll(createFormulasForOtherPredicatesWithoutPrecondition(predicate));
 			}
 		}
 
@@ -53,14 +52,40 @@ public class CombinatorialCoverage extends LogicalCoverage {
 
 
 
+	private Set<String> createFormulasForOtherPredicatesWithoutPrecondition(MyPredicate predicate) {
+		Set<String> testFormulas = new HashSet<String>();
+		
+		Set<String> allCombinationsForPredicate = createAllCombinationsOfClauses(predicate);
+		
+		for (String combination : allCombinationsForPredicate) {
+			testFormulas.add(invariant() + combination);
+		}
+		
+		return testFormulas;
+	}
+
+
+
+	private Set<String> createFormulasForOtherPredicatesWithPrecondition(MyPredicate precondition, MyPredicate predicate) {
+		Set<String> testFormulas = new HashSet<String>();
+		
+		if(!comparePredicates(predicate, precondition)) {
+			Set<String> allCombinationsForPredicate = createAllCombinationsOfClauses(predicate);
+			
+			for (String combination : allCombinationsForPredicate) {
+				testFormulas.add(invariant() + precondition() + combination);
+			}
+		}
+		
+		return testFormulas;
+	}
+
+
+
 	private Set<String> createPreconditionTestFormulas(MyPredicate precondition) {
 		Set<String> testFormulas = new HashSet<String>();
 		
-		Set<String> allCombinationsOfPreconditionClauses = createAllCombinationsOfClauses(precondition);
-		
-		for(String combination : allCombinationsOfPreconditionClauses) {
-			testFormulas.add(invariant() + combination);
-		}
+		testFormulas.addAll(createFormulasForOtherPredicatesWithoutPrecondition(precondition));
 		
 		return testFormulas;
 	}

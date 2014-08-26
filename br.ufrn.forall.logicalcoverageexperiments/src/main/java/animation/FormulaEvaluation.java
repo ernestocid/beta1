@@ -10,6 +10,7 @@ import de.be4.classicalb.core.parser.exceptions.BException;
 import de.prob.animator.domainobjects.ClassicalB;
 import de.prob.animator.domainobjects.EvalResult;
 import de.prob.animator.domainobjects.IEvalResult;
+import de.prob.exception.ProBError;
 import de.prob.model.classicalb.ClassicalBModel;
 import de.prob.scripting.Api;
 import de.prob.statespace.StateSpace;
@@ -50,34 +51,31 @@ public class FormulaEvaluation {
 			
 			trace = setupConstants(trace);
 			trace = initialiseMachine(trace);
-			trace = getTraceToState(stateSpace, trace);
+//			trace = getTraceToState(stateSpace, trace);
 			
-			IEvalResult evalCurrent = trace.evalCurrent(new ClassicalB(formula));
-			
-			if(evalCurrent instanceof EvalResult) {
-				EvalResult result = (EvalResult) evalCurrent;
+			try {
+				IEvalResult evalCurrent = trace.evalCurrent(new ClassicalB(formula));
 				
-				this.parameterValues = getValuesForParameters(result, getOperation());
-				this.stateVariablesValues = getValuesForStateVariables(trace, getOperation());
-				
-			} else {
-				System.out.println("Not an EvalResult");
+				if(evalCurrent instanceof EvalResult) {
+					
+					EvalResult result = (EvalResult) evalCurrent;
+					
+					this.parameterValues = getValuesForParameters(result, getOperation());
+					this.stateVariablesValues = getValuesForStateVariables(trace, getOperation());
+					
+				} else {
+					System.out.println("Not an EvalResult");
+				}
+			} catch (ProBError e) {
+				System.err.println("ProB error while evaluating formula for minor clauses!");
 			}
+			
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (BException e) {
 			e.printStackTrace();
 		}
-	}
-
-
-
-	private Trace getTraceToState(StateSpace stateSpace, Trace trace) {
-		if(getMachine().getVariables() != null) {
-//			trace = stateSpace.getTraceToState(new ClassicalB(formula));
-		}
-		return trace;
 	}
 
 
@@ -120,7 +118,9 @@ public class FormulaEvaluation {
 		Map<String, String> foundSolutions = result.getSolutions();
 		
 		for(String param : operationUnderTest.getParameters()) {
-			valuesForInputParams.put(param, foundSolutions.get(param));
+			if(foundSolutions.get(param) != null) {
+				valuesForInputParams.put(param, foundSolutions.get(param));
+			}
 		}
 		
 		return valuesForInputParams;

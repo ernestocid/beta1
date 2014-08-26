@@ -124,9 +124,7 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 	public String createFormulaToFindValuesForMinorClauses(MyPredicate majorClause, MyPredicate predicate) {
 		StringBuffer majorClauseFormula = new StringBuffer("");
 		
-		String precondition = getOperationUnderTest().getPrecondition().toString();
-
-		String initialFormula = precondition + " & " + predicate.toString(); 
+		String initialFormula = invariant() + precondition() + predicate.toString(); 
 		
 		String trueFormula = initialFormula.replace(majorClause.toString(), TRUE);
 		String falseFormula = initialFormula.replace(majorClause.toString(), FALSE);

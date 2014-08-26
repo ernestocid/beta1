@@ -51,7 +51,7 @@ public class TestingUtils {
 
 	private Set<String> convertSetOfPredicatesToStrings(Set<MyPredicate> myPredicates) {
 		Set<String> predicates = new HashSet<String>();
-		
+
 		for(MyPredicate myPredicate : myPredicates) {
 			predicates.add(myPredicate.toString());
 		}

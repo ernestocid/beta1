@@ -21,7 +21,7 @@ public class LogicalCoverageTest extends TestingUtils {
 	
 
 	@Test
-	public void shouldGetPredicatesSet() {
+	public void shouldGetPredicatesSetForIfElsifStatement() {
 		Machine machine = new Machine(new File("src/test/resources/machines/PassFinalOrFailIFELSIFELSE.mch"));
 		Operation operationUnderTest = machine.getOperation(0);
 		
@@ -43,6 +43,120 @@ public class LogicalCoverageTest extends TestingUtils {
 		expectedPredicates.add(mockedPredicate1);
 		expectedPredicates.add(mockedPredicate2);
 		expectedPredicates.add(mockedPredicate3);
+		
+		// Assertions
+		
+		assertTrue(compare(expectedPredicates, pc.getPredicates()));
+	}
+	
+	
+	
+	@Test
+	public void shouldGetPredicatesForCaseStatement() {
+		Machine machine = new Machine(new File("src/test/resources/machines/CaseStmt.mch"));
+		Operation operationUnderTest = machine.getOperation(1);
+		
+		PredicateCoverage pc = new PredicateCoverage(operationUnderTest);
+		
+		// Setting up expected results
+		
+		Set<MyPredicate> expectedPredicates = new HashSet<MyPredicate>();
+		
+		MyPredicate mockedPredicate1 = mock(MyPredicate.class);
+		when(mockedPredicate1.toString()).thenReturn("yy : ID");
+		
+		MyPredicate mockedPredicate2 = mock(MyPredicate.class);
+		when(mockedPredicate2.toString()).thenReturn("yy = aa");
+		
+		MyPredicate mockedPredicate3 = mock(MyPredicate.class);
+		when(mockedPredicate3.toString()).thenReturn("yy = bb");
+		
+		expectedPredicates.add(mockedPredicate1);
+		expectedPredicates.add(mockedPredicate2);
+		expectedPredicates.add(mockedPredicate3);
+		
+		assertTrue(compare(expectedPredicates, pc.getPredicates()));
+	}
+	
+	
+	
+	@Test
+	public void shouldGetPredicatesForSelectStatement() {
+		Machine machine = new Machine(new File("src/test/resources/machines/Priorityqueue.mch"));
+		Operation operationUnderTest = machine.getOperation(0);
+		
+		PredicateCoverage pc = new PredicateCoverage(operationUnderTest);
+		
+		// Setting up expected results
+		
+		Set<MyPredicate> expectedPredicates = new HashSet<MyPredicate>();
+		
+		MyPredicate mockedPredicate1 = mock(MyPredicate.class);
+		when(mockedPredicate1.toString()).thenReturn("nn : NAT");
+		
+		MyPredicate mockedPredicate2 = mock(MyPredicate.class);
+		when(mockedPredicate2.toString()).thenReturn("queue = []");
+		
+		MyPredicate mockedPredicate3 = mock(MyPredicate.class);
+		when(mockedPredicate3.toString()).thenReturn("queue /= [] & nn <= min(ran(queue))");
+		
+		MyPredicate mockedPredicate4 = mock(MyPredicate.class);
+		when(mockedPredicate4.toString()).thenReturn("queue /= [] & nn >= max(ran(queue))");
+		
+		expectedPredicates.add(mockedPredicate1);
+		expectedPredicates.add(mockedPredicate2);
+		expectedPredicates.add(mockedPredicate3);
+		expectedPredicates.add(mockedPredicate4);
+		
+		// Assertions
+		
+		assertTrue(compare(expectedPredicates, pc.getPredicates()));
+	}
+	
+	
+	
+	@Test
+	public void shouldGetPredicatesForAnyStatement() {
+		Machine machine = new Machine(new File("src/test/resources/machines/Any.mch"));
+		Operation operationUnderTest = machine.getOperation(0);
+		
+		PredicateCoverage pc = new PredicateCoverage(operationUnderTest);
+		
+		// Setting up expected results
+		
+		Set<MyPredicate> expectedPredicates = new HashSet<MyPredicate>();
+		
+		MyPredicate mockedPredicate1 = mock(MyPredicate.class);
+		when(mockedPredicate1.toString()).thenReturn("x : COLOURS & x /: col1");
+		
+		expectedPredicates.add(mockedPredicate1);
+		
+		// Assertions
+		
+		assertTrue(compare(expectedPredicates, pc.getPredicates()));
+	}
+	
+	
+	
+	@Test
+	public void shouldGetPredicatesForAnyStatementWithPrecondition() {
+		Machine machine = new Machine(new File("src/test/resources/machines/PlayerAny.mch"));
+		Operation operationUnderTest = machine.getOperation(0);
+		
+		PredicateCoverage pc = new PredicateCoverage(operationUnderTest);
+		
+		// Setting up expected results
+		
+		Set<MyPredicate> expectedPredicates = new HashSet<MyPredicate>();
+		
+		MyPredicate mockedPredicate1 = mock(MyPredicate.class);
+		when(mockedPredicate1.toString()).thenReturn("xx <: PLAYER & card(xx) = ss");
+		
+		MyPredicate mockedPredicate2 = mock(MyPredicate.class);
+		when(mockedPredicate2.toString()).thenReturn("ss : INT");
+		
+		expectedPredicates.add(mockedPredicate1);
+		expectedPredicates.add(mockedPredicate2);
 		
 		// Assertions
 		
@@ -80,71 +194,6 @@ public class LogicalCoverageTest extends TestingUtils {
 		assertTrue(compare(expectedPredicates, pc.getOrderedPredicates()));
 	}
 	
-	
-	
-	@Test
-	public void shouldGetPredicatesForCaseStatement() {
-		Machine machine = new Machine(new File("src/test/resources/machines/CaseStmt.mch"));
-		Operation operationUnderTest = machine.getOperation(1);
-		
-		PredicateCoverage pc = new PredicateCoverage(operationUnderTest);
-		
-		// Setting up expected results
-		
-		Set<MyPredicate> expectedPredicates = new HashSet<MyPredicate>();
-		
-		MyPredicate mockedPredicate1 = mock(MyPredicate.class);
-		when(mockedPredicate1.toString()).thenReturn("yy : ID");
-		
-		MyPredicate mockedPredicate2 = mock(MyPredicate.class);
-		when(mockedPredicate2.toString()).thenReturn("yy = aa");
-		
-		MyPredicate mockedPredicate3 = mock(MyPredicate.class);
-		when(mockedPredicate3.toString()).thenReturn("yy = bb");
-		
-		expectedPredicates.add(mockedPredicate1);
-		expectedPredicates.add(mockedPredicate2);
-		expectedPredicates.add(mockedPredicate3);
-		
-		assertTrue(compare(expectedPredicates, pc.getPredicates()));
-	}
-	
-	
-	
-
-	@Test
-	public void shouldGetPredicatesForSelectStatement() {
-		Machine machine = new Machine(new File("src/test/resources/machines/Priorityqueue.mch"));
-		Operation operationUnderTest = machine.getOperation(0);
-		
-		PredicateCoverage pc = new PredicateCoverage(operationUnderTest);
-		
-		// Setting up expected results
-		
-		Set<MyPredicate> expectedPredicates = new HashSet<MyPredicate>();
-		
-		MyPredicate mockedPredicate1 = mock(MyPredicate.class);
-		when(mockedPredicate1.toString()).thenReturn("nn : NAT");
-		
-		MyPredicate mockedPredicate2 = mock(MyPredicate.class);
-		when(mockedPredicate2.toString()).thenReturn("queue = []");
-		
-		MyPredicate mockedPredicate3 = mock(MyPredicate.class);
-		when(mockedPredicate3.toString()).thenReturn("queue /= [] & nn <= min(ran(queue))");
-		
-		MyPredicate mockedPredicate4 = mock(MyPredicate.class);
-		when(mockedPredicate4.toString()).thenReturn("queue /= [] & nn >= max(ran(queue))");
-		
-		expectedPredicates.add(mockedPredicate1);
-		expectedPredicates.add(mockedPredicate2);
-		expectedPredicates.add(mockedPredicate3);
-		expectedPredicates.add(mockedPredicate4);
-		
-		// Assertions
-		
-		assertTrue(compare(expectedPredicates, pc.getPredicates()));
-	}
-
 	
 	
 	@Test

@@ -1,6 +1,7 @@
 package parser;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -14,6 +15,7 @@ import parser.decorators.expressions.MyExpression;
 import parser.decorators.expressions.MyExpressionFactory;
 import parser.decorators.predicates.MyPredicate;
 import parser.decorators.predicates.MyPredicateFactory;
+import de.be4.classicalb.core.parser.node.AAnySubstitution;
 import de.be4.classicalb.core.parser.node.ACaseSubstitution;
 import de.be4.classicalb.core.parser.node.AIdentifierExpression;
 import de.be4.classicalb.core.parser.node.AIfElsifSubstitution;
@@ -559,5 +561,28 @@ public class Operation {
 	private MyPredicate getSelectPredicate(ASelectSubstitution selectSubstitution) {
 		MyPredicate selectCondition = MyPredicateFactory.convertPredicate(selectSubstitution.getCondition());
 		return selectCondition;
+	}
+
+	
+
+	/**
+	 * This methods creates a list of MyPredicate elements which contain the guard of
+	 * a ANY statement. 
+	 * 
+	 * @return a List of MyPredicate containing the guard for a ANY statement. 
+	 */
+	public List<MyPredicate> getAnyPredicates() {
+		List<MyPredicate> predicates = new ArrayList<MyPredicate>();
+		PSubstitution substitution = getBodyInsides(operation.getOperationBody());
+		
+		if(!(substitution instanceof AParallelSubstitution)) {
+			if(substitution instanceof AAnySubstitution) {
+				AAnySubstitution anySubstitution = (AAnySubstitution) substitution;
+				MyPredicate anyPredicate = MyPredicateFactory.convertPredicate(anySubstitution.getWhere());
+				predicates.add(anyPredicate);
+			}
+		}
+		
+		return predicates;
 	}
 }

@@ -356,7 +356,8 @@ public class Operation {
 	 *		- ASSERT substitution;
 	 *		- CASE-EITHER-OR substitution
 	 * 
-	 * @return
+	 * @return a List of MyPredicate containing predicates from all substitutions found
+	 * on the body of the operation.
 	 */
 	public List<MyPredicate> getPredicatesFromOperationBody() {
 		List<MyPredicate> predicates = new ArrayList<MyPredicate>();

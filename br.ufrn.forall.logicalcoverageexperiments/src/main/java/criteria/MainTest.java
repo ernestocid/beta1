@@ -34,7 +34,13 @@ public class MainTest {
 //		Machine machine = new Machine(new File("src/test/resources/machines/CaseStmt.mch"));
 //		Operation operationUnderTest = machine.getOperation(1);
 		
-		Machine machine = new Machine(new File("src/test/resources/machines/Any.mch"));
+//		Machine machine = new Machine(new File("src/test/resources/machines/Any.mch"));
+//		Operation operationUnderTest = machine.getOperation(0);
+		
+//		Machine machine = new Machine(new File("src/test/resources/machines/CarlaNewTravelAgency.mch"));
+//		Operation operationUnderTest = machine.getOperation(1); // bookRoom(sid)
+		
+		Machine machine = new Machine(new File("src/test/resources/machines/SelectStmt.mch"));
 		Operation operationUnderTest = machine.getOperation(0);
 		
 		System.out.println("Machine: " + machine.getName());
@@ -61,7 +67,7 @@ public class MainTest {
 		
 		System.out.println("\nActive Clause Coverage (ACC) test formulas: ");
 		
-		printTestFormulas(new ActiveClauseCoverage(operationUnderTest, probApi), probApi, operationUnderTest);
+		printTestFormulas(new ActiveClauseCoverage(operationUnderTest), probApi, operationUnderTest);
 		
 	}
 

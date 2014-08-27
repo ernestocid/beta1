@@ -119,5 +119,31 @@ public class ClauseCoverageTest extends TestingUtils {
 		
 		assertEquals(expectedTestFormulas, cc.getTestFormulas());
 	}
+	
+	
+	
+	@Test
+	public void shouldGenerateTestFormulasForAssertStatement() {
+		Machine machine = new Machine(new File("src/test/resources/machines/AssertStmt.mch"));
+		Operation operationUnderTest = machine.getOperation(0);
+		
+		ClauseCoverage cc = new ClauseCoverage(operationUnderTest);
+		
+		// Setting up expected results
+		
+		Set<String> expectedFormulas = new HashSet<String>();
+		
+		expectedFormulas.add("xx <: ID & yy : ID");
+		
+		expectedFormulas.add("xx <: ID & yy : ID & xx /= {}");
+		expectedFormulas.add("xx <: ID & yy : ID & not(xx /= {})");
+		
+		expectedFormulas.add("xx <: ID & yy : ID & yy : xx");
+		expectedFormulas.add("xx <: ID & yy : ID & not(yy : xx)");
+		
+		// Assertions
+		
+		assertEquals(expectedFormulas, cc.getTestFormulas());
+	}
 
 }

@@ -3,12 +3,8 @@ package criteria;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
-import de.prob.scripting.Api;
-import animation.FormulaEvaluation;
 import parser.Operation;
 import parser.decorators.predicates.MyPredicate;
 
@@ -18,12 +14,9 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 	public static final String TRUE = "1=1";
 	public static final String FALSE = "1=2";
 	
-	private Api probApi;
-
 	
-	public ActiveClauseCoverage(Operation operationUnderTest, Api probApi) {
+	public ActiveClauseCoverage(Operation operationUnderTest) {
 		super(operationUnderTest);
-		this.probApi = probApi;
 	}
 
 	
@@ -41,7 +34,11 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 		Set<String> testFormulas = new HashSet<String>();
 
 		for(MyPredicate predicate : getPredicates()) {
-			if(!comparePredicates(predicate, getOperationUnderTest().getPrecondition())) {
+			if(operationHasPrecondition()) {
+				if(!comparePredicates(predicate, getOperationUnderTest().getPrecondition())) {
+					testFormulas.addAll(createACCFormulasForPredicate(predicate));
+				}
+			} else {
 				testFormulas.addAll(createACCFormulasForPredicate(predicate));
 			}
 		}
@@ -55,68 +52,42 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 		Set<String> testFormulas = new HashSet<String>();
 		List<MyPredicate> clauses = new ArrayList<MyPredicate>(getPredicateClauses(predicate));
 		
-		for(int i = 0; i < clauses.size(); i++) {
-			MyPredicate majorClause = clauses.get(i);
-			testFormulas.addAll(createTestFormulas(majorClause, clauses, predicate));
+		if(clauses.size() > 1) {
+			for(int i = 0; i < clauses.size(); i++) {
+				MyPredicate majorClause = clauses.get(i);
+				testFormulas.addAll(createTestFormulas2(majorClause, clauses, predicate));
+			}
+		} else {
+			testFormulas.add(invariant() + precondition() + clauses.get(0));
+			testFormulas.add(invariant() + precondition() + "not(" + clauses.get(0) + ")");
 		}
 		
 		return testFormulas;
 	}
 
-
-
-	private Map<String, String> findVariableReplacementsForMinorClauses(String formula) {
-		FormulaEvaluation fe = new FormulaEvaluation(getOperationUnderTest(), formula, getProBApi());
-		return fe.getFreeVariablesValues();
-	}
-
 	
 
-	private Set<String> createTestFormulas(MyPredicate majorClause, List<MyPredicate> clauses, MyPredicate predicate) {
-		String formulaToFindValuesForMinorClauses = createFormulaToFindValuesForMinorClauses(majorClause, predicate);
-		Map<String, String> variableReplacements = findVariableReplacementsForMinorClauses(formulaToFindValuesForMinorClauses);
-		String precondition = getOperationUnderTest().getPrecondition().toString();
-
-		Set<String> testFormulas = new HashSet<String>();
+	private List<String> createTestFormulas2(MyPredicate majorClause, List<MyPredicate> clauses, MyPredicate predicate) {
+		List<String> testFormulas = new ArrayList<String>();
 		
 		StringBuffer majorClauseTrueFormula = new StringBuffer("");
+		
 		majorClauseTrueFormula.append(invariant());
-		majorClauseTrueFormula.append(precondition + " & " + majorClause.toString());
-		appendMinorClauses(majorClause, clauses, variableReplacements, majorClauseTrueFormula);
+		majorClauseTrueFormula.append(precondition());
+		majorClauseTrueFormula.append(majorClause.toString() + " & ");
+		majorClauseTrueFormula.append(createFormulaToFindValuesForMinorClauses(majorClause, predicate));
 		
 		StringBuffer majorClauseFalseFormula = new StringBuffer("");
-		majorClauseFalseFormula.append(invariant());
-		majorClauseFalseFormula.append(precondition + " & " + "not(" + majorClause.toString() + ")");
-		appendMinorClauses(majorClause, clauses, variableReplacements, majorClauseFalseFormula);
 		
+		majorClauseFalseFormula.append(invariant());
+		majorClauseFalseFormula.append(precondition());
+		majorClauseFalseFormula.append("not(" + majorClause.toString() + ")" + " & ");
+		majorClauseFalseFormula.append(createFormulaToFindValuesForMinorClauses(majorClause, predicate));
+
 		testFormulas.add(majorClauseTrueFormula.toString());
 		testFormulas.add(majorClauseFalseFormula.toString());
 		
 		return testFormulas;
-	}
-
-
-
-	private void appendMinorClauses(MyPredicate majorClause, List<MyPredicate> clauses, Map<String, String> variableReplacements, StringBuffer initialFormula) {
-		for(MyPredicate clause : clauses) {
-			if(!comparePredicates(clause, majorClause)) {
-				String clauseWithReplacements = replaceValues(clause, variableReplacements);
-				initialFormula.append(" & " + clauseWithReplacements);
-			}
-		}
-	}
-
-	
-
-	private String replaceValues(MyPredicate predicate, Map<String, String> values) {
-		String predicateFormula = predicate.toString();
-		String updatedFormula = null;
-		
-		for(Entry<String, String> entry : values.entrySet()) {
-			updatedFormula = predicateFormula.replace(entry.getKey(), entry.getValue());
-		}
-		
-		return updatedFormula;
 	}
 
 	
@@ -124,22 +95,16 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 	public String createFormulaToFindValuesForMinorClauses(MyPredicate majorClause, MyPredicate predicate) {
 		StringBuffer majorClauseFormula = new StringBuffer("");
 		
-		String initialFormula = invariant() + precondition() + predicate.toString(); 
+		String initialFormula = predicate.toString(); 
 		
 		String trueFormula = initialFormula.replace(majorClause.toString(), TRUE);
 		String falseFormula = initialFormula.replace(majorClause.toString(), FALSE);
 		
-		majorClauseFormula.append("(" + "(" + trueFormula + ")" + " or " + "(" + falseFormula + ")" + ")");
+		majorClauseFormula.append("((" + "(" + trueFormula + ")" + " or " + "(" + falseFormula + ")" + ")");
 		majorClauseFormula.append(" & ");
-		majorClauseFormula.append("not(" + "(" + trueFormula + ")" + " & " + "(" + falseFormula + ")" + ")");
+		majorClauseFormula.append("not(" + "(" + trueFormula + ")" + " & " + "(" + falseFormula + ")" + "))");
 		
 		return majorClauseFormula.toString();
-	}
-	
-	
-	
-	private Api getProBApi() {
-		return probApi;
 	}
 
 }

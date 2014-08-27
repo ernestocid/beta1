@@ -113,5 +113,29 @@ public class PredicateCoverageTest extends TestingUtils {
 		
 		assertEquals(expectedTestFormulas, pc.getTestFormulas());
 	}
+	
+	
+	
+	@Test
+	public void shouldGenerateTestFormulasForAssertStatement() {
+		Machine machine = new Machine(new File("src/test/resources/machines/AssertStmt.mch"));
+		Operation operationUnderTest = machine.getOperation(0);
+		
+		PredicateCoverage pc = new PredicateCoverage(operationUnderTest);
+		
+		// Setting up expected results
+		
+		Set<String> expectedFormulas = new HashSet<String>();
+		
+		expectedFormulas.add("xx <: ID & yy : ID");
+		expectedFormulas.add("xx <: ID & not(yy : ID)");
+		
+		expectedFormulas.add("xx <: ID & yy : ID & xx /= {} & yy : xx");
+		expectedFormulas.add("xx <: ID & yy : ID & not(xx /= {} & yy : xx)");
+		
+		// Assertions
+		
+		assertEquals(expectedFormulas, pc.getTestFormulas());
+	}
 
 }

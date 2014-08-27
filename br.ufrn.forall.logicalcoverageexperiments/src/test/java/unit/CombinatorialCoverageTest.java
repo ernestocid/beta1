@@ -119,5 +119,30 @@ public class CombinatorialCoverageTest extends TestingUtils{
 		
 		assertEquals(expectedTestFormulas, coc.getTestFormulas());
 	}
+	
+	
+	
+	@Test
+	public void shouldGenerateTestFormulasForAssertStatement() {
+		Machine machine = new Machine(new File("src/test/resources/machines/AssertStmt.mch"));
+		Operation operationUnderTest = machine.getOperation(0);
+		
+		CombinatorialCoverage coc = new CombinatorialCoverage(operationUnderTest);
+		
+		// Setting up expected results
+		
+		Set<String> expectedFormulas = new HashSet<String>();
+		
+		expectedFormulas.add("xx <: ID & yy : ID");
+		
+		expectedFormulas.add("xx <: ID & yy : ID & xx /= {} & yy : xx");
+		expectedFormulas.add("xx <: ID & yy : ID & not(xx /= {}) & yy : xx");
+		expectedFormulas.add("xx <: ID & yy : ID & xx /= {} & not(yy : xx)");
+		expectedFormulas.add("xx <: ID & yy : ID & not(xx /= {}) & not(yy : xx)");
+		
+		// Assertions
+		
+		assertEquals(expectedFormulas, coc.getTestFormulas());
+	}
 
 }

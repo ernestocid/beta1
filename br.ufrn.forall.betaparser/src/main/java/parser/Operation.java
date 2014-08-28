@@ -370,7 +370,15 @@ public class Operation {
 
 	private List<MyPredicate> getPredicatesFromAllSubstitutions(PSubstitution substitution, List<MyPredicate> predicates) {
 		
-		if(substitution instanceof AIfSubstitution) {
+		if(substitution instanceof AParallelSubstitution) {
+			
+			AParallelSubstitution parallelSubstitution = (AParallelSubstitution) substitution;
+			
+			for (PSubstitution subs : parallelSubstitution.getSubstitutions()) {
+				getPredicatesFromAllSubstitutions(subs, predicates);
+			}
+			
+		} else if(substitution instanceof AIfSubstitution) {
 			
 			AIfSubstitution ifSubstitution = (AIfSubstitution) substitution;
 			getPredicatesFromIfSubstitution(predicates, ifSubstitution);

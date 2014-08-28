@@ -195,6 +195,41 @@ public class LogicalCoverageTest extends TestingUtils {
 	
 	
 	@Test
+	public void shouldGetPredicatesFromParallelSubstitutions() {
+		Machine machine = new Machine(new File("src/test/resources/machines/Parallel.mch"));
+		Operation operationUnderTest = machine.getOperation(0);
+		
+		PredicateCoverage pc = new PredicateCoverage(operationUnderTest);
+		
+		// Setting up expected results
+		
+		Set<MyPredicate> expectedPredicates = new HashSet<MyPredicate>();
+		
+		MyPredicate mockedPredicate1 = mock(MyPredicate.class);
+		when(mockedPredicate1.toString()).thenReturn("zz : ID");
+		
+		MyPredicate mockedPredicate2 = mock(MyPredicate.class);
+		when(mockedPredicate2.toString()).thenReturn("tt <: ID & zz : tt");
+		
+		MyPredicate mockedPredicate3 = mock(MyPredicate.class);
+		when(mockedPredicate3.toString()).thenReturn("tt <: ID & zz /: tt");
+		
+		MyPredicate mockedPredicate4 = mock(MyPredicate.class);
+		when(mockedPredicate4.toString()).thenReturn("tt <: ID & card(tt) > 2");
+		
+		expectedPredicates.add(mockedPredicate1);
+		expectedPredicates.add(mockedPredicate2);
+		expectedPredicates.add(mockedPredicate3);
+		expectedPredicates.add(mockedPredicate4);
+		
+		// Assertions
+		
+		assertTrue(compare(expectedPredicates, pc.getPredicates()));
+	}
+	
+	
+	
+	@Test
 	public void shouldGetPredicatesInOrder() {
 		Machine machine = new Machine(new File("src/test/resources/machines/PassFinalOrFailIFELSIFELSE.mch"));
 		Operation operationUnderTest = machine.getOperation(0);

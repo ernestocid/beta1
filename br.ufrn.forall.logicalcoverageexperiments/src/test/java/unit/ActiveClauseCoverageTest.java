@@ -10,7 +10,6 @@ import java.util.Set;
 import org.junit.Test;
 
 import criteria.ActiveClauseCoverage;
-import criteria.ClauseCoverage;
 import parser.Machine;
 import parser.Operation;
 import parser.decorators.predicates.MyPredicate;

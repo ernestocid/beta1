@@ -100,9 +100,11 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 		String trueFormula = initialFormula.replace(majorClause.toString(), TRUE);
 		String falseFormula = initialFormula.replace(majorClause.toString(), FALSE);
 		
-		majorClauseFormula.append("((" + "(" + trueFormula + ")" + " or " + "(" + falseFormula + ")" + ")");
-		majorClauseFormula.append(" & ");
-		majorClauseFormula.append("not(" + "(" + trueFormula + ")" + " & " + "(" + falseFormula + ")" + "))");
+		majorClauseFormula.append("(" + trueFormula + ") <=> not(" + falseFormula + ")");
+		
+//		majorClauseFormula.append("((" + "(" + trueFormula + ")" + " or " + "(" + falseFormula + ")" + ")");
+//		majorClauseFormula.append(" & ");
+//		majorClauseFormula.append("not(" + "(" + trueFormula + ")" + " & " + "(" + falseFormula + ")" + "))");
 		
 		return majorClauseFormula.toString();
 	}

@@ -61,13 +61,13 @@ public class FormulaEvaluation {
 					EvalResult result = (EvalResult) evalCurrent;
 					
 					this.parameterValues = getValuesForParameters(result, getOperation());
-					this.stateVariablesValues = getValuesForStateVariables(trace, getOperation());
+					this.stateVariablesValues = getValuesForStateVariables(result, getOperation());
 					
 				} else {
 					System.out.println("Not an EvalResult");
 				}
 			} catch (ProBError e) {
-				System.err.println("ProB error while evaluating formula for minor clauses!");
+				System.err.println("ProB error while evaluating formula!");
 			}
 			
 			
@@ -88,22 +88,22 @@ public class FormulaEvaluation {
 
 
 	private Trace setupConstants(Trace trace) {
-		try {
+		if(this.getMachine().getConstants() != null) {
 			trace = trace.execute("$setup_constants", new ArrayList<String>());
-		} catch (NullPointerException e) {
-			System.err.println("This model has no constants so $setup_constants could not be executed");
 		}
 		return trace;
 	}
 	
 	
 	
-	private static Map<String, String> getValuesForStateVariables(Trace trace, Operation operationUnderTest) {
+	private static Map<String, String> getValuesForStateVariables(EvalResult result, Operation operationUnderTest) {
 		Map<String, String> valuesForStateVariables = new HashMap<String, String>();
+		
+		Map<String, String> foundSolutions = result.getSolutions();
 		
 		if(operationUnderTest.getMachine().getVariables() != null) {
 			for(String variable : operationUnderTest.getMachine().getVariables().getAll()) {
-				valuesForStateVariables.put(variable, trace.evalCurrent(variable).toString());
+				valuesForStateVariables.put(variable, foundSolutions.get(variable).toString());
 			}
 		}
 		
@@ -116,7 +116,7 @@ public class FormulaEvaluation {
 		Map<String, String> valuesForInputParams = new HashMap<String, String>();
 		
 		Map<String, String> foundSolutions = result.getSolutions();
-		
+
 		for(String param : operationUnderTest.getParameters()) {
 			if(foundSolutions.get(param) != null) {
 				valuesForInputParams.put(param, foundSolutions.get(param));

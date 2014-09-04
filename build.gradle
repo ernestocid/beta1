@@ -22,11 +22,13 @@ subprojects {
 
 project(':br.ufrn.forall.beta') {
 	
-	def core_version = '2.0.0-milestone-14-SNAPSHOT'
+	// def core_version = '2.0.0-milestone-14-SNAPSHOT'
+	def core_version = '2.0.0-milestone-16-SNAPSHOT'
+	
 	
 	dependencies {
 		compile project(':br.ufrn.forall.betaanimator'), project(':br.ufrn.forall.betacommon'), project(':br.ufrn.forall.betaparser'), project(':br.ufrn.forall.datacomb')
-		compile group: "de.prob", name: "de.prob.core.kernel", version: core_version , changing: true
+		compile group: "de.prob", name: "de.prob2.kernel", version: core_version , changing: true
 		compile 'commons-io:commons-io:2.4'
 		compile 'commons-lang:commons-lang:2.2'
 		compile 'org.mockito:mockito-all:1.9.5'
@@ -92,11 +94,12 @@ project('br.ufrn.forall.betagui') {
 
 project(':br.ufrn.forall.logicalcoverageexperiments') {
 	
-	def core_version = '2.0.0-milestone-14-SNAPSHOT'
+	// def core_version = '2.0.0-milestone-14-SNAPSHOT'
+	def core_version = '2.0.0-milestone-16-SNAPSHOT'
 	
 	dependencies {
 		compile project(':br.ufrn.forall.betacommon'), project(':br.ufrn.forall.betaparser'), project(':br.ufrn.forall.datacomb')
-		compile group: "de.prob", name: "de.prob.core.kernel", version: core_version , changing: true
+		compile group: "de.prob", name: "de.prob2.kernel", version: core_version , changing: true
 		compile 'commons-io:commons-io:2.4'
 		compile 'commons-lang:commons-lang:2.2'
 		compile 'org.mockito:mockito-all:1.9.5'

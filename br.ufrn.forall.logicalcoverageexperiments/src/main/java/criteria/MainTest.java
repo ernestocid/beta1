@@ -40,8 +40,11 @@ public class MainTest {
 //		Machine machine = new Machine(new File("src/test/resources/machines/CarlaNewTravelAgency.mch"));
 //		Operation operationUnderTest = machine.getOperation(1); // bookRoom(sid)
 		
-		Machine machine = new Machine(new File("src/test/resources/machines/SelectStmt.mch"));
-		Operation operationUnderTest = machine.getOperation(0);
+//		Machine machine = new Machine(new File("src/test/resources/machines/SelectStmt.mch"));
+//		Operation operationUnderTest = machine.getOperation(0);
+		
+		Machine machine = new Machine(new File("src/test/resources/machines/CaseStudy/scheduler.mch"));
+		Operation operationUnderTest = machine.getOperation(3);
 		
 		System.out.println("Machine: " + machine.getName());
 		System.out.println("Operation under test: " + operationUnderTest.getName());
@@ -82,17 +85,22 @@ public class MainTest {
 			Trace trace = new Trace(stateSpace);
 			
 			try {
-				trace = trace.execute("$setup_constants", new ArrayList<String>());
+				if(operationUnderTest.getMachine().getConstants() != null) {
+					trace = trace.execute("$setup_constants", new ArrayList<String>());
+				}
 			} catch (NullPointerException e) {
 				System.err.println("This model has no constants so $setup_constants could not be executed");
 			}
 			
-			trace = trace.execute("$initialise_machine", new ArrayList<String>());
+//			trace = trace.execute("$initialise_machine", new ArrayList<String>());
 			
 			if(operationUnderTest.getMachine().getVariables() != null) {
 //				IEvalResult evalCurrent = trace.evalCurrent(new ClassicalB(formula));
-//				trace = stateSpace.getTraceToState(new ClassicalB(formula));
-//				trace = stateSpace.getTraceToState(new ClassicalB(formula));
+				try {
+					trace = stateSpace.getTraceToState(new ClassicalB(formula));
+				} catch (RuntimeException e) {
+//					System.err.println("Could not execute get trace to state");
+				}
 			}
 			
 			IEvalResult evalCurrent = trace.evalCurrent(new ClassicalB(formula));

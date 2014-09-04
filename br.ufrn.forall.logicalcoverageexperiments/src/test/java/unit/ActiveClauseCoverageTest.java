@@ -52,14 +52,14 @@ public class ActiveClauseCoverageTest {
 		
 		Set<String> expectedTestFormulas = new HashSet<String>();
 		
-		expectedTestFormulas.add("averageGrade : 0..5 & averageGrade : INT & averageGrade >= 4");
-		expectedTestFormulas.add("averageGrade : 0..5 & averageGrade : INT & not(averageGrade >= 4)");
+		expectedTestFormulas.add("#averageGrade.(averageGrade : 0..5 & averageGrade : INT & averageGrade >= 4)");
+		expectedTestFormulas.add("#averageGrade.(averageGrade : 0..5 & averageGrade : INT & not(averageGrade >= 4))");
 		
-		expectedTestFormulas.add("averageGrade : 0..5 & averageGrade : INT & averageGrade < 4 & (averageGrade >= 2 & 1=1) <=> not(averageGrade >= 2 & 1=2)");
-		expectedTestFormulas.add("averageGrade : 0..5 & averageGrade : INT & not(averageGrade < 4) & (averageGrade >= 2 & 1=1) <=> not(averageGrade >= 2 & 1=2)");
+		expectedTestFormulas.add("#averageGrade.(averageGrade : 0..5 & averageGrade : INT & averageGrade < 4 & (averageGrade >= 2 & 1=1) <=> not(averageGrade >= 2 & 1=2))");
+		expectedTestFormulas.add("#averageGrade.(averageGrade : 0..5 & averageGrade : INT & not(averageGrade < 4) & (averageGrade >= 2 & 1=1) <=> not(averageGrade >= 2 & 1=2))");
 		
-		expectedTestFormulas.add("averageGrade : 0..5 & averageGrade : INT & averageGrade >= 2 & (1=1 & averageGrade < 4) <=> not(1=2 & averageGrade < 4)");
-		expectedTestFormulas.add("averageGrade : 0..5 & averageGrade : INT & not(averageGrade >= 2) & (1=1 & averageGrade < 4) <=> not(1=2 & averageGrade < 4)");
+		expectedTestFormulas.add("#averageGrade.(averageGrade : 0..5 & averageGrade : INT & averageGrade >= 2 & (1=1 & averageGrade < 4) <=> not(1=2 & averageGrade < 4))");
+		expectedTestFormulas.add("#averageGrade.(averageGrade : 0..5 & averageGrade : INT & not(averageGrade >= 2) & (1=1 & averageGrade < 4) <=> not(1=2 & averageGrade < 4))");
 		
 		// Assertions
 		
@@ -79,11 +79,11 @@ public class ActiveClauseCoverageTest {
 		
 		Set<String> expectedTestFormulas = new HashSet<String>();
 		
-		expectedTestFormulas.add("xx : ID & yy : ID & yy = aa");
-		expectedTestFormulas.add("xx : ID & yy : ID & not(yy = aa)");
+		expectedTestFormulas.add("#xx,yy.(xx : ID & yy : ID & yy = aa)");
+		expectedTestFormulas.add("#xx,yy.(xx : ID & yy : ID & not(yy = aa))");
 		
-		expectedTestFormulas.add("xx : ID & yy : ID & yy = bb");
-		expectedTestFormulas.add("xx : ID & yy : ID & not(yy = bb)"); 
+		expectedTestFormulas.add("#xx,yy.(xx : ID & yy : ID & yy = bb)");
+		expectedTestFormulas.add("#xx,yy.(xx : ID & yy : ID & not(yy = bb))"); 
 		
 		// Assertions
 		
@@ -103,20 +103,20 @@ public class ActiveClauseCoverageTest {
 		
 		Set<String> expectedFormulas = new HashSet<String>();
 		
-		expectedFormulas.add("xx <: ID & yy : ID & xx = {}");
-		expectedFormulas.add("xx <: ID & yy : ID & not(xx = {})");
+		expectedFormulas.add("#xx,yy.(xx <: ID & yy : ID & xx = {})");
+		expectedFormulas.add("#xx,yy.(xx <: ID & yy : ID & not(xx = {}))");
 		
-		expectedFormulas.add("xx <: ID & yy : ID & xx /= {} & (1=1 & yy /: xx) <=> not(1=2 & yy /: xx)");
-		expectedFormulas.add("xx <: ID & yy : ID & not(xx /= {}) & (1=1 & yy /: xx) <=> not(1=2 & yy /: xx)");
+		expectedFormulas.add("#xx,yy.(xx <: ID & yy : ID & xx /= {} & (1=1 & yy /: xx) <=> not(1=2 & yy /: xx))");
+		expectedFormulas.add("#xx,yy.(xx <: ID & yy : ID & not(xx /= {}) & (1=1 & yy /: xx) <=> not(1=2 & yy /: xx))");
 		
-		expectedFormulas.add("xx <: ID & yy : ID & yy : xx & (xx /= {} & 1=1) <=> not(xx /= {} & 1=2)");
-		expectedFormulas.add("xx <: ID & yy : ID & not(yy : xx) & (xx /= {} & 1=1) <=> not(xx /= {} & 1=2)");
+		expectedFormulas.add("#xx,yy.(xx <: ID & yy : ID & yy : xx & (xx /= {} & 1=1) <=> not(xx /= {} & 1=2))");
+		expectedFormulas.add("#xx,yy.(xx <: ID & yy : ID & not(yy : xx) & (xx /= {} & 1=1) <=> not(xx /= {} & 1=2))");
 		
-		expectedFormulas.add("xx <: ID & yy : ID & yy /: xx & (xx /= {} & 1=1) <=> not(xx /= {} & 1=2)");
-		expectedFormulas.add("xx <: ID & yy : ID & not(yy /: xx) & (xx /= {} & 1=1) <=> not(xx /= {} & 1=2)");
+		expectedFormulas.add("#xx,yy.(xx <: ID & yy : ID & yy /: xx & (xx /= {} & 1=1) <=> not(xx /= {} & 1=2))");
+		expectedFormulas.add("#xx,yy.(xx <: ID & yy : ID & not(yy /: xx) & (xx /= {} & 1=1) <=> not(xx /= {} & 1=2))");
 		
-		expectedFormulas.add("xx <: ID & yy : ID & xx /= {} & (1=1 & yy : xx) <=> not(1=2 & yy : xx)");
-		expectedFormulas.add("xx <: ID & yy : ID & not(xx /= {}) & (1=1 & yy : xx) <=> not(1=2 & yy : xx)");
+		expectedFormulas.add("#xx,yy.(xx <: ID & yy : ID & xx /= {} & (1=1 & yy : xx) <=> not(1=2 & yy : xx))");
+		expectedFormulas.add("#xx,yy.(xx <: ID & yy : ID & not(xx /= {}) & (1=1 & yy : xx) <=> not(1=2 & yy : xx))");
 		
 		// Assertions
 		
@@ -136,11 +136,11 @@ public class ActiveClauseCoverageTest {
 		
 		Set<String> expectedFormulas = new HashSet<String>();
 		
-		expectedFormulas.add("xx <: ID & yy : ID & xx /= {} & (1=1 & yy : xx) <=> not(1=2 & yy : xx)");
-		expectedFormulas.add("xx <: ID & yy : ID & not(xx /= {}) & (1=1 & yy : xx) <=> not(1=2 & yy : xx)");
+		expectedFormulas.add("#xx,yy.(xx <: ID & yy : ID & xx /= {} & (1=1 & yy : xx) <=> not(1=2 & yy : xx))");
+		expectedFormulas.add("#xx,yy.(xx <: ID & yy : ID & not(xx /= {}) & (1=1 & yy : xx) <=> not(1=2 & yy : xx))");
 		
-		expectedFormulas.add("xx <: ID & yy : ID & yy : xx & (xx /= {} & 1=1) <=> not(xx /= {} & 1=2)");
-		expectedFormulas.add("xx <: ID & yy : ID & not(yy : xx) & (xx /= {} & 1=1) <=> not(xx /= {} & 1=2)");
+		expectedFormulas.add("#xx,yy.(xx <: ID & yy : ID & yy : xx & (xx /= {} & 1=1) <=> not(xx /= {} & 1=2))");
+		expectedFormulas.add("#xx,yy.(xx <: ID & yy : ID & not(yy : xx) & (xx /= {} & 1=1) <=> not(xx /= {} & 1=2))");
 		
 		// Assertions
 		
@@ -160,11 +160,11 @@ public class ActiveClauseCoverageTest {
 		
 		Set<String> expectedTestFormulas = new HashSet<String>();
 
-		expectedTestFormulas.add("col1 : POW(COLOURS) & col2 : POW(COLOURS) & !(cc).((cc : col1) => (cc /: col2)) & !(cc2).((cc2 : col2) => (cc2 /: col1)) & b : BOOL & col : COLOURS & x : COLOURS & (1=1 & x /: col1) <=> not(1=2 & x /: col1)");
-		expectedTestFormulas.add("col1 : POW(COLOURS) & col2 : POW(COLOURS) & !(cc).((cc : col1) => (cc /: col2)) & !(cc2).((cc2 : col2) => (cc2 /: col1)) & b : BOOL & col : COLOURS & not(x : COLOURS) & (1=1 & x /: col1) <=> not(1=2 & x /: col1)");
+		expectedTestFormulas.add("#col,b,col1,col2.(col1 : POW(COLOURS) & col2 : POW(COLOURS) & !(cc).((cc : col1) => (cc /: col2)) & !(cc2).((cc2 : col2) => (cc2 /: col1)) & b : BOOL & col : COLOURS & x : COLOURS & (1=1 & x /: col1) <=> not(1=2 & x /: col1))");
+		expectedTestFormulas.add("#col,b,col1,col2.(col1 : POW(COLOURS) & col2 : POW(COLOURS) & !(cc).((cc : col1) => (cc /: col2)) & !(cc2).((cc2 : col2) => (cc2 /: col1)) & b : BOOL & col : COLOURS & not(x : COLOURS) & (1=1 & x /: col1) <=> not(1=2 & x /: col1))");
 		
-		expectedTestFormulas.add("col1 : POW(COLOURS) & col2 : POW(COLOURS) & !(cc).((cc : col1) => (cc /: col2)) & !(cc2).((cc2 : col2) => (cc2 /: col1)) & b : BOOL & col : COLOURS & x /: col1 & (x : COLOURS & 1=1) <=> not(x : COLOURS & 1=2)");
-		expectedTestFormulas.add("col1 : POW(COLOURS) & col2 : POW(COLOURS) & !(cc).((cc : col1) => (cc /: col2)) & !(cc2).((cc2 : col2) => (cc2 /: col1)) & b : BOOL & col : COLOURS & not(x /: col1) & (x : COLOURS & 1=1) <=> not(x : COLOURS & 1=2)");
+		expectedTestFormulas.add("#col,b,col1,col2.(col1 : POW(COLOURS) & col2 : POW(COLOURS) & !(cc).((cc : col1) => (cc /: col2)) & !(cc2).((cc2 : col2) => (cc2 /: col1)) & b : BOOL & col : COLOURS & x /: col1 & (x : COLOURS & 1=1) <=> not(x : COLOURS & 1=2))");
+		expectedTestFormulas.add("#col,b,col1,col2.(col1 : POW(COLOURS) & col2 : POW(COLOURS) & !(cc).((cc : col1) => (cc /: col2)) & !(cc2).((cc2 : col2) => (cc2 /: col1)) & b : BOOL & col : COLOURS & not(x /: col1) & (x : COLOURS & 1=1) <=> not(x : COLOURS & 1=2))");
 		
 		// Assertions
 		

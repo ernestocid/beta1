@@ -55,11 +55,11 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 		if(clauses.size() > 1) {
 			for(int i = 0; i < clauses.size(); i++) {
 				MyPredicate majorClause = clauses.get(i);
-				testFormulas.addAll(createTestFormulas2(majorClause, clauses, predicate));
+				testFormulas.addAll(createTestFormulas(majorClause, clauses, predicate));
 			}
 		} else {
-			testFormulas.add(invariant() + precondition() + clauses.get(0));
-			testFormulas.add(invariant() + precondition() + "not(" + clauses.get(0) + ")");
+			testFormulas.add(varListForExistential() + "(" + invariant() + precondition() + clauses.get(0) + ")");
+			testFormulas.add(varListForExistential() + "(" + invariant() + precondition() + "not(" + clauses.get(0) + ")" + ")");
 		}
 		
 		return testFormulas;
@@ -67,7 +67,7 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 
 	
 
-	private List<String> createTestFormulas2(MyPredicate majorClause, List<MyPredicate> clauses, MyPredicate predicate) {
+	private List<String> createTestFormulas(MyPredicate majorClause, List<MyPredicate> clauses, MyPredicate predicate) {
 		List<String> testFormulas = new ArrayList<String>();
 		
 		StringBuffer majorClauseTrueFormula = new StringBuffer("");
@@ -84,8 +84,8 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 		majorClauseFalseFormula.append("not(" + majorClause.toString() + ")" + " & ");
 		majorClauseFalseFormula.append(createFormulaToFindValuesForMinorClauses(majorClause, predicate));
 
-		testFormulas.add(majorClauseTrueFormula.toString());
-		testFormulas.add(majorClauseFalseFormula.toString());
+		testFormulas.add(varListForExistential() + "(" + majorClauseTrueFormula.toString() + ")");
+		testFormulas.add(varListForExistential() + "(" + majorClauseFalseFormula.toString() + ")");
 		
 		return testFormulas;
 	}
@@ -101,10 +101,6 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 		String falseFormula = initialFormula.replace(majorClause.toString(), FALSE);
 		
 		majorClauseFormula.append("(" + trueFormula + ") <=> not(" + falseFormula + ")");
-		
-//		majorClauseFormula.append("((" + "(" + trueFormula + ")" + " or " + "(" + falseFormula + ")" + ")");
-//		majorClauseFormula.append(" & ");
-//		majorClauseFormula.append("not(" + "(" + trueFormula + ")" + " & " + "(" + falseFormula + ")" + "))");
 		
 		return majorClauseFormula.toString();
 	}

@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import animation.FormulaEvaluation;
 import configurations.Configurations;
 import de.be4.classicalb.core.parser.exceptions.BException;
 import de.prob.Main;
@@ -31,6 +32,9 @@ public class MainTest {
 //		Machine machine = new Machine(new File("src/test/resources/machines/PassFinalOrFailIFELSIFELSE.mch"));
 //		Operation operationUnderTest = machine.getOperation(0);
 		
+		Machine machine = new Machine(new File("src/test/resources/machines/Simple.mch"));
+		Operation operationUnderTest = machine.getOperation(0);
+		
 //		Machine machine = new Machine(new File("src/test/resources/machines/CaseStmt.mch"));
 //		Operation operationUnderTest = machine.getOperation(1);
 		
@@ -38,13 +42,13 @@ public class MainTest {
 //		Operation operationUnderTest = machine.getOperation(0);
 		
 //		Machine machine = new Machine(new File("src/test/resources/machines/CarlaNewTravelAgency.mch"));
-//		Operation operationUnderTest = machine.getOperation(1); // bookRoom(sid)
+//		Operation operationUnderTest = machine.getOperation(0); // bookRoom(sid)
 		
 //		Machine machine = new Machine(new File("src/test/resources/machines/SelectStmt.mch"));
 //		Operation operationUnderTest = machine.getOperation(0);
 		
-		Machine machine = new Machine(new File("src/test/resources/machines/CaseStudy/scheduler.mch"));
-		Operation operationUnderTest = machine.getOperation(3);
+//		Machine machine = new Machine(new File("src/test/resources/machines/CaseStudy/scheduler.mch"));
+//		Operation operationUnderTest = machine.getOperation(3);
 		
 		System.out.println("Machine: " + machine.getName());
 		System.out.println("Operation under test: " + operationUnderTest.getName());
@@ -79,61 +83,69 @@ public class MainTest {
 	private static void evaluateFormula(Api probApi, Operation operationUnderTest, String formula) {
 		String pathToMachine = operationUnderTest.getMachine().getFile().getAbsolutePath();
 		
-		try {
-			ClassicalBModel model = probApi.b_load(pathToMachine, Configurations.getProBApiPreferences());
-			StateSpace stateSpace = model.getStateSpace();
-			Trace trace = new Trace(stateSpace);
-			
-			try {
-				if(operationUnderTest.getMachine().getConstants() != null) {
-					trace = trace.execute("$setup_constants", new ArrayList<String>());
-				}
-			} catch (NullPointerException e) {
-				System.err.println("This model has no constants so $setup_constants could not be executed");
-			}
-			
-//			trace = trace.execute("$initialise_machine", new ArrayList<String>());
-			
-			if(operationUnderTest.getMachine().getVariables() != null) {
-//				IEvalResult evalCurrent = trace.evalCurrent(new ClassicalB(formula));
-				try {
-					trace = stateSpace.getTraceToState(new ClassicalB(formula));
-				} catch (RuntimeException e) {
-//					System.err.println("Could not execute get trace to state");
-				}
-			}
-			
-			IEvalResult evalCurrent = trace.evalCurrent(new ClassicalB(formula));
-			
-			if(evalCurrent instanceof EvalResult) {
-				EvalResult result = (EvalResult) evalCurrent;
-				
-				Map<String, String> valuesForInputParams = getValuesForInputParams(result, operationUnderTest);
-				Map<String, String> valuesForStateVariables = getValuesForStateVariables(trace, operationUnderTest);
-				
-				System.out.println("\t\tValues for parameters: ");
-				
-				for(Entry<String, String> entry : valuesForInputParams.entrySet()) {
-					System.out.println("\t\t\t" + entry.getKey() + ": " + entry.getValue());
-				}
-				
-				System.out.println("\t\tValues for state variables: ");
-				
-				for(Entry<String, String> entry : valuesForStateVariables.entrySet()) {
-					System.out.println("\t\t\t" + entry.getKey() + ": " + entry.getValue());
-				}
-				
-				
-			} else {
-				System.out.println("Not an EvalResult");
-			}
-			
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (BException e) {
-			e.printStackTrace();
-		}
+		
+		FormulaEvaluation ev = new FormulaEvaluation(operationUnderTest, formula, probApi);
+		
+		System.out.println("Parameters Solution: " + ev.getParameterValues());
+		System.out.println("Variables Solution: " + ev.getStateVariablesValues());
+		
+		
+		
+//		try {
+//			ClassicalBModel model = probApi.b_load(pathToMachine, Configurations.getProBApiPreferences());
+//			StateSpace stateSpace = model.getStateSpace();
+//			Trace trace = new Trace(stateSpace);
+//			
+//			try {
+//				if(operationUnderTest.getMachine().getConstants() != null) {
+//					trace = trace.execute("$setup_constants", new ArrayList<String>());
+//				}
+//			} catch (NullPointerException e) {
+//				System.err.println("This model has no constants so $setup_constants could not be executed");
+//			}
+//			
+////			trace = trace.execute("$initialise_machine", new ArrayList<String>());
+//			
+//			if(operationUnderTest.getMachine().getVariables() != null) {
+////				IEvalResult evalCurrent = trace.evalCurrent(new ClassicalB(formula));
+//				try {
+//					trace = stateSpace.getTraceToState(new ClassicalB(formula));
+//				} catch (RuntimeException e) {
+////					System.err.println("Could not execute get trace to state");
+//				}
+//			}
+//			
+//			IEvalResult evalCurrent = trace.evalCurrent(new ClassicalB(formula));
+//			
+//			if(evalCurrent instanceof EvalResult) {
+//				EvalResult result = (EvalResult) evalCurrent;
+//				
+//				Map<String, String> valuesForInputParams = getValuesForInputParams(result, operationUnderTest);
+//				Map<String, String> valuesForStateVariables = getValuesForStateVariables(trace, operationUnderTest);
+//				
+//				System.out.println("\t\tValues for parameters: ");
+//				
+//				for(Entry<String, String> entry : valuesForInputParams.entrySet()) {
+//					System.out.println("\t\t\t" + entry.getKey() + ": " + entry.getValue());
+//				}
+//				
+//				System.out.println("\t\tValues for state variables: ");
+//				
+//				for(Entry<String, String> entry : valuesForStateVariables.entrySet()) {
+//					System.out.println("\t\t\t" + entry.getKey() + ": " + entry.getValue());
+//				}
+//				
+//				
+//			} else {
+//				System.out.println("Not an EvalResult");
+//			}
+//			
+//			
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		} catch (BException e) {
+//			e.printStackTrace();
+//		}
 		
 	}
 	

@@ -53,7 +53,7 @@ public class ClauseCoverage extends LogicalCoverage {
 	private Set<String> createFormulasForOtherClausesWithoutPrecondition(MyPredicate clause) {
 		Set<String> testFormulas = new HashSet<String>();
 
-		testFormulas.add(varListForExistential() + "(" + invariant() + clause.toString() + ")");
+		testFormulas.add(varListForExistential() + "(" + invariant() + "(" + clause.toString() + "))");
 
 		if(!clause.isTypingClause()) {
 			testFormulas.add(varListForExistential() + "(" + invariant() + "not(" + clause.toString() + ")" + ")");
@@ -68,7 +68,7 @@ public class ClauseCoverage extends LogicalCoverage {
 		Set<String> testFormulas = new HashSet<String>();
 		
 		if(!clauseBelongsToPredicate(clause, precondition)) {
-			testFormulas.add(varListForExistential() + "(" + invariant() + precondition() + clause.toString() + ")");
+			testFormulas.add(varListForExistential() + "(" + invariant() + precondition() + "(" + clause.toString() + "))");
 
 			if(!clause.isTypingClause()) {
 				testFormulas.add(varListForExistential() + "(" + invariant() + precondition() + "not(" + clause.toString() + ")" + ")");
@@ -83,7 +83,7 @@ public class ClauseCoverage extends LogicalCoverage {
 	private Set<String> createTestFormulasForPrecondition(MyPredicate precondition) {
 		Set<String> testFormulas = new HashSet<String>();
 		
-		testFormulas.add(varListForExistential() + "(" + invariant() + precondition.toString() + ")");
+		testFormulas.add(varListForExistential() + "(" + invariant() + "(" + precondition.toString() + "))");
 		
 		Set<MyPredicate> preconditionClauses = getPredicateClauses(precondition);
 		List<MyPredicate> sortedPreconditionClauses = sortPredicates(preconditionClauses);
@@ -91,7 +91,7 @@ public class ClauseCoverage extends LogicalCoverage {
 		String testFormula;
 		
 		for(int i = 0; i < sortedPreconditionClauses.size(); i++) {
-			testFormula = varListForExistential() + "(" + invariant() + createTestFormulaNegatingAClause(sortedPreconditionClauses, i) + ")";
+			testFormula = varListForExistential() + "(" + invariant() + "(" + createTestFormulaNegatingAClause(sortedPreconditionClauses, i) + "))";
 			testFormulas.add(testFormula);
 		}
 		

@@ -235,7 +235,7 @@ public abstract class LogicalCoverage {
 		if(getMachineInvariant().equals("")) {
 			return "";
 		} else {
-			return getMachineInvariant() + " & ";
+			return "(" + getMachineInvariant() + ") & ";
 		}
 	}
 	
@@ -245,7 +245,7 @@ public abstract class LogicalCoverage {
 		if(getOperationPrecondition().equals("")) {
 			return "";
 		} else {
-			return getOperationPrecondition() + " & ";
+			return "(" + getOperationPrecondition() + ") & ";
 		}
 	}
 	

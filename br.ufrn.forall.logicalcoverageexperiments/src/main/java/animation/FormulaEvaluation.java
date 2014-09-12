@@ -30,6 +30,7 @@ public class FormulaEvaluation {
 
 
 	public FormulaEvaluation(Operation operation, String formula, Api probApi) {
+		System.setProperty("prob.home", Configurations.getProBPath());
 		this.operation = operation;
 		this.machine = operation.getMachine();
 		this.formula = formula;
@@ -40,9 +41,11 @@ public class FormulaEvaluation {
 	}
 
 
-	
+
 	private void evaluateFormula() {
 		String pathToMachine = getMachine().getFile().getAbsolutePath();
+//		System.out.println(Configurations.getProBPath());
+		
 		
 		try {
 			ClassicalBModel model = getProbApi().b_load(pathToMachine, Configurations.getProBApiPreferences());
@@ -51,7 +54,6 @@ public class FormulaEvaluation {
 			
 			trace = setupConstants(trace);
 			trace = initialiseMachine(trace);
-//			trace = getTraceToState(stateSpace, trace);
 			
 			try {
 				IEvalResult evalCurrent = trace.evalCurrent(new ClassicalB(formula));
@@ -59,6 +61,8 @@ public class FormulaEvaluation {
 				if(evalCurrent instanceof EvalResult) {
 					
 					EvalResult result = (EvalResult) evalCurrent;
+
+//					System.out.println("Found Solutions: " + result.getSolutions());
 					
 					this.parameterValues = getValuesForParameters(result, getOperation());
 					this.stateVariablesValues = getValuesForStateVariables(result, getOperation());
@@ -103,7 +107,9 @@ public class FormulaEvaluation {
 		
 		if(operationUnderTest.getMachine().getVariables() != null) {
 			for(String variable : operationUnderTest.getMachine().getVariables().getAll()) {
-				valuesForStateVariables.put(variable, foundSolutions.get(variable).toString());
+				if(foundSolutions.get(variable) != null) {
+					valuesForStateVariables.put(variable, foundSolutions.get(variable).toString());
+				}
 			}
 		}
 		

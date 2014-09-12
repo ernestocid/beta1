@@ -1,0 +1,28 @@
+digraph g {
+rankdir=RL;
+    Noderoot [label="exists\n true", shape="ellipse", fillcolor="olivedrab2", style="filled"]
+    Node1 [label="&\n true\nPOW(COLOURS) /= \{\} & COLOURS /= \{\}", shape="ellipse", fillcolor="olivedrab2", style="filled"]
+        Node1 -> Noderoot;
+    Node2 [label="/=\n true\nPOW(COLOURS) /= \{\}", shape="ellipse", fillcolor="olivedrab2", style="filled"]
+        Node2 -> Node1;
+    Node3 [label="POW\n POW(COLOURS)", shape="box", fillcolor="white", style="filled"]
+        Node3 -> Node2;
+    Node4 [label="COLOURS", shape="box", fillcolor="white", style="filled"]
+        Node4 -> Node3;
+    Node5 [label="\{\}", shape="box", fillcolor="white", style="filled"]
+        Node5 -> Node2;
+    Node6 [label="/=\n true\nCOLOURS /= \{\}", shape="ellipse", fillcolor="olivedrab2", style="filled"]
+        Node6 -> Node1;
+    Node7 [label="COLOURS", shape="box", fillcolor="white", style="filled"]
+        Node7 -> Node6;
+    Node8 [label="\{\}", shape="box", fillcolor="white", style="filled"]
+        Node8 -> Node6;
+    Node9 [label="col1\n \{\}", shape="box", fillcolor="white", style="filled"]
+        Node9 -> Noderoot;
+    Node10 [label="col2\n \{\}", shape="box", fillcolor="white", style="filled"]
+        Node10 -> Noderoot;
+    Node11 [label="b\n TRUE", shape="box", fillcolor="white", style="filled"]
+        Node11 -> Noderoot;
+    Node12 [label="col\n red", shape="box", fillcolor="white", style="filled"]
+        Node12 -> Noderoot;
+}

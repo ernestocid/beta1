@@ -49,7 +49,7 @@ public class PredicateCoverage extends LogicalCoverage {
 	private Set<String> createPredicateFormulas(MyPredicate predicate) {
 		Set<String> testFormulas = new HashSet<String>();
 		
-		testFormulas.add(varListForExistential() + "(" + invariant() + precondition() + predicate.toString() + ")");
+		testFormulas.add(varListForExistential() + "(" + invariant() + precondition() + "(" + predicate.toString() + "))");
 		testFormulas.add(varListForExistential() + "(" + invariant() + precondition() + "not(" + predicate.toString() + ")" + ")");
 		
 		return testFormulas;
@@ -60,7 +60,7 @@ public class PredicateCoverage extends LogicalCoverage {
 	private Set<String> createPreconditionFormulas(MyPredicate predicate) {
 		Set<String> testFormulas = new HashSet<String>();
 		
-		testFormulas.add(varListForExistential() + "(" + invariant() + predicate.toString() + ")");
+		testFormulas.add(varListForExistential() + "(" + invariant() + "(" + predicate.toString() + "))");
 		testFormulas.add(varListForExistential() + "(" + invariant() + "not(" + predicate.toString() + ")" + ")");
 		
 		return testFormulas;

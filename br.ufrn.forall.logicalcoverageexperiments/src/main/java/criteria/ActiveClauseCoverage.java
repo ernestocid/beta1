@@ -58,8 +58,8 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 				testFormulas.addAll(createTestFormulas(majorClause, clauses, predicate));
 			}
 		} else {
-			testFormulas.add(varListForExistential() + "(" + invariant() + precondition() + clauses.get(0) + ")");
-			testFormulas.add(varListForExistential() + "(" + invariant() + precondition() + "not(" + clauses.get(0) + ")" + ")");
+			testFormulas.add(varListForExistential() + "(" + invariant() + precondition() + "(" + clauses.get(0) + "))");
+			testFormulas.add(varListForExistential() + "(" + invariant() + precondition() + "(" + "not(" + clauses.get(0) + ")" + "))");
 		}
 		
 		return testFormulas;
@@ -74,7 +74,7 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 		
 		majorClauseTrueFormula.append(invariant());
 		majorClauseTrueFormula.append(precondition());
-		majorClauseTrueFormula.append(majorClause.toString() + " & ");
+		majorClauseTrueFormula.append("(" + majorClause.toString() + ") & ");
 		majorClauseTrueFormula.append(createFormulaToFindValuesForMinorClauses(majorClause, predicate));
 		
 		StringBuffer majorClauseFalseFormula = new StringBuffer("");
@@ -100,7 +100,7 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 		String trueFormula = initialFormula.replace(majorClause.toString(), TRUE);
 		String falseFormula = initialFormula.replace(majorClause.toString(), FALSE);
 		
-		majorClauseFormula.append("(" + trueFormula + ") <=> not(" + falseFormula + ")");
+		majorClauseFormula.append("((" + trueFormula + ") <=> not(" + falseFormula + "))");
 		
 		return majorClauseFormula.toString();
 	}

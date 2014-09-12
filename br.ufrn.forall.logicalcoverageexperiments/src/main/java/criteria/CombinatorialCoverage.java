@@ -58,7 +58,7 @@ public class CombinatorialCoverage extends LogicalCoverage {
 		Set<String> allCombinationsForPredicate = createAllCombinationsOfClauses(predicate);
 		
 		for (String combination : allCombinationsForPredicate) {
-			testFormulas.add(varListForExistential() + "(" + invariant() + combination + ")");
+			testFormulas.add(varListForExistential() + "(" + invariant() + "(" + combination + "))");
 		}
 		
 		return testFormulas;
@@ -73,7 +73,7 @@ public class CombinatorialCoverage extends LogicalCoverage {
 			Set<String> allCombinationsForPredicate = createAllCombinationsOfClauses(predicate);
 			
 			for (String combination : allCombinationsForPredicate) {
-				testFormulas.add(varListForExistential() + "(" + invariant() + precondition() + combination + ")");
+				testFormulas.add(varListForExistential() + "(" + invariant() + precondition() + "(" + combination + "))");
 			}
 		}
 		

@@ -2,8 +2,6 @@ package criteria;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import parser.Machine;
 import parser.Operation;
@@ -81,30 +79,30 @@ public class ProBAnimationTest {
 	}
 	
 	
-	private static Map<String, String> getValuesForStateVariables(Trace trace, Operation operationUnderTest) {
-		Map<String, String> valuesForStateVariables = new HashMap<String, String>();
-		
-		if(operationUnderTest.getMachine().getVariables() != null) {
-			for(String variable : operationUnderTest.getMachine().getVariables().getAll()) {
-				valuesForStateVariables.put(variable, trace.evalCurrent(variable).toString());
-			}
-		}
-		
-		return valuesForStateVariables;
-	}
-	
-	
-	
-	private static Map<String, String> getValuesForInputParams(EvalResult result, Operation operationUnderTest) {
-		Map<String, String> valuesForInputParams = new HashMap<String, String>();
-		
-		Map<String, String> foundSolutions = result.getSolutions();
-		
-		for(String param : operationUnderTest.getParameters()) {
-			valuesForInputParams.put(param, foundSolutions.get(param));
-		}
-		
-		return valuesForInputParams;
-	}
+//	private static Map<String, String> getValuesForStateVariables(Trace trace, Operation operationUnderTest) {
+//		Map<String, String> valuesForStateVariables = new HashMap<String, String>();
+//		
+//		if(operationUnderTest.getMachine().getVariables() != null) {
+//			for(String variable : operationUnderTest.getMachine().getVariables().getAll()) {
+//				valuesForStateVariables.put(variable, trace.evalCurrent(variable).toString());
+//			}
+//		}
+//		
+//		return valuesForStateVariables;
+//	}
+//	
+//	
+//	
+//	private static Map<String, String> getValuesForInputParams(EvalResult result, Operation operationUnderTest) {
+//		Map<String, String> valuesForInputParams = new HashMap<String, String>();
+//		
+//		Map<String, String> foundSolutions = result.getSolutions();
+//		
+//		for(String param : operationUnderTest.getParameters()) {
+//			valuesForInputParams.put(param, foundSolutions.get(param));
+//		}
+//		
+//		return valuesForInputParams;
+//	}
 	
 }

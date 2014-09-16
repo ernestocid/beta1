@@ -1,26 +1,13 @@
 package criteria;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
 
-import animation.FormulaEvaluation;
-import configurations.Configurations;
-import de.be4.classicalb.core.parser.exceptions.BException;
-import de.prob.Main;
-import de.prob.animator.domainobjects.ClassicalB;
-import de.prob.animator.domainobjects.EvalResult;
-import de.prob.animator.domainobjects.IEvalResult;
-import de.prob.model.classicalb.ClassicalBModel;
-import de.prob.scripting.Api;
-import de.prob.statespace.StateSpace;
-import de.prob.statespace.Trace;
 import parser.Machine;
 import parser.Operation;
 import parser.decorators.predicates.MyPredicate;
+import animation.FormulaEvaluation;
+import de.prob.Main;
+import de.prob.scripting.Api;
 
 public class MainTest {
 	
@@ -81,7 +68,7 @@ public class MainTest {
 	
 
 	private static void evaluateFormula(Api probApi, Operation operationUnderTest, String formula) {
-		String pathToMachine = operationUnderTest.getMachine().getFile().getAbsolutePath();
+//		String pathToMachine = operationUnderTest.getMachine().getFile().getAbsolutePath();
 		
 		
 		FormulaEvaluation ev = new FormulaEvaluation(operationUnderTest, formula, probApi);
@@ -151,31 +138,31 @@ public class MainTest {
 	
 	
 	
-	private static Map<String, String> getValuesForStateVariables(Trace trace, Operation operationUnderTest) {
-		Map<String, String> valuesForStateVariables = new HashMap<String, String>();
-		
-		if(operationUnderTest.getMachine().getVariables() != null) {
-			for(String variable : operationUnderTest.getMachine().getVariables().getAll()) {
-				valuesForStateVariables.put(variable, trace.evalCurrent(variable).toString());
-			}
-		}
-		
-		return valuesForStateVariables;
-	}
-	
-	
-	
-	private static Map<String, String> getValuesForInputParams(EvalResult result, Operation operationUnderTest) {
-		Map<String, String> valuesForInputParams = new HashMap<String, String>();
-		
-		Map<String, String> foundSolutions = result.getSolutions();
-		
-		for(String param : operationUnderTest.getParameters()) {
-			valuesForInputParams.put(param, foundSolutions.get(param));
-		}
-		
-		return valuesForInputParams;
-	}
+//	private static Map<String, String> getValuesForStateVariables(Trace trace, Operation operationUnderTest) {
+//		Map<String, String> valuesForStateVariables = new HashMap<String, String>();
+//		
+//		if(operationUnderTest.getMachine().getVariables() != null) {
+//			for(String variable : operationUnderTest.getMachine().getVariables().getAll()) {
+//				valuesForStateVariables.put(variable, trace.evalCurrent(variable).toString());
+//			}
+//		}
+//		
+//		return valuesForStateVariables;
+//	}
+//	
+//	
+//	
+//	private static Map<String, String> getValuesForInputParams(EvalResult result, Operation operationUnderTest) {
+//		Map<String, String> valuesForInputParams = new HashMap<String, String>();
+//		
+//		Map<String, String> foundSolutions = result.getSolutions();
+//		
+//		for(String param : operationUnderTest.getParameters()) {
+//			valuesForInputParams.put(param, foundSolutions.get(param));
+//		}
+//		
+//		return valuesForInputParams;
+//	}
 
 
 

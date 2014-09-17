@@ -122,8 +122,7 @@ public abstract class LogicalCoverage {
 		Set<MyPredicate> clauses = new HashSet<MyPredicate>();
 		
 		for(MyPredicate predicate : getPredicates()) {
-			Set<MyPredicate> predicateClauses = new HashSet<MyPredicate>();
-			predicate.createClausesList(predicateClauses);
+			Set<MyPredicate> predicateClauses = clausesOf(predicate);
 			clauses.addAll(predicateClauses);
 		}
 		
@@ -171,8 +170,7 @@ public abstract class LogicalCoverage {
 	 * the predicate.
 	 */
 	public Set<MyPredicate> getPredicateClauses(MyPredicate predicate) {
-		Set<MyPredicate> predicateClauses = new HashSet<MyPredicate>();
-		predicate.createClausesList(predicateClauses);
+		Set<MyPredicate> predicateClauses = clausesOf(predicate);
 		return predicateClauses;
 	}
 	
@@ -206,6 +204,33 @@ public abstract class LogicalCoverage {
 	 */
 	public boolean comparePredicates(MyPredicate predicateOne, MyPredicate predicateTwo) {
 		return predicateOne.toString().equals(predicateTwo.toString());
+	}
+	
+	
+	
+	/**
+	 * This method returns all clauses that are related to the clause passed
+	 * as a parameter. Clauses are related if they mention the same variable.
+	 * This is necessary when covering predicates within nested substitutions.
+	 * A predicate in a substitution might need another predicate in a outer
+	 * substitution to make sense when creating a test formula.
+	 * 
+	 * @param predicate a MyPredicate for which we want to find related clauses.
+	 * @return a Set of MyPredicate containing all the predicates related to 
+	 * the given predicate.
+	 */
+	public Set<MyPredicate> getRelatedClauses(MyPredicate predicate) {
+		Set<MyPredicate> relatedClauses = getOperationUnderTest().getGuardsThatLeadToPredicate(predicate);
+		
+		return relatedClauses;
+	}
+
+
+
+	private Set<MyPredicate> clausesOf(MyPredicate p) {
+		Set<MyPredicate> clauses = new HashSet<MyPredicate>();
+		p.createClausesList(clauses);
+		return clauses;
 	}
 	
 	
@@ -281,6 +306,5 @@ public abstract class LogicalCoverage {
 		
 		return variables.toString();
 	}
-	
 	
 }

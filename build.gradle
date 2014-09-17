@@ -68,6 +68,7 @@ project(':br.ufrn.forall.betagui') {
 project(':br.ufrn.forall.betaparser') {
 	dependencies {
 		compile files('libs/probcliparser-2.4.18-SNAPSHOT.jar')
+		compile 'org.mockito:mockito-all:1.9.5'
 	}
 }
 

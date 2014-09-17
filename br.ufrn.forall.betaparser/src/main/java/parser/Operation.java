@@ -1,9 +1,9 @@
 package parser;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -421,9 +421,7 @@ public class Operation {
 
 
 
-	private void getPredicatesFromParallelSubstitutions(
-			List<MyPredicate> predicates,
-			AParallelSubstitution parallelSubstitution) {
+	private void getPredicatesFromParallelSubstitutions(List<MyPredicate> predicates, AParallelSubstitution parallelSubstitution) {
 		for (PSubstitution subs : parallelSubstitution.getSubstitutions()) {
 			getPredicatesFromAllSubstitutions(subs, predicates);
 		}
@@ -607,6 +605,279 @@ public class Operation {
 		};
 		
 		return orExpression;
+	}
+
+
+
+	public Set<MyPredicate> getGuardsThatLeadToPredicate(MyPredicate predicate) {
+		PSubstitution bodyInsides = getBodyInsides(operation.getOperationBody());
+		
+		Set<MyPredicate> predicates = searchGuardsThatLeadToPredicateOnSubstitution(predicate, bodyInsides);
+		removePredicateFromSet(predicate, predicates);
+		
+		return predicates;
+	}
+
+
+
+	private Set<MyPredicate> removePredicateFromSet(MyPredicate predicate, Set<MyPredicate> predicates) {
+		Iterator<MyPredicate> setIterator = predicates.iterator();
+		
+		if(!predicates.isEmpty()) {
+			while(setIterator.hasNext()) {
+				MyPredicate itPredicate = setIterator.next();
+				
+				if(itPredicate.toString().equals(predicate.toString())) {
+					setIterator.remove();
+				}
+			}
+		}
+		
+		return predicates;
+	}
+
+
+	
+	// TODO: Missing case statement.
+	private Set<MyPredicate> searchGuardsThatLeadToPredicateOnSubstitution(MyPredicate predicate, PSubstitution substitution) {
+		
+		if (substitution instanceof AParallelSubstitution) {
+			
+			AParallelSubstitution parallelSubs = (AParallelSubstitution) substitution;
+			return searchGuardsThatLeadToPredicateOnParallelSubst(predicate, parallelSubs);
+			
+		} else if (substitution instanceof ASelectSubstitution) {
+			
+			ASelectSubstitution selectSubs = (ASelectSubstitution) substitution;
+			return searchGuardsThatLeadToPredicateOnSelectSubst(predicate, selectSubs);
+			
+		} else if (substitution instanceof ASelectWhenSubstitution) {
+			
+			ASelectWhenSubstitution selectWhenSubs = (ASelectWhenSubstitution) substitution;
+			return searchGuardsThatLeadToPredicateOnSelectWhenSubst(predicate, selectWhenSubs);
+			
+		} else if (substitution instanceof AIfSubstitution) {
+			
+			AIfSubstitution ifSubs = (AIfSubstitution) substitution;
+			return searchGuardsThatLeadToPredicateOnIfSubst(predicate, ifSubs);
+			
+		} else if (substitution instanceof AIfElsifSubstitution) {
+			
+			AIfElsifSubstitution ifElsifSubs = (AIfElsifSubstitution) substitution;
+			return searchGuardsThatLeadToPredicateOnElsifSubst(predicate, ifElsifSubs);
+			
+		} else if (substitution instanceof AAnySubstitution) {
+			
+			AAnySubstitution anySubs = (AAnySubstitution) substitution;
+			return searchGuardsThatLeadToPredicateOnAnySubst(predicate, anySubs);
+			
+		} else if (substitution instanceof AAssertionSubstitution) {
+			
+			AAssertionSubstitution assertionSubs = (AAssertionSubstitution) substitution;
+			return searchGuardsThatLeadToPredicateOnAssertSubst(predicate, assertionSubs);
+			
+		} else {
+			
+			return new HashSet<MyPredicate>();
+			
+		}
+		
+//		if(substitution instanceof ACaseSubstitution) {
+//
+////			ACaseSubstitution caseSubstitution = (ACaseSubstitution) substitution;
+////			getPredicatesFromCaseSubstitution(predicates, caseSubstitution);
+//			
+//		}
+		
+	}
+
+
+
+	private Set<MyPredicate> searchGuardsThatLeadToPredicateOnParallelSubst(MyPredicate predicate, AParallelSubstitution parallelSubstitution) {
+		for(PSubstitution subst : parallelSubstitution.getSubstitutions()) {
+			Set<MyPredicate> substPredicates = searchGuardsThatLeadToPredicateOnSubstitution(predicate, subst);
+			
+			if(!substPredicates.isEmpty()) {
+				return substPredicates;
+			}
+		}
+		
+		return new HashSet<MyPredicate>();
+	}
+
+
+
+	private Set<MyPredicate> searchGuardsThatLeadToPredicateOnAssertSubst(MyPredicate predicate, AAssertionSubstitution assertionSubstitution) {
+		MyPredicate assertionPredicate = MyPredicateFactory.convertPredicate(assertionSubstitution.getPredicate());
+
+		Set<MyPredicate> clauses = new HashSet<MyPredicate>();
+		assertionPredicate.createClausesList(clauses);
+		
+		if(setContainsClause(predicate, clauses)) {
+			Set<MyPredicate> foundPredicate = new HashSet<MyPredicate>();
+			foundPredicate.add(predicate);
+			return foundPredicate;
+		} else {
+			Set<MyPredicate> assertionSubsPredicates = searchGuardsThatLeadToPredicateOnSubstitution(assertionPredicate, assertionSubstitution.getSubstitution());
+			
+			if(assertionSubsPredicates.isEmpty()) {
+				return assertionSubsPredicates;
+			} else {
+				assertionSubsPredicates.addAll(clauses);
+				return assertionSubsPredicates;
+			}
+		}
+	}
+
+
+
+	private Set<MyPredicate> searchGuardsThatLeadToPredicateOnAnySubst(MyPredicate predicate, AAnySubstitution anySubstitution) {
+		MyPredicate anyPredicate = MyPredicateFactory.convertPredicate(anySubstitution.getWhere());
+		
+		Set<MyPredicate> clauses = new HashSet<MyPredicate>();
+		anyPredicate.createClausesList(clauses);
+		
+		if(setContainsClause(predicate, clauses)) {
+			Set<MyPredicate> foundPredicate = new HashSet<MyPredicate>();
+			foundPredicate.add(predicate);
+			return foundPredicate;
+		} else {
+			Set<MyPredicate> anySubsPredicates = searchGuardsThatLeadToPredicateOnSubstitution(predicate, anySubstitution.getThen());
+			
+			if(anySubsPredicates.isEmpty()) {
+				return anySubsPredicates;
+			} else {
+				anySubsPredicates.addAll(clauses);
+				return anySubsPredicates;
+			}
+		}
+	}
+
+
+
+	private Set<MyPredicate> searchGuardsThatLeadToPredicateOnElsifSubst(MyPredicate predicate, AIfElsifSubstitution ifElsifSubstitution) {
+		MyPredicate ifElsifPredicate = MyPredicateFactory.convertPredicate(ifElsifSubstitution.getCondition());
+		
+		Set<MyPredicate> clauses = new HashSet<MyPredicate>();
+		ifElsifPredicate.createClausesList(clauses);
+		
+		if(setContainsClause(predicate, clauses)) {
+			Set<MyPredicate> foundPredicate = new HashSet<MyPredicate>();
+			foundPredicate.add(predicate);
+			return foundPredicate;
+		} else {
+			Set<MyPredicate> elsifSubsPredicates = searchGuardsThatLeadToPredicateOnSubstitution(predicate, ifElsifSubstitution.getThenSubstitution());
+			if(!elsifSubsPredicates.isEmpty()) {
+				elsifSubsPredicates.addAll(clauses);
+				return elsifSubsPredicates;
+			} else {
+				return elsifSubsPredicates;
+			}
+		}
+	}
+
+
+
+	private Set<MyPredicate> searchGuardsThatLeadToPredicateOnIfSubst(MyPredicate predicate, AIfSubstitution ifSubstitution) {
+		MyPredicate ifPredicate = MyPredicateFactory.convertPredicate(ifSubstitution.getCondition());
+		
+		Set<MyPredicate> clauses = new HashSet<MyPredicate>();
+		ifPredicate.createClausesList(clauses);
+		
+		if(setContainsClause(predicate, clauses)) {
+			Set<MyPredicate> foundPredicate = new HashSet<MyPredicate>();
+			foundPredicate.add(predicate);
+			return foundPredicate;
+		} else {
+			Set<MyPredicate> ifSubsPredicates = searchGuardsThatLeadToPredicateOnSubstitution(predicate, ifSubstitution.getThen());
+			
+			if(!ifSubsPredicates.isEmpty()) {
+				ifSubsPredicates.addAll(clauses);
+				return ifSubsPredicates;
+			} else {
+				for(PSubstitution subs : ifSubstitution.getElsifSubstitutions()) {
+					Set<MyPredicate> elsifSubsPredicates = searchGuardsThatLeadToPredicateOnSubstitution(predicate, subs);
+					
+					if(!elsifSubsPredicates.isEmpty()) {
+						return elsifSubsPredicates;
+					}
+				}
+				
+				return ifSubsPredicates;
+			}
+		}
+	}
+
+
+
+	private Set<MyPredicate> searchGuardsThatLeadToPredicateOnSelectWhenSubst(MyPredicate predicate, ASelectWhenSubstitution selectWhenSubstitution) {
+		MyPredicate selectWhenPredicates = MyPredicateFactory.convertPredicate(selectWhenSubstitution.getCondition());
+
+		Set<MyPredicate> clauses = new HashSet<MyPredicate>();
+		selectWhenPredicates.createClausesList(clauses);
+		
+		if(setContainsClause(predicate, clauses)) {
+			Set<MyPredicate> foundPredicate = new HashSet<MyPredicate>();
+			foundPredicate.add(predicate);
+			return foundPredicate;
+		} else {
+			
+			Set<MyPredicate> selectWhenSubsPredicates = searchGuardsThatLeadToPredicateOnSubstitution(predicate, selectWhenSubstitution.getSubstitution());
+			
+			if(!selectWhenSubsPredicates.isEmpty()) {
+				selectWhenSubsPredicates.addAll(clauses);
+				return selectWhenSubsPredicates;
+			} else {
+				return selectWhenSubsPredicates;
+			}
+			
+		}
+	}
+
+
+
+	private Set<MyPredicate> searchGuardsThatLeadToPredicateOnSelectSubst(MyPredicate predicate, ASelectSubstitution selectSubstitution) {
+		MyPredicate selectPredicate = MyPredicateFactory.convertPredicate(selectSubstitution.getCondition());
+		
+		Set<MyPredicate> clauses = new HashSet<MyPredicate>();
+		selectPredicate.createClausesList(clauses);
+		
+		if(setContainsClause(predicate, clauses)) {
+			Set<MyPredicate> foundPredicate = new HashSet<MyPredicate>();
+			foundPredicate.add(predicate);
+			return foundPredicate;
+		} else {
+			Set<MyPredicate> selectThenPredicates = searchGuardsThatLeadToPredicateOnSubstitution(predicate, selectSubstitution.getThen());
+			
+			if(selectThenPredicates.isEmpty()) {
+				for(PSubstitution subs : selectSubstitution.getWhenSubstitutions()) {
+					Set<MyPredicate> whenPredicates = searchGuardsThatLeadToPredicateOnSubstitution(predicate, subs);
+					
+					if(!whenPredicates.isEmpty()) {
+						return whenPredicates;
+					}
+					
+				}
+			} else {
+				selectThenPredicates.addAll(clauses);
+				return selectThenPredicates;
+			}
+			
+			return selectThenPredicates;
+		}
+	}
+
+
+
+	private boolean setContainsClause(MyPredicate clause, Set<MyPredicate> clauses) {
+
+		for(MyPredicate c : clauses) {
+			if(c.toString().equals(clause.toString())) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 }

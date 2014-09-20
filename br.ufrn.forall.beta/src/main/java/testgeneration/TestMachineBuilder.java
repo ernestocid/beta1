@@ -97,9 +97,7 @@ public class TestMachineBuilder {
 		List<String> constants = new ArrayList<String>();
 
 		// Collecting constants from main machine
-		if(this.operation.getMachine().getConstants() != null) {
-			constants.addAll(this.operation.getMachine().getConstants().getAll());
-		}
+		constants.addAll(this.operation.getMachine().getAllConstants());
 		
 		// Collecting constants from included machines
 		if(this.operation.getMachine().getIncludes() != null) {

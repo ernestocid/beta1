@@ -207,12 +207,6 @@ public class ReadMachineInfoTest {
 	
 	
 	@Test
-	public void shouldGetConstantsUsedAsFunctions() {
-		fail();
-	}
-	
-	
-	@Test
 	public void shouldGetProperties() {
 		Machine machine = getMachineInstance("src/test/resources/machines/schneider/Costumer.mch");
 		

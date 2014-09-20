@@ -263,14 +263,18 @@ public class TestMachineBuilder {
 	}
 	
 	
+	
+	// TODO: Fix getInputSpace method.
 	private void addOperationParameters(StringBuffer testOperation) {
 		Set<String> operationInputSpace = this.partitioner.getOperationInputSpace();
 		
 		operationInputSpace.addAll(this.partitioner.getOperation().getStateVariablesUsedOnBody());
+		operationInputSpace.removeAll(this.operation.getMachine().getAllConstants());
 		
 		testOperation.append(formatOperationParameters(operationInputSpace));
 		testOperation.append(" =\n");
 	}
+	
 	
 	
 	private void addOperationPrecondition(StringBuffer testOperation, String formula) {

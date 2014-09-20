@@ -480,6 +480,45 @@ public class ReadOperationInfoTest extends TestingUtils {
 		assertTrue(compare(expectedRelatedClauses, operationUnderTest.getGuardsThatLeadToPredicate(mockedClause)));
 	}
 	
+	
+	
+	@Test
+	public void shouldGetGuardsThatLeadToPredicate6() {
+		Machine machine = getMachineInstance("src/test/resources/machines/others/CaseWithNestedSubstitutions.mch");
+		Operation operationUnderTest = machine.getOperation(0);
+
+		// Setting up test inputs
+		
+		Set<String> clauseVariables = new HashSet<String>();
+		clauseVariables.add("aa");
+		clauseVariables.add("bb");
+		
+		MyPredicate mockedClause = mock(MyPredicate.class);
+		when(mockedClause.toString()).thenReturn("bb > aa");
+		when(mockedClause.getVariables()).thenReturn(clauseVariables);
+		
+		// Setting up expected results
+		
+		MyPredicate mockedExpectedClause1 = mock(MyPredicate.class);
+		when(mockedExpectedClause1.toString()).thenReturn("session_request(sid) = bc");
+		
+		MyPredicate mockedExpectedClause2 = mock(MyPredicate.class);
+		when(mockedExpectedClause2.toString()).thenReturn("dom(global_car_bookings) <<: CAR");
+		
+		MyPredicate mockedExpectedClause3 = mock(MyPredicate.class);
+		when(mockedExpectedClause3.toString()).thenReturn("user_rental_bookings(session(sid)) = noCarRent");
+
+		Set<MyPredicate> expectedRelatedClauses = new HashSet<MyPredicate>();
+		expectedRelatedClauses.add(mockedExpectedClause1);
+		expectedRelatedClauses.add(mockedExpectedClause2);
+		expectedRelatedClauses.add(mockedExpectedClause3);
+
+		// Assertions
+		
+		assertEquals(expectedRelatedClauses, operationUnderTest.getGuardsThatLeadToPredicate(mockedClause));
+		assertTrue(compare(expectedRelatedClauses, operationUnderTest.getGuardsThatLeadToPredicate(mockedClause)));
+	}
+	
 
 	
 	private Machine getMachineInstance(String path) {

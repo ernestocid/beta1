@@ -181,6 +181,38 @@ public class ReadMachineInfoTest {
 	
 	
 	@Test
+	public void shouldGetAbstractConstants() {
+		Machine machine = getMachineInstance("src/test/resources/machines/others/TicTacToe.mch");
+		
+		Set<String> expectedAbstractConstats = new HashSet<String>();
+		expectedAbstractConstats.add("ThreeInRow");
+		expectedAbstractConstats.add("WinnerRows");
+		
+		assertEquals(expectedAbstractConstats, machine.getAbstractConstants().getAll());
+	}
+	
+	
+	
+	@Test
+	public void shouldGetAllCConstants() {
+		Machine machine = getMachineInstance("src/test/resources/machines/others/TicTacToe.mch");
+		
+		Set<String> expectedAbstractConstats = new HashSet<String>();
+		expectedAbstractConstats.add("ThreeInRow");
+		expectedAbstractConstats.add("WinnerRows");
+		
+		assertEquals(expectedAbstractConstats, machine.getAllConstants());
+	}
+	
+	
+	
+	@Test
+	public void shouldGetConstantsUsedAsFunctions() {
+		fail();
+	}
+	
+	
+	@Test
 	public void shouldGetProperties() {
 		Machine machine = getMachineInstance("src/test/resources/machines/schneider/Costumer.mch");
 		

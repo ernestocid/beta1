@@ -11,6 +11,7 @@ import parser.decorators.predicates.MyPredicate;
 import utils.MachineClausesTool;
 import de.be4.classicalb.core.parser.BParser;
 import de.be4.classicalb.core.parser.exceptions.BException;
+import de.be4.classicalb.core.parser.node.AAbstractConstantsMachineClause;
 import de.be4.classicalb.core.parser.node.AAbstractMachineParseUnit;
 import de.be4.classicalb.core.parser.node.AConstantsMachineClause;
 import de.be4.classicalb.core.parser.node.ADefinitionsMachineClause;
@@ -41,6 +42,7 @@ public class Machine {
 	private Promotes promotes;
 	private Sets sets;
 	private Constants constants;
+	private AbstractConstants abstractConstats;
 	private Properties properties;
 	private Definitions definitions;
 	private Variables variables;
@@ -92,6 +94,7 @@ public class Machine {
 		APromotesMachineClause promotesClause = MachineClausesTool.getPromotesClause(parsedMachine);
 		ASetsMachineClause setsClause = MachineClausesTool.getSetsClause(parsedMachine);
 		AConstantsMachineClause constantsClause = MachineClausesTool.getConstantsClause(parsedMachine);
+		AAbstractConstantsMachineClause abstractConstantsClause = MachineClausesTool.getAbstractConstantsClause(parsedMachine);
 		APropertiesMachineClause propertiesClause = MachineClausesTool.getPropertiesClause(parsedMachine);
 		ADefinitionsMachineClause definitionsClause = MachineClausesTool.getDefinitionsClause(parsedMachine);
 		AVariablesMachineClause variablesClause = MachineClausesTool.getVariablesClause(parsedMachine);
@@ -99,18 +102,19 @@ public class Machine {
 		AInitialisationMachineClause initialisationClause = MachineClausesTool.getInitialisationClause(parsedMachine);
 		AOperationsMachineClause operationsClause = MachineClausesTool.getOperationsClause(parsedMachine);
 		
-		if (seesClause != null) 			this.sees = new Sees(seesClause, this);
-		if (usesClause != null) 			this.uses = new Uses(usesClause, this);
-		if (includesClause != null) 		this.includes = new Includes(includesClause, this);
-		if (extendsClause != null) 			this.extendss = new Extends(extendsClause, this);
-		if (promotesClause != null)			this.promotes = new Promotes(promotesClause, this);
-		if (setsClause != null) 			this.sets = new Sets(setsClause);
-		if (constantsClause != null) 		this.constants = new Constants(constantsClause, this);
-		if (propertiesClause != null)		this.properties = new Properties(propertiesClause);
-		if (definitionsClause != null)		this.definitions = new Definitions(definitionsClause);
-		if (variablesClause != null)		this.variables = new Variables(variablesClause);
-		if (invariantClause != null)		this.invariant = new Invariant(invariantClause);
-		if (initialisationClause != null) 	this.initialisation = new Initialisation(initialisationClause);
+		if (seesClause != null) 				this.sees = new Sees(seesClause, this);
+		if (usesClause != null) 				this.uses = new Uses(usesClause, this);
+		if (includesClause != null) 			this.includes = new Includes(includesClause, this);
+		if (extendsClause != null) 				this.extendss = new Extends(extendsClause, this);
+		if (promotesClause != null)				this.promotes = new Promotes(promotesClause, this);
+		if (setsClause != null) 				this.sets = new Sets(setsClause);
+		if (constantsClause != null) 			this.constants = new Constants(constantsClause, this);
+		if (abstractConstantsClause != null)	this.abstractConstats = new AbstractConstants(abstractConstantsClause, this);
+		if (propertiesClause != null)			this.properties = new Properties(propertiesClause);
+		if (definitionsClause != null)			this.definitions = new Definitions(definitionsClause);
+		if (variablesClause != null)			this.variables = new Variables(variablesClause);
+		if (invariantClause != null)			this.invariant = new Invariant(invariantClause);
+		if (initialisationClause != null) 		this.initialisation = new Initialisation(initialisationClause);
 		
 		this.operations = new ArrayList<Operation>();
 
@@ -203,6 +207,12 @@ public class Machine {
 	
 	public Constants getConstants() {
 		return this.constants;
+	}
+	
+	
+	
+	public AbstractConstants getAbstractConstants() {
+		return this.abstractConstats;
 	}
 	
 	
@@ -326,6 +336,22 @@ public class Machine {
 
 	public boolean isParsed() {
 		return parsed;
+	}
+
+
+
+	public Set<String> getAllConstants() {
+		Set<String> allConstants = new HashSet<String>();
+
+		if(this.constants != null) {
+			allConstants.addAll(this.constants.getAll());
+		}
+		
+		if(this.abstractConstats != null) {
+			allConstants.addAll(this.abstractConstats.getAll());
+		}
+		
+		return allConstants;
 	}
 
 }

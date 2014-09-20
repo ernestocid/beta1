@@ -179,10 +179,8 @@ public class Partitioner {
 			}
 		}
 		
+		relatedVariables.removeAll(this.operation.getMachine().getAllConstants());
 		
-		if(this.operation.getMachine().getConstants() != null) {
-			relatedVariables.removeAll(this.operation.getMachine().getConstants().getAll());
-		}
 	}
 	
 	

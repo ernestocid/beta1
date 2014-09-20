@@ -29,8 +29,8 @@ public class MyAFunctionExpression extends MyExpressionDecorator {
 	public Set<String> getVariables() {
 		Set<String> variables = new HashSet<String>();
 		
-		MyExpression indentifierExpression = MyExpressionFactory.convertExpression(this.function.getIdentifier());
-		variables.add(indentifierExpression.toString());
+		MyExpression identifierExpression = MyExpressionFactory.convertExpression(this.function.getIdentifier());
+		variables.add(identifierExpression.toString());
 		
 		for (PExpression param : this.function.getParameters()) {
 			MyExpression myExpression = MyExpressionFactory.convertExpression(param);

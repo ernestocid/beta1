@@ -3,6 +3,7 @@ package utils;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.be4.classicalb.core.parser.node.AAbstractConstantsMachineClause;
 import de.be4.classicalb.core.parser.node.AAbstractMachineParseUnit;
 import de.be4.classicalb.core.parser.node.AConstantsMachineClause;
 import de.be4.classicalb.core.parser.node.ADefinitionsMachineClause;
@@ -110,6 +111,17 @@ public class MachineClausesTool {
 		for (PMachineClause mchClause : parsedMachine.getMachineClauses()) {
 			if(mchClause instanceof AConstantsMachineClause) {
 				return (AConstantsMachineClause) mchClause;
+			}
+		}
+		return null;
+	}
+	
+	
+	
+	public static AAbstractConstantsMachineClause getAbstractConstantsClause(AAbstractMachineParseUnit parsedMachine) {
+		for (PMachineClause mchClause : parsedMachine.getMachineClauses()) {
+			if(mchClause instanceof AAbstractConstantsMachineClause) {
+				return (AAbstractConstantsMachineClause) mchClause;
 			}
 		}
 		return null;

@@ -638,7 +638,7 @@ public class Operation {
 
 
 	
-	// TODO: Missing case statement.
+	// TODO: Missing CASE statement.
 	private Set<MyPredicate> searchGuardsThatLeadToPredicateOnSubstitution(MyPredicate predicate, PSubstitution substitution) {
 		
 		if (substitution instanceof AParallelSubstitution) {
@@ -675,6 +675,11 @@ public class Operation {
 			
 			AAssertionSubstitution assertionSubs = (AAssertionSubstitution) substitution;
 			return searchGuardsThatLeadToPredicateOnAssertSubst(predicate, assertionSubs);
+			
+		} else if (substitution instanceof ACaseSubstitution) {
+			
+			ACaseSubstitution caseSubst = (ACaseSubstitution) substitution;
+			return null;
 			
 		} else {
 			

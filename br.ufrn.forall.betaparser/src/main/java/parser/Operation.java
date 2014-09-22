@@ -17,6 +17,7 @@ import parser.decorators.predicates.MyPredicate;
 import parser.decorators.predicates.MyPredicateFactory;
 import de.be4.classicalb.core.parser.node.AAnySubstitution;
 import de.be4.classicalb.core.parser.node.AAssertionSubstitution;
+import de.be4.classicalb.core.parser.node.ACaseOrSubstitution;
 import de.be4.classicalb.core.parser.node.ACaseSubstitution;
 import de.be4.classicalb.core.parser.node.AIdentifierExpression;
 import de.be4.classicalb.core.parser.node.AIfElsifSubstitution;
@@ -608,7 +609,14 @@ public class Operation {
 	}
 
 
-
+	/**
+	 * This method searches for guards that lead to a particular predicate mention. It is used
+	 * to find reachability guards for a particular predicate.
+	 * 
+	 * @param predicate a MyPredicate which you want to search.
+	 * @return a Set of MyPredicate all the predicates that lead to the 
+	 * predicate you are searching.
+	 */
 	public Set<MyPredicate> getGuardsThatLeadToPredicate(MyPredicate predicate) {
 		PSubstitution bodyInsides = getBodyInsides(operation.getOperationBody());
 		
@@ -638,7 +646,6 @@ public class Operation {
 
 
 	
-	// TODO: Missing CASE statement.
 	private Set<MyPredicate> searchGuardsThatLeadToPredicateOnSubstitution(MyPredicate predicate, PSubstitution substitution) {
 		
 		if (substitution instanceof AParallelSubstitution) {
@@ -679,20 +686,49 @@ public class Operation {
 		} else if (substitution instanceof ACaseSubstitution) {
 			
 			ACaseSubstitution caseSubst = (ACaseSubstitution) substitution;
-			return null;
+			return searchGuardsThatLeadToPredicateOnCaseSubst(predicate, caseSubst);
 			
 		} else {
 			
 			return new HashSet<MyPredicate>();
 			
 		}
+
+	}
+
+
+
+	private Set<MyPredicate> searchGuardsThatLeadToPredicateOnCaseSubst(MyPredicate predicate, ACaseSubstitution caseSubst) {
+
+		// Search on OR branches
 		
-//		if(substitution instanceof ACaseSubstitution) {
-//
-////			ACaseSubstitution caseSubstitution = (ACaseSubstitution) substitution;
-////			getPredicatesFromCaseSubstitution(predicates, caseSubstitution);
-//			
-//		}
+		for (PSubstitution subst : caseSubst.getOrSubstitutions()) {
+			if(subst instanceof ACaseOrSubstitution) {
+				ACaseOrSubstitution orSubst = (ACaseOrSubstitution) subst;
+				
+				Set<MyPredicate> predicatesFoundOnOrStatement = searchGuardsThatLeadToPredicateOnSubstitution(predicate, orSubst.getSubstitution());
+				
+				if(!predicatesFoundOnOrStatement.isEmpty()) {
+					MyExpression caseExpression = MyExpressionFactory.convertExpression(caseSubst.getExpression());
+					MyExpression orExpression = createOrExpressionFromOrSubstitution(orSubst);
+					MyPredicate orPredicate = createPredicateForCase(caseExpression, orExpression);
+					predicatesFoundOnOrStatement.add(orPredicate);
+					
+					return predicatesFoundOnOrStatement;
+				}
+			}
+		}
+		
+		// Search on EITHER branch
+		
+		Set<MyPredicate> predicatesFoundOnEitherStatement = searchGuardsThatLeadToPredicateOnSubstitution(predicate, caseSubst.getEitherSubst());
+		
+		if(!predicatesFoundOnEitherStatement.isEmpty()) {
+			predicatesFoundOnEitherStatement.addAll(getEitherGuards(caseSubst));
+			return predicatesFoundOnEitherStatement;
+		} else {
+			return new HashSet<MyPredicate>();
+		}
 		
 	}
 

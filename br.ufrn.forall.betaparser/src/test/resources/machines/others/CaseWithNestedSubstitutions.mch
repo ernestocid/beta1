@@ -16,7 +16,7 @@ OPERATIONS
   THEN 
     CASE xx OF
     EITHER 1 THEN IF aa > bb THEN skip END
-    OR 2 THEN IF bb > aa THEN skip END
+    OR 2 THEN IF bb >= aa THEN skip END
     ELSE skip END
     END
   END

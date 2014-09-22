@@ -494,28 +494,19 @@ public class ReadOperationInfoTest extends TestingUtils {
 		clauseVariables.add("bb");
 		
 		MyPredicate mockedClause = mock(MyPredicate.class);
-		when(mockedClause.toString()).thenReturn("bb > aa");
+		when(mockedClause.toString()).thenReturn("bb >= aa");
 		when(mockedClause.getVariables()).thenReturn(clauseVariables);
 		
 		// Setting up expected results
 		
 		MyPredicate mockedExpectedClause1 = mock(MyPredicate.class);
-		when(mockedExpectedClause1.toString()).thenReturn("session_request(sid) = bc");
-		
-		MyPredicate mockedExpectedClause2 = mock(MyPredicate.class);
-		when(mockedExpectedClause2.toString()).thenReturn("dom(global_car_bookings) <<: CAR");
-		
-		MyPredicate mockedExpectedClause3 = mock(MyPredicate.class);
-		when(mockedExpectedClause3.toString()).thenReturn("user_rental_bookings(session(sid)) = noCarRent");
+		when(mockedExpectedClause1.toString()).thenReturn("xx = 2");
 
 		Set<MyPredicate> expectedRelatedClauses = new HashSet<MyPredicate>();
 		expectedRelatedClauses.add(mockedExpectedClause1);
-		expectedRelatedClauses.add(mockedExpectedClause2);
-		expectedRelatedClauses.add(mockedExpectedClause3);
 
 		// Assertions
 		
-		assertEquals(expectedRelatedClauses, operationUnderTest.getGuardsThatLeadToPredicate(mockedClause));
 		assertTrue(compare(expectedRelatedClauses, operationUnderTest.getGuardsThatLeadToPredicate(mockedClause)));
 	}
 	

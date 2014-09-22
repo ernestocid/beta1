@@ -83,21 +83,6 @@ public class ReadOperationInfoTest extends TestingUtils {
 	}
 	
 	
-	// TODO: Fix problem for nested IFs
-//	@Test
-//	public void shouldGetNestedIfCommandConditions() {
-//		Machine machine = getMachineInstance("machines/others/NestedIF.mch");
-//		Operation operationUnderTest = machine.getOperation(0);
-//		
-//		Set<String> expectedConditions = new HashSet<String>();
-//		expectedConditions.add("var1 = var2");
-//		
-//		Set<String> ifConditions = operationUnderTest.getConditionalCharacteristics();
-//		
-//		assertEquals(expectedConditions, ifConditions);
-//	}
-	
-	
 	
 	@Test
 	public void shouldGetIfCommandVariables() {
@@ -428,15 +413,11 @@ public class ReadOperationInfoTest extends TestingUtils {
 		when(mockedExpectedClause1.toString()).thenReturn("dom(global_room_bookings) <<: ROOM");
 		
 		MyPredicate mockedExpectedClause2 = mock(MyPredicate.class);
-		when(mockedExpectedClause2.toString()).thenReturn("session_request(sid) = br");
-		
-		MyPredicate mockedExpectedClause3 = mock(MyPredicate.class);
-		when(mockedExpectedClause3.toString()).thenReturn("user_hotel_bookings(session(sid)) = noHotel");
+		when(mockedExpectedClause2.toString()).thenReturn("session_request(sid) = br & user_hotel_bookings(session(sid)) = noHotel");
 
 		Set<MyPredicate> expectedRelatedClauses = new HashSet<MyPredicate>();
 		expectedRelatedClauses.add(mockedExpectedClause1);
 		expectedRelatedClauses.add(mockedExpectedClause2);
-		expectedRelatedClauses.add(mockedExpectedClause3);
 
 		// Assertions
 		
@@ -462,18 +443,14 @@ public class ReadOperationInfoTest extends TestingUtils {
 		// Setting up expected results
 		
 		MyPredicate mockedExpectedClause1 = mock(MyPredicate.class);
-		when(mockedExpectedClause1.toString()).thenReturn("session_request(sid) = bc");
+		when(mockedExpectedClause1.toString()).thenReturn("session_request(sid) = bc & user_rental_bookings(session(sid)) = noCarRent");
 		
 		MyPredicate mockedExpectedClause2 = mock(MyPredicate.class);
 		when(mockedExpectedClause2.toString()).thenReturn("dom(global_car_bookings) <<: CAR");
 		
-		MyPredicate mockedExpectedClause3 = mock(MyPredicate.class);
-		when(mockedExpectedClause3.toString()).thenReturn("user_rental_bookings(session(sid)) = noCarRent");
-
 		Set<MyPredicate> expectedRelatedClauses = new HashSet<MyPredicate>();
 		expectedRelatedClauses.add(mockedExpectedClause1);
 		expectedRelatedClauses.add(mockedExpectedClause2);
-		expectedRelatedClauses.add(mockedExpectedClause3);
 
 		// Assertions
 		

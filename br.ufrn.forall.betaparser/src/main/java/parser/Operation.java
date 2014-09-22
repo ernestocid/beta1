@@ -608,6 +608,7 @@ public class Operation {
 		return orExpression;
 	}
 
+	
 
 	/**
 	 * This method searches for guards that lead to a particular predicate mention. It is used
@@ -658,20 +659,10 @@ public class Operation {
 			ASelectSubstitution selectSubs = (ASelectSubstitution) substitution;
 			return searchGuardsThatLeadToPredicateOnSelectSubst(predicate, selectSubs);
 			
-		} else if (substitution instanceof ASelectWhenSubstitution) {
-			
-			ASelectWhenSubstitution selectWhenSubs = (ASelectWhenSubstitution) substitution;
-			return searchGuardsThatLeadToPredicateOnSelectWhenSubst(predicate, selectWhenSubs);
-			
 		} else if (substitution instanceof AIfSubstitution) {
 			
 			AIfSubstitution ifSubs = (AIfSubstitution) substitution;
 			return searchGuardsThatLeadToPredicateOnIfSubst(predicate, ifSubs);
-			
-		} else if (substitution instanceof AIfElsifSubstitution) {
-			
-			AIfElsifSubstitution ifElsifSubs = (AIfElsifSubstitution) substitution;
-			return searchGuardsThatLeadToPredicateOnElsifSubst(predicate, ifElsifSubs);
 			
 		} else if (substitution instanceof AAnySubstitution) {
 			
@@ -706,26 +697,26 @@ public class Operation {
 			if(subst instanceof ACaseOrSubstitution) {
 				ACaseOrSubstitution orSubst = (ACaseOrSubstitution) subst;
 				
-				Set<MyPredicate> predicatesFoundOnOrStatement = searchGuardsThatLeadToPredicateOnSubstitution(predicate, orSubst.getSubstitution());
+				Set<MyPredicate> searchOnORTHENResult = searchGuardsThatLeadToPredicateOnSubstitution(predicate, orSubst.getSubstitution());
 				
-				if(!predicatesFoundOnOrStatement.isEmpty()) {
+				if(!searchOnORTHENResult.isEmpty()) {
 					MyExpression caseExpression = MyExpressionFactory.convertExpression(caseSubst.getExpression());
 					MyExpression orExpression = createOrExpressionFromOrSubstitution(orSubst);
 					MyPredicate orPredicate = createPredicateForCase(caseExpression, orExpression);
-					predicatesFoundOnOrStatement.add(orPredicate);
+					searchOnORTHENResult.add(orPredicate);
 					
-					return predicatesFoundOnOrStatement;
+					return searchOnORTHENResult;
 				}
 			}
 		}
 		
 		// Search on EITHER branch
 		
-		Set<MyPredicate> predicatesFoundOnEitherStatement = searchGuardsThatLeadToPredicateOnSubstitution(predicate, caseSubst.getEitherSubst());
+		Set<MyPredicate> searchOnEITHERTHENResult = searchGuardsThatLeadToPredicateOnSubstitution(predicate, caseSubst.getEitherSubst());
 		
-		if(!predicatesFoundOnEitherStatement.isEmpty()) {
-			predicatesFoundOnEitherStatement.addAll(getEitherGuards(caseSubst));
-			return predicatesFoundOnEitherStatement;
+		if(!searchOnEITHERTHENResult.isEmpty()) {
+			searchOnEITHERTHENResult.addAll(getEitherGuards(caseSubst));
+			return searchOnEITHERTHENResult;
 		} else {
 			return new HashSet<MyPredicate>();
 		}
@@ -749,23 +740,23 @@ public class Operation {
 
 
 	private Set<MyPredicate> searchGuardsThatLeadToPredicateOnAssertSubst(MyPredicate predicate, AAssertionSubstitution assertionSubstitution) {
-		MyPredicate assertionPredicate = MyPredicateFactory.convertPredicate(assertionSubstitution.getPredicate());
+		MyPredicate assertionGuard = MyPredicateFactory.convertPredicate(assertionSubstitution.getPredicate());
 
 		Set<MyPredicate> clauses = new HashSet<MyPredicate>();
-		assertionPredicate.createClausesList(clauses);
+		assertionGuard.createClausesList(clauses);
 		
 		if(setContainsClause(predicate, clauses)) {
-			Set<MyPredicate> foundPredicate = new HashSet<MyPredicate>();
-			foundPredicate.add(predicate);
-			return foundPredicate;
+			Set<MyPredicate> foundPredicates = new HashSet<MyPredicate>();
+			foundPredicates.add(predicate);
+			return foundPredicates;
 		} else {
-			Set<MyPredicate> assertionSubsPredicates = searchGuardsThatLeadToPredicateOnSubstitution(assertionPredicate, assertionSubstitution.getSubstitution());
+			Set<MyPredicate> searchOnTHENResult = searchGuardsThatLeadToPredicateOnSubstitution(assertionGuard, assertionSubstitution.getSubstitution());
 			
-			if(assertionSubsPredicates.isEmpty()) {
-				return assertionSubsPredicates;
+			if(searchOnTHENResult.isEmpty()) {
+				return new HashSet<MyPredicate>();
 			} else {
-				assertionSubsPredicates.addAll(clauses);
-				return assertionSubsPredicates;
+				searchOnTHENResult.add(assertionGuard);
+				return searchOnTHENResult;
 			}
 		}
 	}
@@ -773,46 +764,23 @@ public class Operation {
 
 
 	private Set<MyPredicate> searchGuardsThatLeadToPredicateOnAnySubst(MyPredicate predicate, AAnySubstitution anySubstitution) {
-		MyPredicate anyPredicate = MyPredicateFactory.convertPredicate(anySubstitution.getWhere());
+		MyPredicate anyGuard = MyPredicateFactory.convertPredicate(anySubstitution.getWhere());
 		
 		Set<MyPredicate> clauses = new HashSet<MyPredicate>();
-		anyPredicate.createClausesList(clauses);
+		anyGuard.createClausesList(clauses);
 		
 		if(setContainsClause(predicate, clauses)) {
 			Set<MyPredicate> foundPredicate = new HashSet<MyPredicate>();
 			foundPredicate.add(predicate);
 			return foundPredicate;
 		} else {
-			Set<MyPredicate> anySubsPredicates = searchGuardsThatLeadToPredicateOnSubstitution(predicate, anySubstitution.getThen());
+			Set<MyPredicate> searchOnTHENResult = searchGuardsThatLeadToPredicateOnSubstitution(predicate, anySubstitution.getThen());
 			
-			if(anySubsPredicates.isEmpty()) {
-				return anySubsPredicates;
+			if(searchOnTHENResult.isEmpty()) {
+				return new HashSet<MyPredicate>();
 			} else {
-				anySubsPredicates.addAll(clauses);
-				return anySubsPredicates;
-			}
-		}
-	}
-
-
-
-	private Set<MyPredicate> searchGuardsThatLeadToPredicateOnElsifSubst(MyPredicate predicate, AIfElsifSubstitution ifElsifSubstitution) {
-		MyPredicate ifElsifPredicate = MyPredicateFactory.convertPredicate(ifElsifSubstitution.getCondition());
-		
-		Set<MyPredicate> clauses = new HashSet<MyPredicate>();
-		ifElsifPredicate.createClausesList(clauses);
-		
-		if(setContainsClause(predicate, clauses)) {
-			Set<MyPredicate> foundPredicate = new HashSet<MyPredicate>();
-			foundPredicate.add(predicate);
-			return foundPredicate;
-		} else {
-			Set<MyPredicate> elsifSubsPredicates = searchGuardsThatLeadToPredicateOnSubstitution(predicate, ifElsifSubstitution.getThenSubstitution());
-			if(!elsifSubsPredicates.isEmpty()) {
-				elsifSubsPredicates.addAll(clauses);
-				return elsifSubsPredicates;
-			} else {
-				return elsifSubsPredicates;
+				searchOnTHENResult.add(anyGuard);
+				return searchOnTHENResult;
 			}
 		}
 	}
@@ -826,86 +794,92 @@ public class Operation {
 		ifPredicate.createClausesList(clauses);
 		
 		if(setContainsClause(predicate, clauses)) {
-			Set<MyPredicate> foundPredicate = new HashSet<MyPredicate>();
-			foundPredicate.add(predicate);
-			return foundPredicate;
+			Set<MyPredicate> foundPredicates = new HashSet<MyPredicate>();
+			foundPredicates.add(predicate);
+			return foundPredicates;
 		} else {
-			Set<MyPredicate> ifSubsPredicates = searchGuardsThatLeadToPredicateOnSubstitution(predicate, ifSubstitution.getThen());
+			Set<MyPredicate> searchOnTHENResult = searchGuardsThatLeadToPredicateOnSubstitution(predicate, ifSubstitution.getThen());
 			
-			if(!ifSubsPredicates.isEmpty()) {
-				ifSubsPredicates.addAll(clauses);
-				return ifSubsPredicates;
+			if(!searchOnTHENResult.isEmpty()) {
+				searchOnTHENResult.addAll(clauses);
+				return searchOnTHENResult;
 			} else {
-				for(PSubstitution subs : ifSubstitution.getElsifSubstitutions()) {
-					Set<MyPredicate> elsifSubsPredicates = searchGuardsThatLeadToPredicateOnSubstitution(predicate, subs);
-					
-					if(!elsifSubsPredicates.isEmpty()) {
-						return elsifSubsPredicates;
-					}
-				}
-				
-				return ifSubsPredicates;
+				return searchOnELSIFSubstitutions(predicate, ifSubstitution.getElsifSubstitutions());
 			}
 		}
 	}
 
 
 
-	private Set<MyPredicate> searchGuardsThatLeadToPredicateOnSelectWhenSubst(MyPredicate predicate, ASelectWhenSubstitution selectWhenSubstitution) {
-		MyPredicate selectWhenPredicates = MyPredicateFactory.convertPredicate(selectWhenSubstitution.getCondition());
-
-		Set<MyPredicate> clauses = new HashSet<MyPredicate>();
-		selectWhenPredicates.createClausesList(clauses);
-		
-		if(setContainsClause(predicate, clauses)) {
-			Set<MyPredicate> foundPredicate = new HashSet<MyPredicate>();
-			foundPredicate.add(predicate);
-			return foundPredicate;
-		} else {
-			
-			Set<MyPredicate> selectWhenSubsPredicates = searchGuardsThatLeadToPredicateOnSubstitution(predicate, selectWhenSubstitution.getSubstitution());
-			
-			if(!selectWhenSubsPredicates.isEmpty()) {
-				selectWhenSubsPredicates.addAll(clauses);
-				return selectWhenSubsPredicates;
-			} else {
-				return selectWhenSubsPredicates;
+	private Set<MyPredicate> searchOnELSIFSubstitutions(MyPredicate predicate, List<PSubstitution> elsifSubstitutions) {
+		for(PSubstitution subs : elsifSubstitutions) {
+			if(subs instanceof AIfElsifSubstitution) {
+				AIfElsifSubstitution elsifSubst = (AIfElsifSubstitution) subs;
+				MyPredicate elsifGuard = MyPredicateFactory.convertPredicate(elsifSubst.getCondition());
+				
+				Set<MyPredicate> clauses = new HashSet<MyPredicate>();
+				elsifGuard.createClausesList(clauses);
+				
+				if(setContainsClause(predicate, clauses)) {
+					Set<MyPredicate> foundPredicates = new HashSet<MyPredicate>();
+					foundPredicates.add(predicate);
+					return foundPredicates;
+				} else {
+					Set<MyPredicate> searchOnELSIFTHENResult = searchGuardsThatLeadToPredicateOnSubstitution(predicate, elsifSubst.getThenSubstitution());
+					
+					if(!searchOnELSIFTHENResult.isEmpty()) {
+						searchOnELSIFTHENResult.add(elsifGuard);
+						return searchOnELSIFTHENResult;
+					}
+				}
 			}
-			
 		}
+		
+		return new HashSet<MyPredicate>();
 	}
 
 
 
 	private Set<MyPredicate> searchGuardsThatLeadToPredicateOnSelectSubst(MyPredicate predicate, ASelectSubstitution selectSubstitution) {
-		MyPredicate selectPredicate = MyPredicateFactory.convertPredicate(selectSubstitution.getCondition());
+		MyPredicate selectGuard = MyPredicateFactory.convertPredicate(selectSubstitution.getCondition());
 		
 		Set<MyPredicate> clauses = new HashSet<MyPredicate>();
-		selectPredicate.createClausesList(clauses);
+		selectGuard.createClausesList(clauses);
 		
 		if(setContainsClause(predicate, clauses)) {
-			Set<MyPredicate> foundPredicate = new HashSet<MyPredicate>();
-			foundPredicate.add(predicate);
-			return foundPredicate;
+			Set<MyPredicate> foundPredicates = new HashSet<MyPredicate>();
+			foundPredicates.add(predicate);
+			return foundPredicates;
 		} else {
-			Set<MyPredicate> selectThenPredicates = searchGuardsThatLeadToPredicateOnSubstitution(predicate, selectSubstitution.getThen());
+			Set<MyPredicate> searchOnTHENResult = searchGuardsThatLeadToPredicateOnSubstitution(predicate, selectSubstitution.getThen());
 			
-			if(selectThenPredicates.isEmpty()) {
-				for(PSubstitution subs : selectSubstitution.getWhenSubstitutions()) {
-					Set<MyPredicate> whenPredicates = searchGuardsThatLeadToPredicateOnSubstitution(predicate, subs);
-					
-					if(!whenPredicates.isEmpty()) {
-						return whenPredicates;
-					}
-					
-				}
+			if(searchOnTHENResult.isEmpty()) {
+				return searchOnWHENSubstutitions(predicate, selectSubstitution.getWhenSubstitutions());
 			} else {
-				selectThenPredicates.addAll(clauses);
-				return selectThenPredicates;
+				searchOnTHENResult.add(selectGuard);
+				return searchOnTHENResult;
 			}
-			
-			return selectThenPredicates;
 		}
+	}
+
+
+
+	private Set<MyPredicate> searchOnWHENSubstutitions(MyPredicate predicate, List<PSubstitution> whenSubstitutions) {
+		for(PSubstitution subs : whenSubstitutions) {
+			if(subs instanceof ASelectWhenSubstitution) {
+				ASelectWhenSubstitution selectWhenSubst = (ASelectWhenSubstitution) subs;
+				
+				Set<MyPredicate> searchOnWHENResult = searchGuardsThatLeadToPredicateOnSubstitution(predicate, selectWhenSubst.getSubstitution());
+				
+				if(!searchOnWHENResult.isEmpty()) {
+					MyPredicate whenGuard = MyPredicateFactory.convertPredicate(selectWhenSubst.getCondition());
+					searchOnWHENResult.add(whenGuard);
+					return searchOnWHENResult;
+				}
+			} 
+		}
+		
+		return new HashSet<MyPredicate>();
 	}
 
 

@@ -28,9 +28,34 @@ public abstract class Characteristic {
 	
 	
 	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Characteristic) {
+			Characteristic c = (Characteristic) obj;
+			if(c.getCharacteristic().equals(getCharacteristic())) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+	
+	
+	
+	@Override
+	public int hashCode() {
+		return getCharacteristic().hashCode();
+	}
+	
+	
+	
 	public abstract Set<String> getVariables();
 	public abstract boolean isTypingCharacteristic();
 	public abstract boolean isIntervalCharacteristic();
 	public abstract String toString();
+	
+	
 	
 }

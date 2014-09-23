@@ -1,0 +1,1526 @@
+2014-09-20 15:07:32,276 669064 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 52 - Starting ProB's Prolog Core. Path is /Users/ernestocid/Tools/ProB//probcli.sh
+2014-09-20 15:07:32,312 669100 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 54 - Cli started
+2014-09-20 15:07:32,317 669105 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Running ProB Command-line Interface
+2014-09-20 15:07:32,318 669106 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli -sf
+2014-09-20 15:07:33,195 669983 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to No file to process
+2014-09-20 15:07:33,195 669983 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Starting Socket Server
+2014-09-20 15:07:33,195 669983 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Application Path: /Users/ernestocid/Tools/ProB
+2014-09-20 15:07:33,196 669984 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Port: 54832
+2014-09-20 15:07:33,196 669984 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.PortPattern Method:
+				setValue Line: 34 - Server has startet and listens on port 54832
+2014-09-20 15:07:33,196 669984 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli revision: 90b5c8dba0b66d76cc21d1d9f58cd0882b94d133
+2014-09-20 15:07:33,196 669984 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to user interrupt reference id: 30990
+2014-09-20 15:07:33,197 669985 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.InterruptRefPattern Method:
+				setValue Line: 32 - Server can receive user interrupts via reference 30990
+2014-09-20 15:07:33,197 669985 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 40 - Connecting to port 54832 using key 7f4ee8e3731351a2
+2014-09-20 15:07:33,198 669986 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 47 - Connected
+2014-09-20 15:07:33,200 669988 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - -- starting command loop --
+2014-09-20 15:07:33,423 670211 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - set_eclipse_preference('SYMBOLIC',true),set_eclipse_preference('CSE_PRED',true),set_eclipse_preference('SYMMETRY_MODE',off),set_eclipse_preference('DEFAULT_SETSIZE','2'),set_eclipse_preference('KODKOD_ONLY_FULL',true),set_eclipse_preference('CSE_WD_ONLY',false),set_eclipse_preference('TIME_OUT','2500'),set_eclipse_preference('KODKOD',false),set_eclipse_preference('NUMBER_OF_ANIMATED_ABSTRACTIONS','20'),set_eclipse_preference('USE_RECORD_CONSTRUCTION',true),set_eclipse_preference('MEMO',false),set_eclipse_preference('MAX_OPERATIONS','10'),set_eclipse_preference('CSE',false),set_eclipse_preference('MAXINT','30'),set_eclipse_preference('ALLOW_INCOMPLETE_SETUP_CONSTANTS',false),set_eclipse_preference('MININT','-20'),set_eclipse_preference('STATIC_ORDERING',false),set_eclipse_preference('COMPRESSION',false),set_eclipse_preference('MAX_INITIALISATIONS','4'),set_eclipse_preference('TRY_FIND_ABORT',false),set_eclipse_preference('CLPFD',true),set_eclipse_preference('CHR',false),set_eclipse_preference('PROOF_INFO',true),set_eclipse_preference('SMT',false),load_classical_b_from_list_of_facts('/Users/ernestocid/Temp/TicTacToe.mch',[parser_version('2013-04-30 11:58:52.139'),classical_b('TicTacToe',['/Users/ernestocid/Temp/TicTacToe.mch']),machine(abstract_machine(1,machine(2),machine_header(3,'TicTacToe',[]),[sets(4,[enumerated_set(5,'Player',[identifier(6,blue),identifier(7,red)]),enumerated_set(8,'Result',[identifier(9,blue_win),identifier(10,red_win),identifier(11,draw)])]),constants(12,[identifier(13,'WinnerRows'),identifier(14,'ThreeInRow')]),properties(15,conjunct(16,conjunct(17,conjunct(18,subset(19,identifier(20,'WinnerRows'),pow_subset(21,interval(22,integer(23,0),integer(24,8)))),equal(25,identifier(26,'WinnerRows'),set_extension(27,[set_extension(28,[integer(29,0),integer(30,1),integer(31,2)]),set_extension(32,[integer(33,3),integer(34,4),integer(35,5)]),set_extension(36,[integer(37,6),integer(38,7),integer(39,8)]),set_extension(40,[integer(41,0),integer(42,3),integer(43,6)]),set_extension(44,[integer(45,1),integer(46,4),integer(47,7)]),set_extension(48,[integer(49,2),integer(50,5),integer(51,8)]),set_extension(52,[integer(53,0),integer(54,4),integer(55,8)]),set_extension(56,[integer(57,6),integer(58,4),integer(59,2)])]))),member(60,identifier(61,'ThreeInRow'),total_function(62,pow_subset(63,interval(64,integer(65,0),integer(66,8))),bool_set(67)))),equal(68,identifier(69,'ThreeInRow'),union(70,lambda(71,[identifier(72,ps)],conjunct(73,member(74,identifier(75,ps),pow_subset(76,interval(77,integer(78,0),integer(79,8)))),exists(80,[identifier(81,wn)],conjunct(82,member(83,identifier(84,wn),identifier(85,'WinnerRows')),subset(86,identifier(87,wn),identifier(88,ps))))),boolean_true(89)),lambda(90,[identifier(91,ps)],conjunct(92,member(93,identifier(94,ps),pow_subset(95,interval(96,integer(97,0),integer(98,8)))),negation(99,exists(100,[identifier(101,wn)],conjunct(102,member(103,identifier(104,wn),identifier(105,'WinnerRows')),subset(106,identifier(107,wn),identifier(108,ps)))))),boolean_false(109)))))),variables(110,[identifier(111,bposn),identifier(112,rposn),identifier(113,turn)]),invariant(114,conjunct(115,conjunct(116,conjunct(117,subset(118,identifier(119,bposn),interval(120,integer(121,0),integer(122,8))),subset(123,identifier(124,rposn),interval(125,integer(126,0),integer(127,8)))),equal(128,intersection(129,identifier(130,bposn),identifier(131,rposn)),empty_set(132))),member(133,identifier(134,turn),identifier(135,'Player')))),initialisation(136,parallel(137,[assign(138,[identifier(139,bposn)],[empty_set(140)]),assign(141,[identifier(142,rposn)],[empty_set(143)]),assign(144,[identifier(145,turn)],[identifier(146,blue)])])),operations(147,[operation(148,identifier(148,'BlueMove'),[],[identifier(149,pp)],precondition(150,conjunct(151,conjunct(152,conjunct(153,member(154,identifier(155,pp),interval(156,integer(157,0),integer(158,8))),not_member(159,identifier(160,pp),union(161,identifier(162,bposn),identifier(163,rposn)))),equal(164,identifier(165,turn),identifier(166,blue))),equal(167,function(168,identifier(169,'ThreeInRow'),[identifier(170,rposn)]),boolean_false(171))),parallel(172,[assign(173,[identifier(174,bposn)],[union(175,identifier(176,bposn),set_extension(177,[identifier(178,pp)]))]),assign(179,[identifier(180,turn)],[identifier(181,red)])]))),operation(182,identifier(182,'RedMove'),[],[identifier(183,pp)],precondition(184,conjunct(185,conjunct(186,conjunct(187,member(188,identifier(189,pp),interval(190,integer(191,0),integer(192,8))),not_member(193,identifier(194,pp),union(195,identifier(196,bposn),identifier(197,rposn)))),equal(198,identifier(199,turn),identifier(200,red))),equal(201,function(202,identifier(203,'ThreeInRow'),[identifier(204,bposn)]),boolean_false(205))),parallel(206,[assign(207,[identifier(208,rposn)],[union(209,identifier(210,rposn),set_extension(211,[identifier(212,pp)]))]),assign(213,[identifier(214,turn)],[identifier(215,blue)])]))),operation(216,identifier(216,'GameResult'),[identifier(217,result)],[],precondition(218,disjunct(219,disjunct(220,equal(221,function(222,identifier(223,'ThreeInRow'),[identifier(224,bposn)]),boolean_true(225)),equal(226,function(227,identifier(228,'ThreeInRow'),[identifier(229,rposn)]),boolean_true(230))),equal(231,union(232,identifier(233,bposn),identifier(234,rposn)),interval(235,integer(236,0),integer(237,8)))),if(238,equal(239,function(240,identifier(241,'ThreeInRow'),[identifier(242,bposn)]),boolean_true(243)),assign(244,[identifier(245,result)],[identifier(246,blue_win)]),[if_elsif(247,equal(248,function(249,identifier(250,'ThreeInRow'),[identifier(251,rposn)]),boolean_true(252)),assign(253,[identifier(254,result)],[identifier(255,red_win)]))],assign(256,[identifier(257,result)],[identifier(258,draw)]))))])]))]),start_animation,true.
+
+2014-09-20 15:07:33,537 670325 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Connected: 127.0.0.1
+2014-09-20 15:07:33,537 670325 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - loading_classical_b(parser_version(2013-04-30 11:58:52.139),TicTacToe,[/Users/ernestocid/Temp/TicTacToe.mch])
+2014-09-20 15:07:33,537 670325 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:07:33,537 670325 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - % unused_constants([WinnerRows])
+2014-09-20 15:07:33,578 670366 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:33,580 670368 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:33,583 670371 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_7,eval(identifier(none,bposn),'#EXPRESSION',bposn)),true.
+
+2014-09-20 15:07:33,586 670374 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:07:33,586 670374 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:33,587 670375 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:33,587 670375 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_8,eval(identifier(none,rposn),'#EXPRESSION',rposn)),true.
+
+2014-09-20 15:07:33,588 670376 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:07:33,588 670376 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:33,589 670377 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:33,589 670377 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_9,eval(identifier(none,turn),'#EXPRESSION',turn)),true.
+
+2014-09-20 15:07:33,589 670377 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:07:33,590 670378 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:33,591 670379 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:33,592 670380 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_10,eval(subset(none,identifier(none,bposn),interval(none,integer(none,0),integer(none,8))),'#PREDICATE','bposn<:0..8')),true.
+
+2014-09-20 15:07:33,593 670381 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:07:33,594 670382 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:33,594 670382 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:33,595 670383 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_11,eval(subset(none,identifier(none,rposn),interval(none,integer(none,0),integer(none,8))),'#PREDICATE','rposn<:0..8')),true.
+
+2014-09-20 15:07:33,595 670383 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:07:33,596 670384 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:33,596 670384 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:33,597 670385 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_12,eval(equal(none,intersection(none,identifier(none,bposn),identifier(none,rposn)),empty_set(none)),'#PREDICATE','bposn/\\rposn={}')),true.
+
+2014-09-20 15:07:33,597 670385 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:07:33,597 670385 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:33,598 670386 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:33,599 670387 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_13,eval(member(none,identifier(none,turn),identifier(none,'Player')),'#PREDICATE','turn:Player')),true.
+
+2014-09-20 15:07:33,599 670387 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:07:33,600 670388 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:33,600 670388 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:33,621 670409 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(root,APLOps),evaluate_registered_formulas(root,[formula_9,formula_7,formula_12,formula_8,formula_10,formula_13,formula_11],BResults),state_property(initialised,root,CPropResult),state_property(invariantKO,root,DPropResult),state_property(max_operations_reached,root,EPropResult),state_property(timeout_occurred,root,FPropResult),op_timeout_occurred(root,GTO),get_state_errors(root,HErrors),true.
+
+2014-09-20 15:07:34,079 670867 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps','.'(op(0,root,0),[])),'.'(=('BResults',[]),'.'(=('CPropResult',false),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-09-20 15:07:34,079 670867 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - % found_enumeration_of_constants(10,430)
+2014-09-20 15:07:34,080 670868 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - % backtrack(found_enumeration_of_constants(10,430))
+2014-09-20 15:07:34,082 670870 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:34,083 670871 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:34,105 670893 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(0,APLOps),evaluate_registered_formulas(0,[formula_9,formula_7,formula_12,formula_8,formula_10,formula_13,formula_11],BResults),state_property(initialised,0,CPropResult),state_property(invariantKO,0,DPropResult),state_property(max_operations_reached,0,EPropResult),state_property(timeout_occurred,0,FPropResult),op_timeout_occurred(0,GTO),get_state_errors(0,HErrors),true.
+
+2014-09-20 15:07:34,112 670900 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps','.'(op(1,0,1),[])),'.'(=('BResults',[]),'.'(=('CPropResult',false),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-09-20 15:07:34,114 670902 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:34,115 670903 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:34,124 670912 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - find_state_for_predicate(conjunct(none,conjunct(none,equal(none,identifier(none,turn),identifier(none,blue)),equal(none,identifier(none,bposn),empty_set(none))),equal(none,identifier(none,rposn),empty_set(none))),R),true.
+
+2014-09-20 15:07:34,427 671215 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('R',state_found(op(2,root,2),2)),[]))
+2014-09-20 15:07:34,427 671215 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - turn = blue
+2014-09-20 15:07:34,427 671215 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - &
+2014-09-20 15:07:34,427 671215 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - bposn = {}
+2014-09-20 15:07:34,427 671215 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - &
+2014-09-20 15:07:34,427 671215 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - rposn = {}
+2014-09-20 15:07:34,428 671216 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:34,429 671217 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:34,430 671218 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - find_trace_to_node(2,Trace),true.
+
+2014-09-20 15:07:34,432 671220 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Trace','.'(op(2,root,2),[])),[]))
+2014-09-20 15:07:34,432 671220 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 
+2014-09-20 15:07:34,433 671221 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:34,434 671222 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:34,455 671243 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - prob2_execute_custom_operations(2,'BlueMove',equal(none,identifier(none,pp),integer(none,0)),1,NewStateID,Errors),true.
+
+2014-09-20 15:07:34,464 671252 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('NewStateID','.'(op(3,2,3),[])),'.'(=('Errors',[]),[])))
+2014-09-20 15:07:34,464 671252 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - check_additional_guard
+2014-09-20 15:07:34,464 671252 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - pp = 0
+2014-09-20 15:07:34,464 671252 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - checked
+2014-09-20 15:07:34,465 671253 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:34,465 671253 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:34,472 671260 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(3,APLOps),evaluate_registered_formulas(3,[formula_9,formula_7,formula_12,formula_8,formula_10,formula_13,formula_11],BResults),state_property(initialised,3,CPropResult),state_property(invariantKO,3,DPropResult),state_property(max_operations_reached,3,EPropResult),state_property(timeout_occurred,3,FPropResult),op_timeout_occurred(3,GTO),get_state_errors(3,HErrors),true.
+
+2014-09-20 15:07:34,491 671279 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps','.'(op(4,3,4),'.'(op(5,3,5),'.'(op(6,3,6),'.'(op(7,3,7),'.'(op(8,3,8),'.'(op(9,3,9),'.'(op(10,3,10),'.'(op(11,3,11),[]))))))))),'.'(=('BResults','.'(result(v(red,fd(2,'Player')),[],turn),'.'(result(v('{0}',avl_set(node(int(0),true,0,empty,empty))),[],bposn),'.'(result('TRUE',[],'bposn/\\rposn={}'),'.'(result(v({},[]),[],rposn),'.'(result('TRUE',[],'bposn<:0..8'),'.'(result('TRUE',[],'turn:Player'),'.'(result('TRUE',[],'rposn<:0..8'),[])))))))),'.'(=('CPropResult',true),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-09-20 15:07:34,491 671279 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-09-20 15:07:34,492 671280 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - red
+2014-09-20 15:07:34,492 671280 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-09-20 15:07:34,492 671280 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - {0}
+2014-09-20 15:07:34,492 671280 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-09-20 15:07:34,492 671280 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-09-20 15:07:34,492 671280 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - {}
+2014-09-20 15:07:34,492 671280 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-09-20 15:07:34,492 671280 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-09-20 15:07:34,492 671280 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-09-20 15:07:34,517 671305 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:34,517 671305 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:34,577 671365 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 52 - Starting ProB's Prolog Core. Path is /Users/ernestocid/Tools/ProB//probcli.sh
+2014-09-20 15:07:34,602 671390 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 54 - Cli started
+2014-09-20 15:07:34,608 671396 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Running ProB Command-line Interface
+2014-09-20 15:07:34,608 671396 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli -sf
+2014-09-20 15:07:35,435 672223 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to No file to process
+2014-09-20 15:07:35,435 672223 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Starting Socket Server
+2014-09-20 15:07:35,436 672224 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Application Path: /Users/ernestocid/Tools/ProB
+2014-09-20 15:07:35,436 672224 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Port: 54834
+2014-09-20 15:07:35,436 672224 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.PortPattern Method:
+				setValue Line: 34 - Server has startet and listens on port 54834
+2014-09-20 15:07:35,436 672224 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli revision: 90b5c8dba0b66d76cc21d1d9f58cd0882b94d133
+2014-09-20 15:07:35,436 672224 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to user interrupt reference id: 30994
+2014-09-20 15:07:35,436 672224 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.InterruptRefPattern Method:
+				setValue Line: 32 - Server can receive user interrupts via reference 30994
+2014-09-20 15:07:35,437 672225 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 40 - Connecting to port 54834 using key 7f4ee8e3731351a2
+2014-09-20 15:07:35,437 672225 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 47 - Connected
+2014-09-20 15:07:35,438 672226 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - -- starting command loop --
+2014-09-20 15:07:35,476 672264 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - set_eclipse_preference('SYMBOLIC',true),set_eclipse_preference('CSE_PRED',true),set_eclipse_preference('SYMMETRY_MODE',off),set_eclipse_preference('DEFAULT_SETSIZE','2'),set_eclipse_preference('KODKOD_ONLY_FULL',true),set_eclipse_preference('CSE_WD_ONLY',false),set_eclipse_preference('TIME_OUT','2500'),set_eclipse_preference('KODKOD',false),set_eclipse_preference('NUMBER_OF_ANIMATED_ABSTRACTIONS','20'),set_eclipse_preference('USE_RECORD_CONSTRUCTION',true),set_eclipse_preference('MEMO',false),set_eclipse_preference('MAX_OPERATIONS','10'),set_eclipse_preference('CSE',false),set_eclipse_preference('MAXINT','30'),set_eclipse_preference('ALLOW_INCOMPLETE_SETUP_CONSTANTS',false),set_eclipse_preference('MININT','-20'),set_eclipse_preference('STATIC_ORDERING',false),set_eclipse_preference('COMPRESSION',false),set_eclipse_preference('MAX_INITIALISATIONS','4'),set_eclipse_preference('TRY_FIND_ABORT',false),set_eclipse_preference('CLPFD',true),set_eclipse_preference('CHR',false),set_eclipse_preference('PROOF_INFO',true),set_eclipse_preference('SMT',false),load_classical_b_from_list_of_facts('/Users/ernestocid/Temp/TicTacToe.mch',[parser_version('2013-04-30 11:58:52.139'),classical_b('TicTacToe',['/Users/ernestocid/Temp/TicTacToe.mch']),machine(abstract_machine(1,machine(2),machine_header(3,'TicTacToe',[]),[sets(4,[enumerated_set(5,'Player',[identifier(6,blue),identifier(7,red)]),enumerated_set(8,'Result',[identifier(9,blue_win),identifier(10,red_win),identifier(11,draw)])]),constants(12,[identifier(13,'WinnerRows'),identifier(14,'ThreeInRow')]),properties(15,conjunct(16,conjunct(17,conjunct(18,subset(19,identifier(20,'WinnerRows'),pow_subset(21,interval(22,integer(23,0),integer(24,8)))),equal(25,identifier(26,'WinnerRows'),set_extension(27,[set_extension(28,[integer(29,0),integer(30,1),integer(31,2)]),set_extension(32,[integer(33,3),integer(34,4),integer(35,5)]),set_extension(36,[integer(37,6),integer(38,7),integer(39,8)]),set_extension(40,[integer(41,0),integer(42,3),integer(43,6)]),set_extension(44,[integer(45,1),integer(46,4),integer(47,7)]),set_extension(48,[integer(49,2),integer(50,5),integer(51,8)]),set_extension(52,[integer(53,0),integer(54,4),integer(55,8)]),set_extension(56,[integer(57,6),integer(58,4),integer(59,2)])]))),member(60,identifier(61,'ThreeInRow'),total_function(62,pow_subset(63,interval(64,integer(65,0),integer(66,8))),bool_set(67)))),equal(68,identifier(69,'ThreeInRow'),union(70,lambda(71,[identifier(72,ps)],conjunct(73,member(74,identifier(75,ps),pow_subset(76,interval(77,integer(78,0),integer(79,8)))),exists(80,[identifier(81,wn)],conjunct(82,member(83,identifier(84,wn),identifier(85,'WinnerRows')),subset(86,identifier(87,wn),identifier(88,ps))))),boolean_true(89)),lambda(90,[identifier(91,ps)],conjunct(92,member(93,identifier(94,ps),pow_subset(95,interval(96,integer(97,0),integer(98,8)))),negation(99,exists(100,[identifier(101,wn)],conjunct(102,member(103,identifier(104,wn),identifier(105,'WinnerRows')),subset(106,identifier(107,wn),identifier(108,ps)))))),boolean_false(109)))))),variables(110,[identifier(111,bposn),identifier(112,rposn),identifier(113,turn)]),invariant(114,conjunct(115,conjunct(116,conjunct(117,subset(118,identifier(119,bposn),interval(120,integer(121,0),integer(122,8))),subset(123,identifier(124,rposn),interval(125,integer(126,0),integer(127,8)))),equal(128,intersection(129,identifier(130,bposn),identifier(131,rposn)),empty_set(132))),member(133,identifier(134,turn),identifier(135,'Player')))),initialisation(136,parallel(137,[assign(138,[identifier(139,bposn)],[empty_set(140)]),assign(141,[identifier(142,rposn)],[empty_set(143)]),assign(144,[identifier(145,turn)],[identifier(146,blue)])])),operations(147,[operation(148,identifier(148,'BlueMove'),[],[identifier(149,pp)],precondition(150,conjunct(151,conjunct(152,conjunct(153,member(154,identifier(155,pp),interval(156,integer(157,0),integer(158,8))),not_member(159,identifier(160,pp),union(161,identifier(162,bposn),identifier(163,rposn)))),equal(164,identifier(165,turn),identifier(166,blue))),equal(167,function(168,identifier(169,'ThreeInRow'),[identifier(170,rposn)]),boolean_false(171))),parallel(172,[assign(173,[identifier(174,bposn)],[union(175,identifier(176,bposn),set_extension(177,[identifier(178,pp)]))]),assign(179,[identifier(180,turn)],[identifier(181,red)])]))),operation(182,identifier(182,'RedMove'),[],[identifier(183,pp)],precondition(184,conjunct(185,conjunct(186,conjunct(187,member(188,identifier(189,pp),interval(190,integer(191,0),integer(192,8))),not_member(193,identifier(194,pp),union(195,identifier(196,bposn),identifier(197,rposn)))),equal(198,identifier(199,turn),identifier(200,red))),equal(201,function(202,identifier(203,'ThreeInRow'),[identifier(204,bposn)]),boolean_false(205))),parallel(206,[assign(207,[identifier(208,rposn)],[union(209,identifier(210,rposn),set_extension(211,[identifier(212,pp)]))]),assign(213,[identifier(214,turn)],[identifier(215,blue)])]))),operation(216,identifier(216,'GameResult'),[identifier(217,result)],[],precondition(218,disjunct(219,disjunct(220,equal(221,function(222,identifier(223,'ThreeInRow'),[identifier(224,bposn)]),boolean_true(225)),equal(226,function(227,identifier(228,'ThreeInRow'),[identifier(229,rposn)]),boolean_true(230))),equal(231,union(232,identifier(233,bposn),identifier(234,rposn)),interval(235,integer(236,0),integer(237,8)))),if(238,equal(239,function(240,identifier(241,'ThreeInRow'),[identifier(242,bposn)]),boolean_true(243)),assign(244,[identifier(245,result)],[identifier(246,blue_win)]),[if_elsif(247,equal(248,function(249,identifier(250,'ThreeInRow'),[identifier(251,rposn)]),boolean_true(252)),assign(253,[identifier(254,result)],[identifier(255,red_win)]))],assign(256,[identifier(257,result)],[identifier(258,draw)]))))])]))]),start_animation,true.
+
+2014-09-20 15:07:35,580 672368 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Connected: 127.0.0.1
+2014-09-20 15:07:35,580 672368 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:07:35,580 672368 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - loading_classical_b(parser_version(2013-04-30 11:58:52.139),TicTacToe,[/Users/ernestocid/Temp/TicTacToe.mch])
+2014-09-20 15:07:35,580 672368 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - % unused_constants([WinnerRows])
+2014-09-20 15:07:35,581 672369 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:35,582 672370 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:35,583 672371 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_38,eval(identifier(none,bposn),'#EXPRESSION',bposn)),true.
+
+2014-09-20 15:07:35,585 672373 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:07:35,585 672373 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:35,586 672374 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:35,586 672374 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_39,eval(identifier(none,rposn),'#EXPRESSION',rposn)),true.
+
+2014-09-20 15:07:35,587 672375 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:07:35,587 672375 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:35,587 672375 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:35,588 672376 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_40,eval(identifier(none,turn),'#EXPRESSION',turn)),true.
+
+2014-09-20 15:07:35,588 672376 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:07:35,589 672377 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:35,589 672377 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:35,590 672378 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_41,eval(subset(none,identifier(none,bposn),interval(none,integer(none,0),integer(none,8))),'#PREDICATE','bposn<:0..8')),true.
+
+2014-09-20 15:07:35,591 672379 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:07:35,592 672380 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:35,593 672381 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:35,593 672381 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_42,eval(subset(none,identifier(none,rposn),interval(none,integer(none,0),integer(none,8))),'#PREDICATE','rposn<:0..8')),true.
+
+2014-09-20 15:07:35,594 672382 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:07:35,594 672382 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:35,595 672383 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:35,595 672383 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_43,eval(equal(none,intersection(none,identifier(none,bposn),identifier(none,rposn)),empty_set(none)),'#PREDICATE','bposn/\\rposn={}')),true.
+
+2014-09-20 15:07:35,596 672384 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:07:35,596 672384 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:35,597 672385 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:35,597 672385 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_44,eval(member(none,identifier(none,turn),identifier(none,'Player')),'#PREDICATE','turn:Player')),true.
+
+2014-09-20 15:07:35,598 672386 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:07:35,599 672387 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:35,600 672388 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:35,600 672388 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(root,APLOps),evaluate_registered_formulas(root,[formula_40,formula_38,formula_43,formula_39,formula_41,formula_44,formula_42],BResults),state_property(initialised,root,CPropResult),state_property(invariantKO,root,DPropResult),state_property(max_operations_reached,root,EPropResult),state_property(timeout_occurred,root,FPropResult),op_timeout_occurred(root,GTO),get_state_errors(root,HErrors),true.
+
+2014-09-20 15:07:36,075 672863 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps','.'(op(0,root,0),[])),'.'(=('BResults',[]),'.'(=('CPropResult',false),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-09-20 15:07:36,075 672863 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - % found_enumeration_of_constants(0,440)
+2014-09-20 15:07:36,075 672863 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - % backtrack(found_enumeration_of_constants(0,440))
+2014-09-20 15:07:36,076 672864 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:36,077 672865 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:36,078 672866 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(0,APLOps),evaluate_registered_formulas(0,[formula_40,formula_38,formula_43,formula_39,formula_41,formula_44,formula_42],BResults),state_property(initialised,0,CPropResult),state_property(invariantKO,0,DPropResult),state_property(max_operations_reached,0,EPropResult),state_property(timeout_occurred,0,FPropResult),op_timeout_occurred(0,GTO),get_state_errors(0,HErrors),true.
+
+2014-09-20 15:07:36,085 672873 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps','.'(op(1,0,1),[])),'.'(=('BResults',[]),'.'(=('CPropResult',false),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-09-20 15:07:36,087 672875 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:36,087 672875 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:36,090 672878 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - find_state_for_predicate(conjunct(none,conjunct(none,equal(none,identifier(none,turn),identifier(none,blue)),equal(none,identifier(none,bposn),empty_set(none))),equal(none,identifier(none,rposn),empty_set(none))),R),true.
+
+2014-09-20 15:07:36,416 673204 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('R',state_found(op(2,root,2),2)),[]))
+2014-09-20 15:07:36,416 673204 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - turn = blue
+2014-09-20 15:07:36,417 673205 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - &
+2014-09-20 15:07:36,417 673205 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - bposn = {}
+2014-09-20 15:07:36,417 673205 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - &
+2014-09-20 15:07:36,417 673205 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - rposn = {}
+2014-09-20 15:07:36,417 673205 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:36,417 673205 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:36,418 673206 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - find_trace_to_node(2,Trace),true.
+
+2014-09-20 15:07:36,420 673208 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Trace','.'(op(2,root,2),[])),[]))
+2014-09-20 15:07:36,420 673208 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 
+2014-09-20 15:07:36,421 673209 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:36,421 673209 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:36,422 673210 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - prob2_execute_custom_operations(2,'BlueMove',equal(none,identifier(none,pp),integer(none,0)),1,NewStateID,Errors),true.
+
+2014-09-20 15:07:36,430 673218 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('NewStateID','.'(op(3,2,3),[])),'.'(=('Errors',[]),[])))
+2014-09-20 15:07:36,431 673219 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - check_additional_guard
+2014-09-20 15:07:36,432 673220 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - pp = 0
+2014-09-20 15:07:36,432 673220 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:36,432 673220 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - checked
+2014-09-20 15:07:36,433 673221 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:36,434 673222 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(3,APLOps),evaluate_registered_formulas(3,[formula_40,formula_38,formula_43,formula_39,formula_41,formula_44,formula_42],BResults),state_property(initialised,3,CPropResult),state_property(invariantKO,3,DPropResult),state_property(max_operations_reached,3,EPropResult),state_property(timeout_occurred,3,FPropResult),op_timeout_occurred(3,GTO),get_state_errors(3,HErrors),true.
+
+2014-09-20 15:07:36,455 673243 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps','.'(op(4,3,4),'.'(op(5,3,5),'.'(op(6,3,6),'.'(op(7,3,7),'.'(op(8,3,8),'.'(op(9,3,9),'.'(op(10,3,10),'.'(op(11,3,11),[]))))))))),'.'(=('BResults','.'(result(v(red,fd(2,'Player')),[],turn),'.'(result(v('{0}',avl_set(node(int(0),true,0,empty,empty))),[],bposn),'.'(result('TRUE',[],'bposn/\\rposn={}'),'.'(result(v({},[]),[],rposn),'.'(result('TRUE',[],'bposn<:0..8'),'.'(result('TRUE',[],'turn:Player'),'.'(result('TRUE',[],'rposn<:0..8'),[])))))))),'.'(=('CPropResult',true),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-09-20 15:07:36,455 673243 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-09-20 15:07:36,455 673243 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - red
+2014-09-20 15:07:36,455 673243 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-09-20 15:07:36,455 673243 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - {0}
+2014-09-20 15:07:36,455 673243 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-09-20 15:07:36,455 673243 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-09-20 15:07:36,456 673244 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - {}
+2014-09-20 15:07:36,456 673244 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-09-20 15:07:36,456 673244 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-09-20 15:07:36,456 673244 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-09-20 15:07:36,459 673247 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:36,459 673247 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:36,508 673296 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 52 - Starting ProB's Prolog Core. Path is /Users/ernestocid/Tools/ProB//probcli.sh
+2014-09-20 15:07:36,566 673354 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 54 - Cli started
+2014-09-20 15:07:36,567 673355 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Running ProB Command-line Interface
+2014-09-20 15:07:36,568 673356 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli -sf
+2014-09-20 15:07:37,507 674295 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to No file to process
+2014-09-20 15:07:37,507 674295 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Starting Socket Server
+2014-09-20 15:07:37,507 674295 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Application Path: /Users/ernestocid/Tools/ProB
+2014-09-20 15:07:37,508 674296 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Port: 54836
+2014-09-20 15:07:37,508 674296 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.PortPattern Method:
+				setValue Line: 34 - Server has startet and listens on port 54836
+2014-09-20 15:07:37,508 674296 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli revision: 90b5c8dba0b66d76cc21d1d9f58cd0882b94d133
+2014-09-20 15:07:37,508 674296 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to user interrupt reference id: 30998
+2014-09-20 15:07:37,508 674296 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.InterruptRefPattern Method:
+				setValue Line: 32 - Server can receive user interrupts via reference 30998
+2014-09-20 15:07:37,509 674297 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 40 - Connecting to port 54836 using key 7f4ee8e3731351a2
+2014-09-20 15:07:37,509 674297 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 47 - Connected
+2014-09-20 15:07:37,511 674299 [Thread-7] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - -- starting command loop --
+2014-09-20 15:07:37,548 674336 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - set_eclipse_preference('SYMBOLIC',true),set_eclipse_preference('CSE_PRED',true),set_eclipse_preference('SYMMETRY_MODE',off),set_eclipse_preference('DEFAULT_SETSIZE','2'),set_eclipse_preference('KODKOD_ONLY_FULL',true),set_eclipse_preference('CSE_WD_ONLY',false),set_eclipse_preference('TIME_OUT','2500'),set_eclipse_preference('KODKOD',false),set_eclipse_preference('NUMBER_OF_ANIMATED_ABSTRACTIONS','20'),set_eclipse_preference('USE_RECORD_CONSTRUCTION',true),set_eclipse_preference('MEMO',false),set_eclipse_preference('MAX_OPERATIONS','10'),set_eclipse_preference('CSE',false),set_eclipse_preference('MAXINT','30'),set_eclipse_preference('ALLOW_INCOMPLETE_SETUP_CONSTANTS',false),set_eclipse_preference('MININT','-20'),set_eclipse_preference('STATIC_ORDERING',false),set_eclipse_preference('COMPRESSION',false),set_eclipse_preference('MAX_INITIALISATIONS','4'),set_eclipse_preference('TRY_FIND_ABORT',false),set_eclipse_preference('CLPFD',true),set_eclipse_preference('CHR',false),set_eclipse_preference('PROOF_INFO',true),set_eclipse_preference('SMT',false),load_classical_b_from_list_of_facts('/Users/ernestocid/Temp/TicTacToe.mch',[parser_version('2013-04-30 11:58:52.139'),classical_b('TicTacToe',['/Users/ernestocid/Temp/TicTacToe.mch']),machine(abstract_machine(1,machine(2),machine_header(3,'TicTacToe',[]),[sets(4,[enumerated_set(5,'Player',[identifier(6,blue),identifier(7,red)]),enumerated_set(8,'Result',[identifier(9,blue_win),identifier(10,red_win),identifier(11,draw)])]),constants(12,[identifier(13,'WinnerRows'),identifier(14,'ThreeInRow')]),properties(15,conjunct(16,conjunct(17,conjunct(18,subset(19,identifier(20,'WinnerRows'),pow_subset(21,interval(22,integer(23,0),integer(24,8)))),equal(25,identifier(26,'WinnerRows'),set_extension(27,[set_extension(28,[integer(29,0),integer(30,1),integer(31,2)]),set_extension(32,[integer(33,3),integer(34,4),integer(35,5)]),set_extension(36,[integer(37,6),integer(38,7),integer(39,8)]),set_extension(40,[integer(41,0),integer(42,3),integer(43,6)]),set_extension(44,[integer(45,1),integer(46,4),integer(47,7)]),set_extension(48,[integer(49,2),integer(50,5),integer(51,8)]),set_extension(52,[integer(53,0),integer(54,4),integer(55,8)]),set_extension(56,[integer(57,6),integer(58,4),integer(59,2)])]))),member(60,identifier(61,'ThreeInRow'),total_function(62,pow_subset(63,interval(64,integer(65,0),integer(66,8))),bool_set(67)))),equal(68,identifier(69,'ThreeInRow'),union(70,lambda(71,[identifier(72,ps)],conjunct(73,member(74,identifier(75,ps),pow_subset(76,interval(77,integer(78,0),integer(79,8)))),exists(80,[identifier(81,wn)],conjunct(82,member(83,identifier(84,wn),identifier(85,'WinnerRows')),subset(86,identifier(87,wn),identifier(88,ps))))),boolean_true(89)),lambda(90,[identifier(91,ps)],conjunct(92,member(93,identifier(94,ps),pow_subset(95,interval(96,integer(97,0),integer(98,8)))),negation(99,exists(100,[identifier(101,wn)],conjunct(102,member(103,identifier(104,wn),identifier(105,'WinnerRows')),subset(106,identifier(107,wn),identifier(108,ps)))))),boolean_false(109)))))),variables(110,[identifier(111,bposn),identifier(112,rposn),identifier(113,turn)]),invariant(114,conjunct(115,conjunct(116,conjunct(117,subset(118,identifier(119,bposn),interval(120,integer(121,0),integer(122,8))),subset(123,identifier(124,rposn),interval(125,integer(126,0),integer(127,8)))),equal(128,intersection(129,identifier(130,bposn),identifier(131,rposn)),empty_set(132))),member(133,identifier(134,turn),identifier(135,'Player')))),initialisation(136,parallel(137,[assign(138,[identifier(139,bposn)],[empty_set(140)]),assign(141,[identifier(142,rposn)],[empty_set(143)]),assign(144,[identifier(145,turn)],[identifier(146,blue)])])),operations(147,[operation(148,identifier(148,'BlueMove'),[],[identifier(149,pp)],precondition(150,conjunct(151,conjunct(152,conjunct(153,member(154,identifier(155,pp),interval(156,integer(157,0),integer(158,8))),not_member(159,identifier(160,pp),union(161,identifier(162,bposn),identifier(163,rposn)))),equal(164,identifier(165,turn),identifier(166,blue))),equal(167,function(168,identifier(169,'ThreeInRow'),[identifier(170,rposn)]),boolean_false(171))),parallel(172,[assign(173,[identifier(174,bposn)],[union(175,identifier(176,bposn),set_extension(177,[identifier(178,pp)]))]),assign(179,[identifier(180,turn)],[identifier(181,red)])]))),operation(182,identifier(182,'RedMove'),[],[identifier(183,pp)],precondition(184,conjunct(185,conjunct(186,conjunct(187,member(188,identifier(189,pp),interval(190,integer(191,0),integer(192,8))),not_member(193,identifier(194,pp),union(195,identifier(196,bposn),identifier(197,rposn)))),equal(198,identifier(199,turn),identifier(200,red))),equal(201,function(202,identifier(203,'ThreeInRow'),[identifier(204,bposn)]),boolean_false(205))),parallel(206,[assign(207,[identifier(208,rposn)],[union(209,identifier(210,rposn),set_extension(211,[identifier(212,pp)]))]),assign(213,[identifier(214,turn)],[identifier(215,blue)])]))),operation(216,identifier(216,'GameResult'),[identifier(217,result)],[],precondition(218,disjunct(219,disjunct(220,equal(221,function(222,identifier(223,'ThreeInRow'),[identifier(224,bposn)]),boolean_true(225)),equal(226,function(227,identifier(228,'ThreeInRow'),[identifier(229,rposn)]),boolean_true(230))),equal(231,union(232,identifier(233,bposn),identifier(234,rposn)),interval(235,integer(236,0),integer(237,8)))),if(238,equal(239,function(240,identifier(241,'ThreeInRow'),[identifier(242,bposn)]),boolean_true(243)),assign(244,[identifier(245,result)],[identifier(246,blue_win)]),[if_elsif(247,equal(248,function(249,identifier(250,'ThreeInRow'),[identifier(251,rposn)]),boolean_true(252)),assign(253,[identifier(254,result)],[identifier(255,red_win)]))],assign(256,[identifier(257,result)],[identifier(258,draw)]))))])]))]),start_animation,true.
+
+2014-09-20 15:07:37,672 674460 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:07:37,672 674460 [Thread-7] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Connected: 127.0.0.1
+2014-09-20 15:07:37,673 674461 [Thread-7] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - loading_classical_b(parser_version(2013-04-30 11:58:52.139),TicTacToe,[/Users/ernestocid/Temp/TicTacToe.mch])
+2014-09-20 15:07:37,673 674461 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:37,673 674461 [Thread-7] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - % unused_constants([WinnerRows])
+2014-09-20 15:07:37,674 674462 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:37,675 674463 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_69,eval(identifier(none,bposn),'#EXPRESSION',bposn)),true.
+
+2014-09-20 15:07:37,677 674465 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:07:37,678 674466 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:37,678 674466 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:37,679 674467 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_70,eval(identifier(none,rposn),'#EXPRESSION',rposn)),true.
+
+2014-09-20 15:07:37,679 674467 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:07:37,680 674468 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:37,680 674468 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:37,681 674469 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_71,eval(identifier(none,turn),'#EXPRESSION',turn)),true.
+
+2014-09-20 15:07:37,682 674470 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:07:37,682 674470 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:37,683 674471 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:37,685 674473 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_72,eval(subset(none,identifier(none,bposn),interval(none,integer(none,0),integer(none,8))),'#PREDICATE','bposn<:0..8')),true.
+
+2014-09-20 15:07:37,686 674474 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:07:37,687 674475 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:37,687 674475 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:37,688 674476 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_73,eval(subset(none,identifier(none,rposn),interval(none,integer(none,0),integer(none,8))),'#PREDICATE','rposn<:0..8')),true.
+
+2014-09-20 15:07:37,689 674477 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:07:37,689 674477 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:37,689 674477 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:37,690 674478 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_74,eval(equal(none,intersection(none,identifier(none,bposn),identifier(none,rposn)),empty_set(none)),'#PREDICATE','bposn/\\rposn={}')),true.
+
+2014-09-20 15:07:37,690 674478 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:07:37,691 674479 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:37,691 674479 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:37,692 674480 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_75,eval(member(none,identifier(none,turn),identifier(none,'Player')),'#PREDICATE','turn:Player')),true.
+
+2014-09-20 15:07:37,692 674480 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:07:37,692 674480 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:37,693 674481 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:37,694 674482 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(root,APLOps),evaluate_registered_formulas(root,[formula_71,formula_69,formula_74,formula_70,formula_72,formula_75,formula_73],BResults),state_property(initialised,root,CPropResult),state_property(invariantKO,root,DPropResult),state_property(max_operations_reached,root,EPropResult),state_property(timeout_occurred,root,FPropResult),op_timeout_occurred(root,GTO),get_state_errors(root,HErrors),true.
+
+2014-09-20 15:07:38,175 674963 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps','.'(op(0,root,0),[])),'.'(=('BResults',[]),'.'(=('CPropResult',false),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-09-20 15:07:38,175 674963 [Thread-7] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - % found_enumeration_of_constants(0,450)
+2014-09-20 15:07:38,175 674963 [Thread-7] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - % backtrack(found_enumeration_of_constants(0,450))
+2014-09-20 15:07:38,177 674965 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:38,177 674965 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:38,178 674966 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(0,APLOps),evaluate_registered_formulas(0,[formula_71,formula_69,formula_74,formula_70,formula_72,formula_75,formula_73],BResults),state_property(initialised,0,CPropResult),state_property(invariantKO,0,DPropResult),state_property(max_operations_reached,0,EPropResult),state_property(timeout_occurred,0,FPropResult),op_timeout_occurred(0,GTO),get_state_errors(0,HErrors),true.
+
+2014-09-20 15:07:38,185 674973 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps','.'(op(1,0,1),[])),'.'(=('BResults',[]),'.'(=('CPropResult',false),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-09-20 15:07:38,186 674974 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:38,187 674975 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:38,188 674976 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - find_state_for_predicate(conjunct(none,conjunct(none,equal(none,identifier(none,turn),identifier(none,blue)),equal(none,identifier(none,bposn),empty_set(none))),equal(none,identifier(none,rposn),empty_set(none))),R),true.
+
+2014-09-20 15:07:38,493 675281 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('R',state_found(op(2,root,2),2)),[]))
+2014-09-20 15:07:38,493 675281 [Thread-7] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - turn = blue
+2014-09-20 15:07:38,493 675281 [Thread-7] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - &
+2014-09-20 15:07:38,494 675282 [Thread-7] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - bposn = {}
+2014-09-20 15:07:38,494 675282 [Thread-7] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - &
+2014-09-20 15:07:38,494 675282 [Thread-7] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - rposn = {}
+2014-09-20 15:07:38,494 675282 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:38,494 675282 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:38,495 675283 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - find_trace_to_node(2,Trace),true.
+
+2014-09-20 15:07:38,497 675285 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Trace','.'(op(2,root,2),[])),[]))
+2014-09-20 15:07:38,497 675285 [Thread-7] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 
+2014-09-20 15:07:38,498 675286 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:38,498 675286 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:38,500 675288 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - prob2_execute_custom_operations(2,'BlueMove',equal(none,identifier(none,pp),integer(none,0)),1,NewStateID,Errors),true.
+
+2014-09-20 15:07:38,508 675296 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('NewStateID','.'(op(3,2,3),[])),'.'(=('Errors',[]),[])))
+2014-09-20 15:07:38,508 675296 [Thread-7] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - check_additional_guard
+2014-09-20 15:07:38,509 675297 [Thread-7] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - pp = 0
+2014-09-20 15:07:38,509 675297 [Thread-7] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - checked
+2014-09-20 15:07:38,509 675297 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:38,510 675298 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:38,511 675299 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(3,APLOps),evaluate_registered_formulas(3,[formula_71,formula_69,formula_74,formula_70,formula_72,formula_75,formula_73],BResults),state_property(initialised,3,CPropResult),state_property(invariantKO,3,DPropResult),state_property(max_operations_reached,3,EPropResult),state_property(timeout_occurred,3,FPropResult),op_timeout_occurred(3,GTO),get_state_errors(3,HErrors),true.
+
+2014-09-20 15:07:38,535 675323 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps','.'(op(4,3,4),'.'(op(5,3,5),'.'(op(6,3,6),'.'(op(7,3,7),'.'(op(8,3,8),'.'(op(9,3,9),'.'(op(10,3,10),'.'(op(11,3,11),[]))))))))),'.'(=('BResults','.'(result(v(red,fd(2,'Player')),[],turn),'.'(result(v('{0}',avl_set(node(int(0),true,0,empty,empty))),[],bposn),'.'(result('TRUE',[],'bposn/\\rposn={}'),'.'(result(v({},[]),[],rposn),'.'(result('TRUE',[],'bposn<:0..8'),'.'(result('TRUE',[],'turn:Player'),'.'(result('TRUE',[],'rposn<:0..8'),[])))))))),'.'(=('CPropResult',true),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-09-20 15:07:38,535 675323 [Thread-7] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-09-20 15:07:38,535 675323 [Thread-7] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - red
+2014-09-20 15:07:38,535 675323 [Thread-7] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-09-20 15:07:38,536 675324 [Thread-7] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - {0}
+2014-09-20 15:07:38,536 675324 [Thread-7] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-09-20 15:07:38,536 675324 [Thread-7] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-09-20 15:07:38,536 675324 [Thread-7] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - {}
+2014-09-20 15:07:38,536 675324 [Thread-7] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-09-20 15:07:38,536 675324 [Thread-7] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-09-20 15:07:38,536 675324 [Thread-7] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-09-20 15:07:38,540 675328 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:38,540 675328 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:39,262 676050 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 52 - Starting ProB's Prolog Core. Path is /Users/ernestocid/Tools/ProB//probcli.sh
+2014-09-20 15:07:39,309 676097 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 54 - Cli started
+2014-09-20 15:07:39,312 676100 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Running ProB Command-line Interface
+2014-09-20 15:07:39,313 676101 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli -sf
+2014-09-20 15:07:40,371 677159 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to No file to process
+2014-09-20 15:07:40,372 677160 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Starting Socket Server
+2014-09-20 15:07:40,372 677160 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Application Path: /Users/ernestocid/Tools/ProB
+2014-09-20 15:07:40,372 677160 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Port: 54838
+2014-09-20 15:07:40,373 677161 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.PortPattern Method:
+				setValue Line: 34 - Server has startet and listens on port 54838
+2014-09-20 15:07:40,373 677161 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli revision: 90b5c8dba0b66d76cc21d1d9f58cd0882b94d133
+2014-09-20 15:07:40,373 677161 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to user interrupt reference id: 31002
+2014-09-20 15:07:40,374 677162 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.InterruptRefPattern Method:
+				setValue Line: 32 - Server can receive user interrupts via reference 31002
+2014-09-20 15:07:40,374 677162 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 40 - Connecting to port 54838 using key 7f4ee8e3731351a2
+2014-09-20 15:07:40,375 677163 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 47 - Connected
+2014-09-20 15:07:40,376 677164 [Thread-9] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - -- starting command loop --
+2014-09-20 15:07:40,412 677200 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - set_eclipse_preference('SYMBOLIC',true),set_eclipse_preference('CSE_PRED',true),set_eclipse_preference('SYMMETRY_MODE',off),set_eclipse_preference('DEFAULT_SETSIZE','2'),set_eclipse_preference('KODKOD_ONLY_FULL',true),set_eclipse_preference('CSE_WD_ONLY',false),set_eclipse_preference('TIME_OUT','2500'),set_eclipse_preference('KODKOD',false),set_eclipse_preference('NUMBER_OF_ANIMATED_ABSTRACTIONS','20'),set_eclipse_preference('USE_RECORD_CONSTRUCTION',true),set_eclipse_preference('MEMO',false),set_eclipse_preference('MAX_OPERATIONS','10'),set_eclipse_preference('CSE',false),set_eclipse_preference('MAXINT','30'),set_eclipse_preference('ALLOW_INCOMPLETE_SETUP_CONSTANTS',false),set_eclipse_preference('MININT','-20'),set_eclipse_preference('STATIC_ORDERING',false),set_eclipse_preference('COMPRESSION',false),set_eclipse_preference('MAX_INITIALISATIONS','4'),set_eclipse_preference('TRY_FIND_ABORT',false),set_eclipse_preference('CLPFD',true),set_eclipse_preference('CHR',false),set_eclipse_preference('PROOF_INFO',true),set_eclipse_preference('SMT',false),load_classical_b_from_list_of_facts('/Users/ernestocid/Temp/TicTacToe.mch',[parser_version('2013-04-30 11:58:52.139'),classical_b('TicTacToe',['/Users/ernestocid/Temp/TicTacToe.mch']),machine(abstract_machine(1,machine(2),machine_header(3,'TicTacToe',[]),[sets(4,[enumerated_set(5,'Player',[identifier(6,blue),identifier(7,red)]),enumerated_set(8,'Result',[identifier(9,blue_win),identifier(10,red_win),identifier(11,draw)])]),constants(12,[identifier(13,'WinnerRows'),identifier(14,'ThreeInRow')]),properties(15,conjunct(16,conjunct(17,conjunct(18,subset(19,identifier(20,'WinnerRows'),pow_subset(21,interval(22,integer(23,0),integer(24,8)))),equal(25,identifier(26,'WinnerRows'),set_extension(27,[set_extension(28,[integer(29,0),integer(30,1),integer(31,2)]),set_extension(32,[integer(33,3),integer(34,4),integer(35,5)]),set_extension(36,[integer(37,6),integer(38,7),integer(39,8)]),set_extension(40,[integer(41,0),integer(42,3),integer(43,6)]),set_extension(44,[integer(45,1),integer(46,4),integer(47,7)]),set_extension(48,[integer(49,2),integer(50,5),integer(51,8)]),set_extension(52,[integer(53,0),integer(54,4),integer(55,8)]),set_extension(56,[integer(57,6),integer(58,4),integer(59,2)])]))),member(60,identifier(61,'ThreeInRow'),total_function(62,pow_subset(63,interval(64,integer(65,0),integer(66,8))),bool_set(67)))),equal(68,identifier(69,'ThreeInRow'),union(70,lambda(71,[identifier(72,ps)],conjunct(73,member(74,identifier(75,ps),pow_subset(76,interval(77,integer(78,0),integer(79,8)))),exists(80,[identifier(81,wn)],conjunct(82,member(83,identifier(84,wn),identifier(85,'WinnerRows')),subset(86,identifier(87,wn),identifier(88,ps))))),boolean_true(89)),lambda(90,[identifier(91,ps)],conjunct(92,member(93,identifier(94,ps),pow_subset(95,interval(96,integer(97,0),integer(98,8)))),negation(99,exists(100,[identifier(101,wn)],conjunct(102,member(103,identifier(104,wn),identifier(105,'WinnerRows')),subset(106,identifier(107,wn),identifier(108,ps)))))),boolean_false(109)))))),variables(110,[identifier(111,bposn),identifier(112,rposn),identifier(113,turn)]),invariant(114,conjunct(115,conjunct(116,conjunct(117,subset(118,identifier(119,bposn),interval(120,integer(121,0),integer(122,8))),subset(123,identifier(124,rposn),interval(125,integer(126,0),integer(127,8)))),equal(128,intersection(129,identifier(130,bposn),identifier(131,rposn)),empty_set(132))),member(133,identifier(134,turn),identifier(135,'Player')))),initialisation(136,parallel(137,[assign(138,[identifier(139,bposn)],[empty_set(140)]),assign(141,[identifier(142,rposn)],[empty_set(143)]),assign(144,[identifier(145,turn)],[identifier(146,blue)])])),operations(147,[operation(148,identifier(148,'BlueMove'),[],[identifier(149,pp)],precondition(150,conjunct(151,conjunct(152,conjunct(153,member(154,identifier(155,pp),interval(156,integer(157,0),integer(158,8))),not_member(159,identifier(160,pp),union(161,identifier(162,bposn),identifier(163,rposn)))),equal(164,identifier(165,turn),identifier(166,blue))),equal(167,function(168,identifier(169,'ThreeInRow'),[identifier(170,rposn)]),boolean_false(171))),parallel(172,[assign(173,[identifier(174,bposn)],[union(175,identifier(176,bposn),set_extension(177,[identifier(178,pp)]))]),assign(179,[identifier(180,turn)],[identifier(181,red)])]))),operation(182,identifier(182,'RedMove'),[],[identifier(183,pp)],precondition(184,conjunct(185,conjunct(186,conjunct(187,member(188,identifier(189,pp),interval(190,integer(191,0),integer(192,8))),not_member(193,identifier(194,pp),union(195,identifier(196,bposn),identifier(197,rposn)))),equal(198,identifier(199,turn),identifier(200,red))),equal(201,function(202,identifier(203,'ThreeInRow'),[identifier(204,bposn)]),boolean_false(205))),parallel(206,[assign(207,[identifier(208,rposn)],[union(209,identifier(210,rposn),set_extension(211,[identifier(212,pp)]))]),assign(213,[identifier(214,turn)],[identifier(215,blue)])]))),operation(216,identifier(216,'GameResult'),[identifier(217,result)],[],precondition(218,disjunct(219,disjunct(220,equal(221,function(222,identifier(223,'ThreeInRow'),[identifier(224,bposn)]),boolean_true(225)),equal(226,function(227,identifier(228,'ThreeInRow'),[identifier(229,rposn)]),boolean_true(230))),equal(231,union(232,identifier(233,bposn),identifier(234,rposn)),interval(235,integer(236,0),integer(237,8)))),if(238,equal(239,function(240,identifier(241,'ThreeInRow'),[identifier(242,bposn)]),boolean_true(243)),assign(244,[identifier(245,result)],[identifier(246,blue_win)]),[if_elsif(247,equal(248,function(249,identifier(250,'ThreeInRow'),[identifier(251,rposn)]),boolean_true(252)),assign(253,[identifier(254,result)],[identifier(255,red_win)]))],assign(256,[identifier(257,result)],[identifier(258,draw)]))))])]))]),start_animation,true.
+
+2014-09-20 15:07:40,513 677301 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:07:40,513 677301 [Thread-9] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Connected: 127.0.0.1
+2014-09-20 15:07:40,513 677301 [Thread-9] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - loading_classical_b(parser_version(2013-04-30 11:58:52.139),TicTacToe,[/Users/ernestocid/Temp/TicTacToe.mch])
+2014-09-20 15:07:40,513 677301 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:40,513 677301 [Thread-9] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - % unused_constants([WinnerRows])
+2014-09-20 15:07:40,514 677302 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:40,515 677303 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_100,eval(identifier(none,bposn),'#EXPRESSION',bposn)),true.
+
+2014-09-20 15:07:40,517 677305 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:07:40,518 677306 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:40,518 677306 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:40,518 677306 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_101,eval(identifier(none,rposn),'#EXPRESSION',rposn)),true.
+
+2014-09-20 15:07:40,519 677307 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:07:40,519 677307 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:40,520 677308 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:40,520 677308 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_102,eval(identifier(none,turn),'#EXPRESSION',turn)),true.
+
+2014-09-20 15:07:40,521 677309 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:07:40,521 677309 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:40,521 677309 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:40,522 677310 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_103,eval(subset(none,identifier(none,bposn),interval(none,integer(none,0),integer(none,8))),'#PREDICATE','bposn<:0..8')),true.
+
+2014-09-20 15:07:40,523 677311 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:07:40,523 677311 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:40,524 677312 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:40,524 677312 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_104,eval(subset(none,identifier(none,rposn),interval(none,integer(none,0),integer(none,8))),'#PREDICATE','rposn<:0..8')),true.
+
+2014-09-20 15:07:40,525 677313 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:07:40,525 677313 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:40,526 677314 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:40,526 677314 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_105,eval(equal(none,intersection(none,identifier(none,bposn),identifier(none,rposn)),empty_set(none)),'#PREDICATE','bposn/\\rposn={}')),true.
+
+2014-09-20 15:07:40,527 677315 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:07:40,527 677315 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:40,527 677315 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:40,528 677316 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_106,eval(member(none,identifier(none,turn),identifier(none,'Player')),'#PREDICATE','turn:Player')),true.
+
+2014-09-20 15:07:40,528 677316 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:07:40,529 677317 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:40,529 677317 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:40,530 677318 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(root,APLOps),evaluate_registered_formulas(root,[formula_102,formula_100,formula_105,formula_101,formula_103,formula_106,formula_104],BResults),state_property(initialised,root,CPropResult),state_property(invariantKO,root,DPropResult),state_property(max_operations_reached,root,EPropResult),state_property(timeout_occurred,root,FPropResult),op_timeout_occurred(root,GTO),get_state_errors(root,HErrors),true.
+
+2014-09-20 15:07:41,005 677793 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps','.'(op(0,root,0),[])),'.'(=('BResults',[]),'.'(=('CPropResult',false),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-09-20 15:07:41,005 677793 [Thread-9] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - % found_enumeration_of_constants(0,440)
+2014-09-20 15:07:41,005 677793 [Thread-9] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - % backtrack(found_enumeration_of_constants(0,440))
+2014-09-20 15:07:41,006 677794 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:41,007 677795 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:41,008 677796 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(0,APLOps),evaluate_registered_formulas(0,[formula_102,formula_100,formula_105,formula_101,formula_103,formula_106,formula_104],BResults),state_property(initialised,0,CPropResult),state_property(invariantKO,0,DPropResult),state_property(max_operations_reached,0,EPropResult),state_property(timeout_occurred,0,FPropResult),op_timeout_occurred(0,GTO),get_state_errors(0,HErrors),true.
+
+2014-09-20 15:07:41,015 677803 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps','.'(op(1,0,1),[])),'.'(=('BResults',[]),'.'(=('CPropResult',false),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-09-20 15:07:41,017 677805 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:41,017 677805 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:41,019 677807 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - find_state_for_predicate(conjunct(none,conjunct(none,equal(none,identifier(none,turn),identifier(none,blue)),equal(none,identifier(none,bposn),empty_set(none))),equal(none,identifier(none,rposn),empty_set(none))),R),true.
+
+2014-09-20 15:07:41,326 678114 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('R',state_found(op(2,root,2),2)),[]))
+2014-09-20 15:07:41,326 678114 [Thread-9] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - turn = blue
+2014-09-20 15:07:41,327 678115 [Thread-9] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - &
+2014-09-20 15:07:41,327 678115 [Thread-9] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - bposn = {}
+2014-09-20 15:07:41,327 678115 [Thread-9] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - &
+2014-09-20 15:07:41,327 678115 [Thread-9] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - rposn = {}
+2014-09-20 15:07:41,327 678115 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:41,328 678116 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:41,328 678116 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - find_trace_to_node(2,Trace),true.
+
+2014-09-20 15:07:41,330 678118 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Trace','.'(op(2,root,2),[])),[]))
+2014-09-20 15:07:41,330 678118 [Thread-9] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 
+2014-09-20 15:07:41,330 678118 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:41,331 678119 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:41,332 678120 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - prob2_execute_custom_operations(2,'BlueMove',equal(none,identifier(none,pp),integer(none,0)),1,NewStateID,Errors),true.
+
+2014-09-20 15:07:41,340 678128 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('NewStateID','.'(op(3,2,3),[])),'.'(=('Errors',[]),[])))
+2014-09-20 15:07:41,340 678128 [Thread-9] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - check_additional_guard
+2014-09-20 15:07:41,340 678128 [Thread-9] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - pp = 0
+2014-09-20 15:07:41,340 678128 [Thread-9] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - checked
+2014-09-20 15:07:41,341 678129 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:41,341 678129 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:07:41,342 678130 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(3,APLOps),evaluate_registered_formulas(3,[formula_102,formula_100,formula_105,formula_101,formula_103,formula_106,formula_104],BResults),state_property(initialised,3,CPropResult),state_property(invariantKO,3,DPropResult),state_property(max_operations_reached,3,EPropResult),state_property(timeout_occurred,3,FPropResult),op_timeout_occurred(3,GTO),get_state_errors(3,HErrors),true.
+
+2014-09-20 15:07:41,362 678150 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps','.'(op(4,3,4),'.'(op(5,3,5),'.'(op(6,3,6),'.'(op(7,3,7),'.'(op(8,3,8),'.'(op(9,3,9),'.'(op(10,3,10),'.'(op(11,3,11),[]))))))))),'.'(=('BResults','.'(result(v(red,fd(2,'Player')),[],turn),'.'(result(v('{0}',avl_set(node(int(0),true,0,empty,empty))),[],bposn),'.'(result('TRUE',[],'bposn/\\rposn={}'),'.'(result(v({},[]),[],rposn),'.'(result('TRUE',[],'bposn<:0..8'),'.'(result('TRUE',[],'turn:Player'),'.'(result('TRUE',[],'rposn<:0..8'),[])))))))),'.'(=('CPropResult',true),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-09-20 15:07:41,362 678150 [Thread-9] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-09-20 15:07:41,362 678150 [Thread-9] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - red
+2014-09-20 15:07:41,362 678150 [Thread-9] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-09-20 15:07:41,362 678150 [Thread-9] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - {0}
+2014-09-20 15:07:41,362 678150 [Thread-9] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-09-20 15:07:41,362 678150 [Thread-9] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-09-20 15:07:41,362 678150 [Thread-9] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - {}
+2014-09-20 15:07:41,362 678150 [Thread-9] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-09-20 15:07:41,362 678150 [Thread-9] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-09-20 15:07:41,363 678151 [Thread-9] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-09-20 15:07:41,365 678153 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:07:41,366 678154 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:30:32,081 17093 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 52 - Starting ProB's Prolog Core. Path is /Users/ernestocid/Tools/ProB//probcli.sh
+2014-09-20 15:30:32,111 17123 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 54 - Cli started
+2014-09-20 15:30:32,115 17127 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Running ProB Command-line Interface
+2014-09-20 15:30:32,116 17128 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli -sf
+2014-09-20 15:30:32,868 17880 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to No file to process
+2014-09-20 15:30:32,868 17880 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Starting Socket Server
+2014-09-20 15:30:32,868 17880 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Application Path: /Users/ernestocid/Tools/ProB
+2014-09-20 15:30:32,868 17880 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Port: 54999
+2014-09-20 15:30:32,868 17880 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.PortPattern Method:
+				setValue Line: 34 - Server has startet and listens on port 54999
+2014-09-20 15:30:32,869 17881 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli revision: 90b5c8dba0b66d76cc21d1d9f58cd0882b94d133
+2014-09-20 15:30:32,869 17881 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to user interrupt reference id: 31086
+2014-09-20 15:30:32,869 17881 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.InterruptRefPattern Method:
+				setValue Line: 32 - Server can receive user interrupts via reference 31086
+2014-09-20 15:30:32,870 17882 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 40 - Connecting to port 54999 using key 3a1629d76a3897a
+2014-09-20 15:30:32,871 17883 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 47 - Connected
+2014-09-20 15:30:32,873 17885 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - -- starting command loop --
+2014-09-20 15:30:33,096 18108 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - set_eclipse_preference('SYMBOLIC',true),set_eclipse_preference('CSE_PRED',true),set_eclipse_preference('SYMMETRY_MODE',off),set_eclipse_preference('DEFAULT_SETSIZE','2'),set_eclipse_preference('KODKOD_ONLY_FULL',true),set_eclipse_preference('CSE_WD_ONLY',false),set_eclipse_preference('TIME_OUT','2500'),set_eclipse_preference('KODKOD',false),set_eclipse_preference('NUMBER_OF_ANIMATED_ABSTRACTIONS','20'),set_eclipse_preference('USE_RECORD_CONSTRUCTION',true),set_eclipse_preference('MEMO',false),set_eclipse_preference('MAX_OPERATIONS','10'),set_eclipse_preference('CSE',false),set_eclipse_preference('MAXINT','30'),set_eclipse_preference('ALLOW_INCOMPLETE_SETUP_CONSTANTS',false),set_eclipse_preference('MININT','-20'),set_eclipse_preference('STATIC_ORDERING',false),set_eclipse_preference('COMPRESSION',false),set_eclipse_preference('MAX_INITIALISATIONS','4'),set_eclipse_preference('TRY_FIND_ABORT',false),set_eclipse_preference('CLPFD',true),set_eclipse_preference('CHR',false),set_eclipse_preference('PROOF_INFO',true),set_eclipse_preference('SMT',false),load_classical_b_from_list_of_facts('/Users/ernestocid/Temp/TicTacToe.mch',[parser_version('2013-04-30 11:58:52.139'),classical_b('TicTacToe',['/Users/ernestocid/Temp/TicTacToe.mch']),machine(abstract_machine(1,machine(2),machine_header(3,'TicTacToe',[]),[sets(4,[enumerated_set(5,'Player',[identifier(6,blue),identifier(7,red)]),enumerated_set(8,'Result',[identifier(9,blue_win),identifier(10,red_win),identifier(11,draw)])]),constants(12,[identifier(13,'WinnerRows'),identifier(14,'ThreeInRow')]),properties(15,conjunct(16,conjunct(17,conjunct(18,subset(19,identifier(20,'WinnerRows'),pow_subset(21,interval(22,integer(23,0),integer(24,8)))),equal(25,identifier(26,'WinnerRows'),set_extension(27,[set_extension(28,[integer(29,0),integer(30,1),integer(31,2)]),set_extension(32,[integer(33,3),integer(34,4),integer(35,5)]),set_extension(36,[integer(37,6),integer(38,7),integer(39,8)]),set_extension(40,[integer(41,0),integer(42,3),integer(43,6)]),set_extension(44,[integer(45,1),integer(46,4),integer(47,7)]),set_extension(48,[integer(49,2),integer(50,5),integer(51,8)]),set_extension(52,[integer(53,0),integer(54,4),integer(55,8)]),set_extension(56,[integer(57,6),integer(58,4),integer(59,2)])]))),member(60,identifier(61,'ThreeInRow'),total_function(62,pow_subset(63,interval(64,integer(65,0),integer(66,8))),bool_set(67)))),equal(68,identifier(69,'ThreeInRow'),union(70,lambda(71,[identifier(72,ps)],conjunct(73,member(74,identifier(75,ps),pow_subset(76,interval(77,integer(78,0),integer(79,8)))),exists(80,[identifier(81,wn)],conjunct(82,member(83,identifier(84,wn),identifier(85,'WinnerRows')),subset(86,identifier(87,wn),identifier(88,ps))))),boolean_true(89)),lambda(90,[identifier(91,ps)],conjunct(92,member(93,identifier(94,ps),pow_subset(95,interval(96,integer(97,0),integer(98,8)))),negation(99,exists(100,[identifier(101,wn)],conjunct(102,member(103,identifier(104,wn),identifier(105,'WinnerRows')),subset(106,identifier(107,wn),identifier(108,ps)))))),boolean_false(109)))))),variables(110,[identifier(111,bposn),identifier(112,rposn),identifier(113,turn)]),invariant(114,conjunct(115,conjunct(116,conjunct(117,subset(118,identifier(119,bposn),interval(120,integer(121,0),integer(122,8))),subset(123,identifier(124,rposn),interval(125,integer(126,0),integer(127,8)))),equal(128,intersection(129,identifier(130,bposn),identifier(131,rposn)),empty_set(132))),member(133,identifier(134,turn),identifier(135,'Player')))),initialisation(136,parallel(137,[assign(138,[identifier(139,bposn)],[empty_set(140)]),assign(141,[identifier(142,rposn)],[empty_set(143)]),assign(144,[identifier(145,turn)],[identifier(146,blue)])])),operations(147,[operation(148,identifier(148,'BlueMove'),[],[identifier(149,pp)],precondition(150,conjunct(151,conjunct(152,conjunct(153,member(154,identifier(155,pp),interval(156,integer(157,0),integer(158,8))),not_member(159,identifier(160,pp),union(161,identifier(162,bposn),identifier(163,rposn)))),equal(164,identifier(165,turn),identifier(166,blue))),equal(167,function(168,identifier(169,'ThreeInRow'),[identifier(170,rposn)]),boolean_false(171))),parallel(172,[assign(173,[identifier(174,bposn)],[union(175,identifier(176,bposn),set_extension(177,[identifier(178,pp)]))]),assign(179,[identifier(180,turn)],[identifier(181,red)])]))),operation(182,identifier(182,'RedMove'),[],[identifier(183,pp)],precondition(184,conjunct(185,conjunct(186,conjunct(187,member(188,identifier(189,pp),interval(190,integer(191,0),integer(192,8))),not_member(193,identifier(194,pp),union(195,identifier(196,bposn),identifier(197,rposn)))),equal(198,identifier(199,turn),identifier(200,red))),equal(201,function(202,identifier(203,'ThreeInRow'),[identifier(204,bposn)]),boolean_false(205))),parallel(206,[assign(207,[identifier(208,rposn)],[union(209,identifier(210,rposn),set_extension(211,[identifier(212,pp)]))]),assign(213,[identifier(214,turn)],[identifier(215,blue)])]))),operation(216,identifier(216,'GameResult'),[identifier(217,result)],[],precondition(218,disjunct(219,disjunct(220,equal(221,function(222,identifier(223,'ThreeInRow'),[identifier(224,bposn)]),boolean_true(225)),equal(226,function(227,identifier(228,'ThreeInRow'),[identifier(229,rposn)]),boolean_true(230))),equal(231,union(232,identifier(233,bposn),identifier(234,rposn)),interval(235,integer(236,0),integer(237,8)))),if(238,equal(239,function(240,identifier(241,'ThreeInRow'),[identifier(242,bposn)]),boolean_true(243)),assign(244,[identifier(245,result)],[identifier(246,blue_win)]),[if_elsif(247,equal(248,function(249,identifier(250,'ThreeInRow'),[identifier(251,rposn)]),boolean_true(252)),assign(253,[identifier(254,result)],[identifier(255,red_win)]))],assign(256,[identifier(257,result)],[identifier(258,draw)]))))])]))]),start_animation,true.
+
+2014-09-20 15:30:33,207 18219 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:30:33,209 18221 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Connected: 127.0.0.1
+2014-09-20 15:30:33,209 18221 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - loading_classical_b(parser_version(2013-04-30 11:58:52.139),TicTacToe,[/Users/ernestocid/Temp/TicTacToe.mch])
+2014-09-20 15:30:33,209 18221 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - % unused_constants([WinnerRows])
+2014-09-20 15:30:33,240 18252 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:30:33,241 18253 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:30:33,244 18256 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_7,eval(identifier(none,bposn),'#EXPRESSION',bposn)),true.
+
+2014-09-20 15:30:33,246 18258 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:30:33,246 18258 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:30:33,247 18259 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:30:33,247 18259 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_8,eval(identifier(none,rposn),'#EXPRESSION',rposn)),true.
+
+2014-09-20 15:30:33,248 18260 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:30:33,249 18261 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:30:33,249 18261 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:30:33,250 18262 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_9,eval(identifier(none,turn),'#EXPRESSION',turn)),true.
+
+2014-09-20 15:30:33,251 18263 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:30:33,251 18263 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:30:33,251 18263 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:30:33,252 18264 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_10,eval(subset(none,identifier(none,bposn),interval(none,integer(none,0),integer(none,8))),'#PREDICATE','bposn<:0..8')),true.
+
+2014-09-20 15:30:33,253 18265 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:30:33,254 18266 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:30:33,254 18266 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:30:33,255 18267 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_11,eval(subset(none,identifier(none,rposn),interval(none,integer(none,0),integer(none,8))),'#PREDICATE','rposn<:0..8')),true.
+
+2014-09-20 15:30:33,255 18267 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:30:33,256 18268 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:30:33,256 18268 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:30:33,257 18269 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_12,eval(equal(none,intersection(none,identifier(none,bposn),identifier(none,rposn)),empty_set(none)),'#PREDICATE','bposn/\\rposn={}')),true.
+
+2014-09-20 15:30:33,258 18270 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:30:33,259 18271 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:30:33,259 18271 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:30:33,260 18272 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_13,eval(member(none,identifier(none,turn),identifier(none,'Player')),'#PREDICATE','turn:Player')),true.
+
+2014-09-20 15:30:33,260 18272 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:30:33,260 18272 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:30:33,261 18273 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:30:33,278 18290 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(root,APLOps),evaluate_registered_formulas(root,[formula_9,formula_7,formula_12,formula_8,formula_10,formula_13,formula_11],BResults),state_property(initialised,root,CPropResult),state_property(invariantKO,root,DPropResult),state_property(max_operations_reached,root,EPropResult),state_property(timeout_occurred,root,FPropResult),op_timeout_occurred(root,GTO),get_state_errors(root,HErrors),true.
+
+2014-09-20 15:30:33,754 18766 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps','.'(op(0,root,0),[])),'.'(=('BResults',[]),'.'(=('CPropResult',false),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-09-20 15:30:33,754 18766 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - % found_enumeration_of_constants(10,440)
+2014-09-20 15:30:33,755 18767 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - % backtrack(found_enumeration_of_constants(10,440))
+2014-09-20 15:30:33,757 18769 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:30:33,758 18770 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:30:33,785 18797 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(0,APLOps),evaluate_registered_formulas(0,[formula_9,formula_7,formula_12,formula_8,formula_10,formula_13,formula_11],BResults),state_property(initialised,0,CPropResult),state_property(invariantKO,0,DPropResult),state_property(max_operations_reached,0,EPropResult),state_property(timeout_occurred,0,FPropResult),op_timeout_occurred(0,GTO),get_state_errors(0,HErrors),true.
+
+2014-09-20 15:30:33,794 18806 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps','.'(op(1,0,1),[])),'.'(=('BResults',[]),'.'(=('CPropResult',false),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-09-20 15:30:33,796 18808 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:30:33,796 18808 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:30:33,806 18818 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - find_state_for_predicate(conjunct(none,conjunct(none,equal(none,identifier(none,turn),identifier(none,blue)),equal(none,identifier(none,bposn),set_extension(none,[integer(none,0),integer(none,1),integer(none,2),integer(none,3),integer(none,4),integer(none,5),integer(none,6),integer(none,7),integer(none,8)]))),equal(none,identifier(none,rposn),empty_set(none))),R),true.
+
+2014-09-20 15:30:34,112 19124 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('R',state_found(op(2,root,2),2)),[]))
+2014-09-20 15:30:34,112 19124 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - turn = blue
+2014-09-20 15:30:34,113 19125 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - &
+2014-09-20 15:30:34,113 19125 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - bposn = {0,1,2,3,4,5,6,7,8}
+2014-09-20 15:30:34,113 19125 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - &
+2014-09-20 15:30:34,113 19125 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - rposn = {}
+2014-09-20 15:30:34,114 19126 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:30:34,115 19127 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:30:34,116 19128 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - find_trace_to_node(2,Trace),true.
+
+2014-09-20 15:30:34,117 19129 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Trace','.'(op(2,root,2),[])),[]))
+2014-09-20 15:30:34,117 19129 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 
+2014-09-20 15:30:34,118 19130 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:30:34,118 19130 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:30:34,138 19150 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - prob2_execute_custom_operations(2,'GameResult',equal(none,boolean_true(none),boolean_true(none)),1,NewStateID,Errors),true.
+
+2014-09-20 15:30:34,146 19158 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('NewStateID','.'(op(3,2,2),[])),'.'(=('Errors',[]),[])))
+2014-09-20 15:30:34,146 19158 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - check_additional_guard
+2014-09-20 15:30:34,146 19158 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - /* truth */ TRUE = TRUE
+2014-09-20 15:30:34,147 19159 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - checked
+2014-09-20 15:30:34,147 19159 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:30:34,148 19160 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:30:34,156 19168 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(2,APLOps),evaluate_registered_formulas(2,[formula_9,formula_7,formula_12,formula_8,formula_10,formula_13,formula_11],BResults),state_property(initialised,2,CPropResult),state_property(invariantKO,2,DPropResult),state_property(max_operations_reached,2,EPropResult),state_property(timeout_occurred,2,FPropResult),op_timeout_occurred(2,GTO),get_state_errors(2,HErrors),true.
+
+2014-09-20 15:30:34,167 19179 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps','.'(op(3,2,2),[])),'.'(=('BResults','.'(result(v(blue,fd(1,'Player')),[],turn),'.'(result(v('{0,1,2,3,4,5,6,7,8}',avl_set(node(int(4),true,0,node(int(1),true,1,node(int(0),true,0,empty,empty),node(int(2),true,1,empty,node(int(3),true,0,empty,empty))),node(int(6),true,1,node(int(5),true,0,empty,empty),node(int(7),true,1,empty,node(int(8),true,0,empty,empty)))))),[],bposn),'.'(result('TRUE',[],'bposn/\\rposn={}'),'.'(result(v({},[]),[],rposn),'.'(result('TRUE',[],'bposn<:0..8'),'.'(result('TRUE',[],'turn:Player'),'.'(result('TRUE',[],'rposn<:0..8'),[])))))))),'.'(=('CPropResult',true),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-09-20 15:30:34,167 19179 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-09-20 15:30:34,168 19180 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - blue
+2014-09-20 15:30:34,168 19180 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-09-20 15:30:34,168 19180 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - {0,1,2,3,4,5,6,7,8}
+2014-09-20 15:30:34,168 19180 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-09-20 15:30:34,168 19180 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-09-20 15:30:34,168 19180 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - {}
+2014-09-20 15:30:34,168 19180 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-09-20 15:30:34,168 19180 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-09-20 15:30:34,168 19180 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-09-20 15:30:34,193 19205 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:30:34,193 19205 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:34:57,455 282467 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 52 - Starting ProB's Prolog Core. Path is /Users/ernestocid/Tools/ProB//probcli.sh
+2014-09-20 15:34:57,480 282492 [SwingWorker-pool-1-thread-2] DEBUG de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 54 - Cli started
+2014-09-20 15:34:57,482 282494 [SwingWorker-pool-1-thread-2] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Running ProB Command-line Interface
+2014-09-20 15:34:57,482 282494 [SwingWorker-pool-1-thread-2] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli -sf
+2014-09-20 15:34:58,237 283249 [SwingWorker-pool-1-thread-2] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to No file to process
+2014-09-20 15:34:58,237 283249 [SwingWorker-pool-1-thread-2] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Starting Socket Server
+2014-09-20 15:34:58,237 283249 [SwingWorker-pool-1-thread-2] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Application Path: /Users/ernestocid/Tools/ProB
+2014-09-20 15:34:58,237 283249 [SwingWorker-pool-1-thread-2] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Port: 55009
+2014-09-20 15:34:58,238 283250 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.PortPattern Method:
+				setValue Line: 34 - Server has startet and listens on port 55009
+2014-09-20 15:34:58,238 283250 [SwingWorker-pool-1-thread-2] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli revision: 90b5c8dba0b66d76cc21d1d9f58cd0882b94d133
+2014-09-20 15:34:58,238 283250 [SwingWorker-pool-1-thread-2] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to user interrupt reference id: 31105
+2014-09-20 15:34:58,238 283250 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.InterruptRefPattern Method:
+				setValue Line: 32 - Server can receive user interrupts via reference 31105
+2014-09-20 15:34:58,238 283250 [SwingWorker-pool-1-thread-2] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 40 - Connecting to port 55009 using key 3a1629d76a3897a
+2014-09-20 15:34:58,239 283251 [SwingWorker-pool-1-thread-2] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 47 - Connected
+2014-09-20 15:34:58,240 283252 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - -- starting command loop --
+2014-09-20 15:34:58,276 283288 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - set_eclipse_preference('SYMBOLIC',true),set_eclipse_preference('CSE_PRED',true),set_eclipse_preference('SYMMETRY_MODE',off),set_eclipse_preference('DEFAULT_SETSIZE','2'),set_eclipse_preference('KODKOD_ONLY_FULL',true),set_eclipse_preference('CSE_WD_ONLY',false),set_eclipse_preference('TIME_OUT','2500'),set_eclipse_preference('KODKOD',false),set_eclipse_preference('NUMBER_OF_ANIMATED_ABSTRACTIONS','20'),set_eclipse_preference('USE_RECORD_CONSTRUCTION',true),set_eclipse_preference('MEMO',false),set_eclipse_preference('MAX_OPERATIONS','10'),set_eclipse_preference('CSE',false),set_eclipse_preference('MAXINT','30'),set_eclipse_preference('ALLOW_INCOMPLETE_SETUP_CONSTANTS',false),set_eclipse_preference('MININT','-20'),set_eclipse_preference('STATIC_ORDERING',false),set_eclipse_preference('COMPRESSION',false),set_eclipse_preference('MAX_INITIALISATIONS','4'),set_eclipse_preference('TRY_FIND_ABORT',false),set_eclipse_preference('CLPFD',true),set_eclipse_preference('CHR',false),set_eclipse_preference('PROOF_INFO',true),set_eclipse_preference('SMT',false),load_classical_b_from_list_of_facts('/Users/ernestocid/Temp/TicTacToe.mch',[parser_version('2013-04-30 11:58:52.139'),classical_b('TicTacToe',['/Users/ernestocid/Temp/TicTacToe.mch']),machine(abstract_machine(1,machine(2),machine_header(3,'TicTacToe',[]),[sets(4,[enumerated_set(5,'Player',[identifier(6,blue),identifier(7,red)]),enumerated_set(8,'Result',[identifier(9,blue_win),identifier(10,red_win),identifier(11,draw)])]),constants(12,[identifier(13,'WinnerRows'),identifier(14,'ThreeInRow')]),properties(15,conjunct(16,conjunct(17,conjunct(18,subset(19,identifier(20,'WinnerRows'),pow_subset(21,interval(22,integer(23,0),integer(24,8)))),equal(25,identifier(26,'WinnerRows'),set_extension(27,[set_extension(28,[integer(29,0),integer(30,1),integer(31,2)]),set_extension(32,[integer(33,3),integer(34,4),integer(35,5)]),set_extension(36,[integer(37,6),integer(38,7),integer(39,8)]),set_extension(40,[integer(41,0),integer(42,3),integer(43,6)]),set_extension(44,[integer(45,1),integer(46,4),integer(47,7)]),set_extension(48,[integer(49,2),integer(50,5),integer(51,8)]),set_extension(52,[integer(53,0),integer(54,4),integer(55,8)]),set_extension(56,[integer(57,6),integer(58,4),integer(59,2)])]))),member(60,identifier(61,'ThreeInRow'),total_function(62,pow_subset(63,interval(64,integer(65,0),integer(66,8))),bool_set(67)))),equal(68,identifier(69,'ThreeInRow'),union(70,lambda(71,[identifier(72,ps)],conjunct(73,member(74,identifier(75,ps),pow_subset(76,interval(77,integer(78,0),integer(79,8)))),exists(80,[identifier(81,wn)],conjunct(82,member(83,identifier(84,wn),identifier(85,'WinnerRows')),subset(86,identifier(87,wn),identifier(88,ps))))),boolean_true(89)),lambda(90,[identifier(91,ps)],conjunct(92,member(93,identifier(94,ps),pow_subset(95,interval(96,integer(97,0),integer(98,8)))),negation(99,exists(100,[identifier(101,wn)],conjunct(102,member(103,identifier(104,wn),identifier(105,'WinnerRows')),subset(106,identifier(107,wn),identifier(108,ps)))))),boolean_false(109)))))),variables(110,[identifier(111,bposn),identifier(112,rposn),identifier(113,turn)]),invariant(114,conjunct(115,conjunct(116,conjunct(117,subset(118,identifier(119,bposn),interval(120,integer(121,0),integer(122,8))),subset(123,identifier(124,rposn),interval(125,integer(126,0),integer(127,8)))),equal(128,intersection(129,identifier(130,bposn),identifier(131,rposn)),empty_set(132))),member(133,identifier(134,turn),identifier(135,'Player')))),initialisation(136,parallel(137,[assign(138,[identifier(139,bposn)],[empty_set(140)]),assign(141,[identifier(142,rposn)],[empty_set(143)]),assign(144,[identifier(145,turn)],[identifier(146,blue)])])),operations(147,[operation(148,identifier(148,'BlueMove'),[],[identifier(149,pp)],precondition(150,conjunct(151,conjunct(152,conjunct(153,member(154,identifier(155,pp),interval(156,integer(157,0),integer(158,8))),not_member(159,identifier(160,pp),union(161,identifier(162,bposn),identifier(163,rposn)))),equal(164,identifier(165,turn),identifier(166,blue))),equal(167,function(168,identifier(169,'ThreeInRow'),[identifier(170,rposn)]),boolean_false(171))),parallel(172,[assign(173,[identifier(174,bposn)],[union(175,identifier(176,bposn),set_extension(177,[identifier(178,pp)]))]),assign(179,[identifier(180,turn)],[identifier(181,red)])]))),operation(182,identifier(182,'RedMove'),[],[identifier(183,pp)],precondition(184,conjunct(185,conjunct(186,conjunct(187,member(188,identifier(189,pp),interval(190,integer(191,0),integer(192,8))),not_member(193,identifier(194,pp),union(195,identifier(196,bposn),identifier(197,rposn)))),equal(198,identifier(199,turn),identifier(200,red))),equal(201,function(202,identifier(203,'ThreeInRow'),[identifier(204,bposn)]),boolean_false(205))),parallel(206,[assign(207,[identifier(208,rposn)],[union(209,identifier(210,rposn),set_extension(211,[identifier(212,pp)]))]),assign(213,[identifier(214,turn)],[identifier(215,blue)])]))),operation(216,identifier(216,'GameResult'),[identifier(217,result)],[],precondition(218,disjunct(219,disjunct(220,equal(221,function(222,identifier(223,'ThreeInRow'),[identifier(224,bposn)]),boolean_true(225)),equal(226,function(227,identifier(228,'ThreeInRow'),[identifier(229,rposn)]),boolean_true(230))),equal(231,union(232,identifier(233,bposn),identifier(234,rposn)),interval(235,integer(236,0),integer(237,8)))),if(238,equal(239,function(240,identifier(241,'ThreeInRow'),[identifier(242,bposn)]),boolean_true(243)),assign(244,[identifier(245,result)],[identifier(246,blue_win)]),[if_elsif(247,equal(248,function(249,identifier(250,'ThreeInRow'),[identifier(251,rposn)]),boolean_true(252)),assign(253,[identifier(254,result)],[identifier(255,red_win)]))],assign(256,[identifier(257,result)],[identifier(258,draw)]))))])]))]),start_animation,true.
+
+2014-09-20 15:34:58,379 283391 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Connected: 127.0.0.1
+2014-09-20 15:34:58,379 283391 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:34:58,380 283392 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - loading_classical_b(parser_version(2013-04-30 11:58:52.139),TicTacToe,[/Users/ernestocid/Temp/TicTacToe.mch])
+2014-09-20 15:34:58,380 283392 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - % unused_constants([WinnerRows])
+2014-09-20 15:34:58,380 283392 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:34:58,381 283393 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:34:58,381 283393 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_38,eval(identifier(none,bposn),'#EXPRESSION',bposn)),true.
+
+2014-09-20 15:34:58,383 283395 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:34:58,384 283396 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:34:58,384 283396 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:34:58,385 283397 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_39,eval(identifier(none,rposn),'#EXPRESSION',rposn)),true.
+
+2014-09-20 15:34:58,385 283397 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:34:58,386 283398 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:34:58,386 283398 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:34:58,387 283399 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_40,eval(identifier(none,turn),'#EXPRESSION',turn)),true.
+
+2014-09-20 15:34:58,387 283399 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:34:58,388 283400 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:34:58,388 283400 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:34:58,389 283401 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_41,eval(subset(none,identifier(none,bposn),interval(none,integer(none,0),integer(none,8))),'#PREDICATE','bposn<:0..8')),true.
+
+2014-09-20 15:34:58,390 283402 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:34:58,390 283402 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:34:58,391 283403 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:34:58,391 283403 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_42,eval(subset(none,identifier(none,rposn),interval(none,integer(none,0),integer(none,8))),'#PREDICATE','rposn<:0..8')),true.
+
+2014-09-20 15:34:58,392 283404 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:34:58,393 283405 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:34:58,393 283405 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:34:58,394 283406 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_43,eval(equal(none,intersection(none,identifier(none,bposn),identifier(none,rposn)),empty_set(none)),'#PREDICATE','bposn/\\rposn={}')),true.
+
+2014-09-20 15:34:58,395 283407 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:34:58,395 283407 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:34:58,395 283407 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:34:58,396 283408 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_44,eval(member(none,identifier(none,turn),identifier(none,'Player')),'#PREDICATE','turn:Player')),true.
+
+2014-09-20 15:34:58,396 283408 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 15:34:58,396 283408 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:34:58,397 283409 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:34:58,398 283410 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(root,APLOps),evaluate_registered_formulas(root,[formula_40,formula_38,formula_43,formula_39,formula_41,formula_44,formula_42],BResults),state_property(initialised,root,CPropResult),state_property(invariantKO,root,DPropResult),state_property(max_operations_reached,root,EPropResult),state_property(timeout_occurred,root,FPropResult),op_timeout_occurred(root,GTO),get_state_errors(root,HErrors),true.
+
+2014-09-20 15:34:58,856 283868 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps','.'(op(0,root,0),[])),'.'(=('BResults',[]),'.'(=('CPropResult',false),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-09-20 15:34:58,856 283868 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - % found_enumeration_of_constants(0,420)
+2014-09-20 15:34:58,857 283869 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - % backtrack(found_enumeration_of_constants(0,420))
+2014-09-20 15:34:58,858 283870 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:34:58,859 283871 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:34:58,860 283872 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(0,APLOps),evaluate_registered_formulas(0,[formula_40,formula_38,formula_43,formula_39,formula_41,formula_44,formula_42],BResults),state_property(initialised,0,CPropResult),state_property(invariantKO,0,DPropResult),state_property(max_operations_reached,0,EPropResult),state_property(timeout_occurred,0,FPropResult),op_timeout_occurred(0,GTO),get_state_errors(0,HErrors),true.
+
+2014-09-20 15:34:58,869 283881 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps','.'(op(1,0,1),[])),'.'(=('BResults',[]),'.'(=('CPropResult',false),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-09-20 15:34:58,871 283883 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:34:58,872 283884 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:34:58,876 283888 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - find_state_for_predicate(conjunct(none,conjunct(none,equal(none,identifier(none,turn),identifier(none,blue)),equal(none,identifier(none,bposn),set_extension(none,[integer(none,0),integer(none,1),integer(none,2),integer(none,3),integer(none,4),integer(none,5),integer(none,6),integer(none,7),integer(none,8)]))),equal(none,identifier(none,rposn),empty_set(none))),R),true.
+
+2014-09-20 15:34:59,164 284176 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('R',state_found(op(2,root,2),2)),[]))
+2014-09-20 15:34:59,164 284176 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - turn = blue
+2014-09-20 15:34:59,164 284176 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - &
+2014-09-20 15:34:59,164 284176 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - bposn = {0,1,2,3,4,5,6,7,8}
+2014-09-20 15:34:59,164 284176 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - &
+2014-09-20 15:34:59,164 284176 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - rposn = {}
+2014-09-20 15:34:59,165 284177 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:34:59,165 284177 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:34:59,166 284178 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - find_trace_to_node(2,Trace),true.
+
+2014-09-20 15:34:59,168 284180 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Trace','.'(op(2,root,2),[])),[]))
+2014-09-20 15:34:59,168 284180 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 
+2014-09-20 15:34:59,169 284181 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:34:59,169 284181 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:34:59,171 284183 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - prob2_execute_custom_operations(2,'GameResult',equal(none,boolean_true(none),boolean_true(none)),1,NewStateID,Errors),true.
+
+2014-09-20 15:34:59,179 284191 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('NewStateID','.'(op(3,2,2),[])),'.'(=('Errors',[]),[])))
+2014-09-20 15:34:59,179 284191 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - check_additional_guard
+2014-09-20 15:34:59,179 284191 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - /* truth */ TRUE = TRUE
+2014-09-20 15:34:59,179 284191 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - checked
+2014-09-20 15:34:59,179 284191 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:34:59,180 284192 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 15:34:59,181 284193 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(2,APLOps),evaluate_registered_formulas(2,[formula_40,formula_38,formula_43,formula_39,formula_41,formula_44,formula_42],BResults),state_property(initialised,2,CPropResult),state_property(invariantKO,2,DPropResult),state_property(max_operations_reached,2,EPropResult),state_property(timeout_occurred,2,FPropResult),op_timeout_occurred(2,GTO),get_state_errors(2,HErrors),true.
+
+2014-09-20 15:34:59,192 284204 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps','.'(op(3,2,2),[])),'.'(=('BResults','.'(result(v(blue,fd(1,'Player')),[],turn),'.'(result(v('{0,1,2,3,4,5,6,7,8}',avl_set(node(int(4),true,0,node(int(1),true,1,node(int(0),true,0,empty,empty),node(int(2),true,1,empty,node(int(3),true,0,empty,empty))),node(int(6),true,1,node(int(5),true,0,empty,empty),node(int(7),true,1,empty,node(int(8),true,0,empty,empty)))))),[],bposn),'.'(result('TRUE',[],'bposn/\\rposn={}'),'.'(result(v({},[]),[],rposn),'.'(result('TRUE',[],'bposn<:0..8'),'.'(result('TRUE',[],'turn:Player'),'.'(result('TRUE',[],'rposn<:0..8'),[])))))))),'.'(=('CPropResult',true),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-09-20 15:34:59,192 284204 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-09-20 15:34:59,192 284204 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - blue
+2014-09-20 15:34:59,192 284204 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-09-20 15:34:59,192 284204 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - {0,1,2,3,4,5,6,7,8}
+2014-09-20 15:34:59,192 284204 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-09-20 15:34:59,192 284204 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-09-20 15:34:59,193 284205 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - {}
+2014-09-20 15:34:59,193 284205 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-09-20 15:34:59,193 284205 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-09-20 15:34:59,193 284205 [Thread-5] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-09-20 15:34:59,196 284208 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 15:34:59,196 284208 [SwingWorker-pool-1-thread-2] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 16:12:50,554 7488 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 52 - Starting ProB's Prolog Core. Path is /Users/ernestocid/Tools/ProB//probcli.sh
+2014-09-20 16:12:50,587 7521 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 54 - Cli started
+2014-09-20 16:12:50,591 7525 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Running ProB Command-line Interface
+2014-09-20 16:12:50,591 7525 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli -sf
+2014-09-20 16:12:51,339 8273 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to No file to process
+2014-09-20 16:12:51,339 8273 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Starting Socket Server
+2014-09-20 16:12:51,339 8273 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Application Path: /Users/ernestocid/Tools/ProB
+2014-09-20 16:12:51,339 8273 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Port: 55141
+2014-09-20 16:12:51,340 8274 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.PortPattern Method:
+				setValue Line: 34 - Server has startet and listens on port 55141
+2014-09-20 16:12:51,340 8274 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli revision: 90b5c8dba0b66d76cc21d1d9f58cd0882b94d133
+2014-09-20 16:12:51,340 8274 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to user interrupt reference id: 31438
+2014-09-20 16:12:51,340 8274 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.InterruptRefPattern Method:
+				setValue Line: 32 - Server can receive user interrupts via reference 31438
+2014-09-20 16:12:51,341 8275 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 40 - Connecting to port 55141 using key 916eb04d9d4a6292
+2014-09-20 16:12:51,342 8276 [SwingWorker-pool-1-thread-1] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 47 - Connected
+2014-09-20 16:12:51,344 8278 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - -- starting command loop --
+2014-09-20 16:12:51,599 8533 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - set_eclipse_preference('SYMBOLIC',true),set_eclipse_preference('CSE_PRED',true),set_eclipse_preference('SYMMETRY_MODE',off),set_eclipse_preference('DEFAULT_SETSIZE','2'),set_eclipse_preference('KODKOD_ONLY_FULL',true),set_eclipse_preference('CSE_WD_ONLY',false),set_eclipse_preference('TIME_OUT','2500'),set_eclipse_preference('KODKOD',false),set_eclipse_preference('NUMBER_OF_ANIMATED_ABSTRACTIONS','20'),set_eclipse_preference('USE_RECORD_CONSTRUCTION',true),set_eclipse_preference('MEMO',false),set_eclipse_preference('MAX_OPERATIONS','10'),set_eclipse_preference('CSE',false),set_eclipse_preference('MAXINT','30'),set_eclipse_preference('ALLOW_INCOMPLETE_SETUP_CONSTANTS',false),set_eclipse_preference('MININT','-20'),set_eclipse_preference('STATIC_ORDERING',false),set_eclipse_preference('COMPRESSION',false),set_eclipse_preference('MAX_INITIALISATIONS','4'),set_eclipse_preference('TRY_FIND_ABORT',false),set_eclipse_preference('CLPFD',true),set_eclipse_preference('CHR',false),set_eclipse_preference('PROOF_INFO',true),set_eclipse_preference('SMT',false),load_classical_b_from_list_of_facts('/Users/ernestocid/Temp/TicTacToe.mch',[parser_version('2013-04-30 11:58:52.139'),classical_b('TicTacToe',['/Users/ernestocid/Temp/TicTacToe.mch']),machine(abstract_machine(1,machine(2),machine_header(3,'TicTacToe',[]),[sets(4,[enumerated_set(5,'Player',[identifier(6,blue),identifier(7,red)]),enumerated_set(8,'Result',[identifier(9,blue_win),identifier(10,red_win),identifier(11,draw)])]),abstract_constants(12,[identifier(13,'WinnerRows'),identifier(14,'ThreeInRow')]),properties(15,conjunct(16,conjunct(17,conjunct(18,subset(19,identifier(20,'WinnerRows'),pow_subset(21,interval(22,integer(23,0),integer(24,8)))),equal(25,identifier(26,'WinnerRows'),set_extension(27,[set_extension(28,[integer(29,0),integer(30,1),integer(31,2)]),set_extension(32,[integer(33,3),integer(34,4),integer(35,5)]),set_extension(36,[integer(37,6),integer(38,7),integer(39,8)]),set_extension(40,[integer(41,0),integer(42,3),integer(43,6)]),set_extension(44,[integer(45,1),integer(46,4),integer(47,7)]),set_extension(48,[integer(49,2),integer(50,5),integer(51,8)]),set_extension(52,[integer(53,0),integer(54,4),integer(55,8)]),set_extension(56,[integer(57,6),integer(58,4),integer(59,2)])]))),member(60,identifier(61,'ThreeInRow'),total_function(62,pow_subset(63,interval(64,integer(65,0),integer(66,8))),bool_set(67)))),equal(68,identifier(69,'ThreeInRow'),union(70,lambda(71,[identifier(72,ps)],conjunct(73,member(74,identifier(75,ps),pow_subset(76,interval(77,integer(78,0),integer(79,8)))),exists(80,[identifier(81,wn)],conjunct(82,member(83,identifier(84,wn),identifier(85,'WinnerRows')),subset(86,identifier(87,wn),identifier(88,ps))))),boolean_true(89)),lambda(90,[identifier(91,ps)],conjunct(92,member(93,identifier(94,ps),pow_subset(95,interval(96,integer(97,0),integer(98,8)))),negation(99,exists(100,[identifier(101,wn)],conjunct(102,member(103,identifier(104,wn),identifier(105,'WinnerRows')),subset(106,identifier(107,wn),identifier(108,ps)))))),boolean_false(109)))))),variables(110,[identifier(111,bposn),identifier(112,rposn),identifier(113,turn)]),invariant(114,conjunct(115,conjunct(116,conjunct(117,subset(118,identifier(119,bposn),interval(120,integer(121,0),integer(122,8))),subset(123,identifier(124,rposn),interval(125,integer(126,0),integer(127,8)))),equal(128,intersection(129,identifier(130,bposn),identifier(131,rposn)),empty_set(132))),member(133,identifier(134,turn),identifier(135,'Player')))),initialisation(136,parallel(137,[assign(138,[identifier(139,bposn)],[empty_set(140)]),assign(141,[identifier(142,rposn)],[empty_set(143)]),assign(144,[identifier(145,turn)],[identifier(146,blue)])])),operations(147,[operation(148,identifier(148,'BlueMove'),[],[identifier(149,pp)],precondition(150,conjunct(151,conjunct(152,conjunct(153,member(154,identifier(155,pp),interval(156,integer(157,0),integer(158,8))),not_member(159,identifier(160,pp),union(161,identifier(162,bposn),identifier(163,rposn)))),equal(164,identifier(165,turn),identifier(166,blue))),equal(167,function(168,identifier(169,'ThreeInRow'),[identifier(170,rposn)]),boolean_false(171))),parallel(172,[assign(173,[identifier(174,bposn)],[union(175,identifier(176,bposn),set_extension(177,[identifier(178,pp)]))]),assign(179,[identifier(180,turn)],[identifier(181,red)])]))),operation(182,identifier(182,'RedMove'),[],[identifier(183,pp)],precondition(184,conjunct(185,conjunct(186,conjunct(187,member(188,identifier(189,pp),interval(190,integer(191,0),integer(192,8))),not_member(193,identifier(194,pp),union(195,identifier(196,bposn),identifier(197,rposn)))),equal(198,identifier(199,turn),identifier(200,red))),equal(201,function(202,identifier(203,'ThreeInRow'),[identifier(204,bposn)]),boolean_false(205))),parallel(206,[assign(207,[identifier(208,rposn)],[union(209,identifier(210,rposn),set_extension(211,[identifier(212,pp)]))]),assign(213,[identifier(214,turn)],[identifier(215,blue)])]))),operation(216,identifier(216,'GameResult'),[identifier(217,result)],[],precondition(218,disjunct(219,disjunct(220,equal(221,function(222,identifier(223,'ThreeInRow'),[identifier(224,bposn)]),boolean_true(225)),equal(226,function(227,identifier(228,'ThreeInRow'),[identifier(229,rposn)]),boolean_true(230))),equal(231,union(232,identifier(233,bposn),identifier(234,rposn)),interval(235,integer(236,0),integer(237,8)))),if(238,equal(239,function(240,identifier(241,'ThreeInRow'),[identifier(242,bposn)]),boolean_true(243)),assign(244,[identifier(245,result)],[identifier(246,blue_win)]),[if_elsif(247,equal(248,function(249,identifier(250,'ThreeInRow'),[identifier(251,rposn)]),boolean_true(252)),assign(253,[identifier(254,result)],[identifier(255,red_win)]))],assign(256,[identifier(257,result)],[identifier(258,draw)]))))])]))]),start_animation,true.
+
+2014-09-20 16:12:51,712 8646 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Connected: 127.0.0.1
+2014-09-20 16:12:51,712 8646 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 16:12:51,712 8646 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - loading_classical_b(parser_version(2013-04-30 11:58:52.139),TicTacToe,[/Users/ernestocid/Temp/TicTacToe.mch])
+2014-09-20 16:12:51,712 8646 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - % unused_constants([WinnerRows])
+2014-09-20 16:12:51,734 8668 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 16:12:51,735 8669 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 16:12:51,739 8673 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_5,eval(identifier(none,bposn),'#EXPRESSION',bposn)),true.
+
+2014-09-20 16:12:51,741 8675 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 16:12:51,741 8675 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 16:12:51,742 8676 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 16:12:51,742 8676 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_6,eval(identifier(none,rposn),'#EXPRESSION',rposn)),true.
+
+2014-09-20 16:12:51,743 8677 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 16:12:51,743 8677 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 16:12:51,744 8678 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 16:12:51,744 8678 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_7,eval(identifier(none,turn),'#EXPRESSION',turn)),true.
+
+2014-09-20 16:12:51,745 8679 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 16:12:51,745 8679 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 16:12:51,745 8679 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 16:12:51,746 8680 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_8,eval(subset(none,identifier(none,bposn),interval(none,integer(none,0),integer(none,8))),'#PREDICATE','bposn<:0..8')),true.
+
+2014-09-20 16:12:51,747 8681 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 16:12:51,748 8682 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 16:12:51,748 8682 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 16:12:51,749 8683 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_9,eval(subset(none,identifier(none,rposn),interval(none,integer(none,0),integer(none,8))),'#PREDICATE','rposn<:0..8')),true.
+
+2014-09-20 16:12:51,749 8683 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 16:12:51,750 8684 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 16:12:51,750 8684 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 16:12:51,751 8685 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_10,eval(equal(none,intersection(none,identifier(none,bposn),identifier(none,rposn)),empty_set(none)),'#PREDICATE','bposn/\\rposn={}')),true.
+
+2014-09-20 16:12:51,751 8685 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 16:12:51,751 8685 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 16:12:51,752 8686 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 16:12:51,753 8687 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_11,eval(member(none,identifier(none,turn),identifier(none,'Player')),'#PREDICATE','turn:Player')),true.
+
+2014-09-20 16:12:51,754 8688 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-09-20 16:12:51,754 8688 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 16:12:51,755 8689 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 16:12:51,772 8706 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(root,APLOps),evaluate_registered_formulas(root,[formula_7,formula_5,formula_10,formula_6,formula_8,formula_11,formula_9],BResults),state_property(initialised,root,CPropResult),state_property(invariantKO,root,DPropResult),state_property(max_operations_reached,root,EPropResult),state_property(timeout_occurred,root,FPropResult),op_timeout_occurred(root,GTO),get_state_errors(root,HErrors),true.
+
+2014-09-20 16:12:52,271 9205 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps','.'(op(0,root,0),[])),'.'(=('BResults',[]),'.'(=('CPropResult',false),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-09-20 16:12:52,271 9205 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - % found_enumeration_of_constants(0,470)
+2014-09-20 16:12:52,271 9205 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - % backtrack(found_enumeration_of_constants(0,470))
+2014-09-20 16:12:52,275 9209 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 16:12:52,276 9210 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 16:12:52,293 9227 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(0,APLOps),evaluate_registered_formulas(0,[formula_7,formula_5,formula_10,formula_6,formula_8,formula_11,formula_9],BResults),state_property(initialised,0,CPropResult),state_property(invariantKO,0,DPropResult),state_property(max_operations_reached,0,EPropResult),state_property(timeout_occurred,0,FPropResult),op_timeout_occurred(0,GTO),get_state_errors(0,HErrors),true.
+
+2014-09-20 16:12:52,301 9235 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps','.'(op(1,0,1),[])),'.'(=('BResults',[]),'.'(=('CPropResult',false),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-09-20 16:12:52,303 9237 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 16:12:52,303 9237 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 16:12:52,315 9249 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - find_state_for_predicate(conjunct(none,conjunct(none,equal(none,identifier(none,turn),identifier(none,blue)),equal(none,identifier(none,bposn),set_extension(none,[integer(none,0),integer(none,1),integer(none,2),integer(none,3),integer(none,4),integer(none,5),integer(none,6),integer(none,7),integer(none,8)]))),equal(none,identifier(none,rposn),empty_set(none))),R),true.
+
+2014-09-20 16:12:52,678 9612 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('R',state_found(op(2,root,2),2)),[]))
+2014-09-20 16:12:52,679 9613 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - turn = blue
+2014-09-20 16:12:52,679 9613 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - &
+2014-09-20 16:12:52,679 9613 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - bposn = {0,1,2,3,4,5,6,7,8}
+2014-09-20 16:12:52,679 9613 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - &
+2014-09-20 16:12:52,679 9613 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - rposn = {}
+2014-09-20 16:12:52,681 9615 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 16:12:52,681 9615 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 16:12:52,682 9616 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - find_trace_to_node(2,Trace),true.
+
+2014-09-20 16:12:52,684 9618 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Trace','.'(op(2,root,2),[])),[]))
+2014-09-20 16:12:52,684 9618 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 
+2014-09-20 16:12:52,685 9619 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 16:12:52,685 9619 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 16:12:52,697 9631 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - prob2_execute_custom_operations(2,'GameResult',equal(none,boolean_true(none),boolean_true(none)),1,NewStateID,Errors),true.
+
+2014-09-20 16:12:52,705 9639 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('NewStateID','.'(op(3,2,2),[])),'.'(=('Errors',[]),[])))
+2014-09-20 16:12:52,705 9639 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - check_additional_guard
+2014-09-20 16:12:52,706 9640 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - /* truth */ TRUE = TRUE
+2014-09-20 16:12:52,706 9640 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - checked
+2014-09-20 16:12:52,707 9641 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 16:12:52,707 9641 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-09-20 16:12:52,717 9651 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(2,APLOps),evaluate_registered_formulas(2,[formula_7,formula_5,formula_10,formula_6,formula_8,formula_11,formula_9],BResults),state_property(initialised,2,CPropResult),state_property(invariantKO,2,DPropResult),state_property(max_operations_reached,2,EPropResult),state_property(timeout_occurred,2,FPropResult),op_timeout_occurred(2,GTO),get_state_errors(2,HErrors),true.
+
+2014-09-20 16:12:52,732 9666 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps','.'(op(3,2,2),[])),'.'(=('BResults','.'(result(v(blue,fd(1,'Player')),[],turn),'.'(result(v('{0,1,2,3,4,5,6,7,8}',avl_set(node(int(4),true,0,node(int(1),true,1,node(int(0),true,0,empty,empty),node(int(2),true,1,empty,node(int(3),true,0,empty,empty))),node(int(6),true,1,node(int(5),true,0,empty,empty),node(int(7),true,1,empty,node(int(8),true,0,empty,empty)))))),[],bposn),'.'(result('TRUE',[],'bposn/\\rposn={}'),'.'(result(v({},[]),[],rposn),'.'(result('TRUE',[],'bposn<:0..8'),'.'(result('TRUE',[],'turn:Player'),'.'(result('TRUE',[],'rposn<:0..8'),[])))))))),'.'(=('CPropResult',true),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-09-20 16:12:52,732 9666 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-09-20 16:12:52,733 9667 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - blue
+2014-09-20 16:12:52,733 9667 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-09-20 16:12:52,733 9667 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - {0,1,2,3,4,5,6,7,8}
+2014-09-20 16:12:52,733 9667 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-09-20 16:12:52,733 9667 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-09-20 16:12:52,733 9667 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - {}
+2014-09-20 16:12:52,733 9667 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-09-20 16:12:52,733 9667 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-09-20 16:12:52,733 9667 [Thread-3] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-09-20 16:12:52,759 9693 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-09-20 16:12:52,760 9694 [SwingWorker-pool-1-thread-1] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))

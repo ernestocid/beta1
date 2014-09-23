@@ -64,11 +64,8 @@ public class BETATestSuite {
 			blockBuilder = null;
 		}
 		
-//		List<List<String>> blocks = blockBuilder.getBlocksAsLists();
 		List<List<Block>> blocks = blockBuilder.getBlocksAsListsOfBlocks();
 
-//		Set<String> combinations = getCombinations(blocks);
-		
 		Set<List<Block>> combinations = getCombinations(blocks);
 		
 		if(!combinations.isEmpty()) {
@@ -297,15 +294,12 @@ public class BETATestSuite {
 		if (this.combinatorialCriteria == CombinatorialCriterias.PAIRWISE) {
 			Criteria<Block> pairwise = new Pairwise<Block>(blocks);
 			return pairwise.getCombinations();
-//			combinations.addAll(pairwise.getCombinationsAsStrings());
 		} else if (this.combinatorialCriteria == CombinatorialCriterias.EACH_CHOICE) {
 			Criteria<Block> eachChoice = new EachChoice<Block>(blocks);
 			return eachChoice.getCombinations();
-//			combinations.addAll(eachChoice.getCombinationsAsStrings());
 		} else if (this.combinatorialCriteria == CombinatorialCriterias.ALL_COMBINATIONS) {
 			Criteria<Block> allCombinations = new AllCombinations<Block>(blocks);
 			return allCombinations.getCombinations();
-//			combinations.addAll(allCombinations.getCombinationsAsStrings());
 		}
 		
 		return combinations;

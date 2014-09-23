@@ -47,16 +47,24 @@ public class ExpressionCharacteristic extends Characteristic {
 	
 	@Override
 	public boolean equals(Object obj) {
-		if(obj instanceof ExpressionCharacteristic) {
-			ExpressionCharacteristic c = (ExpressionCharacteristic) obj;
-			if(c.getCharacteristic().equals(this.getCharacteristic())) {
-				return true;
-			} else {
-				return false;
-			}
-		} else {
-			return false;
-		}
+		return super.equals(obj);
+//		if(obj instanceof ExpressionCharacteristic) {
+//			ExpressionCharacteristic c = (ExpressionCharacteristic) obj;
+//			if(c.getCharacteristic().equals(this.getCharacteristic())) {
+//				return true;
+//			} else {
+//				return false;
+//			}
+//		} else {
+//			return false;
+//		}
+	}
+	
+	
+	
+	@Override
+	public int hashCode() {
+		return super.hashCode();
 	}
 	
 }

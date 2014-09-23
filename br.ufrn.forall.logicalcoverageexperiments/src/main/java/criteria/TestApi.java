@@ -18,7 +18,10 @@ import de.prob.statespace.Trace;
 public class TestApi {
 
 	public static void main(String[] args) {
-
+		
+		System.setProperty("prob.home", "/Users/ernestocid/Tools/ProB/");
+		System.out.println("ProB home: " + System.getProperty("prob.home"));
+		
 		File machine = new File("src/test/resources/machines/Simple.mch");
 
 		System.out.println("Evaluating Formulas: ");
@@ -46,6 +49,7 @@ public class TestApi {
 	}
 
 	private static void evaluateFormula(File machine, String formula) {
+		
 		Api probApi = Main.getInjector().getInstance(Api.class);
 		
 		try {

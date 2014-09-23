@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-suite>
+    <machine-name>Fifo</machine-name>
+    <machine-invariant>
+        <invariant-clause>contents : seq(INT)</invariant-clause>
+        <invariant-clause>size(contents) &lt;= cap</invariant-clause>
+    </machine-invariant>
+    <operation-under-test>output</operation-under-test>
+    <partition-strategy>Equivalence Classes</partition-strategy>
+    <combinatorial-criteria>All-Combinations</combinatorial-criteria>
+    <oracle-strategy>
+        <state-variables>true</state-variables>
+        <return-variables>true</return-variables>
+        <invariant-ok>true</invariant-ok>
+    </oracle-strategy>
+    <test-cases>
+        <test-case>
+            <id>1</id>
+            <formula>not(size(contents) &gt; 0) &amp; size(contents) &lt;= cap &amp; contents : seq(INT)</formula>
+            <isNegative>true</isNegative>
+            <state-variables>
+                <variable>
+                    <identifier>contents</identifier>
+                    <values>
+                        <value>[]</value>
+                    </values>
+                </variable>
+            </state-variables>
+            <operation-parameters/>
+            <expected-state-values>
+                <variable>
+                    <identifier>contents</identifier>
+                    <values>
+                        <value>unknown</value>
+                    </values>
+                </variable>
+            </expected-state-values>
+            <return-variables>
+                <variable>
+                    <identifier>ee</identifier>
+                </variable>
+            </return-variables>
+        </test-case>
+        <test-case>
+            <id>2</id>
+            <formula>size(contents) &gt; 0 &amp; size(contents) &lt;= cap &amp; contents : seq(INT)</formula>
+            <isNegative>false</isNegative>
+            <state-variables>
+                <variable>
+                    <identifier>contents</identifier>
+                    <values>
+                        <value>[-20]</value>
+                    </values>
+                </variable>
+            </state-variables>
+            <operation-parameters/>
+            <expected-state-values>
+                <variable>
+                    <identifier>contents</identifier>
+                    <values>
+                        <value>.</value>
+                    </values>
+                </variable>
+            </expected-state-values>
+            <return-variables>
+                <variable>
+                    <identifier>ee</identifier>
+                </variable>
+            </return-variables>
+        </test-case>
+    </test-cases>
+</test-suite>

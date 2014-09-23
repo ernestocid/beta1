@@ -1,6 +1,6 @@
 package unit;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.io.File;
 import java.util.HashSet;
@@ -8,10 +8,11 @@ import java.util.Set;
 
 import org.junit.Test;
 
+import parser.Characteristic;
 import parser.Machine;
 import parser.Operation;
 import testgeneration.Partitioner;
-
+import static org.mockito.Mockito.*;
 
 
 public class PartitionerTest {
@@ -383,6 +384,87 @@ public class PartitionerTest {
 		assertEquals(expectedTypingClauses, partitioner.getTypingClauses());
 	}
 	
+	
+	
+	@Test
+	public void shouldGetCharacteristcsWhenTheyAreRepeatedInManyPlaces() {
+		Machine machine = getMachineInstance("src/test/resources/machines/others/TicTacToe.mch");
+		Operation operationUnderTestOperation = machine.getOperation(2);
+		Partitioner partitioner = new Partitioner(operationUnderTestOperation);
+		
+		Set<Characteristic> expected = new HashSet<Characteristic>();
+		
+		Characteristic mockedChar1 = mock(Characteristic.class);
+		when(mockedChar1.toString()).thenReturn("bposn \\/ rposn = 0..8");
+		when(mockedChar1.getCharacteristic()).thenReturn("bposn \\/ rposn = 0..8");
+		
+		Characteristic mockedChar2 = mock(Characteristic.class);
+		when(mockedChar2.toString()).thenReturn("ThreeInRow(bposn) = TRUE");
+		when(mockedChar2.getCharacteristic()).thenReturn("ThreeInRow(bposn) = TRUE");
+		
+		Characteristic mockedChar3 = mock(Characteristic.class);
+		when(mockedChar3.toString()).thenReturn("bposn /\\ rposn = {}");
+		when(mockedChar3.getCharacteristic()).thenReturn("bposn /\\ rposn = {}");
+		
+		Characteristic mockedChar4 = mock(Characteristic.class);
+		when(mockedChar4.toString()).thenReturn("rposn <: 0..8");
+		when(mockedChar4.getCharacteristic()).thenReturn("rposn <: 0..8");
+		
+		Characteristic mockedChar5 = mock(Characteristic.class);
+		when(mockedChar5.toString()).thenReturn("ThreeInRow(rposn) = TRUE");
+		when(mockedChar5.getCharacteristic()).thenReturn("ThreeInRow(rposn) = TRUE");
+		
+		Characteristic mockedChar6 = mock(Characteristic.class);
+		when(mockedChar6.toString()).thenReturn("turn : Player");
+		when(mockedChar6.getCharacteristic()).thenReturn("turn : Player");
+		
+		Characteristic mockedChar7 = mock(Characteristic.class);
+		when(mockedChar7.toString()).thenReturn("bposn <: 0..8");
+		when(mockedChar7.getCharacteristic()).thenReturn("bposn <: 0..8");		
+
+		expected.add(mockedChar1);
+		expected.add(mockedChar2);
+		expected.add(mockedChar3);
+		expected.add(mockedChar4);
+		expected.add(mockedChar5);
+		expected.add(mockedChar6);
+		expected.add(mockedChar7);
+		
+		System.out.println(expected);
+		System.out.println(partitioner.getOperationCharacteristics());
+		
+		assertEquals(7, partitioner.getOperationCharacteristics().size());
+		assertTrue(compareSetsOfCharacteristics(expected, partitioner.getOperationCharacteristics()));
+	}
+	
+	
+	
+	private boolean compareSetsOfCharacteristics(Set<Characteristic> setOne, Set<Characteristic> setTwo) {
+		
+		Set<String> characteristics1 = new HashSet<String>();
+		Set<String> characteristics2 = new HashSet<String>();
+		
+		for(Characteristic c : setOne) {
+			characteristics1.add(c.getCharacteristic());
+		}
+		
+		for(Characteristic c : setOne) {
+			characteristics2.add(c.getCharacteristic());
+		}
+		
+		if(characteristics1.size() == characteristics2.size()) {
+			for(String c : characteristics1) {
+				if(!characteristics2.contains(c)) {
+					return false;
+				} 
+			}
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
+
 	
 	
 	private Machine getMachineInstance(String path) {

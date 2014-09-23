@@ -38,16 +38,24 @@ public class PredicateCharacteristic extends Characteristic {
 
 	@Override
 	public boolean equals(Object obj) {
-		if(obj instanceof PredicateCharacteristic) {
-			PredicateCharacteristic c = (PredicateCharacteristic) obj;
-			if(c.getCharacteristic().equals(this.getCharacteristic())) {
-				return true;
-			} else {
-				return false;
-			}
-		} else {
-			return false;
-		}
+		return super.equals(obj);
+//		if(obj instanceof PredicateCharacteristic) {
+//			PredicateCharacteristic c = (PredicateCharacteristic) obj;
+//			if(c.getCharacteristic().equals(this.getCharacteristic())) {
+//				return true;
+//			} else {
+//				return false;
+//			}
+//		} else {
+//			return false;
+//		}
+	}
+	
+	
+	
+	@Override
+	public int hashCode() {
+		return super.hashCode();
 	}
 	
 

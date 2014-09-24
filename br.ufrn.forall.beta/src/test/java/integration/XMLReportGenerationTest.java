@@ -6,8 +6,11 @@ import general.PartitionStrategy;
 
 import java.io.File;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
+import configurations.Configurations;
 import parser.Machine;
 import parser.Operation;
 import reports.XMLReport;
@@ -16,6 +19,20 @@ import tools.FileTools;
 
 public class XMLReportGenerationTest {
 
+	
+	@Before
+	public void setUp() {
+		Configurations.setAutomaticOracleEvaluation(true);
+	}
+	
+	
+	
+	@After
+	public void tearDown() {
+		Configurations.setAutomaticOracleEvaluation(false);
+	}
+	
+	
 	
 	@Test
 	public void shouldGenerateXMLReportForSimpleLift() {

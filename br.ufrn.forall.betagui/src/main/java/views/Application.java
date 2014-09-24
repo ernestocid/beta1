@@ -275,6 +275,10 @@ public class Application {
 				final JCheckBox deleteTempFilesCB = new JCheckBox("Delete Files");
 				deleteTempFilesCB.setSelected(Configurations.isDeleteTempFiles());
 				
+				JLabel automaticOracleEvaluationLabel = new JLabel("Automatic Oracle Evaluation: ");
+				final JCheckBox automaticOracleEvaluationCB = new JCheckBox("Generate Oracle Values (experimental)");
+				automaticOracleEvaluationCB.setSelected(Configurations.isAutomaticOracleEvaluation());
+				
 				
 				JLabel minintLabel = new JLabel("MININT Value: ");
 				final JTextField minintField = new JTextField(String.valueOf(Configurations.getMinIntProperties()), 5);
@@ -314,6 +318,9 @@ public class Application {
 						
 						Configurations.setDeleteTempFiles(deleteTempFilesCB.isSelected());
 						
+						// Set Automatic Oracle Evaluation
+						
+						Configurations.setAutomaticOracleEvaluation(automaticOracleEvaluationCB.isSelected());
 						
 						// Set MININT and MAXINT values
 						
@@ -323,70 +330,78 @@ public class Application {
 					}
 				});
 				
-				c.gridx = 0;
+//				c.gridx = 0;
 				c.gridy = 0;
 				
 				configPanel.add(probPathLabel, c);
 				
-				c.gridx = 1;
+//				c.gridx = 1;
 				c.gridy = 0;
 				
 				configPanel.add(probPathField, c);
 				
-				c.gridx = 0;
+//				c.gridx = 0;
 				c.gridy = 1;
 				
 				configPanel.add(oracleStrategy, c);
 				
-				c.gridx = 1;
+//				c.gridx = 1;
 				c.gridy = 1;
 				
 				configPanel.add(stateVariablesOracCB, c);
 				
-				c.gridx = 2;
+//				c.gridx = 2;
 				c.gridy = 1;
 				
 				configPanel.add(returnVariablesOracCB, c);
 				
-				c.gridx = 3;
+//				c.gridx = 3;
 				c.gridy = 1;
 				
 				configPanel.add(invariantOKOracCB, c);
 				
-				c.gridx = 1;
-				c.gridy = 5;
+//				c.gridx = 0;
+				c.gridy = 2;
 				
-				configPanel.add(deleteTempFilesLabel);
+				configPanel.add(deleteTempFilesLabel, c);
 				
-				c.gridx = 2;
-				c.gridy = 5;
+//				c.gridx = 1;
+				c.gridy = 2;
 				
-				configPanel.add(deleteTempFilesCB);
+				configPanel.add(deleteTempFilesCB, c);
+				
+//				c.gridx = 0;
+				c.gridy = 3;
+				
+				configPanel.add(automaticOracleEvaluationLabel, c);
+				
+//				c.gridx = 1;
+				c.gridy = 3;
+				
+				configPanel.add(automaticOracleEvaluationCB, c);
 
-				c.gridx = 3;
-				c.gridy = 6;
-				
-				configPanel.add(minintLabel);
-				
-				c.gridx = 4;
-				c.gridy = 6;
-				
-				configPanel.add(minintField);
-				
-				c.gridx = 3;
-				c.gridy = 7;
-				
-				configPanel.add(maxintLabel);
-				
-				c.gridx = 4;
-				c.gridy = 7;
-				
-				configPanel.add(maxintField);
-				
-				
-				
-				c.gridx = 1;
+//				c.gridx = 0;
 				c.gridy = 4;
+				
+				configPanel.add(minintLabel, c);
+				
+//				c.gridx = 1;
+				c.gridy = 4;
+				
+				configPanel.add(minintField, c);
+				
+//				c.gridx = 0;
+				c.gridy = 5;
+				
+				configPanel.add(maxintLabel, c);
+				
+//				c.gridx = 1;
+				c.gridy = 5;
+				
+				configPanel.add(maxintField, c);
+								
+//				c.gridx = 0;
+				c.gridy = 6;
 				
 				configPanel.add(saveButton, c);
 				

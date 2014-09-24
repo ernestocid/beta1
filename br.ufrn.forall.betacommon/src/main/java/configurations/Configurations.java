@@ -165,6 +165,26 @@ public class Configurations {
 	
 	
 	/**
+	 * Gets the value for the Automatic Oracle Evaluation configuration on 
+	 * the config.properties file
+	 * @return boolean value for Automatic Oracle Evaluation
+	 */
+	public static boolean isAutomaticOracleEvaluation() {
+		boolean automaticOracleEvaluation = true;
+
+		try {
+			PropertiesConfiguration config = new PropertiesConfiguration(PATH_TO_PROPERTIES_FILE);
+			automaticOracleEvaluation = config.getBoolean("automatic_oracle_evaluation");
+		} catch (ConfigurationException e) {
+			System.err.println("Could not get value for automatic_oracle_evaluation: " + e.getMessage());
+		}
+		
+		return automaticOracleEvaluation;
+	}
+	
+	
+	
+	/**
 	 * Gets the value for the MINTINT on the config.properties file
 	 * @return int value for minint
 	 */
@@ -248,6 +268,24 @@ public class Configurations {
 		probApiPrefs.put("SYMBOLIC", "true");
 		
 		return probApiPrefs;
+	}
+
+
+	
+	/**
+	 * Sets the value for the Automatic Oracle Evaluation configuration on 
+	 * the config.properties file
+	 * @param automaticOracleEvaluation boolean value for the Automatic Oracle Evaluation
+	 */
+	public static void setAutomaticOracleEvaluation(boolean automaticOracleEvaluation) {
+		try {
+			PropertiesConfiguration config = new PropertiesConfiguration(PATH_TO_PROPERTIES_FILE);
+			config.setProperty("automatic_oracle_evaluation", automaticOracleEvaluation);
+			config.save();
+		} catch (ConfigurationException e) {
+			System.err.println("Could not set value for automatic_oracle_evaluation: " + e.getMessage());
+		}
+		
 	}
 
 }

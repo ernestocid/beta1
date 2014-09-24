@@ -15,7 +15,7 @@ team,
 pp
 ) =
 PRE
-not(pp : team) & team <: PLAYER & not(rr /: team) & rr : PLAYER & card(team) = 11 /* NEGATIVE */
+not(pp : team) & team <: PLAYER & rr : PLAYER & not(rr /: team) & card(team) = 11 /* NEGATIVE */
 THEN
 skip
 END
@@ -27,7 +27,7 @@ team,
 pp
 ) =
 PRE
-not(pp : team) & team <: PLAYER & rr /: team & rr : PLAYER & card(team) = 11 /* NEGATIVE */
+not(pp : team) & team <: PLAYER & rr : PLAYER & rr /: team & card(team) = 11 /* NEGATIVE */
 THEN
 skip
 END
@@ -39,7 +39,7 @@ team,
 pp
 ) =
 PRE
-pp : team & team <: PLAYER & not(rr /: team) & rr : PLAYER & card(team) = 11 /* NEGATIVE */
+pp : team & team <: PLAYER & rr : PLAYER & not(rr /: team) & card(team) = 11 /* NEGATIVE */
 THEN
 skip
 END
@@ -51,7 +51,7 @@ team,
 pp
 ) =
 PRE
-pp : team & team <: PLAYER & rr /: team & rr : PLAYER & card(team) = 11 /* POSITIVE */
+pp : team & team <: PLAYER & rr : PLAYER & rr /: team & card(team) = 11 /* POSITIVE */
 THEN
 skip
 END

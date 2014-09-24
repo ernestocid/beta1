@@ -11,6 +11,7 @@ import java.util.Set;
 
 import org.apache.commons.io.IOUtils;
 
+import configurations.Configurations;
 import parser.decorators.predicates.MyPredicate;
 import testgeneration.BETATestCase;
 import testgeneration.BETATestSuite;
@@ -59,7 +60,6 @@ public class HTMLReport {
 		
 		String textWithReplacement = replaceTagsWithParameters(tagsAndReplacement, getReportTemplate());
 
-		
 		FileTools.createFileWithContent(outputReport.getPath(), textWithReplacement);
 	}
 	
@@ -118,8 +118,14 @@ public class HTMLReport {
 			tags.put("{{TESTCASE_FORMULA}}", testCase.getTestFormulaWithoutInvariant());
 			tags.put("{{STATE_VARIABLES_LIST}}", generateStateVariablesList(testCase));
 			tags.put("{{INPUT_VALUES_LIST}}", generateInputParametersList(testCase));
-			tags.put("{{EXPECTED_STATE_VARIABLES_LIST}}", generateExpectedStateVariablesList(testCase));
-			tags.put("{{RETURN_VARIABLES_LIST}}", generateReturnVariablesList(this.testSuite));
+			
+			if(Configurations.isAutomaticOracleEvaluation()) {
+				tags.put("{{EXPECTED_STATE_VARIABLES_LIST}}", generateExpectedStateVariablesList(testCase));
+				tags.put("{{RETURN_VARIABLES_LIST}}", generateReturnVariablesList(this.testSuite));
+			} else {
+				tags.put("{{EXPECTED_STATE_VARIABLES_LIST}}", generateEmptyExpectedValuesForStateVariables(testCase));
+				tags.put("{{RETURN_VARIABLES_LIST}}", generateEmptyExpectedValuesForReturnVariables(testCase));
+			}
 			
 			testCaseListHTML.append(replaceTagsWithParameters(tags, getTestCaseBlockTemplate()));
 		}
@@ -129,13 +135,84 @@ public class HTMLReport {
 
 	
 	
+	private String generateEmptyExpectedValuesForReturnVariables(BETATestCase testCase) {
+		Map<String, String> returnVariablesUnknown = generateUnknownValuesForExpectedReturnValues(testCase);
+		StringBuffer returnVariablesList = new StringBuffer("");
+		
+		if(returnVariablesUnknown.isEmpty()) {
+			returnVariablesList.append("<tr class=\"even\"><td colspan=\"2\"><center><i>This operation has no return variables</i></center></td></tr>");
+		} else {
+			int varCounter = 0;
+			for (String variable : returnVariablesUnknown.keySet()) {
+	
+				if (varCounter % 2 == 0) {
+					returnVariablesList.append("<tr class=\"even\">" + "\n");
+				} else {
+					returnVariablesList.append("\t\t\t<tr class=\"odd\">" + "\n");
+				}
+	
+				returnVariablesList.append("\t\t\t\t<td>" + variable + "</td>" + "\n");
+				returnVariablesList.append("\t\t\t\t<td><i>" + returnVariablesUnknown.get(variable) + "</i></td>" + "\n");
+	
+				returnVariablesList.append("\t\t\t</tr>" + "\n");
+				varCounter++;
+			}
+		}
+		
+		return returnVariablesList.toString();
+	}
+
+
+
+	private Map<String, String> generateUnknownValuesForExpectedReturnValues(BETATestCase testCase) {
+		List<String> returnVariables = testCase.getTestSuite().getOperationUnderTest().getReturnVariables();
+		Map<String, String> unknownValues = new HashMap<String, String>();
+		
+		for(String returnVariable : returnVariables) {
+			unknownValues.put(returnVariable, "Unknown");
+		}
+		
+		return unknownValues;
+	}
+
+
+
+	private String generateEmptyExpectedValuesForStateVariables(BETATestCase testCase) {
+		Map<String, String> stateVariablesUnknown = generateUnknownValueForExpectedStateValues(testCase);
+		StringBuffer stateVariablesList = new StringBuffer("");
+		
+		if(stateVariablesUnknown.isEmpty()) {
+			stateVariablesList.append("<tr class=\"even\"><td colspan=\"2\"><center><i>No related state variables for this operation</i></center></td></tr>");
+		} else {
+			int varCounter = 0;
+			
+			for (String variable : stateVariablesUnknown.keySet()) {
+				if (varCounter % 2 == 0) {
+					stateVariablesList.append("<tr class=\"even\">" + "\n");
+				} else {
+					stateVariablesList.append("\t\t\t<tr class=\"odd\">" + "\n");
+				}
+				
+				stateVariablesList.append("\t\t\t\t<td>" + variable + "</td>" + "\n");
+				stateVariablesList.append("\t\t\t\t<td><i>" + stateVariablesUnknown.get(variable) + "</i></td>" + "\n");
+				
+				stateVariablesList.append("\t\t\t</tr>" + "\n");
+				varCounter++;
+			}
+		}
+
+		return stateVariablesList.toString();
+	}
+
+
+
 	private String generateExpectedStateVariablesList(BETATestCase testCase) {
 		StringBuffer stateVariablesList = new StringBuffer("");
 		
 		Map<String, String> expectedStateValues;
 		
 		if(testCase.isNegative()) {
-			expectedStateValues = generateExpectedStateValuesForNegativeTestCase(testCase);
+			expectedStateValues = generateUnknownValueForExpectedStateValues(testCase);
 		} else {
 			OracleEvaluation oracleEvaluation = new OracleEvaluation(testCase, testCase.getTestSuite().getOperationUnderTest(), testCase.getTestSuite().getProbApi());
 			expectedStateValues = oracleEvaluation.getExpectedStateValues();
@@ -166,7 +243,7 @@ public class HTMLReport {
 
 
 
-	private Map<String, String> generateExpectedStateValuesForNegativeTestCase(BETATestCase testCase) {
+	private Map<String, String> generateUnknownValueForExpectedStateValues(BETATestCase testCase) {
 		Map<String, String> expectedStateValues = new HashMap<String, String>();
 		
 		for(String stateVariable : testCase.getStateValues().keySet()) {

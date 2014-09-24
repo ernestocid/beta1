@@ -47,7 +47,7 @@ public class OracleEvaluation {
 		if(!testCase.getStateValues().isEmpty()) {
 			traceBeforeTest = model.getStateSpace().getTraceToState(new ClassicalB(stateDefinition()));
 		}
-
+		
 		executeOperation(traceBeforeTest);
 	}
 

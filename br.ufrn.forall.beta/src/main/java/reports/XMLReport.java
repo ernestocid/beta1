@@ -145,8 +145,11 @@ public class XMLReport {
 		testCaseElement.appendChild(createIsNegativeElement(testCase));
 		testCaseElement.appendChild(createStateVariablesElement(testCase));
 		testCaseElement.appendChild(createParametersElement(testCase));
-		testCaseElement.appendChild(createExpectedStateValues(testCase));
-		testCaseElement.appendChild(createReturnVariablesElement(testCase));
+		
+		if(Configurations.isAutomaticOracleEvaluation()) {
+			testCaseElement.appendChild(createExpectedStateValues(testCase));
+			testCaseElement.appendChild(createReturnVariablesElement(testCase));
+		}
 		
 		return testCaseElement;
 	}

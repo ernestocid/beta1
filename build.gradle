@@ -86,7 +86,21 @@ project('br.ufrn.forall.betagui') {
 	}
 	
 	distZip {
-		archiveName "beta"+'-'+version+'-bin.zip'
+		
+		// Getting current date to put on the distribution file
+
+		def cal = Calendar.instance
+
+		def day = String.valueOf(cal.get(Calendar.DAY_OF_MONTH))
+		def month = String.valueOf(cal.get(Calendar.MONTH)+1)
+		def year = String.valueOf(cal.get(Calendar.YEAR))
+		def hours = String.valueOf(cal.get(Calendar.HOUR))
+		def minutes = String.valueOf(cal.get(Calendar.MINUTE))
+		def seconds = String.valueOf(cal.get(Calendar.SECOND))
+
+		def buildTime = day+month+year+'-'+hours+minutes+seconds
+
+		archiveName "beta"+'-'+version+'-bin-'+buildTime+'.zip'
 
     }
 }

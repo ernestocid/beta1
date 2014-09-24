@@ -22,6 +22,8 @@ public class XMLReportGenerationTest {
 	
 	@Before
 	public void setUp() {
+		Configurations.setMaxIntProperties(20);
+		Configurations.setMinIntProperties(-1);
 		Configurations.setAutomaticOracleEvaluation(true);
 	}
 	

@@ -1,5 +1,6 @@
 package configurations;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,7 +10,15 @@ import org.apache.commons.configuration.PropertiesConfiguration;
 public class Configurations {
 
 	
-	private static String PATH_TO_PROPERTIES_FILE = "./config.properties";
+	private static String getPathToPropertiesFile() {
+		File jarFile = new File(Configurations.class.getProtectionDomain().getCodeSource().getLocation().getPath());
+		String jarFileDirectory = jarFile.getParentFile().getPath();
+		
+		String propertiesFilePath = jarFileDirectory + "/config.properties";
+		
+		return propertiesFilePath;
+	}
+	
 	
 	
 	/**
@@ -18,9 +27,9 @@ public class Configurations {
 	 */
 	public static String getProBPath() {
 		String probPath = null;
-		
+
 		try {
-			PropertiesConfiguration config = new PropertiesConfiguration(PATH_TO_PROPERTIES_FILE);
+			PropertiesConfiguration config = new PropertiesConfiguration(getPathToPropertiesFile());
 			probPath = config.getString("prob_path");
 		} catch (ConfigurationException e) {
 			System.err.println("Could not get ProB path: " + e.getMessage());
@@ -37,7 +46,7 @@ public class Configurations {
 	 */
 	public static void setProBPath(String probPath) {
 		try {
-			PropertiesConfiguration config = new PropertiesConfiguration(PATH_TO_PROPERTIES_FILE);
+			PropertiesConfiguration config = new PropertiesConfiguration(getPathToPropertiesFile());
 			config.setProperty("prob_path", probPath);
 			config.save();
 		} catch (ConfigurationException e) {
@@ -55,7 +64,7 @@ public class Configurations {
 	 */
 	public static void setOracleStrategy(boolean stateVariables, boolean returnVariables, boolean invariantOK) {
 		try {
-			PropertiesConfiguration config = new PropertiesConfiguration(PATH_TO_PROPERTIES_FILE);
+			PropertiesConfiguration config = new PropertiesConfiguration(getPathToPropertiesFile());
 			config.setProperty("oracle_strategy_state_variables", stateVariables);
 			config.setProperty("oracle_strategy_return_variables", returnVariables);
 			config.setProperty("oracle_strategy_invariant_ok", invariantOK);
@@ -76,7 +85,7 @@ public class Configurations {
 		boolean isStateVariablesActive = false;
 		
 		try {
-			PropertiesConfiguration config = new PropertiesConfiguration(PATH_TO_PROPERTIES_FILE);
+			PropertiesConfiguration config = new PropertiesConfiguration(getPathToPropertiesFile());
 			isStateVariablesActive = config.getBoolean("oracle_strategy_state_variables");
 		} catch (ConfigurationException e) {
 			System.err.println("Could not get value for oracle_strategy_state_variables: " + e.getMessage());
@@ -96,7 +105,7 @@ public class Configurations {
 		boolean isReturnVariablessActive = false;
 		
 		try {
-			PropertiesConfiguration config = new PropertiesConfiguration(PATH_TO_PROPERTIES_FILE);
+			PropertiesConfiguration config = new PropertiesConfiguration(getPathToPropertiesFile());
 			isReturnVariablessActive = config.getBoolean("oracle_strategy_return_variables");
 		} catch (ConfigurationException e) {
 			System.err.println("Could not get value for oracle_strategy_return_variables: " + e.getMessage());
@@ -116,7 +125,7 @@ public class Configurations {
 		boolean isInvariantOKActive = false;
 		
 		try {
-			PropertiesConfiguration config = new PropertiesConfiguration(PATH_TO_PROPERTIES_FILE);
+			PropertiesConfiguration config = new PropertiesConfiguration(getPathToPropertiesFile());
 			isInvariantOKActive = config.getBoolean("oracle_strategy_invariant_ok");
 		} catch (ConfigurationException e) {
 			System.err.println("Could not get value for oracle_strategy_invariant_ok: " + e.getMessage());
@@ -134,7 +143,7 @@ public class Configurations {
 	 */
 	public static void setDeleteTempFiles(boolean deleteTempFiles) {
 		try {
-			PropertiesConfiguration config = new PropertiesConfiguration(PATH_TO_PROPERTIES_FILE);
+			PropertiesConfiguration config = new PropertiesConfiguration(getPathToPropertiesFile());
 			config.setProperty("delete_temp_files", deleteTempFiles);
 			config.save();
 		} catch (ConfigurationException e) {
@@ -153,7 +162,7 @@ public class Configurations {
 		boolean deleteTempFiles = true;
 
 		try {
-			PropertiesConfiguration config = new PropertiesConfiguration(PATH_TO_PROPERTIES_FILE);
+			PropertiesConfiguration config = new PropertiesConfiguration(getPathToPropertiesFile());
 			deleteTempFiles = config.getBoolean("delete_temp_files");
 		} catch (ConfigurationException e) {
 			System.err.println("Could not get value for delete_temp_files: " + e.getMessage());
@@ -173,7 +182,7 @@ public class Configurations {
 		boolean automaticOracleEvaluation = true;
 
 		try {
-			PropertiesConfiguration config = new PropertiesConfiguration(PATH_TO_PROPERTIES_FILE);
+			PropertiesConfiguration config = new PropertiesConfiguration(getPathToPropertiesFile());
 			automaticOracleEvaluation = config.getBoolean("automatic_oracle_evaluation");
 		} catch (ConfigurationException e) {
 			System.err.println("Could not get value for automatic_oracle_evaluation: " + e.getMessage());
@@ -192,7 +201,7 @@ public class Configurations {
 		int minint = -5;
 
 		try {
-			PropertiesConfiguration config = new PropertiesConfiguration(PATH_TO_PROPERTIES_FILE);
+			PropertiesConfiguration config = new PropertiesConfiguration(getPathToPropertiesFile());
 			minint = config.getInt("minint");
 		} catch (ConfigurationException e) {
 			System.err.println("Could not get value for minint: " + e.getMessage());
@@ -211,7 +220,7 @@ public class Configurations {
 		int maxint = 5;
 
 		try {
-			PropertiesConfiguration config = new PropertiesConfiguration(PATH_TO_PROPERTIES_FILE);
+			PropertiesConfiguration config = new PropertiesConfiguration(getPathToPropertiesFile());
 			maxint = config.getInt("maxint");
 		} catch (ConfigurationException e) {
 			System.err.println("Could not get value for maxint: " + e.getMessage());
@@ -228,7 +237,7 @@ public class Configurations {
 	 */
 	public static void setMinIntProperties(int minint) {
 		try {
-			PropertiesConfiguration config = new PropertiesConfiguration(PATH_TO_PROPERTIES_FILE);
+			PropertiesConfiguration config = new PropertiesConfiguration(getPathToPropertiesFile());
 			config.setProperty("minint", minint);
 			config.save();
 		} catch (ConfigurationException e) {
@@ -244,7 +253,7 @@ public class Configurations {
 	 */
 	public static void setMaxIntProperties(int maxint) {
 		try {
-			PropertiesConfiguration config = new PropertiesConfiguration(PATH_TO_PROPERTIES_FILE);
+			PropertiesConfiguration config = new PropertiesConfiguration(getPathToPropertiesFile());
 			config.setProperty("maxint", maxint);
 			config.save();
 		} catch (ConfigurationException e) {
@@ -279,7 +288,7 @@ public class Configurations {
 	 */
 	public static void setAutomaticOracleEvaluation(boolean automaticOracleEvaluation) {
 		try {
-			PropertiesConfiguration config = new PropertiesConfiguration(PATH_TO_PROPERTIES_FILE);
+			PropertiesConfiguration config = new PropertiesConfiguration(getPathToPropertiesFile());
 			config.setProperty("automatic_oracle_evaluation", automaticOracleEvaluation);
 			config.save();
 		} catch (ConfigurationException e) {

@@ -48,11 +48,7 @@ public class InputDataEvaluation {
 			StateSpace stateSpace = model.getStateSpace();
 			Trace trace = new Trace(stateSpace);
 			
-			try {
-				trace = trace.execute("$setup_constants", new ArrayList<String>());
-			} catch (NullPointerException e) {
-				System.err.println("This model has no constants so $setup_constants could not be executed");
-			}
+			trace = trySetupConstants(trace);
 			
 			trace = trace.execute("$initialise_machine", new ArrayList<String>());
 			trace = stateSpace.getTraceToState(new ClassicalB(formulaForEvaluation));
@@ -73,6 +69,26 @@ public class InputDataEvaluation {
 			e.printStackTrace();
 		} catch (BException e) {
 			e.printStackTrace();
+		}
+	}
+
+
+
+	private Trace trySetupConstants(Trace trace) {
+		boolean machineHasNoConstants = getOperationUnderTest().getMachine().getAllConstants().isEmpty() && 
+										getOperationUnderTest().getMachine().getSets() == null;
+		
+		if(machineHasNoConstants) {
+			return trace;
+		} else {
+
+			try {
+				trace = trace.execute("$setup_constants", new ArrayList<String>());
+			} catch (NullPointerException e) {
+				System.err.println("Could not execute $setup_constants");
+			}
+			
+			return trace;
 		}
 	}
 

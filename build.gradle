@@ -25,7 +25,6 @@ project(':br.ufrn.forall.beta') {
 	// def core_version = '2.0.0-milestone-14-SNAPSHOT'
 	def core_version = '2.0.0-milestone-16-SNAPSHOT'
 	
-	
 	dependencies {
 		compile project(':br.ufrn.forall.betaanimator'), project(':br.ufrn.forall.betacommon'), project(':br.ufrn.forall.betaparser'), project(':br.ufrn.forall.datacomb')
 		compile group: "de.prob", name: "de.prob2.kernel", version: core_version , changing: true
@@ -34,6 +33,7 @@ project(':br.ufrn.forall.beta') {
 		compile 'org.mockito:mockito-all:1.9.5'
 		compile 'com.io7m.xom:xom:1.2.10'
 	}
+	
 }
 
 project(':br.ufrn.forall.betaanimator') {
@@ -43,6 +43,11 @@ project(':br.ufrn.forall.betaanimator') {
 }
 
 project(':br.ufrn.forall.betacommon') {
+	task copyTask(type: Copy) {
+    	from '$projectDir/config.properties'
+    	into '$buildDir/libs'
+	}
+
 	dependencies {
 		compile 'xml-resolver:xml-resolver:1.2'
 		compile 'org.apache.commons:commons-vfs2:2.0'

@@ -16,11 +16,15 @@ public class MainTest {
 		
 		Api probApi = Main.getInjector().getInstance(Api.class);
 		
+		Machine machine = new Machine(new File("/Users/ernestocid/Temp/LGAR4_mch.eventb"));
+		Operation operationUnderTest = machine.getOperation(0);
+		
 //		Machine machine = new Machine(new File("src/test/resources/machines/PassFinalOrFailIFELSIFELSE.mch"));
 //		Operation operationUnderTest = machine.getOperation(0);
 		
-		Machine machine = new Machine(new File("src/test/resources/machines/Simple.mch"));
-		Operation operationUnderTest = machine.getOperation(0);
+		
+//		Machine machine = new Machine(new File("src/test/resources/machines/Simple.mch"));
+//		Operation operationUnderTest = machine.getOperation(0);
 		
 //		Machine machine = new Machine(new File("src/test/resources/machines/CaseStmt.mch"));
 //		Operation operationUnderTest = machine.getOperation(1);

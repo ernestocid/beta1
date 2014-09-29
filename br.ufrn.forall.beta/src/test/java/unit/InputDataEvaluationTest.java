@@ -6,6 +6,8 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import de.prob.Main;
@@ -19,7 +21,21 @@ import static org.mockito.Mockito.*;
 public class InputDataEvaluationTest {
 
 	
-	private Api probApi = Main.getInjector().getInstance(Api.class);
+	private Api probApi;
+	
+	
+	@Before
+	public void setUp() {
+		this.probApi = Main.getInjector().getInstance(Api.class);
+	}
+	
+	
+	
+	@After
+	public void tearDown() {
+		this.probApi = null;
+	}
+	
 	
 	
 	@Test
@@ -191,10 +207,10 @@ public class InputDataEvaluationTest {
 		InputDataEvaluation inputDataEvaluation = new InputDataEvaluation(mockedTestCase, operationUnderTest, probApi);
 		
 		Map<String, String> expectedInputParams = new HashMap<String, String>();
-		expectedInputParams.put("nFloor", "1");
+		expectedInputParams.put("nFloor", "2");
 		
 		Map<String, String> expectedStateValues = new HashMap<String, String>();
-		expectedStateValues.put("floor", "2");
+		expectedStateValues.put("floor", "1");
 		
 		assertEquals(expectedInputParams, inputDataEvaluation.getInputParamsValues());
 		assertEquals(expectedStateValues, inputDataEvaluation.getStateVariablesValues());
@@ -204,7 +220,7 @@ public class InputDataEvaluationTest {
 	
 	@Test
 	public void shouldGenerateInputDataForPaperroundAddPaper() {
-		Machine machine = new Machine(new File("/Users/ernestocid/dev/beta/br.ufrn.forall.betagui/build/distributions/beta-1.2-bin/examples/Paperround.mch"));
+		Machine machine = new Machine(new File("src/test/resources/machines/others/Paperround.mch"));
 		Operation operationUnderTest = machine.getOperation(0); // addpaper(hh) operation
 		
 		BETATestCase mockedTestCase = mock(BETATestCase.class);
@@ -228,8 +244,8 @@ public class InputDataEvaluationTest {
 	
 	@Test
 	public void shouldGenerateInputDataForBasketsAdd() {
-		Machine machine = new Machine(new File("/Users/ernestocid/dev/beta/br.ufrn.forall.betagui/build/distributions/beta-1.2-bin/examples/Baskets.mch"));
-		Operation operationUnderTest = machine.getOperation(0); // addpaper(hh) operation
+		Machine machine = new Machine(new File("src/test/resources/machines/schneider/Baskets.mch"));
+		Operation operationUnderTest = machine.getOperation(1); // addpaper(hh) operation
 		
 		BETATestCase mockedTestCase = mock(BETATestCase.class);
 		when(mockedTestCase.getTestFormula()).thenReturn("cu : dom(baskets) & gg : GOODS & baskets : (CUSTOMER +-> POW(GOODS))"); // Positive
@@ -237,11 +253,11 @@ public class InputDataEvaluationTest {
 		InputDataEvaluation inputDataEvaluation = new InputDataEvaluation(mockedTestCase, operationUnderTest, probApi);
 		
 		Map<String, String> expectedInputParams = new HashMap<String, String>();
-		expectedInputParams.put("hh", "1");
+		expectedInputParams.put("cu", "CUSTOMER1");
+		expectedInputParams.put("gg", "GOODS1");
 		
 		Map<String, String> expectedStateValues = new HashMap<String, String>();
-		expectedStateValues.put("magazines", "{}");
-		expectedStateValues.put("papers", "{}");
+		expectedStateValues.put("baskets", "{(CUSTOMER1|->{})}");
 		
 		assertEquals(expectedInputParams, inputDataEvaluation.getInputParamsValues());
 		assertEquals(expectedStateValues, inputDataEvaluation.getStateVariablesValues());
@@ -251,7 +267,7 @@ public class InputDataEvaluationTest {
 	
 	@Test
 	public void shouldGenerateInputDataForInc() {
-		Machine machine = new Machine(new File("/Users/ernestocid/dev/beta/br.ufrn.forall.betagui/build/distributions/beta-1.2-bin/examples/Inc.mch"));
+		Machine machine = new Machine(new File("src/test/resources/machines/others/Inc.mch"));
 		Operation operationUnderTest = machine.getOperation(0); // inc(nn) operation
 		
 		BETATestCase mockedTestCase = mock(BETATestCase.class);
@@ -260,11 +276,10 @@ public class InputDataEvaluationTest {
 		InputDataEvaluation inputDataEvaluation = new InputDataEvaluation(mockedTestCase, operationUnderTest, probApi);
 		
 		Map<String, String> expectedInputParams = new HashMap<String, String>();
-		expectedInputParams.put("hh", "1");
+		expectedInputParams.put("nn", "0");
 		
 		Map<String, String> expectedStateValues = new HashMap<String, String>();
-		expectedStateValues.put("magazines", "{}");
-		expectedStateValues.put("papers", "{}");
+		expectedStateValues.put("value", "-1");
 		
 		assertEquals(expectedInputParams, inputDataEvaluation.getInputParamsValues());
 		assertEquals(expectedStateValues, inputDataEvaluation.getStateVariablesValues());

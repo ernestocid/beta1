@@ -43,7 +43,7 @@ public class PredicateCoverageTest extends TestingUtils {
 	@Test
 	public void shouldGetTestFormulasForCaseStatement() {
 		Machine machine = new Machine(new File("src/test/resources/machines/CaseStmt.mch"));
-		Operation operationUnderTest = machine.getOperation(1);
+		Operation operationUnderTest = machine.getOperation(1); // Set(yy)
 		
 		PredicateCoverage pc = new PredicateCoverage(operationUnderTest);
 		
@@ -98,7 +98,7 @@ public class PredicateCoverageTest extends TestingUtils {
 	@Test
 	public void shouldGenerateTestFormulasForAnyStatement() {
 		Machine machine = new Machine(new File("src/test/resources/machines/Any.mch"));
-		Operation operationUnderTest = machine.getOperation(0);
+		Operation operationUnderTest = machine.getOperation(0); // Add
 		
 		PredicateCoverage pc = new PredicateCoverage(operationUnderTest);
 		

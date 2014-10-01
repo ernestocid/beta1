@@ -16,8 +16,18 @@ public class MainTest {
 		
 		Api probApi = Main.getInjector().getInstance(Api.class);
 		
-		Machine machine = new Machine(new File("/Users/ernestocid/Temp/LGAR4_mch.eventb"));
-		Operation operationUnderTest = machine.getOperation(0);
+//		Machine machine = new Machine(new File("/Users/ernestocid/Temp/MCDC/Priorityqueue.mch"));
+//		Operation operationUnderTest = machine.getOperation(1);
+		
+		
+		Machine machine = new Machine(new File("/Users/ernestocid/Temp/MCDC/Priorityqueue.mch"));
+		System.out.println(machine.getName() + ": ");
+		printACCTestsForAllOperations(machine, probApi);
+		
+		
+//		Machine machine = new Machine(new File("/Users/ernestocid/Temp/LGAR4_mch.eventb"));
+//		Operation operationUnderTest = machine.getOperation(0);
+		
 		
 //		Machine machine = new Machine(new File("src/test/resources/machines/PassFinalOrFailIFELSIFELSE.mch"));
 //		Operation operationUnderTest = machine.getOperation(0);
@@ -41,133 +51,56 @@ public class MainTest {
 //		Machine machine = new Machine(new File("src/test/resources/machines/CaseStudy/scheduler.mch"));
 //		Operation operationUnderTest = machine.getOperation(3);
 		
-		System.out.println("Machine: " + machine.getName());
-		System.out.println("Operation under test: " + operationUnderTest.getName());
-		System.out.println("");
+//		System.out.println("Machine: " + machine.getName());
+//		System.out.println("Operation under test: " + operationUnderTest.getName());
+//		System.out.println("");
+//		
+//		printPredicatesSet(operationUnderTest);
+//		
+//		System.out.println("");
+//		
+//		printClausesSet(operationUnderTest);
 		
-		printPredicatesSet(operationUnderTest);
+//		System.out.println("\nPredicate Coverage (PC) test formulas: ");
+//		
+//		printTestFormulas(new PredicateCoverage(operationUnderTest), probApi, operationUnderTest);
+//		
+//		System.out.println("\nClause Coverage (CC) test formulas: ");
+//		
+//		printTestFormulas(new ClauseCoverage(operationUnderTest), probApi, operationUnderTest);
+//		
+//		System.out.println("\nCombinatorial Coverage (CoC) test formulas: ");
+//		
+//		printTestFormulas(new CombinatorialCoverage(operationUnderTest), probApi, operationUnderTest);
 		
-		System.out.println("");
-		
-		printClausesSet(operationUnderTest);
-		
-		System.out.println("\nPredicate Coverage (PC) test formulas: ");
-		
-		printTestFormulas(new PredicateCoverage(operationUnderTest), probApi, operationUnderTest);
-		
-		System.out.println("\nClause Coverage (CC) test formulas: ");
-		
-		printTestFormulas(new ClauseCoverage(operationUnderTest), probApi, operationUnderTest);
-		
-		System.out.println("\nCombinatorial Coverage (CoC) test formulas: ");
-		
-		printTestFormulas(new CombinatorialCoverage(operationUnderTest), probApi, operationUnderTest);
-		
-		System.out.println("\nActive Clause Coverage (ACC) test formulas: ");
-		
-		printTestFormulas(new ActiveClauseCoverage(operationUnderTest), probApi, operationUnderTest);
+//		System.out.println("\nActive Clause Coverage (ACC) test formulas: ");
+//		
+//		printTestFormulas(new ActiveClauseCoverage(operationUnderTest), probApi, operationUnderTest);
 		
 	}
 
 	
 
+	private static void printACCTestsForAllOperations(Machine machine, Api probApi) {
+		for(Operation op : machine.getOperations()) {
+			System.out.println("##### Operation " + op.getName() + " #####\n");
+			printTestFormulas(new ActiveClauseCoverage(op), probApi, op);
+			System.out.println();
+		}
+	}
+
+
+
 	private static void evaluateFormula(Api probApi, Operation operationUnderTest, String formula) {
 //		String pathToMachine = operationUnderTest.getMachine().getFile().getAbsolutePath();
-		
 		
 		FormulaEvaluation ev = new FormulaEvaluation(operationUnderTest, formula, probApi);
 		
 		System.out.println("Parameters Solution: " + ev.getParameterValues());
 		System.out.println("Variables Solution: " + ev.getStateVariablesValues());
 		
-		
-		
-//		try {
-//			ClassicalBModel model = probApi.b_load(pathToMachine, Configurations.getProBApiPreferences());
-//			StateSpace stateSpace = model.getStateSpace();
-//			Trace trace = new Trace(stateSpace);
-//			
-//			try {
-//				if(operationUnderTest.getMachine().getConstants() != null) {
-//					trace = trace.execute("$setup_constants", new ArrayList<String>());
-//				}
-//			} catch (NullPointerException e) {
-//				System.err.println("This model has no constants so $setup_constants could not be executed");
-//			}
-//			
-////			trace = trace.execute("$initialise_machine", new ArrayList<String>());
-//			
-//			if(operationUnderTest.getMachine().getVariables() != null) {
-////				IEvalResult evalCurrent = trace.evalCurrent(new ClassicalB(formula));
-//				try {
-//					trace = stateSpace.getTraceToState(new ClassicalB(formula));
-//				} catch (RuntimeException e) {
-////					System.err.println("Could not execute get trace to state");
-//				}
-//			}
-//			
-//			IEvalResult evalCurrent = trace.evalCurrent(new ClassicalB(formula));
-//			
-//			if(evalCurrent instanceof EvalResult) {
-//				EvalResult result = (EvalResult) evalCurrent;
-//				
-//				Map<String, String> valuesForInputParams = getValuesForInputParams(result, operationUnderTest);
-//				Map<String, String> valuesForStateVariables = getValuesForStateVariables(trace, operationUnderTest);
-//				
-//				System.out.println("\t\tValues for parameters: ");
-//				
-//				for(Entry<String, String> entry : valuesForInputParams.entrySet()) {
-//					System.out.println("\t\t\t" + entry.getKey() + ": " + entry.getValue());
-//				}
-//				
-//				System.out.println("\t\tValues for state variables: ");
-//				
-//				for(Entry<String, String> entry : valuesForStateVariables.entrySet()) {
-//					System.out.println("\t\t\t" + entry.getKey() + ": " + entry.getValue());
-//				}
-//				
-//				
-//			} else {
-//				System.out.println("Not an EvalResult");
-//			}
-//			
-//			
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		} catch (BException e) {
-//			e.printStackTrace();
-//		}
-		
 	}
 	
-	
-	
-//	private static Map<String, String> getValuesForStateVariables(Trace trace, Operation operationUnderTest) {
-//		Map<String, String> valuesForStateVariables = new HashMap<String, String>();
-//		
-//		if(operationUnderTest.getMachine().getVariables() != null) {
-//			for(String variable : operationUnderTest.getMachine().getVariables().getAll()) {
-//				valuesForStateVariables.put(variable, trace.evalCurrent(variable).toString());
-//			}
-//		}
-//		
-//		return valuesForStateVariables;
-//	}
-//	
-//	
-//	
-//	private static Map<String, String> getValuesForInputParams(EvalResult result, Operation operationUnderTest) {
-//		Map<String, String> valuesForInputParams = new HashMap<String, String>();
-//		
-//		Map<String, String> foundSolutions = result.getSolutions();
-//		
-//		for(String param : operationUnderTest.getParameters()) {
-//			valuesForInputParams.put(param, foundSolutions.get(param));
-//		}
-//		
-//		return valuesForInputParams;
-//	}
-
 
 
 	private static void printPredicatesSet(Operation operationUnderTest) {
@@ -199,8 +132,10 @@ public class MainTest {
 		int testId = 1;
 		
 		for(String testFormula : logicalCoverage.getTestFormulas()) {
-			System.out.println("\t" + testId + " - " + testFormula);
-			evaluateFormula(probApi, operationUnderTest, testFormula);
+			System.out.println(testId + " - " + testFormula);
+//			System.out.println("\nFOUND SOLUTIONS:");
+//			evaluateFormula(probApi, operationUnderTest, testFormula);
+			System.out.println();
 			testId++;
 		}
 	

@@ -1,6 +1,7 @@
 package criteria;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -32,18 +33,47 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 	 */
 	public Set<String> getTestFormulas() {
 		Set<String> testFormulas = new HashSet<String>();
-
-		for(MyPredicate predicate : getPredicates()) {
-			if(operationHasPrecondition()) {
-				if(!comparePredicates(predicate, getOperationUnderTest().getPrecondition())) {
+		Set<MyPredicate> predicatesToCover = getPredicates();
+		
+		if(predicatesToCover.isEmpty()) {
+			createTestFormulaForInvariant(testFormulas);
+		} else {
+			for(MyPredicate predicate : getPredicates()) {
+				if(operationHasPrecondition()) {
+					if(!comparePredicates(predicate, getOperationUnderTest().getPrecondition())) {
+						testFormulas.addAll(createACCFormulasForPredicate(predicate));
+					} else {
+						testFormulas.addAll(createTestFormulasForPrecondition());
+					}
+				} else {
 					testFormulas.addAll(createACCFormulasForPredicate(predicate));
 				}
-			} else {
-				testFormulas.addAll(createACCFormulasForPredicate(predicate));
 			}
 		}
 		
 		return testFormulas;
+	}
+
+
+
+	private void createTestFormulaForInvariant(Set<String> testFormulas) {
+		if(getOperationUnderTest().getMachine().getInvariant() != null) {
+			String testInvariantFormula = getOperationUnderTest().getMachine().getInvariant().getPredicate().toString();
+			testFormulas.add(testInvariantFormula);
+		}
+	}
+
+	
+
+	private Set<String> createTestFormulasForPrecondition() {
+		Set<String> testFormulasForPrecondition = new HashSet<String>();
+		
+		String precondtion = getOperationUnderTest().getPrecondition().toString();
+		
+		testFormulasForPrecondition.add(precondtion);
+		testFormulasForPrecondition.add("not(" + precondtion + ")");
+		
+		return testFormulasForPrecondition;
 	}
 
 

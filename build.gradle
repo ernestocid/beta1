@@ -2,7 +2,6 @@ subprojects {
     apply plugin: 'eclipse'
 	apply plugin: 'java'
     apply plugin: 'maven'
-//  group = 'br.ufrn.forall'
     version = '1.2'
     sourceCompatibility = 1.6    
     
@@ -43,11 +42,6 @@ project(':br.ufrn.forall.betaanimator') {
 }
 
 project(':br.ufrn.forall.betacommon') {
-	task copyTask(type: Copy) {
-    	from '$projectDir/config.properties'
-    	into '$buildDir/libs'
-	}
-
 	dependencies {
 		compile 'xml-resolver:xml-resolver:1.2'
 		compile 'org.apache.commons:commons-vfs2:2.0'

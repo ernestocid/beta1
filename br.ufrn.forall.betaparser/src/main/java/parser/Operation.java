@@ -498,8 +498,11 @@ public class Operation {
 		
 		predicates.addAll(getOrGuards(caseSubstitution));
 		
-		for(PSubstitution orSubs : caseSubstitution.getOrSubstitutions()) {
-			getPredicatesFromAllSubstitutions(orSubs, predicates);
+		for(PSubstitution subs : caseSubstitution.getOrSubstitutions()) {
+			if(subs instanceof ACaseOrSubstitution) {
+				ACaseOrSubstitution orSubs = (ACaseOrSubstitution) subs;
+				getPredicatesFromAllSubstitutions(orSubs.getSubstitution(), predicates);
+			}
 		}
 		
 		getPredicatesFromAllSubstitutions(caseSubstitution.getElse(), predicates);
@@ -691,6 +694,15 @@ public class Operation {
 
 	private Set<MyPredicate> searchGuardsThatLeadToPredicateOnCaseSubst(MyPredicate predicate, ACaseSubstitution caseSubst) {
 
+		// Search on EITHER branch
+		
+		Set<MyPredicate> searchOnEITHERTHENResult = searchGuardsThatLeadToPredicateOnSubstitution(predicate, caseSubst.getEitherSubst());
+		
+		if(!searchOnEITHERTHENResult.isEmpty()) {
+			searchOnEITHERTHENResult.addAll(getEitherGuards(caseSubst));
+			return searchOnEITHERTHENResult;
+		}
+		
 		// Search on OR branches
 		
 		for (PSubstitution subst : caseSubst.getOrSubstitutions()) {
@@ -710,17 +722,7 @@ public class Operation {
 			}
 		}
 		
-		// Search on EITHER branch
-		
-		Set<MyPredicate> searchOnEITHERTHENResult = searchGuardsThatLeadToPredicateOnSubstitution(predicate, caseSubst.getEitherSubst());
-		
-		if(!searchOnEITHERTHENResult.isEmpty()) {
-			searchOnEITHERTHENResult.addAll(getEitherGuards(caseSubst));
-			return searchOnEITHERTHENResult;
-		} else {
-			return new HashSet<MyPredicate>();
-		}
-		
+		return new HashSet<MyPredicate>();
 	}
 
 

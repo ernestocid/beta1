@@ -52,6 +52,9 @@ public class ActiveClauseCoverageTest {
 		
 		Set<String> expectedTestFormulas = new HashSet<String>();
 		
+		expectedTestFormulas.add("#averageGrade.(averageGrade : 0..5 & averageGrade : INT)");
+		expectedTestFormulas.add("#averageGrade.(not(averageGrade : 0..5 & averageGrade : INT))");
+		
 		expectedTestFormulas.add("#averageGrade.((averageGrade : 0..5 & averageGrade : INT) & (averageGrade >= 4))");
 		expectedTestFormulas.add("#averageGrade.((averageGrade : 0..5 & averageGrade : INT) & (not(averageGrade >= 4)))");
 		
@@ -79,6 +82,9 @@ public class ActiveClauseCoverageTest {
 		
 		Set<String> expectedTestFormulas = new HashSet<String>();
 		
+		expectedTestFormulas.add("#yy.(yy : ID)");
+		expectedTestFormulas.add("#yy.(not(yy : ID))");
+		
 		expectedTestFormulas.add("#xx,yy.((xx : ID) & (yy : ID) & (yy = aa))");
 		expectedTestFormulas.add("#xx,yy.((xx : ID) & (yy : ID) & (not(yy = aa)))");
 		
@@ -102,6 +108,10 @@ public class ActiveClauseCoverageTest {
 		// Setting up expected results
 		
 		Set<String> expectedFormulas = new HashSet<String>();
+		
+		
+		expectedFormulas.add("#yy.(yy : ID)");
+		expectedFormulas.add("#yy.(not(yy : ID))");
 		
 		expectedFormulas.add("#xx,yy.((xx <: ID) & (yy : ID) & (xx = {}))");
 		expectedFormulas.add("#xx,yy.((xx <: ID) & (yy : ID) & (not(xx = {})))");
@@ -136,6 +146,9 @@ public class ActiveClauseCoverageTest {
 		
 		Set<String> expectedFormulas = new HashSet<String>();
 		
+		expectedFormulas.add("#yy.(yy : ID)");
+		expectedFormulas.add("#yy.(not(yy : ID))");
+		
 		expectedFormulas.add("#xx,yy.((xx <: ID) & (yy : ID) & (xx /= {}) & ((1=1 & yy : xx) <=> not(1=2 & yy : xx)))");
 		expectedFormulas.add("#xx,yy.((xx <: ID) & (yy : ID) & not(xx /= {}) & ((1=1 & yy : xx) <=> not(1=2 & yy : xx)))");
 		
@@ -168,6 +181,71 @@ public class ActiveClauseCoverageTest {
 		
 		// Assertions
 		
+		assertEquals(expectedTestFormulas, acc.getTestFormulas());
+	}
+	
+	
+	
+	@Test
+	public void shouldGenerateTestFormulasForMachinesWithNestedSubstitutions() {
+		Machine machine = new Machine(new File("src/test/resources/machines/NestedSubstitutions.mch"));
+		Operation operationUnderTest = machine.getOperation(0);
+		
+		ActiveClauseCoverage acc = new ActiveClauseCoverage(operationUnderTest);
+		
+		// Setting up expected results
+		
+		Set<String> expectedTestFormulas = new HashSet<String>();
+		
+		expectedTestFormulas.add("#yy,xx.(xx : NAT & yy : NAT)");
+		expectedTestFormulas.add("#yy,xx.(not(xx : NAT & yy : NAT))");
+		
+		expectedTestFormulas.add("#xx,yy.((xx : NAT & yy : NAT) & (xx /= yy))");
+		expectedTestFormulas.add("#xx,yy.((xx : NAT & yy : NAT) & (not(xx /= yy)))");
+		
+		expectedTestFormulas.add("#xx,yy.((xx : NAT & yy : NAT) & (xx /= yy) & (xx > yy))");
+		expectedTestFormulas.add("#xx,yy.((xx : NAT & yy : NAT) & (xx /= yy) & (not(xx > yy)))");
+		
+		expectedTestFormulas.add("#xx,yy.((xx : NAT & yy : NAT) & (xx /= yy) & (xx = 2))");
+		expectedTestFormulas.add("#xx,yy.((xx : NAT & yy : NAT) & (xx /= yy) & (not(xx = 2)))");
+		
+		expectedTestFormulas.add("#xx,yy.((xx : NAT & yy : NAT) & (xx /= yy & xx = 2) & (yy = 1))");
+		expectedTestFormulas.add("#xx,yy.((xx : NAT & yy : NAT) & (xx /= yy & xx = 2) & (not(yy = 1)))");
+		
+		expectedTestFormulas.add("#xx,yy.((xx : NAT & yy : NAT) & (xx /= yy) & (yy = 2))");
+		expectedTestFormulas.add("#xx,yy.((xx : NAT & yy : NAT) & (xx /= yy) & (not(yy = 2)))");
+
+		assertEquals(expectedTestFormulas, acc.getTestFormulas());
+	}
+	
+	
+	
+	@Test
+	public void shouldGenerateTestFormulasForMachinesWithNestedSubstitutions2() {
+		Machine machine = new Machine(new File("src/test/resources/machines/CaseWithNestedSubstitutions.mch"));
+		Operation operationUnderTest = machine.getOperation(0);
+		
+		ActiveClauseCoverage acc = new ActiveClauseCoverage(operationUnderTest);
+		
+		// Setting up expected results
+		
+		Set<String> expectedTestFormulas = new HashSet<String>();
+		
+		expectedTestFormulas.add("#xx.(xx : NAT)");
+		expectedTestFormulas.add("#xx.(not(xx : NAT))");
+		
+		expectedTestFormulas.add("#aa,bb,xx.((aa : NAT & bb : NAT) & (xx : NAT) & (xx = 1))");
+		expectedTestFormulas.add("#aa,bb,xx.((aa : NAT & bb : NAT) & (xx : NAT) & (not(xx = 1)))");
+		
+		expectedTestFormulas.add("#aa,bb,xx.((aa : NAT & bb : NAT) & (xx : NAT) & (xx = 1) & (aa > bb))");
+		expectedTestFormulas.add("#aa,bb,xx.((aa : NAT & bb : NAT) & (xx : NAT) & (xx = 1) & (not(aa > bb)))");
+		
+		expectedTestFormulas.add("#aa,bb,xx.((aa : NAT & bb : NAT) & (xx : NAT) & (xx = 2))");
+		expectedTestFormulas.add("#aa,bb,xx.((aa : NAT & bb : NAT) & (xx : NAT) & (not(xx = 2)))");
+		
+		expectedTestFormulas.add("#aa,bb,xx.((aa : NAT & bb : NAT) & (xx : NAT) & (xx = 2) & (bb >= aa))");
+		expectedTestFormulas.add("#aa,bb,xx.((aa : NAT & bb : NAT) & (xx : NAT) & (xx = 2) & (not(bb >= aa)))");
+
 		assertEquals(expectedTestFormulas, acc.getTestFormulas());
 	}
 	

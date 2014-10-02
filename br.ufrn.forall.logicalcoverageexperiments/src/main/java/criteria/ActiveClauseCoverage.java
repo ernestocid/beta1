@@ -1,7 +1,7 @@
 package criteria;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -68,12 +68,33 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 	private Set<String> createTestFormulasForPrecondition() {
 		Set<String> testFormulasForPrecondition = new HashSet<String>();
 		
+		Set<String> precondtionVariables = getOperationUnderTest().getPrecondition().getVariables();
+		String existentialList = createExistentialListFor(precondtionVariables);
 		String precondtion = getOperationUnderTest().getPrecondition().toString();
 		
-		testFormulasForPrecondition.add(precondtion);
-		testFormulasForPrecondition.add("not(" + precondtion + ")");
+		testFormulasForPrecondition.add(existentialList + "(" + precondtion + ")");
+		testFormulasForPrecondition.add(existentialList + "(" + "not(" + precondtion + "))");
 		
 		return testFormulasForPrecondition;
+	}
+
+
+
+	private String createExistentialListFor(Set<String> variables) {
+		StringBuffer existentialList = new StringBuffer("#");
+		
+		int counter = 0;
+		
+		for(String var : variables) {
+			if(counter < variables.size() - 1) {
+				existentialList.append(var + ",");
+			} else {
+				existentialList.append(var + ".");
+			}
+			counter++;
+		}
+		
+		return existentialList.toString();
 	}
 
 
@@ -88,14 +109,51 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 				testFormulas.addAll(createTestFormulas(majorClause, clauses, predicate));
 			}
 		} else {
-			testFormulas.add(varListForExistential() + "(" + invariant() + precondition() + "(" + clauses.get(0) + "))");
-			testFormulas.add(varListForExistential() + "(" + invariant() + precondition() + "(" + "not(" + clauses.get(0) + ")" + "))");
+			testFormulas.add(varListForExistential() + "(" + invariant() + precondition() + getReachabiltyPredicate(predicate) + "(" + clauses.get(0) + "))");
+			testFormulas.add(varListForExistential() + "(" + invariant() + precondition() + getReachabiltyPredicate(predicate) + "(" + "not(" + clauses.get(0) + ")" + "))");
 		}
 		
 		return testFormulas;
 	}
 
 	
+
+	private String getReachabiltyPredicate(MyPredicate predicate) {
+		StringBuffer reachabilityPredicate = new StringBuffer("");
+		List<String> guards = getReachabilityGuards(predicate);
+		
+		int counter = 0;
+		
+		for(String guard : guards) {
+			if(counter < guards.size() - 1) {
+				reachabilityPredicate.append(guard.toString() + " & ");
+			} else {
+				reachabilityPredicate.append(guard.toString());
+			}
+			counter++;
+		}
+		
+		if(reachabilityPredicate.toString().equals("")) {
+			return "";
+		} else {
+			return "(" + reachabilityPredicate.toString() + ") & ";
+		}
+	}
+
+
+
+	private List<String> getReachabilityGuards(MyPredicate predicate) {
+		List<String> guards = new ArrayList<String>();
+		
+		for(MyPredicate guard : getOperationUnderTest().getGuardsThatLeadToPredicate(predicate)) {
+			guards.add(guard.toString());
+		}
+		
+		Collections.sort(guards);
+		return guards;
+	}
+
+
 
 	private List<String> createTestFormulas(MyPredicate majorClause, List<MyPredicate> clauses, MyPredicate predicate) {
 		List<String> testFormulas = new ArrayList<String>();

@@ -256,7 +256,10 @@ public class GenerateReportPanel extends JPanel implements ActionListener,
         
         private void createHTMLReportFile(Operation operationUnderTest, BETATestSuite testSuite) {
     		String sourceMachineDirectory = operationUnderTest.getMachine().getFile().getParent();
-			String reportFileName = ConventionTools.getReportFileName(operationUnderTest.getMachine().getName(), operationUnderTest.getName(), "html");
+    		PartitionStrategy chosenPartitionStrategy = PartitionStrategy.get(application.getChosenPartitionStrategy());
+    		CombinatorialCriterias chosenCombinatorialCriteria = CombinatorialCriterias.get(application.getChosenCombinatorialCriteria());
+			
+    		String reportFileName = ConventionTools.getReportFileName(operationUnderTest, chosenPartitionStrategy, chosenCombinatorialCriteria, "html");
 			String outputFilePath = sourceMachineDirectory + System.getProperty("file.separator") + reportFileName;
 			
 			HTMLReport htmlReport = new HTMLReport(testSuite, new File(outputFilePath));
@@ -269,9 +272,10 @@ public class GenerateReportPanel extends JPanel implements ActionListener,
         
         private String createXMLReportFile(Operation operationUnderTest, BETATestSuite testSuite) {
     		String sourceMachineDirectory = operationUnderTest.getMachine().getFile().getParent();
+    		PartitionStrategy chosenPartitionStrategy = PartitionStrategy.get(application.getChosenPartitionStrategy());
+    		CombinatorialCriterias chosenCombinatorialCriteria = CombinatorialCriterias.get(application.getChosenCombinatorialCriteria());
     		
-    		
-			String reportFileName = ConventionTools.getReportFileName(operationUnderTest.getMachine().getName(), operationUnderTest.getName(), "xml");
+			String reportFileName = ConventionTools.getReportFileName(operationUnderTest, chosenPartitionStrategy, chosenCombinatorialCriteria, "xml");
 			String outputFilePath = sourceMachineDirectory + System.getProperty("file.separator") + reportFileName;
 			
 			XMLReport xmlReport = new XMLReport(testSuite, new File(outputFilePath));

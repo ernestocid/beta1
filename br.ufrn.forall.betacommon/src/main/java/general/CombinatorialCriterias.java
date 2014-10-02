@@ -9,7 +9,6 @@ public enum CombinatorialCriterias {
 	private final String text;
 
 	
-	
 	private CombinatorialCriterias(String text) {
 		this.text = text;
 	}
@@ -26,5 +25,18 @@ public enum CombinatorialCriterias {
 	public String toString() {
 		return text;
 	}
-	
+
+
+
+	public String getAcronym() {
+		if(text.equals("All-Combinations")) {
+			return "AC";
+		} else if(text.equals("Each-Choice")) {
+			return "EC";
+		} else if(text.equals("Pairwise")) {
+			return "PW";
+		} else {
+			return "error";
+		}
+	}
 }

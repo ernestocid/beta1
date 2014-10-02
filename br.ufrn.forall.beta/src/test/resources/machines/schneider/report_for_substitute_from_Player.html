@@ -70,6 +70,13 @@
 	font-weight : 300;
 }
 
+#test_cases h5 {
+	margin-left : 3px;
+	margin-top : 10px;
+	margin-bottom : 10px;
+	font-size : 14;
+}
+
 table {
 	width : 100%;
 	text-align : left;
@@ -153,12 +160,14 @@ tr.odd td {
 <div class="content_block" id="test_cases">
 
 	<div class="test_case">
-		<h3>Test Case 1</h3>
+		<h3>Test Case 1 (Negative)</h3>
 
 		<h4>Formula: <i>not(pp : team) & not(rr /: team) & rr : PLAYER</i></h4>
 
 		</br>
 
+		<h5>Input data: </h5>
+
 		<table>
 			<tr>
 				<th colspan="2">State</th>
@@ -171,7 +180,7 @@ tr.odd td {
 
 			<tr class="even">
 				<td>team</td>
-				<td><i>{PLAYER1,PLAYER2,PLAYER3,PLAYER4,PLAYER5,PLAYER6,PLAYER7,PLAYER8,PLAYER9,PLAYER10,PLAYER11}</i></td>
+				<td><i>{PLAYER1,PLAYER3,PLAYER4,PLAYER5,PLAYER6,PLAYER7,PLAYER8,PLAYER9,PLAYER10,PLAYER11,PLAYER12}</i></td>
 			</tr>
 
 
@@ -190,10 +199,29 @@ tr.odd td {
 			</tr>
 			<tr class="odd">
 				<td>pp</td>
-				<td><i>PLAYER12</i></td>
+				<td><i>PLAYER2</i></td>
 			</tr>
 
-			
+		</table>
+
+		<h5>Expected results: </h5>
+
+		<table>
+			<tr>
+				<th colspan="2">State</th>
+			</tr>
+
+			<tr>
+				<th>Variable</th>
+				<th>Value</th>
+			</tr>
+
+			<tr class="even">
+				<td>team</td>
+				<td><i>Unknown</i></td>
+			</tr>
+
+
 			<tr>
 				<th colspan="2">Return Variables</th>
 			</tr>
@@ -202,7 +230,7 @@ tr.odd td {
 				<th>Return Variable</th>
 				<th>Value</th>
 			</tr>
-			
+
 			<tr class="even"><td colspan="2"><center><i>This operation has no return variables</i></center></td></tr>
 
 		</table>
@@ -211,12 +239,14 @@ tr.odd td {
 	</br>
 
 	<div class="test_case">
-		<h3>Test Case 2</h3>
+		<h3>Test Case 2 (Negative)</h3>
 
 		<h4>Formula: <i>not(pp : team) & rr /: team & rr : PLAYER</i></h4>
 
 		</br>
 
+		<h5>Input data: </h5>
+
 		<table>
 			<tr>
 				<th colspan="2">State</th>
@@ -229,7 +259,7 @@ tr.odd td {
 
 			<tr class="even">
 				<td>team</td>
-				<td><i>{PLAYER1,PLAYER2,PLAYER3,PLAYER4,PLAYER5,PLAYER6,PLAYER7,PLAYER8,PLAYER9,PLAYER10,PLAYER11}</i></td>
+				<td><i>{PLAYER2,PLAYER3,PLAYER4,PLAYER5,PLAYER6,PLAYER7,PLAYER8,PLAYER9,PLAYER10,PLAYER11,PLAYER12}</i></td>
 			</tr>
 
 
@@ -244,14 +274,33 @@ tr.odd td {
 
 			<tr class="even">
 				<td>rr</td>
-				<td><i>PLAYER12</i></td>
+				<td><i>PLAYER1</i></td>
 			</tr>
 			<tr class="odd">
 				<td>pp</td>
-				<td><i>PLAYER12</i></td>
+				<td><i>PLAYER1</i></td>
 			</tr>
 
-			
+		</table>
+
+		<h5>Expected results: </h5>
+
+		<table>
+			<tr>
+				<th colspan="2">State</th>
+			</tr>
+
+			<tr>
+				<th>Variable</th>
+				<th>Value</th>
+			</tr>
+
+			<tr class="even">
+				<td>team</td>
+				<td><i>Unknown</i></td>
+			</tr>
+
+
 			<tr>
 				<th colspan="2">Return Variables</th>
 			</tr>
@@ -260,7 +309,7 @@ tr.odd td {
 				<th>Return Variable</th>
 				<th>Value</th>
 			</tr>
-			
+
 			<tr class="even"><td colspan="2"><center><i>This operation has no return variables</i></center></td></tr>
 
 		</table>
@@ -269,12 +318,14 @@ tr.odd td {
 	</br>
 
 	<div class="test_case">
-		<h3>Test Case 3</h3>
+		<h3>Test Case 3 (Negative)</h3>
 
 		<h4>Formula: <i>not(rr /: team) & pp : team & rr : PLAYER</i></h4>
 
 		</br>
 
+		<h5>Input data: </h5>
+
 		<table>
 			<tr>
 				<th colspan="2">State</th>
@@ -309,7 +360,26 @@ tr.odd td {
 				<td><i>PLAYER1</i></td>
 			</tr>
 
-			
+		</table>
+
+		<h5>Expected results: </h5>
+
+		<table>
+			<tr>
+				<th colspan="2">State</th>
+			</tr>
+
+			<tr>
+				<th>Variable</th>
+				<th>Value</th>
+			</tr>
+
+			<tr class="even">
+				<td>team</td>
+				<td><i>Unknown</i></td>
+			</tr>
+
+
 			<tr>
 				<th colspan="2">Return Variables</th>
 			</tr>
@@ -318,7 +388,7 @@ tr.odd td {
 				<th>Return Variable</th>
 				<th>Value</th>
 			</tr>
-			
+
 			<tr class="even"><td colspan="2"><center><i>This operation has no return variables</i></center></td></tr>
 
 		</table>
@@ -327,11 +397,13 @@ tr.odd td {
 	</br>
 
 	<div class="test_case">
-		<h3>Test Case 4</h3>
+		<h3>Test Case 4 (Positive)</h3>
 
 		<h4>Formula: <i>pp : team & rr /: team & rr : PLAYER</i></h4>
 
 		</br>
+
+		<h5>Input data: </h5>
 
 		<table>
 			<tr>
@@ -345,7 +417,7 @@ tr.odd td {
 
 			<tr class="even">
 				<td>team</td>
-				<td><i>{PLAYER1,PLAYER2,PLAYER3,PLAYER4,PLAYER5,PLAYER6,PLAYER7,PLAYER8,PLAYER9,PLAYER10,PLAYER11}</i></td>
+				<td><i>{PLAYER2,PLAYER3,PLAYER4,PLAYER5,PLAYER6,PLAYER7,PLAYER8,PLAYER9,PLAYER10,PLAYER11,PLAYER12}</i></td>
 			</tr>
 
 
@@ -360,14 +432,33 @@ tr.odd td {
 
 			<tr class="even">
 				<td>rr</td>
-				<td><i>PLAYER12</i></td>
+				<td><i>PLAYER1</i></td>
 			</tr>
 			<tr class="odd">
 				<td>pp</td>
-				<td><i>PLAYER1</i></td>
+				<td><i>PLAYER2</i></td>
 			</tr>
 
-			
+		</table>
+
+		<h5>Expected results: </h5>
+
+		<table>
+			<tr>
+				<th colspan="2">State</th>
+			</tr>
+
+			<tr>
+				<th>Variable</th>
+				<th>Value</th>
+			</tr>
+
+			<tr class="even">
+				<td>team</td>
+				<td><i>Unknown</i></td>
+			</tr>
+
+
 			<tr>
 				<th colspan="2">Return Variables</th>
 			</tr>
@@ -376,7 +467,7 @@ tr.odd td {
 				<th>Return Variable</th>
 				<th>Value</th>
 			</tr>
-			
+
 			<tr class="even"><td colspan="2"><center><i>This operation has no return variables</i></center></td></tr>
 
 		</table>

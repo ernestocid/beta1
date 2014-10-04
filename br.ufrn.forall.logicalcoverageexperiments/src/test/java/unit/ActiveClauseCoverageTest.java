@@ -52,8 +52,10 @@ public class ActiveClauseCoverageTest {
 		
 		Set<String> expectedTestFormulas = new HashSet<String>();
 		
-		expectedTestFormulas.add("#averageGrade.(averageGrade : 0..5 & averageGrade : INT)");
-		expectedTestFormulas.add("#averageGrade.(not(averageGrade : 0..5 & averageGrade : INT))");
+		expectedTestFormulas.add("#averageGrade.((averageGrade : INT) & ((averageGrade : 0..5 & 1=1) <=> not(averageGrade : 0..5 & 1=2)))");
+		expectedTestFormulas.add("#averageGrade.(not(averageGrade : INT) & ((averageGrade : 0..5 & 1=1) <=> not(averageGrade : 0..5 & 1=2)))");
+		expectedTestFormulas.add("#averageGrade.((averageGrade : 0..5) & ((1=1 & averageGrade : INT) <=> not(1=2 & averageGrade : INT)))");
+		expectedTestFormulas.add("#averageGrade.(not(averageGrade : 0..5) & ((1=1 & averageGrade : INT) <=> not(1=2 & averageGrade : INT)))");
 		
 		expectedTestFormulas.add("#averageGrade.((averageGrade : 0..5 & averageGrade : INT) & (averageGrade >= 4))");
 		expectedTestFormulas.add("#averageGrade.((averageGrade : 0..5 & averageGrade : INT) & (not(averageGrade >= 4)))");
@@ -63,6 +65,21 @@ public class ActiveClauseCoverageTest {
 		
 		expectedTestFormulas.add("#averageGrade.((averageGrade : 0..5 & averageGrade : INT) & (averageGrade >= 2) & ((1=1 & averageGrade < 4) <=> not(1=2 & averageGrade < 4)))");
 		expectedTestFormulas.add("#averageGrade.((averageGrade : 0..5 & averageGrade : INT) & not(averageGrade >= 2) & ((1=1 & averageGrade < 4) <=> not(1=2 & averageGrade < 4)))");
+		
+//		#averageGrade.((averageGrade : INT) & ((averageGrade : 0..5 & 1=1) <=> not(averageGrade : 0..5 & 1=2)))		
+//		#averageGrade.(not(averageGrade : INT) & ((averageGrade : 0..5 & 1=1) <=> not(averageGrade : 0..5 & 1=2)))
+//		#averageGrade.((averageGrade : 0..5) & ((1=1 & averageGrade : INT) <=> not(1=2 & averageGrade : INT)))
+//		#averageGrade.(not(averageGrade : 0..5) & ((1=1 & averageGrade : INT) <=> not(1=2 & averageGrade : INT)))		
+
+//		#averageGrade.((averageGrade : 0..5 & averageGrade : INT) & not(averageGrade < 4) & ((averageGrade >= 2 & 1=1) <=> not(averageGrade >= 2 & 1=2)))
+//		#averageGrade.((averageGrade : 0..5 & averageGrade : INT) & (not(averageGrade >= 4)))
+//		#averageGrade.((averageGrade : 0..5 & averageGrade : INT) & (averageGrade >= 2) & ((1=1 & averageGrade < 4) <=> not(1=2 & averageGrade < 4)))
+//		#averageGrade.((averageGrade : 0..5 & averageGrade : INT) & (averageGrade >= 4))
+
+//		#averageGrade.((averageGrade : 0..5 & averageGrade : INT) & not(averageGrade >= 2) & ((1=1 & averageGrade < 4) <=> not(1=2 & averageGrade < 4)))
+//		#averageGrade.((averageGrade : 0..5 & averageGrade : INT) & (averageGrade < 4) & ((averageGrade >= 2 & 1=1) <=> not(averageGrade >= 2 & 1=2)))
+
+		
 		
 		// Assertions
 		
@@ -82,8 +99,8 @@ public class ActiveClauseCoverageTest {
 		
 		Set<String> expectedTestFormulas = new HashSet<String>();
 		
-		expectedTestFormulas.add("#yy.(yy : ID)");
-		expectedTestFormulas.add("#yy.(not(yy : ID))");
+		expectedTestFormulas.add("#xx,yy.((xx : ID) & (yy : ID))");
+		expectedTestFormulas.add("#xx,yy.((xx : ID) & (not(yy : ID)))");
 		
 		expectedTestFormulas.add("#xx,yy.((xx : ID) & (yy : ID) & (yy = aa))");
 		expectedTestFormulas.add("#xx,yy.((xx : ID) & (yy : ID) & (not(yy = aa)))");
@@ -110,8 +127,8 @@ public class ActiveClauseCoverageTest {
 		Set<String> expectedFormulas = new HashSet<String>();
 		
 		
-		expectedFormulas.add("#yy.(yy : ID)");
-		expectedFormulas.add("#yy.(not(yy : ID))");
+		expectedFormulas.add("#xx,yy.((xx <: ID) & (not(yy : ID)))");
+		expectedFormulas.add("#xx,yy.((xx <: ID) & (yy : ID))");
 		
 		expectedFormulas.add("#xx,yy.((xx <: ID) & (yy : ID) & (xx = {}))");
 		expectedFormulas.add("#xx,yy.((xx <: ID) & (yy : ID) & (not(xx = {})))");
@@ -127,7 +144,7 @@ public class ActiveClauseCoverageTest {
 		
 		expectedFormulas.add("#xx,yy.((xx <: ID) & (yy : ID) & (xx /= {}) & ((1=1 & yy : xx) <=> not(1=2 & yy : xx)))");
 		expectedFormulas.add("#xx,yy.((xx <: ID) & (yy : ID) & not(xx /= {}) & ((1=1 & yy : xx) <=> not(1=2 & yy : xx)))");
-		
+
 		// Assertions
 		
 		assertEquals(expectedFormulas, acc.getTestFormulas());
@@ -146,8 +163,8 @@ public class ActiveClauseCoverageTest {
 		
 		Set<String> expectedFormulas = new HashSet<String>();
 		
-		expectedFormulas.add("#yy.(yy : ID)");
-		expectedFormulas.add("#yy.(not(yy : ID))");
+		expectedFormulas.add("#xx,yy.((xx <: ID) & (yy : ID))");
+		expectedFormulas.add("#xx,yy.((xx <: ID) & (not(yy : ID)))");
 		
 		expectedFormulas.add("#xx,yy.((xx <: ID) & (yy : ID) & (xx /= {}) & ((1=1 & yy : xx) <=> not(1=2 & yy : xx)))");
 		expectedFormulas.add("#xx,yy.((xx <: ID) & (yy : ID) & not(xx /= {}) & ((1=1 & yy : xx) <=> not(1=2 & yy : xx)))");
@@ -197,8 +214,10 @@ public class ActiveClauseCoverageTest {
 		
 		Set<String> expectedTestFormulas = new HashSet<String>();
 		
-		expectedTestFormulas.add("#yy,xx.(xx : NAT & yy : NAT)");
-		expectedTestFormulas.add("#yy,xx.(not(xx : NAT & yy : NAT))");
+		expectedTestFormulas.add("#xx,yy.((yy : NAT) & ((xx : NAT & 1=1) <=> not(xx : NAT & 1=2)))");
+		expectedTestFormulas.add("#xx,yy.(not(yy : NAT) & ((xx : NAT & 1=1) <=> not(xx : NAT & 1=2)))");
+		expectedTestFormulas.add("#xx,yy.((xx : NAT) & ((1=1 & yy : NAT) <=> not(1=2 & yy : NAT)))");
+		expectedTestFormulas.add("#xx,yy.(not(xx : NAT) & ((1=1 & yy : NAT) <=> not(1=2 & yy : NAT)))");
 		
 		expectedTestFormulas.add("#xx,yy.((xx : NAT & yy : NAT) & (xx /= yy))");
 		expectedTestFormulas.add("#xx,yy.((xx : NAT & yy : NAT) & (not(xx /= yy)))");
@@ -231,8 +250,8 @@ public class ActiveClauseCoverageTest {
 		
 		Set<String> expectedTestFormulas = new HashSet<String>();
 		
-		expectedTestFormulas.add("#xx.(xx : NAT)");
-		expectedTestFormulas.add("#xx.(not(xx : NAT))");
+		expectedTestFormulas.add("#aa,bb,xx.((aa : NAT & bb : NAT) & (xx : NAT))");
+		expectedTestFormulas.add("#aa,bb,xx.((aa : NAT & bb : NAT) & (not(xx : NAT)))");
 		
 		expectedTestFormulas.add("#aa,bb,xx.((aa : NAT & bb : NAT) & (xx : NAT) & (xx = 1))");
 		expectedTestFormulas.add("#aa,bb,xx.((aa : NAT & bb : NAT) & (xx : NAT) & (not(xx = 1)))");
@@ -246,6 +265,24 @@ public class ActiveClauseCoverageTest {
 		expectedTestFormulas.add("#aa,bb,xx.((aa : NAT & bb : NAT) & (xx : NAT) & (xx = 2) & (bb >= aa))");
 		expectedTestFormulas.add("#aa,bb,xx.((aa : NAT & bb : NAT) & (xx : NAT) & (xx = 2) & (not(bb >= aa)))");
 
+		
+//		#aa,bb,xx.((aa : NAT & bb : NAT) & (not(xx : NAT)))
+//		#aa,bb,xx.((aa : NAT & bb : NAT) & (xx : NAT))
+		
+//		#aa,bb,xx.((aa : NAT & bb : NAT) & (xx : NAT) & (xx = 1) & (aa > bb))
+//		#aa,bb,xx.((aa : NAT & bb : NAT) & (xx : NAT) & (xx = 2))
+
+//		#aa,bb,xx.((aa : NAT & bb : NAT) & (xx : NAT) & (xx = 1) & (not(aa > bb)))
+//		#aa,bb,xx.((aa : NAT & bb : NAT) & (xx : NAT) & (xx = 1))
+//		#aa,bb,xx.((aa : NAT & bb : NAT) & (xx : NAT) & (not(xx = 2)))
+//		#aa,bb,xx.((aa : NAT & bb : NAT) & (xx : NAT) & (not(xx = 1)))
+
+//		#aa,bb,xx.((aa : NAT & bb : NAT) & (xx : NAT) & (xx = 2) & (bb >= aa))
+//		#aa,bb,xx.((aa : NAT & bb : NAT) & (xx : NAT) & (xx = 2) & (not(bb >= aa)))
+		
+		
+		// Assertions
+		
 		assertEquals(expectedTestFormulas, acc.getTestFormulas());
 	}
 	

@@ -26,8 +26,8 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 	 * This methods creates test formulas that satisfy the Active Clause Coverage (ACC) criterion.
 	 * To do this, for each predicate, it defines one clause of the predicate as a major clause at a time.
 	 * Once a major clause is chosen we find values for the minor clauses in a way that the major clause
-	 * will define the output of the predicate. To find this values for the minor clauses we use an intermediate
-	 * formula. Then we replace the values for the minor clauses in the actual test formulas.
+	 * will define the output of the predicate. To find these values for the minor clauses we use an intermediate
+	 * formula.
 	 * 
 	 * @return a Set with test formulas that satisfy  Active Clause Coverage.
 	 */
@@ -39,15 +39,7 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 			createTestFormulaForInvariant(testFormulas);
 		} else {
 			for(MyPredicate predicate : getPredicates()) {
-				if(operationHasPrecondition()) {
-					if(!comparePredicates(predicate, getOperationUnderTest().getPrecondition())) {
-						testFormulas.addAll(createACCFormulasForPredicate(predicate));
-					} else {
-						testFormulas.addAll(createTestFormulasForPrecondition());
-					}
-				} else {
-					testFormulas.addAll(createACCFormulasForPredicate(predicate));
-				}
+				testFormulas.addAll(createACCFormulasForPredicate(predicate));
 			}
 		}
 		
@@ -63,40 +55,6 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 		}
 	}
 
-	
-
-	private Set<String> createTestFormulasForPrecondition() {
-		Set<String> testFormulasForPrecondition = new HashSet<String>();
-		
-		Set<String> precondtionVariables = getOperationUnderTest().getPrecondition().getVariables();
-		String existentialList = createExistentialListFor(precondtionVariables);
-		String precondtion = getOperationUnderTest().getPrecondition().toString();
-		
-		testFormulasForPrecondition.add(existentialList + "(" + precondtion + ")");
-		testFormulasForPrecondition.add(existentialList + "(" + "not(" + precondtion + "))");
-		
-		return testFormulasForPrecondition;
-	}
-
-
-
-	private String createExistentialListFor(Set<String> variables) {
-		StringBuffer existentialList = new StringBuffer("#");
-		
-		int counter = 0;
-		
-		for(String var : variables) {
-			if(counter < variables.size() - 1) {
-				existentialList.append(var + ",");
-			} else {
-				existentialList.append(var + ".");
-			}
-			counter++;
-		}
-		
-		return existentialList.toString();
-	}
-
 
 
 	private Set<String> createACCFormulasForPredicate(MyPredicate predicate) {
@@ -109,8 +67,13 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 				testFormulas.addAll(createTestFormulas(majorClause, clauses, predicate));
 			}
 		} else {
-			testFormulas.add(varListForExistential() + "(" + invariant() + precondition() + getReachabiltyPredicate(predicate) + "(" + clauses.get(0) + "))");
-			testFormulas.add(varListForExistential() + "(" + invariant() + precondition() + getReachabiltyPredicate(predicate) + "(" + "not(" + clauses.get(0) + ")" + "))");
+			if(operationHasPrecondition() && comparePredicates(predicate, getOperationUnderTest().getPrecondition())) {
+				testFormulas.add(varListForExistential() + "(" + invariant() + getReachabiltyPredicate(predicate) + "(" + clauses.get(0) + "))");
+				testFormulas.add(varListForExistential() + "(" + invariant() + getReachabiltyPredicate(predicate) + "(" + "not(" + clauses.get(0) + ")" + "))");
+			} else {
+				testFormulas.add(varListForExistential() + "(" + invariant() + precondition() + getReachabiltyPredicate(predicate) + "(" + clauses.get(0) + "))");
+				testFormulas.add(varListForExistential() + "(" + invariant() + precondition() + getReachabiltyPredicate(predicate) + "(" + "not(" + clauses.get(0) + ")" + "))");	
+			}	
 		}
 		
 		return testFormulas;
@@ -158,22 +121,43 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 	private List<String> createTestFormulas(MyPredicate majorClause, List<MyPredicate> clauses, MyPredicate predicate) {
 		List<String> testFormulas = new ArrayList<String>();
 		
-		StringBuffer majorClauseTrueFormula = new StringBuffer("");
-		
-		majorClauseTrueFormula.append(invariant());
-		majorClauseTrueFormula.append(precondition());
-		majorClauseTrueFormula.append("(" + majorClause.toString() + ") & ");
-		majorClauseTrueFormula.append(createFormulaToFindValuesForMinorClauses(majorClause, predicate));
-		
-		StringBuffer majorClauseFalseFormula = new StringBuffer("");
-		
-		majorClauseFalseFormula.append(invariant());
-		majorClauseFalseFormula.append(precondition());
-		majorClauseFalseFormula.append("not(" + majorClause.toString() + ")" + " & ");
-		majorClauseFalseFormula.append(createFormulaToFindValuesForMinorClauses(majorClause, predicate));
-
-		testFormulas.add(varListForExistential() + "(" + majorClauseTrueFormula.toString() + ")");
-		testFormulas.add(varListForExistential() + "(" + majorClauseFalseFormula.toString() + ")");
+		if(operationHasPrecondition() && comparePredicates(predicate, getOperationUnderTest().getPrecondition())) {
+			
+			StringBuffer majorClauseTrueFormula = new StringBuffer("");
+			
+			majorClauseTrueFormula.append(invariant());
+			majorClauseTrueFormula.append("(" + majorClause.toString() + ") & ");
+			majorClauseTrueFormula.append(createFormulaToFindValuesForMinorClauses(majorClause, predicate));
+			
+			StringBuffer majorClauseFalseFormula = new StringBuffer("");
+			
+			majorClauseFalseFormula.append(invariant());
+			majorClauseFalseFormula.append("not(" + majorClause.toString() + ")" + " & ");
+			majorClauseFalseFormula.append(createFormulaToFindValuesForMinorClauses(majorClause, predicate));
+			
+			testFormulas.add(varListForExistential() + "(" + majorClauseTrueFormula.toString() + ")");
+			testFormulas.add(varListForExistential() + "(" + majorClauseFalseFormula.toString() + ")");
+			
+		} else {
+			
+			StringBuffer majorClauseTrueFormula = new StringBuffer("");
+			
+			majorClauseTrueFormula.append(invariant());
+			majorClauseTrueFormula.append(precondition());
+			majorClauseTrueFormula.append("(" + majorClause.toString() + ") & ");
+			majorClauseTrueFormula.append(createFormulaToFindValuesForMinorClauses(majorClause, predicate));
+			
+			StringBuffer majorClauseFalseFormula = new StringBuffer("");
+			
+			majorClauseFalseFormula.append(invariant());
+			majorClauseFalseFormula.append(precondition());
+			majorClauseFalseFormula.append("not(" + majorClause.toString() + ")" + " & ");
+			majorClauseFalseFormula.append(createFormulaToFindValuesForMinorClauses(majorClause, predicate));
+			
+			testFormulas.add(varListForExistential() + "(" + majorClauseTrueFormula.toString() + ")");
+			testFormulas.add(varListForExistential() + "(" + majorClauseFalseFormula.toString() + ")");
+			
+		}
 		
 		return testFormulas;
 	}

@@ -20,9 +20,14 @@ public class MainTest {
 //		Operation operationUnderTest = machine.getOperation(1);
 		
 		
-		Machine machine = new Machine(new File("/Users/ernestocid/Temp/MCDC/Priorityqueue.mch"));
+//		Machine machine = new Machine(new File("/Users/ernestocid/Temp/MCDC/Priorityqueue.mch"));
+//		System.out.println(machine.getName() + ": ");
+//		printACCTestsForAllOperations(machine, probApi);
+
+		Machine machine = new Machine(new File("/Users/ernestocid/Temp/B2LLVMCaseStudy/Priorityqueue.mch"));
 		System.out.println(machine.getName() + ": ");
 		printACCTestsForAllOperations(machine, probApi);
+		
 		
 		
 //		Machine machine = new Machine(new File("/Users/ernestocid/Temp/LGAR4_mch.eventb"));
@@ -133,8 +138,8 @@ public class MainTest {
 		
 		for(String testFormula : logicalCoverage.getTestFormulas()) {
 			System.out.println(testId + " - " + testFormula);
-//			System.out.println("\nFOUND SOLUTIONS:");
-//			evaluateFormula(probApi, operationUnderTest, testFormula);
+			System.out.println("\nFOUND SOLUTIONS:");
+			evaluateFormula(probApi, operationUnderTest, testFormula);
 			System.out.println();
 			testId++;
 		}

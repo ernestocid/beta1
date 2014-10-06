@@ -2,6 +2,7 @@ package criteria;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import parser.Machine;
 import parser.Operation;
@@ -21,28 +22,15 @@ public class ProBAnimationTest {
 	public static void main(String[] args) {
 		System.setProperty("prob.home", "/Users/ernestocid/Downloads/ProB/");
 		
-		String formula2 = "#active,ready,waiting,rr.(active : POW(PID) & "
-				+ "ready : POW(PID) & "
-				+ "waiting : POW(PID) & "
-				+ "active <: PID & "
-				+ "ready <: PID & "
-				+ "waiting <: PID & "
-				+ "(ready /\\ waiting = {}) & "
-				+ "(active /\\ (ready \\/ waiting)) = {} & "
-				+ "card(active) <= 1 & "
-				+ "((active = {}) => (ready = {})) & "
-				+ "active = {} & "
-				+ "rr : waiting)";
+//		String formula = "#queue,nn.((queue : seq(NAT) & !(xx).((xx : 1..((size(queue) - 1))) => (queue(xx) <= queue((xx + 1))))) & (nn : NAT) & (nn <= min(ran(queue))) & ((queue /= [] & 1=1) <=> not(queue /= [] & 1=2)))";
+		String formula = "#queue,nn.((queue : seq(NAT) & !(xx).((xx : 1..((size(queue) - 1))) => (queue(xx) <= queue((xx + 1))))) & (nn : NAT) & not(nn <= min(ran(queue))) & ((queue /= [] & 1=1) <=> not(queue /= [] & 1=2)))";
+//		String formula = "#queue,nn.((queue : seq(NAT) & !(xx).((xx : 1..((size(queue) - 1))) => (queue(xx) <= queue((xx + 1))))) & (nn : NAT) & (queue /= [] => not(nn <= min(ran(queue)))) & ((queue /= [] & 1=1) <=> not(queue /= [] & 1=2)))";
+	
 		
 		Api probApi = Main.getInjector().getInstance(Api.class);
-
-		Machine machine = new Machine(new File("src/test/resources/machines/CaseStudy/scheduler.mch"));
-		Operation operationUnderTest = machine.getOperation(1);
-		
-		String pathToMachine = operationUnderTest.getMachine().getFile().getAbsolutePath();
 		
 		try {
-			ClassicalBModel model = probApi.b_load(pathToMachine, Configurations.getProBApiPreferences());
+			ClassicalBModel model = probApi.b_load("src/test/resources/machines/Priorityqueue.mch", Configurations.getProBApiPreferences());
 			StateSpace stateSpace = model.getStateSpace();
 			Trace trace = new Trace(stateSpace);
 			
@@ -52,14 +40,15 @@ public class ProBAnimationTest {
 //				System.err.println("This model has no constants so $setup_constants could not be executed");
 //			}
 			
+//			try {
+//				trace = stateSpace.getTraceToState(new ClassicalB(formula));
+//			} catch (RuntimeException e) {
+//				System.err.println("Could not execute get trace to state");
+//			}
 			
-			try {
-				trace = stateSpace.getTraceToState(new ClassicalB(formula2));
-			} catch (RuntimeException e) {
-				System.err.println("Could not execute get trace to state");
-			}
+			trace = trace.execute("$initialise_machine", new ArrayList<String>());
 			
-			IEvalResult evalCurrent = trace.evalCurrent(new ClassicalB(formula2));
+			IEvalResult evalCurrent = trace.evalCurrent(new ClassicalB(formula));
 			
 			if(evalCurrent instanceof EvalResult) {
 				EvalResult result = (EvalResult) evalCurrent;
@@ -77,32 +66,5 @@ public class ProBAnimationTest {
 			e.printStackTrace();
 		}
 	}
-	
-	
-//	private static Map<String, String> getValuesForStateVariables(Trace trace, Operation operationUnderTest) {
-//		Map<String, String> valuesForStateVariables = new HashMap<String, String>();
-//		
-//		if(operationUnderTest.getMachine().getVariables() != null) {
-//			for(String variable : operationUnderTest.getMachine().getVariables().getAll()) {
-//				valuesForStateVariables.put(variable, trace.evalCurrent(variable).toString());
-//			}
-//		}
-//		
-//		return valuesForStateVariables;
-//	}
-//	
-//	
-//	
-//	private static Map<String, String> getValuesForInputParams(EvalResult result, Operation operationUnderTest) {
-//		Map<String, String> valuesForInputParams = new HashMap<String, String>();
-//		
-//		Map<String, String> foundSolutions = result.getSolutions();
-//		
-//		for(String param : operationUnderTest.getParameters()) {
-//			valuesForInputParams.put(param, foundSolutions.get(param));
-//		}
-//		
-//		return valuesForInputParams;
-//	}
 	
 }

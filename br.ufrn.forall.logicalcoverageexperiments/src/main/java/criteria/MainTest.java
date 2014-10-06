@@ -2,6 +2,7 @@ package criteria;
 
 import java.io.File;
 
+import configurations.Configurations;
 import parser.Machine;
 import parser.Operation;
 import parser.decorators.predicates.MyPredicate;
@@ -14,19 +15,21 @@ public class MainTest {
 
 	public static void main(String[] args) {
 		
+		Configurations.setMaxIntProperties(3);
+		Configurations.setMinIntProperties(-1);
+		
 		Api probApi = Main.getInjector().getInstance(Api.class);
 		
 //		Machine machine = new Machine(new File("/Users/ernestocid/Temp/MCDC/Priorityqueue.mch"));
 //		Operation operationUnderTest = machine.getOperation(1);
 		
-		
-//		Machine machine = new Machine(new File("/Users/ernestocid/Temp/MCDC/Priorityqueue.mch"));
-//		System.out.println(machine.getName() + ": ");
-//		printACCTestsForAllOperations(machine, probApi);
-
-		Machine machine = new Machine(new File("/Users/ernestocid/Temp/B2LLVMCaseStudy/Priorityqueue.mch"));
+		Machine machine = new Machine(new File("/Users/ernestocid/Temp/MCDC/Priorityqueue.mch"));
 		System.out.println(machine.getName() + ": ");
 		printACCTestsForAllOperations(machine, probApi);
+
+//		Machine machine = new Machine(new File("/Users/ernestocid/Temp/B2LLVMCaseStudy/Priorityqueue.mch"));
+//		System.out.println(machine.getName() + ": ");
+//		printACCTestsForAllOperations(machine, probApi);
 		
 		
 		

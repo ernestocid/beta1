@@ -65,7 +65,7 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 
 	private Set<String> createACCFormulasForPredicate(MyPredicate predicate) {
 		Set<String> testFormulas = new HashSet<String>();
-		List<MyPredicate> clauses = new ArrayList<MyPredicate>(getPredicateClauses(predicate));
+		List<MyPredicate> clauses = new ArrayList<MyPredicate>(predicate.getClauses());
 		
 		if(clauses.size() > 1) {
 			testFormulas.addAll(createACCFormulasForPredicateWithMoreThanOneClause(predicate, clauses));

@@ -81,14 +81,11 @@ public class Operation {
 	
 	
 	
-	public List<String> getPreconditionClausesList() {
+	public List<String> getPreconditionClausesAsList() {
 		MyPredicate precondition = getPrecondition();
 		List<String> preconditionStringList = new ArrayList<String>();
-
-		Set<MyPredicate> clauses = new HashSet<MyPredicate>();
-		precondition.createClausesList(clauses);
 		
-		for (MyPredicate clause : clauses) {
+		for (MyPredicate clause : precondition.getClauses()) {
 			preconditionStringList.add(clause.toString());
 		}
 		
@@ -99,13 +96,11 @@ public class Operation {
 	
 	
 	public Set<MyPredicate> getPreconditionClauses() {
-		Set<MyPredicate> clauses = new HashSet<MyPredicate>();
-		
 		if(getPrecondition() != null) {
-			getPrecondition().createClausesList(clauses);
+			return getPrecondition().getClauses();
+		} else {
+			return new HashSet<MyPredicate>();
 		}
-		
-		return clauses;
 	}
 
 	
@@ -559,8 +554,10 @@ public class Operation {
 			}
 			
 			@Override
-			public void createClausesList(Set<MyPredicate> clauses) {
+			public Set<MyPredicate> getClauses() {
+				Set<MyPredicate> clauses = new HashSet<MyPredicate>();
 				clauses.add(this);
+				return clauses;
 			}
 			
 			@Override
@@ -743,9 +740,7 @@ public class Operation {
 
 	private Set<MyPredicate> searchGuardsThatLeadToPredicateOnAssertSubst(MyPredicate predicate, AAssertionSubstitution assertionSubstitution) {
 		MyPredicate assertionGuard = MyPredicateFactory.convertPredicate(assertionSubstitution.getPredicate());
-
-		Set<MyPredicate> clauses = new HashSet<MyPredicate>();
-		assertionGuard.createClausesList(clauses);
+		Set<MyPredicate> clauses = assertionGuard.getClauses();
 		
 		if(setContainsClause(predicate, clauses)) {
 			Set<MyPredicate> foundPredicates = new HashSet<MyPredicate>();
@@ -767,9 +762,7 @@ public class Operation {
 
 	private Set<MyPredicate> searchGuardsThatLeadToPredicateOnAnySubst(MyPredicate predicate, AAnySubstitution anySubstitution) {
 		MyPredicate anyGuard = MyPredicateFactory.convertPredicate(anySubstitution.getWhere());
-		
-		Set<MyPredicate> clauses = new HashSet<MyPredicate>();
-		anyGuard.createClausesList(clauses);
+		Set<MyPredicate> clauses = anyGuard.getClauses();
 		
 		if(setContainsClause(predicate, clauses)) {
 			Set<MyPredicate> foundPredicate = new HashSet<MyPredicate>();
@@ -791,9 +784,7 @@ public class Operation {
 
 	private Set<MyPredicate> searchGuardsThatLeadToPredicateOnIfSubst(MyPredicate predicate, AIfSubstitution ifSubstitution) {
 		MyPredicate ifPredicate = MyPredicateFactory.convertPredicate(ifSubstitution.getCondition());
-		
-		Set<MyPredicate> clauses = new HashSet<MyPredicate>();
-		ifPredicate.createClausesList(clauses);
+		Set<MyPredicate> clauses = ifPredicate.getClauses();
 		
 		if(setContainsClause(predicate, clauses)) {
 			Set<MyPredicate> foundPredicates = new HashSet<MyPredicate>();
@@ -818,9 +809,7 @@ public class Operation {
 			if(subs instanceof AIfElsifSubstitution) {
 				AIfElsifSubstitution elsifSubst = (AIfElsifSubstitution) subs;
 				MyPredicate elsifGuard = MyPredicateFactory.convertPredicate(elsifSubst.getCondition());
-				
-				Set<MyPredicate> clauses = new HashSet<MyPredicate>();
-				elsifGuard.createClausesList(clauses);
+				Set<MyPredicate> clauses = elsifGuard.getClauses();
 				
 				if(setContainsClause(predicate, clauses)) {
 					Set<MyPredicate> foundPredicates = new HashSet<MyPredicate>();
@@ -844,9 +833,7 @@ public class Operation {
 
 	private Set<MyPredicate> searchGuardsThatLeadToPredicateOnSelectSubst(MyPredicate predicate, ASelectSubstitution selectSubstitution) {
 		MyPredicate selectGuard = MyPredicateFactory.convertPredicate(selectSubstitution.getCondition());
-		
-		Set<MyPredicate> clauses = new HashSet<MyPredicate>();
-		selectGuard.createClausesList(clauses);
+		Set<MyPredicate> clauses = selectGuard.getClauses();
 		
 		if(setContainsClause(predicate, clauses)) {
 			Set<MyPredicate> foundPredicates = new HashSet<MyPredicate>();

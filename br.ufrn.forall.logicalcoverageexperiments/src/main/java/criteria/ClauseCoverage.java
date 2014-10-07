@@ -15,7 +15,6 @@ public class ClauseCoverage extends LogicalCoverage {
 	}
 
 	
-	
 	/**
 	 * This method create a Set of test formulas that satisfy the Clause Coverage criterion.
 	 * It creates special formulas for the precondition clauses first (if the operation
@@ -85,8 +84,7 @@ public class ClauseCoverage extends LogicalCoverage {
 		
 		testFormulas.add(varListForExistential() + "(" + invariant() + "(" + precondition.toString() + "))");
 		
-		Set<MyPredicate> preconditionClauses = getPredicateClauses(precondition);
-		List<MyPredicate> sortedPreconditionClauses = sortPredicates(preconditionClauses);
+		List<MyPredicate> sortedPreconditionClauses = sortPredicates(precondition.getClauses());
 		
 		String testFormula;
 		
@@ -119,5 +117,4 @@ public class ClauseCoverage extends LogicalCoverage {
 		
 		return testFomula.toString();
 	}
-
 }

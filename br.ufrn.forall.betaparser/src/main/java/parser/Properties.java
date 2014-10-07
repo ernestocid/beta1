@@ -23,9 +23,7 @@ public class Properties {
 	
 	
 	public Set<MyPredicate> getPropertiesClauses() {
-		Set<MyPredicate> clauses = new HashSet<MyPredicate>();
-		this.predicate.createClausesList(clauses);
-		return clauses;
+		return this.predicate.getClauses();
 	}
 	
 	

@@ -185,8 +185,7 @@ public class BETATestSuite {
 	private String generateTestFormulaWithoutInvariant(MyPredicate predicate) {
 		// Recuperando as clausulas		
 		
-		Set<MyPredicate> clauses = new HashSet<MyPredicate>();
-		predicate.createClausesList(clauses);
+		Set<MyPredicate> clauses = predicate.getClauses();
 		
 		// Convertendo as clausulas para Strings
 		

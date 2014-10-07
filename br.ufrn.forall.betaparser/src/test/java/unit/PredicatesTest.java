@@ -34,7 +34,7 @@ public class PredicatesTest {
 		expectedPreconditions.add("mm /<<: NAT1"); // not include strictly
 
 		Set<String> actualPreconditions = new HashSet<String>();
-		actualPreconditions.addAll(machine.getOperation(0).getPreconditionClausesList());
+		actualPreconditions.addAll(machine.getOperation(0).getPreconditionClausesAsList());
 		
 		assertEquals(expectedPreconditions, actualPreconditions);
 	}

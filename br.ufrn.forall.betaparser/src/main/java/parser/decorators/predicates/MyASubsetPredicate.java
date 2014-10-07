@@ -2,6 +2,7 @@ package parser.decorators.predicates;
 
 import java.util.HashSet;
 import java.util.Set;
+
 import parser.decorators.expressions.MyExpression;
 import parser.decorators.expressions.MyExpressionFactory;
 import de.be4.classicalb.core.parser.node.ASubsetPredicate;
@@ -50,10 +51,12 @@ public class MyASubsetPredicate extends MyPredicateDecorator{
 	
 	
 	@Override
-	public void createClausesList(Set<MyPredicate> clauses) {
+	public Set<MyPredicate> getClauses() {
+		Set<MyPredicate> clauses = new HashSet<MyPredicate>();
 		clauses.add(this);
+		return clauses;
 	}
-
+	
 	
 	
 	@Override

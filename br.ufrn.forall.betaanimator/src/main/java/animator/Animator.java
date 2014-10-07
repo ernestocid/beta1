@@ -131,6 +131,9 @@ public class Animator {
 				"-p",
 				"MAXINT",
 				String.valueOf(Configurations.getMaxIntProperties()),
+//				"-p",
+//				"CHR",
+//				"TRUE",
 				getMachineLocation(),
 				"-save",
 				getPLFileLocation()

@@ -93,7 +93,7 @@ public class Extends {
 		
 		for (Machine machine : getMachinesExtended()) {
 			if (machine.getInvariant() != null) {
-				invariantFromAllMachinesExtended.addAll(machine.getInvariant().getClausesList());
+				invariantFromAllMachinesExtended.addAll(machine.getInvariant().getClauses());
 			}
 		}
 		

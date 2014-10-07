@@ -81,7 +81,7 @@ public class ExpressionsTest {
 		// TODO: LambdaExpression		
 		// TODO: sequence expressions
 		Set<String> actualPreconditions = new HashSet<String>();
-		actualPreconditions.addAll(machine.getOperation(0).getPreconditionClausesList());
+		actualPreconditions.addAll(machine.getOperation(0).getPreconditionClausesAsList());
 		
 		assertEquals(expectedPreconditions, actualPreconditions);
 	}

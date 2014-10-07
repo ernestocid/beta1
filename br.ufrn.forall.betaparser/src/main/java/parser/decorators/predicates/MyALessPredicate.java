@@ -44,8 +44,10 @@ public class MyALessPredicate extends MyPredicateDecorator {
 	
 	
 	@Override
-	public void createClausesList(Set<MyPredicate> clauses) {
+	public Set<MyPredicate> getClauses() {
+		Set<MyPredicate> clauses = new HashSet<MyPredicate>();
 		clauses.add(this);
+		return clauses;
 	}
 
 	

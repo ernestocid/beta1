@@ -6,7 +6,6 @@ import java.util.Set;
 
 import parser.decorators.expressions.MyExpression;
 import parser.decorators.expressions.MyExpressionFactory;
-
 import de.be4.classicalb.core.parser.node.ADefinitionPredicate;
 import de.be4.classicalb.core.parser.node.PExpression;
 import de.be4.classicalb.core.parser.node.PPredicate;
@@ -31,8 +30,10 @@ public class MyADefinitionPredicate extends MyPredicateDecorator {
 	
 	
 	@Override
-	public void createClausesList(Set<MyPredicate> clauses) {
+	public Set<MyPredicate> getClauses() {
+		Set<MyPredicate> clauses = new HashSet<MyPredicate>();
 		clauses.add(this);
+		return clauses;
 	}
 
 	

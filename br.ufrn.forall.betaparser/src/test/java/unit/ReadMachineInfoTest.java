@@ -155,7 +155,7 @@ public class ReadMachineInfoTest {
 		expectedList.add("((test_variable3 = test_variable) => (foo = TRUE))");
 		Collections.sort(expectedList);
 		
-		assertEquals(expectedList, this.machine.getInvariant().getClauses());
+		assertEquals(expectedList, this.machine.getInvariant().getClausesAsList());
 	}
 	
 	

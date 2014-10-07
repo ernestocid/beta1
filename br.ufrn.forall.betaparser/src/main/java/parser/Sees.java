@@ -92,7 +92,7 @@ public class Sees {
 		
 		for (Machine machine : getMachinesSeen()) {
 			if (machine.getInvariant() != null) {
-				invariantFromAllMachinesSeen.addAll(machine.getInvariant().getClausesList());
+				invariantFromAllMachinesSeen.addAll(machine.getInvariant().getClauses());
 			}
 		}
 		

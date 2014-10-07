@@ -97,7 +97,7 @@ public class Includes {
 		
 		for (Machine machine : getMachinesIncluded()) {
 			if (machine.getInvariant() != null) {
-				invariantFromAllIncludedMachines.addAll(machine.getInvariant().getClausesList());
+				invariantFromAllIncludedMachines.addAll(machine.getInvariant().getClauses());
 			}
 		}
 		

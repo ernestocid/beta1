@@ -93,7 +93,7 @@ public class Uses {
 		
 		for (Machine machine : getMachinesUsed()) {
 			if (machine.getInvariant() != null) {
-				invariantFromAllMachinesUsed.addAll(machine.getInvariant().getClausesList());
+				invariantFromAllMachinesUsed.addAll(machine.getInvariant().getClauses());
 			}
 		}
 		

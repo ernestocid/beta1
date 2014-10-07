@@ -8,7 +8,7 @@ public interface MyPredicate {
 
 	PPredicate getNode();
 	String toString();
-	void createClausesList(Set<MyPredicate> clauses);
+	Set<MyPredicate> getClauses();
 	Set<String> getVariables();
 	boolean isTypingClause();
 	boolean isInterval();

@@ -344,9 +344,8 @@ public class LogicalCoverageTest extends TestingUtils {
 	public void shouldGetPredicateClauses(){
 		Machine machine = new Machine(new File("src/test/resources/machines/PassFinalOrFailIFELSIFELSE.mch"));
 		Operation operationUnderTest = machine.getOperation(0);
-		PredicateCoverage pc = new PredicateCoverage(operationUnderTest);
 
-		Set<MyPredicate> preconditionClauses = pc.getPredicateClauses(operationUnderTest.getPrecondition());
+		Set<MyPredicate> preconditionClauses = operationUnderTest.getPrecondition().getClauses();
 
 		// Setting up mocked expected results
 		

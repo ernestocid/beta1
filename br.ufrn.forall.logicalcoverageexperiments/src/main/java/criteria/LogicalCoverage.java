@@ -122,8 +122,7 @@ public abstract class LogicalCoverage {
 		Set<MyPredicate> clauses = new HashSet<MyPredicate>();
 		
 		for(MyPredicate predicate : getPredicates()) {
-			Set<MyPredicate> predicateClauses = clausesOf(predicate);
-			clauses.addAll(predicateClauses);
+			clauses.addAll(predicate.getClauses());
 		}
 		
 		return clauses;
@@ -162,30 +161,13 @@ public abstract class LogicalCoverage {
 	
 	
 	/**
-	 * This method receives a predicate and returns a set containing
-	 * its clauses.
-	 * 
-	 * @param a MyPredicate
-	 * @return a Set of MyPredicate where each element is a clause from
-	 * the predicate.
-	 */
-	public Set<MyPredicate> getPredicateClauses(MyPredicate predicate) {
-		Set<MyPredicate> predicateClauses = clausesOf(predicate);
-		return predicateClauses;
-	}
-	
-	
-	
-	/**
 	 * This methods checks if a clause belongs to a predicate. 
 	 * @param clause
 	 * @param predicate
 	 * @return returns true if the clause belongs to the predicate or false if otherwise.
 	 */
 	public boolean clauseBelongsToPredicate(MyPredicate clause, MyPredicate predicate) {
-		Set<MyPredicate> predicateClauses = getPredicateClauses(predicate);
-		
-		for(MyPredicate predicateClause : predicateClauses) {
+		for(MyPredicate predicateClause : predicate.getClauses()) {
 			if(clause.toString().equals(predicateClause.toString())) {
 				return true;
 			}
@@ -225,14 +207,6 @@ public abstract class LogicalCoverage {
 		return relatedClauses;
 	}
 
-
-
-	private Set<MyPredicate> clausesOf(MyPredicate p) {
-		Set<MyPredicate> clauses = new HashSet<MyPredicate>();
-		p.createClausesList(clauses);
-		return clauses;
-	}
-	
 	
 	
 	private void bubblesort(List<MyPredicate> orderedPredicates) {
@@ -306,5 +280,4 @@ public abstract class LogicalCoverage {
 		
 		return variables.toString();
 	}
-	
 }

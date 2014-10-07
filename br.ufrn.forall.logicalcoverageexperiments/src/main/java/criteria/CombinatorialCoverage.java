@@ -93,7 +93,7 @@ public class CombinatorialCoverage extends LogicalCoverage {
 
 
 	private Set<String> createAllCombinationsOfClauses(MyPredicate precondition) {
-		List<MyPredicate> sortedClauses = sortPredicates(getPredicateClauses(precondition));
+		List<MyPredicate> sortedClauses = sortPredicates(precondition.getClauses());
 		List<List<String>> testRequirements = createTestRequirements(sortedClauses);
 
 		AllCombinations<String> allComb = new AllCombinations<String>(testRequirements);

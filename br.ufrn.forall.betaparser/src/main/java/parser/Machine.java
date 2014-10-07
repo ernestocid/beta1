@@ -296,7 +296,7 @@ public class Machine {
 	
 	private Set<MyPredicate> getInvariantClauses() {
 		Set<MyPredicate> invariantClauses = new HashSet<MyPredicate>();
-		if (this.getInvariant() != null) invariantClauses.addAll(this.invariant.getClausesList());
+		if (this.getInvariant() != null) invariantClauses.addAll(this.invariant.getClauses());
 		return invariantClauses;
 	}
 	

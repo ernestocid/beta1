@@ -66,7 +66,7 @@ public class XMLReport {
 		if(this.testSuite.getOperationUnderTest().getMachine().getInvariant() != null) {
 			Element machineInvariantElement = new Element("machine-invariant");
 			
-			List<String> invariantClauses = this.testSuite.getOperationUnderTest().getMachine().getInvariant().getClauses();
+			List<String> invariantClauses = this.testSuite.getOperationUnderTest().getMachine().getInvariant().getClausesAsList();
 			
 			for(String invariantClause : invariantClauses) {
 				Element invariantClauseElement = new Element("invariant-clause");

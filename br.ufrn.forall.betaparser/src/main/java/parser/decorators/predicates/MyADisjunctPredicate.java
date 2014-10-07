@@ -39,9 +39,13 @@ public class MyADisjunctPredicate extends MyPredicateDecorator {
 	
 	
 	@Override
-	public void createClausesList(Set<MyPredicate> clauses) {
-		getLeft().createClausesList(clauses);
-		getRight().createClausesList(clauses);
+	public Set<MyPredicate> getClauses() {
+		Set<MyPredicate> clauses = new HashSet<MyPredicate>();
+		
+		clauses.addAll(getLeft().getClauses());
+		clauses.addAll(getRight().getClauses());
+
+		return clauses;
 	}
 
 	

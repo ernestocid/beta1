@@ -105,7 +105,7 @@ public class ParserTest {
 		expectedList.add("((pressed = TRUE) => (foo = FALSE))");
 		Collections.sort(expectedList);
 		
-		List<String> clauses = operation.getPreconditionClausesList();
+		List<String> clauses = operation.getPreconditionClausesAsList();
 		assertEquals(expectedList, clauses);
 	}
 	
@@ -128,7 +128,7 @@ public class ParserTest {
 		
 		Collections.sort(expectedList);
 
-		List<String> clauses = machineHandler.getInvariant().getClauses();
+		List<String> clauses = machineHandler.getInvariant().getClausesAsList();
 		
 		assertEquals(expectedList, clauses);
 	}
@@ -140,7 +140,7 @@ public class ParserTest {
 		Machine machine = getMachineInstance("src/test/resources/machines/FreeRTOS/FreeRTOS.mch");
 		
 		Operation xQueueSendToBack = machine.getOperation(0);
-		List<String> xQueueSendToBackPrecondition = xQueueSendToBack.getPreconditionClausesList();
+		List<String> xQueueSendToBackPrecondition = xQueueSendToBack.getPreconditionClausesAsList();
 		
 		List<String> expectedxQueueSendToBackResult = new ArrayList<String>();
 		expectedxQueueSendToBackResult.add("queue : queues_msg");
@@ -160,7 +160,7 @@ public class ParserTest {
 	public void shouldParseTaskMachine() {
 		Machine machine = getMachineInstance("src/test/resources/machines/FreeRTOS/Task.mch");
 
-		List<String> invariantClauses = machine.getInvariant().getClauses();
+		List<String> invariantClauses = machine.getInvariant().getClausesAsList();
 		List<String> expectedResult = new ArrayList<String>();
 
 		expectedResult.add("active : BOOL");
@@ -194,7 +194,7 @@ public class ParserTest {
 	public void shouldParseQuantifierPredicateClause() {
 		Machine machine = getMachineInstance("src/test/resources/machines/FreeRTOS/FreeRTOSBasic.mch");
 		
-		List<String> actualResult = machine.getInvariant().getClauses();
+		List<String> actualResult = machine.getInvariant().getClausesAsList();
 		
 		List<String> expectedResult = new ArrayList<String>();
 		expectedResult.add("!(que).((que : queues) => (queue_sending(que) <: blocked \\/ suspended))");
@@ -254,7 +254,7 @@ public class ParserTest {
 		expectedInvariantClauses.add("semaphores_full <: semaphores"); 
 		expectedInvariantClauses.add("queues_msg = dom(queue_items)");
 		
-		Set<String> actualInvariantClauses = new HashSet<String>(machine.getInvariant().getClauses());
+		Set<String> actualInvariantClauses = new HashSet<String>(machine.getInvariant().getClausesAsList());
 		
 		assertEquals(expectedInvariantClauses, actualInvariantClauses);
 	}

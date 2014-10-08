@@ -68,4 +68,27 @@ public class MyANotSubsetStrictPredicate extends MyPredicateDecorator {
 		return variables;
 	}
 	
+	
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof MyANotSubsetStrictPredicate) {
+			MyANotSubsetStrictPredicate predicate = (MyANotSubsetStrictPredicate) obj;
+			if(predicate.toString().equals(this.toString())) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+	
+	
+	
+	@Override
+	public int hashCode() {
+		return this.toString().hashCode();
+	}
+	
 }

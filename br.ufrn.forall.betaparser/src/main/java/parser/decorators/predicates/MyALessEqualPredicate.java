@@ -66,5 +66,28 @@ public class MyALessEqualPredicate extends MyPredicateDecorator {
 	public String toString() {
 		return getLeftExpression().toString() + " <= " + getRightExpression().toString();
 	}
+	
+	
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof MyALessEqualPredicate) {
+			MyALessEqualPredicate predicate = (MyALessEqualPredicate) obj;
+			if(predicate.toString().equals(this.toString())) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+	
+	
+	
+	@Override
+	public int hashCode() {
+		return this.toString().hashCode();
+	}
 
 }

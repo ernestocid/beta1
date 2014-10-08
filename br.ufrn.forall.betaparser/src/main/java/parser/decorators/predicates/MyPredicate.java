@@ -12,6 +12,5 @@ public interface MyPredicate {
 	Set<String> getVariables();
 	boolean isTypingClause();
 	boolean isInterval();
-	@Override
-	public boolean equals(Object obj);
+	
 }

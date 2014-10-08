@@ -62,8 +62,6 @@ public class FormulaEvaluation {
 					
 					EvalResult result = (EvalResult) evalCurrent;
 
-//					System.out.println("Found Solutions: " + result.getSolutions());
-					
 					this.parameterValues = getValuesForParameters(result, getOperation());
 					this.stateVariablesValues = getValuesForStateVariables(result, getOperation());
 					

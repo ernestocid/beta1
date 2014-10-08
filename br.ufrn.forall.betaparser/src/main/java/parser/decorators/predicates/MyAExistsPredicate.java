@@ -79,4 +79,27 @@ public class MyAExistsPredicate extends MyPredicateDecorator {
 		return existentialQuant.toString();
 	}
 	
+	
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof MyAExistsPredicate) {
+			MyAExistsPredicate predicate = (MyAExistsPredicate) obj;
+			if(predicate.toString().equals(this.toString())) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+	
+	
+	
+	@Override
+	public int hashCode() {
+		return this.toString().hashCode();
+	}
+	
 }

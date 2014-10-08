@@ -430,9 +430,6 @@ public class PartitionerTest {
 		expected.add(mockedChar6);
 		expected.add(mockedChar7);
 		
-		System.out.println(expected);
-		System.out.println(partitioner.getOperationCharacteristics());
-		
 		assertEquals(7, partitioner.getOperationCharacteristics().size());
 		assertTrue(compareSetsOfCharacteristics(expected, partitioner.getOperationCharacteristics()));
 	}

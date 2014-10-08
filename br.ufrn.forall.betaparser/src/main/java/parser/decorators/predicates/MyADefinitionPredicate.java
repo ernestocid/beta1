@@ -84,5 +84,28 @@ public class MyADefinitionPredicate extends MyPredicateDecorator {
 	public String getDefinitionName() {
 		return this.definitionPredicate.getDefLiteral().getText();
 	}
+	
+	
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof MyADefinitionPredicate) {
+			MyADefinitionPredicate predicate = (MyADefinitionPredicate) obj;
+			if(predicate.toString().equals(this.toString())) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+	
+	
+	
+	@Override
+	public int hashCode() {
+		return this.toString().hashCode();
+	}
 
 }

@@ -56,6 +56,4 @@ public abstract class Characteristic {
 	public abstract boolean isIntervalCharacteristic();
 	public abstract String toString();
 	
-	
-	
 }

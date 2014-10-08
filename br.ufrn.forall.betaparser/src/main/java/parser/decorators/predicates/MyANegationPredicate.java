@@ -47,5 +47,28 @@ public class MyANegationPredicate extends MyPredicateDecorator {
 		MyPredicate myPredicate = MyPredicateFactory.convertPredicate(negationPredicate.getPredicate());
 		return "not("+ myPredicate.toString() + ")";
 	}
+	
+	
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof MyANegationPredicate) {
+			MyANegationPredicate predicate = (MyANegationPredicate) obj;
+			if(predicate.toString().equals(this.toString())) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+	
+	
+	
+	@Override
+	public int hashCode() {
+		return this.toString().hashCode();
+	}
 
 }

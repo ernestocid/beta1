@@ -64,4 +64,26 @@ public class MyAConjunctPredicate extends MyPredicateDecorator {
 		return variables;
 	}
 	
+	
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof MyAConjunctPredicate) {
+			MyAConjunctPredicate predicate = (MyAConjunctPredicate) obj;
+			if(predicate.toString().equals(this.toString())) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+	
+	
+	
+	@Override
+	public int hashCode() {
+		return this.toString().hashCode();
+	}
 }

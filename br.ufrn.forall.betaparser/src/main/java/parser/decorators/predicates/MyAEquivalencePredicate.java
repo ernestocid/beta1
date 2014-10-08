@@ -60,5 +60,28 @@ public class MyAEquivalencePredicate extends MyPredicateDecorator {
 		variables.addAll(getRight().getVariables());
 		return variables;
 	}
+	
+	
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof MyAEquivalencePredicate) {
+			MyAEquivalencePredicate predicate = (MyAEquivalencePredicate) obj;
+			if(predicate.toString().equals(this.toString())) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+	
+	
+	
+	@Override
+	public int hashCode() {
+		return this.toString().hashCode();
+	}
 
 }

@@ -91,4 +91,27 @@ public class MyAMemberPredicate extends MyPredicateDecorator {
 		}
 	}
 
+	
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof MyAMemberPredicate) {
+			MyAMemberPredicate predicate = (MyAMemberPredicate) obj;
+			if(predicate.toString().equals(this.toString())) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+	
+	
+	
+	@Override
+	public int hashCode() {
+		return this.toString().hashCode();
+	}
+	
 }

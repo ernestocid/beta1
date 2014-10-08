@@ -89,4 +89,27 @@ public class MyASubsetPredicate extends MyPredicateDecorator{
 		}
 	}
 	
+	
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof MyASubsetPredicate) {
+			MyASubsetPredicate predicate = (MyASubsetPredicate) obj;
+			if(predicate.toString().equals(this.toString())) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+	
+	
+	
+	@Override
+	public int hashCode() {
+		return this.toString().hashCode();
+	}
+	
 }

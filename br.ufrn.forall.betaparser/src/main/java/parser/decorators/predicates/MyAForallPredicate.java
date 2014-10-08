@@ -86,4 +86,27 @@ public class MyAForallPredicate extends MyPredicateDecorator {
 		return identifiers;
 	}
 	
+	
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof MyAForallPredicate) {
+			MyAForallPredicate predicate = (MyAForallPredicate) obj;
+			if(predicate.toString().equals(this.toString())) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+	
+	
+	
+	@Override
+	public int hashCode() {
+		return this.toString().hashCode();
+	}
+	
 }

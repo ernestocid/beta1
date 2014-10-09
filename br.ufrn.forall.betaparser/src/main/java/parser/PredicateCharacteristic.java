@@ -2,6 +2,12 @@ package parser;
 
 import java.util.Set;
 
+import parser.decorators.predicates.MyAEqualPredicate;
+import parser.decorators.predicates.MyAGreaterEqualPredicate;
+import parser.decorators.predicates.MyAGreaterPredicate;
+import parser.decorators.predicates.MyALessEqualPredicate;
+import parser.decorators.predicates.MyALessPredicate;
+import parser.decorators.predicates.MyANotEqualPredicate;
 import parser.decorators.predicates.MyPredicate;
 
 public class PredicateCharacteristic extends Characteristic {
@@ -39,16 +45,6 @@ public class PredicateCharacteristic extends Characteristic {
 	@Override
 	public boolean equals(Object obj) {
 		return super.equals(obj);
-//		if(obj instanceof PredicateCharacteristic) {
-//			PredicateCharacteristic c = (PredicateCharacteristic) obj;
-//			if(c.getCharacteristic().equals(this.getCharacteristic())) {
-//				return true;
-//			} else {
-//				return false;
-//			}
-//		} else {
-//			return false;
-//		}
 	}
 	
 	
@@ -77,6 +73,24 @@ public class PredicateCharacteristic extends Characteristic {
 	@Override
 	public Set<String> getVariables() {
 		return this.predicate.getVariables();
+	}
+
+
+
+	@Override
+	public boolean isRelationalCharacteristic() {
+		boolean equal = getPredicate() instanceof MyAEqualPredicate;
+		boolean notEqual = getPredicate() instanceof MyANotEqualPredicate;
+		boolean greater = getPredicate() instanceof MyAGreaterPredicate;
+		boolean greaterOrEqual = getPredicate() instanceof MyAGreaterEqualPredicate;
+		boolean less = getPredicate() instanceof MyALessPredicate;
+		boolean lessEqual = getPredicate() instanceof MyALessEqualPredicate;
+		
+		if(equal || notEqual || greater || greaterOrEqual || less || lessEqual) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

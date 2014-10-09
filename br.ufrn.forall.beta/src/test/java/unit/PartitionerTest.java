@@ -468,4 +468,5 @@ public class PartitionerTest {
 		Machine machine = new Machine(new File(path));
 		return machine;
 	}
+	
 }

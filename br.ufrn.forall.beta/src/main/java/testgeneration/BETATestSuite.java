@@ -44,7 +44,7 @@ public class BETATestSuite {
 		this.combinatorialCriteria = combinatorialCriteria;
 		this.testCases = new ArrayList<BETATestCase>();
 		String probpath = Configurations.getProBPath();
-		System.setProperty("prob.home", probpath);
+//		System.setProperty("prob.home", probpath);
 		this.probApi = Main.getInjector().getInstance(Api.class);
 		generateTestCases();
 	}

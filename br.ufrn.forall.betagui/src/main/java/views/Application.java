@@ -45,7 +45,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 import configurations.Configurations;
-
+import de.prob.Main;
+import de.prob.scripting.Api;
 import parser.Machine;
 import actions.DisplayInfoAction;
 import actions.GenerateTestsAction;
@@ -77,6 +78,10 @@ public class Application {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
+		Api probApi = Main.getInjector().getInstance(Api.class);
+		probApi.upgrade("latest");
+		
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {

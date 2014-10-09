@@ -54,6 +54,7 @@ public abstract class Characteristic {
 	public abstract Set<String> getVariables();
 	public abstract boolean isTypingCharacteristic();
 	public abstract boolean isIntervalCharacteristic();
+	public abstract boolean isRelationalCharacteristic();
 	public abstract String toString();
 	
 }

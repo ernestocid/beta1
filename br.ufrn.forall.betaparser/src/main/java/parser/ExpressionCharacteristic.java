@@ -48,16 +48,6 @@ public class ExpressionCharacteristic extends Characteristic {
 	@Override
 	public boolean equals(Object obj) {
 		return super.equals(obj);
-//		if(obj instanceof ExpressionCharacteristic) {
-//			ExpressionCharacteristic c = (ExpressionCharacteristic) obj;
-//			if(c.getCharacteristic().equals(this.getCharacteristic())) {
-//				return true;
-//			} else {
-//				return false;
-//			}
-//		} else {
-//			return false;
-//		}
 	}
 	
 	
@@ -65,6 +55,13 @@ public class ExpressionCharacteristic extends Characteristic {
 	@Override
 	public int hashCode() {
 		return super.hashCode();
+	}
+
+
+
+	@Override
+	public boolean isRelationalCharacteristic() {
+		return false;
 	}
 	
 }

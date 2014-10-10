@@ -33,31 +33,31 @@ public class TestMachineBuilderTest {
 		List<Block> combination = new ArrayList<Block>();
 		
 		Block mockedBlock1 = mock(Block.class);
-		when(mockedBlock1.toString()).thenReturn("test_variable2 : BOOL");
+		when(mockedBlock1.getBlock()).thenReturn("test_variable2 : BOOL");
 		
 		Block mockedBlock2 = mock(Block.class);
-		when(mockedBlock2.toString()).thenReturn("test_variable3 : BOOL");
+		when(mockedBlock2.getBlock()).thenReturn("test_variable3 : BOOL");
 		
 		Block mockedBlock3 = mock(Block.class);
-		when(mockedBlock3.toString()).thenReturn("test_variable : BOOL");
+		when(mockedBlock3.getBlock()).thenReturn("test_variable : BOOL");
 		
 		Block mockedBlock4 = mock(Block.class);
-		when(mockedBlock4.toString()).thenReturn("pressed : BOOL");
+		when(mockedBlock4.getBlock()).thenReturn("pressed : BOOL");
 		
 		Block mockedBlock5 = mock(Block.class);
-		when(mockedBlock5.toString()).thenReturn("foo : BOOL");
+		when(mockedBlock5.getBlock()).thenReturn("foo : BOOL");
 		
 		Block mockedBlock6 = mock(Block.class);
-		when(mockedBlock6.toString()).thenReturn("cab_consol_close_button_pushed");
+		when(mockedBlock6.getBlock()).thenReturn("cab_consol_close_button_pushed");
 		
 		Block mockedBlock7 = mock(Block.class);
-		when(mockedBlock7.toString()).thenReturn("cab_side_open_button_pushed");
+		when(mockedBlock7.getBlock()).thenReturn("cab_side_open_button_pushed");
 		
 		Block mockedBlock8 = mock(Block.class);
-		when(mockedBlock8.toString()).thenReturn("cab_consol_open_button_pushed");
+		when(mockedBlock8.getBlock()).thenReturn("cab_consol_open_button_pushed");
 		
 		Block mockedBlock9 = mock(Block.class);
-		when(mockedBlock9.toString()).thenReturn("cab_side_close_button_pushed");
+		when(mockedBlock9.getBlock()).thenReturn("cab_side_close_button_pushed");
 		
 		combination.add(mockedBlock1);
 		combination.add(mockedBlock2);
@@ -70,23 +70,6 @@ public class TestMachineBuilderTest {
 		combination.add(mockedBlock9);
 		
 		combinations.add(combination);
-		
-//		combinations.add("test_variable2 : BOOL & " +
-//							"test_variable3 : BOOL & " +
-//							"test_variable : BOOL & " +
-//							"pressed : BOOL & " +
-//							"foo : BOOL & " +
-//							"cab_consol_close_button_pushed & " +
-//							"cab_side_open_button_pushed & " +
-//							"cab_consol_open_button_pushed & " +
-//							"cab_side_close_button_pushed"
-//							);
-//		"cab_consol_close_button_pushed,\n" +
-//		"cab_side_open_button_pushed,\n" +
-//		"cab_consol_open_button_pushed\n" +
-		
-		
-		
 		
 		TestMachineBuilder testMchBuilder = new TestMachineBuilder(operationUnderTest, combinations);
 		

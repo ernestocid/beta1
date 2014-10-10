@@ -56,7 +56,7 @@ public abstract class BlockBuilder {
 			List<String> blocksAsStrings = new ArrayList<String>();
 			
 			for(Block block : entry.getValue()) {
-				blocksAsStrings.add(block.toString());
+				blocksAsStrings.add(block.getBlock());
 			}
 			
 			parameterInputValues.add(blocksAsStrings);

@@ -215,9 +215,9 @@ public class TestMachineBuilder {
 		
 		for (int i = 0; i < combination.size(); i++) {
 			if(i == combination.size() - 1) {
-				concatenation.append(combination.get(i).toString());
+				concatenation.append(combination.get(i).getBlock());
 			} else {
-				concatenation.append(combination.get(i).toString() + " & ");
+				concatenation.append(combination.get(i).getBlock() + " & ");
 			}
 		}
 		

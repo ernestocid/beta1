@@ -40,7 +40,7 @@ public class Block {
 	
 	@Override
 	public String toString() {
-		return this.block;
+		return "Block: " + getBlock() + " isNegative: " + isNegative();
 	}
 	
 	
@@ -49,7 +49,7 @@ public class Block {
 	public boolean equals(Object obj) {
 		if(obj instanceof Block) {
 			Block comparisonBlock = (Block) obj;
-			if(this.getBlock().equals(comparisonBlock.getBlock()) && 
+			if(this.toString().equals(comparisonBlock.toString()) && 
 			   this.isNegative() == comparisonBlock.isNegative()) {
 				return true;
 			} else {
@@ -58,6 +58,13 @@ public class Block {
 		} else {
 			return false;
 		}
+	}
+	
+	
+	
+	@Override
+	public int hashCode() {
+		return getBlock().hashCode();
 	}
 
 }

@@ -40,7 +40,7 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch1Blocks = new ArrayList<Block>();
 		
 		Block ch1MockedBlock1 = mock(Block.class);
-		when(ch1MockedBlock1.toString()).thenReturn("papers <: 1..163");
+		when(ch1MockedBlock1.toString()).thenReturn("Block: papers <: 1..163 isNegative: false");
 		when(ch1MockedBlock1.isNegative()).thenReturn(false);
 		
 		ch1Blocks.add(ch1MockedBlock1);
@@ -55,7 +55,7 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch2Blocks = new ArrayList<Block>();
 		
 		Block ch2MockedBlock1 = mock(Block.class);
-		when(ch2MockedBlock1.toString()).thenReturn("magazines <: papers");
+		when(ch2MockedBlock1.toString()).thenReturn("Block: magazines <: papers isNegative: false");
 		when(ch2MockedBlock1.isNegative()).thenReturn(false);
 		
 		ch2Blocks.add(ch2MockedBlock1);
@@ -70,7 +70,7 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch3Blocks = new ArrayList<Block>();
 		
 		Block ch3MockedBlock1 = mock(Block.class);
-		when(ch3MockedBlock1.toString()).thenReturn("card(papers) <= 60");
+		when(ch3MockedBlock1.toString()).thenReturn("Block: card(papers) <= 60 isNegative: false");
 		when(ch3MockedBlock1.isNegative()).thenReturn(false);
 		
 		ch3Blocks.add(ch3MockedBlock1);
@@ -85,27 +85,27 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch4Blocks = new ArrayList<Block>();
 		
 		Block ch4MockedBlock1 = mock(Block.class);
-		when(ch4MockedBlock1.toString()).thenReturn("hh = 1 - 1");
+		when(ch4MockedBlock1.toString()).thenReturn("Block: hh = 1 - 1 isNegative: true");
 		when(ch4MockedBlock1.isNegative()).thenReturn(true);
 		
 		Block ch4MockedBlock2 = mock(Block.class);
-		when(ch4MockedBlock2.toString()).thenReturn("hh = 1");
+		when(ch4MockedBlock2.toString()).thenReturn("Block: hh = 1 isNegative: false");
 		when(ch4MockedBlock2.isNegative()).thenReturn(false);
 		
 		Block ch4MockedBlock3 = mock(Block.class);
-		when(ch4MockedBlock3.toString()).thenReturn("hh = 1 + 1");
+		when(ch4MockedBlock3.toString()).thenReturn("Block: hh = 1 + 1 isNegative: false");
 		when(ch4MockedBlock3.isNegative()).thenReturn(false);
 		
 		Block ch4MockedBlock4 = mock(Block.class);
-		when(ch4MockedBlock4.toString()).thenReturn("hh = 163 - 1");
+		when(ch4MockedBlock4.toString()).thenReturn("Block: hh = 163 - 1 isNegative: false");
 		when(ch4MockedBlock4.isNegative()).thenReturn(false);
 		
 		Block ch4MockedBlock5 = mock(Block.class);
-		when(ch4MockedBlock5.toString()).thenReturn("hh = 163");
+		when(ch4MockedBlock5.toString()).thenReturn("Block: hh = 163 isNegative: false");
 		when(ch4MockedBlock5.isNegative()).thenReturn(false);
 		
 		Block ch4MockedBlock6 = mock(Block.class);
-		when(ch4MockedBlock6.toString()).thenReturn("hh = 163 + 1");
+		when(ch4MockedBlock6.toString()).thenReturn("Block: hh = 163 + 1 isNegative: true");
 		when(ch4MockedBlock6.isNegative()).thenReturn(true);
 		
 		ch4Blocks.add(ch4MockedBlock1);
@@ -125,11 +125,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch5Blocks = new ArrayList<Block>();
 		
 		Block ch5MockedBlock1 = mock(Block.class);
-		when(ch5MockedBlock1.toString()).thenReturn("card(papers) < 60");
+		when(ch5MockedBlock1.toString()).thenReturn("Block: card(papers) < 60 isNegative: false");
 		when(ch5MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch5MockedBlock2 = mock(Block.class);
-		when(ch5MockedBlock2.toString()).thenReturn("not(card(papers) < 60)");
+		when(ch5MockedBlock2.toString()).thenReturn("Block: not(card(papers) < 60) isNegative: true");
 		when(ch5MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch5Blocks.add(ch5MockedBlock1);
@@ -167,27 +167,27 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch1Blocks = new ArrayList<Block>();
 		
 		Block ch1MockedBlock1 = mock(Block.class); 
-		when(ch1MockedBlock1.toString()).thenReturn("aa = -1");
+		when(ch1MockedBlock1.toString()).thenReturn("Block: aa = -1 isNegative: true");
 		when(ch1MockedBlock1.isNegative()).thenReturn(true);
 		
 		Block ch1MockedBlock2 = mock(Block.class);
-		when(ch1MockedBlock2.toString()).thenReturn("aa = 0");
+		when(ch1MockedBlock2.toString()).thenReturn("Block: aa = 0 isNegative: false");
 		when(ch1MockedBlock2.isNegative()).thenReturn(false);
 		
 		Block ch1MockedBlock3 = mock(Block.class);
-		when(ch1MockedBlock3.toString()).thenReturn("aa = 1");
+		when(ch1MockedBlock3.toString()).thenReturn("Block: aa = 1 isNegative: false");
 		when(ch1MockedBlock3.isNegative()).thenReturn(false);
 		
 		Block ch1MockedBlock4 = mock(Block.class);
-		when(ch1MockedBlock4.toString()).thenReturn("aa = MAXINT-1");
+		when(ch1MockedBlock4.toString()).thenReturn("Block: aa = MAXINT-1 isNegative: false");
 		when(ch1MockedBlock4.isNegative()).thenReturn(false);
 		
 		Block ch1MockedBlock5 = mock(Block.class);
-		when(ch1MockedBlock5.toString()).thenReturn("aa = MAXINT");
+		when(ch1MockedBlock5.toString()).thenReturn("Block: aa = MAXINT isNegative: false");
 		when(ch1MockedBlock5.isNegative()).thenReturn(false);
 		
 		Block ch1MockedBlock6 = mock(Block.class);
-		when(ch1MockedBlock6.toString()).thenReturn("aa = MAXINT+1");
+		when(ch1MockedBlock6.toString()).thenReturn("Block: aa = MAXINT+1 isNegative: true");
 		when(ch1MockedBlock6.isNegative()).thenReturn(true);
 		
 		ch1Blocks.add(ch1MockedBlock1);
@@ -204,27 +204,27 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch2Blocks = new ArrayList<Block>();
 		
 		Block ch2MockedBlock1 = mock(Block.class); 
-		when(ch2MockedBlock1.toString()).thenReturn("bb = 0");
+		when(ch2MockedBlock1.toString()).thenReturn("Block: bb = 0 isNegative: true");
 		when(ch2MockedBlock1.isNegative()).thenReturn(true);
 		
 		Block ch2MockedBlock2 = mock(Block.class);
-		when(ch2MockedBlock2.toString()).thenReturn("bb = 1");
+		when(ch2MockedBlock2.toString()).thenReturn("Block: bb = 1 isNegative: false");
 		when(ch2MockedBlock2.isNegative()).thenReturn(false);
 		
 		Block ch2MockedBlock3 = mock(Block.class);
-		when(ch2MockedBlock3.toString()).thenReturn("bb = 2");
+		when(ch2MockedBlock3.toString()).thenReturn("Block: bb = 2 isNegative: false");
 		when(ch2MockedBlock3.isNegative()).thenReturn(false);
 		
 		Block ch2MockedBlock4 = mock(Block.class);
-		when(ch2MockedBlock4.toString()).thenReturn("bb = MAXINT-1");
+		when(ch2MockedBlock4.toString()).thenReturn("Block: bb = MAXINT-1 isNegative: false");
 		when(ch2MockedBlock4.isNegative()).thenReturn(false);
 		
 		Block ch2MockedBlock5 = mock(Block.class);
-		when(ch2MockedBlock5.toString()).thenReturn("bb = MAXINT");
+		when(ch2MockedBlock5.toString()).thenReturn("Block: bb = MAXINT isNegative: false");
 		when(ch2MockedBlock5.isNegative()).thenReturn(false);
 		
 		Block ch2MockedBlock6 = mock(Block.class);
-		when(ch2MockedBlock6.toString()).thenReturn("bb = MAXINT+1");
+		when(ch2MockedBlock6.toString()).thenReturn("Block: bb = MAXINT+1 isNegative: true");
 		when(ch2MockedBlock6.isNegative()).thenReturn(true);
 		
 		ch2Blocks.add(ch2MockedBlock1);
@@ -241,7 +241,7 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch3Blocks = new ArrayList<Block>();
 		
 		Block ch3MockedBlock1 = mock(Block.class);
-		when(ch3MockedBlock1.toString()).thenReturn("cc : INT");
+		when(ch3MockedBlock1.toString()).thenReturn("Block: cc : INT isNegative: false");
 		when(ch3MockedBlock1.isNegative()).thenReturn(false);
 		
 		ch3Blocks.add(ch3MockedBlock1);
@@ -253,7 +253,7 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch4Blocks = new ArrayList<Block>();
 		
 		Block ch4MockedBlock1 = mock(Block.class);
-		when(ch4MockedBlock1.toString()).thenReturn("dd : BOOL");
+		when(ch4MockedBlock1.toString()).thenReturn("Block: dd : BOOL isNegative: false");
 		when(ch4MockedBlock1.isNegative()).thenReturn(false);
 
 		ch4Blocks.add(ch4MockedBlock1);
@@ -265,11 +265,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch5Blocks = new ArrayList<Block>();
 		
 		Block ch5MockedBlock1 = mock(Block.class);
-		when(ch5MockedBlock1.toString()).thenReturn("ee : {1, 2, 3}");
+		when(ch5MockedBlock1.toString()).thenReturn("Block: ee : {1, 2, 3} isNegative: false");
 		when(ch5MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch5MockedBlock2 = mock(Block.class);
-		when(ch5MockedBlock2.toString()).thenReturn("not(ee : {1, 2, 3})");
+		when(ch5MockedBlock2.toString()).thenReturn("Block: not(ee : {1, 2, 3}) isNegative: true");
 		when(ch5MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch5Blocks.add(ch5MockedBlock1);
@@ -282,27 +282,27 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch6Blocks = new ArrayList<Block>();
 
 		Block ch6MockedBlock1 = mock(Block.class); 
-		when(ch6MockedBlock1.toString()).thenReturn("ff = 1 - 1");
+		when(ch6MockedBlock1.toString()).thenReturn("Block: ff = 1 - 1 isNegative: true");
 		when(ch6MockedBlock1.isNegative()).thenReturn(true);
 		
 		Block ch6MockedBlock2 = mock(Block.class);
-		when(ch6MockedBlock2.toString()).thenReturn("ff = 1");
+		when(ch6MockedBlock2.toString()).thenReturn("Block: ff = 1 isNegative: false");
 		when(ch6MockedBlock2.isNegative()).thenReturn(false);
 		
 		Block ch6MockedBlock3 = mock(Block.class);
-		when(ch6MockedBlock3.toString()).thenReturn("ff = 1 + 1");
+		when(ch6MockedBlock3.toString()).thenReturn("Block: ff = 1 + 1 isNegative: false");
 		when(ch6MockedBlock3.isNegative()).thenReturn(false);
 		
 		Block ch6MockedBlock4 = mock(Block.class);
-		when(ch6MockedBlock4.toString()).thenReturn("ff = 5 - 1");
+		when(ch6MockedBlock4.toString()).thenReturn("Block: ff = 5 - 1 isNegative: false");
 		when(ch6MockedBlock4.isNegative()).thenReturn(false);
 		
 		Block ch6MockedBlock5 = mock(Block.class);
-		when(ch6MockedBlock5.toString()).thenReturn("ff = 5");
+		when(ch6MockedBlock5.toString()).thenReturn("Block: ff = 5 isNegative: false");
 		when(ch6MockedBlock5.isNegative()).thenReturn(false);
 		
 		Block ch6MockedBlock6 = mock(Block.class);
-		when(ch6MockedBlock6.toString()).thenReturn("ff = 5 + 1");
+		when(ch6MockedBlock6.toString()).thenReturn("Block: ff = 5 + 1 isNegative: true");
 		when(ch6MockedBlock6.isNegative()).thenReturn(true);
 		
 		ch6Blocks.add(ch6MockedBlock1);
@@ -319,7 +319,7 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch7Blocks = new ArrayList<Block>();
 		
 		Block ch7MockedBlock1 = mock(Block.class); 
-		when(ch7MockedBlock1.toString()).thenReturn("gg : NAME");
+		when(ch7MockedBlock1.toString()).thenReturn("Block: gg : NAME isNegative: false");
 		when(ch7MockedBlock1.isNegative()).thenReturn(false);
 		
 		ch7Blocks.add(ch7MockedBlock1);
@@ -331,11 +331,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch8Blocks = new ArrayList<Block>();
 		
 		Block ch8MockedBlock1 = mock(Block.class); 
-		when(ch8MockedBlock1.toString()).thenReturn("hh : awnser");
+		when(ch8MockedBlock1.toString()).thenReturn("Block: hh : awnser isNegative: false");
 		when(ch8MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch8MockedBlock2 = mock(Block.class); 
-		when(ch8MockedBlock2.toString()).thenReturn("not(hh : awnser)");
+		when(ch8MockedBlock2.toString()).thenReturn("Block: not(hh : awnser) isNegative: true");
 		when(ch8MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch8Blocks.add(ch8MockedBlock1);
@@ -348,7 +348,7 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch9Blocks = new ArrayList<Block>();
 		
 		Block ch9MockedBlock1 = mock(Block.class);
-		when(ch9MockedBlock1.toString()).thenReturn("ii : STRING");
+		when(ch9MockedBlock1.toString()).thenReturn("Block: ii : STRING isNegative: false");
 		when(ch9MockedBlock1.isNegative()).thenReturn(false);
 		
 		ch9Blocks.add(ch9MockedBlock1);
@@ -360,11 +360,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch10Blocks = new ArrayList<Block>();
 		
 		Block ch10MockedBlock1 = mock(Block.class);
-		when(ch10MockedBlock1.toString()).thenReturn("jj : (NAT --> NAT)");
+		when(ch10MockedBlock1.toString()).thenReturn("Block: jj : (NAT --> NAT) isNegative: false");
 		when(ch10MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch10MockedBlock2 = mock(Block.class);
-		when(ch10MockedBlock2.toString()).thenReturn("not(jj : (NAT --> NAT))");
+		when(ch10MockedBlock2.toString()).thenReturn("Block: not(jj : (NAT --> NAT)) isNegative: true");
 		when(ch10MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch10Blocks.add(ch10MockedBlock1);
@@ -377,11 +377,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch11Blocks = new ArrayList<Block>();
 		
 		Block ch11MockedBlock1 = mock(Block.class);
-		when(ch11MockedBlock1.toString()).thenReturn("kk : (NAT >-> NAT)");
+		when(ch11MockedBlock1.toString()).thenReturn("Block: kk : (NAT >-> NAT) isNegative: false");
 		when(ch11MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch11MockedBlock2 = mock(Block.class);
-		when(ch11MockedBlock2.toString()).thenReturn("not(kk : (NAT >-> NAT))");
+		when(ch11MockedBlock2.toString()).thenReturn("Block: not(kk : (NAT >-> NAT)) isNegative: true");
 		when(ch11MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch11Blocks.add(ch11MockedBlock1);
@@ -394,11 +394,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch12Blocks = new ArrayList<Block>();
 		
 		Block ch12MockedBlock1 = mock(Block.class);
-		when(ch12MockedBlock1.toString()).thenReturn("ll : (NAT -->> NAT)");
+		when(ch12MockedBlock1.toString()).thenReturn("Block: ll : (NAT -->> NAT) isNegative: false");
 		when(ch12MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch12MockedBlock2 = mock(Block.class);
-		when(ch12MockedBlock2.toString()).thenReturn("not(ll : (NAT -->> NAT))");
+		when(ch12MockedBlock2.toString()).thenReturn("Block: not(ll : (NAT -->> NAT)) isNegative: true");
 		when(ch12MockedBlock2.isNegative()).thenReturn(true);
 
 		ch12Blocks.add(ch12MockedBlock1);
@@ -411,11 +411,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch13Blocks = new ArrayList<Block>();
 		
 		Block ch13MockedBlock1 = mock(Block.class);
-		when(ch13MockedBlock1.toString()).thenReturn("mm : (NAT >->> NAT)");
+		when(ch13MockedBlock1.toString()).thenReturn("Block: mm : (NAT >->> NAT) isNegative: false");
 		when(ch13MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch13MockedBlock2 = mock(Block.class);
-		when(ch13MockedBlock2.toString()).thenReturn("not(mm : (NAT >->> NAT))");
+		when(ch13MockedBlock2.toString()).thenReturn("Block: not(mm : (NAT >->> NAT)) isNegative: true");
 		when(ch13MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch13Blocks.add(ch13MockedBlock1);
@@ -428,11 +428,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch14Blocks = new ArrayList<Block>();
 		
 		Block ch14MockedBlock1 = mock(Block.class);
-		when(ch14MockedBlock1.toString()).thenReturn("(nn + 2) : {1, 2} \\/ {3, 4}");
+		when(ch14MockedBlock1.toString()).thenReturn("Block: (nn + 2) : {1, 2} \\/ {3, 4} isNegative: false");
 		when(ch14MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch14MockedBlock2 = mock(Block.class);
-		when(ch14MockedBlock2.toString()).thenReturn("not((nn + 2) : {1, 2} \\/ {3, 4})");
+		when(ch14MockedBlock2.toString()).thenReturn("Block: not((nn + 2) : {1, 2} \\/ {3, 4}) isNegative: true");
 		when(ch14MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch14Blocks.add(ch14MockedBlock1);
@@ -467,11 +467,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch1Blocks = new ArrayList<Block>();
 		
 		Block ch1MockedBlock1 = mock(Block.class);
-		when(ch1MockedBlock1.toString()).thenReturn("aa /: NAT");
+		when(ch1MockedBlock1.toString()).thenReturn("Block: aa /: NAT isNegative: false");
 		when(ch1MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch1MockedBlock2 = mock(Block.class);
-		when(ch1MockedBlock2.toString()).thenReturn("not(aa /: NAT)");
+		when(ch1MockedBlock2.toString()).thenReturn("Block: not(aa /: NAT) isNegative: true");
 		when(ch1MockedBlock2.isNegative()).thenReturn(true);
 
 		ch1Blocks.add(ch1MockedBlock1);
@@ -484,11 +484,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch2Blocks = new ArrayList<Block>();
 		
 		Block ch2MockedBlock1 = mock(Block.class);
-		when(ch2MockedBlock1.toString()).thenReturn("bb /: NAT1");
+		when(ch2MockedBlock1.toString()).thenReturn("Block: bb /: NAT1 isNegative: false");
 		when(ch2MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch2MockedBlock2 = mock(Block.class);
-		when(ch2MockedBlock2.toString()).thenReturn("not(bb /: NAT1)");
+		when(ch2MockedBlock2.toString()).thenReturn("Block: not(bb /: NAT1) isNegative: true");
 		when(ch2MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch2Blocks.add(ch2MockedBlock1);
@@ -501,11 +501,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch3Blocks = new ArrayList<Block>();
 		
 		Block ch3MockedBlock1 = mock(Block.class);
-		when(ch3MockedBlock1.toString()).thenReturn("cc /: INT");
+		when(ch3MockedBlock1.toString()).thenReturn("Block: cc /: INT isNegative: false");
 		when(ch3MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch3MockedBlock2 = mock(Block.class);
-		when(ch3MockedBlock2.toString()).thenReturn("not(cc /: INT)");
+		when(ch3MockedBlock2.toString()).thenReturn("Block: not(cc /: INT) isNegative: true");
 		when(ch3MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch3Blocks.add(ch3MockedBlock1);
@@ -518,11 +518,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch4Blocks = new ArrayList<Block>();
 		
 		Block ch4MockedBlock1 = mock(Block.class);
-		when(ch4MockedBlock1.toString()).thenReturn("dd /: BOOL");
+		when(ch4MockedBlock1.toString()).thenReturn("Block: dd /: BOOL isNegative: false");
 		when(ch4MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch4MockedBlock2 = mock(Block.class);
-		when(ch4MockedBlock2.toString()).thenReturn("not(dd /: BOOL)");
+		when(ch4MockedBlock2.toString()).thenReturn("Block: not(dd /: BOOL) isNegative: true");
 		when(ch4MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch4Blocks.add(ch4MockedBlock1);
@@ -535,11 +535,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch5Blocks = new ArrayList<Block>();
 		
 		Block ch5MockedBlock1 = mock(Block.class);
-		when(ch5MockedBlock1.toString()).thenReturn("ee /: {1, 2, 3}");
+		when(ch5MockedBlock1.toString()).thenReturn("Block: ee /: {1, 2, 3} isNegative: false");
 		when(ch5MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch5MockedBlock2 = mock(Block.class);
-		when(ch5MockedBlock2.toString()).thenReturn("not(ee /: {1, 2, 3})");
+		when(ch5MockedBlock2.toString()).thenReturn("Block: not(ee /: {1, 2, 3}) isNegative: true");
 		when(ch5MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch5Blocks.add(ch5MockedBlock1);
@@ -552,11 +552,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch6Blocks = new ArrayList<Block>();
 		
 		Block ch6MockedBlock1 = mock(Block.class);
-		when(ch6MockedBlock1.toString()).thenReturn("ff /: 1..5");
+		when(ch6MockedBlock1.toString()).thenReturn("Block: ff /: 1..5 isNegative: false");
 		when(ch6MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch6MockedBlock2 = mock(Block.class);
-		when(ch6MockedBlock2.toString()).thenReturn("not(ff /: 1..5)");
+		when(ch6MockedBlock2.toString()).thenReturn("Block: not(ff /: 1..5) isNegative: true");
 		when(ch6MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch6Blocks.add(ch6MockedBlock1);
@@ -569,11 +569,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch7Blocks = new ArrayList<Block>();
 		
 		Block ch7MockedBlock1 = mock(Block.class);
-		when(ch7MockedBlock1.toString()).thenReturn("gg /: NAME");
+		when(ch7MockedBlock1.toString()).thenReturn("Block: gg /: NAME isNegative: false");
 		when(ch7MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch7MockedBlock2 = mock(Block.class);
-		when(ch7MockedBlock2.toString()).thenReturn("not(gg /: NAME)");
+		when(ch7MockedBlock2.toString()).thenReturn("Block: not(gg /: NAME) isNegative: true");
 		when(ch7MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch7Blocks.add(ch7MockedBlock1);
@@ -586,11 +586,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch8Blocks = new ArrayList<Block>();
 		
 		Block ch8MockedBlock1 = mock(Block.class);
-		when(ch8MockedBlock1.toString()).thenReturn("hh /: awnser");
+		when(ch8MockedBlock1.toString()).thenReturn("Block: hh /: awnser isNegative: false");
 		when(ch8MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch8MockedBlock2 = mock(Block.class);
-		when(ch8MockedBlock2.toString()).thenReturn("not(hh /: awnser)");
+		when(ch8MockedBlock2.toString()).thenReturn("Block: not(hh /: awnser) isNegative: true");
 		when(ch8MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch8Blocks.add(ch8MockedBlock1);
@@ -625,11 +625,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch1Blocks = new ArrayList<Block>();
 		
 		Block ch1MockedBlock1 = mock(Block.class);
-		when(ch1MockedBlock1.toString()).thenReturn("aa <: NAT");
+		when(ch1MockedBlock1.toString()).thenReturn("Block: aa <: NAT isNegative: false");
 		when(ch1MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch1MockedBlock2 = mock(Block.class);
-		when(ch1MockedBlock2.toString()).thenReturn("not(aa <: NAT)");
+		when(ch1MockedBlock2.toString()).thenReturn("Block: not(aa <: NAT) isNegative: true");
 		when(ch1MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch1Blocks.add(ch1MockedBlock1);
@@ -642,11 +642,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch2Blocks = new ArrayList<Block>();
 		
 		Block ch2MockedBlock1 = mock(Block.class);
-		when(ch2MockedBlock1.toString()).thenReturn("bb <: NAT1");
+		when(ch2MockedBlock1.toString()).thenReturn("Block: bb <: NAT1 isNegative: false");
 		when(ch2MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch2MockedBlock2 = mock(Block.class);
-		when(ch2MockedBlock2.toString()).thenReturn("not(bb <: NAT1)");
+		when(ch2MockedBlock2.toString()).thenReturn("Block: not(bb <: NAT1) isNegative: true");
 		when(ch2MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch2Blocks.add(ch2MockedBlock1);
@@ -659,7 +659,7 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch3Blocks = new ArrayList<Block>();
 		
 		Block ch3MockedBlock1 = mock(Block.class);
-		when(ch3MockedBlock1.toString()).thenReturn("cc <: INT");
+		when(ch3MockedBlock1.toString()).thenReturn("Block: cc <: INT isNegative: false");
 		when(ch3MockedBlock1.isNegative()).thenReturn(false);
 		
 		ch3Blocks.add(ch3MockedBlock1);
@@ -671,7 +671,7 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch4Blocks = new ArrayList<Block>();
 		
 		Block ch4MockedBlock1 = mock(Block.class);
-		when(ch4MockedBlock1.toString()).thenReturn("dd <: BOOL");
+		when(ch4MockedBlock1.toString()).thenReturn("Block: dd <: BOOL isNegative: false");
 		when(ch4MockedBlock1.isNegative()).thenReturn(false);
 		
 		ch4Blocks.add(ch4MockedBlock1);
@@ -683,11 +683,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch5Blocks = new ArrayList<Block>();
 		
 		Block ch5MockedBlock1 = mock(Block.class);
-		when(ch5MockedBlock1.toString()).thenReturn("ee <: {1, 2, 3}");
+		when(ch5MockedBlock1.toString()).thenReturn("Block: ee <: {1, 2, 3} isNegative: false");
 		when(ch5MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch5MockedBlock2 = mock(Block.class);
-		when(ch5MockedBlock2.toString()).thenReturn("not(ee <: {1, 2, 3})");
+		when(ch5MockedBlock2.toString()).thenReturn("Block: not(ee <: {1, 2, 3}) isNegative: true");
 		when(ch5MockedBlock2.isNegative()).thenReturn(true);
 
 		ch5Blocks.add(ch5MockedBlock1);
@@ -700,11 +700,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch6Blocks = new ArrayList<Block>();
 		
 		Block ch6MockedBlock1 = mock(Block.class);
-		when(ch6MockedBlock1.toString()).thenReturn("ff <: 1..5");
+		when(ch6MockedBlock1.toString()).thenReturn("Block: ff <: 1..5 isNegative: false");
 		when(ch6MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch6MockedBlock2 = mock(Block.class);
-		when(ch6MockedBlock2.toString()).thenReturn("not(ff <: 1..5)");
+		when(ch6MockedBlock2.toString()).thenReturn("Block: not(ff <: 1..5) isNegative: true");
 		when(ch6MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch6Blocks.add(ch6MockedBlock1);
@@ -717,7 +717,7 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch7Blocks = new ArrayList<Block>();
 		
 		Block ch7MockedBlock1 = mock(Block.class);
-		when(ch7MockedBlock1.toString()).thenReturn("gg <: NAME");
+		when(ch7MockedBlock1.toString()).thenReturn("Block: gg <: NAME isNegative: false");
 		when(ch7MockedBlock1.isNegative()).thenReturn(false);
 		
 		ch7Blocks.add(ch7MockedBlock1);
@@ -729,11 +729,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch8Blocks = new ArrayList<Block>();
 		
 		Block ch8MockedBlock1 = mock(Block.class);
-		when(ch8MockedBlock1.toString()).thenReturn("hh <: awnser");
+		when(ch8MockedBlock1.toString()).thenReturn("Block: hh <: awnser isNegative: false");
 		when(ch8MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch8MockedBlock2 = mock(Block.class);
-		when(ch8MockedBlock2.toString()).thenReturn("not(hh <: awnser)");
+		when(ch8MockedBlock2.toString()).thenReturn("Block: not(hh <: awnser) isNegative: true");
 		when(ch8MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch8Blocks.add(ch8MockedBlock1);
@@ -746,11 +746,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch9Blocks = new ArrayList<Block>();
 		
 		Block ch9MockedBlock1 = mock(Block.class);
-		when(ch9MockedBlock1.toString()).thenReturn("ii \\/ {2} <: {1, 2} \\/ {3, 4}");
+		when(ch9MockedBlock1.toString()).thenReturn("Block: ii \\/ {2} <: {1, 2} \\/ {3, 4} isNegative: false");
 		when(ch9MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch9MockedBlock2 = mock(Block.class);
-		when(ch9MockedBlock2.toString()).thenReturn("not(ii \\/ {2} <: {1, 2} \\/ {3, 4})");
+		when(ch9MockedBlock2.toString()).thenReturn("Block: not(ii \\/ {2} <: {1, 2} \\/ {3, 4}) isNegative: true");
 		when(ch9MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch9Blocks.add(ch9MockedBlock1);
@@ -785,11 +785,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch1Blocks = new ArrayList<Block>();
 		
 		Block ch1MockedBlock1 = mock(Block.class);
-		when(ch1MockedBlock1.toString()).thenReturn("aa /<: NAT");
+		when(ch1MockedBlock1.toString()).thenReturn("Block: aa /<: NAT isNegative: false");
 		when(ch1MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch1MockedBlock2 = mock(Block.class);
-		when(ch1MockedBlock2.toString()).thenReturn("not(aa /<: NAT)");
+		when(ch1MockedBlock2.toString()).thenReturn("Block: not(aa /<: NAT) isNegative: true");
 		when(ch1MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch1Blocks.add(ch1MockedBlock1);
@@ -802,11 +802,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch2Blocks = new ArrayList<Block>();
 		
 		Block ch2MockedBlock1 = mock(Block.class);
-		when(ch2MockedBlock1.toString()).thenReturn("bb /<: NAT1");
+		when(ch2MockedBlock1.toString()).thenReturn("Block: bb /<: NAT1 isNegative: false");
 		when(ch2MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch2MockedBlock2 = mock(Block.class);
-		when(ch2MockedBlock2.toString()).thenReturn("not(bb /<: NAT1)");
+		when(ch2MockedBlock2.toString()).thenReturn("Block: not(bb /<: NAT1) isNegative: true");
 		when(ch2MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch2Blocks.add(ch2MockedBlock1);
@@ -819,11 +819,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch3Blocks = new ArrayList<Block>();
 		
 		Block ch3MockedBlock1 = mock(Block.class);
-		when(ch3MockedBlock1.toString()).thenReturn("cc /<: INT");
+		when(ch3MockedBlock1.toString()).thenReturn("Block: cc /<: INT isNegative: false");
 		when(ch3MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch3MockedBlock2 = mock(Block.class);
-		when(ch3MockedBlock2.toString()).thenReturn("not(cc /<: INT)");
+		when(ch3MockedBlock2.toString()).thenReturn("Block: not(cc /<: INT) isNegative: true");
 		when(ch3MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch3Blocks.add(ch3MockedBlock1);
@@ -836,11 +836,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch4Blocks = new ArrayList<Block>();
 		
 		Block ch4MockedBlock1 = mock(Block.class);
-		when(ch4MockedBlock1.toString()).thenReturn("dd /<: BOOL");
+		when(ch4MockedBlock1.toString()).thenReturn("Block: dd /<: BOOL isNegative: false");
 		when(ch4MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch4MockedBlock2 = mock(Block.class);
-		when(ch4MockedBlock2.toString()).thenReturn("not(dd /<: BOOL)");
+		when(ch4MockedBlock2.toString()).thenReturn("Block: not(dd /<: BOOL) isNegative: true");
 		when(ch4MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch4Blocks.add(ch4MockedBlock1);
@@ -853,11 +853,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch5Blocks = new ArrayList<Block>();
 		
 		Block ch5MockedBlock1 = mock(Block.class);
-		when(ch5MockedBlock1.toString()).thenReturn("ee /<: {1, 2, 3}");
+		when(ch5MockedBlock1.toString()).thenReturn("Block: ee /<: {1, 2, 3} isNegative: false");
 		when(ch5MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch5MockedBlock2 = mock(Block.class);
-		when(ch5MockedBlock2.toString()).thenReturn("not(ee /<: {1, 2, 3})");
+		when(ch5MockedBlock2.toString()).thenReturn("Block: not(ee /<: {1, 2, 3}) isNegative: true");
 		when(ch5MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch5Blocks.add(ch5MockedBlock1);
@@ -870,11 +870,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch6Blocks = new ArrayList<Block>();
 		
 		Block ch6MockedBlock1 = mock(Block.class);
-		when(ch6MockedBlock1.toString()).thenReturn("ff /<: 1..5");
+		when(ch6MockedBlock1.toString()).thenReturn("Block: ff /<: 1..5 isNegative: false");
 		when(ch6MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch6MockedBlock2 = mock(Block.class);
-		when(ch6MockedBlock2.toString()).thenReturn("not(ff /<: 1..5)");
+		when(ch6MockedBlock2.toString()).thenReturn("Block: not(ff /<: 1..5) isNegative: true");
 		when(ch6MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch6Blocks.add(ch6MockedBlock1);
@@ -887,11 +887,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch7Blocks = new ArrayList<Block>();
 		
 		Block ch7MockedBlock1 = mock(Block.class);
-		when(ch7MockedBlock1.toString()).thenReturn("gg /<: NAME");
+		when(ch7MockedBlock1.toString()).thenReturn("Block: gg /<: NAME isNegative: false");
 		when(ch7MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch7MockedBlock2 = mock(Block.class);
-		when(ch7MockedBlock2.toString()).thenReturn("not(gg /<: NAME)");
+		when(ch7MockedBlock2.toString()).thenReturn("Block: not(gg /<: NAME) isNegative: true");
 		when(ch7MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch7Blocks.add(ch7MockedBlock1);
@@ -904,11 +904,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch8Blocks = new ArrayList<Block>();
 		
 		Block ch8MockedBlock1 = mock(Block.class);
-		when(ch8MockedBlock1.toString()).thenReturn("hh /<: awnser");
+		when(ch8MockedBlock1.toString()).thenReturn("Block: hh /<: awnser isNegative: false");
 		when(ch8MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch8MockedBlock2 = mock(Block.class);
-		when(ch8MockedBlock2.toString()).thenReturn("not(hh /<: awnser)");
+		when(ch8MockedBlock2.toString()).thenReturn("Block: not(hh /<: awnser) isNegative: true");
 		when(ch8MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch8Blocks.add(ch8MockedBlock1);
@@ -921,11 +921,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch9Blocks = new ArrayList<Block>();
 		
 		Block ch9MockedBlock1 = mock(Block.class);
-		when(ch9MockedBlock1.toString()).thenReturn("ii \\/ {5} /<: {1, 2} \\/ {3, 4}");
+		when(ch9MockedBlock1.toString()).thenReturn("Block: ii \\/ {5} /<: {1, 2} \\/ {3, 4} isNegative: false");
 		when(ch9MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch9MockedBlock2 = mock(Block.class);
-		when(ch9MockedBlock2.toString()).thenReturn("not(ii \\/ {5} /<: {1, 2} \\/ {3, 4})");
+		when(ch9MockedBlock2.toString()).thenReturn("Block: not(ii \\/ {5} /<: {1, 2} \\/ {3, 4}) isNegative: true");
 		when(ch9MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch9Blocks.add(ch9MockedBlock1);
@@ -961,11 +961,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch1Blocks = new ArrayList<Block>();
 		
 		Block ch1MockedBlock1 = mock(Block.class);
-		when(ch1MockedBlock1.toString()).thenReturn("aa <<: NAT");
+		when(ch1MockedBlock1.toString()).thenReturn("Block: aa <<: NAT isNegative: false");
 		when(ch1MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch1MockedBlock2 = mock(Block.class);
-		when(ch1MockedBlock2.toString()).thenReturn("not(aa <<: NAT)");
+		when(ch1MockedBlock2.toString()).thenReturn("Block: not(aa <<: NAT) isNegative: true");
 		when(ch1MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch1Blocks.add(ch1MockedBlock1);
@@ -978,11 +978,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch2Blocks = new ArrayList<Block>();
 		
 		Block ch2MockedBlock1 = mock(Block.class);
-		when(ch2MockedBlock1.toString()).thenReturn("bb <<: NAT1");
+		when(ch2MockedBlock1.toString()).thenReturn("Block: bb <<: NAT1 isNegative: false");
 		when(ch2MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch2MockedBlock2 = mock(Block.class);
-		when(ch2MockedBlock2.toString()).thenReturn("not(bb <<: NAT1)");
+		when(ch2MockedBlock2.toString()).thenReturn("Block: not(bb <<: NAT1) isNegative: true");
 		when(ch2MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch2Blocks.add(ch2MockedBlock1);
@@ -995,7 +995,7 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch3Blocks = new ArrayList<Block>();
 		
 		Block ch3MockedBlock1 = mock(Block.class);
-		when(ch3MockedBlock1.toString()).thenReturn("cc <<: INT");
+		when(ch3MockedBlock1.toString()).thenReturn("Block: cc <<: INT isNegative: false");
 		when(ch3MockedBlock1.isNegative()).thenReturn(false);
 		
 		ch3Blocks.add(ch3MockedBlock1);
@@ -1007,7 +1007,7 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch4Blocks = new ArrayList<Block>();
 		
 		Block ch4MockedBlock1 = mock(Block.class);
-		when(ch4MockedBlock1.toString()).thenReturn("dd <<: BOOL");
+		when(ch4MockedBlock1.toString()).thenReturn("Block: dd <<: BOOL isNegative: false");
 		when(ch4MockedBlock1.isNegative()).thenReturn(false);
 		
 		ch4Blocks.add(ch4MockedBlock1);
@@ -1019,11 +1019,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch5Blocks = new ArrayList<Block>();
 		
 		Block ch5MockedBlock1 = mock(Block.class);
-		when(ch5MockedBlock1.toString()).thenReturn("ee <<: {1, 2, 3}");
+		when(ch5MockedBlock1.toString()).thenReturn("Block: ee <<: {1, 2, 3} isNegative: false");
 		when(ch5MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch5MockedBlock2 = mock(Block.class);
-		when(ch5MockedBlock2.toString()).thenReturn("not(ee <<: {1, 2, 3})");
+		when(ch5MockedBlock2.toString()).thenReturn("Block: not(ee <<: {1, 2, 3}) isNegative: true");
 		when(ch5MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch5Blocks.add(ch5MockedBlock1);
@@ -1036,11 +1036,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch6Blocks = new ArrayList<Block>();
 		
 		Block ch6MockedBlock1 = mock(Block.class);
-		when(ch6MockedBlock1.toString()).thenReturn("ff <<: 1..5");
+		when(ch6MockedBlock1.toString()).thenReturn("Block: ff <<: 1..5 isNegative: false");
 		when(ch6MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch6MockedBlock2 = mock(Block.class);
-		when(ch6MockedBlock2.toString()).thenReturn("not(ff <<: 1..5)");
+		when(ch6MockedBlock2.toString()).thenReturn("Block: not(ff <<: 1..5) isNegative: true");
 		when(ch6MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch6Blocks.add(ch6MockedBlock1);
@@ -1053,11 +1053,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch7Blocks = new ArrayList<Block>();
 		
 		Block ch7MockedBlock1 = mock(Block.class);
-		when(ch7MockedBlock1.toString()).thenReturn("gg <<: NAME");
+		when(ch7MockedBlock1.toString()).thenReturn("Block: gg <<: NAME isNegative: false");
 		when(ch7MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch7MockedBlock2 = mock(Block.class);
-		when(ch7MockedBlock2.toString()).thenReturn("not(gg <<: NAME)");
+		when(ch7MockedBlock2.toString()).thenReturn("Block: not(gg <<: NAME) isNegative: true");
 		when(ch7MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch7Blocks.add(ch7MockedBlock1);
@@ -1070,11 +1070,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch8Blocks = new ArrayList<Block>();
 		
 		Block ch8MockedBlock1 = mock(Block.class);
-		when(ch8MockedBlock1.toString()).thenReturn("hh <<: awnser");
+		when(ch8MockedBlock1.toString()).thenReturn("Block: hh <<: awnser isNegative: false");
 		when(ch8MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch8MockedBlock2 = mock(Block.class);
-		when(ch8MockedBlock2.toString()).thenReturn("not(hh <<: awnser)");
+		when(ch8MockedBlock2.toString()).thenReturn("Block: not(hh <<: awnser) isNegative: true");
 		when(ch8MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch8Blocks.add(ch8MockedBlock1);
@@ -1087,11 +1087,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch9Blocks = new ArrayList<Block>();
 		
 		Block ch9MockedBlock1 = mock(Block.class);
-		when(ch9MockedBlock1.toString()).thenReturn("ii \\/ {5} <<: {1, 2} \\/ {3, 4}");
+		when(ch9MockedBlock1.toString()).thenReturn("Block: ii \\/ {5} <<: {1, 2} \\/ {3, 4} isNegative: false");
 		when(ch9MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch9MockedBlock2 = mock(Block.class);
-		when(ch9MockedBlock2.toString()).thenReturn("not(ii \\/ {5} <<: {1, 2} \\/ {3, 4})");
+		when(ch9MockedBlock2.toString()).thenReturn("Block: not(ii \\/ {5} <<: {1, 2} \\/ {3, 4}) isNegative: true");
 		when(ch9MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch9Blocks.add(ch9MockedBlock1);
@@ -1126,11 +1126,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch1Blocks = new ArrayList<Block>();
 		
 		Block ch1MockedBlock1 = mock(Block.class);
-		when(ch1MockedBlock1.toString()).thenReturn("aa /<<: NAT");
+		when(ch1MockedBlock1.toString()).thenReturn("Block: aa /<<: NAT isNegative: false");
 		when(ch1MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch1MockedBlock2 = mock(Block.class);
-		when(ch1MockedBlock2.toString()).thenReturn("not(aa /<<: NAT)");
+		when(ch1MockedBlock2.toString()).thenReturn("Block: not(aa /<<: NAT) isNegative: true");
 		when(ch1MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch1Blocks.add(ch1MockedBlock1);
@@ -1143,11 +1143,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch2Blocks = new ArrayList<Block>();
 		
 		Block ch2MockedBlock1 = mock(Block.class);
-		when(ch2MockedBlock1.toString()).thenReturn("bb /<<: NAT1");
+		when(ch2MockedBlock1.toString()).thenReturn("Block: bb /<<: NAT1 isNegative: false");
 		when(ch2MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch2MockedBlock2 = mock(Block.class);
-		when(ch2MockedBlock2.toString()).thenReturn("not(bb /<<: NAT1)");
+		when(ch2MockedBlock2.toString()).thenReturn("Block: not(bb /<<: NAT1) isNegative: true");
 		when(ch2MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch2Blocks.add(ch2MockedBlock1);
@@ -1160,11 +1160,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch3Blocks = new ArrayList<Block>();
 		
 		Block ch3MockedBlock1 = mock(Block.class);
-		when(ch3MockedBlock1.toString()).thenReturn("cc /<<: INT");
+		when(ch3MockedBlock1.toString()).thenReturn("Block: cc /<<: INT isNegative: false");
 		when(ch3MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch3MockedBlock2 = mock(Block.class);
-		when(ch3MockedBlock2.toString()).thenReturn("not(cc /<<: INT)");
+		when(ch3MockedBlock2.toString()).thenReturn("Block: not(cc /<<: INT) isNegative: true");
 		when(ch3MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch3Blocks.add(ch3MockedBlock1);
@@ -1177,11 +1177,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch4Blocks = new ArrayList<Block>();
 		
 		Block ch4MockedBlock1 = mock(Block.class);
-		when(ch4MockedBlock1.toString()).thenReturn("dd /<<: BOOL");
+		when(ch4MockedBlock1.toString()).thenReturn("Block: dd /<<: BOOL isNegative: false");
 		when(ch4MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch4MockedBlock2 = mock(Block.class);
-		when(ch4MockedBlock2.toString()).thenReturn("not(dd /<<: BOOL)");
+		when(ch4MockedBlock2.toString()).thenReturn("Block: not(dd /<<: BOOL) isNegative: true");
 		when(ch4MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch4Blocks.add(ch4MockedBlock1);
@@ -1194,11 +1194,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch5Blocks = new ArrayList<Block>();
 		
 		Block ch5MockedBlock1 = mock(Block.class);
-		when(ch5MockedBlock1.toString()).thenReturn("ee /<<: {1, 2, 3}");
+		when(ch5MockedBlock1.toString()).thenReturn("Block: ee /<<: {1, 2, 3} isNegative: false");
 		when(ch5MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch5MockedBlock2 = mock(Block.class);
-		when(ch5MockedBlock2.toString()).thenReturn("not(ee /<<: {1, 2, 3})");
+		when(ch5MockedBlock2.toString()).thenReturn("Block: not(ee /<<: {1, 2, 3}) isNegative: true");
 		when(ch5MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch5Blocks.add(ch5MockedBlock1);
@@ -1211,11 +1211,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch6Blocks = new ArrayList<Block>();
 		
 		Block ch6MockedBlock1 = mock(Block.class);
-		when(ch6MockedBlock1.toString()).thenReturn("ff /<<: 1..5");
+		when(ch6MockedBlock1.toString()).thenReturn("Block: ff /<<: 1..5 isNegative: false");
 		when(ch6MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch6MockedBlock2 = mock(Block.class);
-		when(ch6MockedBlock2.toString()).thenReturn("not(ff /<<: 1..5)");
+		when(ch6MockedBlock2.toString()).thenReturn("Block: not(ff /<<: 1..5) isNegative: true");
 		when(ch6MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch6Blocks.add(ch6MockedBlock1);
@@ -1228,11 +1228,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch7Blocks = new ArrayList<Block>();
 		
 		Block ch7MockedBlock1 = mock(Block.class);
-		when(ch7MockedBlock1.toString()).thenReturn("gg /<<: NAME");
+		when(ch7MockedBlock1.toString()).thenReturn("Block: gg /<<: NAME isNegative: false");
 		when(ch7MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch7MockedBlock2 = mock(Block.class);
-		when(ch7MockedBlock2.toString()).thenReturn("not(gg /<<: NAME)");
+		when(ch7MockedBlock2.toString()).thenReturn("Block: not(gg /<<: NAME) isNegative: true");
 		when(ch7MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch7Blocks.add(ch7MockedBlock1);
@@ -1245,11 +1245,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch8Blocks = new ArrayList<Block>();
 		
 		Block ch8MockedBlock1 = mock(Block.class);
-		when(ch8MockedBlock1.toString()).thenReturn("hh /<<: awnser");
+		when(ch8MockedBlock1.toString()).thenReturn("Block: hh /<<: awnser isNegative: false");
 		when(ch8MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch8MockedBlock2 = mock(Block.class);
-		when(ch8MockedBlock2.toString()).thenReturn("not(hh /<<: awnser)");
+		when(ch8MockedBlock2.toString()).thenReturn("Block: not(hh /<<: awnser) isNegative: true");
 		when(ch8MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch8Blocks.add(ch8MockedBlock1);
@@ -1262,11 +1262,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch9Blocks = new ArrayList<Block>();
 		
 		Block ch9MockedBlock1 = mock(Block.class);
-		when(ch9MockedBlock1.toString()).thenReturn("ii \\/ {5} /<<: {1, 2} \\/ {3, 4}");
+		when(ch9MockedBlock1.toString()).thenReturn("Block: ii \\/ {5} /<<: {1, 2} \\/ {3, 4} isNegative: false");
 		when(ch9MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch9MockedBlock2 = mock(Block.class);
-		when(ch9MockedBlock2.toString()).thenReturn("not(ii \\/ {5} /<<: {1, 2} \\/ {3, 4})");
+		when(ch9MockedBlock2.toString()).thenReturn("Block: not(ii \\/ {5} /<<: {1, 2} \\/ {3, 4}) isNegative: true");
 		when(ch9MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch9Blocks.add(ch9MockedBlock1);
@@ -1301,11 +1301,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch1Blocks = new ArrayList<Block>();
 		
 		Block ch1MockedBlock1 = mock(Block.class);
-		when(ch1MockedBlock1.toString()).thenReturn("aa /<<: NAT");
+		when(ch1MockedBlock1.toString()).thenReturn("Block: aa /<<: NAT isNegative: false");
 		when(ch1MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch1MockedBlock2 = mock(Block.class);
-		when(ch1MockedBlock2.toString()).thenReturn("not(aa /<<: NAT)");
+		when(ch1MockedBlock2.toString()).thenReturn("Block: not(aa /<<: NAT) isNegative: true");
 		when(ch1MockedBlock2.isNegative()).thenReturn(true);
 
 		ch1Blocks.add(ch1MockedBlock1);
@@ -1318,11 +1318,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch2Blocks = new ArrayList<Block>();
 		
 		Block ch2MockedBlock1 = mock(Block.class);
-		when(ch2MockedBlock1.toString()).thenReturn("bb /<<: NAT1");
+		when(ch2MockedBlock1.toString()).thenReturn("Block: bb /<<: NAT1 isNegative: false");
 		when(ch2MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch2MockedBlock2 = mock(Block.class);
-		when(ch2MockedBlock2.toString()).thenReturn("not(bb /<<: NAT1)");
+		when(ch2MockedBlock2.toString()).thenReturn("Block: not(bb /<<: NAT1) isNegative: true");
 		when(ch2MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch2Blocks.add(ch2MockedBlock1);
@@ -1335,11 +1335,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch3Blocks = new ArrayList<Block>();
 		
 		Block ch3MockedBlock1 = mock(Block.class);
-		when(ch3MockedBlock1.toString()).thenReturn("cc /<<: INT");
+		when(ch3MockedBlock1.toString()).thenReturn("Block: cc /<<: INT isNegative: false");
 		when(ch3MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch3MockedBlock2 = mock(Block.class);
-		when(ch3MockedBlock2.toString()).thenReturn("not(cc /<<: INT)");
+		when(ch3MockedBlock2.toString()).thenReturn("Block: not(cc /<<: INT) isNegative: true");
 		when(ch3MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch3Blocks.add(ch3MockedBlock1);
@@ -1352,11 +1352,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch4Blocks = new ArrayList<Block>();
 		
 		Block ch4MockedBlock1 = mock(Block.class);
-		when(ch4MockedBlock1.toString()).thenReturn("dd /<<: BOOL");
+		when(ch4MockedBlock1.toString()).thenReturn("Block: dd /<<: BOOL isNegative: false");
 		when(ch4MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch4MockedBlock2 = mock(Block.class);
-		when(ch4MockedBlock2.toString()).thenReturn("not(dd /<<: BOOL)");
+		when(ch4MockedBlock2.toString()).thenReturn("Block: not(dd /<<: BOOL) isNegative: true");
 		when(ch4MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch4Blocks.add(ch4MockedBlock1);
@@ -1369,11 +1369,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch5Blocks = new ArrayList<Block>();
 		
 		Block ch5MockedBlock1 = mock(Block.class);
-		when(ch5MockedBlock1.toString()).thenReturn("ee /<<: {1, 2, 3}");
+		when(ch5MockedBlock1.toString()).thenReturn("Block: ee /<<: {1, 2, 3} isNegative: false");
 		when(ch5MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch5MockedBlock2 = mock(Block.class);
-		when(ch5MockedBlock2.toString()).thenReturn("not(ee /<<: {1, 2, 3})");
+		when(ch5MockedBlock2.toString()).thenReturn("Block: not(ee /<<: {1, 2, 3}) isNegative: true");
 		when(ch5MockedBlock2.isNegative()).thenReturn(true);
 
 		ch5Blocks.add(ch5MockedBlock1);
@@ -1386,11 +1386,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch6Blocks = new ArrayList<Block>();
 		
 		Block ch6MockedBlock1 = mock(Block.class);
-		when(ch6MockedBlock1.toString()).thenReturn("ff /<<: 1..5");
+		when(ch6MockedBlock1.toString()).thenReturn("Block: ff /<<: 1..5 isNegative: false");
 		when(ch6MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch6MockedBlock2 = mock(Block.class);
-		when(ch6MockedBlock2.toString()).thenReturn("not(ff /<<: 1..5)");
+		when(ch6MockedBlock2.toString()).thenReturn("Block: not(ff /<<: 1..5) isNegative: true");
 		when(ch6MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch6Blocks.add(ch6MockedBlock1);
@@ -1403,11 +1403,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch7Blocks = new ArrayList<Block>();
 		
 		Block ch7MockedBlock1 = mock(Block.class);
-		when(ch7MockedBlock1.toString()).thenReturn("gg /<<: NAME");
+		when(ch7MockedBlock1.toString()).thenReturn("Block: gg /<<: NAME isNegative: false");
 		when(ch7MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch7MockedBlock2 = mock(Block.class);
-		when(ch7MockedBlock2.toString()).thenReturn("not(gg /<<: NAME)");
+		when(ch7MockedBlock2.toString()).thenReturn("Block: not(gg /<<: NAME) isNegative: true");
 		when(ch7MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch7Blocks.add(ch7MockedBlock1);
@@ -1420,11 +1420,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch8Blocks = new ArrayList<Block>();
 		
 		Block ch8MockedBlock1 = mock(Block.class);
-		when(ch8MockedBlock1.toString()).thenReturn("hh /<<: awnser");
+		when(ch8MockedBlock1.toString()).thenReturn("Block: hh /<<: awnser isNegative: false");
 		when(ch8MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch8MockedBlock2 = mock(Block.class);
-		when(ch8MockedBlock2.toString()).thenReturn("not(hh /<<: awnser)");
+		when(ch8MockedBlock2.toString()).thenReturn("Block: not(hh /<<: awnser) isNegative: true");
 		when(ch8MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch8Blocks.add(ch8MockedBlock1);
@@ -1437,11 +1437,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch9Blocks = new ArrayList<Block>();
 		
 		Block ch9MockedBlock1 = mock(Block.class);
-		when(ch9MockedBlock1.toString()).thenReturn("ii \\/ {5} /<<: {1, 2} \\/ {3, 4}");
+		when(ch9MockedBlock1.toString()).thenReturn("Block: ii \\/ {5} /<<: {1, 2} \\/ {3, 4} isNegative: false");
 		when(ch9MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch9MockedBlock2 = mock(Block.class);
-		when(ch9MockedBlock2.toString()).thenReturn("not(ii \\/ {5} /<<: {1, 2} \\/ {3, 4})");
+		when(ch9MockedBlock2.toString()).thenReturn("Block: not(ii \\/ {5} /<<: {1, 2} \\/ {3, 4}) isNegative: true");
 		when(ch9MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch9Blocks.add(ch9MockedBlock1);
@@ -1476,11 +1476,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch1Blocks = new ArrayList<Block>();
 		
 		Block ch1MockedBlock1 = mock(Block.class);
-		when(ch1MockedBlock1.toString()).thenReturn("aa = NAME");
+		when(ch1MockedBlock1.toString()).thenReturn("Block: aa = NAME isNegative: false");
 		when(ch1MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch1MockedBlock2 = mock(Block.class);
-		when(ch1MockedBlock2.toString()).thenReturn("not(aa = NAME)");
+		when(ch1MockedBlock2.toString()).thenReturn("Block: not(aa = NAME) isNegative: true");
 		when(ch1MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch1Blocks.add(ch1MockedBlock1);
@@ -1493,11 +1493,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch2Blocks = new ArrayList<Block>();
 		
 		Block ch2MockedBlock1 = mock(Block.class);
-		when(ch2MockedBlock1.toString()).thenReturn("bb = 1");
+		when(ch2MockedBlock1.toString()).thenReturn("Block: bb = 1 isNegative: false");
 		when(ch2MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch2MockedBlock2 = mock(Block.class);
-		when(ch2MockedBlock2.toString()).thenReturn("not(bb = 1)");
+		when(ch2MockedBlock2.toString()).thenReturn("Block: not(bb = 1) isNegative: true");
 		when(ch2MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch2Blocks.add(ch2MockedBlock1);
@@ -1510,11 +1510,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch3Blocks = new ArrayList<Block>();
 		
 		Block ch3MockedBlock1 = mock(Block.class);
-		when(ch3MockedBlock1.toString()).thenReturn("cc = TRUE");
+		when(ch3MockedBlock1.toString()).thenReturn("Block: cc = TRUE isNegative: false");
 		when(ch3MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch3MockedBlock2 = mock(Block.class);
-		when(ch3MockedBlock2.toString()).thenReturn("not(cc = TRUE)");
+		when(ch3MockedBlock2.toString()).thenReturn("Block: not(cc = TRUE) isNegative: true");
 		when(ch3MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch3Blocks.add(ch3MockedBlock1);
@@ -1527,11 +1527,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch4Blocks = new ArrayList<Block>();
 		
 		Block ch4MockedBlock1 = mock(Block.class);
-		when(ch4MockedBlock1.toString()).thenReturn("dd = (NAME * {0})");
+		when(ch4MockedBlock1.toString()).thenReturn("Block: dd = (NAME * {0}) isNegative: false");
 		when(ch4MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch4MockedBlock2 = mock(Block.class);
-		when(ch4MockedBlock2.toString()).thenReturn("not(dd = (NAME * {0}))");
+		when(ch4MockedBlock2.toString()).thenReturn("Block: not(dd = (NAME * {0})) isNegative: true");
 		when(ch4MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch4Blocks.add(ch4MockedBlock1);
@@ -1544,11 +1544,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch5Blocks = new ArrayList<Block>();
 		
 		Block ch5MockedBlock1 = mock(Block.class);
-		when(ch5MockedBlock1.toString()).thenReturn("ee = {0 |-> FALSE, 1 |-> FALSE}");
+		when(ch5MockedBlock1.toString()).thenReturn("Block: ee = {0 |-> FALSE, 1 |-> FALSE} isNegative: false");
 		when(ch5MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch5MockedBlock2 = mock(Block.class);
-		when(ch5MockedBlock2.toString()).thenReturn("not(ee = {0 |-> FALSE, 1 |-> FALSE})");
+		when(ch5MockedBlock2.toString()).thenReturn("Block: not(ee = {0 |-> FALSE, 1 |-> FALSE}) isNegative: true");
 		when(ch5MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch5Blocks.add(ch5MockedBlock1);
@@ -1561,11 +1561,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch6Blocks = new ArrayList<Block>();
 		
 		Block ch6MockedBlock1 = mock(Block.class);
-		when(ch6MockedBlock1.toString()).thenReturn("ff = 1..5");
+		when(ch6MockedBlock1.toString()).thenReturn("Block: ff = 1..5 isNegative: false");
 		when(ch6MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch6MockedBlock2 = mock(Block.class);
-		when(ch6MockedBlock2.toString()).thenReturn("not(ff = 1..5)");
+		when(ch6MockedBlock2.toString()).thenReturn("Block: not(ff = 1..5) isNegative: true");
 		when(ch6MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch6Blocks.add(ch6MockedBlock1);
@@ -1578,11 +1578,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch7Blocks = new ArrayList<Block>();
 		
 		Block ch7MockedBlock1 = mock(Block.class);
-		when(ch7MockedBlock1.toString()).thenReturn("gg = NAT");
+		when(ch7MockedBlock1.toString()).thenReturn("Block: gg = NAT isNegative: false");
 		when(ch7MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch7MockedBlock2 = mock(Block.class);
-		when(ch7MockedBlock2.toString()).thenReturn("not(gg = NAT)");
+		when(ch7MockedBlock2.toString()).thenReturn("Block: not(gg = NAT) isNegative: true");
 		when(ch7MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch7Blocks.add(ch7MockedBlock1);
@@ -1595,11 +1595,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch8Blocks = new ArrayList<Block>();
 		
 		Block ch8MockedBlock1 = mock(Block.class);
-		when(ch8MockedBlock1.toString()).thenReturn("hh = NAT1");
+		when(ch8MockedBlock1.toString()).thenReturn("Block: hh = NAT1 isNegative: false");
 		when(ch8MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch8MockedBlock2 = mock(Block.class);
-		when(ch8MockedBlock2.toString()).thenReturn("not(hh = NAT1)");
+		when(ch8MockedBlock2.toString()).thenReturn("Block: not(hh = NAT1) isNegative: true");
 		when(ch8MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch8Blocks.add(ch8MockedBlock1);
@@ -1612,11 +1612,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch9Blocks = new ArrayList<Block>();
 		
 		Block ch9MockedBlock1 = mock(Block.class);
-		when(ch9MockedBlock1.toString()).thenReturn("ii = INT");
+		when(ch9MockedBlock1.toString()).thenReturn("Block: ii = INT isNegative: false");
 		when(ch9MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch9MockedBlock2 = mock(Block.class);
-		when(ch9MockedBlock2.toString()).thenReturn("not(ii = INT)");
+		when(ch9MockedBlock2.toString()).thenReturn("Block: not(ii = INT) isNegative: true");
 		when(ch9MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch9Blocks.add(ch9MockedBlock1);
@@ -1629,11 +1629,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch10Blocks = new ArrayList<Block>();
 		
 		Block ch10MockedBlock1 = mock(Block.class);
-		when(ch10MockedBlock1.toString()).thenReturn("jj = BOOL");
+		when(ch10MockedBlock1.toString()).thenReturn("Block: jj = BOOL isNegative: false");
 		when(ch10MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch10MockedBlock2 = mock(Block.class);
-		when(ch10MockedBlock2.toString()).thenReturn("not(jj = BOOL)");
+		when(ch10MockedBlock2.toString()).thenReturn("Block: not(jj = BOOL) isNegative: true");
 		when(ch10MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch10Blocks.add(ch10MockedBlock1);
@@ -1668,11 +1668,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch1Blocks = new ArrayList<Block>();
 		
 		Block ch1MockedBlock1 = mock(Block.class);
-		when(ch1MockedBlock1.toString()).thenReturn("aa /= NAME");
+		when(ch1MockedBlock1.toString()).thenReturn("Block: aa /= NAME isNegative: false");
 		when(ch1MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch1MockedBlock2 = mock(Block.class);
-		when(ch1MockedBlock2.toString()).thenReturn("not(aa /= NAME)");
+		when(ch1MockedBlock2.toString()).thenReturn("Block: not(aa /= NAME) isNegative: true");
 		when(ch1MockedBlock2.isNegative()).thenReturn(true);
 
 		ch1Blocks.add(ch1MockedBlock1);
@@ -1685,11 +1685,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch2Blocks = new ArrayList<Block>();
 		
 		Block ch2MockedBlock1 = mock(Block.class);
-		when(ch2MockedBlock1.toString()).thenReturn("bb /= 1");
+		when(ch2MockedBlock1.toString()).thenReturn("Block: bb /= 1 isNegative: false");
 		when(ch2MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch2MockedBlock2 = mock(Block.class);
-		when(ch2MockedBlock2.toString()).thenReturn("not(bb /= 1)");
+		when(ch2MockedBlock2.toString()).thenReturn("Block: not(bb /= 1) isNegative: true");
 		when(ch2MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch2Blocks.add(ch2MockedBlock1);
@@ -1702,11 +1702,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch3Blocks = new ArrayList<Block>();
 		
 		Block ch3MockedBlock1 = mock(Block.class);
-		when(ch3MockedBlock1.toString()).thenReturn("cc /= TRUE");
+		when(ch3MockedBlock1.toString()).thenReturn("Block: cc /= TRUE isNegative: false");
 		when(ch3MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch3MockedBlock2 = mock(Block.class);
-		when(ch3MockedBlock2.toString()).thenReturn("not(cc /= TRUE)");
+		when(ch3MockedBlock2.toString()).thenReturn("Block: not(cc /= TRUE) isNegative: true");
 		when(ch3MockedBlock2.isNegative()).thenReturn(true);
 
 		ch3Blocks.add(ch3MockedBlock1);
@@ -1719,11 +1719,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch4Blocks = new ArrayList<Block>();
 		
 		Block ch4MockedBlock1 = mock(Block.class);
-		when(ch4MockedBlock1.toString()).thenReturn("dd /= (NAME * {0})");
+		when(ch4MockedBlock1.toString()).thenReturn("Block: dd /= (NAME * {0}) isNegative: false");
 		when(ch4MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch4MockedBlock2 = mock(Block.class);
-		when(ch4MockedBlock2.toString()).thenReturn("not(dd /= (NAME * {0}))");
+		when(ch4MockedBlock2.toString()).thenReturn("Block: not(dd /= (NAME * {0})) isNegative: true");
 		when(ch4MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch4Blocks.add(ch4MockedBlock1);
@@ -1736,11 +1736,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch5Blocks = new ArrayList<Block>();
 		
 		Block ch5MockedBlock1 = mock(Block.class);
-		when(ch5MockedBlock1.toString()).thenReturn("ee /= {0 |-> FALSE, 1 |-> FALSE}");
+		when(ch5MockedBlock1.toString()).thenReturn("Block: ee /= {0 |-> FALSE, 1 |-> FALSE} isNegative: false");
 		when(ch5MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch5MockedBlock2 = mock(Block.class);
-		when(ch5MockedBlock2.toString()).thenReturn("not(ee /= {0 |-> FALSE, 1 |-> FALSE})");
+		when(ch5MockedBlock2.toString()).thenReturn("Block: not(ee /= {0 |-> FALSE, 1 |-> FALSE}) isNegative: true");
 		when(ch5MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch5Blocks.add(ch5MockedBlock1);
@@ -1753,11 +1753,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch6Blocks = new ArrayList<Block>();
 		
 		Block ch6MockedBlock1 = mock(Block.class);
-		when(ch6MockedBlock1.toString()).thenReturn("ff /= 1..5");
+		when(ch6MockedBlock1.toString()).thenReturn("Block: ff /= 1..5 isNegative: false");
 		when(ch6MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch6MockedBlock2 = mock(Block.class);
-		when(ch6MockedBlock2.toString()).thenReturn("not(ff /= 1..5)");
+		when(ch6MockedBlock2.toString()).thenReturn("Block: not(ff /= 1..5) isNegative: true");
 		when(ch6MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch6Blocks.add(ch6MockedBlock1);
@@ -1770,11 +1770,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch7Blocks = new ArrayList<Block>();
 		
 		Block ch7MockedBlock1 = mock(Block.class);
-		when(ch7MockedBlock1.toString()).thenReturn("gg /= NAT");
+		when(ch7MockedBlock1.toString()).thenReturn("Block: gg /= NAT isNegative: false");
 		when(ch7MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch7MockedBlock2 = mock(Block.class);
-		when(ch7MockedBlock2.toString()).thenReturn("not(gg /= NAT)");
+		when(ch7MockedBlock2.toString()).thenReturn("Block: not(gg /= NAT) isNegative: true");
 		when(ch7MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch7Blocks.add(ch7MockedBlock1);
@@ -1787,11 +1787,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch8Blocks = new ArrayList<Block>();
 		
 		Block ch8MockedBlock1 = mock(Block.class);
-		when(ch8MockedBlock1.toString()).thenReturn("hh /= NAT1");
+		when(ch8MockedBlock1.toString()).thenReturn("Block: hh /= NAT1 isNegative: false");
 		when(ch8MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch8MockedBlock2 = mock(Block.class);
-		when(ch8MockedBlock2.toString()).thenReturn("not(hh /= NAT1)");
+		when(ch8MockedBlock2.toString()).thenReturn("Block: not(hh /= NAT1) isNegative: true");
 		when(ch8MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch8Blocks.add(ch8MockedBlock1);
@@ -1804,11 +1804,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch9Blocks = new ArrayList<Block>();
 		
 		Block ch9MockedBlock1 = mock(Block.class);
-		when(ch9MockedBlock1.toString()).thenReturn("ii /= INT");
+		when(ch9MockedBlock1.toString()).thenReturn("Block: ii /= INT isNegative: false");
 		when(ch9MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch9MockedBlock2 = mock(Block.class);
-		when(ch9MockedBlock2.toString()).thenReturn("not(ii /= INT)");
+		when(ch9MockedBlock2.toString()).thenReturn("Block: not(ii /= INT) isNegative: true");
 		when(ch9MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch9Blocks.add(ch9MockedBlock1);
@@ -1821,11 +1821,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch10Blocks = new ArrayList<Block>();
 		
 		Block ch10MockedBlock1 = mock(Block.class);
-		when(ch10MockedBlock1.toString()).thenReturn("jj /= BOOL");
+		when(ch10MockedBlock1.toString()).thenReturn("Block: jj /= BOOL isNegative: false");
 		when(ch10MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch10MockedBlock2 = mock(Block.class);
-		when(ch10MockedBlock2.toString()).thenReturn("not(jj /= BOOL)");
+		when(ch10MockedBlock2.toString()).thenReturn("Block: not(jj /= BOOL) isNegative: true");
 		when(ch10MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch10Blocks.add(ch10MockedBlock1);
@@ -1860,11 +1860,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch1Blocks = new ArrayList<Block>();
 		
 		Block ch1MockedBlock1 = mock(Block.class);
-		when(ch1MockedBlock1.toString()).thenReturn("aa > bb");
+		when(ch1MockedBlock1.toString()).thenReturn("Block: aa > bb isNegative: false");
 		when(ch1MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch1MockedBlock2 = mock(Block.class);
-		when(ch1MockedBlock2.toString()).thenReturn("not(aa > bb)");
+		when(ch1MockedBlock2.toString()).thenReturn("Block: not(aa > bb) isNegative: true");
 		when(ch1MockedBlock2.isNegative()).thenReturn(true);
 
 		ch1Blocks.add(ch1MockedBlock1);
@@ -1877,11 +1877,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch2Blocks = new ArrayList<Block>();
 		
 		Block ch2MockedBlock1 = mock(Block.class);
-		when(ch2MockedBlock1.toString()).thenReturn("cc < dd");
+		when(ch2MockedBlock1.toString()).thenReturn("Block: cc < dd isNegative: false");
 		when(ch2MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch2MockedBlock2 = mock(Block.class);
-		when(ch2MockedBlock2.toString()).thenReturn("not(cc < dd)");
+		when(ch2MockedBlock2.toString()).thenReturn("Block: not(cc < dd) isNegative: true");
 		when(ch2MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch2Blocks.add(ch2MockedBlock1);
@@ -1894,11 +1894,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch3Blocks = new ArrayList<Block>();
 		
 		Block ch3MockedBlock1 = mock(Block.class);
-		when(ch3MockedBlock1.toString()).thenReturn("ee >= ff");
+		when(ch3MockedBlock1.toString()).thenReturn("Block: ee >= ff isNegative: false");
 		when(ch3MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch3MockedBlock2 = mock(Block.class);
-		when(ch3MockedBlock2.toString()).thenReturn("not(ee >= ff)");
+		when(ch3MockedBlock2.toString()).thenReturn("Block: not(ee >= ff) isNegative: true");
 		when(ch3MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch3Blocks.add(ch3MockedBlock1);
@@ -1911,11 +1911,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch4Blocks = new ArrayList<Block>();
 		
 		Block ch4MockedBlock1 = mock(Block.class);
-		when(ch4MockedBlock1.toString()).thenReturn("gg <= hh");
+		when(ch4MockedBlock1.toString()).thenReturn("Block: gg <= hh isNegative: false");
 		when(ch4MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch4MockedBlock2 = mock(Block.class);
-		when(ch4MockedBlock2.toString()).thenReturn("not(gg <= hh)");
+		when(ch4MockedBlock2.toString()).thenReturn("Block: not(gg <= hh) isNegative: true");
 		when(ch4MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch4Blocks.add(ch4MockedBlock1);
@@ -1928,27 +1928,27 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch5Blocks = new ArrayList<Block>();
 		
 		Block ch5MockedBlock1 = mock(Block.class);
-		when(ch5MockedBlock1.toString()).thenReturn("ii = -1");
+		when(ch5MockedBlock1.toString()).thenReturn("Block: ii = -1 isNegative: true");
 		when(ch5MockedBlock1.isNegative()).thenReturn(true);
 		
 		Block ch5MockedBlock2 = mock(Block.class);
-		when(ch5MockedBlock2.toString()).thenReturn("ii = 0");
+		when(ch5MockedBlock2.toString()).thenReturn("Block: ii = 0 isNegative: false");
 		when(ch5MockedBlock2.isNegative()).thenReturn(false);
 		
 		Block ch5MockedBlock3 = mock(Block.class);
-		when(ch5MockedBlock3.toString()).thenReturn("ii = 1");
+		when(ch5MockedBlock3.toString()).thenReturn("Block: ii = 1 isNegative: false");
 		when(ch5MockedBlock3.isNegative()).thenReturn(false);
 		
 		Block ch5MockedBlock4 = mock(Block.class);
-		when(ch5MockedBlock4.toString()).thenReturn("ii = MAXINT-1");
+		when(ch5MockedBlock4.toString()).thenReturn("Block: ii = MAXINT-1 isNegative: false");
 		when(ch5MockedBlock4.isNegative()).thenReturn(false);
 		
 		Block ch5MockedBlock5 = mock(Block.class);
-		when(ch5MockedBlock5.toString()).thenReturn("ii = MAXINT");
+		when(ch5MockedBlock5.toString()).thenReturn("Block: ii = MAXINT isNegative: false");
 		when(ch5MockedBlock5.isNegative()).thenReturn(false);
 		
 		Block ch5MockedBlock6 = mock(Block.class);
-		when(ch5MockedBlock6.toString()).thenReturn("ii = MAXINT+1");
+		when(ch5MockedBlock6.toString()).thenReturn("Block: ii = MAXINT+1 isNegative: true");
 		when(ch5MockedBlock6.isNegative()).thenReturn(true);
 		
 		ch5Blocks.add(ch5MockedBlock1);
@@ -1966,11 +1966,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch6Blocks = new ArrayList<Block>();
 		
 		Block ch6MockedBlock1 = mock(Block.class);
-		when(ch6MockedBlock1.toString()).thenReturn("ii = jj");
+		when(ch6MockedBlock1.toString()).thenReturn("Block: ii = jj isNegative: false");
 		when(ch6MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch6MockedBlock2 = mock(Block.class);
-		when(ch6MockedBlock2.toString()).thenReturn("not(ii = jj)");
+		when(ch6MockedBlock2.toString()).thenReturn("Block: not(ii = jj) isNegative: true");
 		when(ch6MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch6Blocks.add(ch6MockedBlock1);
@@ -1983,27 +1983,27 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch7Blocks = new ArrayList<Block>();
 		
 		Block ch7MockedBlock1 = mock(Block.class);
-		when(ch7MockedBlock1.toString()).thenReturn("jj = -1");
+		when(ch7MockedBlock1.toString()).thenReturn("Block: jj = -1 isNegative: true");
 		when(ch7MockedBlock1.isNegative()).thenReturn(true);
 		
 		Block ch7MockedBlock2 = mock(Block.class);
-		when(ch7MockedBlock2.toString()).thenReturn("jj = 0");
+		when(ch7MockedBlock2.toString()).thenReturn("Block: jj = 0 isNegative: false");
 		when(ch7MockedBlock2.isNegative()).thenReturn(false);
 		
 		Block ch7MockedBlock3 = mock(Block.class);
-		when(ch7MockedBlock3.toString()).thenReturn("jj = 1");
+		when(ch7MockedBlock3.toString()).thenReturn("Block: jj = 1 isNegative: false");
 		when(ch7MockedBlock3.isNegative()).thenReturn(false);
 		
 		Block ch7MockedBlock4 = mock(Block.class);
-		when(ch7MockedBlock4.toString()).thenReturn("jj = MAXINT-1");
+		when(ch7MockedBlock4.toString()).thenReturn("Block: jj = MAXINT-1 isNegative: false");
 		when(ch7MockedBlock4.isNegative()).thenReturn(false);
 		
 		Block ch7MockedBlock5 = mock(Block.class);
-		when(ch7MockedBlock5.toString()).thenReturn("jj = MAXINT");
+		when(ch7MockedBlock5.toString()).thenReturn("Block: jj = MAXINT isNegative: false");
 		when(ch7MockedBlock5.isNegative()).thenReturn(false);
 		
 		Block ch7MockedBlock6 = mock(Block.class);
-		when(ch7MockedBlock6.toString()).thenReturn("jj = MAXINT+1");
+		when(ch7MockedBlock6.toString()).thenReturn("Block: jj = MAXINT+1 isNegative: true");
 		when(ch7MockedBlock6.isNegative()).thenReturn(true);
 		
 		ch7Blocks.add(ch7MockedBlock1);
@@ -2020,27 +2020,27 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch8Blocks = new ArrayList<Block>();
 		
 		Block ch8MockedBlock1 = mock(Block.class);
-		when(ch8MockedBlock1.toString()).thenReturn("kk = -1");
+		when(ch8MockedBlock1.toString()).thenReturn("Block: kk = -1 isNegative: true");
 		when(ch8MockedBlock1.isNegative()).thenReturn(true);
 		
 		Block ch8MockedBlock2 = mock(Block.class);
-		when(ch8MockedBlock2.toString()).thenReturn("kk = 0");
+		when(ch8MockedBlock2.toString()).thenReturn("Block: kk = 0 isNegative: false");
 		when(ch8MockedBlock2.isNegative()).thenReturn(false);
 		
 		Block ch8MockedBlock3 = mock(Block.class);
-		when(ch8MockedBlock3.toString()).thenReturn("kk = 1");
+		when(ch8MockedBlock3.toString()).thenReturn("Block: kk = 1 isNegative: false");
 		when(ch8MockedBlock3.isNegative()).thenReturn(false);
 		
 		Block ch8MockedBlock4 = mock(Block.class);
-		when(ch8MockedBlock4.toString()).thenReturn("kk = MAXINT-1");
+		when(ch8MockedBlock4.toString()).thenReturn("Block: kk = MAXINT-1 isNegative: false");
 		when(ch8MockedBlock4.isNegative()).thenReturn(false);
 		
 		Block ch8MockedBlock5 = mock(Block.class);
-		when(ch8MockedBlock5.toString()).thenReturn("kk = MAXINT");
+		when(ch8MockedBlock5.toString()).thenReturn("Block: kk = MAXINT isNegative: false");
 		when(ch8MockedBlock5.isNegative()).thenReturn(false);
 		
 		Block ch8MockedBlock6 = mock(Block.class);
-		when(ch8MockedBlock6.toString()).thenReturn("kk = MAXINT+1");
+		when(ch8MockedBlock6.toString()).thenReturn("Block: kk = MAXINT+1 isNegative: true");
 		when(ch8MockedBlock6.isNegative()).thenReturn(true);
 		
 		ch8Blocks.add(ch8MockedBlock1);
@@ -2057,11 +2057,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch9Blocks = new ArrayList<Block>();
 		
 		Block ch9MockedBlock1 = mock(Block.class);
-		when(ch9MockedBlock1.toString()).thenReturn("kk /= ll");
+		when(ch9MockedBlock1.toString()).thenReturn("Block: kk /= ll isNegative: false");
 		when(ch9MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch9MockedBlock2 = mock(Block.class);
-		when(ch9MockedBlock2.toString()).thenReturn("not(kk /= ll)");
+		when(ch9MockedBlock2.toString()).thenReturn("Block: not(kk /= ll) isNegative: true");
 		when(ch9MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch9Blocks.add(ch9MockedBlock1);
@@ -2074,27 +2074,27 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch10Blocks = new ArrayList<Block>();
 		
 		Block ch10MockedBlock1 = mock(Block.class);
-		when(ch10MockedBlock1.toString()).thenReturn("ll = -1");
+		when(ch10MockedBlock1.toString()).thenReturn("Block: ll = -1 isNegative: true");
 		when(ch10MockedBlock1.isNegative()).thenReturn(true);
 		
 		Block ch10MockedBlock2 = mock(Block.class);
-		when(ch10MockedBlock2.toString()).thenReturn("ll = 0");
+		when(ch10MockedBlock2.toString()).thenReturn("Block: ll = 0 isNegative: false");
 		when(ch10MockedBlock2.isNegative()).thenReturn(false);
 		
 		Block ch10MockedBlock3 = mock(Block.class);
-		when(ch10MockedBlock3.toString()).thenReturn("ll = 1");
+		when(ch10MockedBlock3.toString()).thenReturn("Block: ll = 1 isNegative: false");
 		when(ch10MockedBlock3.isNegative()).thenReturn(false);
 		
 		Block ch10MockedBlock4 = mock(Block.class);
-		when(ch10MockedBlock4.toString()).thenReturn("ll = MAXINT-1");
+		when(ch10MockedBlock4.toString()).thenReturn("Block: ll = MAXINT-1 isNegative: false");
 		when(ch10MockedBlock4.isNegative()).thenReturn(false);
 		
 		Block ch10MockedBlock5 = mock(Block.class);
-		when(ch10MockedBlock5.toString()).thenReturn("ll = MAXINT");
+		when(ch10MockedBlock5.toString()).thenReturn("Block: ll = MAXINT isNegative: false");
 		when(ch10MockedBlock5.isNegative()).thenReturn(false);
 		
 		Block ch10MockedBlock6 = mock(Block.class);
-		when(ch10MockedBlock6.toString()).thenReturn("ll = MAXINT+1");
+		when(ch10MockedBlock6.toString()).thenReturn("Block: ll = MAXINT+1 isNegative: true");
 		when(ch10MockedBlock6.isNegative()).thenReturn(true);
 		
 		ch10Blocks.add(ch10MockedBlock1);
@@ -2133,11 +2133,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch1Blocks = new ArrayList<Block>();
 		
 		Block ch1MockedBlock1 = mock(Block.class);
-		when(ch1MockedBlock1.toString()).thenReturn("#(xx).(((xx : NAT) => (xx > aa)))");
+		when(ch1MockedBlock1.toString()).thenReturn("Block: #(xx).(((xx : NAT) => (xx > aa))) isNegative: false");
 		when(ch1MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch1MockedBlock2 = mock(Block.class);
-		when(ch1MockedBlock2.toString()).thenReturn("not(#(xx).(((xx : NAT) => (xx > aa))))");
+		when(ch1MockedBlock2.toString()).thenReturn("Block: not(#(xx).(((xx : NAT) => (xx > aa)))) isNegative: true");
 		when(ch1MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch1Blocks.add(ch1MockedBlock1);
@@ -2172,11 +2172,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch1Blocks = new ArrayList<Block>();
 		
 		Block ch1MockedBlock1 = mock(Block.class);
-		when(ch1MockedBlock1.toString()).thenReturn("!(xx).((xx : NAT) => (aa = xx & bb = (xx + 1)))");
+		when(ch1MockedBlock1.toString()).thenReturn("Block: !(xx).((xx : NAT) => (aa = xx & bb = (xx + 1))) isNegative: false");
 		when(ch1MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch1MockedBlock2 = mock(Block.class);
-		when(ch1MockedBlock2.toString()).thenReturn("not(!(xx).((xx : NAT) => (aa = xx & bb = (xx + 1))))");
+		when(ch1MockedBlock2.toString()).thenReturn("Block: not(!(xx).((xx : NAT) => (aa = xx & bb = (xx + 1)))) isNegative: true");
 		when(ch1MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch1Blocks.add(ch1MockedBlock1);
@@ -2211,11 +2211,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch1Blocks = new ArrayList<Block>();
 		
 		Block ch1MockedBlock1 = mock(Block.class);
-		when(ch1MockedBlock1.toString()).thenReturn("((aa = 1) <=> (bb = 0))");
+		when(ch1MockedBlock1.toString()).thenReturn("Block: ((aa = 1) <=> (bb = 0)) isNegative: false");
 		when(ch1MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch1MockedBlock2 = mock(Block.class);
-		when(ch1MockedBlock2.toString()).thenReturn("not(((aa = 1) <=> (bb = 0)))");
+		when(ch1MockedBlock2.toString()).thenReturn("Block: not(((aa = 1) <=> (bb = 0))) isNegative: true");
 		when(ch1MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch1Blocks.add(ch1MockedBlock1);
@@ -2248,11 +2248,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch1Blocks = new ArrayList<Block>();
 		
 		Block ch1MockedBlock1 = mock(Block.class);
-		when(ch1MockedBlock1.toString()).thenReturn("((aa = 10) => (bb > 5))");
+		when(ch1MockedBlock1.toString()).thenReturn("Block: ((aa = 10) => (bb > 5)) isNegative: false");
 		when(ch1MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch1MockedBlock2 = mock(Block.class);
-		when(ch1MockedBlock2.toString()).thenReturn("not(((aa = 10) => (bb > 5)))");
+		when(ch1MockedBlock2.toString()).thenReturn("Block: not(((aa = 10) => (bb > 5))) isNegative: true");
 		when(ch1MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch1Blocks.add(ch1MockedBlock1);
@@ -2287,7 +2287,7 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch1Blocks = new ArrayList<Block>();
 		
 		Block ch1MockedBlock1 = mock(Block.class);
-		when(ch1MockedBlock1.toString()).thenReturn("aa : BOOL");
+		when(ch1MockedBlock1.toString()).thenReturn("Block: aa : BOOL isNegative: false");
 		when(ch1MockedBlock1.isNegative()).thenReturn(false);
 
 		ch1Blocks.add(ch1MockedBlock1);
@@ -2299,7 +2299,7 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch2Blocks = new ArrayList<Block>();
 		
 		Block ch2MockedBlock1 = mock(Block.class);
-		when(ch2MockedBlock1.toString()).thenReturn("bb : BOOL");
+		when(ch2MockedBlock1.toString()).thenReturn("Block: bb : BOOL isNegative: false");
 		when(ch2MockedBlock1.isNegative()).thenReturn(false);
 		
 		ch2Blocks.add(ch2MockedBlock1);
@@ -2311,27 +2311,27 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch3Blocks = new ArrayList<Block>();
 		
 		Block ch3MockedBlock1 = mock(Block.class);
-		when(ch3MockedBlock1.toString()).thenReturn("cc = -1");
+		when(ch3MockedBlock1.toString()).thenReturn("Block: cc = -1 isNegative: true");
 		when(ch3MockedBlock1.isNegative()).thenReturn(true);
 		
 		Block ch3MockedBlock2 = mock(Block.class);
-		when(ch3MockedBlock2.toString()).thenReturn("cc = 0");
+		when(ch3MockedBlock2.toString()).thenReturn("Block: cc = 0 isNegative: false");
 		when(ch3MockedBlock2.isNegative()).thenReturn(false);
 		
 		Block ch3MockedBlock3 = mock(Block.class);
-		when(ch3MockedBlock3.toString()).thenReturn("cc = 1");
+		when(ch3MockedBlock3.toString()).thenReturn("Block: cc = 1 isNegative: false");
 		when(ch3MockedBlock3.isNegative()).thenReturn(false);
 		
 		Block ch3MockedBlock4 = mock(Block.class);
-		when(ch3MockedBlock4.toString()).thenReturn("cc = MAXINT-1");
+		when(ch3MockedBlock4.toString()).thenReturn("Block: cc = MAXINT-1 isNegative: false");
 		when(ch3MockedBlock4.isNegative()).thenReturn(false);
 		
 		Block ch3MockedBlock5 = mock(Block.class);
-		when(ch3MockedBlock5.toString()).thenReturn("cc = MAXINT");
+		when(ch3MockedBlock5.toString()).thenReturn("Block: cc = MAXINT isNegative: false");
 		when(ch3MockedBlock5.isNegative()).thenReturn(false);
 		
 		Block ch3MockedBlock6 = mock(Block.class);
-		when(ch3MockedBlock6.toString()).thenReturn("cc = MAXINT+1");
+		when(ch3MockedBlock6.toString()).thenReturn("Block: cc = MAXINT+1 isNegative: true");
 		when(ch3MockedBlock6.isNegative()).thenReturn(true);
 		
 		ch3Blocks.add(ch3MockedBlock1);
@@ -2348,11 +2348,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch4Blocks = new ArrayList<Block>();
 		
 		Block ch4MockedBlock1 = mock(Block.class);
-		when(ch4MockedBlock1.toString()).thenReturn("aa = TRUE");
+		when(ch4MockedBlock1.toString()).thenReturn("Block: aa = TRUE isNegative: false");
 		when(ch4MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch4MockedBlock2 = mock(Block.class);
-		when(ch4MockedBlock2.toString()).thenReturn("not(aa = TRUE)");
+		when(ch4MockedBlock2.toString()).thenReturn("Block: not(aa = TRUE) isNegative: true");
 		when(ch4MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch4Blocks.add(ch4MockedBlock1);
@@ -2365,11 +2365,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch5Blocks = new ArrayList<Block>();
 		
 		Block ch5MockedBlock1 = mock(Block.class);
-		when(ch5MockedBlock1.toString()).thenReturn("bb = FALSE");
+		when(ch5MockedBlock1.toString()).thenReturn("Block: bb = FALSE isNegative: false");
 		when(ch5MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch5MockedBlock2 = mock(Block.class);
-		when(ch5MockedBlock2.toString()).thenReturn("not(bb = FALSE)");
+		when(ch5MockedBlock2.toString()).thenReturn("Block: not(bb = FALSE) isNegative: true");
 		when(ch5MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch5Blocks.add(ch5MockedBlock1);
@@ -2382,11 +2382,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch6Blocks = new ArrayList<Block>();
 		
 		Block ch6MockedBlock1 = mock(Block.class);
-		when(ch6MockedBlock1.toString()).thenReturn("cc = 10");
+		when(ch6MockedBlock1.toString()).thenReturn("Block: cc = 10 isNegative: false");
 		when(ch6MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch6MockedBlock2 = mock(Block.class);
-		when(ch6MockedBlock2.toString()).thenReturn("not(cc = 10)");
+		when(ch6MockedBlock2.toString()).thenReturn("Block: not(cc = 10) isNegative: true");
 		when(ch6MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch6Blocks.add(ch6MockedBlock1);
@@ -2421,27 +2421,27 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch1Blocks = new ArrayList<Block>();
 		
 		Block ch1MockedBlock1 = mock(Block.class);
-		when(ch1MockedBlock1.toString()).thenReturn("aa = -1");
+		when(ch1MockedBlock1.toString()).thenReturn("Block: aa = -1 isNegative: true");
 		when(ch1MockedBlock1.isNegative()).thenReturn(true);
 		
 		Block ch1MockedBlock2 = mock(Block.class);
-		when(ch1MockedBlock2.toString()).thenReturn("aa = 0");
+		when(ch1MockedBlock2.toString()).thenReturn("Block: aa = 0 isNegative: false");
 		when(ch1MockedBlock2.isNegative()).thenReturn(false);
 		
 		Block ch1MockedBlock3 = mock(Block.class);
-		when(ch1MockedBlock3.toString()).thenReturn("aa = 1");
+		when(ch1MockedBlock3.toString()).thenReturn("Block: aa = 1 isNegative: false");
 		when(ch1MockedBlock3.isNegative()).thenReturn(false);
 		
 		Block ch1MockedBlock4 = mock(Block.class);
-		when(ch1MockedBlock4.toString()).thenReturn("aa = MAXINT-1");
+		when(ch1MockedBlock4.toString()).thenReturn("Block: aa = MAXINT-1 isNegative: false");
 		when(ch1MockedBlock4.isNegative()).thenReturn(false);
 		
 		Block ch1MockedBlock5 = mock(Block.class);
-		when(ch1MockedBlock5.toString()).thenReturn("aa = MAXINT");
+		when(ch1MockedBlock5.toString()).thenReturn("Block: aa = MAXINT isNegative: false");
 		when(ch1MockedBlock5.isNegative()).thenReturn(false);
 		
 		Block ch1MockedBlock6 = mock(Block.class);
-		when(ch1MockedBlock6.toString()).thenReturn("aa = MAXINT+1");
+		when(ch1MockedBlock6.toString()).thenReturn("Block: aa = MAXINT+1 isNegative: true");
 		when(ch1MockedBlock6.isNegative()).thenReturn(true);
 		
 		ch1Blocks.add(ch1MockedBlock1);
@@ -2458,27 +2458,27 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch2Blocks = new ArrayList<Block>();
 		
 		Block ch2MockedBlock1 = mock(Block.class);
-		when(ch2MockedBlock1.toString()).thenReturn("bb = -1");
+		when(ch2MockedBlock1.toString()).thenReturn("Block: bb = -1 isNegative: true");
 		when(ch2MockedBlock1.isNegative()).thenReturn(true);
 		
 		Block ch2MockedBlock2 = mock(Block.class);
-		when(ch2MockedBlock2.toString()).thenReturn("bb = 0");
+		when(ch2MockedBlock2.toString()).thenReturn("Block: bb = 0 isNegative: false");
 		when(ch2MockedBlock2.isNegative()).thenReturn(false);
 		
 		Block ch2MockedBlock3 = mock(Block.class);
-		when(ch2MockedBlock3.toString()).thenReturn("bb = 1");
+		when(ch2MockedBlock3.toString()).thenReturn("Block: bb = 1 isNegative: false");
 		when(ch2MockedBlock3.isNegative()).thenReturn(false);
 		
 		Block ch2MockedBlock4 = mock(Block.class);
-		when(ch2MockedBlock4.toString()).thenReturn("bb = MAXINT-1");
+		when(ch2MockedBlock4.toString()).thenReturn("Block: bb = MAXINT-1 isNegative: false");
 		when(ch2MockedBlock4.isNegative()).thenReturn(false);
 		
 		Block ch2MockedBlock5 = mock(Block.class);
-		when(ch2MockedBlock5.toString()).thenReturn("bb = MAXINT");
+		when(ch2MockedBlock5.toString()).thenReturn("Block: bb = MAXINT isNegative: false");
 		when(ch2MockedBlock5.isNegative()).thenReturn(false);
 		
 		Block ch2MockedBlock6 = mock(Block.class);
-		when(ch2MockedBlock6.toString()).thenReturn("bb = MAXINT+1");
+		when(ch2MockedBlock6.toString()).thenReturn("Block: bb = MAXINT+1 isNegative: true");
 		when(ch2MockedBlock6.isNegative()).thenReturn(true);
 		
 		ch2Blocks.add(ch2MockedBlock1);
@@ -2495,11 +2495,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch3Blocks = new ArrayList<Block>();
 		
 		Block ch3MockedBlock1 = mock(Block.class);
-		when(ch3MockedBlock1.toString()).thenReturn("not(bb : {1, 2, 3})");
+		when(ch3MockedBlock1.toString()).thenReturn("Block: not(bb : {1, 2, 3}) isNegative: false");
 		when(ch3MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch3MockedBlock2 = mock(Block.class);
-		when(ch3MockedBlock2.toString()).thenReturn("not(not(bb : {1, 2, 3}))");
+		when(ch3MockedBlock2.toString()).thenReturn("Block: not(not(bb : {1, 2, 3})) isNegative: true");
 		when(ch3MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch3Blocks.add(ch3MockedBlock1);
@@ -2534,7 +2534,7 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch1Blocks = new ArrayList<Block>();
 		
 		Block ch1MockedBlock1 = mock(Block.class);
-		when(ch1MockedBlock1.toString()).thenReturn("0 <= value");
+		when(ch1MockedBlock1.toString()).thenReturn("Block: 0 <= value isNegative: false");
 		when(ch1MockedBlock1.isNegative()).thenReturn(false);
 
 		ch1Blocks.add(ch1MockedBlock1);
@@ -2546,7 +2546,7 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch2Blocks = new ArrayList<Block>();
 		
 		Block ch2MockedBlock1 = mock(Block.class);
-		when(ch2MockedBlock1.toString()).thenReturn("value <= MAXINT");
+		when(ch2MockedBlock1.toString()).thenReturn("Block: value <= MAXINT isNegative: false");
 		when(ch2MockedBlock1.isNegative()).thenReturn(false);
 
 		ch2Blocks.add(ch2MockedBlock1);
@@ -2558,11 +2558,11 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch3Blocks = new ArrayList<Block>();
 		
 		Block ch3MockedBlock1 = mock(Block.class);
-		when(ch3MockedBlock1.toString()).thenReturn("value < MAXINT");
+		when(ch3MockedBlock1.toString()).thenReturn("Block: value < MAXINT isNegative: false");
 		when(ch3MockedBlock1.isNegative()).thenReturn(false);
 		
 		Block ch3MockedBlock2 = mock(Block.class);
-		when(ch3MockedBlock2.toString()).thenReturn("not(value < MAXINT)");
+		when(ch3MockedBlock2.toString()).thenReturn("Block: not(value < MAXINT) isNegative: true");
 		when(ch3MockedBlock2.isNegative()).thenReturn(true);
 		
 		ch3Blocks.add(ch3MockedBlock1);
@@ -2575,7 +2575,7 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch4Blocks = new ArrayList<Block>();
 		
 		Block ch4MockedBlock1 = mock(Block.class);
-		when(ch4MockedBlock1.toString()).thenReturn("overflow : BOOL");
+		when(ch4MockedBlock1.toString()).thenReturn("Block: overflow : BOOL isNegative: false");
 		when(ch4MockedBlock1.isNegative()).thenReturn(false);
 		
 		ch4Blocks.add(ch4MockedBlock1);
@@ -2587,27 +2587,27 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch5Blocks = new ArrayList<Block>();
 		
 		Block ch5MockedBlock1 = mock(Block.class);
-		when(ch5MockedBlock1.toString()).thenReturn("value = 0 - 1");
+		when(ch5MockedBlock1.toString()).thenReturn("Block: value = 0 - 1 isNegative: true");
 		when(ch5MockedBlock1.isNegative()).thenReturn(true);
 		
 		Block ch5MockedBlock2 = mock(Block.class);
-		when(ch5MockedBlock2.toString()).thenReturn("value = 0");
+		when(ch5MockedBlock2.toString()).thenReturn("Block: value = 0 isNegative: false");
 		when(ch5MockedBlock2.isNegative()).thenReturn(false);
 		
 		Block ch5MockedBlock3 = mock(Block.class);
-		when(ch5MockedBlock3.toString()).thenReturn("value = 0 + 1");
+		when(ch5MockedBlock3.toString()).thenReturn("Block: value = 0 + 1 isNegative: false");
 		when(ch5MockedBlock3.isNegative()).thenReturn(false);
 		
 		Block ch5MockedBlock4 = mock(Block.class);
-		when(ch5MockedBlock4.toString()).thenReturn("value = (MAXINT - 1) - 1");
+		when(ch5MockedBlock4.toString()).thenReturn("Block: value = (MAXINT - 1) - 1 isNegative: false");
 		when(ch5MockedBlock4.isNegative()).thenReturn(false);
 		
 		Block ch5MockedBlock5 = mock(Block.class);
-		when(ch5MockedBlock5.toString()).thenReturn("value = (MAXINT - 1)");
+		when(ch5MockedBlock5.toString()).thenReturn("Block: value = (MAXINT - 1) isNegative: false");
 		when(ch5MockedBlock5.isNegative()).thenReturn(false);
 		
 		Block ch5MockedBlock6 = mock(Block.class);
-		when(ch5MockedBlock6.toString()).thenReturn("value = (MAXINT - 1) + 1");
+		when(ch5MockedBlock6.toString()).thenReturn("Block: value = (MAXINT - 1) + 1 isNegative: true");
 		when(ch5MockedBlock6.isNegative()).thenReturn(true);
 		
 		ch5Blocks.add(ch5MockedBlock1);
@@ -2624,7 +2624,7 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch6Blocks = new ArrayList<Block>();
 		
 		Block ch6MockedBlock1 = mock(Block.class);
-		when(ch6MockedBlock1.toString()).thenReturn("value : INT");
+		when(ch6MockedBlock1.toString()).thenReturn("Block: value : INT isNegative: false");
 		when(ch6MockedBlock1.isNegative()).thenReturn(false);
 		
 		ch6Blocks.add(ch6MockedBlock1);
@@ -2636,7 +2636,7 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		List<Block> ch7Blocks = new ArrayList<Block>();
 		
 		Block ch7MockedBlock1 = mock(Block.class);
-		when(ch7MockedBlock1.toString()).thenReturn("((overflow = TRUE) => (value = MAXINT))");
+		when(ch7MockedBlock1.toString()).thenReturn("Block: ((overflow = TRUE) => (value = MAXINT)) isNegative: false");
 		when(ch7MockedBlock1.isNegative()).thenReturn(false);
 		
 		ch7Blocks.add(ch7MockedBlock1);

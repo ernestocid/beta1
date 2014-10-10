@@ -302,8 +302,8 @@ public class Partitioner {
 	}
 
 
-
-	private Set<Characteristic> getCharacteristicsFromPrecondition() {
+	
+	public Set<Characteristic> getCharacteristicsFromPrecondition() {
 		Set<Characteristic> characteristicsFromPrecondition = new HashSet<Characteristic>();
 		
 		for(MyPredicate clause : getPredicatesRelatedWithVariables(getOperationInputSpace(), this.operation.getPreconditionClauses())) {

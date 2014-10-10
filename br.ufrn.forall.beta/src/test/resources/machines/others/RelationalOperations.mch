@@ -1,16 +1,22 @@
 MACHINE RelationalOperations
 
+VARIABLES xx, yy
+
+INVARIANT xx : NAT & yy : NAT
+
+INITIALISATION xx := 1 || yy := 1
+
 OPERATIONS
-  equal(xx, yy) = PRE xx : NAT & yy : NAT & xx = yy THEN skip END;
+  equal = PRE xx = yy THEN skip END;
 
-  notequal(xx, yy) = PRE xx : NAT & yy : NAT & xx /= yy THEN skip END;
+  notequal = PRE xx /= yy THEN skip END;
 
-  greater(xx, yy) = PRE xx : NAT & yy : NAT & xx > yy THEN skip END;
+  greater = PRE xx > yy THEN skip END;
 
-  greaterEqual(xx, yy) = PRE xx : NAT & yy : NAT & xx >= yy THEN skip END;
+  greaterEqual = PRE xx >= yy THEN skip END;
 
-  less(xx, yy) = PRE xx : NAT & yy : NAT & xx < yy THEN skip END;
+  less = PRE xx < yy THEN skip END;
 
-  lessEqual(xx, yy) = PRE xx : NAT & yy : NAT & xx <= yy THEN skip END
+  lessEqual = PRE xx <= yy THEN skip END
 END
 

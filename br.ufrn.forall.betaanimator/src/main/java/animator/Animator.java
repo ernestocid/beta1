@@ -12,6 +12,7 @@ import java.util.Map;
 
 import parser.Machine;
 import parser.Operation;
+import parser.decorators.predicates.MyPredicate;
 import configurations.Configurations;
 
 public class Animator {
@@ -99,6 +100,13 @@ public class Animator {
 
 	
 
+	private MyPredicate cleanAuxVariables(MyPredicate precondition) {
+
+		return null;
+	}
+
+
+
 	private void printCommandOutput(BufferedReader cmdOutput) {
 		String line = "";
 		String code = "";
@@ -117,7 +125,7 @@ public class Animator {
 		String[] command = new String[] {
 				Configurations.getProBPath() + "probcli",
 				"-init",
-				"-mc",
+				"-animate",
 				"1",
 				"-p",
 				"MAX_INITIALISATIONS",

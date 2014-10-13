@@ -3,11 +3,11 @@ MACHINE TestsForOp_sum_From_Calc
 OPERATIONS
 /* Equivalence Class test data for sum */
 sum_test1(
-yy,
-xx
+i__xx,
+i__yy
 ) =
 PRE
-yy : INT & xx : INT /* POSITIVE */
+i__yy : INT & i__xx : INT /* POSITIVE */
 THEN
 skip
 END

@@ -255,6 +255,23 @@ public class PLReaderTest {
 	
 	
 	
+	@Test
+	public void shouldSplitParameterDataString10() {
+		PLReader plReader = new PLReader(new File("src/test/resources/plFiles/lua_arith.mch.pl"));
+				
+		String parameters = "[(LUA_TNUMBER|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1))],1,1,LUA_OPUNM";
+		
+		List<String> expectedParams = new ArrayList<String>();
+		expectedParams.add("[(LUA_TNUMBER|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1)),(LUA_TNIL|->((nil|->false)|->-1))]");
+		expectedParams.add("1");
+		expectedParams.add("1");
+		expectedParams.add("LUA_OPUNM");
+		
+		assertEquals(expectedParams, plReader.splitParameterValues(parameters));
+	}
+	
+	
+	
 	private Machine getMachineInstance(String path) {
 		Machine machine = new Machine(new File(path));
 		return machine;

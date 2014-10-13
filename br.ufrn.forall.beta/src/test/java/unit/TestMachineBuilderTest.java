@@ -95,6 +95,25 @@ public class TestMachineBuilderTest {
 		
 		assertEquals(SIMPLELOCKS_OPENDOOR_TESTMACHINE, testMachineText);
 	}
+	
+	
+	
+	@Test
+	public void shouldGenerateTestMachineForOperationsOnMachinesWithIncludesAndTransitivity() {
+		Machine machine = getMachineInstance("src/test/resources/machines/others/TestIncludeMachineC.mch");
+		Operation operationUnderTest = machine.getOperation(0);
+			
+		ECBlockBuilder blockBuilder = new ECBlockBuilder(new Partitioner(operationUnderTest));
+		
+		List<List<Block>> blocks = blockBuilder.getBlocksAsListsOfBlocks();
+		Criteria<Block> criteria = new EachChoice<Block>(blocks);
+		
+		TestMachineBuilder builder = new TestMachineBuilder(operationUnderTest, criteria.getCombinations());
+		String testMachineText = builder.generateTestMachine();
+		
+		assertEquals(INCLUDEMACHINEC_TESTMACHINE, testMachineText);
+	}
+	
 
 
 	
@@ -112,7 +131,25 @@ public class TestMachineBuilderTest {
 		String testMachineText = builder.generateTestMachine();
 
 		assertEquals(SIMPLECOSTUMER_BUY_TESTMACHINE, testMachineText);
-	}	
+	}
+	
+	
+	
+	@Test
+	public void shouldGenerateTestMachineForOperationsOnMachinesWithSees2() {
+		Machine machine = getMachineInstance("src/test/resources/machines/others/TestSEESMachineB.mch");
+		Operation operationUnderTest = machine.getOperation(0);
+		
+		ECBlockBuilder blockBuilder = new ECBlockBuilder(new Partitioner(operationUnderTest));
+		
+		List<List<Block>> blocks = blockBuilder.getBlocksAsListsOfBlocks();
+		Criteria<Block> criteria = new EachChoice<Block>(blocks);
+		
+		TestMachineBuilder builder = new TestMachineBuilder(operationUnderTest, criteria.getCombinations());
+		String testMachineText = builder.generateTestMachine();
+
+		assertEquals(TESTSEESMACHINEB_TESTMACHINE, testMachineText);
+	}
 	
 	
 
@@ -135,6 +172,24 @@ public class TestMachineBuilderTest {
 	
 	
 	@Test
+	public void shouldGenerateTestMachineForOperationsOnMachinesWithUses2() {
+		Machine machine = getMachineInstance("src/test/resources/machines/others/TestUsesMachineB.mch");
+		Operation operationUnderTest = machine.getOperation(0);
+		
+		ECBlockBuilder blockBuilder = new ECBlockBuilder(new Partitioner(operationUnderTest));
+		
+		List<List<Block>> blocks = blockBuilder.getBlocksAsListsOfBlocks();
+		Criteria<Block> criteria = new EachChoice<Block>(blocks);
+		
+		TestMachineBuilder builder = new TestMachineBuilder(operationUnderTest, criteria.getCombinations());
+		String testMachineText = builder.generateTestMachine();
+
+		assertEquals(USESMACHINEB_TESTMACHINE, testMachineText);
+	}
+	
+	
+	
+	@Test
 	public void shouldGenerateTestMachineForOperationsOnMachinesWithExtends() {
 		Machine machine = getMachineInstance("src/test/resources/machines/others/SimpleDeathExtends.mch");
 		Operation operationUnderTest = machine.getOperation(0);
@@ -152,6 +207,24 @@ public class TestMachineBuilderTest {
 	
 	
 	
+	@Test
+	public void shouldGenerateTestMachineForOperationsOnMachinesWithExtendsAndTransitivity() {
+		Machine machine = getMachineInstance("src/test/resources/machines/others/TestExtendsMachineC.mch");
+		Operation operationUnderTest = machine.getOperation(0);
+			
+		ECBlockBuilder blockBuilder = new ECBlockBuilder(new Partitioner(operationUnderTest));
+		
+		List<List<Block>> blocks = blockBuilder.getBlocksAsListsOfBlocks();
+		Criteria<Block> criteria = new EachChoice<Block>(blocks);
+		
+		TestMachineBuilder builder = new TestMachineBuilder(operationUnderTest, criteria.getCombinations());
+		String testMachineText = builder.generateTestMachine();
+		
+		assertEquals(EXTENDSMACHINEC_TESTMACHINE, testMachineText);
+	}
+	
+	
+	
 	private Machine getMachineInstance(String path) {
 		Machine machine = new Machine(new File(path));
 		return machine;
@@ -162,27 +235,29 @@ public class TestMachineBuilderTest {
 	private static final String SIMPLEDEATHEXTENDS_TESTMACHINE =
 			"MACHINE TestsForOp_newdeath_From_SimpleDeathExtends" + "\n" +
 			"\n" +
+			"EXTENDS SimpleLife" + "\n" +
+			"\n" +
 			"OPERATIONS" + "\n" +
 			"/* Equivalence Class test data for newdeath */" + "\n" +
 			"newdeath_test1(" + "\n" +
-			"born," + "\n" +
-			"dead," + "\n" +
-			"pp" + "\n" +
+			"i__dead," + "\n" +
+			"i__pp," + "\n" +
+			"i__born" + "\n" +
 			") =" + "\n" +
 			"PRE" + "\n" +
-			"not(pp : born) & born <: PERSON & dead <: PERSON /* NEGATIVE */" + "\n" +
+			"not(i__pp : i__born) & i__born <: PERSON & i__dead <: PERSON /* NEGATIVE */" + "\n" +
 			"THEN" + "\n" +
 			"skip" + "\n" +
 			"END" + "\n" +
 			";" + "\n" +
 			"/* Equivalence Class test data for newdeath */" + "\n" +
 			"newdeath_test2("  + "\n" +
-			"born," + "\n" +
-			"dead," + "\n" +
-			"pp" + "\n" +
+			"i__dead," + "\n" +
+			"i__pp," + "\n" +
+			"i__born" + "\n" +
 			") =" + "\n" +
 			"PRE" + "\n" +
-			"pp : born & born <: PERSON & dead <: PERSON /* POSITIVE */" + "\n" +
+			"i__pp : i__born & i__born <: PERSON & i__dead <: PERSON /* POSITIVE */" + "\n" +
 			"THEN" + "\n" +
 			"skip" + "\n" +
 			"END" + "\n" +
@@ -193,27 +268,29 @@ public class TestMachineBuilderTest {
 	private static final String SIMPLEDEATH_TESTMACHINE =
 			"MACHINE TestsForOp_newdeath_From_SimpleDeath" + "\n" +
 			"\n" +
+			"USES SimpleLife" + "\n" +
+			"\n" +
 			"OPERATIONS" + "\n" +
 			"/* Equivalence Class test data for newdeath */" + "\n" +
 			"newdeath_test1(" + "\n" +
-			"born," + "\n" +
-			"dead," + "\n" +
-			"pp" + "\n" +
+			"i__dead," + "\n" +
+			"i__pp," + "\n" +
+			"i__born" + "\n" +
 			") =" + "\n" +
 			"PRE" + "\n" +
-			"not(pp : born) & born <: PERSON & dead <: PERSON /* NEGATIVE */" + "\n" +
+			"not(i__pp : i__born) & i__born <: PERSON & i__dead <: PERSON /* NEGATIVE */" + "\n" +
 			"THEN" + "\n" +
 			"skip" + "\n" +
 			"END" + "\n" +
 			";" + "\n" +
 			"/* Equivalence Class test data for newdeath */" + "\n" +
 			"newdeath_test2("  + "\n" +
-			"born," + "\n" +
-			"dead," + "\n" +
-			"pp" + "\n" +
+			"i__dead," + "\n" +
+			"i__pp," + "\n" +
+			"i__born" + "\n" +
 			") =" + "\n" +
 			"PRE" + "\n" +
-			"pp : born & born <: PERSON & dead <: PERSON /* POSITIVE */" + "\n" +
+			"i__pp : i__born & i__born <: PERSON & i__dead <: PERSON /* POSITIVE */" + "\n" +
 			"THEN" + "\n" +
 			"skip" + "\n" +
 			"END" + "\n" +
@@ -224,6 +301,8 @@ public class TestMachineBuilderTest {
 	private static final String SIMPLECOSTUMER_BUY_TESTMACHINE =
 			"MACHINE TestsForOp_buy_From_SimpleCostumer" + "\n" +
 			"\n" +
+			"SEES SimplePrice, SimpleGoods" + "\n" +
+			"\n" +
 			"CONSTANTS limit" + "\n\n" +
 			"PROPERTIES" + "\n" +
 			"limit : (GOODS --> NAT1)" + "\n" +
@@ -231,24 +310,24 @@ public class TestMachineBuilderTest {
 			"OPERATIONS" + "\n" +
 			"/* Equivalence Class test data for buy */" + "\n" +
 			"buy_test1(" + "\n" +
-			"purchases," + "\n" +
-			"price," + "\n" +
-			"gg" + "\n" +
+			"i__purchases," + "\n" +
+			"i__price," + "\n" +
+			"i__gg" + "\n" +
 			") =" + "\n" +
 			"PRE" + "\n" +
-			"not(price(gg) <= limit(gg)) & purchases <: GOODS & price : (GOODS --> NAT1) /* NEGATIVE */" + "\n" +
+			"not(i__price(i__gg) <= limit(i__gg)) & i__purchases <: GOODS & i__price : (GOODS --> NAT1) /* NEGATIVE */" + "\n" +
 			"THEN" + "\n" +
 			"skip" + "\n" +
 			"END" + "\n" +
 			";" + "\n" +
 			"/* Equivalence Class test data for buy */" + "\n" +
 			"buy_test2(" + "\n" +
-			"purchases," + "\n" +
-			"price," + "\n" +
-			"gg" + "\n" +
+			"i__purchases," + "\n" +
+			"i__price," + "\n" +
+			"i__gg" + "\n" +
 			") =" + "\n" +
 			"PRE" + "\n" +
-			"price(gg) <= limit(gg) & purchases <: GOODS & price : (GOODS --> NAT1) /* POSITIVE */" + "\n" +
+			"i__price(i__gg) <= limit(i__gg) & i__purchases <: GOODS & i__price : (GOODS --> NAT1) /* POSITIVE */" + "\n" +
 			"THEN" + "\n" +
 			"skip" + "\n" +
 			"END" + "\n" +
@@ -259,28 +338,30 @@ public class TestMachineBuilderTest {
 	private static final String SIMPLELOCKS_OPENDOOR_TESTMACHINE =
 			"MACHINE TestsForOp_opendoor_From_Locks" + "\n" +
 			"\n" +
+			"INCLUDES SimpleDoors" + "\n" +
+			"\n" +
 			"SETS" + "\n" +
 			"STATUS = {locked, unlocked}" + "\n" +
 			"\n" +
 			"OPERATIONS" + "\n" +
 			"/* Equivalence Class test data for opendoor */" + "\n" +
 			"opendoor_test1(" + "\n" +
-			"dd," + "\n" +
-			"status" + "\n" +
+			"i__dd," + "\n" +
+			"i__status" + "\n" +
 			") =" + "\n" +
 			"PRE" + "\n" +
-			"status : (DOOR --> STATUS) & not(status(dd) = unlocked) /* NEGATIVE */" + "\n" +
+			"i__status : (DOOR --> STATUS) & not(i__status(i__dd) = unlocked) /* NEGATIVE */" + "\n" +
 			"THEN" + "\n" +
 			"skip" + "\n" +
 			"END" + "\n" +
 			";" + "\n" +
 			"/* Equivalence Class test data for opendoor */" + "\n" +
 			"opendoor_test2(" + "\n" +
-			"dd," + "\n" +
-			"status" + "\n" +
+			"i__dd," + "\n" +
+			"i__status" + "\n" +
 			") =" + "\n" +
 			"PRE" + "\n" +
-			"status : (DOOR --> STATUS) & status(dd) = unlocked /* POSITIVE */" + "\n" +
+			"i__status : (DOOR --> STATUS) & i__status(i__dd) = unlocked /* POSITIVE */" + "\n" +
 			"THEN" + "\n" +
 			"skip" + "\n" +
 			"END" + "\n" +
@@ -294,21 +375,122 @@ public class TestMachineBuilderTest {
 			"OPERATIONS\n" +
 			"/* Equivalence Class test data for set_cab_consol_open_button_pressed */\n" +
 			"set_cab_consol_open_button_pressed_test1(\n" +
-			"test_variable2,\n" +
-			"test_variable3,\n" +
-			"test_variable,\n" +
-			"cab_side_close_button_pushed,\n" +
-			"pressed,\n" +
-			"foo,\n" +
-			"cab_consol_close_button_pushed,\n" +
-			"cab_side_open_button_pushed,\n" +
-			"cab_consol_open_button_pushed\n" +
+			"i__test_variable,\n" +
+			"i__cab_consol_open_button_pushed,\n" +
+			"i__cab_side_close_button_pushed,\n" +
+			"i__test_variable3,\n" +
+			"i__test_variable2,\n" +
+			"i__foo,\n" +
+			"i__cab_side_open_button_pushed,\n" +
+			"i__pressed,\n" +
+			"i__cab_consol_close_button_pushed\n" +
 			") =\n" +
 			"PRE\n" +
-			"test_variable2 : BOOL & test_variable3 : BOOL & test_variable : BOOL & pressed : BOOL & foo : BOOL & cab_consol_close_button_pushed & cab_side_open_button_pushed & cab_consol_open_button_pushed & cab_side_close_button_pushed /* POSITIVE */\n" +
+			"i__test_variable2 : BOOL & i__test_variable3 : BOOL & i__test_variable : BOOL & i__pressed : BOOL & i__foo : BOOL & i__cab_consol_close_button_pushed & i__cab_side_open_button_pushed & i__cab_consol_open_button_pushed & i__cab_side_close_button_pushed /* POSITIVE */\n" +
 			"THEN\n" +
 			"skip\n" +
 			"END\n" +
 			"END";
 	
+	
+	public static final String INCLUDEMACHINEC_TESTMACHINE = 
+			"MACHINE TestsForOp_opC_From_TestIncludeMachineC" + "\n" +
+			"\n" +
+			"INCLUDES TestIncludeMachineB" + "\n" +
+			"\n" +
+			"SETS" + "\n" +
+			"SETC = {ee, ff}" + "\n" +
+			"\n" +
+			"CONSTANTS constantC" + "\n" +
+			"\n" +
+			"PROPERTIES" + "\n" +
+			"constantC : SETC" + "\n" +
+			"\n" +
+			"OPERATIONS" + "\n" +
+			"/* Equivalence Class test data for opC */" + "\n" +
+			"opC_test1(" + "\n" +
+			"i__yy" + "\n" +
+			") =" + "\n" +
+			"PRE" + "\n" +
+			"i__yy : SETC /* POSITIVE */" + "\n" +
+			"THEN" + "\n" +
+			"skip" + "\n" +
+			"END" + "\n" +
+			"END";
+	
+	public static final String EXTENDSMACHINEC_TESTMACHINE = 
+			"MACHINE TestsForOp_opC_From_TestExtendsMachineC" + "\n" +
+			"\n" +
+			"EXTENDS TestExtendsMachineB" + "\n" +
+			"\n" +
+			"SETS" + "\n" +
+			"SETC = {ee, ff}" + "\n" +
+			"\n" +
+			"CONSTANTS constantC" + "\n" +
+			"\n" +
+			"PROPERTIES" + "\n" +
+			"constantC : SETC" + "\n" +
+			"\n" +
+			"OPERATIONS" + "\n" +
+			"/* Equivalence Class test data for opC */" + "\n" +
+			"opC_test1(" + "\n" +
+			"i__yy" + "\n" +
+			") =" + "\n" +
+			"PRE" + "\n" +
+			"i__yy : SETC /* POSITIVE */" + "\n" +
+			"THEN" + "\n" +
+			"skip" + "\n" +
+			"END" + "\n" +
+			"END";
+	
+	
+	public static final String TESTSEESMACHINEB_TESTMACHINE = 
+			"MACHINE TestsForOp_opB_From_TestSEESMachineB" + "\n" +
+			"\n" +
+			"SEES TestSEESMachineA" + "\n" +
+			"\n" +
+			"SETS" + "\n" +
+			"SETB = {cc, dd}" + "\n" +
+			"\n" +
+			"CONSTANTS constantB" + "\n" +
+			"\n" +
+			"PROPERTIES" + "\n" +
+			"constantB : SETB" + "\n" +
+			"\n" +
+			"OPERATIONS" + "\n" +
+			"/* Equivalence Class test data for opB */" + "\n" +
+			"opB_test1(" + "\n" +
+			"i__yy" + "\n" +
+			") =" + "\n" +
+			"PRE" + "\n" +
+			"i__yy : SETB /* POSITIVE */" + "\n" +
+			"THEN" + "\n" +
+			"skip" + "\n" +
+			"END" + "\n" +
+			"END";
+	
+	public static final String USESMACHINEB_TESTMACHINE = 
+			"MACHINE TestsForOp_opB_From_TestUsesMachineB" + "\n" +
+			"\n" +
+			"USES TestUsesMachineA" + "\n" +
+			"\n" +
+			"SETS" + "\n" +
+			"SETB = {cc, dd}" + "\n" +
+			"\n" +
+			"CONSTANTS constantB" + "\n" +
+			"\n" +
+			"PROPERTIES" + "\n" +
+			"constantB : SETB" + "\n" +
+			"\n" +
+			"OPERATIONS" + "\n" +
+			"/* Equivalence Class test data for opB */" + "\n" +
+			"opB_test1(" + "\n" +
+			"i__yy" + "\n" +
+			") =" + "\n" +
+			"PRE" + "\n" +
+			"i__yy : SETB /* POSITIVE */" + "\n" +
+			"THEN" + "\n" +
+			"skip" + "\n" +
+			"END" + "\n" +
+			"END";
 }

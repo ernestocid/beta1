@@ -93,6 +93,29 @@ public class Sets {
 		return setValues;
 	}
 	
+	public List<String> getEnumeratedSetsWithElements() {
+		List<String> enumeratedSets = new ArrayList<String>();
+		
+		for(String enumeratedSet : getEnumeratedSets()) {
+			StringBuffer set = new StringBuffer(enumeratedSet + " = {");
+			List<String> elements = getSetElements(enumeratedSet);
+			
+			for (int i = 0; i < elements.size(); i++) {
+				if(i < elements.size() - 1) {
+					set.append(elements.get(i) + ",");
+				} else {
+					set.append(elements.get(i) + "}");
+				}
+			}
+			
+			enumeratedSets.add(set.toString());
+			
+		}
+		
+		return enumeratedSets;
+	}
+	
+	
 	@Override
 	public String toString() {
 		StringBuffer sets = new StringBuffer("");

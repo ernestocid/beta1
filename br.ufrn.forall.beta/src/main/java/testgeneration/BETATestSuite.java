@@ -105,7 +105,7 @@ public class BETATestSuite {
 				
 				// Setting up test case and adding to test suite.
 				
-				BETATestCase testCase = new BETATestCase(animation.getPredicate().toString(), 
+				BETATestCase testCase = new BETATestCase(animation.getFormula(), 
 														 generateTestFormulaWithoutInvariant(animation.getPredicate()), 
 														 getAttributeValues(animationValues), 
 														 getParamValues(animationValues), 
@@ -143,6 +143,7 @@ public class BETATestSuite {
 		
 		for (List<Block> combination : combinations) {
 			String formula = convertCombinationToStringConcatenation(combination);
+			formula = formula.replaceAll("i__", "");
 			Boolean isNegative = hasNegativeBlock(combination);
 			
 			mapping.put(formula.replaceAll("[()]", ""), isNegative);
@@ -192,7 +193,7 @@ public class BETATestSuite {
 		List<String> clausesAsStrings = new ArrayList<String>();
 		
 		for (MyPredicate clause : clauses) {
-			clausesAsStrings.add(clause.toString());
+			clausesAsStrings.add(clause.toString().replaceAll("i__", ""));
 		}
 		
 		// Recuperando as clausulas de invariante e convertendo para Strings
@@ -225,7 +226,7 @@ public class BETATestSuite {
 			i++;
 		}
 		
-		return testFormulaWithoutInvariant.toString();
+		return testFormulaWithoutInvariant.toString().replaceAll("i__", "");
 	}
 
 

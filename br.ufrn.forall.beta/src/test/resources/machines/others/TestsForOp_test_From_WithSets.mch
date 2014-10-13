@@ -3,20 +3,20 @@ MACHINE TestsForOp_test_From_WithSets
 OPERATIONS
 /* Equivalence Class test data for test */
 test_test1(
-temp
+i__temp
 ) =
 PRE
-not(temp = {1, 2, 3}) & temp <: NAT1 /* NEGATIVE */
+not(i__temp = {1, 2, 3}) & i__temp <: NAT1 /* NEGATIVE */
 THEN
 skip
 END
 ;
 /* Equivalence Class test data for test */
 test_test2(
-temp
+i__temp
 ) =
 PRE
-temp = {1, 2, 3} & temp <: NAT1 /* POSITIVE */
+i__temp = {1, 2, 3} & i__temp <: NAT1 /* POSITIVE */
 THEN
 skip
 END

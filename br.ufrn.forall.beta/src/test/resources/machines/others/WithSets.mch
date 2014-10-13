@@ -4,7 +4,7 @@ VARIABLES temp
 
 INVARIANT temp <: NAT1
 
-INITIALISATION temp := {}
+INITIALISATION temp := {1, 2, 3}
 
 OPERATIONS
   test =

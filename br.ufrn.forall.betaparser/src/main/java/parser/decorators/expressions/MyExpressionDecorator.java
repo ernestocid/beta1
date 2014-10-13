@@ -32,10 +32,17 @@ public abstract class MyExpressionDecorator implements MyExpression {
 	
 	public static String createFunctionParameterList(LinkedList<PExpression> parameters) {
 		StringBuffer params = new StringBuffer("");
-		for (PExpression expression : parameters) {
-			MyExpression myExpression = MyExpressionFactory.convertExpression(expression);
-			params.append(myExpression.toString());
+		
+		for (int i = 0; i < parameters.size(); i++) {
+			MyExpression myExpression = MyExpressionFactory.convertExpression(parameters.get(i));
+			
+			if(i < parameters.size() - 1) {
+				params.append(myExpression.toString() + ",");
+			} else {
+				params.append(myExpression.toString());
+			}
 		}
+		
 		return params.toString();
 	}
 	

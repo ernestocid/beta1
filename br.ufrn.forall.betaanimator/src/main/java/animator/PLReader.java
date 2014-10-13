@@ -81,21 +81,34 @@ public class PLReader {
 		} else {
 			StringBuffer paramBuffer = new StringBuffer("");
 			int openBracket = 0;
+			int openSqureBracket = 0;
 			boolean hasBracket = false;
+			boolean hasSquareBracket = false;
+			
 			for(int i = 0; i < paramsText.length(); i++) {
 				if(paramsText.charAt(i) == '{') {
 					hasBracket = true;
 					openBracket++;
 				}
 				
+				if(paramsText.charAt(i) == '[') {
+					hasSquareBracket = true;
+					openSqureBracket++;
+				}
+				
 				if(paramsText.charAt(i) == '}') {
 					openBracket--;
+				}
+				
+				if(paramsText.charAt(i) == ']') {
+					openSqureBracket--;
 				}
 				
 				if(paramsText.charAt(i) != ',') {
 					paramBuffer.append(paramsText.charAt(i));
 				} else {
-					if(hasBracket && openBracket > 0) {
+					if((hasBracket && openBracket > 0) ||
+						(hasSquareBracket && openSqureBracket > 0)) {
 						paramBuffer.append(paramsText.charAt(i));
 					} else {
 						params.add(paramBuffer.toString().trim());

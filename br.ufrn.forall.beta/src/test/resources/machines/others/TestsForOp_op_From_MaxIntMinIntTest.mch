@@ -3,10 +3,10 @@ MACHINE TestsForOp_op_From_MaxIntMinIntTest
 OPERATIONS
 /* Equivalence Class test data for op */
 op_test1(
-yy
+i__yy
 ) =
 PRE
-yy : INT /* POSITIVE */
+i__yy : INT /* POSITIVE */
 THEN
 skip
 END

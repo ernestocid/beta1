@@ -46,7 +46,7 @@ public class EquivalenceClassesTestTypingCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.findBlocks(characteristic);
+		Set<Block> actualResult = EquivalenceClasses.findBlocks(characteristic, belongsToNAT);
 
 		// Assertions
 
@@ -81,7 +81,7 @@ public class EquivalenceClassesTestTypingCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.findBlocks(characteristic);
+		Set<Block> actualResult = EquivalenceClasses.findBlocks(characteristic, belongsToNAT1);
 
 		// Assertions
 
@@ -110,7 +110,7 @@ public class EquivalenceClassesTestTypingCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.findBlocks(characteristic);
+		Set<Block> actualResult = EquivalenceClasses.findBlocks(characteristic, belongsToINT);
 
 		// Assertions
 
@@ -139,7 +139,7 @@ public class EquivalenceClassesTestTypingCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.findBlocks(characteristic);
+		Set<Block> actualResult = EquivalenceClasses.findBlocks(characteristic, belongsToBOOL);
 
 		// Assertions
 
@@ -149,10 +149,10 @@ public class EquivalenceClassesTestTypingCharacteristics {
 
 
 	@Test
-	public void findBlocksForBelongsToRange_returnsBelongsToRangeAndBelongsBeforeRangeAndBelongsAfterRangeBlocks() {
+	public void findBlocksForBelongsToInterval_returnsBelongsToRangeAndBelongsBeforeRangeAndBelongsAfterRangeBlocks() {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/TypingPredicates.mch"));
-		Operation belongsToRange = machine.getOperation(4);
-		Partitioner partitioner = new Partitioner(belongsToRange);
+		Operation belongsToInterval = machine.getOperation(4);
+		Partitioner partitioner = new Partitioner(belongsToInterval);
 
 		// Setting up expected results
 
@@ -180,7 +180,71 @@ public class EquivalenceClassesTestTypingCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.findBlocks(characteristic);
+		Set<Block> actualResult = EquivalenceClasses.findBlocks(characteristic, belongsToInterval);
+
+		// Assertions
+
+		assertEquals(blocksToStrings(expectedBlocks), blocksToStrings(actualResult));
+	}
+	
+	
+	
+	@Test
+	public void findBlocksForBelongsToAbstractSet_returnsBelongsBlock() {
+		Machine machine = new Machine(new File("src/test/resources/machines/others/TypingPredicates.mch"));
+		Operation belongsToAbstractSet = machine.getOperation(5);
+		Partitioner partitioner = new Partitioner(belongsToAbstractSet);
+
+		// Setting up expected results
+
+		Set<Block> expectedBlocks = new HashSet<Block>();
+
+		Block b1 = mock(Block.class);
+		when(b1.getBlock()).thenReturn("aa : ASET");
+		when(b1.isNegative()).thenReturn(false);
+		when(b1.toString()).thenReturn("Block: aa : ASET isNegative: false");
+		
+		expectedBlocks.add(b1);
+
+		// Result
+
+		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
+		Set<Block> actualResult = EquivalenceClasses.findBlocks(characteristic, belongsToAbstractSet);
+
+		// Assertions
+
+		assertEquals(blocksToStrings(expectedBlocks), blocksToStrings(actualResult));
+	}
+	
+	
+	
+	@Test
+	public void findBlocksForBelongsToId_returnsBelongsAndNotBelongsBlocks() {
+		Machine machine = new Machine(new File("src/test/resources/machines/others/TypingPredicates.mch"));
+		Operation belongsToAbstractSet = machine.getOperation(6);
+		Partitioner partitioner = new Partitioner(belongsToAbstractSet);
+
+		// Setting up expected results
+
+		Set<Block> expectedBlocks = new HashSet<Block>();
+
+		Block b1 = mock(Block.class);
+		when(b1.getBlock()).thenReturn("aa : ww");
+		when(b1.isNegative()).thenReturn(false);
+		when(b1.toString()).thenReturn("Block: aa : ww isNegative: false");
+		
+		Block b2 = mock(Block.class);
+		when(b2.getBlock()).thenReturn("aa /: ww");
+		when(b2.isNegative()).thenReturn(false);
+		when(b2.toString()).thenReturn("Block: aa /: ww isNegative: true");
+		
+		expectedBlocks.add(b1);
+		expectedBlocks.add(b2);
+
+		// Result
+
+		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
+		Set<Block> actualResult = EquivalenceClasses.findBlocks(characteristic, belongsToAbstractSet);
 
 		// Assertions
 

@@ -5,6 +5,7 @@ import java.util.Set;
 
 import parser.Characteristic;
 import parser.CharacteristicType;
+import parser.Operation;
 import parser.PredicateCharacteristic;
 import parser.decorators.expressions.MyABoolSetExpression;
 import parser.decorators.expressions.MyAIntSetExpression;
@@ -50,11 +51,11 @@ import de.be4.classicalb.core.parser.node.PPredicate;
 public class EquivalenceClasses {
 
 
-	public static Set<Block> findBlocks(Characteristic characteristic) {
+	public static Set<Block> findBlocks(Characteristic characteristic, Operation operation) {
 		Set<Block> blocks = new HashSet<Block>();
 
 		if (characteristic.getType() == CharacteristicType.PRE_CONDITION || characteristic.getType() == CharacteristicType.CONDITIONAL) {
-			if(isTypingCharacteristic(characteristic)) {
+			if(isTypingCharacteristic(characteristic, operation)) {
 				blocks.add(new Block(characteristic.toString(), false));
 			} else if (characteristic instanceof PredicateCharacteristic) {
 				PredicateCharacteristic predC = (PredicateCharacteristic) characteristic;
@@ -72,7 +73,7 @@ public class EquivalenceClasses {
 
 
 
-	private static boolean isTypingCharacteristic(Characteristic characteristic) {
+	private static boolean isTypingCharacteristic(Characteristic characteristic, Operation operation) {
 		if(characteristic instanceof PredicateCharacteristic) {
 			PredicateCharacteristic predC = (PredicateCharacteristic) characteristic;
 
@@ -80,27 +81,32 @@ public class EquivalenceClasses {
 				MyAMemberPredicate memberOf = (MyAMemberPredicate) predC.getPredicate();
 				MyExpression rightExpression = memberOf.getRightExpression();
 				
-				if(rightExpression instanceof MyAIntSetExpression) return true;
-				if(rightExpression instanceof MyABoolSetExpression) return true;
-				if(isAbstractSet(rightExpression)) return true;
-				if(rightExpression instanceof MyATotalFunctionExpression) return true;
-				if(rightExpression instanceof MyAPartialFunctionExpression) return true;
-				if(rightExpression instanceof MyATotalInjectionExpression) return true;
-				if(rightExpression instanceof MyATotalSurjectionExpression) return true;
-				if(rightExpression instanceof MyAPartialInjectionExpression) return true;
-				if(rightExpression instanceof MyATotalBijectionExpression) return true;
-				if(rightExpression instanceof MyAPartialBijectionExpression) return true;
-				if(rightExpression instanceof MyAStringSetExpression) return true;
+				if(rightExpression instanceof MyAIntSetExpression || 
+						rightExpression instanceof MyABoolSetExpression ||
+						isAbstractSet(rightExpression, operation) ||
+						rightExpression instanceof MyATotalFunctionExpression ||
+						rightExpression instanceof MyAPartialFunctionExpression ||
+						rightExpression instanceof MyATotalInjectionExpression ||
+						rightExpression instanceof MyATotalSurjectionExpression ||
+						rightExpression instanceof MyAPartialInjectionExpression ||
+						rightExpression instanceof MyATotalBijectionExpression ||
+						rightExpression instanceof MyAPartialBijectionExpression ||
+						rightExpression instanceof MyAStringSetExpression) {
+					
+					return true;
+				}
 			}
 		}
-
 		return false;
 	}
 
 
 
-	private static boolean isAbstractSet(MyExpression rightExpression) {
-		// TODO Auto-generated method stub
+	private static boolean isAbstractSet(MyExpression rightExpression, Operation operation) {
+		if(operation.getMachine().getSets() != null) {
+			return operation.getMachine().getSets().getDeferredSets().contains(rightExpression.toString());
+		}
+
 		return false;
 	}
 

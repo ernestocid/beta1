@@ -78,10 +78,6 @@ public class Application {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		
-		Api probApi = Main.getInjector().getInstance(Api.class);
-		probApi.upgrade("latest");
-		
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -291,6 +287,23 @@ public class Application {
 				JLabel maxintLabel = new JLabel("MININT Value: ");
 				final JTextField maxintField = new JTextField(String.valueOf(Configurations.getMaxIntProperties()), 5);
 				
+				JLabel downloadProBCliLabel = new JLabel("Download latest probcli binaries: ");
+				JButton downloadProBClitButton = new JButton("Download probcli");
+				downloadProBClitButton.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						System.out.println("Downloading probcli");
+						
+						Api probApi = Main.getInjector().getInstance(Api.class);
+						probApi.upgrade("latest");
+						
+						System.out.println("probcli download finished");
+					}
+					
+				});
+				
+				
 				
 				JButton saveButton = new JButton("Save");
 				saveButton.addActionListener(new ActionListener() {
@@ -407,6 +420,11 @@ public class Application {
 								
 //				c.gridx = 0;
 				c.gridy = 6;
+				
+				configPanel.add(downloadProBCliLabel);
+				configPanel.add(downloadProBClitButton);
+				
+				c.gridy = 7;
 				
 				configPanel.add(saveButton, c);
 				

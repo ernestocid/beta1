@@ -513,10 +513,31 @@ public class ECBlockBuilderTest extends BlockBuilderTest {
 		
 		expectedBlocks.put("hh /: awnser", ch8Blocks);
 		
+		
+		// Characteristic 9 - Does not belong to enumerated set
+		
+		List<Block> ch9Blocks = new ArrayList<Block>();
+		
+		Block ch9MockedBlock1 = mock(Block.class);
+		when(ch9MockedBlock1.toString()).thenReturn("Block: (1 + 1) /: {0, 1, 3} isNegative: false");
+		when(ch9MockedBlock1.isNegative()).thenReturn(false);
+		
+		Block ch9MockedBlock2 = mock(Block.class);
+		when(ch9MockedBlock2.toString()).thenReturn("Block: not((1 + 1) /: {0, 1, 3}) isNegative: true");
+		when(ch9MockedBlock2.isNegative()).thenReturn(true);
+		
+		ch9Blocks.add(ch9MockedBlock1);
+		ch9Blocks.add(ch9MockedBlock2);
+		
+		expectedBlocks.put("(1 + 1) /: {0, 1, 3}", ch9Blocks);
+		
 		// Getting actual result and doing verifications
 		
 		ECBlockBuilder blockBuilder = new ECBlockBuilder(partitioner);
 		Map<String, List<Block>> result = parseMapKeysToStrings(blockBuilder.getBlocks());
+		
+//		assertEquals(expectedBlocks, result);
+		
 		assertTrue(compare(expectedBlocks, result));
 	}
 	

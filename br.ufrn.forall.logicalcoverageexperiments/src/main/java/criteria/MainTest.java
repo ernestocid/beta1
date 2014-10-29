@@ -23,9 +23,9 @@ public class MainTest {
 //		Machine machine = new Machine(new File("/Users/ernestocid/Temp/MCDC/Priorityqueue.mch"));
 //		Operation operationUnderTest = machine.getOperation(1);
 		
-		Machine machine = new Machine(new File("/Users/ernestocid/Temp/MCDC/Priorityqueue.mch"));
-		System.out.println(machine.getName() + ": ");
-		printACCTestsForAllOperations(machine, probApi);
+//		Machine machine = new Machine(new File("/Users/ernestocid/Temp/MCDC/Priorityqueue.mch"));
+//		System.out.println(machine.getName() + ": ");
+//		printACCTestsForAllOperations(machine, probApi);
 
 //		Machine machine = new Machine(new File("/Users/ernestocid/Temp/B2LLVMCaseStudy/Priorityqueue.mch"));
 //		System.out.println(machine.getName() + ": ");
@@ -41,8 +41,8 @@ public class MainTest {
 //		Operation operationUnderTest = machine.getOperation(0);
 		
 		
-//		Machine machine = new Machine(new File("src/test/resources/machines/Simple.mch"));
-//		Operation operationUnderTest = machine.getOperation(0);
+		Machine machine = new Machine(new File("src/test/resources/machines/Simple.mch"));
+		Operation operationUnderTest = machine.getOperation(0);
 		
 //		Machine machine = new Machine(new File("src/test/resources/machines/CaseStmt.mch"));
 //		Operation operationUnderTest = machine.getOperation(1);
@@ -59,31 +59,31 @@ public class MainTest {
 //		Machine machine = new Machine(new File("src/test/resources/machines/CaseStudy/scheduler.mch"));
 //		Operation operationUnderTest = machine.getOperation(3);
 		
-//		System.out.println("Machine: " + machine.getName());
-//		System.out.println("Operation under test: " + operationUnderTest.getName());
-//		System.out.println("");
-//		
-//		printPredicatesSet(operationUnderTest);
-//		
-//		System.out.println("");
-//		
-//		printClausesSet(operationUnderTest);
+		System.out.println("Machine: " + machine.getName());
+		System.out.println("Operation under test: " + operationUnderTest.getName());
+		System.out.println("");
 		
-//		System.out.println("\nPredicate Coverage (PC) test formulas: ");
-//		
-//		printTestFormulas(new PredicateCoverage(operationUnderTest), probApi, operationUnderTest);
-//		
-//		System.out.println("\nClause Coverage (CC) test formulas: ");
-//		
-//		printTestFormulas(new ClauseCoverage(operationUnderTest), probApi, operationUnderTest);
-//		
-//		System.out.println("\nCombinatorial Coverage (CoC) test formulas: ");
-//		
-//		printTestFormulas(new CombinatorialCoverage(operationUnderTest), probApi, operationUnderTest);
+		printPredicatesSet(operationUnderTest);
 		
-//		System.out.println("\nActive Clause Coverage (ACC) test formulas: ");
-//		
-//		printTestFormulas(new ActiveClauseCoverage(operationUnderTest), probApi, operationUnderTest);
+		System.out.println("");
+		
+		printClausesSet(operationUnderTest);
+		
+		System.out.println("\nPredicate Coverage (PC) test formulas: ");
+		
+		printTestFormulas(new PredicateCoverage(operationUnderTest), probApi, operationUnderTest);
+		
+		System.out.println("\nClause Coverage (CC) test formulas: ");
+		
+		printTestFormulas(new ClauseCoverage(operationUnderTest), probApi, operationUnderTest);
+		
+		System.out.println("\nCombinatorial Coverage (CoC) test formulas: ");
+		
+		printTestFormulas(new CombinatorialCoverage(operationUnderTest), probApi, operationUnderTest);
+		
+		System.out.println("\nActive Clause Coverage (ACC) test formulas: ");
+		
+		printTestFormulas(new ActiveClauseCoverage(operationUnderTest), probApi, operationUnderTest);
 		
 	}
 

@@ -1,0 +1,2044 @@
+2014-10-20 15:36:48,265 3214 [main] INFO  de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 52 - Starting ProB's Prolog Core. Path is /Users/ernestocid/.prob/probcli.sh
+2014-10-20 15:36:48,280 3229 [main] DEBUG de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 54 - Cli started
+2014-10-20 15:36:48,286 3235 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Running ProB Command-line Interface
+2014-10-20 15:36:48,286 3235 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli -sf
+2014-10-20 15:36:49,116 4065 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to No file to process
+2014-10-20 15:36:49,116 4065 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Starting Socket Server
+2014-10-20 15:36:49,117 4066 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Application Path: /Users/ernestocid/.prob
+2014-10-20 15:36:49,117 4066 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Port: 65157
+2014-10-20 15:36:49,117 4066 [main] INFO  de.prob.cli.PortPattern Method:
+				setValue Line: 34 - Server has startet and listens on port 65157
+2014-10-20 15:36:49,117 4066 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli revision: 7fce3bad5e1e6d2f960d5db487b822a5c3a9072f
+2014-10-20 15:36:49,118 4067 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to user interrupt reference id: 5950
+2014-10-20 15:36:49,118 4067 [main] INFO  de.prob.cli.InterruptRefPattern Method:
+				setValue Line: 32 - Server can receive user interrupts via reference 5950
+2014-10-20 15:36:49,119 4068 [main] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 40 - Connecting to port 65157 using key 74f923ed06e03eb5
+2014-10-20 15:36:49,120 4069 [main] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 47 - Connected
+2014-10-20 15:36:49,121 4070 [Thread-2] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - -- starting command loop --
+2014-10-20 15:36:49,258 4207 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - set_eclipse_preference('SYMBOLIC',true),set_eclipse_preference('CSE_PRED',true),set_eclipse_preference('SYMMETRY_MODE',off),set_eclipse_preference('DEFAULT_SETSIZE','2'),set_eclipse_preference('KODKOD_ONLY_FULL',true),set_eclipse_preference('CSE_WD_ONLY',false),set_eclipse_preference('TIME_OUT','2500'),set_eclipse_preference('KODKOD',false),set_eclipse_preference('NUMBER_OF_ANIMATED_ABSTRACTIONS','20'),set_eclipse_preference('USE_RECORD_CONSTRUCTION',true),set_eclipse_preference('MEMO',false),set_eclipse_preference('MAX_OPERATIONS','10'),set_eclipse_preference('CSE',false),set_eclipse_preference('MAXINT','3'),set_eclipse_preference('ALLOW_INCOMPLETE_SETUP_CONSTANTS',false),set_eclipse_preference('MININT','-1'),set_eclipse_preference('STATIC_ORDERING',false),set_eclipse_preference('COMPRESSION',false),set_eclipse_preference('MAX_INITIALISATIONS','4'),set_eclipse_preference('TRY_FIND_ABORT',false),set_eclipse_preference('CLPFD',true),set_eclipse_preference('CHR',false),set_eclipse_preference('PROOF_INFO',true),set_eclipse_preference('SMT',false),load_classical_b_from_list_of_facts('/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch',[parser_version('2014-10-08 11:46:15.439'),classical_b('Simple',['/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch']),machine(abstract_machine(1,machine(2),machine_header(3,'Simple',[]),[variables(4,[identifier(5,xx),identifier(6,yy)]),invariant(7,conjunct(8,member(9,identifier(10,xx),interval(11,integer(12,0),integer(13,10))),member(14,identifier(15,yy),interval(16,integer(17,0),integer(18,10))))),initialisation(19,assign(20,[identifier(21,xx),identifier(22,yy)],[integer(23,2),integer(24,3)])),operations(25,[operation(26,identifier(26,'Either10'),[],[],select(27,disjunct(28,equal(29,identifier(30,xx),integer(31,10)),equal(32,identifier(33,yy),integer(34,10))),skip(35),[])),operation(36,identifier(36,'All10'),[],[],select(37,conjunct(38,equal(39,identifier(40,xx),integer(41,10)),equal(42,identifier(43,yy),integer(44,10))),skip(45),[])),operation(46,identifier(46,'BothEIther10or0'),[],[],select(47,disjunct(48,conjunct(49,equal(50,identifier(51,xx),integer(52,10)),equal(53,identifier(54,yy),integer(55,10))),conjunct(56,equal(57,identifier(58,xx),integer(59,0)),equal(60,identifier(61,yy),integer(62,0)))),skip(63),[]))])]))]),start_animation,true.
+
+2014-10-20 15:36:49,331 4280 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:49,331 4280 [Thread-2] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Connected: 127.0.0.1
+2014-10-20 15:36:49,332 4281 [Thread-2] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - loading_classical_b(parser_version(2014-10-08 11:46:15.439),Simple,[/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch])
+2014-10-20 15:36:49,357 4306 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:49,358 4307 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:49,361 4310 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_1,eval(identifier(none,xx),'#EXPRESSION',xx)),true.
+
+2014-10-20 15:36:49,363 4312 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:49,363 4312 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:49,363 4312 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:49,364 4313 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_2,eval(identifier(none,yy),'#EXPRESSION',yy)),true.
+
+2014-10-20 15:36:49,365 4314 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:49,365 4314 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:49,365 4314 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:49,366 4315 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_3,eval(member(none,identifier(none,xx),interval(none,integer(none,0),integer(none,10))),'#PREDICATE','xx:0..10')),true.
+
+2014-10-20 15:36:49,367 4316 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:49,367 4316 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:49,368 4317 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:49,368 4317 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_4,eval(member(none,identifier(none,yy),interval(none,integer(none,0),integer(none,10))),'#PREDICATE','yy:0..10')),true.
+
+2014-10-20 15:36:49,369 4318 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:49,369 4318 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:49,369 4318 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:49,387 4336 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(root,APLOps),evaluate_registered_formulas(root,[formula_3,formula_2,formula_4,formula_1],BResults),state_property(initialised,root,CPropResult),state_property(invariantKO,root,DPropResult),state_property(max_operations_reached,root,EPropResult),state_property(timeout_occurred,root,FPropResult),op_timeout_occurred(root,GTO),get_state_errors(root,HErrors),true.
+
+2014-10-20 15:36:49,440 4389 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps','.'(op(0,root,0),[])),'.'(=('BResults',[]),'.'(=('CPropResult',false),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-10-20 15:36:49,445 4394 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:49,446 4395 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:49,460 4409 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - prob2_execute_custom_operations(root,'$initialise_machine',equal(none,boolean_true(none),boolean_true(none)),1,NewStateID,Errors),true.
+
+2014-10-20 15:36:49,463 4412 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('NewStateID','.'(op(0,root,0),[])),'.'(=('Errors',[]),[])))
+2014-10-20 15:36:49,465 4414 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:49,466 4415 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:49,483 4432 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(0,APLOps),evaluate_registered_formulas(0,[formula_3,formula_2,formula_4,formula_1],BResults),state_property(initialised,0,CPropResult),state_property(invariantKO,0,DPropResult),state_property(max_operations_reached,0,EPropResult),state_property(timeout_occurred,0,FPropResult),op_timeout_occurred(0,GTO),get_state_errors(0,HErrors),true.
+
+2014-10-20 15:36:49,515 4464 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps',[]),'.'(=('BResults','.'(result('TRUE',[],'xx:0..10'),'.'(result(v('3',int(3)),[],yy),'.'(result('TRUE',[],'yy:0..10'),'.'(result(v('2',int(2)),[],xx),[]))))),'.'(=('CPropResult',true),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-10-20 15:36:49,515 4464 [Thread-2] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-10-20 15:36:49,516 4465 [Thread-2] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-10-20 15:36:49,516 4465 [Thread-2] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 3
+2014-10-20 15:36:49,516 4465 [Thread-2] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-10-20 15:36:49,516 4465 [Thread-2] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-10-20 15:36:49,516 4465 [Thread-2] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 2
+2014-10-20 15:36:49,537 4486 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:49,538 4487 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:49,548 4497 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - evaluate_formula(0,eval(exists(none,[identifier(none,yy),identifier(none,xx)],conjunct(none,conjunct(none,member(none,identifier(none,xx),interval(none,integer(none,0),integer(none,10))),member(none,identifier(none,yy),interval(none,integer(none,0),integer(none,10)))),disjunct(none,equal(none,identifier(none,xx),integer(none,10)),equal(none,identifier(none,yy),integer(none,10))))),'#PREDICATE','#yy,xx.(xx:0..10&yy:0..10&(xx=10 or yy=10))'),ARes),true.
+
+2014-10-20 15:36:49,593 4542 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('ARes',result('TRUE','.'(bind(yy,int(0),'0'),'.'(bind(xx,int(10),'10'),[])),'#yy,xx.(xx:0..10&yy:0..10&(xx=10 or yy=10))')),[]))
+2014-10-20 15:36:49,593 4542 [Thread-2] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Existentially Quantified Predicate over yy,xx is TRUE
+2014-10-20 15:36:49,593 4542 [Thread-2] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Solution: 
+2014-10-20 15:36:49,593 4542 [Thread-2] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 -        yy = 0 &
+2014-10-20 15:36:49,593 4542 [Thread-2] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 -        xx = 10
+2014-10-20 15:36:49,594 4543 [Thread-2] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 
+2014-10-20 15:36:49,596 4545 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:49,597 4546 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:49,602 4551 [main] INFO  de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 52 - Starting ProB's Prolog Core. Path is /Users/ernestocid/.prob/probcli.sh
+2014-10-20 15:36:49,607 4556 [main] DEBUG de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 54 - Cli started
+2014-10-20 15:36:49,609 4558 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Running ProB Command-line Interface
+2014-10-20 15:36:49,609 4558 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli -sf
+2014-10-20 15:36:50,466 5415 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to No file to process
+2014-10-20 15:36:50,466 5415 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Starting Socket Server
+2014-10-20 15:36:50,467 5416 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Application Path: /Users/ernestocid/.prob
+2014-10-20 15:36:50,467 5416 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Port: 65159
+2014-10-20 15:36:50,467 5416 [main] INFO  de.prob.cli.PortPattern Method:
+				setValue Line: 34 - Server has startet and listens on port 65159
+2014-10-20 15:36:50,467 5416 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli revision: 7fce3bad5e1e6d2f960d5db487b822a5c3a9072f
+2014-10-20 15:36:50,468 5417 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to user interrupt reference id: 5954
+2014-10-20 15:36:50,468 5417 [main] INFO  de.prob.cli.InterruptRefPattern Method:
+				setValue Line: 32 - Server can receive user interrupts via reference 5954
+2014-10-20 15:36:50,468 5417 [main] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 40 - Connecting to port 65159 using key 74f923ed06e03eb5
+2014-10-20 15:36:50,469 5418 [main] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 47 - Connected
+2014-10-20 15:36:50,472 5421 [Thread-4] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - -- starting command loop --
+2014-10-20 15:36:50,498 5447 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - set_eclipse_preference('SYMBOLIC',true),set_eclipse_preference('CSE_PRED',true),set_eclipse_preference('SYMMETRY_MODE',off),set_eclipse_preference('DEFAULT_SETSIZE','2'),set_eclipse_preference('KODKOD_ONLY_FULL',true),set_eclipse_preference('CSE_WD_ONLY',false),set_eclipse_preference('TIME_OUT','2500'),set_eclipse_preference('KODKOD',false),set_eclipse_preference('NUMBER_OF_ANIMATED_ABSTRACTIONS','20'),set_eclipse_preference('USE_RECORD_CONSTRUCTION',true),set_eclipse_preference('MEMO',false),set_eclipse_preference('MAX_OPERATIONS','10'),set_eclipse_preference('CSE',false),set_eclipse_preference('MAXINT','3'),set_eclipse_preference('ALLOW_INCOMPLETE_SETUP_CONSTANTS',false),set_eclipse_preference('MININT','-1'),set_eclipse_preference('STATIC_ORDERING',false),set_eclipse_preference('COMPRESSION',false),set_eclipse_preference('MAX_INITIALISATIONS','4'),set_eclipse_preference('TRY_FIND_ABORT',false),set_eclipse_preference('CLPFD',true),set_eclipse_preference('CHR',false),set_eclipse_preference('PROOF_INFO',true),set_eclipse_preference('SMT',false),load_classical_b_from_list_of_facts('/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch',[parser_version('2014-10-08 11:46:15.439'),classical_b('Simple',['/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch']),machine(abstract_machine(1,machine(2),machine_header(3,'Simple',[]),[variables(4,[identifier(5,xx),identifier(6,yy)]),invariant(7,conjunct(8,member(9,identifier(10,xx),interval(11,integer(12,0),integer(13,10))),member(14,identifier(15,yy),interval(16,integer(17,0),integer(18,10))))),initialisation(19,assign(20,[identifier(21,xx),identifier(22,yy)],[integer(23,2),integer(24,3)])),operations(25,[operation(26,identifier(26,'Either10'),[],[],select(27,disjunct(28,equal(29,identifier(30,xx),integer(31,10)),equal(32,identifier(33,yy),integer(34,10))),skip(35),[])),operation(36,identifier(36,'All10'),[],[],select(37,conjunct(38,equal(39,identifier(40,xx),integer(41,10)),equal(42,identifier(43,yy),integer(44,10))),skip(45),[])),operation(46,identifier(46,'BothEIther10or0'),[],[],select(47,disjunct(48,conjunct(49,equal(50,identifier(51,xx),integer(52,10)),equal(53,identifier(54,yy),integer(55,10))),conjunct(56,equal(57,identifier(58,xx),integer(59,0)),equal(60,identifier(61,yy),integer(62,0)))),skip(63),[]))])]))]),start_animation,true.
+
+2014-10-20 15:36:50,597 5546 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:50,597 5546 [Thread-4] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Connected: 127.0.0.1
+2014-10-20 15:36:50,598 5547 [Thread-4] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - loading_classical_b(parser_version(2014-10-08 11:46:15.439),Simple,[/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch])
+2014-10-20 15:36:50,598 5547 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:50,599 5548 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:50,600 5549 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_13,eval(identifier(none,xx),'#EXPRESSION',xx)),true.
+
+2014-10-20 15:36:50,602 5551 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:50,603 5552 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:50,603 5552 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:50,604 5553 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_14,eval(identifier(none,yy),'#EXPRESSION',yy)),true.
+
+2014-10-20 15:36:50,604 5553 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:50,604 5553 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:50,605 5554 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:50,605 5554 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_15,eval(member(none,identifier(none,xx),interval(none,integer(none,0),integer(none,10))),'#PREDICATE','xx:0..10')),true.
+
+2014-10-20 15:36:50,607 5556 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:50,607 5556 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:50,608 5557 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:50,609 5558 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_16,eval(member(none,identifier(none,yy),interval(none,integer(none,0),integer(none,10))),'#PREDICATE','yy:0..10')),true.
+
+2014-10-20 15:36:50,609 5558 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:50,610 5559 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:50,610 5559 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:50,611 5560 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(root,APLOps),evaluate_registered_formulas(root,[formula_15,formula_14,formula_16,formula_13],BResults),state_property(initialised,root,CPropResult),state_property(invariantKO,root,DPropResult),state_property(max_operations_reached,root,EPropResult),state_property(timeout_occurred,root,FPropResult),op_timeout_occurred(root,GTO),get_state_errors(root,HErrors),true.
+
+2014-10-20 15:36:50,658 5607 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps','.'(op(0,root,0),[])),'.'(=('BResults',[]),'.'(=('CPropResult',false),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-10-20 15:36:50,661 5610 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:50,662 5611 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:50,664 5613 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - prob2_execute_custom_operations(root,'$initialise_machine',equal(none,boolean_true(none),boolean_true(none)),1,NewStateID,Errors),true.
+
+2014-10-20 15:36:50,667 5616 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('NewStateID','.'(op(0,root,0),[])),'.'(=('Errors',[]),[])))
+2014-10-20 15:36:50,669 5618 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:50,669 5618 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:50,670 5619 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(0,APLOps),evaluate_registered_formulas(0,[formula_15,formula_14,formula_16,formula_13],BResults),state_property(initialised,0,CPropResult),state_property(invariantKO,0,DPropResult),state_property(max_operations_reached,0,EPropResult),state_property(timeout_occurred,0,FPropResult),op_timeout_occurred(0,GTO),get_state_errors(0,HErrors),true.
+
+2014-10-20 15:36:50,691 5640 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps',[]),'.'(=('BResults','.'(result('TRUE',[],'xx:0..10'),'.'(result(v('3',int(3)),[],yy),'.'(result('TRUE',[],'yy:0..10'),'.'(result(v('2',int(2)),[],xx),[]))))),'.'(=('CPropResult',true),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-10-20 15:36:50,691 5640 [Thread-4] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-10-20 15:36:50,692 5641 [Thread-4] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-10-20 15:36:50,692 5641 [Thread-4] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 3
+2014-10-20 15:36:50,692 5641 [Thread-4] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-10-20 15:36:50,692 5641 [Thread-4] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-10-20 15:36:50,692 5641 [Thread-4] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 2
+2014-10-20 15:36:50,695 5644 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:50,695 5644 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:50,701 5650 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - evaluate_formula(0,eval(exists(none,[identifier(none,yy),identifier(none,xx)],conjunct(none,conjunct(none,member(none,identifier(none,xx),interval(none,integer(none,0),integer(none,10))),member(none,identifier(none,yy),interval(none,integer(none,0),integer(none,10)))),negation(none,disjunct(none,equal(none,identifier(none,xx),integer(none,10)),equal(none,identifier(none,yy),integer(none,10)))))),'#PREDICATE','#yy,xx.(xx:0..10&yy:0..10&not(xx=10 or yy=10))'),ARes),true.
+
+2014-10-20 15:36:50,725 5674 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('ARes',result('TRUE','.'(bind(yy,int(0),'0'),'.'(bind(xx,int(0),'0'),[])),'#yy,xx.(xx:0..10&yy:0..10&not(xx=10 or yy=10))')),[]))
+2014-10-20 15:36:50,725 5674 [Thread-4] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Existentially Quantified Predicate over yy,xx is TRUE
+2014-10-20 15:36:50,725 5674 [Thread-4] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Solution: 
+2014-10-20 15:36:50,725 5674 [Thread-4] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 -        yy = 0 &
+2014-10-20 15:36:50,725 5674 [Thread-4] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 -        xx = 0
+2014-10-20 15:36:50,726 5675 [Thread-4] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 
+2014-10-20 15:36:50,727 5676 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:50,727 5676 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:50,733 5682 [main] INFO  de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 52 - Starting ProB's Prolog Core. Path is /Users/ernestocid/.prob/probcli.sh
+2014-10-20 15:36:50,742 5691 [main] DEBUG de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 54 - Cli started
+2014-10-20 15:36:50,743 5692 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Running ProB Command-line Interface
+2014-10-20 15:36:50,744 5693 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli -sf
+2014-10-20 15:36:51,468 6417 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to No file to process
+2014-10-20 15:36:51,469 6418 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Starting Socket Server
+2014-10-20 15:36:51,469 6418 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Application Path: /Users/ernestocid/.prob
+2014-10-20 15:36:51,469 6418 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Port: 65161
+2014-10-20 15:36:51,469 6418 [main] INFO  de.prob.cli.PortPattern Method:
+				setValue Line: 34 - Server has startet and listens on port 65161
+2014-10-20 15:36:51,469 6418 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli revision: 7fce3bad5e1e6d2f960d5db487b822a5c3a9072f
+2014-10-20 15:36:51,469 6418 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to user interrupt reference id: 5958
+2014-10-20 15:36:51,469 6418 [main] INFO  de.prob.cli.InterruptRefPattern Method:
+				setValue Line: 32 - Server can receive user interrupts via reference 5958
+2014-10-20 15:36:51,470 6419 [main] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 40 - Connecting to port 65161 using key 74f923ed06e03eb5
+2014-10-20 15:36:51,470 6419 [main] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 47 - Connected
+2014-10-20 15:36:51,471 6420 [Thread-6] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - -- starting command loop --
+2014-10-20 15:36:51,487 6436 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - set_eclipse_preference('SYMBOLIC',true),set_eclipse_preference('CSE_PRED',true),set_eclipse_preference('SYMMETRY_MODE',off),set_eclipse_preference('DEFAULT_SETSIZE','2'),set_eclipse_preference('KODKOD_ONLY_FULL',true),set_eclipse_preference('CSE_WD_ONLY',false),set_eclipse_preference('TIME_OUT','2500'),set_eclipse_preference('KODKOD',false),set_eclipse_preference('NUMBER_OF_ANIMATED_ABSTRACTIONS','20'),set_eclipse_preference('USE_RECORD_CONSTRUCTION',true),set_eclipse_preference('MEMO',false),set_eclipse_preference('MAX_OPERATIONS','10'),set_eclipse_preference('CSE',false),set_eclipse_preference('MAXINT','3'),set_eclipse_preference('ALLOW_INCOMPLETE_SETUP_CONSTANTS',false),set_eclipse_preference('MININT','-1'),set_eclipse_preference('STATIC_ORDERING',false),set_eclipse_preference('COMPRESSION',false),set_eclipse_preference('MAX_INITIALISATIONS','4'),set_eclipse_preference('TRY_FIND_ABORT',false),set_eclipse_preference('CLPFD',true),set_eclipse_preference('CHR',false),set_eclipse_preference('PROOF_INFO',true),set_eclipse_preference('SMT',false),load_classical_b_from_list_of_facts('/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch',[parser_version('2014-10-08 11:46:15.439'),classical_b('Simple',['/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch']),machine(abstract_machine(1,machine(2),machine_header(3,'Simple',[]),[variables(4,[identifier(5,xx),identifier(6,yy)]),invariant(7,conjunct(8,member(9,identifier(10,xx),interval(11,integer(12,0),integer(13,10))),member(14,identifier(15,yy),interval(16,integer(17,0),integer(18,10))))),initialisation(19,assign(20,[identifier(21,xx),identifier(22,yy)],[integer(23,2),integer(24,3)])),operations(25,[operation(26,identifier(26,'Either10'),[],[],select(27,disjunct(28,equal(29,identifier(30,xx),integer(31,10)),equal(32,identifier(33,yy),integer(34,10))),skip(35),[])),operation(36,identifier(36,'All10'),[],[],select(37,conjunct(38,equal(39,identifier(40,xx),integer(41,10)),equal(42,identifier(43,yy),integer(44,10))),skip(45),[])),operation(46,identifier(46,'BothEIther10or0'),[],[],select(47,disjunct(48,conjunct(49,equal(50,identifier(51,xx),integer(52,10)),equal(53,identifier(54,yy),integer(55,10))),conjunct(56,equal(57,identifier(58,xx),integer(59,0)),equal(60,identifier(61,yy),integer(62,0)))),skip(63),[]))])]))]),start_animation,true.
+
+2014-10-20 15:36:51,563 6512 [Thread-6] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Connected: 127.0.0.1
+2014-10-20 15:36:51,563 6512 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:51,563 6512 [Thread-6] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - loading_classical_b(parser_version(2014-10-08 11:46:15.439),Simple,[/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch])
+2014-10-20 15:36:51,564 6513 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:51,565 6514 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:51,566 6515 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_25,eval(identifier(none,xx),'#EXPRESSION',xx)),true.
+
+2014-10-20 15:36:51,568 6517 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:51,568 6517 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:51,568 6517 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:51,569 6518 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_26,eval(identifier(none,yy),'#EXPRESSION',yy)),true.
+
+2014-10-20 15:36:51,569 6518 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:51,569 6518 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:51,570 6519 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:51,570 6519 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_27,eval(member(none,identifier(none,xx),interval(none,integer(none,0),integer(none,10))),'#PREDICATE','xx:0..10')),true.
+
+2014-10-20 15:36:51,571 6520 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:51,572 6521 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:51,572 6521 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:51,573 6522 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_28,eval(member(none,identifier(none,yy),interval(none,integer(none,0),integer(none,10))),'#PREDICATE','yy:0..10')),true.
+
+2014-10-20 15:36:51,573 6522 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:51,573 6522 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:51,574 6523 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:51,574 6523 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(root,APLOps),evaluate_registered_formulas(root,[formula_27,formula_26,formula_28,formula_25],BResults),state_property(initialised,root,CPropResult),state_property(invariantKO,root,DPropResult),state_property(max_operations_reached,root,EPropResult),state_property(timeout_occurred,root,FPropResult),op_timeout_occurred(root,GTO),get_state_errors(root,HErrors),true.
+
+2014-10-20 15:36:51,612 6561 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps','.'(op(0,root,0),[])),'.'(=('BResults',[]),'.'(=('CPropResult',false),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-10-20 15:36:51,614 6563 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:51,614 6563 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:51,617 6566 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - prob2_execute_custom_operations(root,'$initialise_machine',equal(none,boolean_true(none),boolean_true(none)),1,NewStateID,Errors),true.
+
+2014-10-20 15:36:51,620 6569 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('NewStateID','.'(op(0,root,0),[])),'.'(=('Errors',[]),[])))
+2014-10-20 15:36:51,621 6570 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:51,622 6571 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:51,623 6572 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(0,APLOps),evaluate_registered_formulas(0,[formula_27,formula_26,formula_28,formula_25],BResults),state_property(initialised,0,CPropResult),state_property(invariantKO,0,DPropResult),state_property(max_operations_reached,0,EPropResult),state_property(timeout_occurred,0,FPropResult),op_timeout_occurred(0,GTO),get_state_errors(0,HErrors),true.
+
+2014-10-20 15:36:51,650 6599 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps',[]),'.'(=('BResults','.'(result('TRUE',[],'xx:0..10'),'.'(result(v('3',int(3)),[],yy),'.'(result('TRUE',[],'yy:0..10'),'.'(result(v('2',int(2)),[],xx),[]))))),'.'(=('CPropResult',true),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-10-20 15:36:51,651 6600 [Thread-6] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-10-20 15:36:51,651 6600 [Thread-6] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-10-20 15:36:51,651 6600 [Thread-6] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 3
+2014-10-20 15:36:51,651 6600 [Thread-6] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-10-20 15:36:51,651 6600 [Thread-6] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-10-20 15:36:51,651 6600 [Thread-6] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 2
+2014-10-20 15:36:51,655 6604 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:51,655 6604 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:51,660 6609 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - evaluate_formula(0,eval(exists(none,[identifier(none,yy),identifier(none,xx)],conjunct(none,conjunct(none,member(none,identifier(none,xx),interval(none,integer(none,0),integer(none,10))),member(none,identifier(none,yy),interval(none,integer(none,0),integer(none,10)))),negation(none,equal(none,identifier(none,yy),integer(none,10))))),'#PREDICATE','#yy,xx.(xx:0..10&yy:0..10&not(yy=10))'),ARes),true.
+
+2014-10-20 15:36:51,684 6633 [Thread-6] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Existentially Quantified Predicate over yy,xx is TRUE
+2014-10-20 15:36:51,684 6633 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('ARes',result('TRUE','.'(bind(yy,int(0),'0'),'.'(bind(xx,int(0),'0'),[])),'#yy,xx.(xx:0..10&yy:0..10&not(yy=10))')),[]))
+2014-10-20 15:36:51,684 6633 [Thread-6] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Solution: 
+2014-10-20 15:36:51,684 6633 [Thread-6] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 -        yy = 0 &
+2014-10-20 15:36:51,684 6633 [Thread-6] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 -        xx = 0
+2014-10-20 15:36:51,684 6633 [Thread-6] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 
+2014-10-20 15:36:51,685 6634 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:51,686 6635 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:51,690 6639 [main] INFO  de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 52 - Starting ProB's Prolog Core. Path is /Users/ernestocid/.prob/probcli.sh
+2014-10-20 15:36:51,694 6643 [main] DEBUG de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 54 - Cli started
+2014-10-20 15:36:51,695 6644 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Running ProB Command-line Interface
+2014-10-20 15:36:51,695 6644 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli -sf
+2014-10-20 15:36:52,391 7340 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to No file to process
+2014-10-20 15:36:52,391 7340 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Starting Socket Server
+2014-10-20 15:36:52,391 7340 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Application Path: /Users/ernestocid/.prob
+2014-10-20 15:36:52,391 7340 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Port: 65163
+2014-10-20 15:36:52,391 7340 [main] INFO  de.prob.cli.PortPattern Method:
+				setValue Line: 34 - Server has startet and listens on port 65163
+2014-10-20 15:36:52,392 7341 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli revision: 7fce3bad5e1e6d2f960d5db487b822a5c3a9072f
+2014-10-20 15:36:52,392 7341 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to user interrupt reference id: 5962
+2014-10-20 15:36:52,392 7341 [main] INFO  de.prob.cli.InterruptRefPattern Method:
+				setValue Line: 32 - Server can receive user interrupts via reference 5962
+2014-10-20 15:36:52,392 7341 [main] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 40 - Connecting to port 65163 using key 74f923ed06e03eb5
+2014-10-20 15:36:52,392 7341 [main] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 47 - Connected
+2014-10-20 15:36:52,393 7342 [Thread-8] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - -- starting command loop --
+2014-10-20 15:36:52,409 7358 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - set_eclipse_preference('SYMBOLIC',true),set_eclipse_preference('CSE_PRED',true),set_eclipse_preference('SYMMETRY_MODE',off),set_eclipse_preference('DEFAULT_SETSIZE','2'),set_eclipse_preference('KODKOD_ONLY_FULL',true),set_eclipse_preference('CSE_WD_ONLY',false),set_eclipse_preference('TIME_OUT','2500'),set_eclipse_preference('KODKOD',false),set_eclipse_preference('NUMBER_OF_ANIMATED_ABSTRACTIONS','20'),set_eclipse_preference('USE_RECORD_CONSTRUCTION',true),set_eclipse_preference('MEMO',false),set_eclipse_preference('MAX_OPERATIONS','10'),set_eclipse_preference('CSE',false),set_eclipse_preference('MAXINT','3'),set_eclipse_preference('ALLOW_INCOMPLETE_SETUP_CONSTANTS',false),set_eclipse_preference('MININT','-1'),set_eclipse_preference('STATIC_ORDERING',false),set_eclipse_preference('COMPRESSION',false),set_eclipse_preference('MAX_INITIALISATIONS','4'),set_eclipse_preference('TRY_FIND_ABORT',false),set_eclipse_preference('CLPFD',true),set_eclipse_preference('CHR',false),set_eclipse_preference('PROOF_INFO',true),set_eclipse_preference('SMT',false),load_classical_b_from_list_of_facts('/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch',[parser_version('2014-10-08 11:46:15.439'),classical_b('Simple',['/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch']),machine(abstract_machine(1,machine(2),machine_header(3,'Simple',[]),[variables(4,[identifier(5,xx),identifier(6,yy)]),invariant(7,conjunct(8,member(9,identifier(10,xx),interval(11,integer(12,0),integer(13,10))),member(14,identifier(15,yy),interval(16,integer(17,0),integer(18,10))))),initialisation(19,assign(20,[identifier(21,xx),identifier(22,yy)],[integer(23,2),integer(24,3)])),operations(25,[operation(26,identifier(26,'Either10'),[],[],select(27,disjunct(28,equal(29,identifier(30,xx),integer(31,10)),equal(32,identifier(33,yy),integer(34,10))),skip(35),[])),operation(36,identifier(36,'All10'),[],[],select(37,conjunct(38,equal(39,identifier(40,xx),integer(41,10)),equal(42,identifier(43,yy),integer(44,10))),skip(45),[])),operation(46,identifier(46,'BothEIther10or0'),[],[],select(47,disjunct(48,conjunct(49,equal(50,identifier(51,xx),integer(52,10)),equal(53,identifier(54,yy),integer(55,10))),conjunct(56,equal(57,identifier(58,xx),integer(59,0)),equal(60,identifier(61,yy),integer(62,0)))),skip(63),[]))])]))]),start_animation,true.
+
+2014-10-20 15:36:52,478 7427 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:52,478 7427 [Thread-8] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Connected: 127.0.0.1
+2014-10-20 15:36:52,478 7427 [Thread-8] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - loading_classical_b(parser_version(2014-10-08 11:46:15.439),Simple,[/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch])
+2014-10-20 15:36:52,478 7427 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:52,479 7428 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:52,479 7428 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_37,eval(identifier(none,xx),'#EXPRESSION',xx)),true.
+
+2014-10-20 15:36:52,481 7430 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:52,481 7430 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:52,481 7430 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:52,482 7431 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_38,eval(identifier(none,yy),'#EXPRESSION',yy)),true.
+
+2014-10-20 15:36:52,482 7431 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:52,482 7431 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:52,482 7431 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:52,483 7432 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_39,eval(member(none,identifier(none,xx),interval(none,integer(none,0),integer(none,10))),'#PREDICATE','xx:0..10')),true.
+
+2014-10-20 15:36:52,484 7433 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:52,484 7433 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:52,484 7433 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:52,485 7434 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_40,eval(member(none,identifier(none,yy),interval(none,integer(none,0),integer(none,10))),'#PREDICATE','yy:0..10')),true.
+
+2014-10-20 15:36:52,485 7434 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:52,486 7435 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:52,486 7435 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:52,486 7435 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(root,APLOps),evaluate_registered_formulas(root,[formula_39,formula_38,formula_40,formula_37],BResults),state_property(initialised,root,CPropResult),state_property(invariantKO,root,DPropResult),state_property(max_operations_reached,root,EPropResult),state_property(timeout_occurred,root,FPropResult),op_timeout_occurred(root,GTO),get_state_errors(root,HErrors),true.
+
+2014-10-20 15:36:52,520 7469 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps','.'(op(0,root,0),[])),'.'(=('BResults',[]),'.'(=('CPropResult',false),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-10-20 15:36:52,522 7471 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:52,522 7471 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:52,524 7473 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - prob2_execute_custom_operations(root,'$initialise_machine',equal(none,boolean_true(none),boolean_true(none)),1,NewStateID,Errors),true.
+
+2014-10-20 15:36:52,526 7475 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('NewStateID','.'(op(0,root,0),[])),'.'(=('Errors',[]),[])))
+2014-10-20 15:36:52,527 7476 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:52,527 7476 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:52,528 7477 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(0,APLOps),evaluate_registered_formulas(0,[formula_39,formula_38,formula_40,formula_37],BResults),state_property(initialised,0,CPropResult),state_property(invariantKO,0,DPropResult),state_property(max_operations_reached,0,EPropResult),state_property(timeout_occurred,0,FPropResult),op_timeout_occurred(0,GTO),get_state_errors(0,HErrors),true.
+
+2014-10-20 15:36:52,546 7495 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps',[]),'.'(=('BResults','.'(result('TRUE',[],'xx:0..10'),'.'(result(v('3',int(3)),[],yy),'.'(result('TRUE',[],'yy:0..10'),'.'(result(v('2',int(2)),[],xx),[]))))),'.'(=('CPropResult',true),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-10-20 15:36:52,546 7495 [Thread-8] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-10-20 15:36:52,546 7495 [Thread-8] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-10-20 15:36:52,546 7495 [Thread-8] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 3
+2014-10-20 15:36:52,546 7495 [Thread-8] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-10-20 15:36:52,546 7495 [Thread-8] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-10-20 15:36:52,547 7496 [Thread-8] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 2
+2014-10-20 15:36:52,548 7497 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:52,549 7498 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:52,551 7500 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - evaluate_formula(0,eval(exists(none,[identifier(none,yy),identifier(none,xx)],conjunct(none,conjunct(none,member(none,identifier(none,xx),interval(none,integer(none,0),integer(none,10))),member(none,identifier(none,yy),interval(none,integer(none,0),integer(none,10)))),equal(none,identifier(none,yy),integer(none,10)))),'#PREDICATE','#yy,xx.(xx:0..10&yy:0..10&yy=10)'),ARes),true.
+
+2014-10-20 15:36:52,565 7514 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('ARes',result('TRUE','.'(bind(yy,int(10),'10'),'.'(bind(xx,int(0),'0'),[])),'#yy,xx.(xx:0..10&yy:0..10&yy=10)')),[]))
+2014-10-20 15:36:52,565 7514 [Thread-8] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Existentially Quantified Predicate over yy,xx is TRUE
+2014-10-20 15:36:52,566 7515 [Thread-8] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Solution: 
+2014-10-20 15:36:52,566 7515 [Thread-8] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 -        yy = 10 &
+2014-10-20 15:36:52,566 7515 [Thread-8] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 -        xx = 0
+2014-10-20 15:36:52,566 7515 [Thread-8] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 
+2014-10-20 15:36:52,566 7515 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:52,567 7516 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:52,570 7519 [main] INFO  de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 52 - Starting ProB's Prolog Core. Path is /Users/ernestocid/.prob/probcli.sh
+2014-10-20 15:36:52,573 7522 [main] DEBUG de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 54 - Cli started
+2014-10-20 15:36:52,574 7523 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Running ProB Command-line Interface
+2014-10-20 15:36:52,575 7524 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli -sf
+2014-10-20 15:36:53,204 8153 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to No file to process
+2014-10-20 15:36:53,204 8153 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Starting Socket Server
+2014-10-20 15:36:53,205 8154 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Application Path: /Users/ernestocid/.prob
+2014-10-20 15:36:53,205 8154 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Port: 65165
+2014-10-20 15:36:53,205 8154 [main] INFO  de.prob.cli.PortPattern Method:
+				setValue Line: 34 - Server has startet and listens on port 65165
+2014-10-20 15:36:53,205 8154 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli revision: 7fce3bad5e1e6d2f960d5db487b822a5c3a9072f
+2014-10-20 15:36:53,205 8154 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to user interrupt reference id: 5966
+2014-10-20 15:36:53,205 8154 [main] INFO  de.prob.cli.InterruptRefPattern Method:
+				setValue Line: 32 - Server can receive user interrupts via reference 5966
+2014-10-20 15:36:53,206 8155 [main] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 40 - Connecting to port 65165 using key 74f923ed06e03eb5
+2014-10-20 15:36:53,206 8155 [main] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 47 - Connected
+2014-10-20 15:36:53,207 8156 [Thread-10] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - -- starting command loop --
+2014-10-20 15:36:53,223 8172 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - set_eclipse_preference('SYMBOLIC',true),set_eclipse_preference('CSE_PRED',true),set_eclipse_preference('SYMMETRY_MODE',off),set_eclipse_preference('DEFAULT_SETSIZE','2'),set_eclipse_preference('KODKOD_ONLY_FULL',true),set_eclipse_preference('CSE_WD_ONLY',false),set_eclipse_preference('TIME_OUT','2500'),set_eclipse_preference('KODKOD',false),set_eclipse_preference('NUMBER_OF_ANIMATED_ABSTRACTIONS','20'),set_eclipse_preference('USE_RECORD_CONSTRUCTION',true),set_eclipse_preference('MEMO',false),set_eclipse_preference('MAX_OPERATIONS','10'),set_eclipse_preference('CSE',false),set_eclipse_preference('MAXINT','3'),set_eclipse_preference('ALLOW_INCOMPLETE_SETUP_CONSTANTS',false),set_eclipse_preference('MININT','-1'),set_eclipse_preference('STATIC_ORDERING',false),set_eclipse_preference('COMPRESSION',false),set_eclipse_preference('MAX_INITIALISATIONS','4'),set_eclipse_preference('TRY_FIND_ABORT',false),set_eclipse_preference('CLPFD',true),set_eclipse_preference('CHR',false),set_eclipse_preference('PROOF_INFO',true),set_eclipse_preference('SMT',false),load_classical_b_from_list_of_facts('/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch',[parser_version('2014-10-08 11:46:15.439'),classical_b('Simple',['/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch']),machine(abstract_machine(1,machine(2),machine_header(3,'Simple',[]),[variables(4,[identifier(5,xx),identifier(6,yy)]),invariant(7,conjunct(8,member(9,identifier(10,xx),interval(11,integer(12,0),integer(13,10))),member(14,identifier(15,yy),interval(16,integer(17,0),integer(18,10))))),initialisation(19,assign(20,[identifier(21,xx),identifier(22,yy)],[integer(23,2),integer(24,3)])),operations(25,[operation(26,identifier(26,'Either10'),[],[],select(27,disjunct(28,equal(29,identifier(30,xx),integer(31,10)),equal(32,identifier(33,yy),integer(34,10))),skip(35),[])),operation(36,identifier(36,'All10'),[],[],select(37,conjunct(38,equal(39,identifier(40,xx),integer(41,10)),equal(42,identifier(43,yy),integer(44,10))),skip(45),[])),operation(46,identifier(46,'BothEIther10or0'),[],[],select(47,disjunct(48,conjunct(49,equal(50,identifier(51,xx),integer(52,10)),equal(53,identifier(54,yy),integer(55,10))),conjunct(56,equal(57,identifier(58,xx),integer(59,0)),equal(60,identifier(61,yy),integer(62,0)))),skip(63),[]))])]))]),start_animation,true.
+
+2014-10-20 15:36:53,291 8240 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:53,292 8241 [Thread-10] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Connected: 127.0.0.1
+2014-10-20 15:36:53,292 8241 [Thread-10] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - loading_classical_b(parser_version(2014-10-08 11:46:15.439),Simple,[/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch])
+2014-10-20 15:36:53,292 8241 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:53,293 8242 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:53,293 8242 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_49,eval(identifier(none,xx),'#EXPRESSION',xx)),true.
+
+2014-10-20 15:36:53,294 8243 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:53,295 8244 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:53,295 8244 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:53,295 8244 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_50,eval(identifier(none,yy),'#EXPRESSION',yy)),true.
+
+2014-10-20 15:36:53,296 8245 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:53,296 8245 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:53,296 8245 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:53,297 8246 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_51,eval(member(none,identifier(none,xx),interval(none,integer(none,0),integer(none,10))),'#PREDICATE','xx:0..10')),true.
+
+2014-10-20 15:36:53,298 8247 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:53,298 8247 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:53,299 8248 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:53,299 8248 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_52,eval(member(none,identifier(none,yy),interval(none,integer(none,0),integer(none,10))),'#PREDICATE','yy:0..10')),true.
+
+2014-10-20 15:36:53,300 8249 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:53,300 8249 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:53,300 8249 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:53,301 8250 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(root,APLOps),evaluate_registered_formulas(root,[formula_51,formula_50,formula_52,formula_49],BResults),state_property(initialised,root,CPropResult),state_property(invariantKO,root,DPropResult),state_property(max_operations_reached,root,EPropResult),state_property(timeout_occurred,root,FPropResult),op_timeout_occurred(root,GTO),get_state_errors(root,HErrors),true.
+
+2014-10-20 15:36:53,335 8284 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps','.'(op(0,root,0),[])),'.'(=('BResults',[]),'.'(=('CPropResult',false),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-10-20 15:36:53,336 8285 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:53,337 8286 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:53,338 8287 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - prob2_execute_custom_operations(root,'$initialise_machine',equal(none,boolean_true(none),boolean_true(none)),1,NewStateID,Errors),true.
+
+2014-10-20 15:36:53,340 8289 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('NewStateID','.'(op(0,root,0),[])),'.'(=('Errors',[]),[])))
+2014-10-20 15:36:53,340 8289 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:53,341 8290 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:53,341 8290 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(0,APLOps),evaluate_registered_formulas(0,[formula_51,formula_50,formula_52,formula_49],BResults),state_property(initialised,0,CPropResult),state_property(invariantKO,0,DPropResult),state_property(max_operations_reached,0,EPropResult),state_property(timeout_occurred,0,FPropResult),op_timeout_occurred(0,GTO),get_state_errors(0,HErrors),true.
+
+2014-10-20 15:36:53,360 8309 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps',[]),'.'(=('BResults','.'(result('TRUE',[],'xx:0..10'),'.'(result(v('3',int(3)),[],yy),'.'(result('TRUE',[],'yy:0..10'),'.'(result(v('2',int(2)),[],xx),[]))))),'.'(=('CPropResult',true),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-10-20 15:36:53,360 8309 [Thread-10] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-10-20 15:36:53,360 8309 [Thread-10] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-10-20 15:36:53,360 8309 [Thread-10] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 3
+2014-10-20 15:36:53,360 8309 [Thread-10] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-10-20 15:36:53,360 8309 [Thread-10] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-10-20 15:36:53,361 8310 [Thread-10] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 2
+2014-10-20 15:36:53,362 8311 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:53,363 8312 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:53,365 8314 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - evaluate_formula(0,eval(exists(none,[identifier(none,yy),identifier(none,xx)],conjunct(none,conjunct(none,member(none,identifier(none,xx),interval(none,integer(none,0),integer(none,10))),member(none,identifier(none,yy),interval(none,integer(none,0),integer(none,10)))),equal(none,identifier(none,xx),integer(none,10)))),'#PREDICATE','#yy,xx.(xx:0..10&yy:0..10&xx=10)'),ARes),true.
+
+2014-10-20 15:36:53,379 8328 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('ARes',result('TRUE','.'(bind(xx,int(10),'10'),'.'(bind(yy,int(0),'0'),[])),'#yy,xx.(xx:0..10&yy:0..10&xx=10)')),[]))
+2014-10-20 15:36:53,379 8328 [Thread-10] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Existentially Quantified Predicate over xx,yy is TRUE
+2014-10-20 15:36:53,379 8328 [Thread-10] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Solution: 
+2014-10-20 15:36:53,379 8328 [Thread-10] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 -        xx = 10 &
+2014-10-20 15:36:53,379 8328 [Thread-10] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 -        yy = 0
+2014-10-20 15:36:53,379 8328 [Thread-10] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 
+2014-10-20 15:36:53,380 8329 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:53,380 8329 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:53,384 8333 [main] INFO  de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 52 - Starting ProB's Prolog Core. Path is /Users/ernestocid/.prob/probcli.sh
+2014-10-20 15:36:53,388 8337 [main] DEBUG de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 54 - Cli started
+2014-10-20 15:36:53,389 8338 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Running ProB Command-line Interface
+2014-10-20 15:36:53,389 8338 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli -sf
+2014-10-20 15:36:54,030 8979 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to No file to process
+2014-10-20 15:36:54,031 8980 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Starting Socket Server
+2014-10-20 15:36:54,031 8980 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Application Path: /Users/ernestocid/.prob
+2014-10-20 15:36:54,031 8980 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Port: 65167
+2014-10-20 15:36:54,031 8980 [main] INFO  de.prob.cli.PortPattern Method:
+				setValue Line: 34 - Server has startet and listens on port 65167
+2014-10-20 15:36:54,031 8980 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli revision: 7fce3bad5e1e6d2f960d5db487b822a5c3a9072f
+2014-10-20 15:36:54,031 8980 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to user interrupt reference id: 5970
+2014-10-20 15:36:54,031 8980 [main] INFO  de.prob.cli.InterruptRefPattern Method:
+				setValue Line: 32 - Server can receive user interrupts via reference 5970
+2014-10-20 15:36:54,031 8980 [main] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 40 - Connecting to port 65167 using key 74f923ed06e03eb5
+2014-10-20 15:36:54,032 8981 [main] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 47 - Connected
+2014-10-20 15:36:54,033 8982 [Thread-12] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - -- starting command loop --
+2014-10-20 15:36:54,045 8994 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - set_eclipse_preference('SYMBOLIC',true),set_eclipse_preference('CSE_PRED',true),set_eclipse_preference('SYMMETRY_MODE',off),set_eclipse_preference('DEFAULT_SETSIZE','2'),set_eclipse_preference('KODKOD_ONLY_FULL',true),set_eclipse_preference('CSE_WD_ONLY',false),set_eclipse_preference('TIME_OUT','2500'),set_eclipse_preference('KODKOD',false),set_eclipse_preference('NUMBER_OF_ANIMATED_ABSTRACTIONS','20'),set_eclipse_preference('USE_RECORD_CONSTRUCTION',true),set_eclipse_preference('MEMO',false),set_eclipse_preference('MAX_OPERATIONS','10'),set_eclipse_preference('CSE',false),set_eclipse_preference('MAXINT','3'),set_eclipse_preference('ALLOW_INCOMPLETE_SETUP_CONSTANTS',false),set_eclipse_preference('MININT','-1'),set_eclipse_preference('STATIC_ORDERING',false),set_eclipse_preference('COMPRESSION',false),set_eclipse_preference('MAX_INITIALISATIONS','4'),set_eclipse_preference('TRY_FIND_ABORT',false),set_eclipse_preference('CLPFD',true),set_eclipse_preference('CHR',false),set_eclipse_preference('PROOF_INFO',true),set_eclipse_preference('SMT',false),load_classical_b_from_list_of_facts('/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch',[parser_version('2014-10-08 11:46:15.439'),classical_b('Simple',['/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch']),machine(abstract_machine(1,machine(2),machine_header(3,'Simple',[]),[variables(4,[identifier(5,xx),identifier(6,yy)]),invariant(7,conjunct(8,member(9,identifier(10,xx),interval(11,integer(12,0),integer(13,10))),member(14,identifier(15,yy),interval(16,integer(17,0),integer(18,10))))),initialisation(19,assign(20,[identifier(21,xx),identifier(22,yy)],[integer(23,2),integer(24,3)])),operations(25,[operation(26,identifier(26,'Either10'),[],[],select(27,disjunct(28,equal(29,identifier(30,xx),integer(31,10)),equal(32,identifier(33,yy),integer(34,10))),skip(35),[])),operation(36,identifier(36,'All10'),[],[],select(37,conjunct(38,equal(39,identifier(40,xx),integer(41,10)),equal(42,identifier(43,yy),integer(44,10))),skip(45),[])),operation(46,identifier(46,'BothEIther10or0'),[],[],select(47,disjunct(48,conjunct(49,equal(50,identifier(51,xx),integer(52,10)),equal(53,identifier(54,yy),integer(55,10))),conjunct(56,equal(57,identifier(58,xx),integer(59,0)),equal(60,identifier(61,yy),integer(62,0)))),skip(63),[]))])]))]),start_animation,true.
+
+2014-10-20 15:36:54,112 9061 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:54,112 9061 [Thread-12] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Connected: 127.0.0.1
+2014-10-20 15:36:54,112 9061 [Thread-12] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - loading_classical_b(parser_version(2014-10-08 11:46:15.439),Simple,[/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch])
+2014-10-20 15:36:54,112 9061 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:54,113 9062 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:54,114 9063 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_61,eval(identifier(none,xx),'#EXPRESSION',xx)),true.
+
+2014-10-20 15:36:54,115 9064 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:54,115 9064 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:54,116 9065 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:54,116 9065 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_62,eval(identifier(none,yy),'#EXPRESSION',yy)),true.
+
+2014-10-20 15:36:54,116 9065 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:54,117 9066 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:54,117 9066 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:54,118 9067 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_63,eval(member(none,identifier(none,xx),interval(none,integer(none,0),integer(none,10))),'#PREDICATE','xx:0..10')),true.
+
+2014-10-20 15:36:54,119 9068 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:54,119 9068 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:54,119 9068 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:54,120 9069 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_64,eval(member(none,identifier(none,yy),interval(none,integer(none,0),integer(none,10))),'#PREDICATE','yy:0..10')),true.
+
+2014-10-20 15:36:54,120 9069 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:54,121 9070 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:54,121 9070 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:54,122 9071 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(root,APLOps),evaluate_registered_formulas(root,[formula_63,formula_62,formula_64,formula_61],BResults),state_property(initialised,root,CPropResult),state_property(invariantKO,root,DPropResult),state_property(max_operations_reached,root,EPropResult),state_property(timeout_occurred,root,FPropResult),op_timeout_occurred(root,GTO),get_state_errors(root,HErrors),true.
+
+2014-10-20 15:36:54,155 9104 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps','.'(op(0,root,0),[])),'.'(=('BResults',[]),'.'(=('CPropResult',false),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-10-20 15:36:54,157 9106 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:54,157 9106 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:54,159 9108 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - prob2_execute_custom_operations(root,'$initialise_machine',equal(none,boolean_true(none),boolean_true(none)),1,NewStateID,Errors),true.
+
+2014-10-20 15:36:54,161 9110 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('NewStateID','.'(op(0,root,0),[])),'.'(=('Errors',[]),[])))
+2014-10-20 15:36:54,161 9110 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:54,162 9111 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:54,162 9111 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(0,APLOps),evaluate_registered_formulas(0,[formula_63,formula_62,formula_64,formula_61],BResults),state_property(initialised,0,CPropResult),state_property(invariantKO,0,DPropResult),state_property(max_operations_reached,0,EPropResult),state_property(timeout_occurred,0,FPropResult),op_timeout_occurred(0,GTO),get_state_errors(0,HErrors),true.
+
+2014-10-20 15:36:54,181 9130 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps',[]),'.'(=('BResults','.'(result('TRUE',[],'xx:0..10'),'.'(result(v('3',int(3)),[],yy),'.'(result('TRUE',[],'yy:0..10'),'.'(result(v('2',int(2)),[],xx),[]))))),'.'(=('CPropResult',true),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-10-20 15:36:54,181 9130 [Thread-12] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-10-20 15:36:54,181 9130 [Thread-12] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-10-20 15:36:54,181 9130 [Thread-12] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 3
+2014-10-20 15:36:54,181 9130 [Thread-12] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-10-20 15:36:54,181 9130 [Thread-12] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-10-20 15:36:54,181 9130 [Thread-12] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 2
+2014-10-20 15:36:54,183 9132 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:54,184 9133 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:54,186 9135 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - evaluate_formula(0,eval(exists(none,[identifier(none,yy),identifier(none,xx)],conjunct(none,conjunct(none,member(none,identifier(none,xx),interval(none,integer(none,0),integer(none,10))),member(none,identifier(none,yy),interval(none,integer(none,0),integer(none,10)))),negation(none,equal(none,identifier(none,xx),integer(none,10))))),'#PREDICATE','#yy,xx.(xx:0..10&yy:0..10&not(xx=10))'),ARes),true.
+
+2014-10-20 15:36:54,204 9153 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('ARes',result('TRUE','.'(bind(yy,int(0),'0'),'.'(bind(xx,int(0),'0'),[])),'#yy,xx.(xx:0..10&yy:0..10&not(xx=10))')),[]))
+2014-10-20 15:36:54,204 9153 [Thread-12] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Existentially Quantified Predicate over yy,xx is TRUE
+2014-10-20 15:36:54,204 9153 [Thread-12] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Solution: 
+2014-10-20 15:36:54,204 9153 [Thread-12] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 -        yy = 0 &
+2014-10-20 15:36:54,204 9153 [Thread-12] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 -        xx = 0
+2014-10-20 15:36:54,204 9153 [Thread-12] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 
+2014-10-20 15:36:54,205 9154 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:54,205 9154 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:54,253 9202 [main] INFO  de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 52 - Starting ProB's Prolog Core. Path is /Users/ernestocid/.prob/probcli.sh
+2014-10-20 15:36:54,258 9207 [main] DEBUG de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 54 - Cli started
+2014-10-20 15:36:54,262 9211 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Running ProB Command-line Interface
+2014-10-20 15:36:54,263 9212 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli -sf
+2014-10-20 15:36:54,932 9881 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to No file to process
+2014-10-20 15:36:54,932 9881 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Starting Socket Server
+2014-10-20 15:36:54,932 9881 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Application Path: /Users/ernestocid/.prob
+2014-10-20 15:36:54,933 9882 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Port: 65169
+2014-10-20 15:36:54,933 9882 [main] INFO  de.prob.cli.PortPattern Method:
+				setValue Line: 34 - Server has startet and listens on port 65169
+2014-10-20 15:36:54,933 9882 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli revision: 7fce3bad5e1e6d2f960d5db487b822a5c3a9072f
+2014-10-20 15:36:54,933 9882 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to user interrupt reference id: 5974
+2014-10-20 15:36:54,933 9882 [main] INFO  de.prob.cli.InterruptRefPattern Method:
+				setValue Line: 32 - Server can receive user interrupts via reference 5974
+2014-10-20 15:36:54,933 9882 [main] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 40 - Connecting to port 65169 using key 74f923ed06e03eb5
+2014-10-20 15:36:54,934 9883 [main] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 47 - Connected
+2014-10-20 15:36:54,935 9884 [Thread-14] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - -- starting command loop --
+2014-10-20 15:36:54,946 9895 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - set_eclipse_preference('SYMBOLIC',true),set_eclipse_preference('CSE_PRED',true),set_eclipse_preference('SYMMETRY_MODE',off),set_eclipse_preference('DEFAULT_SETSIZE','2'),set_eclipse_preference('KODKOD_ONLY_FULL',true),set_eclipse_preference('CSE_WD_ONLY',false),set_eclipse_preference('TIME_OUT','2500'),set_eclipse_preference('KODKOD',false),set_eclipse_preference('NUMBER_OF_ANIMATED_ABSTRACTIONS','20'),set_eclipse_preference('USE_RECORD_CONSTRUCTION',true),set_eclipse_preference('MEMO',false),set_eclipse_preference('MAX_OPERATIONS','10'),set_eclipse_preference('CSE',false),set_eclipse_preference('MAXINT','3'),set_eclipse_preference('ALLOW_INCOMPLETE_SETUP_CONSTANTS',false),set_eclipse_preference('MININT','-1'),set_eclipse_preference('STATIC_ORDERING',false),set_eclipse_preference('COMPRESSION',false),set_eclipse_preference('MAX_INITIALISATIONS','4'),set_eclipse_preference('TRY_FIND_ABORT',false),set_eclipse_preference('CLPFD',true),set_eclipse_preference('CHR',false),set_eclipse_preference('PROOF_INFO',true),set_eclipse_preference('SMT',false),load_classical_b_from_list_of_facts('/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch',[parser_version('2014-10-08 11:46:15.439'),classical_b('Simple',['/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch']),machine(abstract_machine(1,machine(2),machine_header(3,'Simple',[]),[variables(4,[identifier(5,xx),identifier(6,yy)]),invariant(7,conjunct(8,member(9,identifier(10,xx),interval(11,integer(12,0),integer(13,10))),member(14,identifier(15,yy),interval(16,integer(17,0),integer(18,10))))),initialisation(19,assign(20,[identifier(21,xx),identifier(22,yy)],[integer(23,2),integer(24,3)])),operations(25,[operation(26,identifier(26,'Either10'),[],[],select(27,disjunct(28,equal(29,identifier(30,xx),integer(31,10)),equal(32,identifier(33,yy),integer(34,10))),skip(35),[])),operation(36,identifier(36,'All10'),[],[],select(37,conjunct(38,equal(39,identifier(40,xx),integer(41,10)),equal(42,identifier(43,yy),integer(44,10))),skip(45),[])),operation(46,identifier(46,'BothEIther10or0'),[],[],select(47,disjunct(48,conjunct(49,equal(50,identifier(51,xx),integer(52,10)),equal(53,identifier(54,yy),integer(55,10))),conjunct(56,equal(57,identifier(58,xx),integer(59,0)),equal(60,identifier(61,yy),integer(62,0)))),skip(63),[]))])]))]),start_animation,true.
+
+2014-10-20 15:36:55,020 9969 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:55,020 9969 [Thread-14] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Connected: 127.0.0.1
+2014-10-20 15:36:55,021 9970 [Thread-14] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - loading_classical_b(parser_version(2014-10-08 11:46:15.439),Simple,[/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch])
+2014-10-20 15:36:55,021 9970 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:55,021 9970 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:55,022 9971 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_73,eval(identifier(none,xx),'#EXPRESSION',xx)),true.
+
+2014-10-20 15:36:55,023 9972 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:55,024 9973 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:55,024 9973 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:55,024 9973 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_74,eval(identifier(none,yy),'#EXPRESSION',yy)),true.
+
+2014-10-20 15:36:55,025 9974 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:55,025 9974 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:55,025 9974 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:55,026 9975 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_75,eval(member(none,identifier(none,xx),interval(none,integer(none,0),integer(none,10))),'#PREDICATE','xx:0..10')),true.
+
+2014-10-20 15:36:55,027 9976 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:55,027 9976 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:55,027 9976 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:55,028 9977 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_76,eval(member(none,identifier(none,yy),interval(none,integer(none,0),integer(none,10))),'#PREDICATE','yy:0..10')),true.
+
+2014-10-20 15:36:55,028 9977 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:55,029 9978 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:55,029 9978 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:55,030 9979 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(root,APLOps),evaluate_registered_formulas(root,[formula_75,formula_74,formula_76,formula_73],BResults),state_property(initialised,root,CPropResult),state_property(invariantKO,root,DPropResult),state_property(max_operations_reached,root,EPropResult),state_property(timeout_occurred,root,FPropResult),op_timeout_occurred(root,GTO),get_state_errors(root,HErrors),true.
+
+2014-10-20 15:36:55,062 10011 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps','.'(op(0,root,0),[])),'.'(=('BResults',[]),'.'(=('CPropResult',false),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-10-20 15:36:55,064 10013 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:55,064 10013 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:55,065 10014 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - prob2_execute_custom_operations(root,'$initialise_machine',equal(none,boolean_true(none),boolean_true(none)),1,NewStateID,Errors),true.
+
+2014-10-20 15:36:55,067 10016 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('NewStateID','.'(op(0,root,0),[])),'.'(=('Errors',[]),[])))
+2014-10-20 15:36:55,067 10016 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:55,068 10017 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:55,069 10018 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(0,APLOps),evaluate_registered_formulas(0,[formula_75,formula_74,formula_76,formula_73],BResults),state_property(initialised,0,CPropResult),state_property(invariantKO,0,DPropResult),state_property(max_operations_reached,0,EPropResult),state_property(timeout_occurred,0,FPropResult),op_timeout_occurred(0,GTO),get_state_errors(0,HErrors),true.
+
+2014-10-20 15:36:55,087 10036 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps',[]),'.'(=('BResults','.'(result('TRUE',[],'xx:0..10'),'.'(result(v('3',int(3)),[],yy),'.'(result('TRUE',[],'yy:0..10'),'.'(result(v('2',int(2)),[],xx),[]))))),'.'(=('CPropResult',true),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-10-20 15:36:55,087 10036 [Thread-14] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-10-20 15:36:55,087 10036 [Thread-14] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-10-20 15:36:55,087 10036 [Thread-14] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 3
+2014-10-20 15:36:55,087 10036 [Thread-14] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-10-20 15:36:55,088 10037 [Thread-14] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-10-20 15:36:55,088 10037 [Thread-14] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 2
+2014-10-20 15:36:55,089 10038 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:55,089 10038 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:55,092 10041 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - evaluate_formula(0,eval(exists(none,[identifier(none,yy),identifier(none,xx)],conjunct(none,conjunct(none,member(none,identifier(none,xx),interval(none,integer(none,0),integer(none,10))),member(none,identifier(none,yy),interval(none,integer(none,0),integer(none,10)))),conjunct(none,negation(none,equal(none,identifier(none,xx),integer(none,10))),negation(none,equal(none,identifier(none,yy),integer(none,10)))))),'#PREDICATE','#yy,xx.(xx:0..10&yy:0..10&(not(xx=10)&not(yy=10)))'),ARes),true.
+
+2014-10-20 15:36:55,109 10058 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('ARes',result('TRUE','.'(bind(yy,int(0),'0'),'.'(bind(xx,int(0),'0'),[])),'#yy,xx.(xx:0..10&yy:0..10&(not(xx=10)&not(yy=10)))')),[]))
+2014-10-20 15:36:55,109 10058 [Thread-14] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Existentially Quantified Predicate over yy,xx is TRUE
+2014-10-20 15:36:55,110 10059 [Thread-14] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Solution: 
+2014-10-20 15:36:55,110 10059 [Thread-14] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 -        yy = 0 &
+2014-10-20 15:36:55,110 10059 [Thread-14] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 -        xx = 0
+2014-10-20 15:36:55,110 10059 [Thread-14] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 
+2014-10-20 15:36:55,110 10059 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:55,111 10060 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:55,114 10063 [main] INFO  de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 52 - Starting ProB's Prolog Core. Path is /Users/ernestocid/.prob/probcli.sh
+2014-10-20 15:36:55,117 10066 [main] DEBUG de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 54 - Cli started
+2014-10-20 15:36:55,119 10068 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Running ProB Command-line Interface
+2014-10-20 15:36:55,119 10068 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli -sf
+2014-10-20 15:36:55,783 10732 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to No file to process
+2014-10-20 15:36:55,783 10732 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Starting Socket Server
+2014-10-20 15:36:55,783 10732 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Application Path: /Users/ernestocid/.prob
+2014-10-20 15:36:55,783 10732 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Port: 65171
+2014-10-20 15:36:55,784 10733 [main] INFO  de.prob.cli.PortPattern Method:
+				setValue Line: 34 - Server has startet and listens on port 65171
+2014-10-20 15:36:55,784 10733 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli revision: 7fce3bad5e1e6d2f960d5db487b822a5c3a9072f
+2014-10-20 15:36:55,784 10733 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to user interrupt reference id: 5978
+2014-10-20 15:36:55,784 10733 [main] INFO  de.prob.cli.InterruptRefPattern Method:
+				setValue Line: 32 - Server can receive user interrupts via reference 5978
+2014-10-20 15:36:55,784 10733 [main] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 40 - Connecting to port 65171 using key 74f923ed06e03eb5
+2014-10-20 15:36:55,785 10734 [main] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 47 - Connected
+2014-10-20 15:36:55,786 10735 [Thread-16] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - -- starting command loop --
+2014-10-20 15:36:55,798 10747 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - set_eclipse_preference('SYMBOLIC',true),set_eclipse_preference('CSE_PRED',true),set_eclipse_preference('SYMMETRY_MODE',off),set_eclipse_preference('DEFAULT_SETSIZE','2'),set_eclipse_preference('KODKOD_ONLY_FULL',true),set_eclipse_preference('CSE_WD_ONLY',false),set_eclipse_preference('TIME_OUT','2500'),set_eclipse_preference('KODKOD',false),set_eclipse_preference('NUMBER_OF_ANIMATED_ABSTRACTIONS','20'),set_eclipse_preference('USE_RECORD_CONSTRUCTION',true),set_eclipse_preference('MEMO',false),set_eclipse_preference('MAX_OPERATIONS','10'),set_eclipse_preference('CSE',false),set_eclipse_preference('MAXINT','3'),set_eclipse_preference('ALLOW_INCOMPLETE_SETUP_CONSTANTS',false),set_eclipse_preference('MININT','-1'),set_eclipse_preference('STATIC_ORDERING',false),set_eclipse_preference('COMPRESSION',false),set_eclipse_preference('MAX_INITIALISATIONS','4'),set_eclipse_preference('TRY_FIND_ABORT',false),set_eclipse_preference('CLPFD',true),set_eclipse_preference('CHR',false),set_eclipse_preference('PROOF_INFO',true),set_eclipse_preference('SMT',false),load_classical_b_from_list_of_facts('/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch',[parser_version('2014-10-08 11:46:15.439'),classical_b('Simple',['/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch']),machine(abstract_machine(1,machine(2),machine_header(3,'Simple',[]),[variables(4,[identifier(5,xx),identifier(6,yy)]),invariant(7,conjunct(8,member(9,identifier(10,xx),interval(11,integer(12,0),integer(13,10))),member(14,identifier(15,yy),interval(16,integer(17,0),integer(18,10))))),initialisation(19,assign(20,[identifier(21,xx),identifier(22,yy)],[integer(23,2),integer(24,3)])),operations(25,[operation(26,identifier(26,'Either10'),[],[],select(27,disjunct(28,equal(29,identifier(30,xx),integer(31,10)),equal(32,identifier(33,yy),integer(34,10))),skip(35),[])),operation(36,identifier(36,'All10'),[],[],select(37,conjunct(38,equal(39,identifier(40,xx),integer(41,10)),equal(42,identifier(43,yy),integer(44,10))),skip(45),[])),operation(46,identifier(46,'BothEIther10or0'),[],[],select(47,disjunct(48,conjunct(49,equal(50,identifier(51,xx),integer(52,10)),equal(53,identifier(54,yy),integer(55,10))),conjunct(56,equal(57,identifier(58,xx),integer(59,0)),equal(60,identifier(61,yy),integer(62,0)))),skip(63),[]))])]))]),start_animation,true.
+
+2014-10-20 15:36:55,915 10864 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:55,915 10864 [Thread-16] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Connected: 127.0.0.1
+2014-10-20 15:36:55,915 10864 [Thread-16] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - loading_classical_b(parser_version(2014-10-08 11:46:15.439),Simple,[/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch])
+2014-10-20 15:36:55,916 10865 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:55,917 10866 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:55,917 10866 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_85,eval(identifier(none,xx),'#EXPRESSION',xx)),true.
+
+2014-10-20 15:36:55,919 10868 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:55,919 10868 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:55,920 10869 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:55,920 10869 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_86,eval(identifier(none,yy),'#EXPRESSION',yy)),true.
+
+2014-10-20 15:36:55,921 10870 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:55,921 10870 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:55,921 10870 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:55,922 10871 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_87,eval(member(none,identifier(none,xx),interval(none,integer(none,0),integer(none,10))),'#PREDICATE','xx:0..10')),true.
+
+2014-10-20 15:36:55,923 10872 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:55,924 10873 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:55,924 10873 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:55,925 10874 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_88,eval(member(none,identifier(none,yy),interval(none,integer(none,0),integer(none,10))),'#PREDICATE','yy:0..10')),true.
+
+2014-10-20 15:36:55,925 10874 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:55,925 10874 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:55,926 10875 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:55,926 10875 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(root,APLOps),evaluate_registered_formulas(root,[formula_87,formula_86,formula_88,formula_85],BResults),state_property(initialised,root,CPropResult),state_property(invariantKO,root,DPropResult),state_property(max_operations_reached,root,EPropResult),state_property(timeout_occurred,root,FPropResult),op_timeout_occurred(root,GTO),get_state_errors(root,HErrors),true.
+
+2014-10-20 15:36:55,983 10932 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps','.'(op(0,root,0),[])),'.'(=('BResults',[]),'.'(=('CPropResult',false),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-10-20 15:36:55,985 10934 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:55,985 10934 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:55,987 10936 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - prob2_execute_custom_operations(root,'$initialise_machine',equal(none,boolean_true(none),boolean_true(none)),1,NewStateID,Errors),true.
+
+2014-10-20 15:36:55,989 10938 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('NewStateID','.'(op(0,root,0),[])),'.'(=('Errors',[]),[])))
+2014-10-20 15:36:55,989 10938 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:55,990 10939 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:55,990 10939 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(0,APLOps),evaluate_registered_formulas(0,[formula_87,formula_86,formula_88,formula_85],BResults),state_property(initialised,0,CPropResult),state_property(invariantKO,0,DPropResult),state_property(max_operations_reached,0,EPropResult),state_property(timeout_occurred,0,FPropResult),op_timeout_occurred(0,GTO),get_state_errors(0,HErrors),true.
+
+2014-10-20 15:36:56,016 10965 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps',[]),'.'(=('BResults','.'(result('TRUE',[],'xx:0..10'),'.'(result(v('3',int(3)),[],yy),'.'(result('TRUE',[],'yy:0..10'),'.'(result(v('2',int(2)),[],xx),[]))))),'.'(=('CPropResult',true),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-10-20 15:36:56,016 10965 [Thread-16] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-10-20 15:36:56,017 10966 [Thread-16] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-10-20 15:36:56,017 10966 [Thread-16] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 3
+2014-10-20 15:36:56,017 10966 [Thread-16] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-10-20 15:36:56,017 10966 [Thread-16] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-10-20 15:36:56,017 10966 [Thread-16] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 2
+2014-10-20 15:36:56,020 10969 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:56,020 10969 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:56,026 10975 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - evaluate_formula(0,eval(exists(none,[identifier(none,yy),identifier(none,xx)],conjunct(none,conjunct(none,member(none,identifier(none,xx),interval(none,integer(none,0),integer(none,10))),member(none,identifier(none,yy),interval(none,integer(none,0),integer(none,10)))),conjunct(none,negation(none,equal(none,identifier(none,xx),integer(none,10))),equal(none,identifier(none,yy),integer(none,10))))),'#PREDICATE','#yy,xx.(xx:0..10&yy:0..10&(not(xx=10)&yy=10))'),ARes),true.
+
+2014-10-20 15:36:56,058 11007 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('ARes',result('TRUE','.'(bind(yy,int(10),'10'),'.'(bind(xx,int(0),'0'),[])),'#yy,xx.(xx:0..10&yy:0..10&(not(xx=10)&yy=10))')),[]))
+2014-10-20 15:36:56,058 11007 [Thread-16] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Existentially Quantified Predicate over yy,xx is TRUE
+2014-10-20 15:36:56,058 11007 [Thread-16] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Solution: 
+2014-10-20 15:36:56,058 11007 [Thread-16] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 -        yy = 10 &
+2014-10-20 15:36:56,058 11007 [Thread-16] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 -        xx = 0
+2014-10-20 15:36:56,059 11008 [Thread-16] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 
+2014-10-20 15:36:56,059 11008 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:56,059 11008 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:56,064 11013 [main] INFO  de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 52 - Starting ProB's Prolog Core. Path is /Users/ernestocid/.prob/probcli.sh
+2014-10-20 15:36:56,068 11017 [main] DEBUG de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 54 - Cli started
+2014-10-20 15:36:56,069 11018 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Running ProB Command-line Interface
+2014-10-20 15:36:56,070 11019 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli -sf
+2014-10-20 15:36:56,863 11812 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to No file to process
+2014-10-20 15:36:56,863 11812 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Starting Socket Server
+2014-10-20 15:36:56,863 11812 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Application Path: /Users/ernestocid/.prob
+2014-10-20 15:36:56,863 11812 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Port: 65173
+2014-10-20 15:36:56,864 11813 [main] INFO  de.prob.cli.PortPattern Method:
+				setValue Line: 34 - Server has startet and listens on port 65173
+2014-10-20 15:36:56,864 11813 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli revision: 7fce3bad5e1e6d2f960d5db487b822a5c3a9072f
+2014-10-20 15:36:56,864 11813 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to user interrupt reference id: 5982
+2014-10-20 15:36:56,864 11813 [main] INFO  de.prob.cli.InterruptRefPattern Method:
+				setValue Line: 32 - Server can receive user interrupts via reference 5982
+2014-10-20 15:36:56,864 11813 [main] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 40 - Connecting to port 65173 using key 74f923ed06e03eb5
+2014-10-20 15:36:56,864 11813 [main] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 47 - Connected
+2014-10-20 15:36:56,866 11815 [Thread-18] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - -- starting command loop --
+2014-10-20 15:36:56,877 11826 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - set_eclipse_preference('SYMBOLIC',true),set_eclipse_preference('CSE_PRED',true),set_eclipse_preference('SYMMETRY_MODE',off),set_eclipse_preference('DEFAULT_SETSIZE','2'),set_eclipse_preference('KODKOD_ONLY_FULL',true),set_eclipse_preference('CSE_WD_ONLY',false),set_eclipse_preference('TIME_OUT','2500'),set_eclipse_preference('KODKOD',false),set_eclipse_preference('NUMBER_OF_ANIMATED_ABSTRACTIONS','20'),set_eclipse_preference('USE_RECORD_CONSTRUCTION',true),set_eclipse_preference('MEMO',false),set_eclipse_preference('MAX_OPERATIONS','10'),set_eclipse_preference('CSE',false),set_eclipse_preference('MAXINT','3'),set_eclipse_preference('ALLOW_INCOMPLETE_SETUP_CONSTANTS',false),set_eclipse_preference('MININT','-1'),set_eclipse_preference('STATIC_ORDERING',false),set_eclipse_preference('COMPRESSION',false),set_eclipse_preference('MAX_INITIALISATIONS','4'),set_eclipse_preference('TRY_FIND_ABORT',false),set_eclipse_preference('CLPFD',true),set_eclipse_preference('CHR',false),set_eclipse_preference('PROOF_INFO',true),set_eclipse_preference('SMT',false),load_classical_b_from_list_of_facts('/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch',[parser_version('2014-10-08 11:46:15.439'),classical_b('Simple',['/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch']),machine(abstract_machine(1,machine(2),machine_header(3,'Simple',[]),[variables(4,[identifier(5,xx),identifier(6,yy)]),invariant(7,conjunct(8,member(9,identifier(10,xx),interval(11,integer(12,0),integer(13,10))),member(14,identifier(15,yy),interval(16,integer(17,0),integer(18,10))))),initialisation(19,assign(20,[identifier(21,xx),identifier(22,yy)],[integer(23,2),integer(24,3)])),operations(25,[operation(26,identifier(26,'Either10'),[],[],select(27,disjunct(28,equal(29,identifier(30,xx),integer(31,10)),equal(32,identifier(33,yy),integer(34,10))),skip(35),[])),operation(36,identifier(36,'All10'),[],[],select(37,conjunct(38,equal(39,identifier(40,xx),integer(41,10)),equal(42,identifier(43,yy),integer(44,10))),skip(45),[])),operation(46,identifier(46,'BothEIther10or0'),[],[],select(47,disjunct(48,conjunct(49,equal(50,identifier(51,xx),integer(52,10)),equal(53,identifier(54,yy),integer(55,10))),conjunct(56,equal(57,identifier(58,xx),integer(59,0)),equal(60,identifier(61,yy),integer(62,0)))),skip(63),[]))])]))]),start_animation,true.
+
+2014-10-20 15:36:56,942 11891 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:56,942 11891 [Thread-18] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Connected: 127.0.0.1
+2014-10-20 15:36:56,943 11892 [Thread-18] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - loading_classical_b(parser_version(2014-10-08 11:46:15.439),Simple,[/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch])
+2014-10-20 15:36:56,943 11892 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:56,943 11892 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:56,944 11893 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_97,eval(identifier(none,xx),'#EXPRESSION',xx)),true.
+
+2014-10-20 15:36:56,946 11895 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:56,946 11895 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:56,946 11895 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:56,947 11896 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_98,eval(identifier(none,yy),'#EXPRESSION',yy)),true.
+
+2014-10-20 15:36:56,947 11896 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:56,947 11896 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:56,948 11897 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:56,948 11897 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_99,eval(member(none,identifier(none,xx),interval(none,integer(none,0),integer(none,10))),'#PREDICATE','xx:0..10')),true.
+
+2014-10-20 15:36:56,949 11898 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:56,949 11898 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:56,950 11899 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:56,950 11899 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_100,eval(member(none,identifier(none,yy),interval(none,integer(none,0),integer(none,10))),'#PREDICATE','yy:0..10')),true.
+
+2014-10-20 15:36:56,951 11900 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:56,951 11900 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:56,951 11900 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:56,952 11901 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(root,APLOps),evaluate_registered_formulas(root,[formula_99,formula_98,formula_100,formula_97],BResults),state_property(initialised,root,CPropResult),state_property(invariantKO,root,DPropResult),state_property(max_operations_reached,root,EPropResult),state_property(timeout_occurred,root,FPropResult),op_timeout_occurred(root,GTO),get_state_errors(root,HErrors),true.
+
+2014-10-20 15:36:56,984 11933 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps','.'(op(0,root,0),[])),'.'(=('BResults',[]),'.'(=('CPropResult',false),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-10-20 15:36:56,986 11935 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:56,986 11935 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:56,987 11936 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - prob2_execute_custom_operations(root,'$initialise_machine',equal(none,boolean_true(none),boolean_true(none)),1,NewStateID,Errors),true.
+
+2014-10-20 15:36:56,989 11938 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('NewStateID','.'(op(0,root,0),[])),'.'(=('Errors',[]),[])))
+2014-10-20 15:36:56,989 11938 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:56,990 11939 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:56,990 11939 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(0,APLOps),evaluate_registered_formulas(0,[formula_99,formula_98,formula_100,formula_97],BResults),state_property(initialised,0,CPropResult),state_property(invariantKO,0,DPropResult),state_property(max_operations_reached,0,EPropResult),state_property(timeout_occurred,0,FPropResult),op_timeout_occurred(0,GTO),get_state_errors(0,HErrors),true.
+
+2014-10-20 15:36:57,009 11958 [Thread-18] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-10-20 15:36:57,009 11958 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps',[]),'.'(=('BResults','.'(result('TRUE',[],'xx:0..10'),'.'(result(v('3',int(3)),[],yy),'.'(result('TRUE',[],'yy:0..10'),'.'(result(v('2',int(2)),[],xx),[]))))),'.'(=('CPropResult',true),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-10-20 15:36:57,009 11958 [Thread-18] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-10-20 15:36:57,009 11958 [Thread-18] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 3
+2014-10-20 15:36:57,009 11958 [Thread-18] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-10-20 15:36:57,010 11959 [Thread-18] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-10-20 15:36:57,010 11959 [Thread-18] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 2
+2014-10-20 15:36:57,011 11960 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:57,012 11961 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:57,014 11963 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - evaluate_formula(0,eval(exists(none,[identifier(none,yy),identifier(none,xx)],conjunct(none,conjunct(none,member(none,identifier(none,xx),interval(none,integer(none,0),integer(none,10))),member(none,identifier(none,yy),interval(none,integer(none,0),integer(none,10)))),conjunct(none,equal(none,identifier(none,xx),integer(none,10)),negation(none,equal(none,identifier(none,yy),integer(none,10)))))),'#PREDICATE','#yy,xx.(xx:0..10&yy:0..10&(xx=10&not(yy=10)))'),ARes),true.
+
+2014-10-20 15:36:57,036 11985 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('ARes',result('TRUE','.'(bind(xx,int(10),'10'),'.'(bind(yy,int(0),'0'),[])),'#yy,xx.(xx:0..10&yy:0..10&(xx=10&not(yy=10)))')),[]))
+2014-10-20 15:36:57,036 11985 [Thread-18] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Existentially Quantified Predicate over xx,yy is TRUE
+2014-10-20 15:36:57,036 11985 [Thread-18] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Solution: 
+2014-10-20 15:36:57,036 11985 [Thread-18] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 -        xx = 10 &
+2014-10-20 15:36:57,036 11985 [Thread-18] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 -        yy = 0
+2014-10-20 15:36:57,036 11985 [Thread-18] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 
+2014-10-20 15:36:57,037 11986 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:57,037 11986 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:57,041 11990 [main] INFO  de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 52 - Starting ProB's Prolog Core. Path is /Users/ernestocid/.prob/probcli.sh
+2014-10-20 15:36:57,051 12000 [main] DEBUG de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 54 - Cli started
+2014-10-20 15:36:57,052 12001 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Running ProB Command-line Interface
+2014-10-20 15:36:57,052 12001 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli -sf
+2014-10-20 15:36:57,801 12750 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to No file to process
+2014-10-20 15:36:57,801 12750 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Starting Socket Server
+2014-10-20 15:36:57,802 12751 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Application Path: /Users/ernestocid/.prob
+2014-10-20 15:36:57,802 12751 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Port: 65175
+2014-10-20 15:36:57,802 12751 [main] INFO  de.prob.cli.PortPattern Method:
+				setValue Line: 34 - Server has startet and listens on port 65175
+2014-10-20 15:36:57,802 12751 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli revision: 7fce3bad5e1e6d2f960d5db487b822a5c3a9072f
+2014-10-20 15:36:57,802 12751 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to user interrupt reference id: 5986
+2014-10-20 15:36:57,802 12751 [main] INFO  de.prob.cli.InterruptRefPattern Method:
+				setValue Line: 32 - Server can receive user interrupts via reference 5986
+2014-10-20 15:36:57,802 12751 [main] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 40 - Connecting to port 65175 using key 74f923ed06e03eb5
+2014-10-20 15:36:57,803 12752 [main] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 47 - Connected
+2014-10-20 15:36:57,804 12753 [Thread-20] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - -- starting command loop --
+2014-10-20 15:36:57,815 12764 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - set_eclipse_preference('SYMBOLIC',true),set_eclipse_preference('CSE_PRED',true),set_eclipse_preference('SYMMETRY_MODE',off),set_eclipse_preference('DEFAULT_SETSIZE','2'),set_eclipse_preference('KODKOD_ONLY_FULL',true),set_eclipse_preference('CSE_WD_ONLY',false),set_eclipse_preference('TIME_OUT','2500'),set_eclipse_preference('KODKOD',false),set_eclipse_preference('NUMBER_OF_ANIMATED_ABSTRACTIONS','20'),set_eclipse_preference('USE_RECORD_CONSTRUCTION',true),set_eclipse_preference('MEMO',false),set_eclipse_preference('MAX_OPERATIONS','10'),set_eclipse_preference('CSE',false),set_eclipse_preference('MAXINT','3'),set_eclipse_preference('ALLOW_INCOMPLETE_SETUP_CONSTANTS',false),set_eclipse_preference('MININT','-1'),set_eclipse_preference('STATIC_ORDERING',false),set_eclipse_preference('COMPRESSION',false),set_eclipse_preference('MAX_INITIALISATIONS','4'),set_eclipse_preference('TRY_FIND_ABORT',false),set_eclipse_preference('CLPFD',true),set_eclipse_preference('CHR',false),set_eclipse_preference('PROOF_INFO',true),set_eclipse_preference('SMT',false),load_classical_b_from_list_of_facts('/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch',[parser_version('2014-10-08 11:46:15.439'),classical_b('Simple',['/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch']),machine(abstract_machine(1,machine(2),machine_header(3,'Simple',[]),[variables(4,[identifier(5,xx),identifier(6,yy)]),invariant(7,conjunct(8,member(9,identifier(10,xx),interval(11,integer(12,0),integer(13,10))),member(14,identifier(15,yy),interval(16,integer(17,0),integer(18,10))))),initialisation(19,assign(20,[identifier(21,xx),identifier(22,yy)],[integer(23,2),integer(24,3)])),operations(25,[operation(26,identifier(26,'Either10'),[],[],select(27,disjunct(28,equal(29,identifier(30,xx),integer(31,10)),equal(32,identifier(33,yy),integer(34,10))),skip(35),[])),operation(36,identifier(36,'All10'),[],[],select(37,conjunct(38,equal(39,identifier(40,xx),integer(41,10)),equal(42,identifier(43,yy),integer(44,10))),skip(45),[])),operation(46,identifier(46,'BothEIther10or0'),[],[],select(47,disjunct(48,conjunct(49,equal(50,identifier(51,xx),integer(52,10)),equal(53,identifier(54,yy),integer(55,10))),conjunct(56,equal(57,identifier(58,xx),integer(59,0)),equal(60,identifier(61,yy),integer(62,0)))),skip(63),[]))])]))]),start_animation,true.
+
+2014-10-20 15:36:57,889 12838 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:57,889 12838 [Thread-20] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Connected: 127.0.0.1
+2014-10-20 15:36:57,890 12839 [Thread-20] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - loading_classical_b(parser_version(2014-10-08 11:46:15.439),Simple,[/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch])
+2014-10-20 15:36:57,890 12839 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:57,891 12840 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:57,891 12840 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_109,eval(identifier(none,xx),'#EXPRESSION',xx)),true.
+
+2014-10-20 15:36:57,892 12841 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:57,893 12842 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:57,893 12842 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:57,893 12842 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_110,eval(identifier(none,yy),'#EXPRESSION',yy)),true.
+
+2014-10-20 15:36:57,894 12843 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:57,894 12843 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:57,895 12844 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:57,895 12844 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_111,eval(member(none,identifier(none,xx),interval(none,integer(none,0),integer(none,10))),'#PREDICATE','xx:0..10')),true.
+
+2014-10-20 15:36:57,896 12845 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:57,896 12845 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:57,897 12846 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:57,897 12846 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_112,eval(member(none,identifier(none,yy),interval(none,integer(none,0),integer(none,10))),'#PREDICATE','yy:0..10')),true.
+
+2014-10-20 15:36:57,898 12847 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:57,898 12847 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:57,898 12847 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:57,899 12848 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(root,APLOps),evaluate_registered_formulas(root,[formula_111,formula_110,formula_112,formula_109],BResults),state_property(initialised,root,CPropResult),state_property(invariantKO,root,DPropResult),state_property(max_operations_reached,root,EPropResult),state_property(timeout_occurred,root,FPropResult),op_timeout_occurred(root,GTO),get_state_errors(root,HErrors),true.
+
+2014-10-20 15:36:57,937 12886 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps','.'(op(0,root,0),[])),'.'(=('BResults',[]),'.'(=('CPropResult',false),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-10-20 15:36:57,939 12888 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:57,939 12888 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:57,940 12889 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - prob2_execute_custom_operations(root,'$initialise_machine',equal(none,boolean_true(none),boolean_true(none)),1,NewStateID,Errors),true.
+
+2014-10-20 15:36:57,942 12891 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('NewStateID','.'(op(0,root,0),[])),'.'(=('Errors',[]),[])))
+2014-10-20 15:36:57,943 12892 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:57,943 12892 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:57,944 12893 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(0,APLOps),evaluate_registered_formulas(0,[formula_111,formula_110,formula_112,formula_109],BResults),state_property(initialised,0,CPropResult),state_property(invariantKO,0,DPropResult),state_property(max_operations_reached,0,EPropResult),state_property(timeout_occurred,0,FPropResult),op_timeout_occurred(0,GTO),get_state_errors(0,HErrors),true.
+
+2014-10-20 15:36:57,968 12917 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps',[]),'.'(=('BResults','.'(result('TRUE',[],'xx:0..10'),'.'(result(v('3',int(3)),[],yy),'.'(result('TRUE',[],'yy:0..10'),'.'(result(v('2',int(2)),[],xx),[]))))),'.'(=('CPropResult',true),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-10-20 15:36:57,968 12917 [Thread-20] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-10-20 15:36:57,969 12918 [Thread-20] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-10-20 15:36:57,969 12918 [Thread-20] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 3
+2014-10-20 15:36:57,969 12918 [Thread-20] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-10-20 15:36:57,969 12918 [Thread-20] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-10-20 15:36:57,969 12918 [Thread-20] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 2
+2014-10-20 15:36:57,970 12919 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:57,971 12920 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:57,974 12923 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - evaluate_formula(0,eval(exists(none,[identifier(none,yy),identifier(none,xx)],conjunct(none,conjunct(none,member(none,identifier(none,xx),interval(none,integer(none,0),integer(none,10))),member(none,identifier(none,yy),interval(none,integer(none,0),integer(none,10)))),conjunct(none,equal(none,identifier(none,xx),integer(none,10)),equal(none,identifier(none,yy),integer(none,10))))),'#PREDICATE','#yy,xx.(xx:0..10&yy:0..10&(xx=10&yy=10))'),ARes),true.
+
+2014-10-20 15:36:57,983 12932 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('ARes',result('TRUE','.'(bind(yy,int(10),'10'),'.'(bind(xx,int(10),'10'),[])),'#yy,xx.(xx:0..10&yy:0..10&(xx=10&yy=10))')),[]))
+2014-10-20 15:36:57,983 12932 [Thread-20] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Existentially Quantified Predicate over yy,xx is TRUE
+2014-10-20 15:36:57,983 12932 [Thread-20] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Solution: 
+2014-10-20 15:36:57,983 12932 [Thread-20] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 -        yy = 10 &
+2014-10-20 15:36:57,983 12932 [Thread-20] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 -        xx = 10
+2014-10-20 15:36:57,983 12932 [Thread-20] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 
+2014-10-20 15:36:57,984 12933 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:57,984 12933 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:57,988 12937 [main] INFO  de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 52 - Starting ProB's Prolog Core. Path is /Users/ernestocid/.prob/probcli.sh
+2014-10-20 15:36:57,991 12940 [main] DEBUG de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 54 - Cli started
+2014-10-20 15:36:57,992 12941 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Running ProB Command-line Interface
+2014-10-20 15:36:57,993 12942 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli -sf
+2014-10-20 15:36:58,614 13563 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to No file to process
+2014-10-20 15:36:58,615 13564 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Starting Socket Server
+2014-10-20 15:36:58,615 13564 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Application Path: /Users/ernestocid/.prob
+2014-10-20 15:36:58,615 13564 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Port: 65177
+2014-10-20 15:36:58,615 13564 [main] INFO  de.prob.cli.PortPattern Method:
+				setValue Line: 34 - Server has startet and listens on port 65177
+2014-10-20 15:36:58,615 13564 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli revision: 7fce3bad5e1e6d2f960d5db487b822a5c3a9072f
+2014-10-20 15:36:58,615 13564 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to user interrupt reference id: 5990
+2014-10-20 15:36:58,615 13564 [main] INFO  de.prob.cli.InterruptRefPattern Method:
+				setValue Line: 32 - Server can receive user interrupts via reference 5990
+2014-10-20 15:36:58,615 13564 [main] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 40 - Connecting to port 65177 using key 74f923ed06e03eb5
+2014-10-20 15:36:58,616 13565 [main] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 47 - Connected
+2014-10-20 15:36:58,617 13566 [Thread-22] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - -- starting command loop --
+2014-10-20 15:36:58,629 13578 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - set_eclipse_preference('SYMBOLIC',true),set_eclipse_preference('CSE_PRED',true),set_eclipse_preference('SYMMETRY_MODE',off),set_eclipse_preference('DEFAULT_SETSIZE','2'),set_eclipse_preference('KODKOD_ONLY_FULL',true),set_eclipse_preference('CSE_WD_ONLY',false),set_eclipse_preference('TIME_OUT','2500'),set_eclipse_preference('KODKOD',false),set_eclipse_preference('NUMBER_OF_ANIMATED_ABSTRACTIONS','20'),set_eclipse_preference('USE_RECORD_CONSTRUCTION',true),set_eclipse_preference('MEMO',false),set_eclipse_preference('MAX_OPERATIONS','10'),set_eclipse_preference('CSE',false),set_eclipse_preference('MAXINT','3'),set_eclipse_preference('ALLOW_INCOMPLETE_SETUP_CONSTANTS',false),set_eclipse_preference('MININT','-1'),set_eclipse_preference('STATIC_ORDERING',false),set_eclipse_preference('COMPRESSION',false),set_eclipse_preference('MAX_INITIALISATIONS','4'),set_eclipse_preference('TRY_FIND_ABORT',false),set_eclipse_preference('CLPFD',true),set_eclipse_preference('CHR',false),set_eclipse_preference('PROOF_INFO',true),set_eclipse_preference('SMT',false),load_classical_b_from_list_of_facts('/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch',[parser_version('2014-10-08 11:46:15.439'),classical_b('Simple',['/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch']),machine(abstract_machine(1,machine(2),machine_header(3,'Simple',[]),[variables(4,[identifier(5,xx),identifier(6,yy)]),invariant(7,conjunct(8,member(9,identifier(10,xx),interval(11,integer(12,0),integer(13,10))),member(14,identifier(15,yy),interval(16,integer(17,0),integer(18,10))))),initialisation(19,assign(20,[identifier(21,xx),identifier(22,yy)],[integer(23,2),integer(24,3)])),operations(25,[operation(26,identifier(26,'Either10'),[],[],select(27,disjunct(28,equal(29,identifier(30,xx),integer(31,10)),equal(32,identifier(33,yy),integer(34,10))),skip(35),[])),operation(36,identifier(36,'All10'),[],[],select(37,conjunct(38,equal(39,identifier(40,xx),integer(41,10)),equal(42,identifier(43,yy),integer(44,10))),skip(45),[])),operation(46,identifier(46,'BothEIther10or0'),[],[],select(47,disjunct(48,conjunct(49,equal(50,identifier(51,xx),integer(52,10)),equal(53,identifier(54,yy),integer(55,10))),conjunct(56,equal(57,identifier(58,xx),integer(59,0)),equal(60,identifier(61,yy),integer(62,0)))),skip(63),[]))])]))]),start_animation,true.
+
+2014-10-20 15:36:58,695 13644 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:58,695 13644 [Thread-22] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Connected: 127.0.0.1
+2014-10-20 15:36:58,695 13644 [Thread-22] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - loading_classical_b(parser_version(2014-10-08 11:46:15.439),Simple,[/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch])
+2014-10-20 15:36:58,695 13644 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:58,696 13645 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:58,697 13646 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_121,eval(identifier(none,xx),'#EXPRESSION',xx)),true.
+
+2014-10-20 15:36:58,698 13647 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:58,698 13647 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:58,698 13647 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:58,699 13648 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_122,eval(identifier(none,yy),'#EXPRESSION',yy)),true.
+
+2014-10-20 15:36:58,699 13648 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:58,699 13648 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:58,700 13649 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:58,700 13649 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_123,eval(member(none,identifier(none,xx),interval(none,integer(none,0),integer(none,10))),'#PREDICATE','xx:0..10')),true.
+
+2014-10-20 15:36:58,701 13650 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:58,701 13650 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:58,702 13651 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:58,702 13651 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_124,eval(member(none,identifier(none,yy),interval(none,integer(none,0),integer(none,10))),'#PREDICATE','yy:0..10')),true.
+
+2014-10-20 15:36:58,703 13652 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:58,703 13652 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:58,703 13652 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:58,703 13652 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(root,APLOps),evaluate_registered_formulas(root,[formula_123,formula_122,formula_124,formula_121],BResults),state_property(initialised,root,CPropResult),state_property(invariantKO,root,DPropResult),state_property(max_operations_reached,root,EPropResult),state_property(timeout_occurred,root,FPropResult),op_timeout_occurred(root,GTO),get_state_errors(root,HErrors),true.
+
+2014-10-20 15:36:58,738 13687 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps','.'(op(0,root,0),[])),'.'(=('BResults',[]),'.'(=('CPropResult',false),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-10-20 15:36:58,739 13688 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:58,740 13689 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:58,741 13690 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - prob2_execute_custom_operations(root,'$initialise_machine',equal(none,boolean_true(none),boolean_true(none)),1,NewStateID,Errors),true.
+
+2014-10-20 15:36:58,743 13692 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('NewStateID','.'(op(0,root,0),[])),'.'(=('Errors',[]),[])))
+2014-10-20 15:36:58,743 13692 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:58,744 13693 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:58,744 13693 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(0,APLOps),evaluate_registered_formulas(0,[formula_123,formula_122,formula_124,formula_121],BResults),state_property(initialised,0,CPropResult),state_property(invariantKO,0,DPropResult),state_property(max_operations_reached,0,EPropResult),state_property(timeout_occurred,0,FPropResult),op_timeout_occurred(0,GTO),get_state_errors(0,HErrors),true.
+
+2014-10-20 15:36:58,766 13715 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps',[]),'.'(=('BResults','.'(result('TRUE',[],'xx:0..10'),'.'(result(v('3',int(3)),[],yy),'.'(result('TRUE',[],'yy:0..10'),'.'(result(v('2',int(2)),[],xx),[]))))),'.'(=('CPropResult',true),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-10-20 15:36:58,766 13715 [Thread-22] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-10-20 15:36:58,766 13715 [Thread-22] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-10-20 15:36:58,766 13715 [Thread-22] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 3
+2014-10-20 15:36:58,766 13715 [Thread-22] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-10-20 15:36:58,766 13715 [Thread-22] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-10-20 15:36:58,767 13716 [Thread-22] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 2
+2014-10-20 15:36:58,767 13716 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:58,768 13717 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:58,772 13721 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - evaluate_formula(0,eval(exists(none,[identifier(none,yy),identifier(none,xx)],conjunct(none,conjunct(none,conjunct(none,member(none,identifier(none,xx),interval(none,integer(none,0),integer(none,10))),member(none,identifier(none,yy),interval(none,integer(none,0),integer(none,10)))),equal(none,identifier(none,yy),integer(none,10))),equivalence(none,disjunct(none,equal(none,identifier(none,xx),integer(none,10)),equal(none,integer(none,1),integer(none,1))),negation(none,disjunct(none,equal(none,identifier(none,xx),integer(none,10)),equal(none,integer(none,1),integer(none,2))))))),'#PREDICATE','#yy,xx.(xx:0..10&yy:0..10&yy=10&xx=10 or 1=1 <=> not(xx=10 or 1=2))'),ARes),true.
+
+2014-10-20 15:36:58,811 13760 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('ARes',result('TRUE','.'(bind(yy,int(10),'10'),'.'(bind(xx,int(0),'0'),[])),'#yy,xx.(xx:0..10&yy:0..10&yy=10&xx=10 or 1=1 <=> not(xx=10 or 1=2))')),[]))
+2014-10-20 15:36:58,811 13760 [Thread-22] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Existentially Quantified Predicate over yy,xx is TRUE
+2014-10-20 15:36:58,811 13760 [Thread-22] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Solution: 
+2014-10-20 15:36:58,811 13760 [Thread-22] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 -        yy = 10 &
+2014-10-20 15:36:58,812 13761 [Thread-22] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 -        xx = 0
+2014-10-20 15:36:58,812 13761 [Thread-22] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 
+2014-10-20 15:36:58,812 13761 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:58,812 13761 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:58,815 13764 [main] INFO  de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 52 - Starting ProB's Prolog Core. Path is /Users/ernestocid/.prob/probcli.sh
+2014-10-20 15:36:58,818 13767 [main] DEBUG de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 54 - Cli started
+2014-10-20 15:36:58,819 13768 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Running ProB Command-line Interface
+2014-10-20 15:36:58,820 13769 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli -sf
+2014-10-20 15:36:59,423 14372 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to No file to process
+2014-10-20 15:36:59,423 14372 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Starting Socket Server
+2014-10-20 15:36:59,424 14373 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Application Path: /Users/ernestocid/.prob
+2014-10-20 15:36:59,424 14373 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Port: 65179
+2014-10-20 15:36:59,424 14373 [main] INFO  de.prob.cli.PortPattern Method:
+				setValue Line: 34 - Server has startet and listens on port 65179
+2014-10-20 15:36:59,424 14373 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli revision: 7fce3bad5e1e6d2f960d5db487b822a5c3a9072f
+2014-10-20 15:36:59,424 14373 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to user interrupt reference id: 5994
+2014-10-20 15:36:59,424 14373 [main] INFO  de.prob.cli.InterruptRefPattern Method:
+				setValue Line: 32 - Server can receive user interrupts via reference 5994
+2014-10-20 15:36:59,424 14373 [main] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 40 - Connecting to port 65179 using key 74f923ed06e03eb5
+2014-10-20 15:36:59,425 14374 [main] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 47 - Connected
+2014-10-20 15:36:59,427 14376 [Thread-24] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - -- starting command loop --
+2014-10-20 15:36:59,436 14385 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - set_eclipse_preference('SYMBOLIC',true),set_eclipse_preference('CSE_PRED',true),set_eclipse_preference('SYMMETRY_MODE',off),set_eclipse_preference('DEFAULT_SETSIZE','2'),set_eclipse_preference('KODKOD_ONLY_FULL',true),set_eclipse_preference('CSE_WD_ONLY',false),set_eclipse_preference('TIME_OUT','2500'),set_eclipse_preference('KODKOD',false),set_eclipse_preference('NUMBER_OF_ANIMATED_ABSTRACTIONS','20'),set_eclipse_preference('USE_RECORD_CONSTRUCTION',true),set_eclipse_preference('MEMO',false),set_eclipse_preference('MAX_OPERATIONS','10'),set_eclipse_preference('CSE',false),set_eclipse_preference('MAXINT','3'),set_eclipse_preference('ALLOW_INCOMPLETE_SETUP_CONSTANTS',false),set_eclipse_preference('MININT','-1'),set_eclipse_preference('STATIC_ORDERING',false),set_eclipse_preference('COMPRESSION',false),set_eclipse_preference('MAX_INITIALISATIONS','4'),set_eclipse_preference('TRY_FIND_ABORT',false),set_eclipse_preference('CLPFD',true),set_eclipse_preference('CHR',false),set_eclipse_preference('PROOF_INFO',true),set_eclipse_preference('SMT',false),load_classical_b_from_list_of_facts('/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch',[parser_version('2014-10-08 11:46:15.439'),classical_b('Simple',['/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch']),machine(abstract_machine(1,machine(2),machine_header(3,'Simple',[]),[variables(4,[identifier(5,xx),identifier(6,yy)]),invariant(7,conjunct(8,member(9,identifier(10,xx),interval(11,integer(12,0),integer(13,10))),member(14,identifier(15,yy),interval(16,integer(17,0),integer(18,10))))),initialisation(19,assign(20,[identifier(21,xx),identifier(22,yy)],[integer(23,2),integer(24,3)])),operations(25,[operation(26,identifier(26,'Either10'),[],[],select(27,disjunct(28,equal(29,identifier(30,xx),integer(31,10)),equal(32,identifier(33,yy),integer(34,10))),skip(35),[])),operation(36,identifier(36,'All10'),[],[],select(37,conjunct(38,equal(39,identifier(40,xx),integer(41,10)),equal(42,identifier(43,yy),integer(44,10))),skip(45),[])),operation(46,identifier(46,'BothEIther10or0'),[],[],select(47,disjunct(48,conjunct(49,equal(50,identifier(51,xx),integer(52,10)),equal(53,identifier(54,yy),integer(55,10))),conjunct(56,equal(57,identifier(58,xx),integer(59,0)),equal(60,identifier(61,yy),integer(62,0)))),skip(63),[]))])]))]),start_animation,true.
+
+2014-10-20 15:36:59,505 14454 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:59,505 14454 [Thread-24] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Connected: 127.0.0.1
+2014-10-20 15:36:59,505 14454 [Thread-24] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - loading_classical_b(parser_version(2014-10-08 11:46:15.439),Simple,[/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch])
+2014-10-20 15:36:59,505 14454 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:59,506 14455 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:59,507 14456 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_133,eval(identifier(none,xx),'#EXPRESSION',xx)),true.
+
+2014-10-20 15:36:59,508 14457 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:59,509 14458 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:59,509 14458 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:59,509 14458 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_134,eval(identifier(none,yy),'#EXPRESSION',yy)),true.
+
+2014-10-20 15:36:59,510 14459 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:59,510 14459 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:59,510 14459 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:59,511 14460 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_135,eval(member(none,identifier(none,xx),interval(none,integer(none,0),integer(none,10))),'#PREDICATE','xx:0..10')),true.
+
+2014-10-20 15:36:59,512 14461 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:59,512 14461 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:59,512 14461 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:59,513 14462 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_136,eval(member(none,identifier(none,yy),interval(none,integer(none,0),integer(none,10))),'#PREDICATE','yy:0..10')),true.
+
+2014-10-20 15:36:59,513 14462 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:36:59,513 14462 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:59,514 14463 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:59,514 14463 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(root,APLOps),evaluate_registered_formulas(root,[formula_135,formula_134,formula_136,formula_133],BResults),state_property(initialised,root,CPropResult),state_property(invariantKO,root,DPropResult),state_property(max_operations_reached,root,EPropResult),state_property(timeout_occurred,root,FPropResult),op_timeout_occurred(root,GTO),get_state_errors(root,HErrors),true.
+
+2014-10-20 15:36:59,547 14496 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps','.'(op(0,root,0),[])),'.'(=('BResults',[]),'.'(=('CPropResult',false),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-10-20 15:36:59,548 14497 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:59,549 14498 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:59,550 14499 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - prob2_execute_custom_operations(root,'$initialise_machine',equal(none,boolean_true(none),boolean_true(none)),1,NewStateID,Errors),true.
+
+2014-10-20 15:36:59,552 14501 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('NewStateID','.'(op(0,root,0),[])),'.'(=('Errors',[]),[])))
+2014-10-20 15:36:59,552 14501 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:59,552 14501 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:59,553 14502 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(0,APLOps),evaluate_registered_formulas(0,[formula_135,formula_134,formula_136,formula_133],BResults),state_property(initialised,0,CPropResult),state_property(invariantKO,0,DPropResult),state_property(max_operations_reached,0,EPropResult),state_property(timeout_occurred,0,FPropResult),op_timeout_occurred(0,GTO),get_state_errors(0,HErrors),true.
+
+2014-10-20 15:36:59,571 14520 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps',[]),'.'(=('BResults','.'(result('TRUE',[],'xx:0..10'),'.'(result(v('3',int(3)),[],yy),'.'(result('TRUE',[],'yy:0..10'),'.'(result(v('2',int(2)),[],xx),[]))))),'.'(=('CPropResult',true),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-10-20 15:36:59,571 14520 [Thread-24] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-10-20 15:36:59,571 14520 [Thread-24] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-10-20 15:36:59,572 14521 [Thread-24] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 3
+2014-10-20 15:36:59,572 14521 [Thread-24] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-10-20 15:36:59,572 14521 [Thread-24] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-10-20 15:36:59,572 14521 [Thread-24] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 2
+2014-10-20 15:36:59,572 14521 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:59,573 14522 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:59,576 14525 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - evaluate_formula(0,eval(exists(none,[identifier(none,yy),identifier(none,xx)],conjunct(none,conjunct(none,conjunct(none,member(none,identifier(none,xx),interval(none,integer(none,0),integer(none,10))),member(none,identifier(none,yy),interval(none,integer(none,0),integer(none,10)))),equal(none,identifier(none,xx),integer(none,10))),equivalence(none,disjunct(none,equal(none,integer(none,1),integer(none,1)),equal(none,identifier(none,yy),integer(none,10))),negation(none,disjunct(none,equal(none,integer(none,1),integer(none,2)),equal(none,identifier(none,yy),integer(none,10))))))),'#PREDICATE','#yy,xx.(xx:0..10&yy:0..10&xx=10&1=1 or yy=10 <=> not(1=2 or yy=10))'),ARes),true.
+
+2014-10-20 15:36:59,595 14544 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('ARes',result('TRUE','.'(bind(xx,int(10),'10'),'.'(bind(yy,int(0),'0'),[])),'#yy,xx.(xx:0..10&yy:0..10&xx=10&1=1 or yy=10 <=> not(1=2 or yy=10))')),[]))
+2014-10-20 15:36:59,595 14544 [Thread-24] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Existentially Quantified Predicate over xx,yy is TRUE
+2014-10-20 15:36:59,595 14544 [Thread-24] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Solution: 
+2014-10-20 15:36:59,595 14544 [Thread-24] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 -        xx = 10 &
+2014-10-20 15:36:59,595 14544 [Thread-24] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 -        yy = 0
+2014-10-20 15:36:59,595 14544 [Thread-24] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 
+2014-10-20 15:36:59,596 14545 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:36:59,596 14545 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:36:59,599 14548 [main] INFO  de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 52 - Starting ProB's Prolog Core. Path is /Users/ernestocid/.prob/probcli.sh
+2014-10-20 15:36:59,602 14551 [main] DEBUG de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 54 - Cli started
+2014-10-20 15:36:59,603 14552 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Running ProB Command-line Interface
+2014-10-20 15:36:59,603 14552 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli -sf
+2014-10-20 15:37:00,336 15285 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to No file to process
+2014-10-20 15:37:00,336 15285 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Starting Socket Server
+2014-10-20 15:37:00,337 15286 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Application Path: /Users/ernestocid/.prob
+2014-10-20 15:37:00,337 15286 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Port: 65181
+2014-10-20 15:37:00,337 15286 [main] INFO  de.prob.cli.PortPattern Method:
+				setValue Line: 34 - Server has startet and listens on port 65181
+2014-10-20 15:37:00,337 15286 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli revision: 7fce3bad5e1e6d2f960d5db487b822a5c3a9072f
+2014-10-20 15:37:00,337 15286 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to user interrupt reference id: 5998
+2014-10-20 15:37:00,337 15286 [main] INFO  de.prob.cli.InterruptRefPattern Method:
+				setValue Line: 32 - Server can receive user interrupts via reference 5998
+2014-10-20 15:37:00,337 15286 [main] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 40 - Connecting to port 65181 using key 74f923ed06e03eb5
+2014-10-20 15:37:00,338 15287 [main] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 47 - Connected
+2014-10-20 15:37:00,339 15288 [Thread-26] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - -- starting command loop --
+2014-10-20 15:37:00,354 15303 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - set_eclipse_preference('SYMBOLIC',true),set_eclipse_preference('CSE_PRED',true),set_eclipse_preference('SYMMETRY_MODE',off),set_eclipse_preference('DEFAULT_SETSIZE','2'),set_eclipse_preference('KODKOD_ONLY_FULL',true),set_eclipse_preference('CSE_WD_ONLY',false),set_eclipse_preference('TIME_OUT','2500'),set_eclipse_preference('KODKOD',false),set_eclipse_preference('NUMBER_OF_ANIMATED_ABSTRACTIONS','20'),set_eclipse_preference('USE_RECORD_CONSTRUCTION',true),set_eclipse_preference('MEMO',false),set_eclipse_preference('MAX_OPERATIONS','10'),set_eclipse_preference('CSE',false),set_eclipse_preference('MAXINT','3'),set_eclipse_preference('ALLOW_INCOMPLETE_SETUP_CONSTANTS',false),set_eclipse_preference('MININT','-1'),set_eclipse_preference('STATIC_ORDERING',false),set_eclipse_preference('COMPRESSION',false),set_eclipse_preference('MAX_INITIALISATIONS','4'),set_eclipse_preference('TRY_FIND_ABORT',false),set_eclipse_preference('CLPFD',true),set_eclipse_preference('CHR',false),set_eclipse_preference('PROOF_INFO',true),set_eclipse_preference('SMT',false),load_classical_b_from_list_of_facts('/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch',[parser_version('2014-10-08 11:46:15.439'),classical_b('Simple',['/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch']),machine(abstract_machine(1,machine(2),machine_header(3,'Simple',[]),[variables(4,[identifier(5,xx),identifier(6,yy)]),invariant(7,conjunct(8,member(9,identifier(10,xx),interval(11,integer(12,0),integer(13,10))),member(14,identifier(15,yy),interval(16,integer(17,0),integer(18,10))))),initialisation(19,assign(20,[identifier(21,xx),identifier(22,yy)],[integer(23,2),integer(24,3)])),operations(25,[operation(26,identifier(26,'Either10'),[],[],select(27,disjunct(28,equal(29,identifier(30,xx),integer(31,10)),equal(32,identifier(33,yy),integer(34,10))),skip(35),[])),operation(36,identifier(36,'All10'),[],[],select(37,conjunct(38,equal(39,identifier(40,xx),integer(41,10)),equal(42,identifier(43,yy),integer(44,10))),skip(45),[])),operation(46,identifier(46,'BothEIther10or0'),[],[],select(47,disjunct(48,conjunct(49,equal(50,identifier(51,xx),integer(52,10)),equal(53,identifier(54,yy),integer(55,10))),conjunct(56,equal(57,identifier(58,xx),integer(59,0)),equal(60,identifier(61,yy),integer(62,0)))),skip(63),[]))])]))]),start_animation,true.
+
+2014-10-20 15:37:00,442 15391 [Thread-26] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Connected: 127.0.0.1
+2014-10-20 15:37:00,442 15391 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:37:00,442 15391 [Thread-26] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - loading_classical_b(parser_version(2014-10-08 11:46:15.439),Simple,[/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch])
+2014-10-20 15:37:00,443 15392 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:37:00,443 15392 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:37:00,444 15393 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_145,eval(identifier(none,xx),'#EXPRESSION',xx)),true.
+
+2014-10-20 15:37:00,445 15394 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:37:00,445 15394 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:37:00,446 15395 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:37:00,446 15395 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_146,eval(identifier(none,yy),'#EXPRESSION',yy)),true.
+
+2014-10-20 15:37:00,446 15395 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:37:00,446 15395 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:37:00,447 15396 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:37:00,447 15396 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_147,eval(member(none,identifier(none,xx),interval(none,integer(none,0),integer(none,10))),'#PREDICATE','xx:0..10')),true.
+
+2014-10-20 15:37:00,448 15397 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:37:00,448 15397 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:37:00,449 15398 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:37:00,449 15398 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_148,eval(member(none,identifier(none,yy),interval(none,integer(none,0),integer(none,10))),'#PREDICATE','yy:0..10')),true.
+
+2014-10-20 15:37:00,450 15399 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:37:00,450 15399 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:37:00,450 15399 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:37:00,451 15400 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(root,APLOps),evaluate_registered_formulas(root,[formula_147,formula_146,formula_148,formula_145],BResults),state_property(initialised,root,CPropResult),state_property(invariantKO,root,DPropResult),state_property(max_operations_reached,root,EPropResult),state_property(timeout_occurred,root,FPropResult),op_timeout_occurred(root,GTO),get_state_errors(root,HErrors),true.
+
+2014-10-20 15:37:00,485 15434 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps','.'(op(0,root,0),[])),'.'(=('BResults',[]),'.'(=('CPropResult',false),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-10-20 15:37:00,486 15435 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:37:00,486 15435 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:37:00,487 15436 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - prob2_execute_custom_operations(root,'$initialise_machine',equal(none,boolean_true(none),boolean_true(none)),1,NewStateID,Errors),true.
+
+2014-10-20 15:37:00,489 15438 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('NewStateID','.'(op(0,root,0),[])),'.'(=('Errors',[]),[])))
+2014-10-20 15:37:00,489 15438 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:37:00,490 15439 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:37:00,490 15439 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(0,APLOps),evaluate_registered_formulas(0,[formula_147,formula_146,formula_148,formula_145],BResults),state_property(initialised,0,CPropResult),state_property(invariantKO,0,DPropResult),state_property(max_operations_reached,0,EPropResult),state_property(timeout_occurred,0,FPropResult),op_timeout_occurred(0,GTO),get_state_errors(0,HErrors),true.
+
+2014-10-20 15:37:00,509 15458 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps',[]),'.'(=('BResults','.'(result('TRUE',[],'xx:0..10'),'.'(result(v('3',int(3)),[],yy),'.'(result('TRUE',[],'yy:0..10'),'.'(result(v('2',int(2)),[],xx),[]))))),'.'(=('CPropResult',true),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-10-20 15:37:00,509 15458 [Thread-26] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-10-20 15:37:00,509 15458 [Thread-26] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-10-20 15:37:00,509 15458 [Thread-26] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 3
+2014-10-20 15:37:00,509 15458 [Thread-26] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-10-20 15:37:00,509 15458 [Thread-26] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-10-20 15:37:00,509 15458 [Thread-26] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 2
+2014-10-20 15:37:00,510 15459 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:37:00,511 15460 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:37:00,514 15463 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - evaluate_formula(0,eval(exists(none,[identifier(none,yy),identifier(none,xx)],conjunct(none,conjunct(none,conjunct(none,member(none,identifier(none,xx),interval(none,integer(none,0),integer(none,10))),member(none,identifier(none,yy),interval(none,integer(none,0),integer(none,10)))),negation(none,equal(none,identifier(none,yy),integer(none,10)))),equivalence(none,disjunct(none,equal(none,identifier(none,xx),integer(none,10)),equal(none,integer(none,1),integer(none,1))),negation(none,disjunct(none,equal(none,identifier(none,xx),integer(none,10)),equal(none,integer(none,1),integer(none,2))))))),'#PREDICATE','#yy,xx.(xx:0..10&yy:0..10&not(yy=10)&xx=10 or 1=1 <=> not(xx=10 or 1=2))'),ARes),true.
+
+2014-10-20 15:37:00,542 15491 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('ARes',result('TRUE','.'(bind(yy,int(0),'0'),'.'(bind(xx,int(0),'0'),[])),'#yy,xx.(xx:0..10&yy:0..10&not(yy=10)&xx=10 or 1=1 <=> not(xx=10 or 1=2))')),[]))
+2014-10-20 15:37:00,542 15491 [Thread-26] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Existentially Quantified Predicate over yy,xx is TRUE
+2014-10-20 15:37:00,542 15491 [Thread-26] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Solution: 
+2014-10-20 15:37:00,542 15491 [Thread-26] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 -        yy = 0 &
+2014-10-20 15:37:00,542 15491 [Thread-26] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 -        xx = 0
+2014-10-20 15:37:00,542 15491 [Thread-26] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 
+2014-10-20 15:37:00,542 15491 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:37:00,543 15492 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:37:00,545 15494 [main] INFO  de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 52 - Starting ProB's Prolog Core. Path is /Users/ernestocid/.prob/probcli.sh
+2014-10-20 15:37:00,561 15510 [main] DEBUG de.prob.cli.PrologProcessProvider Method:
+				makeProcess Line: 54 - Cli started
+2014-10-20 15:37:00,563 15512 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Running ProB Command-line Interface
+2014-10-20 15:37:00,563 15512 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli -sf
+2014-10-20 15:37:01,217 16166 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to No file to process
+2014-10-20 15:37:01,218 16167 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Starting Socket Server
+2014-10-20 15:37:01,218 16167 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Application Path: /Users/ernestocid/.prob
+2014-10-20 15:37:01,218 16167 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to Port: 65183
+2014-10-20 15:37:01,218 16167 [main] INFO  de.prob.cli.PortPattern Method:
+				setValue Line: 34 - Server has startet and listens on port 65183
+2014-10-20 15:37:01,219 16168 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to probcli revision: 7fce3bad5e1e6d2f960d5db487b822a5c3a9072f
+2014-10-20 15:37:01,219 16168 [main] DEBUG de.prob.cli.ProBInstanceProvider Method:
+				analyseStdout Line: 105 - Apply cli detection patterns to user interrupt reference id: 6002
+2014-10-20 15:37:01,219 16168 [main] INFO  de.prob.cli.InterruptRefPattern Method:
+				setValue Line: 32 - Server can receive user interrupts via reference 6002
+2014-10-20 15:37:01,219 16168 [main] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 40 - Connecting to port 65183 using key 74f923ed06e03eb5
+2014-10-20 15:37:01,220 16169 [main] DEBUG de.prob.cli.ProBConnection Method:
+				connect Line: 47 - Connected
+2014-10-20 15:37:01,221 16170 [Thread-28] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - -- starting command loop --
+2014-10-20 15:37:01,232 16181 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - set_eclipse_preference('SYMBOLIC',true),set_eclipse_preference('CSE_PRED',true),set_eclipse_preference('SYMMETRY_MODE',off),set_eclipse_preference('DEFAULT_SETSIZE','2'),set_eclipse_preference('KODKOD_ONLY_FULL',true),set_eclipse_preference('CSE_WD_ONLY',false),set_eclipse_preference('TIME_OUT','2500'),set_eclipse_preference('KODKOD',false),set_eclipse_preference('NUMBER_OF_ANIMATED_ABSTRACTIONS','20'),set_eclipse_preference('USE_RECORD_CONSTRUCTION',true),set_eclipse_preference('MEMO',false),set_eclipse_preference('MAX_OPERATIONS','10'),set_eclipse_preference('CSE',false),set_eclipse_preference('MAXINT','3'),set_eclipse_preference('ALLOW_INCOMPLETE_SETUP_CONSTANTS',false),set_eclipse_preference('MININT','-1'),set_eclipse_preference('STATIC_ORDERING',false),set_eclipse_preference('COMPRESSION',false),set_eclipse_preference('MAX_INITIALISATIONS','4'),set_eclipse_preference('TRY_FIND_ABORT',false),set_eclipse_preference('CLPFD',true),set_eclipse_preference('CHR',false),set_eclipse_preference('PROOF_INFO',true),set_eclipse_preference('SMT',false),load_classical_b_from_list_of_facts('/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch',[parser_version('2014-10-08 11:46:15.439'),classical_b('Simple',['/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch']),machine(abstract_machine(1,machine(2),machine_header(3,'Simple',[]),[variables(4,[identifier(5,xx),identifier(6,yy)]),invariant(7,conjunct(8,member(9,identifier(10,xx),interval(11,integer(12,0),integer(13,10))),member(14,identifier(15,yy),interval(16,integer(17,0),integer(18,10))))),initialisation(19,assign(20,[identifier(21,xx),identifier(22,yy)],[integer(23,2),integer(24,3)])),operations(25,[operation(26,identifier(26,'Either10'),[],[],select(27,disjunct(28,equal(29,identifier(30,xx),integer(31,10)),equal(32,identifier(33,yy),integer(34,10))),skip(35),[])),operation(36,identifier(36,'All10'),[],[],select(37,conjunct(38,equal(39,identifier(40,xx),integer(41,10)),equal(42,identifier(43,yy),integer(44,10))),skip(45),[])),operation(46,identifier(46,'BothEIther10or0'),[],[],select(47,disjunct(48,conjunct(49,equal(50,identifier(51,xx),integer(52,10)),equal(53,identifier(54,yy),integer(55,10))),conjunct(56,equal(57,identifier(58,xx),integer(59,0)),equal(60,identifier(61,yy),integer(62,0)))),skip(63),[]))])]))]),start_animation,true.
+
+2014-10-20 15:37:01,305 16254 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:37:01,306 16255 [Thread-28] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Connected: 127.0.0.1
+2014-10-20 15:37:01,306 16255 [Thread-28] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - loading_classical_b(parser_version(2014-10-08 11:46:15.439),Simple,[/Users/ernestocid/dev/beta/br.ufrn.forall.logicalcoverageexperiments/src/test/resources/machines/Simple.mch])
+2014-10-20 15:37:01,306 16255 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:37:01,307 16256 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:37:01,307 16256 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_157,eval(identifier(none,xx),'#EXPRESSION',xx)),true.
+
+2014-10-20 15:37:01,308 16257 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:37:01,309 16258 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:37:01,309 16258 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:37:01,309 16258 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_158,eval(identifier(none,yy),'#EXPRESSION',yy)),true.
+
+2014-10-20 15:37:01,310 16259 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:37:01,310 16259 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:37:01,310 16259 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:37:01,311 16260 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_159,eval(member(none,identifier(none,xx),interval(none,integer(none,0),integer(none,10))),'#PREDICATE','xx:0..10')),true.
+
+2014-10-20 15:37:01,312 16261 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:37:01,312 16261 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:37:01,312 16261 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:37:01,312 16261 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - register_prob2_formula(formula_160,eval(member(none,identifier(none,yy),interval(none,integer(none,0),integer(none,10))),'#PREDICATE','yy:0..10')),true.
+
+2014-10-20 15:37:01,313 16262 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes([])
+2014-10-20 15:37:01,313 16262 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:37:01,313 16262 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:37:01,314 16263 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(root,APLOps),evaluate_registered_formulas(root,[formula_159,formula_158,formula_160,formula_157],BResults),state_property(initialised,root,CPropResult),state_property(invariantKO,root,DPropResult),state_property(max_operations_reached,root,EPropResult),state_property(timeout_occurred,root,FPropResult),op_timeout_occurred(root,GTO),get_state_errors(root,HErrors),true.
+
+2014-10-20 15:37:01,347 16296 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps','.'(op(0,root,0),[])),'.'(=('BResults',[]),'.'(=('CPropResult',false),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-10-20 15:37:01,348 16297 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:37:01,348 16297 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:37:01,349 16298 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - prob2_execute_custom_operations(root,'$initialise_machine',equal(none,boolean_true(none),boolean_true(none)),1,NewStateID,Errors),true.
+
+2014-10-20 15:37:01,352 16301 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('NewStateID','.'(op(0,root,0),[])),'.'(=('Errors',[]),[])))
+2014-10-20 15:37:01,352 16301 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:37:01,353 16302 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:37:01,353 16302 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - compute_operations_for_state(0,APLOps),evaluate_registered_formulas(0,[formula_159,formula_158,formula_160,formula_157],BResults),state_property(initialised,0,CPropResult),state_property(invariantKO,0,DPropResult),state_property(max_operations_reached,0,EPropResult),state_property(timeout_occurred,0,FPropResult),op_timeout_occurred(0,GTO),get_state_errors(0,HErrors),true.
+
+2014-10-20 15:37:01,372 16321 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('APLOps',[]),'.'(=('BResults','.'(result('TRUE',[],'xx:0..10'),'.'(result(v('3',int(3)),[],yy),'.'(result('TRUE',[],'yy:0..10'),'.'(result(v('2',int(2)),[],xx),[]))))),'.'(=('CPropResult',true),'.'(=('DPropResult',false),'.'(=('EPropResult',false),'.'(=('FPropResult',false),'.'(=('GTO',[]),'.'(=('HErrors',[]),[])))))))))
+2014-10-20 15:37:01,372 16321 [Thread-28] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-10-20 15:37:01,372 16321 [Thread-28] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-10-20 15:37:01,372 16321 [Thread-28] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 3
+2014-10-20 15:37:01,372 16321 [Thread-28] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Predicate is TRUE
+2014-10-20 15:37:01,372 16321 [Thread-28] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Expression Value = 
+2014-10-20 15:37:01,372 16321 [Thread-28] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 2
+2014-10-20 15:37:01,373 16322 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:37:01,374 16323 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))
+2014-10-20 15:37:01,376 16325 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - evaluate_formula(0,eval(exists(none,[identifier(none,yy),identifier(none,xx)],conjunct(none,conjunct(none,conjunct(none,member(none,identifier(none,xx),interval(none,integer(none,0),integer(none,10))),member(none,identifier(none,yy),interval(none,integer(none,0),integer(none,10)))),negation(none,equal(none,identifier(none,xx),integer(none,10)))),equivalence(none,disjunct(none,equal(none,integer(none,1),integer(none,1)),equal(none,identifier(none,yy),integer(none,10))),negation(none,disjunct(none,equal(none,integer(none,1),integer(none,2)),equal(none,identifier(none,yy),integer(none,10))))))),'#PREDICATE','#yy,xx.(xx:0..10&yy:0..10&not(xx=10)&1=1 or yy=10 <=> not(1=2 or yy=10))'),ARes),true.
+
+2014-10-20 15:37:01,394 16343 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('ARes',result('TRUE','.'(bind(yy,int(0),'0'),'.'(bind(xx,int(0),'0'),[])),'#yy,xx.(xx:0..10&yy:0..10&not(xx=10)&1=1 or yy=10 <=> not(1=2 or yy=10))')),[]))
+2014-10-20 15:37:01,394 16343 [Thread-28] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Existentially Quantified Predicate over yy,xx is TRUE
+2014-10-20 15:37:01,394 16343 [Thread-28] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - Solution: 
+2014-10-20 15:37:01,394 16343 [Thread-28] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 -        yy = 0 &
+2014-10-20 15:37:01,395 16344 [Thread-28] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 -        xx = 0
+2014-10-20 15:37:01,395 16344 [Thread-28] DEBUG de.prob.cli.ProBInstance Method:
+				readAndLog Line: 54 - 
+2014-10-20 15:37:01,395 16344 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 65 - get_error_messages(Errors),true.
+
+2014-10-20 15:37:01,395 16344 [main] INFO  de.prob.cli.ProBConnection Method:
+				send Line: 78 - yes('.'(=('Errors',[]),[]))

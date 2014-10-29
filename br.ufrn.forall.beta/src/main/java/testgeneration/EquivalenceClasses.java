@@ -1,5 +1,6 @@
 package testgeneration;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -7,12 +8,32 @@ import parser.Characteristic;
 import parser.CharacteristicType;
 import parser.PredicateCharacteristic;
 import parser.decorators.expressions.MyExpressionFactory;
+import parser.decorators.predicates.MyAExistsPredicate;
+import parser.decorators.predicates.MyAMemberPredicate;
+import parser.decorators.predicates.MyANotMemberPredicate;
+import parser.decorators.predicates.MyANotSubsetPredicate;
+import parser.decorators.predicates.MyANotSubsetStrictPredicate;
+import parser.decorators.predicates.MyASubsetPredicate;
+import parser.decorators.predicates.MyASubsetStrictPredicate;
+import parser.decorators.predicates.MyPredicate;
+import parser.decorators.predicates.MyPredicateFactory;
 import de.be4.classicalb.core.parser.node.AEqualPredicate;
+import de.be4.classicalb.core.parser.node.AEquivalencePredicate;
+import de.be4.classicalb.core.parser.node.AExistsPredicate;
+import de.be4.classicalb.core.parser.node.AForallPredicate;
 import de.be4.classicalb.core.parser.node.AGreaterEqualPredicate;
 import de.be4.classicalb.core.parser.node.AGreaterPredicate;
+import de.be4.classicalb.core.parser.node.AImplicationPredicate;
 import de.be4.classicalb.core.parser.node.ALessEqualPredicate;
 import de.be4.classicalb.core.parser.node.ALessPredicate;
+import de.be4.classicalb.core.parser.node.AMemberPredicate;
+import de.be4.classicalb.core.parser.node.ANegationPredicate;
 import de.be4.classicalb.core.parser.node.ANotEqualPredicate;
+import de.be4.classicalb.core.parser.node.ANotMemberPredicate;
+import de.be4.classicalb.core.parser.node.ANotSubsetPredicate;
+import de.be4.classicalb.core.parser.node.ANotSubsetStrictPredicate;
+import de.be4.classicalb.core.parser.node.ASubsetPredicate;
+import de.be4.classicalb.core.parser.node.ASubsetStrictPredicate;
 import de.be4.classicalb.core.parser.node.PPredicate;
 
 public class EquivalenceClasses {
@@ -24,9 +45,11 @@ public class EquivalenceClasses {
 		if(c.getType() == CharacteristicType.PRE_CONDITION || c.getType() == CharacteristicType.CONDITIONAL) {
 			if(c.isTypingCharacteristic()) {
 				blocks.add(new Block(c.toString(), false));
-			} else if (c instanceof PredicateCharacteristic && c.isRelationalCharacteristic()){
+			} else if (c instanceof PredicateCharacteristic) {
+
 				PredicateCharacteristic characteristic = (PredicateCharacteristic) c;
-				blocks.addAll(createBlocksForRelationalCharacteristic(characteristic));
+				blocks.addAll(createBlocks(characteristic));
+				
 			}
 		} else if (c.getType() == CharacteristicType.INVARIANT) {
 			
@@ -39,24 +62,238 @@ public class EquivalenceClasses {
 
 	
 	
-	private static Set<Block> createBlocksForRelationalCharacteristic(PredicateCharacteristic characteristic) {
+	private static Set<Block> createBlocks(PredicateCharacteristic characteristic) {
 		Set<Block> blocks = new HashSet<Block>();
 
-		PPredicate relationalNode = characteristic.getPredicate().getNode();
+		PPredicate predicateNode = characteristic.getPredicate().getNode();
 		
-		if(relationalNode instanceof AGreaterPredicate) {
-			blocks.addAll(createBlocksFor((AGreaterPredicate) relationalNode));
-		} else if (relationalNode instanceof AGreaterEqualPredicate) {
-			blocks.addAll(createBlocksFor((AGreaterEqualPredicate) relationalNode));
-		} else if (relationalNode instanceof ALessPredicate) {
-			blocks.addAll(createBlocksFor((ALessPredicate) relationalNode));
-		} else if (relationalNode instanceof ALessEqualPredicate) {
-			blocks.addAll(createBlocksFor((ALessEqualPredicate) relationalNode));
-		} else if (relationalNode instanceof AEqualPredicate) {
-			blocks.addAll(createBlocksFor((AEqualPredicate) relationalNode));
-		} else if (relationalNode instanceof ANotEqualPredicate) {
-			blocks.addAll(createBlocksFor((ANotEqualPredicate) relationalNode));
+		// Relational predicates
+		
+		if(predicateNode instanceof AGreaterPredicate) {
+			blocks.addAll(createBlocksFor((AGreaterPredicate) predicateNode));
+		} else if (predicateNode instanceof AGreaterEqualPredicate) {
+			blocks.addAll(createBlocksFor((AGreaterEqualPredicate) predicateNode));
+		} else if (predicateNode instanceof ALessPredicate) {
+			blocks.addAll(createBlocksFor((ALessPredicate) predicateNode));
+		} else if (predicateNode instanceof ALessEqualPredicate) {
+			blocks.addAll(createBlocksFor((ALessEqualPredicate) predicateNode));
+		} else if (predicateNode instanceof AEqualPredicate) {
+			blocks.addAll(createBlocksFor((AEqualPredicate) predicateNode));
+		} else if (predicateNode instanceof ANotEqualPredicate) {
+			blocks.addAll(createBlocksFor((ANotEqualPredicate) predicateNode));
+		} else if (predicateNode instanceof AImplicationPredicate) {
+			blocks.addAll(createBlocksFor((AImplicationPredicate) predicateNode));
+		} else if (predicateNode instanceof AEquivalencePredicate) {
+			blocks.addAll(createBlocksFor((AEquivalencePredicate) predicateNode));
+		} else if (predicateNode instanceof AForallPredicate) {
+			blocks.addAll(createBlocksFor((AForallPredicate) predicateNode));
+		} else if (predicateNode instanceof AMemberPredicate) {
+			blocks.addAll(createBlocksFor((AMemberPredicate) predicateNode));
+		} else if (predicateNode instanceof ANotMemberPredicate) {
+			blocks.addAll(createBlocksFor((ANotMemberPredicate) predicateNode));
+		} else if (predicateNode instanceof ASubsetPredicate) {
+			blocks.addAll(createBlocksFor((ASubsetPredicate) predicateNode));
+		} else if (predicateNode instanceof ANotSubsetPredicate) {
+			blocks.addAll(createBlocks((ANotSubsetPredicate) predicateNode));
+		} else if (predicateNode instanceof ASubsetStrictPredicate) {
+			blocks.addAll(createBlocksFor((ASubsetStrictPredicate) predicateNode));
+		} else if (predicateNode instanceof ANotSubsetStrictPredicate) {
+			blocks.addAll(createBlocksFor((ANotSubsetStrictPredicate) predicateNode));
+		} else if (predicateNode instanceof AExistsPredicate) {
+			blocks.addAll(createBlocksFor((AExistsPredicate) predicateNode));
 		}
+		
+		// Negation Predicate
+		
+		else if (predicateNode instanceof ANegationPredicate) {
+			blocks.addAll(createBlocksFor((ANegationPredicate) predicateNode));
+		}
+		
+		return blocks;
+	}
+
+	
+
+	private static Set<Block> createBlocksFor(AExistsPredicate predicateNode) {
+		Set<Block> blocks = new HashSet<Block>();
+		
+		MyAExistsPredicate exists = (MyAExistsPredicate) MyPredicateFactory.convertPredicate(predicateNode);
+		String negExists = negateExistential(exists);
+		
+		
+		blocks.add(new Block(exists.toString(), false));
+		blocks.add(new Block(negExists, true));
+		
+		return blocks;
+	}
+
+
+
+	private static String negateExistential(MyAExistsPredicate exists) {
+		StringBuffer negExists = new StringBuffer(""); 
+		
+		negExists.append(createQuantifiedVariablesList(exists));
+		negExists.append(createNegationOfQuantifiedPredicate(exists));
+		
+		return negExists.toString();
+	}
+
+
+
+	private static String createNegationOfQuantifiedPredicate(MyAExistsPredicate exists) {
+		return "(not(" + exists.getQuantifiedPredicate().toString() + "))"; 
+	}
+
+
+
+	private static String createQuantifiedVariablesList(MyAExistsPredicate exists) {
+		StringBuffer quantifiedVariables = new StringBuffer("#(");
+		
+		int counter = 0;
+		
+		for(String var : exists.getQuantifiedVariables()) {
+			if(counter < exists.getQuantifiedVariables().size() - 1) {
+				quantifiedVariables.append(var + ",");
+			} else {
+				quantifiedVariables.append(var + ").");
+			}
+			counter++;
+		}
+		
+		return quantifiedVariables.toString();
+	}
+
+
+
+	private static Set<Block> createBlocksFor(ANotSubsetStrictPredicate predicateNode) {
+		Set<Block> blocks = new HashSet<Block>();
+		
+		MyANotSubsetStrictPredicate notSubsetStrictPredicate = (MyANotSubsetStrictPredicate) MyPredicateFactory.convertPredicate(predicateNode);
+		
+		String leftExpression = notSubsetStrictPredicate.getLeftExpression().toString();
+		String rightExpression = notSubsetStrictPredicate.getRightExpression().toString();
+		
+		blocks.add(new Block(notSubsetStrictPredicate.toString(), false));
+		blocks.add(new Block(leftExpression + " <<: " + rightExpression, true));
+		
+		return blocks;
+	}
+
+
+
+	private static Set<Block> createBlocksFor(ASubsetStrictPredicate predicateNode) {
+		Set<Block> blocks = new HashSet<Block>();
+		
+		MyASubsetStrictPredicate subsetStrictPredicate = (MyASubsetStrictPredicate) MyPredicateFactory.convertPredicate(predicateNode);
+		
+		String leftExpression = subsetStrictPredicate.getLeftExpression().toString();
+		String rightExpression = subsetStrictPredicate.getRightExpression().toString();
+		
+		blocks.add(new Block(subsetStrictPredicate.toString(), false));
+		blocks.add(new Block(leftExpression + " /<<: " + rightExpression, true));
+		
+		return blocks;
+	}
+
+
+
+	private static Set<Block> createBlocks(ANotSubsetPredicate predicateNode) {
+		Set<Block> blocks = new HashSet<Block>();
+		
+		MyANotSubsetPredicate notSubsetPredicate = (MyANotSubsetPredicate) MyPredicateFactory.convertPredicate(predicateNode);
+		
+		String leftExpression = notSubsetPredicate.getLeftExpression().toString();
+		String rightExpression = notSubsetPredicate.getRightExpression().toString();
+		
+		blocks.add(new Block(notSubsetPredicate.toString(), false));
+		blocks.add(new Block(leftExpression + " <: " + rightExpression, true));
+		
+		return blocks;
+	}
+
+
+
+	private static Set<Block> createBlocksFor(ASubsetPredicate predicateNode) {
+		Set<Block> blocks = new HashSet<Block>();
+		
+		MyASubsetPredicate subsetPredicate = (MyASubsetPredicate) MyPredicateFactory.convertPredicate(predicateNode);
+		
+		String leftExpression = subsetPredicate.getLeftExpression().toString();
+		String rightExpression = subsetPredicate.getRightExpression().toString();
+		
+		blocks.add(new Block(subsetPredicate.toString(), false));
+		blocks.add(new Block(leftExpression + " /<: " + rightExpression, true));
+		
+		return blocks;
+	}
+
+
+
+	private static Set<Block> createBlocksFor(ANotMemberPredicate predicateNode) {
+		Set<Block> blocks = new HashSet<Block>();
+		
+		MyANotMemberPredicate notMemberPredicate = (MyANotMemberPredicate) MyPredicateFactory.convertPredicate(predicateNode);
+		
+		String leftExpression = notMemberPredicate.getLeftExpression().toString();
+		String rightExpression = notMemberPredicate.getRightExpression().toString();
+		
+		blocks.add(new Block(notMemberPredicate.toString(), false));
+		blocks.add(new Block(leftExpression + " : " + rightExpression, true));
+		
+		return blocks;
+	}
+
+
+
+	private static Set<Block> createBlocksFor(AMemberPredicate predicateNode) {
+		Set<Block> blocks = new HashSet<Block>();
+		
+		MyAMemberPredicate memberPredicate = (MyAMemberPredicate) MyPredicateFactory.convertPredicate(predicateNode);
+		
+		String leftExpression = memberPredicate.getLeftExpression().toString();
+		String rightExpression = memberPredicate.getRightExpression().toString();
+		
+		blocks.add(new Block(memberPredicate.toString(), false));
+		blocks.add(new Block(leftExpression + " /: " + rightExpression, true));
+		
+		return blocks;
+	}
+
+
+
+	private static Set<Block> createBlocksFor(AForallPredicate predicateNode) {
+		Set<Block> blocks = new HashSet<Block>();
+		
+		String forallPredicate = MyPredicateFactory.convertPredicate(predicateNode).toString();
+		
+		blocks.add(new Block(forallPredicate, false));
+		blocks.add(new Block("not(" + forallPredicate + ")", true));
+		
+		return blocks;
+	}
+
+
+
+	private static Set<Block> createBlocksFor(AEquivalencePredicate predicateNode) {
+		Set<Block> blocks = new HashSet<Block>();
+		
+		String equivalencePredicate = MyPredicateFactory.convertPredicate(predicateNode).toString();
+		
+		blocks.add(new Block(equivalencePredicate, false));
+		blocks.add(new Block("not(" + equivalencePredicate + ")", true));
+		
+		return blocks;
+	}
+
+
+
+	private static Set<Block> createBlocksFor(AImplicationPredicate predicateNode) {
+		Set<Block> blocks = new HashSet<Block>();
+		
+		String implicationPredicate = MyPredicateFactory.convertPredicate(predicateNode).toString();
+		
+		blocks.add(new Block(implicationPredicate, false));
+		blocks.add(new Block("not(" + implicationPredicate + ")", true));
 		
 		return blocks;
 	}
@@ -143,6 +380,20 @@ public class EquivalenceClasses {
 		blocks.add(new Block(leftExp + " > " + rightExp, false));
 		blocks.add(new Block(leftExp + " < " + rightExp, true));
 		blocks.add(new Block(leftExp + " = " + rightExp, true));
+		
+		return blocks;
+	}
+	
+	
+	
+	private static Set<Block> createBlocksFor(ANegationPredicate predicateNode) {
+		Set<Block> blocks = new HashSet<Block>();
+		
+		String predicate = MyPredicateFactory.convertPredicate(predicateNode).toString();
+		String negatedPredicate = MyPredicateFactory.convertPredicate(predicateNode.getPredicate()).toString();
+		
+		blocks.add(new Block(predicate, false));
+		blocks.add(new Block(negatedPredicate, true));
 		
 		return blocks;
 	}

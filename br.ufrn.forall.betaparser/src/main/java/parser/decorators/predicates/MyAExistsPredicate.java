@@ -46,6 +46,12 @@ public class MyAExistsPredicate extends MyPredicateDecorator {
 		variables.removeAll(getIdentifiers());
 		return variables;
 	}
+	
+	
+	
+	public List<String> getQuantifiedVariables() {
+		return getIdentifiers();
+	}
 
 
 	
@@ -56,6 +62,12 @@ public class MyAExistsPredicate extends MyPredicateDecorator {
 			identifiers.add(myExpression.toString());
 		}
 		return identifiers;
+	}
+	
+	
+	
+	public MyPredicate getQuantifiedPredicate() {
+		return MyPredicateFactory.convertPredicate(this.exists.getPredicate());
 	}
 	
 	

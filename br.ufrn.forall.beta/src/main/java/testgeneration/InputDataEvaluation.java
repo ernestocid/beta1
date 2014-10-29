@@ -37,7 +37,7 @@ public class InputDataEvaluation {
 		generateInputData();
 	}
 
-	
+
 
 	private void generateInputData() {
 		try {

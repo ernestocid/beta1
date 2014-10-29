@@ -22,7 +22,7 @@ subprojects {
 project(':br.ufrn.forall.beta') {
 	
 	// def core_version = '2.0.0-milestone-14-SNAPSHOT'
-	def core_version = '2.0.0-milestone-17-SNAPSHOT'
+	def core_version = '2.0.0-milestone-18-SNAPSHOT'
 	
 	dependencies {
 		compile project(':br.ufrn.forall.betaanimator'), project(':br.ufrn.forall.betacommon'), project(':br.ufrn.forall.betaparser'), project(':br.ufrn.forall.datacomb')
@@ -115,7 +115,7 @@ project('br.ufrn.forall.betagui') {
 project(':br.ufrn.forall.logicalcoverageexperiments') {
 	
 	// def core_version = '2.0.0-milestone-14-SNAPSHOT'
-	def core_version = '2.0.0-milestone-17-SNAPSHOT'
+	def core_version = '2.0.0-milestone-18-SNAPSHOT'
 	
 	dependencies {
 		compile project(':br.ufrn.forall.betacommon'), project(':br.ufrn.forall.betaparser'), project(':br.ufrn.forall.datacomb')

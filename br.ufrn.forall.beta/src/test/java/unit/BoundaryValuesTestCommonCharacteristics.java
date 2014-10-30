@@ -1,6 +1,8 @@
 package unit;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -9,15 +11,16 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import static org.mockito.Mockito.*;
 import parser.Characteristic;
 import parser.Machine;
 import parser.Operation;
 import testgeneration.Block;
-import testgeneration.EquivalenceClasses;
+import testgeneration.BoundaryValues;
 import testgeneration.Partitioner;
 
-public class EquivalenceClassesTestCommonCharacteristics {
+
+public class BoundaryValuesTestCommonCharacteristics {
+
 
 	@Test
 	public void findBlocksForRelationalEquals_returnsEqualsAndNotEqualsBlocks() {
@@ -45,7 +48,7 @@ public class EquivalenceClassesTestCommonCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.getInstance().findBlocks(characteristic, equals);
+		Set<Block> actualResult = BoundaryValues.getInstance().findBlocks(characteristic, equals);
 
 		// Assertions
 
@@ -80,7 +83,7 @@ public class EquivalenceClassesTestCommonCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.getInstance().findBlocks(characteristic, notEquals);
+		Set<Block> actualResult = BoundaryValues.getInstance().findBlocks(characteristic, notEquals);
 
 		// Assertions
 
@@ -121,7 +124,7 @@ public class EquivalenceClassesTestCommonCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.getInstance().findBlocks(characteristic, greater);
+		Set<Block> actualResult = BoundaryValues.getInstance().findBlocks(characteristic, greater);
 
 		// Assertions
 
@@ -156,7 +159,7 @@ public class EquivalenceClassesTestCommonCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.getInstance().findBlocks(characteristic, greaterEqual);
+		Set<Block> actualResult = BoundaryValues.getInstance().findBlocks(characteristic, greaterEqual);
 
 		// Assertions
 
@@ -197,7 +200,7 @@ public class EquivalenceClassesTestCommonCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.getInstance().findBlocks(characteristic, less);
+		Set<Block> actualResult = BoundaryValues.getInstance().findBlocks(characteristic, less);
 
 		// Assertions
 
@@ -232,7 +235,7 @@ public class EquivalenceClassesTestCommonCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.getInstance().findBlocks(characteristic, lessEqual);
+		Set<Block> actualResult = BoundaryValues.getInstance().findBlocks(characteristic, lessEqual);
 
 		// Assertions
 
@@ -267,7 +270,7 @@ public class EquivalenceClassesTestCommonCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.getInstance().findBlocks(characteristic, notPredicate);
+		Set<Block> actualResult = BoundaryValues.getInstance().findBlocks(characteristic, notPredicate);
 
 		// Assertions
 
@@ -302,7 +305,7 @@ public class EquivalenceClassesTestCommonCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.getInstance().findBlocks(characteristic, implication);
+		Set<Block> actualResult = BoundaryValues.getInstance().findBlocks(characteristic, implication);
 
 		// Assertions
 
@@ -337,7 +340,7 @@ public class EquivalenceClassesTestCommonCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.getInstance().findBlocks(characteristic, equivalence);
+		Set<Block> actualResult = BoundaryValues.getInstance().findBlocks(characteristic, equivalence);
 
 		// Assertions
 
@@ -372,7 +375,7 @@ public class EquivalenceClassesTestCommonCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.getInstance().findBlocks(characteristic, universalQuantifier);
+		Set<Block> actualResult = BoundaryValues.getInstance().findBlocks(characteristic, universalQuantifier);
 
 		// Assertions
 
@@ -407,7 +410,7 @@ public class EquivalenceClassesTestCommonCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.getInstance().findBlocks(characteristic, belongs);
+		Set<Block> actualResult = BoundaryValues.getInstance().findBlocks(characteristic, belongs);
 
 		// Assertions
 
@@ -442,7 +445,7 @@ public class EquivalenceClassesTestCommonCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.getInstance().findBlocks(characteristic, notBelongs);
+		Set<Block> actualResult = BoundaryValues.getInstance().findBlocks(characteristic, notBelongs);
 
 		// Assertions
 
@@ -477,7 +480,7 @@ public class EquivalenceClassesTestCommonCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.getInstance().findBlocks(characteristic, subset);
+		Set<Block> actualResult = BoundaryValues.getInstance().findBlocks(characteristic, subset);
 
 		// Assertions
 
@@ -512,7 +515,7 @@ public class EquivalenceClassesTestCommonCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.getInstance().findBlocks(characteristic, notSubset);
+		Set<Block> actualResult = BoundaryValues.getInstance().findBlocks(characteristic, notSubset);
 
 		// Assertions
 
@@ -547,7 +550,7 @@ public class EquivalenceClassesTestCommonCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.getInstance().findBlocks(characteristic, subsetStrict);
+		Set<Block> actualResult = BoundaryValues.getInstance().findBlocks(characteristic, subsetStrict);
 
 		// Assertions
 
@@ -582,7 +585,7 @@ public class EquivalenceClassesTestCommonCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.getInstance().findBlocks(characteristic, notSubsetStrict);
+		Set<Block> actualResult = BoundaryValues.getInstance().findBlocks(characteristic, notSubsetStrict);
 
 		// Assertions
 
@@ -617,7 +620,7 @@ public class EquivalenceClassesTestCommonCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.getInstance().findBlocks(characteristic, existentialQuantifier);
+		Set<Block> actualResult = BoundaryValues.getInstance().findBlocks(characteristic, existentialQuantifier);
 
 		// Assertions
 
@@ -646,7 +649,7 @@ public class EquivalenceClassesTestCommonCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromInvariant()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.getInstance().findBlocks(characteristic, existentialQuantifier);
+		Set<Block> actualResult = BoundaryValues.getInstance().findBlocks(characteristic, existentialQuantifier);
 
 		// Assertions
 
@@ -664,5 +667,5 @@ public class EquivalenceClassesTestCommonCharacteristics {
 
 		return blocksAsStrings;
 	}
-
+	
 }

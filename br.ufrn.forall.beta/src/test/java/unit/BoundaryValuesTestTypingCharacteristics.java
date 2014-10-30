@@ -1,6 +1,6 @@
 package unit;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -15,10 +15,11 @@ import parser.Characteristic;
 import parser.Machine;
 import parser.Operation;
 import testgeneration.Block;
-import testgeneration.EquivalenceClasses;
+import testgeneration.BoundaryValues;
 import testgeneration.Partitioner;
 
-public class EquivalenceClassesTestTypingCharacteristics {
+
+public class BoundaryValuesTestTypingCharacteristics {
 
 	@Test
 	public void findBlocksForBelongsToNAT_returnsBelongsAndNotBelongsBlocks() {
@@ -46,7 +47,7 @@ public class EquivalenceClassesTestTypingCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.getInstance().findBlocks(characteristic, belongsToNAT);
+		Set<Block> actualResult = BoundaryValues.getInstance().findBlocks(characteristic, belongsToNAT);
 
 		// Assertions
 
@@ -81,7 +82,7 @@ public class EquivalenceClassesTestTypingCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.getInstance().findBlocks(characteristic, belongsToNAT1);
+		Set<Block> actualResult = BoundaryValues.getInstance().findBlocks(characteristic, belongsToNAT1);
 
 		// Assertions
 
@@ -110,7 +111,7 @@ public class EquivalenceClassesTestTypingCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.getInstance().findBlocks(characteristic, belongsToINT);
+		Set<Block> actualResult = BoundaryValues.getInstance().findBlocks(characteristic, belongsToINT);
 
 		// Assertions
 
@@ -139,7 +140,7 @@ public class EquivalenceClassesTestTypingCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.getInstance().findBlocks(characteristic, belongsToBOOL);
+		Set<Block> actualResult = BoundaryValues.getInstance().findBlocks(characteristic, belongsToBOOL);
 
 		// Assertions
 
@@ -180,7 +181,7 @@ public class EquivalenceClassesTestTypingCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.getInstance().findBlocks(characteristic, belongsToInterval);
+		Set<Block> actualResult = BoundaryValues.getInstance().findBlocks(characteristic, belongsToInterval);
 
 		// Assertions
 
@@ -209,7 +210,7 @@ public class EquivalenceClassesTestTypingCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.getInstance().findBlocks(characteristic, belongsToAbstractSet);
+		Set<Block> actualResult = BoundaryValues.getInstance().findBlocks(characteristic, belongsToAbstractSet);
 
 		// Assertions
 
@@ -244,7 +245,7 @@ public class EquivalenceClassesTestTypingCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.getInstance().findBlocks(characteristic, belongsToAbstractSet);
+		Set<Block> actualResult = BoundaryValues.getInstance().findBlocks(characteristic, belongsToAbstractSet);
 
 		// Assertions
 
@@ -273,7 +274,7 @@ public class EquivalenceClassesTestTypingCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.getInstance().findBlocks(characteristic, isTotalFunction);
+		Set<Block> actualResult = BoundaryValues.getInstance().findBlocks(characteristic, isTotalFunction);
 
 		// Assertions
 
@@ -302,7 +303,7 @@ public class EquivalenceClassesTestTypingCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.getInstance().findBlocks(characteristic, isPartialFunction);
+		Set<Block> actualResult = BoundaryValues.getInstance().findBlocks(characteristic, isPartialFunction);
 
 		// Assertions
 
@@ -331,7 +332,7 @@ public class EquivalenceClassesTestTypingCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.getInstance().findBlocks(characteristic, isInjectiveFunction);
+		Set<Block> actualResult = BoundaryValues.getInstance().findBlocks(characteristic, isInjectiveFunction);
 
 		// Assertions
 
@@ -360,7 +361,7 @@ public class EquivalenceClassesTestTypingCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.getInstance().findBlocks(characteristic, isTotalSurjectiveFunction);
+		Set<Block> actualResult = BoundaryValues.getInstance().findBlocks(characteristic, isTotalSurjectiveFunction);
 
 		// Assertions
 
@@ -389,7 +390,7 @@ public class EquivalenceClassesTestTypingCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.getInstance().findBlocks(characteristic, isPartialSurjectiveFunction);
+		Set<Block> actualResult = BoundaryValues.getInstance().findBlocks(characteristic, isPartialSurjectiveFunction);
 
 		// Assertions
 
@@ -418,7 +419,7 @@ public class EquivalenceClassesTestTypingCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.getInstance().findBlocks(characteristic, isBijective);
+		Set<Block> actualResult = BoundaryValues.getInstance().findBlocks(characteristic, isBijective);
 
 		// Assertions
 
@@ -453,7 +454,7 @@ public class EquivalenceClassesTestTypingCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.getInstance().findBlocks(characteristic, belongsToEnumeratedSet);
+		Set<Block> actualResult = BoundaryValues.getInstance().findBlocks(characteristic, belongsToEnumeratedSet);
 
 		// Assertions
 
@@ -482,7 +483,7 @@ public class EquivalenceClassesTestTypingCharacteristics {
 		// Result
 
 		Characteristic characteristic = new ArrayList<Characteristic>(partitioner.getCharacteristicsFromPrecondition()).get(0);
-		Set<Block> actualResult = EquivalenceClasses.getInstance().findBlocks(characteristic, belongsToSTRING);
+		Set<Block> actualResult = BoundaryValues.getInstance().findBlocks(characteristic, belongsToSTRING);
 
 		// Assertions
 
@@ -500,4 +501,5 @@ public class EquivalenceClassesTestTypingCharacteristics {
 
 		return blocksAsStrings;
 	}
+	
 }

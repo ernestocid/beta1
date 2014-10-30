@@ -51,27 +51,50 @@ import de.be4.classicalb.core.parser.node.PPredicate;
 
 public class EquivalenceClasses {
 
+	private static EquivalenceClasses instance = null;
 
-	public static Set<Block> findBlocks(Characteristic characteristic, Operation operation) {
+
+
+	protected EquivalenceClasses() {
+		// avoids instantiation
+	}
+
+
+
+	public static EquivalenceClasses getInstance() {
+		if (instance == null) {
+			instance = new EquivalenceClasses();
+		}
+
+		return instance;
+	}
+
+
+
+	public Set<Block> findBlocks(Characteristic characteristic, Operation operation) {
 		Set<Block> blocks = new HashSet<Block>();
 
-		if(comesFromPreconditionOrConditional(characteristic) && isTypingCharacteristic(characteristic, operation)) return getSinglePositiveBlock(characteristic);
-		if(comesFromPreconditionOrConditional(characteristic) && !isTypingCharacteristic(characteristic, operation)) return getBlocks(characteristic);
-		if(isInvariant(characteristic)) return getBlocksForInvariant(characteristic);
-		if(isProperties(characteristic)) return getSinglePositiveBlock(characteristic);
+		if (comesFromPreconditionOrConditional(characteristic) && isTypingCharacteristic(characteristic, operation))
+			return getSinglePositiveBlock(characteristic);
+		if (comesFromPreconditionOrConditional(characteristic) && !isTypingCharacteristic(characteristic, operation))
+			return getBlocks(characteristic);
+		if (isInvariant(characteristic))
+			return getBlocksForInvariant(characteristic);
+		if (isProperties(characteristic))
+			return getSinglePositiveBlock(characteristic);
 
 		return blocks;
 	}
 
 
 
-	private static boolean isProperties(Characteristic characteristic) {
+	protected boolean isProperties(Characteristic characteristic) {
 		return characteristic.getType() == CharacteristicType.PROPERTIES;
 	}
 
 
 
-	private static Set<Block> getBlocks(Characteristic characteristic) {
+	protected Set<Block> getBlocks(Characteristic characteristic) {
 		Set<Block> blocks = new HashSet<Block>();
 
 		if (characteristic instanceof PredicateCharacteristic) {
@@ -84,7 +107,7 @@ public class EquivalenceClasses {
 
 
 
-	private static Set<Block> getSinglePositiveBlock(Characteristic characteristic) {
+	protected Set<Block> getSinglePositiveBlock(Characteristic characteristic) {
 		Set<Block> blocks = new HashSet<Block>();
 		blocks.add(new Block(characteristic.toString(), false));
 		return blocks;
@@ -92,45 +115,39 @@ public class EquivalenceClasses {
 
 
 
-	private static boolean comesFromPreconditionOrConditional(Characteristic characteristic) {
+	protected boolean comesFromPreconditionOrConditional(Characteristic characteristic) {
 		return characteristic.getType() == CharacteristicType.PRE_CONDITION || characteristic.getType() == CharacteristicType.CONDITIONAL;
 	}
 
 
 
-	private static boolean isInvariant(Characteristic characteristic) {
+	protected boolean isInvariant(Characteristic characteristic) {
 		return characteristic.getType() == CharacteristicType.INVARIANT;
 	}
 
 
 
-	private static Set<Block> getBlocksForInvariant(Characteristic characteristic) {
+	protected Set<Block> getBlocksForInvariant(Characteristic characteristic) {
 		return getSinglePositiveBlock(characteristic);
 	}
 
 
 
-	private static boolean isTypingCharacteristic(Characteristic characteristic, Operation operation) {
-		if(characteristic instanceof PredicateCharacteristic) {
+	protected boolean isTypingCharacteristic(Characteristic characteristic, Operation operation) {
+		if (characteristic instanceof PredicateCharacteristic) {
 			PredicateCharacteristic predC = (PredicateCharacteristic) characteristic;
 
-			if(predC.getPredicate() instanceof MyAMemberPredicate) {
+			if (predC.getPredicate() instanceof MyAMemberPredicate) {
 				MyAMemberPredicate memberOf = (MyAMemberPredicate) predC.getPredicate();
 				MyExpression rightExpression = memberOf.getRightExpression();
-				
-				if(rightExpression instanceof MyAIntSetExpression || 
-						rightExpression instanceof MyABoolSetExpression ||
-						isAbstractSet(rightExpression, operation) ||
-						rightExpression instanceof MyATotalFunctionExpression ||
-						rightExpression instanceof MyAPartialFunctionExpression ||
-						rightExpression instanceof MyATotalInjectionExpression ||
-						rightExpression instanceof MyATotalSurjectionExpression ||
-						rightExpression instanceof MyAPartialInjectionExpression ||
-						rightExpression instanceof MyATotalBijectionExpression ||
-						rightExpression instanceof MyAPartialBijectionExpression ||
-						rightExpression instanceof MyAPartialSurjectionExpression ||
-						rightExpression instanceof MyAStringSetExpression) {
-					
+
+				if (rightExpression instanceof MyAIntSetExpression || rightExpression instanceof MyABoolSetExpression
+						|| isAbstractSet(rightExpression, operation) || rightExpression instanceof MyATotalFunctionExpression
+						|| rightExpression instanceof MyAPartialFunctionExpression || rightExpression instanceof MyATotalInjectionExpression
+						|| rightExpression instanceof MyATotalSurjectionExpression || rightExpression instanceof MyAPartialInjectionExpression
+						|| rightExpression instanceof MyATotalBijectionExpression || rightExpression instanceof MyAPartialBijectionExpression
+						|| rightExpression instanceof MyAPartialSurjectionExpression || rightExpression instanceof MyAStringSetExpression) {
+
 					return true;
 				}
 			}
@@ -140,8 +157,8 @@ public class EquivalenceClasses {
 
 
 
-	private static boolean isAbstractSet(MyExpression rightExpression, Operation operation) {
-		if(operation.getMachine().getSets() != null) {
+	protected boolean isAbstractSet(MyExpression rightExpression, Operation operation) {
+		if (operation.getMachine().getSets() != null) {
 			return operation.getMachine().getSets().getDeferredSets().contains(rightExpression.toString());
 		}
 
@@ -150,7 +167,7 @@ public class EquivalenceClasses {
 
 
 
-	private static Set<Block> createBlocks(PredicateCharacteristic characteristic) {
+	protected Set<Block> createBlocks(PredicateCharacteristic characteristic) {
 		Set<Block> blocks = new HashSet<Block>();
 
 		PPredicate predicateNode = characteristic.getPredicate().getNode();
@@ -202,7 +219,7 @@ public class EquivalenceClasses {
 
 
 
-	private static Set<Block> createBlocksFor(AExistsPredicate predicateNode) {
+	protected Set<Block> createBlocksFor(AExistsPredicate predicateNode) {
 		Set<Block> blocks = new HashSet<Block>();
 
 		MyAExistsPredicate exists = (MyAExistsPredicate) MyPredicateFactory.convertPredicate(predicateNode);
@@ -216,7 +233,7 @@ public class EquivalenceClasses {
 
 
 
-	private static String negateExistential(MyAExistsPredicate exists) {
+	protected String negateExistential(MyAExistsPredicate exists) {
 		StringBuffer negExists = new StringBuffer("");
 
 		negExists.append(createQuantifiedVariablesList(exists));
@@ -227,13 +244,13 @@ public class EquivalenceClasses {
 
 
 
-	private static String createNegationOfQuantifiedPredicate(MyAExistsPredicate exists) {
+	protected String createNegationOfQuantifiedPredicate(MyAExistsPredicate exists) {
 		return "(not(" + exists.getQuantifiedPredicate().toString() + "))";
 	}
 
 
 
-	private static String createQuantifiedVariablesList(MyAExistsPredicate exists) {
+	protected String createQuantifiedVariablesList(MyAExistsPredicate exists) {
 		StringBuffer quantifiedVariables = new StringBuffer("#(");
 
 		int counter = 0;
@@ -252,7 +269,7 @@ public class EquivalenceClasses {
 
 
 
-	private static Set<Block> createBlocksFor(ANotSubsetStrictPredicate predicateNode) {
+	protected Set<Block> createBlocksFor(ANotSubsetStrictPredicate predicateNode) {
 		Set<Block> blocks = new HashSet<Block>();
 
 		MyANotSubsetStrictPredicate notSubsetStrictPredicate = (MyANotSubsetStrictPredicate) MyPredicateFactory.convertPredicate(predicateNode);
@@ -268,7 +285,7 @@ public class EquivalenceClasses {
 
 
 
-	private static Set<Block> createBlocksFor(ASubsetStrictPredicate predicateNode) {
+	protected Set<Block> createBlocksFor(ASubsetStrictPredicate predicateNode) {
 		Set<Block> blocks = new HashSet<Block>();
 
 		MyASubsetStrictPredicate subsetStrictPredicate = (MyASubsetStrictPredicate) MyPredicateFactory.convertPredicate(predicateNode);
@@ -284,7 +301,7 @@ public class EquivalenceClasses {
 
 
 
-	private static Set<Block> createBlocks(ANotSubsetPredicate predicateNode) {
+	protected Set<Block> createBlocks(ANotSubsetPredicate predicateNode) {
 		Set<Block> blocks = new HashSet<Block>();
 
 		MyANotSubsetPredicate notSubsetPredicate = (MyANotSubsetPredicate) MyPredicateFactory.convertPredicate(predicateNode);
@@ -300,7 +317,7 @@ public class EquivalenceClasses {
 
 
 
-	private static Set<Block> createBlocksFor(ASubsetPredicate predicateNode) {
+	protected Set<Block> createBlocksFor(ASubsetPredicate predicateNode) {
 		Set<Block> blocks = new HashSet<Block>();
 
 		MyASubsetPredicate subsetPredicate = (MyASubsetPredicate) MyPredicateFactory.convertPredicate(predicateNode);
@@ -316,7 +333,7 @@ public class EquivalenceClasses {
 
 
 
-	private static Set<Block> createBlocksFor(ANotMemberPredicate predicateNode) {
+	protected Set<Block> createBlocksFor(ANotMemberPredicate predicateNode) {
 		Set<Block> blocks = new HashSet<Block>();
 
 		MyANotMemberPredicate notMemberPredicate = (MyANotMemberPredicate) MyPredicateFactory.convertPredicate(predicateNode);
@@ -332,8 +349,8 @@ public class EquivalenceClasses {
 
 
 
-	private static Set<Block> createBlocksFor(AMemberPredicate predicateNode) {
-		if(predicateNode.getRight() instanceof AIntervalExpression) {
+	protected Set<Block> createBlocksFor(AMemberPredicate predicateNode) {
+		if (predicateNode.getRight() instanceof AIntervalExpression) {
 			return createBlocksForBelongsToInterval(predicateNode, (AIntervalExpression) predicateNode.getRight());
 		}
 
@@ -342,30 +359,30 @@ public class EquivalenceClasses {
 
 
 
-	private static Set<Block> createBlocksForBelongsToInterval(AMemberPredicate predicateNode, AIntervalExpression interval) {
+	protected Set<Block> createBlocksForBelongsToInterval(AMemberPredicate predicateNode, AIntervalExpression interval) {
 		Set<Block> blocks = new HashSet<Block>();
-		
+
 		MyAIntervalExpression myRange = (MyAIntervalExpression) MyExpressionFactory.convertExpression(interval);
-		
+
 		String varName = MyExpressionFactory.convertExpression(predicateNode.getLeft()).toString();
-		
+
 		String leftExp = myRange.getLeftExpression().toString();
 		String rightExp = myRange.getRightExpression().toString();
-		
+
 		String insideInterval = varName + " : " + leftExp + ".." + rightExp;
-		String beforeInterval = varName + " : " + "MININT" + ".." + "("+leftExp+"-1)";
+		String beforeInterval = varName + " : " + "MININT" + ".." + "(" + leftExp + "-1)";
 		String afterInterval = varName + " : " + "(" + rightExp + "+1)" + ".." + "MAXINT";
-		
+
 		blocks.add(new Block(insideInterval, false));
 		blocks.add(new Block(beforeInterval, true));
 		blocks.add(new Block(afterInterval, true));
-		
+
 		return blocks;
 	}
 
 
 
-	private static Set<Block> createRegularBlocksFor(AMemberPredicate predicateNode) {
+	protected Set<Block> createRegularBlocksFor(AMemberPredicate predicateNode) {
 		Set<Block> blocks = new HashSet<Block>();
 
 		MyAMemberPredicate memberPredicate = (MyAMemberPredicate) MyPredicateFactory.convertPredicate(predicateNode);
@@ -380,7 +397,7 @@ public class EquivalenceClasses {
 
 
 
-	private static Set<Block> createBlocksFor(AForallPredicate predicateNode) {
+	protected Set<Block> createBlocksFor(AForallPredicate predicateNode) {
 		Set<Block> blocks = new HashSet<Block>();
 
 		String forallPredicate = MyPredicateFactory.convertPredicate(predicateNode).toString();
@@ -393,7 +410,7 @@ public class EquivalenceClasses {
 
 
 
-	private static Set<Block> createBlocksFor(AEquivalencePredicate predicateNode) {
+	protected Set<Block> createBlocksFor(AEquivalencePredicate predicateNode) {
 		Set<Block> blocks = new HashSet<Block>();
 
 		String equivalencePredicate = MyPredicateFactory.convertPredicate(predicateNode).toString();
@@ -406,7 +423,7 @@ public class EquivalenceClasses {
 
 
 
-	private static Set<Block> createBlocksFor(AImplicationPredicate predicateNode) {
+	protected Set<Block> createBlocksFor(AImplicationPredicate predicateNode) {
 		Set<Block> blocks = new HashSet<Block>();
 
 		String implicationPredicate = MyPredicateFactory.convertPredicate(predicateNode).toString();
@@ -419,7 +436,7 @@ public class EquivalenceClasses {
 
 
 
-	private static Set<Block> createBlocksFor(ANotEqualPredicate equal) {
+	protected Set<Block> createBlocksFor(ANotEqualPredicate equal) {
 		Set<Block> blocks = new HashSet<Block>();
 
 		String leftExp = MyExpressionFactory.convertExpression(equal.getLeft()).toString();
@@ -433,7 +450,7 @@ public class EquivalenceClasses {
 
 
 
-	private static Set<Block> createBlocksFor(AEqualPredicate equal) {
+	protected Set<Block> createBlocksFor(AEqualPredicate equal) {
 		Set<Block> blocks = new HashSet<Block>();
 
 		String leftExp = MyExpressionFactory.convertExpression(equal.getLeft()).toString();
@@ -447,7 +464,7 @@ public class EquivalenceClasses {
 
 
 
-	private static Set<Block> createBlocksFor(ALessEqualPredicate lessOrEqual) {
+	protected Set<Block> createBlocksFor(ALessEqualPredicate lessOrEqual) {
 		Set<Block> blocks = new HashSet<Block>();
 
 		String leftExp = MyExpressionFactory.convertExpression(lessOrEqual.getLeft()).toString();
@@ -461,7 +478,7 @@ public class EquivalenceClasses {
 
 
 
-	private static Set<Block> createBlocksFor(ALessPredicate less) {
+	protected Set<Block> createBlocksFor(ALessPredicate less) {
 		Set<Block> blocks = new HashSet<Block>();
 
 		String leftExp = MyExpressionFactory.convertExpression(less.getLeft()).toString();
@@ -476,7 +493,7 @@ public class EquivalenceClasses {
 
 
 
-	private static Set<Block> createBlocksFor(AGreaterEqualPredicate greaterOrEqual) {
+	protected Set<Block> createBlocksFor(AGreaterEqualPredicate greaterOrEqual) {
 		Set<Block> blocks = new HashSet<Block>();
 
 		String leftExp = MyExpressionFactory.convertExpression(greaterOrEqual.getLeft()).toString();
@@ -490,7 +507,7 @@ public class EquivalenceClasses {
 
 
 
-	private static Set<Block> createBlocksFor(AGreaterPredicate greater) {
+	protected Set<Block> createBlocksFor(AGreaterPredicate greater) {
 		Set<Block> blocks = new HashSet<Block>();
 
 		String leftExp = MyExpressionFactory.convertExpression(greater.getLeft()).toString();
@@ -505,7 +522,7 @@ public class EquivalenceClasses {
 
 
 
-	private static Set<Block> createBlocksFor(ANegationPredicate predicateNode) {
+	protected Set<Block> createBlocksFor(ANegationPredicate predicateNode) {
 		Set<Block> blocks = new HashSet<Block>();
 
 		String predicate = MyPredicateFactory.convertPredicate(predicateNode).toString();

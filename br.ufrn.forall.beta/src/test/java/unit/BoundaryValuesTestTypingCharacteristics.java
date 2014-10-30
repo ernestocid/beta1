@@ -18,7 +18,6 @@ import testgeneration.Block;
 import testgeneration.BoundaryValues;
 import testgeneration.Partitioner;
 
-
 public class BoundaryValuesTestTypingCharacteristics {
 
 	@Test
@@ -32,17 +31,41 @@ public class BoundaryValuesTestTypingCharacteristics {
 		Set<Block> expectedBlocks = new HashSet<Block>();
 
 		Block b1 = mock(Block.class);
-		when(b1.getBlock()).thenReturn("aa : NAT");
-		when(b1.isNegative()).thenReturn(false);
-		when(b1.toString()).thenReturn("Block: aa : NAT isNegative: false");
+		when(b1.getBlock()).thenReturn("aa = -1");
+		when(b1.isNegative()).thenReturn(true);
+		when(b1.toString()).thenReturn("Block: aa = -1 isNegative: true");
 
 		Block b2 = mock(Block.class);
-		when(b2.getBlock()).thenReturn("aa /: NAT");
-		when(b2.isNegative()).thenReturn(true);
-		when(b2.toString()).thenReturn("Block: aa /: NAT isNegative: true");
+		when(b2.getBlock()).thenReturn("aa = 0");
+		when(b2.isNegative()).thenReturn(false);
+		when(b2.toString()).thenReturn("Block: aa = 0 isNegative: false");
+
+		Block b3 = mock(Block.class);
+		when(b3.getBlock()).thenReturn("aa = 1");
+		when(b3.isNegative()).thenReturn(false);
+		when(b3.toString()).thenReturn("Block: aa = 1 isNegative: false");
+
+		Block b4 = mock(Block.class);
+		when(b4.getBlock()).thenReturn("aa = MAXINT-1");
+		when(b4.isNegative()).thenReturn(false);
+		when(b4.toString()).thenReturn("Block: aa = MAXINT-1 isNegative: false");
+
+		Block b5 = mock(Block.class);
+		when(b5.getBlock()).thenReturn("aa = MAXINT");
+		when(b5.isNegative()).thenReturn(false);
+		when(b5.toString()).thenReturn("Block: aa = MAXINT isNegative: false");
+
+		Block b6 = mock(Block.class);
+		when(b6.getBlock()).thenReturn("aa = MAXINT+1");
+		when(b6.isNegative()).thenReturn(true);
+		when(b6.toString()).thenReturn("Block: aa = MAXINT+1 isNegative: true");
 
 		expectedBlocks.add(b1);
 		expectedBlocks.add(b2);
+		expectedBlocks.add(b3);
+		expectedBlocks.add(b4);
+		expectedBlocks.add(b5);
+		expectedBlocks.add(b6);
 
 		// Result
 
@@ -67,17 +90,41 @@ public class BoundaryValuesTestTypingCharacteristics {
 		Set<Block> expectedBlocks = new HashSet<Block>();
 
 		Block b1 = mock(Block.class);
-		when(b1.getBlock()).thenReturn("aa : NAT1");
-		when(b1.isNegative()).thenReturn(false);
-		when(b1.toString()).thenReturn("Block: aa : NAT1 isNegative: false");
+		when(b1.getBlock()).thenReturn("aa = 0");
+		when(b1.isNegative()).thenReturn(true);
+		when(b1.toString()).thenReturn("Block: aa = 0 isNegative: true");
 
 		Block b2 = mock(Block.class);
-		when(b2.getBlock()).thenReturn("aa /: NAT1");
-		when(b2.isNegative()).thenReturn(true);
-		when(b2.toString()).thenReturn("Block: aa /: NAT1 isNegative: true");
+		when(b2.getBlock()).thenReturn("aa = 1");
+		when(b2.isNegative()).thenReturn(false);
+		when(b2.toString()).thenReturn("Block: aa = 1 isNegative: false");
+
+		Block b3 = mock(Block.class);
+		when(b3.getBlock()).thenReturn("aa = 2");
+		when(b3.isNegative()).thenReturn(false);
+		when(b3.toString()).thenReturn("Block: aa = 2 isNegative: false");
+
+		Block b4 = mock(Block.class);
+		when(b4.getBlock()).thenReturn("aa = MAXINT-1");
+		when(b4.isNegative()).thenReturn(false);
+		when(b4.toString()).thenReturn("Block: aa = MAXINT-1 isNegative: false");
+
+		Block b5 = mock(Block.class);
+		when(b5.getBlock()).thenReturn("aa = MAXINT");
+		when(b5.isNegative()).thenReturn(false);
+		when(b5.toString()).thenReturn("Block: aa = MAXINT isNegative: false");
+
+		Block b6 = mock(Block.class);
+		when(b6.getBlock()).thenReturn("aa = MAXINT+1");
+		when(b6.isNegative()).thenReturn(true);
+		when(b6.toString()).thenReturn("Block: aa = MAXINT+1 isNegative: true");
 
 		expectedBlocks.add(b1);
 		expectedBlocks.add(b2);
+		expectedBlocks.add(b3);
+		expectedBlocks.add(b4);
+		expectedBlocks.add(b5);
+		expectedBlocks.add(b6);
 
 		// Result
 
@@ -160,23 +207,41 @@ public class BoundaryValuesTestTypingCharacteristics {
 		Set<Block> expectedBlocks = new HashSet<Block>();
 
 		Block b1 = mock(Block.class);
-		when(b1.getBlock()).thenReturn("aa : 1..5");
-		when(b1.isNegative()).thenReturn(false);
-		when(b1.toString()).thenReturn("Block: aa : 1..5 isNegative: false");
+		when(b1.getBlock()).thenReturn("aa = 1-1");
+		when(b1.isNegative()).thenReturn(true);
+		when(b1.toString()).thenReturn("Block: aa = 1-1 isNegative: true");
 
 		Block b2 = mock(Block.class);
-		when(b2.getBlock()).thenReturn("aa : MININT..(1-1)");
-		when(b2.isNegative()).thenReturn(true);
-		when(b2.toString()).thenReturn("Block: aa : MININT..(1-1) isNegative: true");
+		when(b2.getBlock()).thenReturn("aa = 1");
+		when(b2.isNegative()).thenReturn(false);
+		when(b2.toString()).thenReturn("Block: aa = 1 isNegative: false");
 
 		Block b3 = mock(Block.class);
-		when(b3.getBlock()).thenReturn("aa : (5+1)..MAXINT");
-		when(b3.isNegative()).thenReturn(true);
-		when(b3.toString()).thenReturn("Block: aa : (5+1)..MAXINT isNegative: true");
-		
+		when(b3.getBlock()).thenReturn("aa = 1+1");
+		when(b3.isNegative()).thenReturn(false);
+		when(b3.toString()).thenReturn("Block: aa = 1+1 isNegative: false");
+
+		Block b4 = mock(Block.class);
+		when(b4.getBlock()).thenReturn("aa = 5-1");
+		when(b4.isNegative()).thenReturn(false);
+		when(b4.toString()).thenReturn("Block: aa = 5-1 isNegative: false");
+
+		Block b5 = mock(Block.class);
+		when(b5.getBlock()).thenReturn("aa = 5");
+		when(b5.isNegative()).thenReturn(false);
+		when(b5.toString()).thenReturn("Block: aa = 5 isNegative: false");
+
+		Block b6 = mock(Block.class);
+		when(b6.getBlock()).thenReturn("aa = 5+1");
+		when(b6.isNegative()).thenReturn(true);
+		when(b6.toString()).thenReturn("Block: aa = 5+1 isNegative: true");
+
 		expectedBlocks.add(b1);
 		expectedBlocks.add(b2);
 		expectedBlocks.add(b3);
+		expectedBlocks.add(b4);
+		expectedBlocks.add(b5);
+		expectedBlocks.add(b6);
 
 		// Result
 
@@ -187,9 +252,9 @@ public class BoundaryValuesTestTypingCharacteristics {
 
 		assertEquals(blocksToStrings(expectedBlocks), blocksToStrings(actualResult));
 	}
-	
-	
-	
+
+
+
 	@Test
 	public void findBlocksForBelongsToAbstractSet_returnsBelongsBlock() {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/TypingPredicates.mch"));
@@ -204,7 +269,7 @@ public class BoundaryValuesTestTypingCharacteristics {
 		when(b1.getBlock()).thenReturn("aa : ASET");
 		when(b1.isNegative()).thenReturn(false);
 		when(b1.toString()).thenReturn("Block: aa : ASET isNegative: false");
-		
+
 		expectedBlocks.add(b1);
 
 		// Result
@@ -216,9 +281,9 @@ public class BoundaryValuesTestTypingCharacteristics {
 
 		assertEquals(blocksToStrings(expectedBlocks), blocksToStrings(actualResult));
 	}
-	
-	
-	
+
+
+
 	@Test
 	public void findBlocksForBelongsToId_returnsBelongsAndNotBelongsBlocks() {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/TypingPredicates.mch"));
@@ -233,12 +298,12 @@ public class BoundaryValuesTestTypingCharacteristics {
 		when(b1.getBlock()).thenReturn("aa : ww");
 		when(b1.isNegative()).thenReturn(false);
 		when(b1.toString()).thenReturn("Block: aa : ww isNegative: false");
-		
+
 		Block b2 = mock(Block.class);
 		when(b2.getBlock()).thenReturn("aa /: ww");
 		when(b2.isNegative()).thenReturn(false);
 		when(b2.toString()).thenReturn("Block: aa /: ww isNegative: true");
-		
+
 		expectedBlocks.add(b1);
 		expectedBlocks.add(b2);
 
@@ -251,9 +316,9 @@ public class BoundaryValuesTestTypingCharacteristics {
 
 		assertEquals(blocksToStrings(expectedBlocks), blocksToStrings(actualResult));
 	}
-	
-	
-	
+
+
+
 	@Test
 	public void findBlocksForIsTotalFunction_returnsisTotalFunctionBlock() {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/TypingPredicates.mch"));
@@ -268,7 +333,7 @@ public class BoundaryValuesTestTypingCharacteristics {
 		when(b1.getBlock()).thenReturn("aa : (NAT --> NAT)");
 		when(b1.isNegative()).thenReturn(false);
 		when(b1.toString()).thenReturn("Block: aa : (NAT --> NAT) isNegative: false");
-		
+
 		expectedBlocks.add(b1);
 
 		// Result
@@ -280,9 +345,9 @@ public class BoundaryValuesTestTypingCharacteristics {
 
 		assertEquals(blocksToStrings(expectedBlocks), blocksToStrings(actualResult));
 	}
-	
-	
-	
+
+
+
 	@Test
 	public void findBlocksForIsPartialFunction_returnsisPartialFunctionBlock() {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/TypingPredicates.mch"));
@@ -297,7 +362,7 @@ public class BoundaryValuesTestTypingCharacteristics {
 		when(b1.getBlock()).thenReturn("aa : (NAT +-> NAT)");
 		when(b1.isNegative()).thenReturn(false);
 		when(b1.toString()).thenReturn("Block: aa : (NAT +-> NAT) isNegative: false");
-		
+
 		expectedBlocks.add(b1);
 
 		// Result
@@ -309,9 +374,9 @@ public class BoundaryValuesTestTypingCharacteristics {
 
 		assertEquals(blocksToStrings(expectedBlocks), blocksToStrings(actualResult));
 	}
-	
-	
-	
+
+
+
 	@Test
 	public void findBlocksForIsInjectiveFunction_returnsisInjectiveFunctionBlock() {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/TypingPredicates.mch"));
@@ -326,7 +391,7 @@ public class BoundaryValuesTestTypingCharacteristics {
 		when(b1.getBlock()).thenReturn("aa : (NAT >+> NAT)");
 		when(b1.isNegative()).thenReturn(false);
 		when(b1.toString()).thenReturn("Block: aa : (NAT >+> NAT) isNegative: false");
-		
+
 		expectedBlocks.add(b1);
 
 		// Result
@@ -338,9 +403,9 @@ public class BoundaryValuesTestTypingCharacteristics {
 
 		assertEquals(blocksToStrings(expectedBlocks), blocksToStrings(actualResult));
 	}
-	
-	
-	
+
+
+
 	@Test
 	public void findBlocksForIsTotalSurjectiveFunction_returnsisTotalSurjectiveFunctionBlock() {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/TypingPredicates.mch"));
@@ -355,7 +420,7 @@ public class BoundaryValuesTestTypingCharacteristics {
 		when(b1.getBlock()).thenReturn("aa : (NAT -->> NAT)");
 		when(b1.isNegative()).thenReturn(false);
 		when(b1.toString()).thenReturn("Block: aa : (NAT -->> NAT) isNegative: false");
-		
+
 		expectedBlocks.add(b1);
 
 		// Result
@@ -367,9 +432,9 @@ public class BoundaryValuesTestTypingCharacteristics {
 
 		assertEquals(blocksToStrings(expectedBlocks), blocksToStrings(actualResult));
 	}
-	
-	
-	
+
+
+
 	@Test
 	public void findBlocksForIsPartialSurjectiveFunction_returnsisPartialSurjectiveFunctionBlock() {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/TypingPredicates.mch"));
@@ -384,7 +449,7 @@ public class BoundaryValuesTestTypingCharacteristics {
 		when(b1.getBlock()).thenReturn("aa : (NAT +->> NAT)");
 		when(b1.isNegative()).thenReturn(false);
 		when(b1.toString()).thenReturn("Block: aa : (NAT +->> NAT) isNegative: false");
-		
+
 		expectedBlocks.add(b1);
 
 		// Result
@@ -413,7 +478,7 @@ public class BoundaryValuesTestTypingCharacteristics {
 		when(b1.getBlock()).thenReturn("aa : (NAT >->> NAT)");
 		when(b1.isNegative()).thenReturn(false);
 		when(b1.toString()).thenReturn("Block: aa : (NAT >->> NAT) isNegative: false");
-		
+
 		expectedBlocks.add(b1);
 
 		// Result
@@ -425,9 +490,9 @@ public class BoundaryValuesTestTypingCharacteristics {
 
 		assertEquals(blocksToStrings(expectedBlocks), blocksToStrings(actualResult));
 	}
-	
-	
-	
+
+
+
 	@Test
 	public void findBlocksForBelongsToEnumeratedSet_returnsBelongsAndNotBelongsBlocks() {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/TypingPredicates.mch"));
@@ -460,9 +525,9 @@ public class BoundaryValuesTestTypingCharacteristics {
 
 		assertEquals(blocksToStrings(expectedBlocks), blocksToStrings(actualResult));
 	}
-	
-	
-	
+
+
+
 	@Test
 	public void findBlocksForBelongsToSTRING_returnsBelongsSTRING() {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/TypingPredicates.mch"));
@@ -501,5 +566,5 @@ public class BoundaryValuesTestTypingCharacteristics {
 
 		return blocksAsStrings;
 	}
-	
+
 }

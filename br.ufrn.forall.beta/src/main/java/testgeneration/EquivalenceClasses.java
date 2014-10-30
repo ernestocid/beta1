@@ -13,6 +13,7 @@ import parser.decorators.expressions.MyAIntervalExpression;
 import parser.decorators.expressions.MyAPartialBijectionExpression;
 import parser.decorators.expressions.MyAPartialFunctionExpression;
 import parser.decorators.expressions.MyAPartialInjectionExpression;
+import parser.decorators.expressions.MyAPartialSurjectionExpression;
 import parser.decorators.expressions.MyAStringSetExpression;
 import parser.decorators.expressions.MyATotalBijectionExpression;
 import parser.decorators.expressions.MyATotalFunctionExpression;
@@ -91,6 +92,7 @@ public class EquivalenceClasses {
 						rightExpression instanceof MyAPartialInjectionExpression ||
 						rightExpression instanceof MyATotalBijectionExpression ||
 						rightExpression instanceof MyAPartialBijectionExpression ||
+						rightExpression instanceof MyAPartialSurjectionExpression ||
 						rightExpression instanceof MyAStringSetExpression) {
 					
 					return true;

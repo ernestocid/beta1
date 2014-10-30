@@ -46,6 +46,7 @@ import de.be4.classicalb.core.parser.node.AOverwriteExpression;
 import de.be4.classicalb.core.parser.node.APartialBijectionExpression;
 import de.be4.classicalb.core.parser.node.APartialFunctionExpression;
 import de.be4.classicalb.core.parser.node.APartialInjectionExpression;
+import de.be4.classicalb.core.parser.node.APartialSurjectionExpression;
 import de.be4.classicalb.core.parser.node.APowSubsetExpression;
 import de.be4.classicalb.core.parser.node.ARangeExpression;
 import de.be4.classicalb.core.parser.node.ARangeRestrictionExpression;
@@ -200,6 +201,8 @@ public class MyExpressionFactory {
 			return new MyADivExpression((ADivExpression) expression);
 		} else if (expression instanceof AModuloExpression) {
 			return new MyAModuloExpression((AModuloExpression) expression);
+		} else if (expression instanceof APartialSurjectionExpression) {
+			return new MyAPartialSurjectionExpression((APartialSurjectionExpression) expression);
 		} else {
 			System.out.println("No decorator for: " + expression.getClass().getName());
 			return null;

@@ -22,7 +22,23 @@ OPERATIONS
 
   belongsToAbstractSet(aa) = PRE aa : ASET THEN skip END;
 
-  belongsToId(aa) = PRE aa : ww THEN skip END
+  belongsToId(aa) = PRE aa : ww THEN skip END;
+
+  totalFunction(aa) = PRE aa : NAT --> NAT THEN skip END;
+
+  partialFunction(aa) = PRE aa : NAT +-> NAT THEN skip END;
+
+  injectiveFunction(aa) = PRE aa : NAT >+> NAT THEN skip END;
+
+  totalSurjectiveFunction(aa) = PRE aa : NAT -->> NAT THEN skip END;
+
+  partialSurjectiveFunction(aa) = PRE aa : NAT +->> NAT THEN skip END;
+
+  bijectiveFunction(aa) = PRE aa : NAT >->> NAT THEN skip END;
+
+  memberOfEnumeratedSet(aa) = PRE aa : {1,2,3} THEN skip END;
+
+  belongsToSTRING(aa) = PRE aa : STRING THEN skip END
 
 END
 

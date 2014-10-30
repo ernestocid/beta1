@@ -55,21 +55,57 @@ public class EquivalenceClasses {
 	public static Set<Block> findBlocks(Characteristic characteristic, Operation operation) {
 		Set<Block> blocks = new HashSet<Block>();
 
-		if (characteristic.getType() == CharacteristicType.PRE_CONDITION || characteristic.getType() == CharacteristicType.CONDITIONAL) {
-			if(isTypingCharacteristic(characteristic, operation)) {
-				blocks.add(new Block(characteristic.toString(), false));
-			} else if (characteristic instanceof PredicateCharacteristic) {
-				PredicateCharacteristic predC = (PredicateCharacteristic) characteristic;
-				blocks.addAll(createBlocks(predC));
+		if(comesFromPreconditionOrConditional(characteristic) && isTypingCharacteristic(characteristic, operation)) return getSinglePositiveBlock(characteristic);
+		if(comesFromPreconditionOrConditional(characteristic) && !isTypingCharacteristic(characteristic, operation)) return getBlocks(characteristic);
+		if(isInvariant(characteristic)) return getBlocksForInvariant(characteristic);
+		if(isProperties(characteristic)) return getSinglePositiveBlock(characteristic);
 
-			}
-		} else if (characteristic.getType() == CharacteristicType.INVARIANT) {
+		return blocks;
+	}
 
-		} else {
 
+
+	private static boolean isProperties(Characteristic characteristic) {
+		return characteristic.getType() == CharacteristicType.PROPERTIES;
+	}
+
+
+
+	private static Set<Block> getBlocks(Characteristic characteristic) {
+		Set<Block> blocks = new HashSet<Block>();
+
+		if (characteristic instanceof PredicateCharacteristic) {
+			PredicateCharacteristic predC = (PredicateCharacteristic) characteristic;
+			blocks.addAll(createBlocks(predC));
 		}
 
 		return blocks;
+	}
+
+
+
+	private static Set<Block> getSinglePositiveBlock(Characteristic characteristic) {
+		Set<Block> blocks = new HashSet<Block>();
+		blocks.add(new Block(characteristic.toString(), false));
+		return blocks;
+	}
+
+
+
+	private static boolean comesFromPreconditionOrConditional(Characteristic characteristic) {
+		return characteristic.getType() == CharacteristicType.PRE_CONDITION || characteristic.getType() == CharacteristicType.CONDITIONAL;
+	}
+
+
+
+	private static boolean isInvariant(Characteristic characteristic) {
+		return characteristic.getType() == CharacteristicType.INVARIANT;
+	}
+
+
+
+	private static Set<Block> getBlocksForInvariant(Characteristic characteristic) {
+		return getSinglePositiveBlock(characteristic);
 	}
 
 

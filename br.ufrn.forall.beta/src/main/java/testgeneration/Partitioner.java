@@ -291,7 +291,7 @@ public class Partitioner {
 
 
 
-	private Set<Characteristic> getCharacteristicsFromInvariant() {
+	public Set<Characteristic> getCharacteristicsFromInvariant() {
 		Set<Characteristic> characteristicsFromInvariant = new HashSet<Characteristic>();
 		
 		for(MyPredicate clause : getPredicatesRelatedWithVariables(getOperationInputSpace(), this.operation.getMachine().getCondensedInvariantFromAllMachines())) {

@@ -270,7 +270,9 @@ public class BETATestSuite {
 		Set<String> variables = this.operationUnderTest.getMachine().getVariablesFromAllMachines();
 		
 		for (String variable : variables) {
-			attributeValues.put(variable, animation.get(variable));
+			if(animationHasValueForVariable(animation, variable)) {
+				attributeValues.put(variable, animation.get(variable));
+			}
 		}
 		
 		return attributeValues;
@@ -278,6 +280,12 @@ public class BETATestSuite {
 
 		
 		
+	private boolean animationHasValueForVariable(Map<String, String> animation, String variable) {
+		return animation.get(variable) != null;
+	}
+
+
+
 	private HashMap<String, String> getParamValues(Map<String, String> animation) {
 		HashMap<String, String> parameterValues = new HashMap<String, String>();
 		List<String> parameters = operationUnderTest.getParameters();

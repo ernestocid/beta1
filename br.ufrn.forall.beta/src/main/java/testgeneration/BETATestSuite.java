@@ -246,26 +246,28 @@ public class BETATestSuite {
 	// TODO: refatorar!
 	private HashMap<String, String> getAttributeValues(Map<String, String> animation) {
 		HashMap<String, String> attributeValues = new HashMap<String, String>();
-		Set<String> variables = new HashSet<String>();
+//		Set<String> variables = new HashSet<String>();
 		
-		if (this.operationUnderTest.getMachine().getVariables() != null) {
-			variables.addAll(this.operationUnderTest.getMachine().getVariables().getAll());
-		}
+//		if (this.operationUnderTest.getMachine().getVariables() != null) {
+//			variables.addAll(this.operationUnderTest.getMachine().getVariables().getAll());
+//		}
+//		
+//		Partitioner partitioner = new Partitioner(this.operationUnderTest);
+//		Set<String> inputSpace = partitioner.getOperationInputSpace();
+//		
+//		if (this.operationUnderTest.getMachine().getIncludes() != null) {
+//			for (Machine machineIncluded : this.operationUnderTest.getMachine().getIncludes().getMachinesIncluded()) {
+//				if(machineIncluded.getVariables() != null) {
+//					for (String variable : machineIncluded.getVariables().getAll()) {
+//						if(inputSpace.contains(variable)) {
+//							variables.add(variable);
+//						}
+//					}
+//				}
+//			}
+//		}
 		
-		Partitioner partitioner = new Partitioner(this.operationUnderTest);
-		Set<String> inputSpace = partitioner.getOperationInputSpace();
-		
-		if (this.operationUnderTest.getMachine().getIncludes() != null) {
-			for (Machine machineIncluded : this.operationUnderTest.getMachine().getIncludes().getMachinesIncluded()) {
-				if(machineIncluded.getVariables() != null) {
-					for (String variable : machineIncluded.getVariables().getAll()) {
-						if(inputSpace.contains(variable)) {
-							variables.add(variable);
-						}
-					}
-				}
-			}
-		}
+		Set<String> variables = this.operationUnderTest.getMachine().getVariablesFromAllMachines();
 		
 		for (String variable : variables) {
 			attributeValues.put(variable, animation.get(variable));

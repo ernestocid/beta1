@@ -6,6 +6,12 @@ CONSTANTS constantA
 
 PROPERTIES constantA : SETA
 
+VARIABLES varA
+
+INVARIANT varA : INT
+
+INITIALISATION varA := 1
+
 OPERATIONS
   Set(yy) = PRE yy : SETA THEN skip END
 END

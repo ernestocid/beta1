@@ -1,0 +1,19 @@
+MACHINE TestIncludeMachineD
+
+SETS
+ SETD={gg,hh}
+
+CONSTANTS constantD
+
+PROPERTIES
+ constantD : SETD
+
+VARIABLES varD
+
+INVARIANT varD : INT
+
+INITIALISATION varD := 1
+
+OPERATIONS
+  opD(yy) = PRE yy : SETD THEN skip END
+END

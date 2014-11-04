@@ -3,6 +3,7 @@ package parser;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -385,10 +386,9 @@ public class Machine {
 		Set<String> constants = new HashSet<String>();
 
 		constants.addAll(getAllMachineConstants());
-		constants.addAll(getConstantsFromExtendedMachines());
 		constants.addAll(getConstantsFromSeenMachines());
-		constants.addAll(getConstantsFromIncludedMachines());
 		constants.addAll(getConstantsFromUsedMachines());
+		constants.addAll(getConstantsFromIncludedOrExtendedMachines());
 
 		return constants;
 	}
@@ -409,13 +409,13 @@ public class Machine {
 
 
 
-	private Set<String> getConstantsFromIncludedMachines() {
-		return getConstantsFromIncludedMachinesHelper(this);
+	private Set<String> getConstantsFromIncludedOrExtendedMachines() {
+		return getConstantsFromIncludedOrExtendedMachinesHelper(this);
 	}
 
 
 
-	private Set<String> getConstantsFromIncludedMachinesHelper(Machine machine) {
+	private Set<String> getConstantsFromIncludedOrExtendedMachinesHelper(Machine machine) {
 		Set<String> constants = new HashSet<String>();
 
 		constants.addAll(machine.getAllMachineConstants());
@@ -424,7 +424,15 @@ public class Machine {
 			List<Machine> machinesIncluded = machine.getIncludes().getMachinesIncluded();
 
 			for (Machine machineIncluded : machinesIncluded) {
-				constants.addAll(getConstantsFromIncludedMachinesHelper(machineIncluded));
+				constants.addAll(getConstantsFromIncludedOrExtendedMachinesHelper(machineIncluded));
+			}
+		}
+
+		if (machine.getExtends() != null) {
+			List<Machine> machinesExtended = machine.getExtends().getMachinesExtended();
+
+			for (Machine extendedMachine : machinesExtended) {
+				constants.addAll(getConstantsFromIncludedOrExtendedMachinesHelper(extendedMachine));
 			}
 		}
 
@@ -447,26 +455,83 @@ public class Machine {
 
 
 
-	private Set<String> getConstantsFromExtendedMachines() {
-		return getConstantsFromExtendedMachinesHelper(this);
+	public Set<String> getVariablesFromAllMachines() {
+		Set<String> variables = new HashSet<String>();
+
+		variables.addAll(getMachineVariables());
+		variables.addAll(getVariablesFromUsedMachines());
+		variables.addAll(getVariablesFromSeenMachines());
+		variables.addAll(getVariablesFromIncludedOrExtendedMachines());
+
+		return variables;
 	}
 
 
 
-	private Set<String> getConstantsFromExtendedMachinesHelper(Machine machine) {
-		Set<String> constants = new HashSet<String>();
+	private Set<String> getVariablesFromIncludedOrExtendedMachines() {
+		return getVariablesFromIncludedOrExtendedMachinesHelper(this);
+	}
 
-		constants.addAll(machine.getAllMachineConstants());
 
-		if (machine.getExtends() != null) {
-			List<Machine> machinesExtended = machine.getExtends().getMachinesExtended();
 
-			for (Machine extendedMachine : machinesExtended) {
-				constants.addAll(getConstantsFromExtendedMachinesHelper(extendedMachine));
+	private Set<String> getVariablesFromIncludedOrExtendedMachinesHelper(Machine machine) {
+		Set<String> variables = new HashSet<String>();
+
+		variables.addAll(machine.getMachineVariables());
+
+		if (machine.getIncludes() != null) {
+			for (Machine includedMachine : machine.getIncludes().getMachinesIncluded()) {
+				variables.addAll(getVariablesFromIncludedOrExtendedMachinesHelper(includedMachine));
 			}
 		}
 
-		return constants;
+		if (machine.getExtends() != null) {
+			for (Machine extendedMachine : machine.getExtends().getMachinesExtended()) {
+				variables.addAll(getVariablesFromIncludedOrExtendedMachinesHelper(extendedMachine));
+			}
+		}
+
+		return variables;
+	}
+
+
+
+	private Set<String> getVariablesFromSeenMachines() {
+		Set<String> variables = new HashSet<String>();
+
+		if (getSees() != null) {
+			for (Machine machineSeen : getSees().getMachinesSeen()) {
+				variables.addAll(machineSeen.getMachineVariables());
+			}
+		}
+
+		return variables;
+	}
+
+
+
+	private Set<String> getVariablesFromUsedMachines() {
+		Set<String> variables = new HashSet<String>();
+
+		if (getUses() != null) {
+			for (Machine machineUsed : getUses().getMachinesUsed()) {
+				variables.addAll(machineUsed.getMachineVariables());
+			}
+		}
+
+		return variables;
+	}
+
+
+
+	private Set<String> getMachineVariables() {
+		Set<String> variables = new HashSet<String>();
+
+		if (getVariables() != null) {
+			variables.addAll(getVariables().getAll());
+		}
+
+		return variables;
 	}
 
 }

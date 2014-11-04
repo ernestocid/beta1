@@ -75,7 +75,7 @@ public class InputDataEvaluation {
 
 
 	private Trace trySetupConstants(Trace trace) {
-		boolean machineHasNoConstants = getOperationUnderTest().getMachine().getAllConstants().isEmpty() && 
+		boolean machineHasNoConstants = getOperationUnderTest().getMachine().getAllMachineConstants().isEmpty() && 
 										getOperationUnderTest().getMachine().getSets() == null;
 		
 		if(machineHasNoConstants) {

@@ -28,6 +28,8 @@ OPERATIONS
 
   notIncludesStrictPredicate(aa) = PRE aa /<<: ww  THEN skip END;
 
-  existentialQuantifierPredicate = PRE #zz.(zz : NAT & zz > xx) THEN skip END
+  existentialQuantifierPredicate = PRE #zz.(zz : NAT & zz > xx) THEN skip END;
+
+  memberOfExpressionThatResultsInASet(aa) = PRE aa : ww \/ {3,4,5} THEN skip END
 
 END

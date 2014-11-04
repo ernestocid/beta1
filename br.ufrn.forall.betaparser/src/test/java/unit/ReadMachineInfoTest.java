@@ -201,7 +201,7 @@ public class ReadMachineInfoTest {
 		expectedAbstractConstats.add("ThreeInRow");
 		expectedAbstractConstats.add("WinnerRows");
 		
-		assertEquals(expectedAbstractConstats, machine.getAllConstants());
+		assertEquals(expectedAbstractConstats, machine.getAllMachineConstants());
 	}
 	
 	

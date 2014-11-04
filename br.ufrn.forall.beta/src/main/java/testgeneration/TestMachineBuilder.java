@@ -288,7 +288,7 @@ public class TestMachineBuilder {
 
 
 	private void addConstantsFromAllDependantMachines(Machine machine, Set<String> constants) {
-		constants.addAll(machine.getAllConstants());
+		constants.addAll(machine.getAllMachineConstants());
 		
 		if(machine.getSees() != null) {
 			List<Machine> machinesSeen = machine.getSees().getMachinesSeen();
@@ -500,7 +500,7 @@ public class TestMachineBuilder {
 			List<Machine> machinesIncluded = this.operation.getMachine().getUses().getMachinesUsed();
 			
 			for(Machine machineIncluded : machinesIncluded) {
-				constants.addAll(machineIncluded.getAllConstants());
+				constants.addAll(machineIncluded.getAllMachineConstants());
 			}
 		}
 	}
@@ -512,7 +512,7 @@ public class TestMachineBuilder {
 			List<Machine> machinesSeens = this.operation.getMachine().getSees().getMachinesSeen();
 			
 			for(Machine machineSeen : machinesSeens) {
-				constants.addAll(machineSeen.getAllConstants());
+				constants.addAll(machineSeen.getAllMachineConstants());
 			}
 		}
 	}
@@ -520,7 +520,7 @@ public class TestMachineBuilder {
 	
 	
 	private void addConstantsFromExtendedMachine(Machine machineExtended, List<String> constants) {
-		constants.addAll(machineExtended.getAllConstants());
+		constants.addAll(machineExtended.getAllMachineConstants());
 		
 		if(machineExtended.getExtends() != null) {
 			for(Machine m : machineExtended.getExtends().getMachinesExtended()) {
@@ -532,7 +532,7 @@ public class TestMachineBuilder {
 
 
 	private void addConstantsFromIncludedMachine(Machine machineIncluded, List<String> constants) {
-		constants.addAll(machineIncluded.getAllConstants());
+		constants.addAll(machineIncluded.getAllMachineConstants());
 		
 		if(machineIncluded.getIncludes() != null) {
 			for(Machine m : machineIncluded.getIncludes().getMachinesIncluded()) {
@@ -843,7 +843,7 @@ public class TestMachineBuilder {
 		Set<String> operationInputSpace = this.partitioner.getOperationInputSpace();
 		
 		operationInputSpace.addAll(this.partitioner.getOperation().getStateVariablesUsedOnBody());
-		operationInputSpace.removeAll(this.operation.getMachine().getAllConstants());
+		operationInputSpace.removeAll(this.operation.getMachine().getAllMachineConstants());
 		return operationInputSpace;
 	}
 	

@@ -1,5 +1,6 @@
 package parser.decorators.expressions;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import de.be4.classicalb.core.parser.node.AIntervalExpression;
@@ -42,7 +43,12 @@ public class MyAIntervalExpression extends MyExpressionDecorator {
 	
 	@Override
 	public Set<String> getVariables() {
-		return super.getVariables();
+		Set<String> variables = new HashSet<String>();
+		
+		variables.addAll(getLeftExpression().getVariables());
+		variables.addAll(getRightExpression().getVariables());
+		
+		return variables;
 	}
 	
 	

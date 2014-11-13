@@ -16,8 +16,6 @@ import configurations.Configurations;
 import criteria.AllCombinations;
 import criteria.EachChoice;
 import criteria.Pairwise;
-import de.prob.Main;
-import de.prob.scripting.Api;
 import animator.Animation;
 import animator.Animator;
 import animator.ConventionTools;
@@ -33,7 +31,6 @@ public class BETATestSuite {
 	private Operation operationUnderTest;
 	private PartitionStrategy partitionStrategy;
 	private CombinatorialCriterias combinatorialCriteria;
-	private Api probApi;
 
 
 
@@ -42,7 +39,6 @@ public class BETATestSuite {
 		this.partitionStrategy = partitionStrategy;
 		this.combinatorialCriteria = combinatorialCriteria;
 		this.testCases = new ArrayList<BETATestCase>();
-		this.probApi = Main.getInjector().getInstance(Api.class);
 		generateTestCases();
 	}
 
@@ -347,12 +343,6 @@ public class BETATestSuite {
 
 
 
-	public void setTestCases(List<BETATestCase> testCases) {
-		this.testCases = testCases;
-	}
-
-
-
 	public PartitionStrategy getPartitionStrategy() {
 		return this.partitionStrategy;
 	}
@@ -379,14 +369,6 @@ public class BETATestSuite {
 
 	public List<String> getUnsolvableFormulas() {
 		return unsolvableFormulas;
-	}
-
-
-
-	// TODO: some classes are using this. We should have a global api instance
-	// that can be called anywhere.
-	public Api getProbApi() {
-		return this.probApi;
 	}
 
 

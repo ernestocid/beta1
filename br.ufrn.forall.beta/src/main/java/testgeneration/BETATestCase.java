@@ -4,7 +4,6 @@ import java.util.Map;
 
 public class BETATestCase implements Comparable<BETATestCase> {
 
-	
 	private String testFormula;
 	private String testFormulaWithoutInvariant;
 	private Map<String, String> stateValues;
@@ -12,13 +11,10 @@ public class BETATestCase implements Comparable<BETATestCase> {
 	private boolean negative;
 	private BETATestSuite testSuite;
 
-	
-	public BETATestCase(String testFormula, 
-						String testFormulaWithoutInvariant,
-						Map<String, String> stateValues,
-						Map<String, String> inputParamValues, 
-						boolean negative,
-						BETATestSuite testSuite) {
+
+
+	public BETATestCase(String testFormula, String testFormulaWithoutInvariant, Map<String, String> stateValues, Map<String, String> inputParamValues,
+			boolean negative, BETATestSuite testSuite) {
 
 		this.testFormula = testFormula;
 		this.testFormulaWithoutInvariant = testFormulaWithoutInvariant;
@@ -34,13 +30,13 @@ public class BETATestCase implements Comparable<BETATestCase> {
 		this.testFormula = testFormula;
 	}
 
-	
+
 
 	public void setTestFormulaWithoutInvariant(String testFormulaWithoutInvariant) {
 		this.testFormulaWithoutInvariant = testFormulaWithoutInvariant;
 	}
 
-	
+
 
 	public void setStateValues(Map<String, String> stateValues) {
 		this.stateValues = stateValues;
@@ -58,11 +54,12 @@ public class BETATestCase implements Comparable<BETATestCase> {
 		return this.testFormula;
 	}
 
-	
-	
+
+
 	public String getTestFormulaWithoutInvariant() {
 		return testFormulaWithoutInvariant;
 	}
+
 
 
 	public Map<String, String> getStateValues() {
@@ -94,17 +91,17 @@ public class BETATestCase implements Comparable<BETATestCase> {
 		return testSuite;
 	}
 
-	
-	
+
+
 	@Override
 	public String toString() {
 		StringBuffer testCaseRepresentation = new StringBuffer("");
-		
+
 		testCaseRepresentation.append("Test Formula: " + this.testFormula + "\n");
 		testCaseRepresentation.append("Input Params: " + this.inputParamValues + "\n");
 		testCaseRepresentation.append("State: " + this.stateValues + "\n");
 		testCaseRepresentation.append("Negative: " + this.negative + "\n");
-		
+
 		return testCaseRepresentation.toString();
 	}
 }

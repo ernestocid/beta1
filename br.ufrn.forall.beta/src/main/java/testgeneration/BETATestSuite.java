@@ -14,7 +14,6 @@ import java.util.Set;
 
 import configurations.Configurations;
 import criteria.AllCombinations;
-import criteria.Criteria;
 import criteria.EachChoice;
 import criteria.Pairwise;
 import de.prob.Main;
@@ -43,8 +42,6 @@ public class BETATestSuite {
 		this.partitionStrategy = partitionStrategy;
 		this.combinatorialCriteria = combinatorialCriteria;
 		this.testCases = new ArrayList<BETATestCase>();
-		// String probpath = Configurations.getProBPath();
-		// System.setProperty("prob.home", probpath);
 		this.probApi = Main.getInjector().getInstance(Api.class);
 		generateTestCases();
 	}
@@ -53,79 +50,89 @@ public class BETATestSuite {
 
 	private void generateTestCases() {
 
-		// Generating partition blocks and combining them according to a
-		// combinatorial criteria
+		// Generating partition blocks according to the chosen Partition
+		// Strategy and then combining them according to the chosen
+		// Combinatorial Criteria
 
-		BlockBuilder blockBuilder;
-
-		if (this.partitionStrategy == PartitionStrategy.EQUIVALENT_CLASSES) {
-			blockBuilder = new ECBlockBuilder(new Partitioner(this.operationUnderTest));
-		} else if (this.partitionStrategy == PartitionStrategy.BOUNDARY_VALUES) {
-			blockBuilder = new BVBlockBuilder(new Partitioner(this.operationUnderTest));
-		} else {
-			blockBuilder = null;
-		}
-
-		List<List<Block>> blocks = blockBuilder.getBlocksAsListsOfBlocks();
-
-		Set<List<Block>> combinations = getCombinations(blocks);
+		List<List<Block>> blocks = getBlocksAccordingToPartitionStrategy();
+		Set<List<Block>> combinations = getCombinationsOfBlocksAccordingToCombinationCriteria(blocks);
 
 		if (!combinations.isEmpty()) {
+
 			// Creating and animating the auxiliary B machine to generate test
-			// data
+			// data. This is a trick we use to generate test case values
+			// according to the preconditions of each operation in this
+			// auxiliary machine. Each operation in the auxiliary test machine
+			// represents a test case.
 
-			TestMachineBuilder testMachineBuilder = new TestMachineBuilder(operationUnderTest, combinations);
-			String testMachineContent = testMachineBuilder.generateTestMachine();
+			Machine auxiliarTestMachine = new Machine(createAuxiliarTestMachineFile(combinations));
 
-			String parentPathDirectory = operationUnderTest.getMachine().getFile().getParent();
-
-			String testMachineFilePath = parentPathDirectory + System.getProperty("file.separator") + ConventionTools.getTestMachineName(operationUnderTest)
-					+ ".mch";
-			File testMachineFile = FileTools.createFileWithContent(testMachineFilePath, testMachineContent);
-
-			Machine testMachine = new Machine(testMachineFile);
-
-			Animator animator = new Animator(testMachine);
+			Animator animator = new Animator(auxiliarTestMachine);
 			List<Animation> animations = animator.animateAllOperations();
 
-			// Creating a map that identifies formulas for negative tests. It is
-			// used later for
-			// identifying negative tests when building the test suite
+			// Creating a map that identifies formulas for positive and negative
+			// test cases. The key in the map is the formula and the value is a
+			// boolean value that is true if the test is negative and false if
+			// the test is positive.
 
-			Map<String, Boolean> mappingCombinationToTypeOfTest = mapCombinationsToHashMapOfTypes(combinations);
+			Map<String, Boolean> mappingOfPositiveAndNegativeTestFormulas = mapPositiveAndNegativeTestFormulas(combinations);
 
-			// Getting unsolvable test formulas
+			// Add infeasible test formulas to the list of infeasible tests.
 
-			for (Operation op : animator.getOperationsWithUnsolvablePreconditionPredicates()) {
-				this.unsolvableFormulas.add(generateTestFormulaWithoutInvariant(op.getPrecondition()));
-			}
+			addInfeasibleFormulasToList(animator);
 
 			// Creating a test case for each animation
 
-			for (Animation animation : animations) {
-				// Getting first animation. All others are supposedly
-				// equivalent.
-
-				Map<String, String> animationValues = animation.getValues().get(0);
-
-				// Setting up test case and adding to test suite.
-
-				BETATestCase testCase = new BETATestCase(animation.getFormula(), generateTestFormulaWithoutInvariant(animation.getPredicate()),
-						getAttributeValues(animationValues), getParamValues(animationValues), isNegativeTest(animation, mappingCombinationToTypeOfTest), this);
-
-				testCases.add(testCase);
-			}
-
-			// Sorting test cases
-
-			Collections.sort(testCases);
+			createTestCases(animations, mappingOfPositiveAndNegativeTestFormulas);
 
 			// Deleting temp files
 
-			if (Configurations.isDeleteTempFiles() == true) {
-				deleteTempFiles(parentPathDirectory);
-			}
+			deleteTempFiles();
 
+		}
+	}
+
+
+
+	private void createTestCases(List<Animation> animations, Map<String, Boolean> mappingOfPositiveAndNegativeTestFormulas) {
+		for (Animation animation : animations) {
+
+			// One animation contains a list of possible combinations of values
+			// for the test. We pick the first element since they are all
+			// equivalent tests.
+
+			Map<String, String> animationValues = animation.getValues().get(0);
+
+			// Setting up test case and adding to test suite.
+
+			BETATestCase testCase = new BETATestCase(animation.getFormula(), generateTestFormulaWithoutInvariant(animation.getPredicate()),
+					getAttributeValues(animationValues), getParamValues(animationValues), isNegativeTest(animation, mappingOfPositiveAndNegativeTestFormulas),
+					this);
+
+			testCases.add(testCase);
+
+		}
+
+		Collections.sort(testCases);
+	}
+
+
+
+	private void addInfeasibleFormulasToList(Animator animator) {
+		for (Operation op : animator.getOperationsWithInfeasiblePreconditions()) {
+			this.unsolvableFormulas.add(generateTestFormulaWithoutInvariant(op.getPrecondition()));
+		}
+	}
+
+
+
+	private List<List<Block>> getBlocksAccordingToPartitionStrategy() {
+		if (this.partitionStrategy == PartitionStrategy.EQUIVALENT_CLASSES) {
+			return new ECBlockBuilder(new Partitioner(this.operationUnderTest)).getBlocksAsListsOfBlocks();
+		} else if (this.partitionStrategy == PartitionStrategy.BOUNDARY_VALUES) {
+			return new BVBlockBuilder(new Partitioner(this.operationUnderTest)).getBlocksAsListsOfBlocks();
+		} else {
+			return new ArrayList<List<Block>>();
 		}
 	}
 
@@ -139,7 +146,7 @@ public class BETATestSuite {
 
 
 
-	private Map<String, Boolean> mapCombinationsToHashMapOfTypes(Set<List<Block>> combinations) {
+	private Map<String, Boolean> mapPositiveAndNegativeTestFormulas(Set<List<Block>> combinations) {
 		Map<String, Boolean> mapping = new HashMap<String, Boolean>();
 
 		for (List<Block> combination : combinations) {
@@ -183,22 +190,51 @@ public class BETATestSuite {
 
 
 
-	// TODO: Refactor this later!
-	private String generateTestFormulaWithoutInvariant(MyPredicate predicate) {
-		// Recuperando as clausulas
+	private String generateTestFormulaWithoutInvariant(MyPredicate testFormula) {
 
-		Set<MyPredicate> clauses = predicate.getClauses();
+		// Creating clauses list from test formula
 
-		// Convertendo as clausulas para Strings
+		List<String> testFormulaClauses = getClausesFromFormula(testFormula);
 
-		List<String> clausesAsStrings = new ArrayList<String>();
+		// Creating set of invariant clauses
 
-		for (MyPredicate clause : clauses) {
-			clausesAsStrings.add(clause.toString().replaceAll("i__", ""));
+		Set<String> invariantClauses = getClausesFromInvariant();
+
+		// Removing invariant clauses from the list of clauses of the test
+		// formula and sorting the test formulas again
+
+		testFormulaClauses.removeAll(invariantClauses);
+		Collections.sort(testFormulaClauses);
+
+		// Rebuild the formula making a conjunction with the filtered clauses
+
+		String testFormulaWithoutInvariant = createConjunctionOfClauses(testFormulaClauses);
+
+		return testFormulaWithoutInvariant;
+
+	}
+
+
+
+	private String createConjunctionOfClauses(List<String> testFormulaClauses) {
+		StringBuffer testFormulaWithoutInvariant = new StringBuffer();
+
+		for (int i = 0; i < testFormulaClauses.size(); i++) {
+			if (i < (testFormulaClauses.size() - 1)) {
+				testFormulaWithoutInvariant.append(testFormulaClauses.get(i) + " & ");
+			} else {
+				testFormulaWithoutInvariant.append(testFormulaClauses.get(i));
+			}
 		}
 
-		// Recuperando as clausulas de invariante e convertendo para Strings
+		String cleanTestFormula = testFormulaWithoutInvariant.toString().replaceAll("i__", "");
 
+		return cleanTestFormula;
+	}
+
+
+
+	private Set<String> getClausesFromInvariant() {
 		Set<MyPredicate> condensedInvariantFromAllMachines = this.operationUnderTest.getMachine().getCondensedInvariantFromAllMachines();
 		Set<String> condesendInvariant = new HashSet<String>();
 
@@ -206,32 +242,34 @@ public class BETATestSuite {
 			condesendInvariant.add(myPredicate.toString());
 		}
 
-		// Removendo as clausulas de invariant das clausulas originais
-		clausesAsStrings.removeAll(condesendInvariant);
-		Collections.sort(clausesAsStrings);
-
-		// Montando a f���������rmula
-
-		StringBuffer testFormulaWithoutInvariant = new StringBuffer();
-
-		int i = 0;
-
-		for (String cl : clausesAsStrings) {
-			if (i < (clausesAsStrings.size() - 1)) {
-				testFormulaWithoutInvariant.append(cl + " & ");
-			} else {
-				testFormulaWithoutInvariant.append(cl);
-			}
-
-			i++;
-		}
-
-		return testFormulaWithoutInvariant.toString().replaceAll("i__", "");
+		return condesendInvariant;
 	}
 
 
 
-	private void deleteTempFiles(String parentPathDirectory) {
+	private List<String> getClausesFromFormula(MyPredicate testFormula) {
+		Set<MyPredicate> clauses = testFormula.getClauses();
+		List<String> clausesAsStrings = new ArrayList<String>();
+
+		for (MyPredicate clause : clauses) {
+			clausesAsStrings.add(clause.toString().replaceAll("i__", ""));
+		}
+
+		return clausesAsStrings;
+	}
+
+
+
+	private void deleteTempFiles() {
+		if (Configurations.isDeleteTempFiles() == true) {
+			String parentPathDirectory = operationUnderTest.getMachine().getFile().getParent();
+			deleteTempFilesFromDirectory(parentPathDirectory);
+		}
+	}
+
+
+
+	private void deleteTempFilesFromDirectory(String parentPathDirectory) {
 		File mchFile = new File(parentPathDirectory + System.getProperty("file.separator") + ConventionTools.getTestMachineName(operationUnderTest) + ".mch");
 		mchFile.delete();
 		File plFile = new File(parentPathDirectory + System.getProperty("file.separator") + ConventionTools.getTestMachineName(operationUnderTest) + ".mch.pl");
@@ -277,21 +315,34 @@ public class BETATestSuite {
 
 
 
-	private Set<List<Block>> getCombinations(List<List<Block>> blocks) {
-		Set<List<Block>> combinations = new HashSet<List<Block>>();
-
+	private Set<List<Block>> getCombinationsOfBlocksAccordingToCombinationCriteria(List<List<Block>> blocks) {
 		if (this.combinatorialCriteria == CombinatorialCriterias.PAIRWISE) {
-			Criteria<Block> pairwise = new Pairwise<Block>(blocks);
-			return pairwise.getCombinations();
+			return getPairwiseCombinations(blocks);
 		} else if (this.combinatorialCriteria == CombinatorialCriterias.EACH_CHOICE) {
-			Criteria<Block> eachChoice = new EachChoice<Block>(blocks);
-			return eachChoice.getCombinations();
+			return getEachChoiceCombinations(blocks);
 		} else if (this.combinatorialCriteria == CombinatorialCriterias.ALL_COMBINATIONS) {
-			Criteria<Block> allCombinations = new AllCombinations<Block>(blocks);
-			return allCombinations.getCombinations();
+			return getAllCombinations(blocks);
+		} else {
+			return new HashSet<List<Block>>();
 		}
+	}
 
-		return combinations;
+
+
+	private Set<List<Block>> getAllCombinations(List<List<Block>> blocks) {
+		return new AllCombinations<Block>(blocks).getCombinations();
+	}
+
+
+
+	private Set<List<Block>> getEachChoiceCombinations(List<List<Block>> blocks) {
+		return new EachChoice<Block>(blocks).getCombinations();
+	}
+
+
+
+	private Set<List<Block>> getPairwiseCombinations(List<List<Block>> blocks) {
+		return new Pairwise<Block>(blocks).getCombinations();
 	}
 
 
@@ -332,8 +383,23 @@ public class BETATestSuite {
 
 
 
+	// TODO: some classes are using this. We should have a global api instance
+	// that can be called anywhere.
 	public Api getProbApi() {
 		return this.probApi;
+	}
+
+
+
+	private File createAuxiliarTestMachineFile(Set<List<Block>> combinations) {
+		TestMachineBuilder testMachineBuilder = new TestMachineBuilder(getOperationUnderTest(), combinations);
+		String testMachineContent = testMachineBuilder.generateTestMachine();
+		String parentPathDirectory = operationUnderTest.getMachine().getFile().getParent();
+		String testMachineFilePath = parentPathDirectory + System.getProperty("file.separator") + ConventionTools.getTestMachineName(operationUnderTest)
+				+ ".mch";
+		File testMachineFile = FileTools.createFileWithContent(testMachineFilePath, testMachineContent);
+
+		return testMachineFile;
 	}
 
 }

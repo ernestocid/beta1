@@ -178,7 +178,7 @@ public class Animator {
 
 
 
-	public List<Operation> getOperationsWithUnsolvablePreconditionPredicates() {
+	public List<Operation> getOperationsWithInfeasiblePreconditions() {
 		List<Operation> unsolvableOperations = new ArrayList<Operation>();
 
 		for(int i = 0; i < this.machine.getOperations().size(); i++) {

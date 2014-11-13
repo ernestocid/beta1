@@ -51,7 +51,7 @@ public class AnimatorTest {
 		Machine machine = getMachineInstance("src/test/resources/machines/UnsolvablePredicates.mch");
 		Animator animator = new Animator(machine);
 		
-		List<Operation> unsolvableOperations = animator.getOperationsWithUnsolvablePreconditionPredicates();
+		List<Operation> unsolvableOperations = animator.getOperationsWithInfeasiblePreconditions();
 		
 		assertEquals("op0", unsolvableOperations.get(0).getName());
 		assertEquals("op2", unsolvableOperations.get(1).getName());

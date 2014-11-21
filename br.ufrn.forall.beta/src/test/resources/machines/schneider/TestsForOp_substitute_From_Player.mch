@@ -5,53 +5,53 @@ ANSWER = {in, out};
 PLAYER
 
 PROPERTIES
-card(PLAYER) > 11
+card(PLAYER) = 25
 
 OPERATIONS
 /* Equivalence Class test data for substitute */
 substitute_test1(
-rr,
-team,
-pp
+i__rr,
+i__pp,
+i__team
 ) =
 PRE
-not(pp : team) & team <: PLAYER & not(rr /: team) & rr : PLAYER & card(team) = 11 /* NEGATIVE */
+not(i__pp : i__team) & i__team <: PLAYER & not(i__rr /: i__team) & i__rr : PLAYER & card(i__team) = 11 /* NEGATIVE */
 THEN
 skip
 END
 ;
 /* Equivalence Class test data for substitute */
 substitute_test2(
-rr,
-team,
-pp
+i__rr,
+i__pp,
+i__team
 ) =
 PRE
-not(pp : team) & team <: PLAYER & rr /: team & rr : PLAYER & card(team) = 11 /* NEGATIVE */
+not(i__pp : i__team) & i__team <: PLAYER & i__rr /: i__team & i__rr : PLAYER & card(i__team) = 11 /* NEGATIVE */
 THEN
 skip
 END
 ;
 /* Equivalence Class test data for substitute */
 substitute_test3(
-rr,
-team,
-pp
+i__rr,
+i__pp,
+i__team
 ) =
 PRE
-pp : team & team <: PLAYER & not(rr /: team) & rr : PLAYER & card(team) = 11 /* NEGATIVE */
+i__pp : i__team & i__team <: PLAYER & not(i__rr /: i__team) & i__rr : PLAYER & card(i__team) = 11 /* NEGATIVE */
 THEN
 skip
 END
 ;
 /* Equivalence Class test data for substitute */
 substitute_test4(
-rr,
-team,
-pp
+i__rr,
+i__pp,
+i__team
 ) =
 PRE
-pp : team & team <: PLAYER & rr /: team & rr : PLAYER & card(team) = 11 /* POSITIVE */
+i__pp : i__team & i__team <: PLAYER & i__rr /: i__team & i__rr : PLAYER & card(i__team) = 11 /* POSITIVE */
 THEN
 skip
 END

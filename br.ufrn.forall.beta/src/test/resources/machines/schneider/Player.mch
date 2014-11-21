@@ -4,7 +4,7 @@ SETS ANSWER = {in, out};
      PLAYER
 
 PROPERTIES
-     card(PLAYER) > 11
+     card(PLAYER) = 25
 
 VARIABLES team
 

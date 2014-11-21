@@ -1,0 +1,495 @@
+<head>
+<title>BETA Report - Machine: Player Operation: substitute</title>
+</head>
+
+<style type="text/css">
+
+* {
+	margin : 0;
+	padding : 0;
+	font-family : Helvetica;
+}
+
+#header {
+	background-color : #19428A;
+	color : #FFFFFF;
+	padding : 9px;
+	border-bottom : 1px solid #DEDEDE;
+}
+
+#header h3 {
+	font-weight : normal;
+	font-size: 16;
+}
+
+#nav ul {
+	list-style : none;
+}
+
+#nav ul li {
+	display : inline-block;
+	background-color: #19428A;
+	padding: 7px;
+	margin-left : 5px;
+	margin-top : -1px;
+	border-bottom : 1px solid #DEDEDE;
+	border-right : 1px solid #DEDEDE; 
+}
+
+#nav ul li a {
+	color : #FFFFFF;
+	text-decoration : none;
+}
+
+#nav ul li a:hover {
+	color : #D6EDFF;
+}
+
+#info {
+	background-color : #F2F2F2;
+	margin : 20px;
+}
+
+#info ul {
+	list-style : none;
+}
+
+#info ul li {
+	margin : 3px;
+}
+
+
+#test_cases {
+	background-color : #F2F2F2;
+	margin : 20px;
+}
+
+#test_cases h4 {
+	margin-top : 20px;
+	margin-left : 15px;
+	font-weight : 300;
+}
+
+#test_cases h5 {
+	margin-left : 3px;
+	margin-top : 10px;
+	margin-bottom : 10px;
+	font-size : 14;
+}
+
+table {
+	width : 100%;
+	text-align : left;
+	border-collapse : collapse;
+	font-size : 14px;
+}
+
+table, th, td {
+	border : 2px solid #F2F2F2;
+	padding : 4px;
+}
+
+th {
+	background-color : #19428A;
+	color : #FFFFFF;
+	font-weight : normal;
+}
+
+tr.even td {
+	background-color : #FFFFFF;
+}
+
+tr.odd td {
+	background-color : #D1E7FF;
+}
+
+.content_block {
+	border-right : 1px solid #DEDEDE;
+	border-bottom : 1px solid #DEDEDE;
+	padding : 20px;
+}
+
+#unsolvable_test_formulas {
+	background-color : #F2F2F2;
+	margin : 20px;
+}
+
+#unsolvable_test_formulas ul {
+	list-style : none;
+}
+
+</style>
+
+<body>
+
+<div id="wrapper">
+
+<div id="header">
+	<h3>BETA Report - Machine: Player - Operation: substitute
+</div>
+
+<div id="nav">
+	<ul>
+		<li><a href="#">Test Cases</a></li>
+	</ul>
+</div>
+
+<div class="content_block" id="info">
+	<h3>Test Case Generation Info:</h3>
+
+	</br>	
+
+	<ul>
+		<li>Partition Strategy: Equivalence Classes</li>
+		<li>Combination Strategy: All-Combinations</li>
+	</ul>
+	
+	</br>
+	
+	<h4>Invariant restrictions: </h4>
+	
+	</br>
+	
+	<ul>
+		<li>team <: PLAYER</li>
+		<li>card(team) = 11</li>
+	</ul>
+	
+</div>
+
+<div class="content_block" id="test_cases">
+
+	<div class="test_case">
+		<h3>Test Case 1 (Negative)</h3>
+
+		<h4>Formula: <i>not(pp : team) & not(rr /: team) & rr : PLAYER</i></h4>
+
+		</br>
+
+		<h5>Input data: </h5>
+
+		<table>
+			<tr>
+				<th colspan="2">State</th>
+			</tr>
+
+			<tr>
+				<th>Variable</th>
+				<th>Value</th>
+			</tr>
+
+			<tr class="even">
+				<td>team</td>
+				<td><i>{PLAYER1,PLAYER5,PLAYER6,PLAYER7,PLAYER8,PLAYER13,PLAYER14,PLAYER16,PLAYER17,PLAYER21,PLAYER22}</i></td>
+			</tr>
+
+
+			<tr>
+				<th colspan="2">Input Values</th>
+			</tr>
+
+			<tr>
+				<th>Parameter</th>
+				<th>Value</th>
+			</tr>
+
+			<tr class="even">
+				<td>rr</td>
+				<td><i>PLAYER21</i></td>
+			</tr>
+			<tr class="odd">
+				<td>pp</td>
+				<td><i>PLAYER15</i></td>
+			</tr>
+
+		</table>
+
+		<h5>Expected results: </h5>
+
+		<table>
+			<tr>
+				<th colspan="2">State</th>
+			</tr>
+
+			<tr>
+				<th>Variable</th>
+				<th>Value</th>
+			</tr>
+
+			<tr class="even">
+				<td>team</td>
+				<td><i>Unknown</i></td>
+			</tr>
+
+
+			<tr>
+				<th colspan="2">Return Variables</th>
+			</tr>
+
+			<tr>
+				<th>Return Variable</th>
+				<th>Value</th>
+			</tr>
+
+			<tr class="even"><td colspan="2"><center><i>This operation has no return variables</i></center></td></tr>
+
+		</table>
+	</div>
+
+	</br>
+
+	<div class="test_case">
+		<h3>Test Case 2 (Negative)</h3>
+
+		<h4>Formula: <i>not(pp : team) & rr /: team & rr : PLAYER</i></h4>
+
+		</br>
+
+		<h5>Input data: </h5>
+
+		<table>
+			<tr>
+				<th colspan="2">State</th>
+			</tr>
+
+			<tr>
+				<th>Variable</th>
+				<th>Value</th>
+			</tr>
+
+			<tr class="even">
+				<td>team</td>
+				<td><i>{PLAYER1,PLAYER5,PLAYER6,PLAYER7,PLAYER8,PLAYER13,PLAYER14,PLAYER15,PLAYER16,PLAYER17,PLAYER22}</i></td>
+			</tr>
+
+
+			<tr>
+				<th colspan="2">Input Values</th>
+			</tr>
+
+			<tr>
+				<th>Parameter</th>
+				<th>Value</th>
+			</tr>
+
+			<tr class="even">
+				<td>rr</td>
+				<td><i>PLAYER21</i></td>
+			</tr>
+			<tr class="odd">
+				<td>pp</td>
+				<td><i>PLAYER21</i></td>
+			</tr>
+
+		</table>
+
+		<h5>Expected results: </h5>
+
+		<table>
+			<tr>
+				<th colspan="2">State</th>
+			</tr>
+
+			<tr>
+				<th>Variable</th>
+				<th>Value</th>
+			</tr>
+
+			<tr class="even">
+				<td>team</td>
+				<td><i>Unknown</i></td>
+			</tr>
+
+
+			<tr>
+				<th colspan="2">Return Variables</th>
+			</tr>
+
+			<tr>
+				<th>Return Variable</th>
+				<th>Value</th>
+			</tr>
+
+			<tr class="even"><td colspan="2"><center><i>This operation has no return variables</i></center></td></tr>
+
+		</table>
+	</div>
+
+	</br>
+
+	<div class="test_case">
+		<h3>Test Case 3 (Negative)</h3>
+
+		<h4>Formula: <i>not(rr /: team) & pp : team & rr : PLAYER</i></h4>
+
+		</br>
+
+		<h5>Input data: </h5>
+
+		<table>
+			<tr>
+				<th colspan="2">State</th>
+			</tr>
+
+			<tr>
+				<th>Variable</th>
+				<th>Value</th>
+			</tr>
+
+			<tr class="even">
+				<td>team</td>
+				<td><i>{PLAYER5,PLAYER6,PLAYER7,PLAYER8,PLAYER13,PLAYER14,PLAYER15,PLAYER21,PLAYER22,PLAYER23,PLAYER24}</i></td>
+			</tr>
+
+
+			<tr>
+				<th colspan="2">Input Values</th>
+			</tr>
+
+			<tr>
+				<th>Parameter</th>
+				<th>Value</th>
+			</tr>
+
+			<tr class="even">
+				<td>rr</td>
+				<td><i>PLAYER21</i></td>
+			</tr>
+			<tr class="odd">
+				<td>pp</td>
+				<td><i>PLAYER21</i></td>
+			</tr>
+
+		</table>
+
+		<h5>Expected results: </h5>
+
+		<table>
+			<tr>
+				<th colspan="2">State</th>
+			</tr>
+
+			<tr>
+				<th>Variable</th>
+				<th>Value</th>
+			</tr>
+
+			<tr class="even">
+				<td>team</td>
+				<td><i>Unknown</i></td>
+			</tr>
+
+
+			<tr>
+				<th colspan="2">Return Variables</th>
+			</tr>
+
+			<tr>
+				<th>Return Variable</th>
+				<th>Value</th>
+			</tr>
+
+			<tr class="even"><td colspan="2"><center><i>This operation has no return variables</i></center></td></tr>
+
+		</table>
+	</div>
+
+	</br>
+
+	<div class="test_case">
+		<h3>Test Case 4 (Positive)</h3>
+
+		<h4>Formula: <i>pp : team & rr /: team & rr : PLAYER</i></h4>
+
+		</br>
+
+		<h5>Input data: </h5>
+
+		<table>
+			<tr>
+				<th colspan="2">State</th>
+			</tr>
+
+			<tr>
+				<th>Variable</th>
+				<th>Value</th>
+			</tr>
+
+			<tr class="even">
+				<td>team</td>
+				<td><i>{PLAYER1,PLAYER5,PLAYER7,PLAYER8,PLAYER13,PLAYER14,PLAYER16,PLAYER17,PLAYER21,PLAYER22,PLAYER24}</i></td>
+			</tr>
+
+
+			<tr>
+				<th colspan="2">Input Values</th>
+			</tr>
+
+			<tr>
+				<th>Parameter</th>
+				<th>Value</th>
+			</tr>
+
+			<tr class="even">
+				<td>rr</td>
+				<td><i>PLAYER15</i></td>
+			</tr>
+			<tr class="odd">
+				<td>pp</td>
+				<td><i>PLAYER21</i></td>
+			</tr>
+
+		</table>
+
+		<h5>Expected results: </h5>
+
+		<table>
+			<tr>
+				<th colspan="2">State</th>
+			</tr>
+
+			<tr>
+				<th>Variable</th>
+				<th>Value</th>
+			</tr>
+
+			<tr class="even">
+				<td>team</td>
+				<td><i>Unknown</i></td>
+			</tr>
+
+
+			<tr>
+				<th colspan="2">Return Variables</th>
+			</tr>
+
+			<tr>
+				<th>Return Variable</th>
+				<th>Value</th>
+			</tr>
+
+			<tr class="even"><td colspan="2"><center><i>This operation has no return variables</i></center></td></tr>
+
+		</table>
+	</div>
+
+	</br>
+
+
+
+</div>
+
+<div class="content_block" id="unsolvable_test_formulas">
+
+	<h4>Infeasible Test Cases:</h4>
+	</br>
+
+<ul>
+	<li>None</li>
+</ul>
+
+</div>
+
+</div>
+
+</body>

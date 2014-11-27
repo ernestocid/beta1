@@ -10,8 +10,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import configurations.Configurations;
-import de.prob.Main;
-import de.prob.scripting.Api;
 import animation.FormulaEvaluation;
 import parser.Machine;
 import parser.Operation;

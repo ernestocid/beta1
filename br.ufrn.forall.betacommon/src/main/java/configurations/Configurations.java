@@ -361,4 +361,42 @@ public class Configurations {
 			System.err.println("Could not set value for randomise_enumeration_order: " + e.getMessage());
 		}
 	}
+
+
+
+	/**
+	 * Gets the value for the use_kodkod on the config.properties file
+	 * 
+	 * @return boolean value for use_kodkod
+	 */
+	public static boolean getUseKodkod() {
+		boolean usekodkod = false;
+
+		try {
+			PropertiesConfiguration config = new PropertiesConfiguration(getPathToPropertiesFile());
+			usekodkod = config.getBoolean("use_kodkod");
+		} catch (ConfigurationException e) {
+			System.err.println("Could not get value for use_kodkod: " + e.getMessage());
+		}
+
+		return usekodkod;
+	}
+
+
+
+	/**
+	 * Sets the value for the use_kodkod on the config.properties file
+	 * 
+	 * @param useKodkod
+	 *            boolean value for use_kodkod
+	 */
+	public static void setUseKodkod(boolean useKodkod) {
+		try {
+			PropertiesConfiguration config = new PropertiesConfiguration(getPathToPropertiesFile());
+			config.setProperty("use_kodkod", useKodkod);
+			config.save();
+		} catch (ConfigurationException e) {
+			System.err.println("Could not set value for use_kodkod: " + e.getMessage());
+		}
+	}
 }

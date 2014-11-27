@@ -8,3 +8,4 @@ prob_log.txt
 .project
 .gradle/
 .settings/
+config.properties

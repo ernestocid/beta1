@@ -1,6 +1,8 @@
 .DS_Store
 build/
 bin/
+probkodkod.log*
+ProB.log.*
 prob_log.txt
 .classpath
 .project

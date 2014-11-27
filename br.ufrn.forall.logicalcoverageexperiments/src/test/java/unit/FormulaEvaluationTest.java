@@ -6,8 +6,10 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.Before;
 import org.junit.Test;
 
+import configurations.Configurations;
 import de.prob.Main;
 import de.prob.scripting.Api;
 import animation.FormulaEvaluation;
@@ -16,8 +18,10 @@ import parser.Operation;
 
 public class FormulaEvaluationTest {
 
-	
-	private Api probApi = Main.getInjector().getInstance(Api.class);;
+	@Before
+	public void setUp() {
+		Configurations.setRandomiseEnumerationOrder(false);
+	}
 	
 	
 	@Test
@@ -36,7 +40,7 @@ public class FormulaEvaluationTest {
 		
 		Map<String, String> expectedStateValues = new HashMap<String, String>();
 		
-		FormulaEvaluation fe = new FormulaEvaluation(operationUnderTest, formula, probApi);
+		FormulaEvaluation fe = new FormulaEvaluation(operationUnderTest, formula);
 		
 		assertEquals(expectedParamValues, fe.getParameterValues());
 		assertEquals(expectedStateValues, fe.getStateVariablesValues());
@@ -66,16 +70,16 @@ public class FormulaEvaluationTest {
 		
 		Map<String, String> expectedParamValues = new HashMap<String, String>();
 		
-		expectedParamValues.put("rr", "PID1");
+		expectedParamValues.put("rr", "PID3");
 		
 		Map<String, String> expectedStateValues = new HashMap<String, String>();
 		
 		expectedStateValues.put("active", "{}");
 		expectedStateValues.put("ready", "{}");
-		expectedStateValues.put("waiting", "{PID1}");
+		expectedStateValues.put("waiting", "{PID3}");
 		
-		FormulaEvaluation fe = new FormulaEvaluation(operationUnderTest, formula, probApi);
-		
+		FormulaEvaluation fe = new FormulaEvaluation(operationUnderTest, formula);
+			
 		assertEquals(expectedParamValues, fe.getParameterValues());
 		assertEquals(expectedStateValues, fe.getStateVariablesValues());
 	}

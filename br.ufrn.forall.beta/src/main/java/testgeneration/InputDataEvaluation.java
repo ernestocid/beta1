@@ -7,6 +7,7 @@ import java.util.Map;
 
 import configurations.Configurations;
 import parser.Operation;
+import tools.ProBApi;
 import de.be4.classicalb.core.parser.exceptions.BException;
 import de.prob.animator.domainobjects.ClassicalB;
 import de.prob.animator.domainobjects.EvalResult;
@@ -18,20 +19,19 @@ import de.prob.statespace.Trace;
 
 public class InputDataEvaluation {
 
-	
 	private BETATestCase testCase;
 	private Operation operationUnderTest;
 	private Api probApi;
-	private Map<String, String> preferences;
 	private Map<String, String> inputParamsValues;
 	private Map<String, String> stateVariablesValues;
-	
-	
-	public InputDataEvaluation(BETATestCase testCase, Operation operationUnderTest, Api probApi) {
+
+
+
+	public InputDataEvaluation(BETATestCase testCase, Operation operationUnderTest) {
 		this.testCase = testCase;
 		this.operationUnderTest = operationUnderTest;
-		this.probApi = probApi;
-		this.preferences = Configurations.getProBApiPreferences();
+		this.probApi = ProBApi.getInstance();
+		;
 		this.inputParamsValues = new HashMap<String, String>();
 		this.stateVariablesValues = new HashMap<String, String>();
 		generateInputData();
@@ -43,28 +43,28 @@ public class InputDataEvaluation {
 		try {
 			String pathToMachine = this.operationUnderTest.getMachine().getFile().getAbsolutePath();
 			String formulaForEvaluation = this.getTestCase().getTestFormula();
-			
+
 			ClassicalBModel model = probApi.b_load(pathToMachine, getPreferences());
 			StateSpace stateSpace = model.getStateSpace();
 			Trace trace = new Trace(stateSpace);
-			
+
 			trace = trySetupConstants(trace);
-			
+
 			trace = trace.execute("$initialise_machine", new ArrayList<String>());
 			trace = stateSpace.getTraceToState(new ClassicalB(formulaForEvaluation));
-			
+
 			IEvalResult evalCurrent = trace.evalCurrent(new ClassicalB(formulaForEvaluation));
-			
-			if(evalCurrent instanceof EvalResult) {
+
+			if (evalCurrent instanceof EvalResult) {
 				EvalResult result = (EvalResult) evalCurrent;
-				
+
 				this.inputParamsValues = getValuesForInputParams(result);
 				this.stateVariablesValues = getValuesForStateVariables(trace);
-				
+
 			} else {
 				System.out.println("Not an EvalResult");
-			}		
-		
+			}
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (BException e) {
@@ -75,10 +75,10 @@ public class InputDataEvaluation {
 
 
 	private Trace trySetupConstants(Trace trace) {
-		boolean machineHasNoConstants = getOperationUnderTest().getMachine().getAllMachineConstants().isEmpty() && 
-										getOperationUnderTest().getMachine().getSets() == null;
-		
-		if(machineHasNoConstants) {
+		boolean machineHasNoConstants = getOperationUnderTest().getMachine().getAllMachineConstants().isEmpty()
+				&& getOperationUnderTest().getMachine().getSets() == null;
+
+		if (machineHasNoConstants) {
 			return trace;
 		} else {
 
@@ -87,7 +87,7 @@ public class InputDataEvaluation {
 			} catch (NullPointerException e) {
 				System.err.println("Could not execute $setup_constants");
 			}
-			
+
 			return trace;
 		}
 	}
@@ -96,13 +96,13 @@ public class InputDataEvaluation {
 
 	private Map<String, String> getValuesForStateVariables(Trace trace) {
 		Map<String, String> valuesForStateVariables = new HashMap<String, String>();
-		
-		if(this.operationUnderTest.getMachine().getVariables() != null) {
-			for(String variable : this.operationUnderTest.getMachine().getVariables().getAll()) {
+
+		if (this.operationUnderTest.getMachine().getVariables() != null) {
+			for (String variable : this.operationUnderTest.getMachine().getVariables().getAll()) {
 				valuesForStateVariables.put(variable, trace.evalCurrent(variable).toString());
 			}
 		}
-		
+
 		return valuesForStateVariables;
 	}
 
@@ -110,13 +110,13 @@ public class InputDataEvaluation {
 
 	private Map<String, String> getValuesForInputParams(EvalResult result) {
 		Map<String, String> valuesForInputParams = new HashMap<String, String>();
-		
+
 		Map<String, String> foundSolutions = result.getSolutions();
-		
-		for(String param : this.operationUnderTest.getParameters()) {
+
+		for (String param : this.operationUnderTest.getParameters()) {
 			valuesForInputParams.put(param, foundSolutions.get(param));
 		}
-		
+
 		return valuesForInputParams;
 	}
 
@@ -141,7 +141,7 @@ public class InputDataEvaluation {
 
 
 	public Map<String, String> getPreferences() {
-		return preferences;
+		return Configurations.getProBApiPreferences();
 	}
 
 

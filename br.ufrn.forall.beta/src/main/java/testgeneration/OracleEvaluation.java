@@ -9,6 +9,7 @@ import java.util.Map.Entry;
 
 import configurations.Configurations;
 import parser.Operation;
+import tools.ProBApi;
 import de.be4.classicalb.core.parser.exceptions.BException;
 import de.prob.animator.domainobjects.ClassicalB;
 import de.prob.animator.domainobjects.EvalResult;
@@ -20,34 +21,34 @@ import de.prob.statespace.Trace;
 
 public class OracleEvaluation {
 
-	
 	private BETATestCase testCase;
 	private Operation operationUnderTest;
 	private Map<String, String> preferences;
 	private Map<String, String> expectedStateValues;
 	private Map<String, String> expectedReturnVariables;
 	private Api probApi;
-	
-	
-	public OracleEvaluation(BETATestCase testCase, Operation operationUnderTest, Api probApi) {
+
+
+
+	public OracleEvaluation(BETATestCase testCase, Operation operationUnderTest) {
 		this.testCase = testCase;
 		this.operationUnderTest = operationUnderTest;
 		this.preferences = Configurations.getProBApiPreferences();
-		this.probApi = probApi;
+		this.probApi = ProBApi.getInstance();
 		generateExpectedResults();
 	}
-	
-	
-	
+
+
+
 	private void generateExpectedResults() {
-		
+
 		ClassicalBModel model = getModel();
 		Trace traceBeforeTest = getInitialTrace(model);
-		
-		if(!testCase.getStateValues().isEmpty()) {
+
+		if (!testCase.getStateValues().isEmpty()) {
 			traceBeforeTest = model.getStateSpace().getTraceToState(new ClassicalB(stateDefinition()));
 		}
-		
+
 		executeOperation(traceBeforeTest);
 	}
 
@@ -65,7 +66,7 @@ public class OracleEvaluation {
 		String pathToMachine = operationUnderTest.getMachine().getFile().getAbsolutePath();
 
 		ClassicalBModel model = null;
-		
+
 		try {
 			model = getProbApi().b_load(pathToMachine, this.preferences);
 		} catch (IOException e) {
@@ -73,7 +74,7 @@ public class OracleEvaluation {
 		} catch (BException e) {
 			e.printStackTrace();
 		}
-		
+
 		return model;
 	}
 
@@ -82,11 +83,11 @@ public class OracleEvaluation {
 	private void executeOperation(Trace currentTrace) {
 		List<String> operationParameters = defineOperationParameters(testCase.getInputParamValues());
 		Trace afterTrace = currentTrace.execute(operationUnderTest.getName(), operationParameters);
-		
+
 		this.expectedStateValues = getStateValuesAfterExecution(afterTrace);
 		this.expectedReturnVariables = getReturnVariablesAfterExecution(afterTrace);
 	}
-	
+
 
 
 	private Map<String, String> getReturnVariablesAfterExecution(Trace afterTrace) {
@@ -95,21 +96,22 @@ public class OracleEvaluation {
 	}
 
 
+
 	private Map<String, String> getStateValuesAfterExecution(Trace afterTrace) {
 		Map<String, String> stateValuesAfter = new HashMap<String, String>();
-		
-		if(operationUnderTest.getMachine().getVariables() != null) {
-			for(String variable  : operationUnderTest.getMachine().getVariables().getAll()) {
+
+		if (operationUnderTest.getMachine().getVariables() != null) {
+			for (String variable : operationUnderTest.getMachine().getVariables().getAll()) {
 				IEvalResult result = afterTrace.evalCurrent(variable);
-				
-				if(result instanceof EvalResult) {
+
+				if (result instanceof EvalResult) {
 					EvalResult res = (EvalResult) result;
 					stateValuesAfter.put(variable, res.getValue());
 				}
-				
+
 			}
 		}
-		
+
 		return stateValuesAfter;
 	}
 
@@ -117,11 +119,11 @@ public class OracleEvaluation {
 
 	private List<String> defineOperationParameters(Map<String, String> inputParamValues) {
 		List<String> operationParams = new ArrayList<String>();
-		
-		for(Entry<String, String> param : inputParamValues.entrySet()) {
+
+		for (Entry<String, String> param : inputParamValues.entrySet()) {
 			operationParams.add(param.getKey() + "=" + param.getValue());
 		}
-		
+
 		return operationParams;
 	}
 
@@ -129,36 +131,36 @@ public class OracleEvaluation {
 
 	private String stateDefinition() {
 		StringBuffer formulaForState = new StringBuffer("");
-		
+
 		Map<String, String> stateValues = testCase.getStateValues();
-		
+
 		int i = 0;
-		
-		for(String key : stateValues.keySet()) {
-			if(i < stateValues.size() - 1) {
+
+		for (String key : stateValues.keySet()) {
+			if (i < stateValues.size() - 1) {
 				formulaForState.append(key + " = " + stateValues.get(key) + " & ");
 			} else {
 				formulaForState.append(key + " = " + stateValues.get(key));
 			}
 			i++;
 		}
-		
+
 		return formulaForState.toString();
 	}
-	
-	
-	
+
+
+
 	public BETATestCase getTestCase() {
 		return testCase;
 	}
 
-	
+
 
 	public Operation getOperationUnderTest() {
 		return operationUnderTest;
 	}
 
-	
+
 
 	public Map<String, String> getExpectedStateValues() {
 		return expectedStateValues;
@@ -169,9 +171,9 @@ public class OracleEvaluation {
 	public Map<String, String> getExpectedReturnVariables() {
 		return expectedReturnVariables;
 	}
-	
-	
-	
+
+
+
 	public Api getProbApi() {
 		return this.probApi;
 	}

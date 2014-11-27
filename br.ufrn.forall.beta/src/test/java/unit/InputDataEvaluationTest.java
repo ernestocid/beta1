@@ -5,13 +5,12 @@ import static org.junit.Assert.*;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.prob.Main;
-import de.prob.scripting.Api;
+import configurations.Configurations;
 import parser.Machine;
 import parser.Operation;
 import testgeneration.BETATestCase;
@@ -20,269 +19,296 @@ import static org.mockito.Mockito.*;
 
 public class InputDataEvaluationTest {
 
-	
-	private Api probApi;
-	
-	
 	@Before
 	public void setUp() {
-		this.probApi = Main.getInjector().getInstance(Api.class);
+		Configurations.setMaxIntProperties(20);
+		Configurations.setMinIntProperties(-1);
 	}
-	
-	
-	
-	@After
-	public void tearDown() {
-		this.probApi = null;
-	}
-	
-	
-	
+
+
+
 	@Test
 	public void shouldGenerateInputDataForOperationWithParametersAndMachineWithStateAndConstants1() {
 		Machine machine = new Machine(new File("src/test/resources/machines/schneider/Player.mch"));
-		Operation operationUnderTest = machine.getOperation(0); // substittute operation
-		
+		Operation operationUnderTest = machine.getOperation(0); // substittute
+
 		BETATestCase mockedTestCase = mock(BETATestCase.class);
-		when(mockedTestCase.getTestFormula()).thenReturn("card(team) = 11 & pp : team & rr : PLAYER & rr /: team & team <: PLAYER"); // Positive test
-		
-		InputDataEvaluation inputDataEvaluation = new InputDataEvaluation(mockedTestCase, operationUnderTest, probApi);
-		
-		Map<String, String> expectedInputParams = new HashMap<String, String>();
-		expectedInputParams.put("pp", "PLAYER1");
-		expectedInputParams.put("rr", "PLAYER12");
-		
-		Map<String, String> expectedStateValues = new HashMap<String, String>();
-		expectedStateValues.put("team", "{PLAYER1,PLAYER2,PLAYER3,PLAYER4,PLAYER5,PLAYER6,PLAYER7,PLAYER8,PLAYER9,PLAYER10,PLAYER11}");
-		
-		assertEquals(expectedInputParams, inputDataEvaluation.getInputParamsValues());
-		assertEquals(expectedStateValues, inputDataEvaluation.getStateVariablesValues());
+		when(mockedTestCase.getTestFormula()).thenReturn("card(team) = 11 & pp : team & rr : PLAYER & rr /: team & team <: PLAYER"); // Positive
+
+		InputDataEvaluation inputDataEvaluation = new InputDataEvaluation(mockedTestCase, operationUnderTest);
+
+		String ppValue = inputDataEvaluation.getInputParamsValues().get("pp");
+		String rrValue = inputDataEvaluation.getInputParamsValues().get("rr");
+		String teamValue = inputDataEvaluation.getStateVariablesValues().get("team");
+
+		// Asserting that the team has 11 elements by splitting the String that
+		// describes the set.
+		assertEquals(11, teamValue.split(",").length);
+
+		// Asserting that the element in ppValues is present on the team String.
+		assertTrue(Pattern.compile("\\b" + ppValue + "\\b").matcher(teamValue).find());
+
+		// Asserting that rrValues is a member of the PLAYER set.
+		assertTrue(rrValue.contains("PLAYER"));
+
+		// Asserting that rrValue is not a member of the team set.
+		assertFalse(Pattern.compile("\\b" + rrValue + "\\b").matcher(teamValue).find());
+
+		// Asserting that the number of parameters and state variables are
+		// correct.
+		assertEquals(2, inputDataEvaluation.getInputParamsValues().size());
+		assertEquals(1, inputDataEvaluation.getStateVariablesValues().size());
+
 	}
-	
-	
-	
+
+
+
 	@Test
 	public void shouldGenerateInputDataForOperationWithParametersAndMachineWithStateAndConstants2() {
 		Machine machine = new Machine(new File("src/test/resources/machines/schneider/Player.mch"));
-		Operation operationUnderTest = machine.getOperation(0); // substittute operation
-		
+		Operation operationUnderTest = machine.getOperation(0); // substittute
+
 		BETATestCase mockedTestCase = mock(BETATestCase.class);
-		when(mockedTestCase.getTestFormula()).thenReturn("card(team) = 11 & not(pp : team) & rr : PLAYER & rr /: team & team <: PLAYER"); // Negative test
-		
-		InputDataEvaluation inputDataEvaluation = new InputDataEvaluation(mockedTestCase, operationUnderTest, probApi);
-		
-		Map<String, String> expectedInputParams = new HashMap<String, String>();
-		expectedInputParams.put("pp", "PLAYER12");
-		expectedInputParams.put("rr", "PLAYER12");
-		
-		Map<String, String> expectedStateValues = new HashMap<String, String>();
-		expectedStateValues.put("team", "{PLAYER1,PLAYER2,PLAYER3,PLAYER4,PLAYER5,PLAYER6,PLAYER7,PLAYER8,PLAYER9,PLAYER10,PLAYER11}");
-		
-		assertEquals(expectedInputParams, inputDataEvaluation.getInputParamsValues());
-		assertEquals(expectedStateValues, inputDataEvaluation.getStateVariablesValues());
+		when(mockedTestCase.getTestFormula()).thenReturn("card(team) = 11 & not(pp : team) & rr : PLAYER & rr /: team & team <: PLAYER"); // Negative
+
+		InputDataEvaluation inputDataEvaluation = new InputDataEvaluation(mockedTestCase, operationUnderTest);
+
+		String ppValue = inputDataEvaluation.getInputParamsValues().get("pp");
+		String rrValue = inputDataEvaluation.getInputParamsValues().get("rr");
+		String teamValue = inputDataEvaluation.getStateVariablesValues().get("team");
+
+		// Asserting that card(team) = 11
+		assertEquals(11, teamValue.split(",").length);
+
+		// Asserting that not(pp : team)
+		assertFalse(Pattern.compile("\\b" + ppValue + "\\b").matcher(teamValue).find());
+
+		// Asserting that rr : PLAYER
+		assertTrue(rrValue.contains("PLAYER"));
+
+		// Asserting that rr /: team
+		assertFalse(Pattern.compile("\\b" + rrValue + "\\b").matcher(teamValue).find());
+
+		// Asserting that the number of parameters and state variables are
+		// correct.
+		assertEquals(2, inputDataEvaluation.getInputParamsValues().size());
+		assertEquals(1, inputDataEvaluation.getStateVariablesValues().size());
 	}
-	
-	
-	
+
+
+
 	@Test
 	public void shouldGenerateInputDataForOperationWithParametersAndMachineWithStateAndConstants3() {
 		Machine machine = new Machine(new File("src/test/resources/machines/schneider/Player.mch"));
-		Operation operationUnderTest = machine.getOperation(0); // substittute operation
-		
+		Operation operationUnderTest = machine.getOperation(0); // substittute
+
 		BETATestCase mockedTestCase = mock(BETATestCase.class);
-		when(mockedTestCase.getTestFormula()).thenReturn("card(team) = 11 & pp : team & rr : PLAYER & not(rr /: team) & team <: PLAYER"); // Negative test
-		
-		InputDataEvaluation inputDataEvaluation = new InputDataEvaluation(mockedTestCase, operationUnderTest, probApi);
-		
-		Map<String, String> expectedInputParams = new HashMap<String, String>();
-		expectedInputParams.put("pp", "PLAYER1");
-		expectedInputParams.put("rr", "PLAYER1");
-		
-		Map<String, String> expectedStateValues = new HashMap<String, String>();
-		expectedStateValues.put("team", "{PLAYER1,PLAYER2,PLAYER3,PLAYER4,PLAYER5,PLAYER6,PLAYER7,PLAYER8,PLAYER9,PLAYER10,PLAYER11}");
-		
-		assertEquals(expectedInputParams, inputDataEvaluation.getInputParamsValues());
-		assertEquals(expectedStateValues, inputDataEvaluation.getStateVariablesValues());
+		when(mockedTestCase.getTestFormula()).thenReturn("card(team) = 11 & pp : team & rr : PLAYER & not(rr /: team) & team <: PLAYER"); // Negative
+
+		InputDataEvaluation inputDataEvaluation = new InputDataEvaluation(mockedTestCase, operationUnderTest);
+
+		String ppValue = inputDataEvaluation.getInputParamsValues().get("pp");
+		String rrValue = inputDataEvaluation.getInputParamsValues().get("rr");
+		String teamValue = inputDataEvaluation.getStateVariablesValues().get("team");
+
+		// Asserting that card(team) = 11
+		assertEquals(11, teamValue.split(",").length);
+
+		// Asserting that pp : team
+		assertTrue(Pattern.compile("\\b" + ppValue + "\\b").matcher(teamValue).find());
+
+		// Asserting that rr : PLAYER
+		assertTrue(rrValue.contains("PLAYER"));
+
+		// Asserting that not(rr /: team)
+		assertTrue(Pattern.compile("\\b" + rrValue + "\\b").matcher(teamValue).find());
+
+		// Asserting that the number of parameters and state variables are
+		// correct.
+		assertEquals(2, inputDataEvaluation.getInputParamsValues().size());
+		assertEquals(1, inputDataEvaluation.getStateVariablesValues().size());
 	}
-	
-	
-	
+
+
+
 	@Test
 	public void shouldGenerateInputDataForOperationWithParametersAndMachineWithStateAndConstants4() {
 		Machine machine = new Machine(new File("src/test/resources/machines/schneider/Player.mch"));
-		Operation operationUnderTest = machine.getOperation(0); // substittute operation
-		
+		Operation operationUnderTest = machine.getOperation(0); // substittute
+
 		BETATestCase mockedTestCase = mock(BETATestCase.class);
-		when(mockedTestCase.getTestFormula()).thenReturn("card(team) = 11 & not(pp : team) & rr : PLAYER & not(rr /: team) & team <: PLAYER"); // Negative test
-		
-		InputDataEvaluation inputDataEvaluation = new InputDataEvaluation(mockedTestCase, operationUnderTest, probApi);
-		
-		Map<String, String> expectedInputParams = new HashMap<String, String>();
-		expectedInputParams.put("pp", "PLAYER12");
-		expectedInputParams.put("rr", "PLAYER1");
-		
-		Map<String, String> expectedStateValues = new HashMap<String, String>();
-		expectedStateValues.put("team", "{PLAYER1,PLAYER2,PLAYER3,PLAYER4,PLAYER5,PLAYER6,PLAYER7,PLAYER8,PLAYER9,PLAYER10,PLAYER11}");
-		
-		assertEquals(expectedInputParams, inputDataEvaluation.getInputParamsValues());
-		assertEquals(expectedStateValues, inputDataEvaluation.getStateVariablesValues());
+		when(mockedTestCase.getTestFormula()).thenReturn("card(team) = 11 & not(pp : team) & rr : PLAYER & not(rr /: team) & team <: PLAYER"); // Negative
+
+		InputDataEvaluation inputDataEvaluation = new InputDataEvaluation(mockedTestCase, operationUnderTest);
+
+		String ppValue = inputDataEvaluation.getInputParamsValues().get("pp");
+		String rrValue = inputDataEvaluation.getInputParamsValues().get("rr");
+		String teamValue = inputDataEvaluation.getStateVariablesValues().get("team");
+
+		// Asserting that card(team) = 11
+		assertEquals(11, teamValue.split(",").length);
+
+		// Asserting that not(pp : team)
+		assertFalse(Pattern.compile("\\b" + ppValue + "\\b").matcher(teamValue).find());
+
+		// Asserting that rr : PLAYER
+		assertTrue(rrValue.contains("PLAYER"));
+
+		// Asserting that not(rr /: team)
+		assertTrue(Pattern.compile("\\b" + rrValue + "\\b").matcher(teamValue).find());
+
+		// Asserting that the number of parameters and state variables are
+		// correct.
+		assertEquals(2, inputDataEvaluation.getInputParamsValues().size());
+		assertEquals(1, inputDataEvaluation.getStateVariablesValues().size());
 	}
-	
-	
-	
-//	@Test
-//	public void shouldNotGenerateForInfeasibleTestCase() {
-//		Machine machine = new Machine(new File("src/test/resources/machines/others/counter.mch"));
-//		Operation operationUnderTest = machine.getOperation(1); // inc operation
-//		
-//		BETATestCase mockedTestCase = mock(BETATestCase.class);
-//		when(mockedTestCase.getTestFormula()).thenReturn("not(value <= MAXINT) & value : INT & 0 <= value & overflow : BOOL & ((overflow = TRUE) => (value = MAXINT)) & value < MAXINT");
-//		
-//		InputDataEvaluation inputDataEvaluation = new InputDataEvaluation(mockedTestCase, operationUnderTest, probApi);
-//		
-//		Map<String, String> expectedInputParams = new HashMap<String, String>();
-//		
-//		Map<String, String> expectedStateValues = new HashMap<String, String>();
-//		expectedStateValues.put("overflow", "FALSE");
-//		expectedStateValues.put("value", "0");
-//		
-//		assertEquals(expectedInputParams, inputDataEvaluation.getInputParamsValues());
-//		assertEquals(expectedStateValues, inputDataEvaluation.getStateVariablesValues());
-//	}
-	
-	
-	
+
+
+
+	// @Test
+	// public void shouldNotGenerateForInfeasibleTestCase() {
+	// Machine machine = new Machine(new
+	// File("src/test/resources/machines/others/counter.mch"));
+	// Operation operationUnderTest = machine.getOperation(1); // inc operation
+	//
+	// BETATestCase mockedTestCase = mock(BETATestCase.class);
+	// when(mockedTestCase.getTestFormula()).thenReturn("not(value <= MAXINT) & value : INT & 0 <= value & overflow : BOOL & ((overflow = TRUE) => (value = MAXINT)) & value < MAXINT");
+	//
+	// InputDataEvaluation inputDataEvaluation = new
+	// InputDataEvaluation(mockedTestCase, operationUnderTest, probApi);
+	//
+	// Map<String, String> expectedInputParams = new HashMap<String, String>();
+	//
+	// Map<String, String> expectedStateValues = new HashMap<String, String>();
+	// expectedStateValues.put("overflow", "FALSE");
+	// expectedStateValues.put("value", "0");
+	//
+	// assertEquals(expectedInputParams,
+	// inputDataEvaluation.getInputParamsValues());
+	// assertEquals(expectedStateValues,
+	// inputDataEvaluation.getStateVariablesValues());
+	// }
+
 	@Test
 	public void shouldGenerateInputDataForOperationWithoutParametersAndMachineWithState1() {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/counter.mch"));
 		Operation operationUnderTest = machine.getOperation(1); // inc operation
-		
+
 		BETATestCase mockedTestCase = mock(BETATestCase.class);
-		when(mockedTestCase.getTestFormula()).thenReturn("value <= MAXINT & value : INT & 0 <= value & overflow : BOOL & ((overflow = TRUE) => (value = MAXINT)) & not(value < MAXINT)");
-		
-		InputDataEvaluation inputDataEvaluation = new InputDataEvaluation(mockedTestCase, operationUnderTest, probApi);
-		
+		when(mockedTestCase.getTestFormula()).thenReturn(
+				"value <= MAXINT & value : INT & 0 <= value & overflow : BOOL & ((overflow = TRUE) => (value = MAXINT)) & not(value < MAXINT)");
+
+		InputDataEvaluation inputDataEvaluation = new InputDataEvaluation(mockedTestCase, operationUnderTest);
+
 		Map<String, String> expectedInputParams = new HashMap<String, String>();
-		
+
 		Map<String, String> expectedStateValues = new HashMap<String, String>();
 		expectedStateValues.put("overflow", "TRUE");
 		expectedStateValues.put("value", "20");
-		
-		assertEquals(expectedInputParams, inputDataEvaluation.getInputParamsValues());
-		assertEquals(expectedStateValues, inputDataEvaluation.getStateVariablesValues());
+
+		String overflowValue = inputDataEvaluation.getStateVariablesValues().get("overflow");
+		String valueValue = inputDataEvaluation.getStateVariablesValues().get("value");
+
+		assertTrue(expectedInputParams.isEmpty());
+		assertEquals("20", valueValue);
+		assertTrue(overflowValue.equals("TRUE") || overflowValue.equals("FALSE"));
 	}
-	
-	
-	
+
+
+
 	@Test
 	public void shouldGenerateInputDataForOperationWithoutParametersAndMachineWithState2() {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/counter.mch"));
 		Operation operationUnderTest = machine.getOperation(1); // inc operation
-		
+
 		BETATestCase mockedTestCase = mock(BETATestCase.class);
-		when(mockedTestCase.getTestFormula()).thenReturn("value <= MAXINT & value : INT & 0 <= value & overflow : BOOL & ((overflow = TRUE) => (value = MAXINT)) & value < MAXINT");
-		
-		InputDataEvaluation inputDataEvaluation = new InputDataEvaluation(mockedTestCase, operationUnderTest, probApi);
-		
+		when(mockedTestCase.getTestFormula()).thenReturn(
+				"value <= MAXINT & value : INT & 0 <= value & overflow : BOOL & ((overflow = TRUE) => (value = MAXINT)) & value < MAXINT");
+
+		InputDataEvaluation inputDataEvaluation = new InputDataEvaluation(mockedTestCase, operationUnderTest);
+
 		Map<String, String> expectedInputParams = new HashMap<String, String>();
-		
+
 		Map<String, String> expectedStateValues = new HashMap<String, String>();
 		expectedStateValues.put("overflow", "FALSE");
 		expectedStateValues.put("value", "0");
-		
+
 		assertEquals(expectedInputParams, inputDataEvaluation.getInputParamsValues());
 		assertEquals(expectedStateValues, inputDataEvaluation.getStateVariablesValues());
 	}
-	
-	
-	
+
+
+
 	@Test
 	public void shouldGenerateInputDataForSimpleLiftGoTo() {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/SimpleLift.mch"));
-		Operation operationUnderTest = machine.getOperation(2); // go_to(nFloor) operation
-		
+		Operation operationUnderTest = machine.getOperation(2); // go_to(nFloor)
+
 		BETATestCase mockedTestCase = mock(BETATestCase.class);
 		when(mockedTestCase.getTestFormula()).thenReturn("floor : 1..5 & nFloor : 1..5 & nFloor /= floor"); // Positive
-		
-		InputDataEvaluation inputDataEvaluation = new InputDataEvaluation(mockedTestCase, operationUnderTest, probApi);
-		
+
+		InputDataEvaluation inputDataEvaluation = new InputDataEvaluation(mockedTestCase, operationUnderTest);
+
 		Map<String, String> expectedInputParams = new HashMap<String, String>();
 		expectedInputParams.put("nFloor", "2");
-		
+
 		Map<String, String> expectedStateValues = new HashMap<String, String>();
 		expectedStateValues.put("floor", "1");
-		
+
 		assertEquals(expectedInputParams, inputDataEvaluation.getInputParamsValues());
 		assertEquals(expectedStateValues, inputDataEvaluation.getStateVariablesValues());
 	}
-	
-	
-	
+
+
+
 	@Test
 	public void shouldGenerateInputDataForPaperroundAddPaper() {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/Paperround.mch"));
-		Operation operationUnderTest = machine.getOperation(0); // addpaper(hh) operation
-		
+		Operation operationUnderTest = machine.getOperation(0); // addpaper(hh)
+
 		BETATestCase mockedTestCase = mock(BETATestCase.class);
-//		when(mockedTestCase.getTestFormula()).thenReturn("card(papers) < 60 & magazines <: papers & card(papers) <= 60 & papers <: 1..163"); // Positive
 		when(mockedTestCase.getTestFormula()).thenReturn("card(papers) < 60 & hh : 1..163 & magazines <: papers & card(papers) <= 60 & papers <: 1..163"); // Positive
-		
-		InputDataEvaluation inputDataEvaluation = new InputDataEvaluation(mockedTestCase, operationUnderTest, probApi);
-		
-		Map<String, String> expectedInputParams = new HashMap<String, String>();
-		expectedInputParams.put("hh", "1");
-		
-		Map<String, String> expectedStateValues = new HashMap<String, String>();
-		expectedStateValues.put("magazines", "{}");
-		expectedStateValues.put("papers", "{}");
-		
-		assertEquals(expectedInputParams, inputDataEvaluation.getInputParamsValues());
-		assertEquals(expectedStateValues, inputDataEvaluation.getStateVariablesValues());
+
+		InputDataEvaluation inputDataEvaluation = new InputDataEvaluation(mockedTestCase, operationUnderTest);
+
+		int hhValue = Integer.parseInt(inputDataEvaluation.getInputParamsValues().get("hh"));
+		String papersValue = inputDataEvaluation.getStateVariablesValues().get("papers");
+		String magazinesValue = inputDataEvaluation.getStateVariablesValues().get("magazines");
+
+		// Asserting that hh : 1..163
+		assertTrue(hhValue >= 1 && hhValue <= 163);
+
+		// Since the generation of sets is not random yet, these will always be
+		// empty.
+		assertEquals("{}", papersValue);
+		assertEquals("{}", magazinesValue);
+
+		// Asserting that the number of parameters and state variables are
+		// correct.
+		assertEquals(1, inputDataEvaluation.getInputParamsValues().size());
+		assertEquals(2, inputDataEvaluation.getStateVariablesValues().size());
 	}
-	
-	
-	
-	@Test
-	public void shouldGenerateInputDataForBasketsAdd() {
-		Machine machine = new Machine(new File("src/test/resources/machines/schneider/Baskets.mch"));
-		Operation operationUnderTest = machine.getOperation(1); // addpaper(hh) operation
-		
-		BETATestCase mockedTestCase = mock(BETATestCase.class);
-		when(mockedTestCase.getTestFormula()).thenReturn("cu : dom(baskets) & gg : GOODS & baskets : (CUSTOMER +-> POW(GOODS))"); // Positive
-		
-		InputDataEvaluation inputDataEvaluation = new InputDataEvaluation(mockedTestCase, operationUnderTest, probApi);
-		
-		Map<String, String> expectedInputParams = new HashMap<String, String>();
-		expectedInputParams.put("cu", "CUSTOMER1");
-		expectedInputParams.put("gg", "GOODS1");
-		
-		Map<String, String> expectedStateValues = new HashMap<String, String>();
-		expectedStateValues.put("baskets", "{(CUSTOMER1|->{})}");
-		
-		assertEquals(expectedInputParams, inputDataEvaluation.getInputParamsValues());
-		assertEquals(expectedStateValues, inputDataEvaluation.getStateVariablesValues());
-	}
-	
-	
-	
+
+
+
 	@Test
 	public void shouldGenerateInputDataForInc() {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/Inc.mch"));
-		Operation operationUnderTest = machine.getOperation(0); // inc(nn) operation
-		
+		Operation operationUnderTest = machine.getOperation(0); // inc(nn)
+
 		BETATestCase mockedTestCase = mock(BETATestCase.class);
 		when(mockedTestCase.getTestFormula()).thenReturn("value : INT & nn : NAT & (nn + value) <= MAXINT & value < MAXINT"); // Positive
-		
-		InputDataEvaluation inputDataEvaluation = new InputDataEvaluation(mockedTestCase, operationUnderTest, probApi);
-		
+
+		InputDataEvaluation inputDataEvaluation = new InputDataEvaluation(mockedTestCase, operationUnderTest);
+
 		Map<String, String> expectedInputParams = new HashMap<String, String>();
 		expectedInputParams.put("nn", "0");
-		
+
 		Map<String, String> expectedStateValues = new HashMap<String, String>();
 		expectedStateValues.put("value", "-1");
-		
+
 		assertEquals(expectedInputParams, inputDataEvaluation.getInputParamsValues());
 		assertEquals(expectedStateValues, inputDataEvaluation.getStateVariablesValues());
 	}
-	
+
 }

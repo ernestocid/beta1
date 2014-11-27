@@ -17,7 +17,6 @@ import testgeneration.BETATestCase;
 import testgeneration.BETATestSuite;
 import testgeneration.OracleEvaluation;
 import tools.FileTools;
-import tools.ProBApi;
 
 public class HTMLReport {
 
@@ -215,7 +214,7 @@ public class HTMLReport {
 		if(testCase.isNegative()) {
 			expectedStateValues = generateUnknownValueForExpectedStateValues(testCase);
 		} else {
-			OracleEvaluation oracleEvaluation = new OracleEvaluation(testCase, testCase.getTestSuite().getOperationUnderTest(), ProBApi.getInstance());
+			OracleEvaluation oracleEvaluation = new OracleEvaluation(testCase, testCase.getTestSuite().getOperationUnderTest());
 			expectedStateValues = oracleEvaluation.getExpectedStateValues();
 		}
 		

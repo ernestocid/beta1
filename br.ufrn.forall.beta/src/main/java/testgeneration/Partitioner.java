@@ -6,7 +6,6 @@ import java.util.Set;
 
 import parser.Characteristic;
 import parser.CharacteristicType;
-import parser.Machine;
 import parser.Operation;
 import parser.PredicateCharacteristic;
 import parser.decorators.predicates.MyPredicate;
@@ -282,15 +281,15 @@ public class Partitioner {
 
 
 
-	private Set<Characteristic> getCharacteristicsFromProperties() {
-		Set<Characteristic> characteristicsFromProperties = new HashSet<Characteristic>();
-
-		for (MyPredicate clause : getPredicatesRelatedWithVariables(getOperationInputSpace(), this.operation.getMachine().getPropertiesClauses())) {
-			characteristicsFromProperties.add(new PredicateCharacteristic(clause, CharacteristicType.PROPERTIES));
-		}
-
-		return characteristicsFromProperties;
-	}
+//	private Set<Characteristic> getCharacteristicsFromProperties() {
+//		Set<Characteristic> characteristicsFromProperties = new HashSet<Characteristic>();
+//
+//		for (MyPredicate clause : getPredicatesRelatedWithVariables(getOperationInputSpace(), this.operation.getMachine().getPropertiesClauses())) {
+//			characteristicsFromProperties.add(new PredicateCharacteristic(clause, CharacteristicType.PROPERTIES));
+//		}
+//
+//		return characteristicsFromProperties;
+//	}
 
 
 

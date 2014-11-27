@@ -17,6 +17,7 @@ import de.prob.statespace.StateSpace;
 import de.prob.statespace.Trace;
 import parser.Machine;
 import parser.Operation;
+import tools.ProBApi;
 
 public class FormulaEvaluation {
 
@@ -29,12 +30,12 @@ public class FormulaEvaluation {
 	private Map<String, String> stateVariablesValues;
 
 
-	public FormulaEvaluation(Operation operation, String formula, Api probApi) {
+	public FormulaEvaluation(Operation operation, String formula) {
 		System.setProperty("prob.home", Configurations.getProBPath());
 		this.operation = operation;
 		this.machine = operation.getMachine();
 		this.formula = formula;
-		this.probApi = probApi;
+		this.probApi = ProBApi.getInstance();
 		this.parameterValues = new HashMap<String, String>();
 		this.stateVariablesValues = new HashMap<String, String>();
 		evaluateFormula();
@@ -90,9 +91,13 @@ public class FormulaEvaluation {
 
 
 	private Trace setupConstants(Trace trace) {
-		if(this.getMachine().getConstants() != null) {
+		try {
 			trace = trace.execute("$setup_constants", new ArrayList<String>());
+		} catch (Exception e) {
+			System.err.println("Warning: tried to $setup_constants but failed");
 		}
+//		if(this.getMachine().getConstants() != null || this.machine.getSets() != null) {
+//		}
 		return trace;
 	}
 	

@@ -11,7 +11,6 @@ import java.util.Map;
 import testgeneration.BETATestCase;
 import testgeneration.BETATestSuite;
 import testgeneration.OracleEvaluation;
-import tools.ProBApi;
 import configurations.Configurations;
 import nu.xom.Document;
 import nu.xom.Element;
@@ -165,7 +164,7 @@ public class XMLReport {
 				expectedStateValuesElement.appendChild(createVariableElement(variable, "unknown"));
 			}
 		} else {
-			OracleEvaluation oracleEvaluation = new OracleEvaluation(testCase, this.testSuite.getOperationUnderTest(), ProBApi.getInstance());
+			OracleEvaluation oracleEvaluation = new OracleEvaluation(testCase, this.testSuite.getOperationUnderTest());
 			Map<String, String> expectedStateValues = oracleEvaluation.getExpectedStateValues();
 
 			for(String variable : expectedStateValues.keySet()) {

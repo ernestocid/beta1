@@ -15,10 +15,13 @@ public class MainTest {
 
 	public static void main(String[] args) {
 		
-		Configurations.setMaxIntProperties(3);
-		Configurations.setMinIntProperties(-1);
+		Configurations.setMaxIntProperties(25);
+		Configurations.setMinIntProperties(-5);
 		
 		Api probApi = Main.getInjector().getInstance(Api.class);
+		
+		Machine machine = new Machine(new File("/Users/ernestocid/git/Models/Classroom.mch"));
+		Operation operationUnderTest = machine.getOperation(3);
 		
 //		Machine machine = new Machine(new File("/Users/ernestocid/Temp/MCDC/Priorityqueue.mch"));
 //		Operation operationUnderTest = machine.getOperation(1);
@@ -41,8 +44,8 @@ public class MainTest {
 //		Operation operationUnderTest = machine.getOperation(0);
 		
 		
-		Machine machine = new Machine(new File("src/test/resources/machines/Simple.mch"));
-		Operation operationUnderTest = machine.getOperation(0);
+//		Machine machine = new Machine(new File("src/test/resources/machines/Simple.mch"));
+//		Operation operationUnderTest = machine.getOperation(0);
 		
 //		Machine machine = new Machine(new File("src/test/resources/machines/CaseStmt.mch"));
 //		Operation operationUnderTest = machine.getOperation(1);
@@ -85,6 +88,8 @@ public class MainTest {
 		
 		printTestFormulas(new ActiveClauseCoverage(operationUnderTest), probApi, operationUnderTest);
 		
+		System.out.println("FINISHED!");
+		
 	}
 
 	
@@ -102,7 +107,7 @@ public class MainTest {
 	private static void evaluateFormula(Api probApi, Operation operationUnderTest, String formula) {
 //		String pathToMachine = operationUnderTest.getMachine().getFile().getAbsolutePath();
 		
-		FormulaEvaluation ev = new FormulaEvaluation(operationUnderTest, formula, probApi);
+		FormulaEvaluation ev = new FormulaEvaluation(operationUnderTest, formula);
 		
 		System.out.println("Parameters Solution: " + ev.getParameterValues());
 		System.out.println("Variables Solution: " + ev.getStateVariablesValues());

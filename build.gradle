@@ -118,7 +118,7 @@ project(':br.ufrn.forall.logicalcoverageexperiments') {
 	def core_version = '2.0.0-milestone-19-SNAPSHOT'
 	
 	dependencies {
-		compile project(':br.ufrn.forall.betacommon'), project(':br.ufrn.forall.betaparser'), project(':br.ufrn.forall.datacomb')
+		compile project(':br.ufrn.forall.beta'), project(':br.ufrn.forall.betacommon'), project(':br.ufrn.forall.betaparser'), project(':br.ufrn.forall.datacomb')
 		compile group: "de.prob2", name: "de.prob2.kernel", version: core_version , changing: true
 		compile 'commons-io:commons-io:2.4'
 		compile 'commons-lang:commons-lang:2.2'

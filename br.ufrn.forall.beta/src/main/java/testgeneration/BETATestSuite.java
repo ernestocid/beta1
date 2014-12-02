@@ -384,4 +384,23 @@ public class BETATestSuite {
 		return testMachineFile;
 	}
 
+
+
+	/**
+	 * Returns a list containing all feasible test cases formulas in the test
+	 * suite. These formulas are extracted from the test cases, after they are
+	 * created when building the test suite.
+	 * 
+	 * @return a List containing all feasbile test formulas.
+	 */
+	public List<String> getFeasbileTestCaseFormulasWithoutInvariant() {
+		List<String> feasibleTestCaseFormulas = new ArrayList<String>();
+
+		for (BETATestCase testCase : getTestCases()) {
+			feasibleTestCaseFormulas.add(testCase.getTestFormulaWithoutInvariant());
+		}
+
+		return feasibleTestCaseFormulas;
+	}
+
 }

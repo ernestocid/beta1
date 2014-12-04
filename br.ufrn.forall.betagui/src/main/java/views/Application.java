@@ -49,6 +49,7 @@ import de.prob.Main;
 import de.prob.scripting.Api;
 import parser.Machine;
 import actions.DisplayInfoAction;
+import actions.GenerateCBCTestMachineAction;
 import actions.GenerateTestsAction;
 import actions.LoadMachineAction;
 
@@ -70,6 +71,7 @@ public class Application {
 	private JLabel lblMachineLoaded;
 	private final Action displayAction = new DisplayInfoAction(this);
 	private final Action generateTestsAction = new GenerateTestsAction(this);
+	private final Action generateCBCTestMachineAction = new GenerateCBCTestMachineAction(this);
 	private Set<String> combinationsValues = new HashSet<String>();
 	private int selectedOperation;
 	
@@ -172,6 +174,12 @@ public class Application {
 		flowLayout_2.setAlignment(FlowLayout.TRAILING);
 		actions.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		frmBtest.getContentPane().add(actions, BorderLayout.SOUTH);
+		
+		JButton generateCBCTestMachineButton = new JButton("Generate CBC Test Machine");
+		generateCBCTestMachineButton.setAction(generateCBCTestMachineAction);
+		generateCBCTestMachineButton.setText("Generate CBC Test Machine");
+		generateCBCTestMachineButton.setHorizontalAlignment(SwingConstants.TRAILING);
+		actions.add(generateCBCTestMachineButton);
 		
 		JButton generateTestButton = new JButton("Create Test Report");
 		generateTestButton.setAction(generateTestsAction);

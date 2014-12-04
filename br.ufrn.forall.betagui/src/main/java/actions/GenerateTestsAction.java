@@ -13,6 +13,10 @@ import configurations.Configurations;
 public class GenerateTestsAction extends AbstractAction {
 
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Application application;
 
 	

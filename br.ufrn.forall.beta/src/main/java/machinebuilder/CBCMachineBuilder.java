@@ -44,9 +44,11 @@ public class CBCMachineBuilder {
 		}
 
 		cbcTestMachine.append("END");
-		
-		File mchFile = FileTools.createFileWithContent("src/test/resources/machines/others/ClassroomCBCTest.mch", cbcTestMachine.toString());
-		
+
+		String cbcMachineFilePath = getSourceMachineDirectory() + getSourceMachineName() + "_" + getOperationUnderTest().getName() + "_" + "CBCTest.mch";
+
+		File mchFile = FileTools.createFileWithContent(cbcMachineFilePath, cbcTestMachine.toString());
+
 		return mchFile;
 	}
 
@@ -147,6 +149,18 @@ public class CBCMachineBuilder {
 
 	public Operation getOperationUnderTest() {
 		return operationUnderTest;
+	}
+
+
+
+	private String getSourceMachineName() {
+		return getOperationUnderTest().getMachine().getName();
+	}
+
+
+
+	private String getSourceMachineDirectory() {
+		return getOperationUnderTest().getMachine().getFile().getParentFile().getAbsolutePath() + "/";
 	}
 
 }

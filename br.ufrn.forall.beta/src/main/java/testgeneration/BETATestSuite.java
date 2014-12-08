@@ -53,7 +53,7 @@ public class BETATestSuite {
 			// Evaluating combinations to get test case values for parameters
 			// and variables
 
-			PredicateEvaluator predicateEvaluator = new AuxiliarMachinePredicateEvaluator(getOperationUnderTest(), combinations);
+			IPredicateEvaluator predicateEvaluator = new AuxiliarMachinePredicateEvaluator(getOperationUnderTest(), combinations);
 
 			// Identifying infeasible combinations
 			setUnsolvableTestFormulas(predicateEvaluator.getInfeasiblePredicates());

@@ -3,13 +3,10 @@ package testgeneration;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
-import configurations.Configurations;
 import parser.Machine;
 import parser.Operation;
 import parser.decorators.predicates.MyPredicate;
@@ -17,25 +14,16 @@ import tools.FileTools;
 import animator.Animation;
 import animator.Animator;
 import animator.ConventionTools;
+import configurations.Configurations;
 
-public class AuxiliarMachinePredicateEvaluator implements PredicateEvaluator {
-
-	private Operation operationUnderTest;
-	private Set<List<Block>> combinations;
-	private Map<String, Boolean> formulaAndTestTypeMap;
-	private List<Animation> animations = new ArrayList<Animation>();
-	private List<String> infeasibleFormulas = new ArrayList<String>();
-
-
+public class AuxiliarMachinePredicateEvaluator extends AbstractPredicateEvaluator {
 
 	public AuxiliarMachinePredicateEvaluator(Operation operationUnderTest, Set<List<Block>> combinations) {
-		this.operationUnderTest = operationUnderTest;
-		this.combinations = combinations;
-		this.formulaAndTestTypeMap = mapFormulaToTypeOfTest(this.combinations);
+		super(operationUnderTest, combinations);
 
 		Machine auxiliarTestMachine = new Machine(createAuxiliarTestMachineFile(getCombinations()));
 		Animator animator = new Animator(auxiliarTestMachine);
-		this.animations.addAll(animator.animateAllOperations());
+		getAnimations().addAll(animator.animateAllOperations());
 		addInfeasibleFormulasToList(animator);
 		deleteTempFiles();
 	}
@@ -44,7 +32,7 @@ public class AuxiliarMachinePredicateEvaluator implements PredicateEvaluator {
 
 	private void deleteTempFiles() {
 		if (Configurations.isDeleteTempFiles() == true) {
-			String parentPathDirectory = operationUnderTest.getMachine().getFile().getParent();
+			String parentPathDirectory = getOperationUnderTest().getMachine().getFile().getParent();
 			deleteTempFilesFromDirectory(parentPathDirectory);
 		}
 	}
@@ -52,11 +40,14 @@ public class AuxiliarMachinePredicateEvaluator implements PredicateEvaluator {
 
 
 	private void deleteTempFilesFromDirectory(String parentPathDirectory) {
-		File mchFile = new File(parentPathDirectory + System.getProperty("file.separator") + ConventionTools.getTestMachineName(operationUnderTest) + ".mch");
+		File mchFile = new File(parentPathDirectory + System.getProperty("file.separator") + ConventionTools.getTestMachineName(getOperationUnderTest())
+				+ ".mch");
 		mchFile.delete();
-		File plFile = new File(parentPathDirectory + System.getProperty("file.separator") + ConventionTools.getTestMachineName(operationUnderTest) + ".mch.pl");
+		File plFile = new File(parentPathDirectory + System.getProperty("file.separator") + ConventionTools.getTestMachineName(getOperationUnderTest())
+				+ ".mch.pl");
 		plFile.delete();
-		File probFile = new File(parentPathDirectory + System.getProperty("file.separator") + ConventionTools.getTestMachineName(operationUnderTest) + ".prob");
+		File probFile = new File(parentPathDirectory + System.getProperty("file.separator") + ConventionTools.getTestMachineName(getOperationUnderTest())
+				+ ".prob");
 		probFile.delete();
 	}
 
@@ -64,7 +55,7 @@ public class AuxiliarMachinePredicateEvaluator implements PredicateEvaluator {
 
 	@Override
 	public List<Animation> getSolutions() {
-		return this.animations;
+		return super.getAnimations();
 	}
 
 
@@ -72,8 +63,8 @@ public class AuxiliarMachinePredicateEvaluator implements PredicateEvaluator {
 	private File createAuxiliarTestMachineFile(Set<List<Block>> combinations) {
 		TestMachineBuilder testMachineBuilder = new TestMachineBuilder(getOperationUnderTest(), combinations);
 		String testMachineContent = testMachineBuilder.generateTestMachine();
-		String parentPathDirectory = operationUnderTest.getMachine().getFile().getParent();
-		String testMachineFilePath = parentPathDirectory + System.getProperty("file.separator") + ConventionTools.getTestMachineName(operationUnderTest)
+		String parentPathDirectory = getOperationUnderTest().getMachine().getFile().getParent();
+		String testMachineFilePath = parentPathDirectory + System.getProperty("file.separator") + ConventionTools.getTestMachineName(getOperationUnderTest())
 				+ ".mch";
 		File testMachineFile = FileTools.createFileWithContent(testMachineFilePath, testMachineContent);
 
@@ -82,79 +73,9 @@ public class AuxiliarMachinePredicateEvaluator implements PredicateEvaluator {
 
 
 
-	public Operation getOperationUnderTest() {
-		return operationUnderTest;
-	}
-
-
-
-	public Set<List<Block>> getCombinations() {
-		return combinations;
-	}
-
-
-
-	private Map<String, Boolean> mapFormulaToTypeOfTest(Set<List<Block>> combinations) {
-		Map<String, Boolean> mapping = new HashMap<String, Boolean>();
-
-		for (List<Block> combination : combinations) {
-			String formula = convertCombinationToStringConcatenation(combination);
-			formula = formula.replaceAll("i__", "");
-			Boolean isNegative = hasNegativeBlock(combination);
-
-			mapping.put(formula.replaceAll("[()]", ""), isNegative);
-		}
-
-		return mapping;
-	}
-
-
-
-	private String convertCombinationToStringConcatenation(List<Block> combination) {
-		StringBuffer concatenation = new StringBuffer("");
-
-		for (int i = 0; i < combination.size(); i++) {
-			if (i == combination.size() - 1) {
-				concatenation.append(combination.get(i).getBlock());
-			} else {
-				concatenation.append(combination.get(i).getBlock() + " & ");
-			}
-		}
-
-		return concatenation.toString();
-	}
-
-
-
-	private boolean hasNegativeBlock(List<Block> combination) {
-		for (Block block : combination) {
-			if (block.isNegative()) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-
-
-	@Override
-	public Map<String, Boolean> getFormulaAndTestTypeMap() {
-		return formulaAndTestTypeMap;
-	}
-
-
-
-	@Override
-	public List<String> getInfeasiblePredicates() {
-		return infeasibleFormulas;
-	}
-
-
-
 	private void addInfeasibleFormulasToList(Animator animator) {
 		for (Operation op : animator.getOperationsWithInfeasiblePreconditions()) {
-			this.infeasibleFormulas.add(generateTestFormulaWithoutInvariant(op.getPrecondition()));
+			getInfeasibleFormulas().add(generateTestFormulaWithoutInvariant(op.getPrecondition()));
 		}
 	}
 
@@ -200,7 +121,7 @@ public class AuxiliarMachinePredicateEvaluator implements PredicateEvaluator {
 
 
 	private Set<String> getClausesFromInvariant() {
-		Set<MyPredicate> condensedInvariantFromAllMachines = this.operationUnderTest.getMachine().getCondensedInvariantFromAllMachines();
+		Set<MyPredicate> condensedInvariantFromAllMachines = getOperationUnderTest().getMachine().getCondensedInvariantFromAllMachines();
 		Set<String> condesendInvariant = new HashSet<String>();
 
 		for (MyPredicate myPredicate : condensedInvariantFromAllMachines) {
@@ -226,6 +147,13 @@ public class AuxiliarMachinePredicateEvaluator implements PredicateEvaluator {
 		String cleanTestFormula = testFormulaWithoutInvariant.toString().replaceAll("i__", "");
 
 		return cleanTestFormula;
+	}
+
+
+
+	@Override
+	public List<String> getInfeasiblePredicates() {
+		return super.getInfeasibleFormulas();
 	}
 
 }

@@ -3,7 +3,6 @@ package testgeneration;
 import general.CombinatorialCriterias;
 import general.PartitionStrategy;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -12,22 +11,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import configurations.Configurations;
 import criteria.AllCombinations;
 import criteria.EachChoice;
 import criteria.Pairwise;
 import animator.Animation;
-import animator.Animator;
-import animator.ConventionTools;
-import parser.Machine;
 import parser.Operation;
 import parser.decorators.predicates.MyPredicate;
-import tools.FileTools;
 
 public class BETATestSuite {
 
 	private List<BETATestCase> testCases;
-	private List<String> unsolvableFormulas = new ArrayList<String>();
+	private List<String> unsolvableFormulas;
 	private Operation operationUnderTest;
 	private PartitionStrategy partitionStrategy;
 	private CombinatorialCriterias combinatorialCriteria;
@@ -39,6 +33,7 @@ public class BETATestSuite {
 		this.partitionStrategy = partitionStrategy;
 		this.combinatorialCriteria = combinatorialCriteria;
 		this.testCases = new ArrayList<BETATestCase>();
+		this.unsolvableFormulas = new ArrayList<String>();
 		generateTestCases();
 	}
 
@@ -55,35 +50,16 @@ public class BETATestSuite {
 
 		if (!combinations.isEmpty()) {
 
-			// Creating and animating the auxiliary B machine to generate test
-			// data. This is a trick we use to generate test case values
-			// according to the preconditions of each operation in this
-			// auxiliary machine. Each operation in the auxiliary test machine
-			// represents a test case.
+			// Evaluating combinations to get test case values for parameters
+			// and variables
 
-			Machine auxiliarTestMachine = new Machine(createAuxiliarTestMachineFile(combinations));
+			PredicateEvaluator predicateEvaluator = new AuxiliarMachinePredicateEvaluator(getOperationUnderTest(), combinations);
 
-			Animator animator = new Animator(auxiliarTestMachine);
-			List<Animation> animations = animator.animateAllOperations();
+			// Identifying infeasible combinations
+			setUnsolvableTestFormulas(predicateEvaluator.getInfeasiblePredicates());
 
-			// Creating a map that identifies formulas for positive and negative
-			// test cases. The key in the map is the formula and the value is a
-			// boolean value that is true if the test is negative and false if
-			// the test is positive.
-
-			Map<String, Boolean> mappingOfPositiveAndNegativeTestFormulas = mapPositiveAndNegativeTestFormulas(combinations);
-
-			// Add infeasible test formulas to the list of infeasible tests.
-
-			addInfeasibleFormulasToList(animator);
-
-			// Creating a test case for each animation
-
-			createTestCases(animations, mappingOfPositiveAndNegativeTestFormulas);
-
-			// Deleting temp files
-
-			deleteTempFiles();
+			// Creating test cases
+			createTestCases(predicateEvaluator.getSolutions(), predicateEvaluator.getFormulaAndTestTypeMap());
 
 		}
 	}
@@ -114,14 +90,6 @@ public class BETATestSuite {
 
 
 
-	private void addInfeasibleFormulasToList(Animator animator) {
-		for (Operation op : animator.getOperationsWithInfeasiblePreconditions()) {
-			this.unsolvableFormulas.add(generateTestFormulaWithoutInvariant(op.getPrecondition()));
-		}
-	}
-
-
-
 	private List<List<Block>> getBlocksAccordingToPartitionStrategy() {
 		if (this.partitionStrategy == PartitionStrategy.EQUIVALENT_CLASSES) {
 			return new ECBlockBuilder(new Partitioner(this.operationUnderTest)).getBlocksAsListsOfBlocks();
@@ -138,50 +106,6 @@ public class BETATestSuite {
 		String formula = animation.getFormula().replaceAll("[()]", "");
 		Boolean isNegative = mappingCombinationToTypeOfTest.get(formula);
 		return isNegative.booleanValue();
-	}
-
-
-
-	private Map<String, Boolean> mapPositiveAndNegativeTestFormulas(Set<List<Block>> combinations) {
-		Map<String, Boolean> mapping = new HashMap<String, Boolean>();
-
-		for (List<Block> combination : combinations) {
-			String formula = convertCombinationToStringConcatenation(combination);
-			formula = formula.replaceAll("i__", "");
-			Boolean isNegative = hasNegativeBlock(combination);
-
-			mapping.put(formula.replaceAll("[()]", ""), isNegative);
-		}
-
-		return mapping;
-	}
-
-
-
-	private boolean hasNegativeBlock(List<Block> combination) {
-		for (Block block : combination) {
-			if (block.isNegative()) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-
-
-	private String convertCombinationToStringConcatenation(List<Block> combination) {
-		StringBuffer concatenation = new StringBuffer("");
-
-		for (int i = 0; i < combination.size(); i++) {
-			if (i == combination.size() - 1) {
-				concatenation.append(combination.get(i).getBlock());
-			} else {
-				concatenation.append(combination.get(i).getBlock() + " & ");
-			}
-		}
-
-		return concatenation.toString();
 	}
 
 
@@ -252,26 +176,6 @@ public class BETATestSuite {
 		}
 
 		return clausesAsStrings;
-	}
-
-
-
-	private void deleteTempFiles() {
-		if (Configurations.isDeleteTempFiles() == true) {
-			String parentPathDirectory = operationUnderTest.getMachine().getFile().getParent();
-			deleteTempFilesFromDirectory(parentPathDirectory);
-		}
-	}
-
-
-
-	private void deleteTempFilesFromDirectory(String parentPathDirectory) {
-		File mchFile = new File(parentPathDirectory + System.getProperty("file.separator") + ConventionTools.getTestMachineName(operationUnderTest) + ".mch");
-		mchFile.delete();
-		File plFile = new File(parentPathDirectory + System.getProperty("file.separator") + ConventionTools.getTestMachineName(operationUnderTest) + ".mch.pl");
-		plFile.delete();
-		File probFile = new File(parentPathDirectory + System.getProperty("file.separator") + ConventionTools.getTestMachineName(operationUnderTest) + ".prob");
-		probFile.delete();
 	}
 
 
@@ -373,19 +277,6 @@ public class BETATestSuite {
 
 
 
-	private File createAuxiliarTestMachineFile(Set<List<Block>> combinations) {
-		TestMachineBuilder testMachineBuilder = new TestMachineBuilder(getOperationUnderTest(), combinations);
-		String testMachineContent = testMachineBuilder.generateTestMachine();
-		String parentPathDirectory = operationUnderTest.getMachine().getFile().getParent();
-		String testMachineFilePath = parentPathDirectory + System.getProperty("file.separator") + ConventionTools.getTestMachineName(operationUnderTest)
-				+ ".mch";
-		File testMachineFile = FileTools.createFileWithContent(testMachineFilePath, testMachineContent);
-
-		return testMachineFile;
-	}
-
-
-
 	/**
 	 * Returns a list containing all feasible test cases formulas in the test
 	 * suite. These formulas are extracted from the test cases, after they are
@@ -403,4 +294,9 @@ public class BETATestSuite {
 		return feasibleTestCaseFormulas;
 	}
 
+
+
+	private void setUnsolvableTestFormulas(List<String> unsolvableFormulas) {
+		this.unsolvableFormulas = unsolvableFormulas;
+	}
 }

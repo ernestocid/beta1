@@ -17,6 +17,9 @@ import criteria.Pairwise;
 import animator.Animation;
 import parser.Operation;
 import parser.decorators.predicates.MyPredicate;
+import testgeneration.predicateevaluators.AuxiliarMachinePredicateEvaluator;
+import testgeneration.predicateevaluators.IPredicateEvaluator;
+import testgeneration.predicateevaluators.ProBApiPredicateEvaluator;
 
 public class BETATestSuite {
 
@@ -54,7 +57,8 @@ public class BETATestSuite {
 			// and variables
 
 			IPredicateEvaluator predicateEvaluator = new AuxiliarMachinePredicateEvaluator(getOperationUnderTest(), combinations);
-
+//			IPredicateEvaluator predicateEvaluator = new ProBApiPredicateEvaluator(getOperationUnderTest(), combinations);
+			
 			// Identifying infeasible combinations
 			setUnsolvableTestFormulas(predicateEvaluator.getInfeasiblePredicates());
 

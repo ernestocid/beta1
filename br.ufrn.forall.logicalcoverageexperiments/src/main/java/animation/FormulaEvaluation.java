@@ -31,7 +31,6 @@ public class FormulaEvaluation {
 
 
 	public FormulaEvaluation(Operation operation, String formula) {
-		System.setProperty("prob.home", Configurations.getProBPath());
 		this.operation = operation;
 		this.machine = operation.getMachine();
 		this.formula = formula;
@@ -45,11 +44,9 @@ public class FormulaEvaluation {
 
 	private void evaluateFormula() {
 		String pathToMachine = getMachine().getFile().getAbsolutePath();
-//		System.out.println(Configurations.getProBPath());
-		
 		
 		try {
-			ClassicalBModel model = getProbApi().b_load(pathToMachine, Configurations.getProBApiPreferences());
+			ClassicalBModel model = ProBApi.getInstance().b_load(pathToMachine, Configurations.getProBApiPreferences());
 			StateSpace stateSpace = model.getStateSpace();
 			Trace trace = new Trace(stateSpace);
 			

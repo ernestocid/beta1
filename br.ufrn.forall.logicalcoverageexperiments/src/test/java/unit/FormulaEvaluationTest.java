@@ -19,6 +19,7 @@ public class FormulaEvaluationTest {
 	@Before
 	public void setUp() {
 		Configurations.setRandomiseEnumerationOrder(false);
+		Configurations.setUseKodkod(true);
 	}
 	
 	

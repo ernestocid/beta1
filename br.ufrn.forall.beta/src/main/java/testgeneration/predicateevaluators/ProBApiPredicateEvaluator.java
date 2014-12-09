@@ -35,7 +35,6 @@ public class ProBApiPredicateEvaluator extends AbstractPredicateEvaluator {
 
 	private void evaluate() {
 		List<Animation> animations = new ArrayList<Animation>();
-		List<Map<String, String>> solutions = new ArrayList<Map<String, String>>();
 		String pathToMachine = getOperationUnderTest().getMachine().getFile().getAbsolutePath();
 		List<String> combinations = getCombinationsAsStrings();
 
@@ -44,12 +43,15 @@ public class ProBApiPredicateEvaluator extends AbstractPredicateEvaluator {
 			StateSpace stateSpace = model.getStateSpace();
 
 			for (String formulaForEvaluation : combinations) {
+				List<Map<String, String>> solutions = new ArrayList<Map<String, String>>();
+
 				Trace trace = new Trace(stateSpace);
 				trace = trySetupConstants(trace);
 
 				trace = trace.execute("$initialise_machine", new ArrayList<String>());
 
 				try {
+					System.out.println("Using ProB API to solve: " + formulaForEvaluation);
 					trace = stateSpace.getTraceToState(new ClassicalB(formulaForEvaluation));
 
 					IEvalResult evalCurrent = trace.evalCurrent(new ClassicalB(formulaForEvaluation));
@@ -61,6 +63,8 @@ public class ProBApiPredicateEvaluator extends AbstractPredicateEvaluator {
 						solution.putAll(getValuesForInputParams(result));
 						solution.putAll(getValuesForStateVariables(trace));
 
+						System.out.println("Found Solution: " + solution);
+						
 						solutions.add(solution);
 
 						Animation animation = new Animation(converFormulaToMyPredicate(formulaForEvaluation), solutions);
@@ -69,6 +73,7 @@ public class ProBApiPredicateEvaluator extends AbstractPredicateEvaluator {
 						System.out.println("Not an EvalResult");
 					}
 				} catch (RuntimeException e) {
+					System.out.println("Could not find solution!");
 					getInfeasibleFormulas().add(formulaForEvaluation);
 				}
 

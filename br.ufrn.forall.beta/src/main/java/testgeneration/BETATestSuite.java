@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import configurations.Configurations;
 import criteria.AllCombinations;
 import criteria.EachChoice;
 import criteria.Pairwise;
@@ -54,11 +55,25 @@ public class BETATestSuite {
 		if (!combinations.isEmpty()) {
 
 			// Evaluating combinations to get test case values for parameters
-			// and variables
+			// and variables. The the predicates obtained from the combinations
+			// can be evaluated using either the ProB Api or an auxiliary
+			// machine trick. The user can choose which method to use in the
+			// tool preferences window.
 
-			IPredicateEvaluator predicateEvaluator = new AuxiliarMachinePredicateEvaluator(getOperationUnderTest(), combinations);
-//			IPredicateEvaluator predicateEvaluator = new ProBApiPredicateEvaluator(getOperationUnderTest(), combinations);
-			
+			IPredicateEvaluator predicateEvaluator;
+
+			if (Configurations.isUseProBApiToSolvePredicates()) {
+				predicateEvaluator = new ProBApiPredicateEvaluator(getOperationUnderTest(), combinations);
+			} else {
+				predicateEvaluator = new AuxiliarMachinePredicateEvaluator(getOperationUnderTest(), combinations);
+			}
+
+			// IPredicateEvaluator predicateEvaluator = new
+			// AuxiliarMachinePredicateEvaluator(getOperationUnderTest(),
+			// combinations);
+			// IPredicateEvaluator predicateEvaluator = new
+			// ProBApiPredicateEvaluator(getOperationUnderTest(), combinations);
+
 			// Identifying infeasible combinations
 			setUnsolvableTestFormulas(predicateEvaluator.getInfeasiblePredicates());
 

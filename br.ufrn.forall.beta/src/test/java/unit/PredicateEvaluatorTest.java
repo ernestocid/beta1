@@ -27,7 +27,7 @@ public class PredicateEvaluatorTest {
 	@Before
 	public void setUp() {
 		Configurations.setRandomiseEnumerationOrder(false);
-		Configurations.setUseKodkod(false);
+		Configurations.setUseKodkod(true);
 	}
 
 

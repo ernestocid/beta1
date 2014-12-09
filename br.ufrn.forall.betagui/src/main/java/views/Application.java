@@ -288,6 +288,18 @@ public class Application {
 				final JCheckBox automaticOracleEvaluationCB = new JCheckBox("Generate Oracle Values (experimental)");
 				automaticOracleEvaluationCB.setSelected(Configurations.isAutomaticOracleEvaluation());
 				
+				JLabel useProBApiToSolvePredicatesLabel = new JLabel("Use ProB API to solve predicates: ");
+				final JCheckBox useProBApiToSolvePredicatesCB = new JCheckBox("Use ProB API (experimental)");
+				useProBApiToSolvePredicatesCB.setSelected(Configurations.isUseProBApiToSolvePredicates());
+				
+				JLabel useKodkodLabel = new JLabel("Use Kodkod: ");
+				final JCheckBox useKodkodCB = new JCheckBox("Use Kodkod (experimental)");
+				useKodkodCB.setSelected(Configurations.getUseKodkod());
+				
+				JLabel useProbRandomEnumerationLabel = new JLabel("Use ProB's random enumeration: ");
+				final JCheckBox useProbRandomEnumerationCB = new JCheckBox("Random enumeration (experimental)");
+				useProbRandomEnumerationCB.setSelected(Configurations.getRandomiseEnumerationOrder());
+				
 				
 				JLabel minintLabel = new JLabel("MININT Value: ");
 				final JTextField minintField = new JTextField(String.valueOf(Configurations.getMinIntProperties()), 5);
@@ -348,6 +360,18 @@ public class Application {
 						
 						Configurations.setAutomaticOracleEvaluation(automaticOracleEvaluationCB.isSelected());
 						
+						// Set Use ProBApi
+						
+						Configurations.setUseProBApiToSolvePredicates(useProBApiToSolvePredicatesCB.isSelected());
+						
+						// Set Use Kodkod
+						
+						Configurations.setUseKodkod(useKodkodCB.isSelected());
+						
+						// Set Use ProB random enumeration
+						
+						Configurations.setRandomiseEnumerationOrder(useProbRandomEnumerationCB.isSelected());
+						
 						// Set MININT and MAXINT values
 						
 						Configurations.setMinIntProperties(Integer.valueOf(minintField.getText()));
@@ -356,83 +380,58 @@ public class Application {
 					}
 				});
 				
-//				c.gridx = 0;
+
 				c.gridy = 0;
 				
 				configPanel.add(probPathLabel, c);
-				
-//				c.gridx = 1;
-				c.gridy = 0;
-				
 				configPanel.add(probPathField, c);
-				
-//				c.gridx = 0;
+
 				c.gridy = 1;
+				
+				configPanel.add(downloadProBCliLabel, c);
+				configPanel.add(downloadProBClitButton, c);
+				
+				c.gridy = 2;
 				
 				configPanel.add(oracleStrategy, c);
-				
-//				c.gridx = 1;
-				c.gridy = 1;
-				
 				configPanel.add(stateVariablesOracCB, c);
-				
-//				c.gridx = 2;
-				c.gridy = 1;
-				
 				configPanel.add(returnVariablesOracCB, c);
-				
-//				c.gridx = 3;
-				c.gridy = 1;
-				
 				configPanel.add(invariantOKOracCB, c);
 				
-//				c.gridx = 0;
-				c.gridy = 2;
+				c.gridy = 3;
 				
 				configPanel.add(deleteTempFilesLabel, c);
-				
-//				c.gridx = 1;
-				c.gridy = 2;
-				
 				configPanel.add(deleteTempFilesCB, c);
-				
-//				c.gridx = 0;
-				c.gridy = 3;
-				
-				configPanel.add(automaticOracleEvaluationLabel, c);
-				
-//				c.gridx = 1;
-				c.gridy = 3;
-				
-				configPanel.add(automaticOracleEvaluationCB, c);
 
-//				c.gridx = 0;
 				c.gridy = 4;
 				
-				configPanel.add(minintLabel, c);
+				configPanel.add(useKodkodLabel, c);
+				configPanel.add(useKodkodCB, c);
 				
-//				c.gridx = 1;
-				c.gridy = 4;
-				
-				configPanel.add(minintField, c);
-				
-//				c.gridx = 0;
 				c.gridy = 5;
 				
-				configPanel.add(maxintLabel, c);
+				configPanel.add(useProbRandomEnumerationLabel, c);
+				configPanel.add(useProbRandomEnumerationCB, c);
 				
-//				c.gridx = 1;
-				c.gridy = 5;
-				
-				configPanel.add(maxintField, c);
-								
-//				c.gridx = 0;
 				c.gridy = 6;
 				
-				configPanel.add(downloadProBCliLabel);
-				configPanel.add(downloadProBClitButton);
+				configPanel.add(automaticOracleEvaluationLabel, c);
+				configPanel.add(automaticOracleEvaluationCB, c);
 				
 				c.gridy = 7;
+				
+				configPanel.add(useProBApiToSolvePredicatesLabel, c);
+				configPanel.add(useProBApiToSolvePredicatesCB, c);
+				
+				c.gridy = 8;
+				
+				configPanel.add(minintLabel, c);
+				configPanel.add(minintField, c);
+				
+				configPanel.add(maxintLabel, c);
+				configPanel.add(maxintField, c);
+								
+				c.gridy = 9;
 				
 				configPanel.add(saveButton, c);
 				

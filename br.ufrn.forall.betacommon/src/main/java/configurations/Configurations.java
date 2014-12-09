@@ -296,7 +296,7 @@ public class Configurations {
 		probApiPrefs.put("CLPFD", "true");
 		probApiPrefs.put("CHR", "false");
 		probApiPrefs.put("SYMBOLIC", "true");
-		probApiPrefs.put("KODKOD", "true");
+		probApiPrefs.put("KODKOD", Boolean.toString(getUseKodkod()));
 		probApiPrefs.put("RANDOMISE_ENUMERATION_ORDER", Boolean.toString(getRandomiseEnumerationOrder()));
 
 		return probApiPrefs;
@@ -394,6 +394,44 @@ public class Configurations {
 		try {
 			PropertiesConfiguration config = new PropertiesConfiguration(getPathToPropertiesFile());
 			config.setProperty("use_kodkod", useKodkod);
+			config.save();
+		} catch (ConfigurationException e) {
+			System.err.println("Could not set value for use_kodkod: " + e.getMessage());
+		}
+	}
+
+
+
+	/**
+	 * Gets the value for the use_prob_api on the config.properties file
+	 * 
+	 * @return boolean value for use_prob_api
+	 */
+	public static boolean isUseProBApiToSolvePredicates() {
+		boolean useprobapi = false;
+
+		try {
+			PropertiesConfiguration config = new PropertiesConfiguration(getPathToPropertiesFile());
+			useprobapi = config.getBoolean("use_prob_api");
+		} catch (ConfigurationException e) {
+			System.err.println("Could not get value for use_prob_api: " + e.getMessage());
+		}
+
+		return useprobapi;
+	}
+
+
+
+	/**
+	 * Sets the value for the use_prob_api on the config.properties file
+	 * 
+	 * @param useProBApi
+	 *            boolean value for use_prob_api
+	 */
+	public static void setUseProBApiToSolvePredicates(boolean useProBApi) {
+		try {
+			PropertiesConfiguration config = new PropertiesConfiguration(getPathToPropertiesFile());
+			config.setProperty("use_prob_api", useProBApi);
 			config.save();
 		} catch (ConfigurationException e) {
 			System.err.println("Could not set value for use_kodkod: " + e.getMessage());

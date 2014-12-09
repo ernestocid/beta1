@@ -307,6 +307,10 @@ public class Application {
 				JLabel maxintLabel = new JLabel("MININT Value: ");
 				final JTextField maxintField = new JTextField(String.valueOf(Configurations.getMaxIntProperties()), 5);
 				
+				JLabel probTimeoutLabel = new JLabel("ProB timeout: ");
+				final JTextField probTimeoutField = new JTextField(String.valueOf(Configurations.getProBTimeout()), 5);
+				
+				
 				JLabel downloadProBCliLabel = new JLabel("Download latest probcli binaries: ");
 				JButton downloadProBClitButton = new JButton("Download probcli");
 				downloadProBClitButton.addActionListener(new ActionListener() {
@@ -376,7 +380,7 @@ public class Application {
 						
 						Configurations.setMinIntProperties(Integer.valueOf(minintField.getText()));
 						Configurations.setMaxIntProperties(Integer.valueOf(maxintField.getText()));
-						
+						Configurations.setProBTimeout(Integer.valueOf(probTimeoutField.getText()));
 					}
 				});
 				
@@ -430,8 +434,13 @@ public class Application {
 				
 				configPanel.add(maxintLabel, c);
 				configPanel.add(maxintField, c);
-								
+				
 				c.gridy = 9;
+				
+				configPanel.add(probTimeoutLabel, c);
+				configPanel.add(probTimeoutField, c);
+								
+				c.gridy = 10;
 				
 				configPanel.add(saveButton, c);
 				

@@ -437,4 +437,43 @@ public class Configurations {
 			System.err.println("Could not set value for use_kodkod: " + e.getMessage());
 		}
 	}
+
+
+
+	/**
+	 * Gets the value for the prob_timeout on the config.properties file
+	 * 
+	 * @return int value for prob_timeout
+	 */
+	public static int getProBTimeout() {
+		int probTimeout = 2000;
+
+		try {
+			PropertiesConfiguration config = new PropertiesConfiguration(getPathToPropertiesFile());
+			probTimeout = config.getInt("prob_timeout");
+		} catch (ConfigurationException e) {
+			System.err.println("Could not get value for prob_timeout: " + e.getMessage());
+		}
+
+		return probTimeout;
+	}
+
+
+
+	/**
+	 * Sets the value for the prob_timeout on the config.properties file
+	 * 
+	 * @param probTimeout
+	 *            int value for prob_timeout
+	 */
+	public static void setProBTimeout(int probTimeout) {
+		try {
+			PropertiesConfiguration config = new PropertiesConfiguration(getPathToPropertiesFile());
+			config.setProperty("prob_timeout", probTimeout);
+			config.save();
+		} catch (ConfigurationException e) {
+			System.err.println("Could not set value for prob_timeout: " + e.getMessage());
+		}
+	}
+
 }

@@ -68,18 +68,11 @@ public class BETATestSuite {
 				predicateEvaluator = new AuxiliarMachinePredicateEvaluator(getOperationUnderTest(), combinations);
 			}
 
-			// IPredicateEvaluator predicateEvaluator = new
-			// AuxiliarMachinePredicateEvaluator(getOperationUnderTest(),
-			// combinations);
-			// IPredicateEvaluator predicateEvaluator = new
-			// ProBApiPredicateEvaluator(getOperationUnderTest(), combinations);
-
 			// Identifying infeasible combinations
 			setUnsolvableTestFormulas(predicateEvaluator.getInfeasiblePredicates());
 
 			// Creating test cases
 			createTestCases(predicateEvaluator.getSolutions(), predicateEvaluator.getFormulaAndTestTypeMap());
-
 		}
 	}
 

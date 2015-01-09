@@ -12,6 +12,9 @@ import javax.swing.JOptionPane;
 import parser.Operation;
 import machinebuilder.CBCMachineBuilder;
 import testgeneration.BETATestSuite;
+import testgeneration.coveragecriteria.BoundaryValueAnalysis;
+import testgeneration.coveragecriteria.CoverageCriterion;
+import testgeneration.coveragecriteria.EquivalenceClasses;
 import views.Application;
 
 public class GenerateCBCTestMachineAction extends AbstractAction {
@@ -42,10 +45,18 @@ public class GenerateCBCTestMachineAction extends AbstractAction {
 							"Error", JOptionPane.ERROR_MESSAGE);
 		} else {
 			Operation operationUnderTest = this.application.getMachine().getOperation(this.application.getSelectedOperation());
-			PartitionStrategy partitionStrategy = PartitionStrategy.get(this.application.getChosenPartitionStrategy());
-			CombinatorialCriterias combinatorialCriterion = CombinatorialCriterias.get(this.application.getChosenCombinatorialCriteria());
 
-			BETATestSuite testSuite = new BETATestSuite(operationUnderTest, partitionStrategy, combinatorialCriterion);
+			CoverageCriterion coverageCriterion;
+			
+			if(PartitionStrategy.get(application.getChosenPartitionStrategy()) == PartitionStrategy.EQUIVALENT_CLASSES) {
+            	coverageCriterion = new EquivalenceClasses(operationUnderTest, CombinatorialCriterias.get(application.getChosenCombinatorialCriteria()));
+            } else if (PartitionStrategy.get(application.getChosenPartitionStrategy()) == PartitionStrategy.BOUNDARY_VALUES) {
+            	coverageCriterion = new BoundaryValueAnalysis(operationUnderTest, CombinatorialCriterias.get(application.getChosenCombinatorialCriteria()));
+            } else {
+            	coverageCriterion = null;
+            }
+			
+			BETATestSuite testSuite = new BETATestSuite(operationUnderTest, coverageCriterion);
 			List<String> testCasePredicates = testSuite.getFeasbileTestCaseFormulasWithoutInvariant();
 
 			CBCMachineBuilder cbcMchBuilder = new CBCMachineBuilder(operationUnderTest, testCasePredicates);

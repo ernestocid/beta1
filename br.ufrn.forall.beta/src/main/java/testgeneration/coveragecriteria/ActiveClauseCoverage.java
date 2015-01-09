@@ -81,7 +81,7 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 	private Set<String> createACCFormulasForPredicateWithSingleClause(MyPredicate predicate, List<MyPredicate> clauses) {
 		Set<String> testFormulas = new HashSet<String>();
 		
-		String existentialListAndInvariant = varListForExistential() + "(" + invariant();
+		String existentialListAndInvariant = "(" + invariant();
 		String clause = "(" + clauses.get(0) + "))";
 		String clauseNegation =  "(" + "not(" + clauses.get(0) + ")" + "))";
 		
@@ -153,16 +153,16 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 			String majorClauseTrueFormula = createMajorClauseTrueFormulaWithoutPrecondition(majorClause, predicate);
 			String majorClauseFalseFormula = createMajorClauseFalseFormulaWithoutPrecondition(majorClause, predicate);
 			
-			testFormulas.add(varListForExistential() + "(" + majorClauseTrueFormula.toString() + ")");
-			testFormulas.add(varListForExistential() + "(" + majorClauseFalseFormula.toString() + ")");
+			testFormulas.add("(" + majorClauseTrueFormula.toString() + ")");
+			testFormulas.add("(" + majorClauseFalseFormula.toString() + ")");
 			
 		} else {
 			
 			String majorClauseTrueFormula = createMajorClauseTrueFormulaWithPrecondition(majorClause, predicate);
 			String majorClauseFalseFormula = createMajorClauseFalseFormulaWithPrecondition(majorClause, predicate);
 
-			testFormulas.add(varListForExistential() + "(" + majorClauseTrueFormula.toString() + ")");
-			testFormulas.add(varListForExistential() + "(" + majorClauseFalseFormula.toString() + ")");
+			testFormulas.add("(" + majorClauseTrueFormula.toString() + ")");
+			testFormulas.add("(" + majorClauseFalseFormula.toString() + ")");
 			
 		}
 		

@@ -2,7 +2,6 @@ package unit;
 
 import static org.junit.Assert.assertEquals;
 import general.CombinatorialCriterias;
-import general.PartitionStrategy;
 
 import java.io.File;
 
@@ -13,6 +12,8 @@ import org.junit.Test;
 import parser.Machine;
 import parser.Operation;
 import testgeneration.BETATestSuite;
+import testgeneration.coveragecriteria.CoverageCriterion;
+import testgeneration.coveragecriteria.EquivalenceClasses;
 import tools.FileTools;
 
 public class CBCMachineBuilderTest {
@@ -22,7 +23,9 @@ public class CBCMachineBuilderTest {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/Classroom.mch"));
 		Operation operationUnderTest = machine.getOperation(3);
 
-		BETATestSuite testSuite = new BETATestSuite(operationUnderTest, PartitionStrategy.EQUIVALENT_CLASSES, CombinatorialCriterias.EACH_CHOICE);
+		CoverageCriterion coverageCriterion = new EquivalenceClasses(operationUnderTest, CombinatorialCriterias.EACH_CHOICE);
+		
+		BETATestSuite testSuite = new BETATestSuite(operationUnderTest, coverageCriterion);
 		CBCMachineBuilder cbcMchBuilder = new CBCMachineBuilder(operationUnderTest, testSuite.getFeasbileTestCaseFormulasWithoutInvariant());
 		File mchFile = cbcMchBuilder.getBuiltMachine();
 

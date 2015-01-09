@@ -62,7 +62,7 @@ public class PredicateCoverage extends LogicalCoverage {
 	private String createNegativeTestFormulaForPredicate(MyPredicate predicate) {
 		StringBuffer negativeTestFormula = new StringBuffer("");
 		
-		negativeTestFormula.append(varListForExistential() + "(");
+		negativeTestFormula.append("(");
 		negativeTestFormula.append(invariant());
 		negativeTestFormula.append(precondition());
 		negativeTestFormula.append(clausesRelatedTo(predicate));
@@ -77,7 +77,7 @@ public class PredicateCoverage extends LogicalCoverage {
 	private String createPostiveTestFormulaForPredicate(MyPredicate predicate) {
 		StringBuffer positiveTestFormula = new StringBuffer("");
 		
-		positiveTestFormula.append(varListForExistential() + "(");
+		positiveTestFormula.append("(");
 		positiveTestFormula.append(invariant());
 		positiveTestFormula.append(precondition());
 		positiveTestFormula.append(clausesRelatedTo(predicate));
@@ -115,8 +115,8 @@ public class PredicateCoverage extends LogicalCoverage {
 	private Set<String> createPreconditionFormulas(MyPredicate predicate) {
 		Set<String> testFormulas = new HashSet<String>();
 		
-		testFormulas.add(varListForExistential() + "(" + invariant() + "(" + predicate.toString() + "))");
-		testFormulas.add(varListForExistential() + "(" + invariant() + "not(" + predicate.toString() + ")" + ")");
+		testFormulas.add("(" + invariant() + "(" + predicate.toString() + "))");
+		testFormulas.add("(" + invariant() + "not(" + predicate.toString() + ")" + ")");
 		
 		return testFormulas;
 	}

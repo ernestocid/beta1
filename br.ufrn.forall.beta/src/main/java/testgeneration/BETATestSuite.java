@@ -1,8 +1,5 @@
 package testgeneration;
 
-import general.CombinatorialCriterias;
-import general.PartitionStrategy;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -11,31 +8,25 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import configurations.Configurations;
-import criteria.AllCombinations;
-import criteria.EachChoice;
-import criteria.Pairwise;
-import animator.Animation;
 import parser.Operation;
 import parser.decorators.predicates.MyPredicate;
+import testgeneration.coveragecriteria.CoverageCriterion;
 import testgeneration.predicateevaluators.AuxiliarMachinePredicateEvaluator;
 import testgeneration.predicateevaluators.IPredicateEvaluator;
 import testgeneration.predicateevaluators.ProBApiPredicateEvaluator;
+import animator.Animation;
+import configurations.Configurations;
 
 public class BETATestSuite {
 
 	private List<BETATestCase> testCases;
 	private List<String> unsolvableFormulas;
-	private Operation operationUnderTest;
-	private PartitionStrategy partitionStrategy;
-	private CombinatorialCriterias combinatorialCriteria;
+	private CoverageCriterion coverageCriterion;
 
 
 
-	public BETATestSuite(Operation operationUnderTest, PartitionStrategy partitionStrategy, CombinatorialCriterias combinatorialCriteria) {
-		this.operationUnderTest = operationUnderTest;
-		this.partitionStrategy = partitionStrategy;
-		this.combinatorialCriteria = combinatorialCriteria;
+	public BETATestSuite(Operation operationUnderTest, CoverageCriterion coverageCriterion) {
+		this.coverageCriterion = coverageCriterion;
 		this.testCases = new ArrayList<BETATestCase>();
 		this.unsolvableFormulas = new ArrayList<String>();
 		generateTestCases();
@@ -45,12 +36,9 @@ public class BETATestSuite {
 
 	private void generateTestCases() {
 
-		// Generating partition blocks according to the chosen Partition
-		// Strategy and then combining them according to the chosen
-		// Combinatorial Criteria
+		// Getting combinations according to the Coverage Criterion
 
-		List<List<Block>> blocks = getBlocksAccordingToPartitionStrategy();
-		Set<List<Block>> combinations = getCombinationsOfBlocksAccordingToCombinationCriteria(blocks);
+		Set<List<Block>> combinations = coverageCriterion.getCombinationsAsListsOfBlocks();
 
 		if (!combinations.isEmpty()) {
 
@@ -98,18 +86,6 @@ public class BETATestSuite {
 		}
 
 		Collections.sort(testCases);
-	}
-
-
-
-	private List<List<Block>> getBlocksAccordingToPartitionStrategy() {
-		if (this.partitionStrategy == PartitionStrategy.EQUIVALENT_CLASSES) {
-			return new ECBlockBuilder(new Partitioner(this.operationUnderTest)).getBlocksAsListsOfBlocks();
-		} else if (this.partitionStrategy == PartitionStrategy.BOUNDARY_VALUES) {
-			return new BVBlockBuilder(new Partitioner(this.operationUnderTest)).getBlocksAsListsOfBlocks();
-		} else {
-			return new ArrayList<List<Block>>();
-		}
 	}
 
 
@@ -167,7 +143,7 @@ public class BETATestSuite {
 
 
 	private Set<String> getClausesFromInvariant() {
-		Set<MyPredicate> condensedInvariantFromAllMachines = this.operationUnderTest.getMachine().getCondensedInvariantFromAllMachines();
+		Set<MyPredicate> condensedInvariantFromAllMachines = getOperationUnderTest().getMachine().getCondensedInvariantFromAllMachines();
 		Set<String> condesendInvariant = new HashSet<String>();
 
 		for (MyPredicate myPredicate : condensedInvariantFromAllMachines) {
@@ -195,7 +171,7 @@ public class BETATestSuite {
 	private HashMap<String, String> getAttributeValues(Map<String, String> animation) {
 		HashMap<String, String> attributeValues = new HashMap<String, String>();
 
-		Set<String> variables = this.operationUnderTest.getMachine().getVariablesFromAllMachines();
+		Set<String> variables = getOperationUnderTest().getMachine().getVariablesFromAllMachines();
 
 		for (String variable : variables) {
 			if (animationHasValueForVariable(animation, variable)) {
@@ -216,51 +192,13 @@ public class BETATestSuite {
 
 	private HashMap<String, String> getParamValues(Map<String, String> animation) {
 		HashMap<String, String> parameterValues = new HashMap<String, String>();
-		List<String> parameters = operationUnderTest.getParameters();
+		List<String> parameters = getOperationUnderTest().getParameters();
 
 		for (String param : parameters) {
 			parameterValues.put(param, animation.get(param));
 		}
 
 		return parameterValues;
-	}
-
-
-
-	private Set<List<Block>> getCombinationsOfBlocksAccordingToCombinationCriteria(List<List<Block>> blocks) {
-		if (this.combinatorialCriteria == CombinatorialCriterias.PAIRWISE) {
-			return getPairwiseCombinations(blocks);
-		} else if (this.combinatorialCriteria == CombinatorialCriterias.EACH_CHOICE) {
-			return getEachChoiceCombinations(blocks);
-		} else if (this.combinatorialCriteria == CombinatorialCriterias.ALL_COMBINATIONS) {
-			return getAllCombinations(blocks);
-		} else {
-			return new HashSet<List<Block>>();
-		}
-	}
-
-
-
-	private Set<List<Block>> getAllCombinations(List<List<Block>> blocks) {
-		return new AllCombinations<Block>(blocks).getCombinations();
-	}
-
-
-
-	private Set<List<Block>> getEachChoiceCombinations(List<List<Block>> blocks) {
-		return new EachChoice<Block>(blocks).getCombinations();
-	}
-
-
-
-	private Set<List<Block>> getPairwiseCombinations(List<List<Block>> blocks) {
-		return new Pairwise<Block>(blocks).getCombinations();
-	}
-
-
-
-	public PartitionStrategy getPartitionStrategy() {
-		return this.partitionStrategy;
 	}
 
 
@@ -272,13 +210,7 @@ public class BETATestSuite {
 
 
 	public Operation getOperationUnderTest() {
-		return this.operationUnderTest;
-	}
-
-
-
-	public CombinatorialCriterias getCombinatorialCriteria() {
-		return this.combinatorialCriteria;
+		return this.coverageCriterion.getOperationUnderTest();
 	}
 
 
@@ -310,5 +242,11 @@ public class BETATestSuite {
 
 	private void setUnsolvableTestFormulas(List<String> unsolvableFormulas) {
 		this.unsolvableFormulas = unsolvableFormulas;
+	}
+
+
+
+	public CoverageCriterion getCoverageCriterion() {
+		return this.coverageCriterion;
 	}
 }

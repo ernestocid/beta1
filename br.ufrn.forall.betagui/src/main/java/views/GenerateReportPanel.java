@@ -34,6 +34,9 @@ import parser.Operation;
 import reports.HTMLReport;
 import reports.XMLReport;
 import testgeneration.BETATestSuite;
+import testgeneration.coveragecriteria.BoundaryValueAnalysis;
+import testgeneration.coveragecriteria.CoverageCriterion;
+import testgeneration.coveragecriteria.EquivalenceClasses;
 import animator.ConventionTools;
 
 
@@ -182,16 +185,24 @@ public class GenerateReportPanel extends JPanel implements ActionListener,
             
             Operation operationUnderTest = this.application.getMachine().getOperation(this.application.getSelectedOperation());
     		
-    		PartitionStrategy partitionStrategy = PartitionStrategy.get(application.getChosenPartitionStrategy());
-    		CombinatorialCriterias combinatorialCriteria = CombinatorialCriterias.get(application.getChosenCombinatorialCriteria());
-        		
     		// Generating test suite
             
             taskOutput.append("Generating test suite... \n");
             progress += 55;
             setProgress(Math.min(progress, 100));
     		
-    		BETATestSuite testSuite = new BETATestSuite(operationUnderTest, partitionStrategy, combinatorialCriteria);
+            CoverageCriterion coverageCriterion;
+            
+            if(PartitionStrategy.get(application.getChosenPartitionStrategy()) == PartitionStrategy.EQUIVALENT_CLASSES) {
+            	coverageCriterion = new EquivalenceClasses(operationUnderTest, CombinatorialCriterias.get(application.getChosenCombinatorialCriteria()));
+            } else if (PartitionStrategy.get(application.getChosenPartitionStrategy()) == PartitionStrategy.BOUNDARY_VALUES) {
+            	coverageCriterion = new BoundaryValueAnalysis(operationUnderTest, CombinatorialCriterias.get(application.getChosenCombinatorialCriteria()));
+            } else {
+            	coverageCriterion = null;
+            }
+            
+            
+    		BETATestSuite testSuite = new BETATestSuite(operationUnderTest, coverageCriterion);
 
     		
     		// Creating report files

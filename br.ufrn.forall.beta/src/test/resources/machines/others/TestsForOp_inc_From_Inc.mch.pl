@@ -2,7 +2,7 @@ spec_trans(root,'$initialise_machine',0).
 spec_trans(0,'inc_test1(20,0)',0).
 spec_trans(0,'inc_test2(-1,0)',0).
 spec_trans(0,'inc_test3(20,1)',0).
-spec_trans(0,'inc_test4(19,2)',0).
+spec_trans(0,'inc_test4(1,20)',0).
 spec_trans(0,'inc_test5(20,-1)',0).
 spec_trans(0,'inc_test6(-1,21)',0).
 spec_trans(0,'inc_test7(20,21)',0).

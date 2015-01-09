@@ -1,6 +1,6 @@
 package views;
 
-import general.CombinatorialCriterias;
+import general.CombinatorialCriteria;
 import general.FunctionalCriterias;
 
 import java.awt.BorderLayout;
@@ -138,7 +138,7 @@ public class Application {
 		controls.add(lblCombinatorialCriteria);
 		
 		combinatorialCriteriaComboBox = new JComboBox();
-		combinatorialCriteriaComboBox.setModel(new DefaultComboBoxModel(CombinatorialCriterias.values()));
+		combinatorialCriteriaComboBox.setModel(new DefaultComboBoxModel(CombinatorialCriteria.values()));
 		controls.add(combinatorialCriteriaComboBox);
 		
 		JButton btnDisplayInfo = new JButton();

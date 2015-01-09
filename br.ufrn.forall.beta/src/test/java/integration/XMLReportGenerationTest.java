@@ -1,7 +1,7 @@
 package integration;
 
 import static org.junit.Assert.*;
-import general.CombinatorialCriterias;
+import general.CombinatorialCriteria;
 
 import java.io.File;
 
@@ -40,9 +40,9 @@ public class XMLReportGenerationTest {
 	public void shouldGenerateXMLReportForSimpleLift() {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/SimpleLift.mch"));
 		Operation operationUnderTest = machine.getOperation(2);
-		CoverageCriterion coverageCriterion = new EquivalenceClasses(operationUnderTest, CombinatorialCriterias.EACH_CHOICE);
+		CoverageCriterion coverageCriterion = new EquivalenceClasses(operationUnderTest, CombinatorialCriteria.EACH_CHOICE);
 
-		BETATestSuite testSuite = new BETATestSuite(operationUnderTest, coverageCriterion);
+		BETATestSuite testSuite = new BETATestSuite(coverageCriterion);
 
 		XMLReport xmlReport = new XMLReport(testSuite, new File("src/test/resources/test_reports/xml/simplelift_report.xml"));
 		xmlReport.generateReport();
@@ -59,9 +59,9 @@ public class XMLReportGenerationTest {
 	public void shouldGenerateXMLReportForMachinesWithSets() {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/WithSets.mch"));
 		Operation operationUnderTest = machine.getOperation(0);
-		CoverageCriterion coverageCriterion = new EquivalenceClasses(operationUnderTest, CombinatorialCriterias.ALL_COMBINATIONS);
+		CoverageCriterion coverageCriterion = new EquivalenceClasses(operationUnderTest, CombinatorialCriteria.ALL_COMBINATIONS);
 
-		BETATestSuite testSuite = new BETATestSuite(operationUnderTest, coverageCriterion);
+		BETATestSuite testSuite = new BETATestSuite(coverageCriterion);
 
 		XMLReport xmlReport = new XMLReport(testSuite, new File("src/test/resources/test_reports/xml/WithSets_teste_EC_AC_report.xml"));
 		xmlReport.generateReport();
@@ -78,9 +78,9 @@ public class XMLReportGenerationTest {
 	public void shouldGenerateXMLRerportForOperationsWithReturnValues() {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/Calc.mch"));
 		Operation operationUnderTest = machine.getOperation(0);
-		CoverageCriterion coverageCriterion = new EquivalenceClasses(operationUnderTest, CombinatorialCriterias.ALL_COMBINATIONS);
+		CoverageCriterion coverageCriterion = new EquivalenceClasses(operationUnderTest, CombinatorialCriteria.ALL_COMBINATIONS);
 
-		BETATestSuite testSuite = new BETATestSuite(operationUnderTest, coverageCriterion);
+		BETATestSuite testSuite = new BETATestSuite(coverageCriterion);
 
 		XMLReport xmlReport = new XMLReport(testSuite, new File("src/test/resources/test_reports/xml/Calc_sum_EC_AC_report.xml"));
 		xmlReport.generateReport();

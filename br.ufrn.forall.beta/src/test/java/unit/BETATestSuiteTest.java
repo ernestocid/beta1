@@ -1,7 +1,7 @@
 package unit;
 
 import static org.junit.Assert.*;
-import general.CombinatorialCriterias;
+import general.CombinatorialCriteria;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ import testgeneration.BETATestSuite;
 import testgeneration.coveragecriteria.ActiveClauseCoverage;
 import testgeneration.coveragecriteria.BoundaryValueAnalysis;
 import testgeneration.coveragecriteria.ClauseCoverage;
-import testgeneration.coveragecriteria.CombinatorialCoverage;
+import testgeneration.coveragecriteria.CombinatorialClauseCoverage;
 import testgeneration.coveragecriteria.CoverageCriterion;
 import testgeneration.coveragecriteria.EquivalenceClasses;
 import testgeneration.coveragecriteria.PredicateCoverage;
@@ -29,9 +29,9 @@ public class BETATestSuiteTest {
 	public void shouldGenerateTestCasesForSingleCharacteristics() {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/MaxIntMinIntTest.mch"));
 		Operation operationUnderTest = machine.getOperation(0);
-		CoverageCriterion coverageCriterion = new BoundaryValueAnalysis(operationUnderTest, CombinatorialCriterias.ALL_COMBINATIONS);
+		CoverageCriterion coverageCriterion = new BoundaryValueAnalysis(operationUnderTest, CombinatorialCriteria.ALL_COMBINATIONS);
 
-		BETATestSuite testSuite = new BETATestSuite(operationUnderTest, coverageCriterion);
+		BETATestSuite testSuite = new BETATestSuite(coverageCriterion);
 
 		assertFalse(testSuite.getTestCases().isEmpty());
 	}
@@ -42,9 +42,9 @@ public class BETATestSuiteTest {
 	public void shouldIdentifyPositiveAndNegativeTestCases() {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/counter.mch"));
 		Operation operationUnderTest = machine.getOperation(1);
-		CoverageCriterion coverageCriterion = new BoundaryValueAnalysis(operationUnderTest, CombinatorialCriterias.ALL_COMBINATIONS);
+		CoverageCriterion coverageCriterion = new BoundaryValueAnalysis(operationUnderTest, CombinatorialCriteria.ALL_COMBINATIONS);
 
-		BETATestSuite testSuite = new BETATestSuite(operationUnderTest, coverageCriterion);
+		BETATestSuite testSuite = new BETATestSuite(coverageCriterion);
 
 		assertTrue(testSuite.getTestCases().get(0).isNegative());
 		assertFalse(testSuite.getTestCases().get(1).isNegative());
@@ -56,13 +56,13 @@ public class BETATestSuiteTest {
 	public void shouldGetFeasibleTestCaseFormulasWithoutInvariant() {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/Classroom.mch"));
 		Operation operationUnderTest = machine.getOperation(3);
-		CoverageCriterion coverageCriterion = new EquivalenceClasses(operationUnderTest, CombinatorialCriterias.EACH_CHOICE);
+		CoverageCriterion coverageCriterion = new EquivalenceClasses(operationUnderTest, CombinatorialCriteria.EACH_CHOICE);
 
 		List<String> expectedTestCaseFormulas = new ArrayList<String>();
 		expectedTestCaseFormulas
 				.add("grades(student) > 2 & grades(student) > 3 & has_taken_lab_classes(student) = TRUE & student : dom(grades) & student : dom(has_taken_lab_classes) & student : students");
 
-		BETATestSuite testSuite = new BETATestSuite(operationUnderTest, coverageCriterion);
+		BETATestSuite testSuite = new BETATestSuite(coverageCriterion);
 
 		assertEquals(expectedTestCaseFormulas, testSuite.getFeasbileTestCaseFormulasWithoutInvariant());
 	}
@@ -86,7 +86,7 @@ public class BETATestSuiteTest {
 		expectedTestCaseFormulas.add("averageGrade : 0..5 & not(averageGrade >= 4) & averageGrade : INT");
 		expectedTestCaseFormulas.add("not(averageGrade : 0..5) & averageGrade : INT");
 
-		BETATestSuite testSuite = new BETATestSuite(operationUnderTest, coverageCriterion);
+		BETATestSuite testSuite = new BETATestSuite(coverageCriterion);
 
 		Set<String> actualTestCaseFormulas = new HashSet<String>();
 
@@ -114,7 +114,7 @@ public class BETATestSuiteTest {
 		expectedTestCaseFormulas.add("averageGrade : 0..5 & averageGrade >= 4 & averageGrade : INT");
 		expectedTestCaseFormulas.add("averageGrade : 0..5 & not(averageGrade >= 4) & averageGrade : INT");
 
-		BETATestSuite testSuite = new BETATestSuite(operationUnderTest, coverageCriterion);
+		BETATestSuite testSuite = new BETATestSuite(coverageCriterion);
 
 		Set<String> actualTestCaseFormulas = new HashSet<String>();
 
@@ -131,7 +131,7 @@ public class BETATestSuiteTest {
 	public void shouldCreateTestCasesForCombinatorialClauses() {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/PassFinalOrFailIFELSIFELSE.mch"));
 		Operation operationUnderTest = machine.getOperation(0);
-		CoverageCriterion coverageCriterion = new CombinatorialCoverage(operationUnderTest);
+		CoverageCriterion coverageCriterion = new CombinatorialClauseCoverage(operationUnderTest);
 
 		Set<String> expectedTestCaseFormulas = new HashSet<String>();
 
@@ -145,7 +145,7 @@ public class BETATestSuiteTest {
 		expectedTestCaseFormulas.add("averageGrade : 0..5 & not(averageGrade >= 2) & averageGrade < 4 & averageGrade : INT");
 		expectedTestCaseFormulas.add("averageGrade : 0..5 & averageGrade >= 2 & not(averageGrade < 4) & averageGrade : INT");
 
-		BETATestSuite testSuite = new BETATestSuite(operationUnderTest, coverageCriterion);
+		BETATestSuite testSuite = new BETATestSuite(coverageCriterion);
 
 		Set<String> actualTestCaseFormulas = new HashSet<String>();
 
@@ -180,7 +180,7 @@ public class BETATestSuiteTest {
 		expectedTestCaseFormulas.add("averageGrade : 0..5 & averageGrade >= 2 & ((1 = 1 & averageGrade < 4) <=> (not(1 = 2 & averageGrade < 4))) & averageGrade : INT");
 		expectedTestCaseFormulas.add("averageGrade : 0..5 & ((1 = 1 & averageGrade : INT) <=> (not(1 = 2 & averageGrade : INT)))");
 
-		BETATestSuite testSuite = new BETATestSuite(operationUnderTest, coverageCriterion);
+		BETATestSuite testSuite = new BETATestSuite(coverageCriterion);
 
 		Set<String> actualTestCaseFormulas = new HashSet<String>();
 

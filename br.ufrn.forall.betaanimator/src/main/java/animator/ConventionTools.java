@@ -1,6 +1,6 @@
 package animator;
 
-import general.CombinatorialCriterias;
+import general.CombinatorialCriteria;
 import general.PartitionStrategy;
 
 import java.io.UnsupportedEncodingException;
@@ -42,7 +42,7 @@ public class ConventionTools {
 
 
 
-	public static String getReportFileName(Operation operationUnderTest, PartitionStrategy chosenPartitionStrategy, CombinatorialCriterias chosenCombinatorialCriteria, String extension) {
+	public static String getReportFileName(Operation operationUnderTest, PartitionStrategy chosenPartitionStrategy, CombinatorialCriteria chosenCombinatorialCriteria, String extension) {
 		String operationUnderTestName = operationUnderTest.getName();
 		String machineName = operationUnderTest.getMachine().getName();
 		String partitionStrategyAcronym = chosenPartitionStrategy.getAcronym();

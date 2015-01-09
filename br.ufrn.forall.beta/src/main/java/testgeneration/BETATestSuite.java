@@ -25,7 +25,7 @@ public class BETATestSuite {
 
 
 
-	public BETATestSuite(Operation operationUnderTest, CoverageCriterion coverageCriterion) {
+	public BETATestSuite(CoverageCriterion coverageCriterion) {
 		this.coverageCriterion = coverageCriterion;
 		this.testCases = new ArrayList<BETATestCase>();
 		this.unsolvableFormulas = new ArrayList<String>();

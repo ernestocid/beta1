@@ -1,7 +1,7 @@
 package unit;
 
 import static org.junit.Assert.assertEquals;
-import general.CombinatorialCriterias;
+import general.CombinatorialCriteria;
 
 import java.io.File;
 
@@ -23,9 +23,9 @@ public class CBCMachineBuilderTest {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/Classroom.mch"));
 		Operation operationUnderTest = machine.getOperation(3);
 
-		CoverageCriterion coverageCriterion = new EquivalenceClasses(operationUnderTest, CombinatorialCriterias.EACH_CHOICE);
+		CoverageCriterion coverageCriterion = new EquivalenceClasses(operationUnderTest, CombinatorialCriteria.EACH_CHOICE);
 		
-		BETATestSuite testSuite = new BETATestSuite(operationUnderTest, coverageCriterion);
+		BETATestSuite testSuite = new BETATestSuite(coverageCriterion);
 		CBCMachineBuilder cbcMchBuilder = new CBCMachineBuilder(operationUnderTest, testSuite.getFeasbileTestCaseFormulasWithoutInvariant());
 		File mchFile = cbcMchBuilder.getBuiltMachine();
 

@@ -1,6 +1,6 @@
 package actions;
 
-import general.CombinatorialCriterias;
+import general.CombinatorialCriteria;
 import general.PartitionStrategy;
 
 import java.awt.event.ActionEvent;
@@ -49,14 +49,14 @@ public class GenerateCBCTestMachineAction extends AbstractAction {
 			CoverageCriterion coverageCriterion;
 			
 			if(PartitionStrategy.get(application.getChosenPartitionStrategy()) == PartitionStrategy.EQUIVALENT_CLASSES) {
-            	coverageCriterion = new EquivalenceClasses(operationUnderTest, CombinatorialCriterias.get(application.getChosenCombinatorialCriteria()));
+            	coverageCriterion = new EquivalenceClasses(operationUnderTest, CombinatorialCriteria.get(application.getChosenCombinatorialCriteria()));
             } else if (PartitionStrategy.get(application.getChosenPartitionStrategy()) == PartitionStrategy.BOUNDARY_VALUES) {
-            	coverageCriterion = new BoundaryValueAnalysis(operationUnderTest, CombinatorialCriterias.get(application.getChosenCombinatorialCriteria()));
+            	coverageCriterion = new BoundaryValueAnalysis(operationUnderTest, CombinatorialCriteria.get(application.getChosenCombinatorialCriteria()));
             } else {
             	coverageCriterion = null;
             }
 			
-			BETATestSuite testSuite = new BETATestSuite(operationUnderTest, coverageCriterion);
+			BETATestSuite testSuite = new BETATestSuite(coverageCriterion);
 			List<String> testCasePredicates = testSuite.getFeasbileTestCaseFormulasWithoutInvariant();
 
 			CBCMachineBuilder cbcMchBuilder = new CBCMachineBuilder(operationUnderTest, testCasePredicates);

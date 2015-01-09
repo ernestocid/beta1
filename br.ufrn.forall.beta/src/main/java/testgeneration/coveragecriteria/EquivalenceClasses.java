@@ -1,6 +1,6 @@
 package testgeneration.coveragecriteria;
 
-import general.CombinatorialCriterias;
+import general.CombinatorialCriteria;
 
 import java.util.List;
 import java.util.Set;
@@ -12,7 +12,7 @@ import testgeneration.Partitioner;
 
 public class EquivalenceClasses extends InputSpacePartitionCriterion {
 
-	public EquivalenceClasses(Operation operationUnderTest, CombinatorialCriterias combinatorialCriteria) {
+	public EquivalenceClasses(Operation operationUnderTest, CombinatorialCriteria combinatorialCriteria) {
 		super(operationUnderTest, combinatorialCriteria);
 	}
 

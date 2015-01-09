@@ -1,5 +1,5 @@
 package views;
-import general.CombinatorialCriterias;
+import general.CombinatorialCriteria;
 import general.PartitionStrategy;
 
 import java.awt.BorderLayout;
@@ -194,15 +194,15 @@ public class GenerateReportPanel extends JPanel implements ActionListener,
             CoverageCriterion coverageCriterion;
             
             if(PartitionStrategy.get(application.getChosenPartitionStrategy()) == PartitionStrategy.EQUIVALENT_CLASSES) {
-            	coverageCriterion = new EquivalenceClasses(operationUnderTest, CombinatorialCriterias.get(application.getChosenCombinatorialCriteria()));
+            	coverageCriterion = new EquivalenceClasses(operationUnderTest, CombinatorialCriteria.get(application.getChosenCombinatorialCriteria()));
             } else if (PartitionStrategy.get(application.getChosenPartitionStrategy()) == PartitionStrategy.BOUNDARY_VALUES) {
-            	coverageCriterion = new BoundaryValueAnalysis(operationUnderTest, CombinatorialCriterias.get(application.getChosenCombinatorialCriteria()));
+            	coverageCriterion = new BoundaryValueAnalysis(operationUnderTest, CombinatorialCriteria.get(application.getChosenCombinatorialCriteria()));
             } else {
             	coverageCriterion = null;
             }
             
             
-    		BETATestSuite testSuite = new BETATestSuite(operationUnderTest, coverageCriterion);
+    		BETATestSuite testSuite = new BETATestSuite(coverageCriterion);
 
     		
     		// Creating report files
@@ -268,7 +268,7 @@ public class GenerateReportPanel extends JPanel implements ActionListener,
         private void createHTMLReportFile(Operation operationUnderTest, BETATestSuite testSuite) {
     		String sourceMachineDirectory = operationUnderTest.getMachine().getFile().getParent();
     		PartitionStrategy chosenPartitionStrategy = PartitionStrategy.get(application.getChosenPartitionStrategy());
-    		CombinatorialCriterias chosenCombinatorialCriteria = CombinatorialCriterias.get(application.getChosenCombinatorialCriteria());
+    		CombinatorialCriteria chosenCombinatorialCriteria = CombinatorialCriteria.get(application.getChosenCombinatorialCriteria());
 			
     		String reportFileName = ConventionTools.getReportFileName(operationUnderTest, chosenPartitionStrategy, chosenCombinatorialCriteria, "html");
 			String outputFilePath = sourceMachineDirectory + System.getProperty("file.separator") + reportFileName;
@@ -284,7 +284,7 @@ public class GenerateReportPanel extends JPanel implements ActionListener,
         private String createXMLReportFile(Operation operationUnderTest, BETATestSuite testSuite) {
     		String sourceMachineDirectory = operationUnderTest.getMachine().getFile().getParent();
     		PartitionStrategy chosenPartitionStrategy = PartitionStrategy.get(application.getChosenPartitionStrategy());
-    		CombinatorialCriterias chosenCombinatorialCriteria = CombinatorialCriterias.get(application.getChosenCombinatorialCriteria());
+    		CombinatorialCriteria chosenCombinatorialCriteria = CombinatorialCriteria.get(application.getChosenCombinatorialCriteria());
     		
 			String reportFileName = ConventionTools.getReportFileName(operationUnderTest, chosenPartitionStrategy, chosenCombinatorialCriteria, "xml");
 			String outputFilePath = sourceMachineDirectory + System.getProperty("file.separator") + reportFileName;

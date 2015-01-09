@@ -1,7 +1,7 @@
 package integration;
 
 import static org.junit.Assert.*;
-import general.CombinatorialCriterias;
+import general.CombinatorialCriteria;
 
 import java.io.File;
 
@@ -44,9 +44,9 @@ public class HTMLReportGenerationTest {
 	public void shouldGenerateTestReportForOperationUnderTest() {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/SimpleLift.mch"));
 		Operation operationUnderTest = machine.getOperation(0);
-		CoverageCriterion coverageCriterion = new EquivalenceClasses(operationUnderTest, CombinatorialCriterias.EACH_CHOICE);
+		CoverageCriterion coverageCriterion = new EquivalenceClasses(operationUnderTest, CombinatorialCriteria.EACH_CHOICE);
 
-		BETATestSuite testSuite = new BETATestSuite(operationUnderTest, coverageCriterion);
+		BETATestSuite testSuite = new BETATestSuite(coverageCriterion);
 
 		HTMLReport report = new HTMLReport(testSuite, new File("src/test/resources/test_reports/html/simplelift_report.html"));
 		report.generateReport();
@@ -63,9 +63,9 @@ public class HTMLReportGenerationTest {
 	public void shouldGenerateTestReportForBoundaryValuesAllCombinations() {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/SimpleLift.mch"));
 		Operation operationUnderTest = machine.getOperation(0);
-		CoverageCriterion coverageCriterion = new BoundaryValueAnalysis(operationUnderTest, CombinatorialCriterias.ALL_COMBINATIONS);
+		CoverageCriterion coverageCriterion = new BoundaryValueAnalysis(operationUnderTest, CombinatorialCriteria.ALL_COMBINATIONS);
 
-		BETATestSuite testSuite = new BETATestSuite(operationUnderTest, coverageCriterion);
+		BETATestSuite testSuite = new BETATestSuite(coverageCriterion);
 
 		HTMLReport report = new HTMLReport(testSuite, new File("src/test/resources/test_reports/html/simplelift_BV_AC_report.html"));
 		report.generateReport();
@@ -82,9 +82,9 @@ public class HTMLReportGenerationTest {
 	public void shouldGenerateReportForMachineWithoutState() {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/NoState.mch"));
 		Operation operationUnderTest = machine.getOperation(0);
-		CoverageCriterion coverageCriterion = new EquivalenceClasses(operationUnderTest, CombinatorialCriterias.ALL_COMBINATIONS);
+		CoverageCriterion coverageCriterion = new EquivalenceClasses(operationUnderTest, CombinatorialCriteria.ALL_COMBINATIONS);
 
-		BETATestSuite testSuite = new BETATestSuite(operationUnderTest, coverageCriterion);
+		BETATestSuite testSuite = new BETATestSuite(coverageCriterion);
 
 		HTMLReport report = new HTMLReport(testSuite, new File("src/test/resources/test_reports/html/report_for_Set_from_NoState.html"));
 		report.generateReport();
@@ -101,9 +101,9 @@ public class HTMLReportGenerationTest {
 	public void shouldGenerateHTMLReportForOperationWithReturnValues() {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/Calc.mch"));
 		Operation operationUnderTest = machine.getOperation(0);
-		CoverageCriterion coverageCriterion = new EquivalenceClasses(operationUnderTest, CombinatorialCriterias.ALL_COMBINATIONS);
+		CoverageCriterion coverageCriterion = new EquivalenceClasses(operationUnderTest, CombinatorialCriteria.ALL_COMBINATIONS);
 
-		BETATestSuite testSuite = new BETATestSuite(operationUnderTest, coverageCriterion);
+		BETATestSuite testSuite = new BETATestSuite(coverageCriterion);
 
 		HTMLReport report = new HTMLReport(testSuite, new File("src/test/resources/test_reports/html/Calc_sum_EC_AC_report.html"));
 		report.generateReport();
@@ -120,9 +120,9 @@ public class HTMLReportGenerationTest {
 	public void shouldGenerateHTMLReportForOperationWithParametersAndMachineWithState() {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/Inc.mch"));
 		Operation operationUnderTest = machine.getOperation(0);
-		CoverageCriterion coverageCriterion = new EquivalenceClasses(operationUnderTest, CombinatorialCriterias.ALL_COMBINATIONS);
+		CoverageCriterion coverageCriterion = new EquivalenceClasses(operationUnderTest, CombinatorialCriteria.ALL_COMBINATIONS);
 
-		BETATestSuite testSuite = new BETATestSuite(operationUnderTest, coverageCriterion);
+		BETATestSuite testSuite = new BETATestSuite(coverageCriterion);
 
 		HTMLReport report = new HTMLReport(testSuite, new File("src/test/resources/test_reports/html/Inc_inc_EC_AC_report.html"));
 		report.generateReport();

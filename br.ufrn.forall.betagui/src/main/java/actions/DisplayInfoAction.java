@@ -1,6 +1,6 @@
 package actions;
 
-import general.CombinatorialCriterias;
+import general.CombinatorialCriteria;
 import general.PartitionStrategy;
 
 import java.awt.event.ActionEvent;
@@ -41,7 +41,7 @@ public class DisplayInfoAction extends AbstractAction {
 	private Application application;
 	private int operationIndex;
 	private PartitionStrategy partitionStrategy;
-	private CombinatorialCriterias combinatorialCriteria;
+	private CombinatorialCriteria combinatorialCriteria;
 	
 	
 	public DisplayInfoAction(Application application) {
@@ -72,15 +72,15 @@ public class DisplayInfoAction extends AbstractAction {
 				populateCharacteristicsTable(operation, partitioner, blockBuilder);
 			}
 			
-			if(this.combinatorialCriteria == CombinatorialCriterias.ALL_COMBINATIONS) {
+			if(this.combinatorialCriteria == CombinatorialCriteria.ALL_COMBINATIONS) {
 				Criteria criteria = new AllCombinations(parametersInputValues);
 				application.setCombinations(criteria.getCombinationsAsStrings());
 				populateCombinationsTable(operation, partitioner, criteria);
-			} else if (this.combinatorialCriteria == CombinatorialCriterias.EACH_CHOICE) {
+			} else if (this.combinatorialCriteria == CombinatorialCriteria.EACH_CHOICE) {
 				Criteria criteria = new EachChoice(parametersInputValues);
 				application.setCombinations(criteria.getCombinationsAsStrings());
 				populateCombinationsTable(operation, partitioner, criteria);
-			} else if (this.combinatorialCriteria == CombinatorialCriterias.PAIRWISE) {
+			} else if (this.combinatorialCriteria == CombinatorialCriteria.PAIRWISE) {
 				Criteria criteria = new Pairwise(parametersInputValues);
 				application.setCombinations(criteria.getCombinationsAsStrings());
 				populateCombinationsTable(operation, partitioner, criteria);
@@ -98,7 +98,7 @@ public class DisplayInfoAction extends AbstractAction {
 		this.operationIndex = application.getOperationList().getSelectedIndex();
 		this.application.setSelectedOperation(this.operationIndex);
 		this.partitionStrategy = PartitionStrategy.get(this.application.getPartitionStrategy().getSelectedIndex());
-		this.combinatorialCriteria = CombinatorialCriterias.get(application.getCombinatorialCriteria().getSelectedIndex());		
+		this.combinatorialCriteria = CombinatorialCriteria.get(application.getCombinatorialCriteria().getSelectedIndex());		
 	}
 	
 	

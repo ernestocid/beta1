@@ -7,18 +7,18 @@ import java.util.Set;
 import criteria.AllCombinations;
 import criteria.EachChoice;
 import criteria.Pairwise;
-import general.CombinatorialCriterias;
+import general.CombinatorialCriteria;
 import parser.Operation;
 import testgeneration.Block;
 
 public abstract class InputSpacePartitionCriterion extends CoverageCriterion {
 
 	private Operation operationUnderTest;
-	private CombinatorialCriterias combinatorialCriteria;
+	private CombinatorialCriteria combinatorialCriteria;
 
 
 
-	public InputSpacePartitionCriterion(Operation operationUnderTest, CombinatorialCriterias combinatorialCriteria) {
+	public InputSpacePartitionCriterion(Operation operationUnderTest, CombinatorialCriteria combinatorialCriteria) {
 		this.operationUnderTest = operationUnderTest;
 		this.combinatorialCriteria = combinatorialCriteria;
 	}
@@ -30,11 +30,11 @@ public abstract class InputSpacePartitionCriterion extends CoverageCriterion {
 
 
 	protected Set<List<Block>> getCombinationsAccordingToCombinatorialCriterion(List<List<Block>> equivalenceClassesBlocks) {
-		if (this.combinatorialCriteria == CombinatorialCriterias.PAIRWISE) {
+		if (this.combinatorialCriteria == CombinatorialCriteria.PAIRWISE) {
 			return getPairwiseCombinations(equivalenceClassesBlocks);
-		} else if (this.combinatorialCriteria == CombinatorialCriterias.EACH_CHOICE) {
+		} else if (this.combinatorialCriteria == CombinatorialCriteria.EACH_CHOICE) {
 			return getEachChoiceCombinations(equivalenceClassesBlocks);
-		} else if (this.combinatorialCriteria == CombinatorialCriterias.ALL_COMBINATIONS) {
+		} else if (this.combinatorialCriteria == CombinatorialCriteria.ALL_COMBINATIONS) {
 			return getAllCombinations(equivalenceClassesBlocks);
 		} else {
 			return new HashSet<List<Block>>();
@@ -68,7 +68,7 @@ public abstract class InputSpacePartitionCriterion extends CoverageCriterion {
 
 
 
-	public CombinatorialCriterias getCombinatorialCriterion() {
+	public CombinatorialCriteria getCombinatorialCriterion() {
 		return this.combinatorialCriteria;
 	}
 }

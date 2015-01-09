@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import parser.Machine;
 import parser.Operation;
-import testgeneration.coveragecriteria.CombinatorialCoverage;
+import testgeneration.coveragecriteria.CombinatorialClauseCoverage;
 
 public class CombinatorialCoverageTest extends TestingUtils{
 
@@ -20,7 +20,7 @@ public class CombinatorialCoverageTest extends TestingUtils{
 		Machine machine = new Machine(new File("src/test/resources/machines/others/PassFinalOrFailIFELSIFELSE.mch"));
 		Operation operationUnderTest = machine.getOperation(0);
 		
-		CombinatorialCoverage coc = new CombinatorialCoverage(operationUnderTest);
+		CombinatorialClauseCoverage coc = new CombinatorialClauseCoverage(operationUnderTest);
 		
 		// Setting up expected results
 		
@@ -49,7 +49,7 @@ public class CombinatorialCoverageTest extends TestingUtils{
 		Machine machine = new Machine(new File("src/test/resources/machines/others/CaseStmt.mch"));
 		Operation operationUnderTest = machine.getOperation(1);
 		
-		CombinatorialCoverage coc = new CombinatorialCoverage(operationUnderTest);
+		CombinatorialClauseCoverage coc = new CombinatorialClauseCoverage(operationUnderTest);
 		
 		// Setting up expected results
 		
@@ -73,7 +73,7 @@ public class CombinatorialCoverageTest extends TestingUtils{
 		Machine machine = new Machine(new File("src/test/resources/machines/others/Priorityqueue.mch"));
 		Operation operationUnderTest = machine.getOperation(0);
 		
-		CombinatorialCoverage coc = new CombinatorialCoverage(operationUnderTest);
+		CombinatorialClauseCoverage coc = new CombinatorialClauseCoverage(operationUnderTest);
 		
 		// Setting up expected results
 		
@@ -106,7 +106,7 @@ public class CombinatorialCoverageTest extends TestingUtils{
 		Machine machine = new Machine(new File("src/test/resources/machines/others/Any.mch"));
 		Operation operationUnderTest = machine.getOperation(0);
 		
-		CombinatorialCoverage coc = new CombinatorialCoverage(operationUnderTest);
+		CombinatorialClauseCoverage coc = new CombinatorialClauseCoverage(operationUnderTest);
 		
 		// Setting up expected results
 		
@@ -127,7 +127,7 @@ public class CombinatorialCoverageTest extends TestingUtils{
 		Machine machine = new Machine(new File("src/test/resources/machines/others/AssertStmt.mch"));
 		Operation operationUnderTest = machine.getOperation(0);
 		
-		CombinatorialCoverage coc = new CombinatorialCoverage(operationUnderTest);
+		CombinatorialClauseCoverage coc = new CombinatorialClauseCoverage(operationUnderTest);
 		
 		// Setting up expected results
 		

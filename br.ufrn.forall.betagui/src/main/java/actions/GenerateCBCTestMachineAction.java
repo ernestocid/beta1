@@ -48,10 +48,10 @@ public class GenerateCBCTestMachineAction extends AbstractAction {
 
 			CoverageCriterion coverageCriterion;
 			
-			if(PartitionStrategy.get(application.getChosenPartitionStrategy()) == PartitionStrategy.EQUIVALENT_CLASSES) {
-            	coverageCriterion = new EquivalenceClasses(operationUnderTest, CombinatorialCriteria.get(application.getChosenCombinatorialCriteria()));
-            } else if (PartitionStrategy.get(application.getChosenPartitionStrategy()) == PartitionStrategy.BOUNDARY_VALUES) {
-            	coverageCriterion = new BoundaryValueAnalysis(operationUnderTest, CombinatorialCriteria.get(application.getChosenCombinatorialCriteria()));
+			if(PartitionStrategy.get(application.getChosenTestingStrategy()) == PartitionStrategy.EQUIVALENT_CLASSES) {
+            	coverageCriterion = new EquivalenceClasses(operationUnderTest, CombinatorialCriteria.get(application.getChosenCoverageCriteria()));
+            } else if (PartitionStrategy.get(application.getChosenTestingStrategy()) == PartitionStrategy.BOUNDARY_VALUES) {
+            	coverageCriterion = new BoundaryValueAnalysis(operationUnderTest, CombinatorialCriteria.get(application.getChosenCoverageCriteria()));
             } else {
             	coverageCriterion = null;
             }

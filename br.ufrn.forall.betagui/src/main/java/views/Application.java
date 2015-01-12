@@ -2,6 +2,9 @@ package views;
 
 import general.CombinatorialCriteria;
 import general.FunctionalCriterias;
+import general.InputSpaceCoverageCriteria;
+import general.LogicalCoverageCriteria;
+import general.TestingStrategy;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -10,9 +13,12 @@ import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.ItemSelectable;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
@@ -65,9 +71,9 @@ public class Application {
 	private JTable characteristicsTable;
 	private JTable combinations;
 	private JPanel machineInfo;
-	private JLabel lblCombinatorialCriteria;
-	private JComboBox partitionStrategyComboBox;
-	private JComboBox combinatorialCriteriaComboBox;
+	private JLabel lblCoverageCriteria;
+	private JComboBox testingStrategyComboBox;
+	private JComboBox coverageCriteriaComboBox;
 	private JLabel lblMachineLoaded;
 	private final Action displayAction = new DisplayInfoAction(this);
 	private final Action generateTestsAction = new GenerateTestsAction(this);
@@ -125,21 +131,48 @@ public class Application {
 		lblMachineLoaded.setBorder(new EmptyBorder(0, 0, 0, 40));
 		controls.add(lblMachineLoaded);
 		
-		JLabel lblFunctionalCriteria = new JLabel("Partition Strategy:");
-		lblFunctionalCriteria.setHorizontalAlignment(SwingConstants.RIGHT);
-		controls.add(lblFunctionalCriteria);
+		JLabel lblTestingStrategy = new JLabel("Testing Strategy:");
+		lblTestingStrategy.setHorizontalAlignment(SwingConstants.RIGHT);
+		controls.add(lblTestingStrategy);
 		
-		partitionStrategyComboBox = new JComboBox();
-		partitionStrategyComboBox.setModel(new DefaultComboBoxModel(FunctionalCriterias.values()));
-		controls.add(partitionStrategyComboBox);
+		testingStrategyComboBox = new JComboBox<TestingStrategy>();
+		testingStrategyComboBox.setModel(new DefaultComboBoxModel(TestingStrategy.values()));
 		
-		lblCombinatorialCriteria = new JLabel("Combinatorial Criteria:");
-		lblCombinatorialCriteria.setHorizontalAlignment(SwingConstants.RIGHT);
-		controls.add(lblCombinatorialCriteria);
+		ItemListener itemListener = new ItemListener() {
+			public void itemStateChanged(ItemEvent itemEvent) {
+				int state = itemEvent.getStateChange();
+
+				if(state == ItemEvent.SELECTED) {
+					if(itemEvent.getItem() == TestingStrategy.INPUT_SPACE_COVERAGE) {
+						coverageCriteriaComboBox.setModel(new DefaultComboBoxModel(InputSpaceCoverageCriteria.values()));
+					} else if (itemEvent.getItem() == TestingStrategy.LOGICAL_COVERAGE) {
+						coverageCriteriaComboBox.setModel(new DefaultComboBoxModel(LogicalCoverageCriteria.values()));
+					} else {
+						System.out.println("Testing Strategy Unknown");
+					}
+				}
+			}
+		};
 		
-		combinatorialCriteriaComboBox = new JComboBox();
-		combinatorialCriteriaComboBox.setModel(new DefaultComboBoxModel(CombinatorialCriteria.values()));
-		controls.add(combinatorialCriteriaComboBox);
+		testingStrategyComboBox.addItemListener(itemListener);
+
+		controls.add(testingStrategyComboBox);
+		
+		lblCoverageCriteria = new JLabel("Coverage Criteria:");
+		lblCoverageCriteria.setHorizontalAlignment(SwingConstants.RIGHT);
+		controls.add(lblCoverageCriteria);
+		
+		coverageCriteriaComboBox = new JComboBox();
+
+		if (testingStrategyComboBox.getSelectedItem() == TestingStrategy.INPUT_SPACE_COVERAGE) {
+			coverageCriteriaComboBox.setModel(new DefaultComboBoxModel(InputSpaceCoverageCriteria.values()));
+		} else if (testingStrategyComboBox.getSelectedItem() == TestingStrategy.LOGICAL_COVERAGE) {
+			coverageCriteriaComboBox.setModel(new DefaultComboBoxModel(LogicalCoverageCriteria.values()));
+		} else {
+			System.out.println("Unknown Testing Strategy");
+		}
+
+		controls.add(coverageCriteriaComboBox);
 		
 		JButton btnDisplayInfo = new JButton();
 		btnDisplayInfo.setAction(displayAction);
@@ -490,11 +523,11 @@ public class Application {
 	}
 
 	public JComboBox getPartitionStrategy() {
-		return partitionStrategyComboBox;
+		return testingStrategyComboBox;
 	}
 	
 	public JComboBox getCombinatorialCriteria() {
-		return combinatorialCriteriaComboBox;
+		return coverageCriteriaComboBox;
 	}
 	
 	public JLabel getLabelMachineLoaded() {
@@ -517,12 +550,12 @@ public class Application {
 		return selectedOperation;
 	}
 	
-	public int getChosenPartitionStrategy() {
-		return this.partitionStrategyComboBox.getSelectedIndex();
+	public int getChosenTestingStrategy() {
+		return this.testingStrategyComboBox.getSelectedIndex();
 	}
-	
-	public int getChosenCombinatorialCriteria() {
-		return this.combinatorialCriteriaComboBox.getSelectedIndex();
+
+	public int getChosenCoverageCriteria() {
+		return this.coverageCriteriaComboBox.getSelectedIndex();
 	}
-	
+
 }

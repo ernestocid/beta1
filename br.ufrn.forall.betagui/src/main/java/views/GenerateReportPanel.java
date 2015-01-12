@@ -1,6 +1,9 @@
 package views;
 import general.CombinatorialCriteria;
+import general.InputSpaceCoverageCriteria;
+import general.LogicalCoverageCriteria;
 import general.PartitionStrategy;
+import general.TestingStrategy;
 
 import java.awt.BorderLayout;
 import java.awt.Cursor;
@@ -34,9 +37,13 @@ import parser.Operation;
 import reports.HTMLReport;
 import reports.XMLReport;
 import testgeneration.BETATestSuite;
+import testgeneration.coveragecriteria.ActiveClauseCoverage;
 import testgeneration.coveragecriteria.BoundaryValueAnalysis;
+import testgeneration.coveragecriteria.ClauseCoverage;
+import testgeneration.coveragecriteria.CombinatorialClauseCoverage;
 import testgeneration.coveragecriteria.CoverageCriterion;
 import testgeneration.coveragecriteria.EquivalenceClasses;
+import testgeneration.coveragecriteria.PredicateCoverage;
 import animator.ConventionTools;
 
 
@@ -191,26 +198,55 @@ public class GenerateReportPanel extends JPanel implements ActionListener,
             progress += 55;
             setProgress(Math.min(progress, 100));
     		
+            // Setting up coverage criterion
+            
             CoverageCriterion coverageCriterion;
             
-            if(PartitionStrategy.get(application.getChosenPartitionStrategy()) == PartitionStrategy.EQUIVALENT_CLASSES) {
-            	coverageCriterion = new EquivalenceClasses(operationUnderTest, CombinatorialCriteria.get(application.getChosenCombinatorialCriteria()));
-            } else if (PartitionStrategy.get(application.getChosenPartitionStrategy()) == PartitionStrategy.BOUNDARY_VALUES) {
-            	coverageCriterion = new BoundaryValueAnalysis(operationUnderTest, CombinatorialCriteria.get(application.getChosenCombinatorialCriteria()));
+            if(TestingStrategy.get(application.getChosenTestingStrategy()) == TestingStrategy.INPUT_SPACE_COVERAGE) {
+
+            	if(InputSpaceCoverageCriteria.get(application.getChosenCoverageCriteria()) == InputSpaceCoverageCriteria.EQUIVALENT_CLASSES_EACH_CHOICE) {
+            		coverageCriterion = new EquivalenceClasses(operationUnderTest, CombinatorialCriteria.EACH_CHOICE);
+            	} else if(InputSpaceCoverageCriteria.get(application.getChosenCoverageCriteria()) == InputSpaceCoverageCriteria.EQUIVALENT_CLASSES_PAIRWISE) {
+            		coverageCriterion = new EquivalenceClasses(operationUnderTest, CombinatorialCriteria.PAIRWISE);
+            	} else if(InputSpaceCoverageCriteria.get(application.getChosenCoverageCriteria()) == InputSpaceCoverageCriteria.EQUIVALENT_CLASSES_ALL_COMBINATIONS) {
+            		coverageCriterion = new EquivalenceClasses(operationUnderTest, CombinatorialCriteria.ALL_COMBINATIONS);
+            	} else if(InputSpaceCoverageCriteria.get(application.getChosenCoverageCriteria()) == InputSpaceCoverageCriteria.BOUNDARY_ANALYSIS_EACH_CHOICE) {
+            		coverageCriterion = new BoundaryValueAnalysis(operationUnderTest, CombinatorialCriteria.EACH_CHOICE);
+            	} else if(InputSpaceCoverageCriteria.get(application.getChosenCoverageCriteria()) == InputSpaceCoverageCriteria.BOUNDARY_ANALYSIS_PAIRWISE) {
+            		coverageCriterion = new BoundaryValueAnalysis(operationUnderTest, CombinatorialCriteria.PAIRWISE);
+            	} else if(InputSpaceCoverageCriteria.get(application.getChosenCoverageCriteria()) == InputSpaceCoverageCriteria.BOUNDARY_ANALYSIS_ALL_COMBINATIONS) {
+            		coverageCriterion = new BoundaryValueAnalysis(operationUnderTest, CombinatorialCriteria.ALL_COMBINATIONS);
+            	} else {
+            		coverageCriterion = null;
+            	}
+
+            } else if (TestingStrategy.get(application.getChosenTestingStrategy()) == TestingStrategy.LOGICAL_COVERAGE) {
+            	if(LogicalCoverageCriteria.get(application.getChosenCoverageCriteria()) == LogicalCoverageCriteria.PREDICATE_COVERAGE) {
+            		coverageCriterion = new PredicateCoverage(operationUnderTest);
+            	} else if(LogicalCoverageCriteria.get(application.getChosenCoverageCriteria()) == LogicalCoverageCriteria.CLAUSE_COVERAGE) {
+            		coverageCriterion = new ClauseCoverage(operationUnderTest);
+            	} else if(LogicalCoverageCriteria.get(application.getChosenCoverageCriteria()) == LogicalCoverageCriteria.COMBINATORIAL_CLAUSE_COVERAGE) {
+            		coverageCriterion = new CombinatorialClauseCoverage(operationUnderTest);
+            	} else if(LogicalCoverageCriteria.get(application.getChosenCoverageCriteria()) == LogicalCoverageCriteria.ACTIVE_CLAUSE_COVERAGE) {
+            		coverageCriterion = new ActiveClauseCoverage(operationUnderTest);
+            	} else {
+            		coverageCriterion = null;
+            	}
+
             } else {
             	coverageCriterion = null;
             }
-            
-            
+
+
     		BETATestSuite testSuite = new BETATestSuite(coverageCriterion);
 
-    		
+
     		// Creating report files
-                
+
             taskOutput.append("Creating report files... \n");
             progress += 30;
             setProgress(Math.min(progress, 100));
-    		
+
     		if(!testSuite.getTestCases().isEmpty()) {
     			if(htmlReportCheckBox.isSelected()) {
                 	createHTMLReportFile(operationUnderTest, testSuite);
@@ -267,8 +303,8 @@ public class GenerateReportPanel extends JPanel implements ActionListener,
         
         private void createHTMLReportFile(Operation operationUnderTest, BETATestSuite testSuite) {
     		String sourceMachineDirectory = operationUnderTest.getMachine().getFile().getParent();
-    		PartitionStrategy chosenPartitionStrategy = PartitionStrategy.get(application.getChosenPartitionStrategy());
-    		CombinatorialCriteria chosenCombinatorialCriteria = CombinatorialCriteria.get(application.getChosenCombinatorialCriteria());
+    		PartitionStrategy chosenPartitionStrategy = PartitionStrategy.get(application.getChosenTestingStrategy());
+    		CombinatorialCriteria chosenCombinatorialCriteria = CombinatorialCriteria.get(application.getChosenCoverageCriteria());
 			
     		String reportFileName = ConventionTools.getReportFileName(operationUnderTest, chosenPartitionStrategy, chosenCombinatorialCriteria, "html");
 			String outputFilePath = sourceMachineDirectory + System.getProperty("file.separator") + reportFileName;
@@ -283,8 +319,8 @@ public class GenerateReportPanel extends JPanel implements ActionListener,
         
         private String createXMLReportFile(Operation operationUnderTest, BETATestSuite testSuite) {
     		String sourceMachineDirectory = operationUnderTest.getMachine().getFile().getParent();
-    		PartitionStrategy chosenPartitionStrategy = PartitionStrategy.get(application.getChosenPartitionStrategy());
-    		CombinatorialCriteria chosenCombinatorialCriteria = CombinatorialCriteria.get(application.getChosenCombinatorialCriteria());
+    		PartitionStrategy chosenPartitionStrategy = PartitionStrategy.get(application.getChosenTestingStrategy());
+    		CombinatorialCriteria chosenCombinatorialCriteria = CombinatorialCriteria.get(application.getChosenCoverageCriteria());
     		
 			String reportFileName = ConventionTools.getReportFileName(operationUnderTest, chosenPartitionStrategy, chosenCombinatorialCriteria, "xml");
 			String outputFilePath = sourceMachineDirectory + System.getProperty("file.separator") + reportFileName;

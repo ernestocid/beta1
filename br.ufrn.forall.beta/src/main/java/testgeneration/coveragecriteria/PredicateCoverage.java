@@ -120,5 +120,19 @@ public class PredicateCoverage extends LogicalCoverage {
 		
 		return testFormulas;
 	}
-	
+
+
+
+	@Override
+	public String getName() {
+		return "Predicate Coverage";
+	}
+
+
+
+	@Override
+	public String getAcronym() {
+		return "LC-PC";
+	}
+
 }

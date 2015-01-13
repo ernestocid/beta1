@@ -122,4 +122,16 @@ public class CombinatorialClauseCoverage extends LogicalCoverage {
 		return testRequirements;
 	}
 
+
+	@Override
+	public String getName() {
+		return "Combinatorial Clause Coverage";
+	}
+
+
+	@Override
+	public String getAcronym() {
+		return "LC-CoC";
+	}
+
 }

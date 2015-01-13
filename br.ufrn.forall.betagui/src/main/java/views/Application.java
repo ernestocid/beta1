@@ -54,6 +54,7 @@ import configurations.Configurations;
 import de.prob.Main;
 import de.prob.scripting.Api;
 import parser.Machine;
+import testgeneration.coveragecriteria.CoverageCriterion;
 import actions.DisplayInfoAction;
 import actions.GenerateCBCTestMachineAction;
 import actions.GenerateTestsAction;
@@ -522,11 +523,11 @@ public class Application {
 		return combinations;
 	}
 
-	public JComboBox getPartitionStrategy() {
+	public JComboBox getTestingStrategy() {
 		return testingStrategyComboBox;
 	}
 	
-	public JComboBox getCombinatorialCriteria() {
+	public JComboBox getCoverageCriteria() {
 		return coverageCriteriaComboBox;
 	}
 	

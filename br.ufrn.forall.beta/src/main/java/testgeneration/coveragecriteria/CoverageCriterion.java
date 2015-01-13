@@ -10,5 +10,7 @@ public abstract class CoverageCriterion {
 
 	abstract public Operation getOperationUnderTest();
 	abstract public Set<List<Block>> getCombinationsAsListsOfBlocks();
-	
+	abstract public String getName();
+	abstract public String getAcronym();
+
 }

@@ -2,7 +2,6 @@ package views;
 import general.CombinatorialCriteria;
 import general.InputSpaceCoverageCriteria;
 import general.LogicalCoverageCriteria;
-import general.PartitionStrategy;
 import general.TestingStrategy;
 
 import java.awt.BorderLayout;
@@ -303,10 +302,8 @@ public class GenerateReportPanel extends JPanel implements ActionListener,
         
         private void createHTMLReportFile(Operation operationUnderTest, BETATestSuite testSuite) {
     		String sourceMachineDirectory = operationUnderTest.getMachine().getFile().getParent();
-    		PartitionStrategy chosenPartitionStrategy = PartitionStrategy.get(application.getChosenTestingStrategy());
-    		CombinatorialCriteria chosenCombinatorialCriteria = CombinatorialCriteria.get(application.getChosenCoverageCriteria());
 			
-    		String reportFileName = ConventionTools.getReportFileName(operationUnderTest, chosenPartitionStrategy, chosenCombinatorialCriteria, "html");
+    		String reportFileName = ConventionTools.getReportFileName(operationUnderTest, testSuite.getCoverageCriterion().getAcronym(), "html");
 			String outputFilePath = sourceMachineDirectory + System.getProperty("file.separator") + reportFileName;
 			
 			HTMLReport htmlReport = new HTMLReport(testSuite, new File(outputFilePath));
@@ -319,10 +316,8 @@ public class GenerateReportPanel extends JPanel implements ActionListener,
         
         private String createXMLReportFile(Operation operationUnderTest, BETATestSuite testSuite) {
     		String sourceMachineDirectory = operationUnderTest.getMachine().getFile().getParent();
-    		PartitionStrategy chosenPartitionStrategy = PartitionStrategy.get(application.getChosenTestingStrategy());
-    		CombinatorialCriteria chosenCombinatorialCriteria = CombinatorialCriteria.get(application.getChosenCoverageCriteria());
     		
-			String reportFileName = ConventionTools.getReportFileName(operationUnderTest, chosenPartitionStrategy, chosenCombinatorialCriteria, "xml");
+			String reportFileName = ConventionTools.getReportFileName(operationUnderTest, testSuite.getCoverageCriterion().getAcronym(), "xml");
 			String outputFilePath = sourceMachineDirectory + System.getProperty("file.separator") + reportFileName;
 			
 			XMLReport xmlReport = new XMLReport(testSuite, new File(outputFilePath));

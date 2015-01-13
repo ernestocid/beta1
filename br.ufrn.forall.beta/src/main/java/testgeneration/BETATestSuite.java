@@ -1,5 +1,7 @@
 package testgeneration;
 
+import general.TestingStrategy;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -247,6 +249,13 @@ public class BETATestSuite {
 
 
 	public CoverageCriterion getCoverageCriterion() {
-		return this.coverageCriterion;
+		return coverageCriterion;
 	}
+
+
+
+//	public TestingStrategy getTestingStrategy() {
+//		return this.coverageCriterion;
+//	}
+
 }

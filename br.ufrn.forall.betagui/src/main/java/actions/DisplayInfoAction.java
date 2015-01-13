@@ -1,7 +1,10 @@
 package actions;
 
 import general.CombinatorialCriteria;
+import general.InputSpaceCoverageCriteria;
+import general.LogicalCoverageCriteria;
 import general.PartitionStrategy;
+import general.TestingStrategy;
 
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
@@ -29,6 +32,8 @@ import testgeneration.Block;
 import testgeneration.BlockBuilder;
 import testgeneration.ECBlockBuilder;
 import testgeneration.Partitioner;
+import testgeneration.coveragecriteria.CoverageCriterion;
+import testgeneration.coveragecriteria.LogicalCoverage;
 import views.Application;
 
 
@@ -40,8 +45,9 @@ public class DisplayInfoAction extends AbstractAction {
 	
 	private Application application;
 	private int operationIndex;
-	private PartitionStrategy partitionStrategy;
-	private CombinatorialCriteria combinatorialCriteria;
+	private TestingStrategy testingStrategy;
+	private InputSpaceCoverageCriteria inputSpaceCoverageCriteria;
+	private LogicalCoverageCriteria logicalCoverageCriteria;
 	
 	
 	public DisplayInfoAction(Application application) {
@@ -62,30 +68,33 @@ public class DisplayInfoAction extends AbstractAction {
 			
 			List<List<String>> parametersInputValues = new ArrayList<List<String>>();
 			
-			if(this.partitionStrategy == PartitionStrategy.EQUIVALENT_CLASSES) {
-				BlockBuilder blockBuilder = new ECBlockBuilder(partitioner);
-				parametersInputValues = parseHashToList(blockBuilder.getBlocks());
-				populateCharacteristicsTable(operation, partitioner, blockBuilder);
-			} else if (this.partitionStrategy == PartitionStrategy.BOUNDARY_VALUES) {
-				BlockBuilder blockBuilder = new BVBlockBuilder(partitioner);
-				parametersInputValues = parseHashToList(blockBuilder.getBlocks());
-				populateCharacteristicsTable(operation, partitioner, blockBuilder);
+			if(this.testingStrategy == TestingStrategy.INPUT_SPACE_COVERAGE) {
+				if(this.inputSpaceCoverageCriteria != null) {
+					if(this.inputSpaceCoverageCriteria == InputSpaceCoverageCriteria.BOUNDARY_ANALYSIS_ALL_COMBINATIONS ||
+							this.inputSpaceCoverageCriteria == InputSpaceCoverageCriteria.BOUNDARY_ANALYSIS_PAIRWISE ||
+							this.inputSpaceCoverageCriteria == InputSpaceCoverageCriteria.BOUNDARY_ANALYSIS_EACH_CHOICE) {
+
+						BlockBuilder blockBuilder = new BVBlockBuilder(partitioner);
+						parametersInputValues = parseHashToList(blockBuilder.getBlocks());
+						populateCharacteristicsTable(operation, partitioner, blockBuilder);
+						
+					} else if(this.inputSpaceCoverageCriteria == InputSpaceCoverageCriteria.EQUIVALENT_CLASSES_ALL_COMBINATIONS ||
+							this.inputSpaceCoverageCriteria == InputSpaceCoverageCriteria.EQUIVALENT_CLASSES_PAIRWISE ||
+							this.inputSpaceCoverageCriteria == InputSpaceCoverageCriteria.EQUIVALENT_CLASSES_EACH_CHOICE) {
+
+						BlockBuilder blockBuilder = new ECBlockBuilder(partitioner);
+						parametersInputValues = parseHashToList(blockBuilder.getBlocks());
+						populateCharacteristicsTable(operation, partitioner, blockBuilder);
+					}
+				} else if (this.logicalCoverageCriteria != null) {
+					
+				}
+				
+			} else if (this.testingStrategy == TestingStrategy.LOGICAL_COVERAGE) {
+				
+				
 			}
-			
-			if(this.combinatorialCriteria == CombinatorialCriteria.ALL_COMBINATIONS) {
-				Criteria criteria = new AllCombinations(parametersInputValues);
-				application.setCombinations(criteria.getCombinationsAsStrings());
-				populateCombinationsTable(operation, partitioner, criteria);
-			} else if (this.combinatorialCriteria == CombinatorialCriteria.EACH_CHOICE) {
-				Criteria criteria = new EachChoice(parametersInputValues);
-				application.setCombinations(criteria.getCombinationsAsStrings());
-				populateCombinationsTable(operation, partitioner, criteria);
-			} else if (this.combinatorialCriteria == CombinatorialCriteria.PAIRWISE) {
-				Criteria criteria = new Pairwise(parametersInputValues);
-				application.setCombinations(criteria.getCombinationsAsStrings());
-				populateCombinationsTable(operation, partitioner, criteria);
-			}
-			
+
 		} else {
 			final JPanel panel = new JPanel();
 			JOptionPane.showMessageDialog(panel, "You must select an operation.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -97,8 +106,15 @@ public class DisplayInfoAction extends AbstractAction {
 	private void setTestParameters() {
 		this.operationIndex = application.getOperationList().getSelectedIndex();
 		this.application.setSelectedOperation(this.operationIndex);
-		this.partitionStrategy = PartitionStrategy.get(this.application.getPartitionStrategy().getSelectedIndex());
-		this.combinatorialCriteria = CombinatorialCriteria.get(application.getCombinatorialCriteria().getSelectedIndex());		
+		this.testingStrategy = TestingStrategy.get(this.application.getTestingStrategy().getSelectedIndex());
+
+		if(testingStrategy == TestingStrategy.INPUT_SPACE_COVERAGE) {
+			this.inputSpaceCoverageCriteria = InputSpaceCoverageCriteria.get(this.application.getCoverageCriteria().getSelectedIndex());
+			this.logicalCoverageCriteria = null;
+		} else if (testingStrategy == TestingStrategy.LOGICAL_COVERAGE) {
+			this.logicalCoverageCriteria = LogicalCoverageCriteria.get(this.application.getCoverageCriteria().getSelectedIndex());
+			this.inputSpaceCoverageCriteria = null;
+		}
 	}
 	
 	
@@ -144,13 +160,9 @@ public class DisplayInfoAction extends AbstractAction {
 
 	private void populateCharacteristicsTable(Operation operation, Partitioner partitioner, BlockBuilder blockBuilder) {
 		Map<String, List<Block>> partitionBlocks = new HashMap<String, List<Block>>();
-		
-		if(this.partitionStrategy == PartitionStrategy.EQUIVALENT_CLASSES) {
-			partitionBlocks = blockBuilder.getBlocksWithStringKeys();			
-		} else if (this.partitionStrategy == PartitionStrategy.BOUNDARY_VALUES) {
-			partitionBlocks = blockBuilder.getBlocksWithStringKeys();
-		}
-		
+
+		partitionBlocks = blockBuilder.getBlocksWithStringKeys();
+
 		Set<Characteristic> characteristics = partitioner.getOperationCharacteristics();
 		
 		int totalNumberOfBlocks = getTotalNumberOfBlocks(operation, partitioner, partitionBlocks);

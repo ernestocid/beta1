@@ -16,8 +16,8 @@ import parser.decorators.predicates.MyPredicate;
 import testgeneration.BETATestCase;
 import testgeneration.BETATestSuite;
 import testgeneration.OracleEvaluation;
-import testgeneration.coveragecriteria.BoundaryValueAnalysis;
-import testgeneration.coveragecriteria.EquivalenceClasses;
+import testgeneration.coveragecriteria.InputSpacePartitionCriterion;
+import testgeneration.coveragecriteria.LogicalCoverage;
 import tools.FileTools;
 
 public class HTMLReport {
@@ -55,8 +55,8 @@ public class HTMLReport {
 
 		tagsAndReplacement.put("{{MACHINE_NAME}}", this.testSuite.getOperationUnderTest().getMachine().getName());
 		tagsAndReplacement.put("{{OPERATION_NAME}}", this.testSuite.getOperationUnderTest().getName());
-		tagsAndReplacement.put("{{PARTITION_STRATEGY}}", getPartitionStrategy());
-		tagsAndReplacement.put("{{COMBINATION_STRATEGY}}", getCombinatorialCriteria());
+		tagsAndReplacement.put("{{TESTING_STRATEGY}}", getTestingStrategy());
+		tagsAndReplacement.put("{{COVERAGE_CRITERION}}", getCoverageCriteria());
 		tagsAndReplacement.put("{{INVARIANT_CLAUSES}}", generateInvariantRestrictionsList());
 		tagsAndReplacement.put("{{TESTCASE_LIST}}", createTestCaseListHTML());
 		tagsAndReplacement.put("{{UNSOLVABLE_TEST_FORMULAS}}", createUnsolvableTestFormulasList());
@@ -68,25 +68,17 @@ public class HTMLReport {
 
 
 
-	private String getCombinatorialCriteria() {
-		if (this.testSuite.getCoverageCriterion() instanceof EquivalenceClasses) {
-			EquivalenceClasses ec = (EquivalenceClasses) this.testSuite.getCoverageCriterion();
-			return ec.getCombinatorialCriterion().toString();
-		} else if (this.testSuite.getCoverageCriterion() instanceof BoundaryValueAnalysis) {
-			BoundaryValueAnalysis bva = (BoundaryValueAnalysis) this.testSuite.getCoverageCriterion();
-			return bva.getCombinatorialCriterion().toString();
-		} else {
-			return "Unknown";
-		}
+	private String getCoverageCriteria() {
+		return this.testSuite.getCoverageCriterion().getName();
 	}
 
 
 
-	private String getPartitionStrategy() {
-		if (this.testSuite.getCoverageCriterion() instanceof EquivalenceClasses) {
-			return "Equivalence Classes";
-		} else if (this.testSuite.getCoverageCriterion() instanceof BoundaryValueAnalysis) {
-			return "Boundary Values";
+	private String getTestingStrategy() {
+		if(this.testSuite.getCoverageCriterion() instanceof InputSpacePartitionCriterion) {
+			return "Input Space Partition";
+		} else if (this.testSuite.getCoverageCriterion() instanceof LogicalCoverage) {
+			return "Logical Coverage";
 		} else {
 			return "Unknown";
 		}

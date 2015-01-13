@@ -11,8 +11,8 @@ import java.util.Map;
 import testgeneration.BETATestCase;
 import testgeneration.BETATestSuite;
 import testgeneration.OracleEvaluation;
-import testgeneration.coveragecriteria.BoundaryValueAnalysis;
-import testgeneration.coveragecriteria.EquivalenceClasses;
+import testgeneration.coveragecriteria.InputSpacePartitionCriterion;
+import testgeneration.coveragecriteria.LogicalCoverage;
 import configurations.Configurations;
 import nu.xom.Document;
 import nu.xom.Element;
@@ -38,8 +38,8 @@ public class XMLReport {
 		appendMachineName();
 		appendMachineInvariant();
 		appendOperationUnderTest();
-		appendPartitionStrategy();
-		appendCombinatorialCriteria();
+		appendTestingStrategy();
+		appendCoverageCriteria();
 		appendOracleStrategy();
 		appendTestCases();
 
@@ -89,41 +89,33 @@ public class XMLReport {
 
 
 
-	private void appendPartitionStrategy() {
-		Element partitionStrategyElement = new Element("partition-strategy");
-		partitionStrategyElement.appendChild(getPartitionStrategy());
-		this.xmlRootElement.appendChild(partitionStrategyElement);
+	private void appendTestingStrategy() {
+		Element testingStrategyElement = new Element("testing-strategy");
+		testingStrategyElement.appendChild(getTestingStrategy());
+		this.xmlRootElement.appendChild(testingStrategyElement);
 	}
 
 
 
-	private void appendCombinatorialCriteria() {
-		Element combinatorialCriteriaElement = new Element("combinatorial-criteria");
-		combinatorialCriteriaElement.appendChild(getCombinatorialCriteria());
-		this.xmlRootElement.appendChild(combinatorialCriteriaElement);
+	private void appendCoverageCriteria() {
+		Element coverageCriteriaElement = new Element("coverage-criteria");
+		coverageCriteriaElement.appendChild(getCoverageCriteria());
+		this.xmlRootElement.appendChild(coverageCriteriaElement);
 	}
 
 
 
-	private String getCombinatorialCriteria() {
-		if (this.testSuite.getCoverageCriterion() instanceof EquivalenceClasses) {
-			EquivalenceClasses ec = (EquivalenceClasses) this.testSuite.getCoverageCriterion();
-			return ec.getCombinatorialCriterion().toString();
-		} else if (this.testSuite.getCoverageCriterion() instanceof BoundaryValueAnalysis) {
-			BoundaryValueAnalysis bva = (BoundaryValueAnalysis) this.testSuite.getCoverageCriterion();
-			return bva.getCombinatorialCriterion().toString();
-		} else {
-			return "Unknown";
-		}
+	private String getCoverageCriteria() {
+		return this.testSuite.getCoverageCriterion().getName();
 	}
 
 
 
-	private String getPartitionStrategy() {
-		if (this.testSuite.getCoverageCriterion() instanceof EquivalenceClasses) {
-			return "Equivalence Classes";
-		} else if (this.testSuite.getCoverageCriterion() instanceof BoundaryValueAnalysis) {
-			return "Boundary Values";
+	private String getTestingStrategy() {
+		if(this.testSuite.getCoverageCriterion() instanceof InputSpacePartitionCriterion) {
+			return "Input Space Partition";
+		} else if (this.testSuite.getCoverageCriterion() instanceof LogicalCoverage) {
+			return "Logical Coverage";
 		} else {
 			return "Unknown";
 		}

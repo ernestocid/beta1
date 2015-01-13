@@ -2,8 +2,8 @@
 <test-suite>
     <machine-name>Calc</machine-name>
     <operation-under-test>sum</operation-under-test>
-    <partition-strategy>Equivalence Classes</partition-strategy>
-    <combinatorial-criteria>All-Combinations</combinatorial-criteria>
+    <testing-strategy>Input Space Partition</testing-strategy>
+    <coverage-criteria>Equivalent Classes (All-Combinations)</coverage-criteria>
     <oracle-strategy>
         <state-variables>true</state-variables>
         <return-variables>true</return-variables>

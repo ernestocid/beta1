@@ -5,8 +5,8 @@
         <invariant-clause>floor : 1..5</invariant-clause>
     </machine-invariant>
     <operation-under-test>go_to</operation-under-test>
-    <partition-strategy>Equivalence Classes</partition-strategy>
-    <combinatorial-criteria>Each-Choice</combinatorial-criteria>
+    <testing-strategy>Input Space Partition</testing-strategy>
+    <coverage-criteria>Equivalent Classes (Each-choice)</coverage-criteria>
     <oracle-strategy>
         <state-variables>true</state-variables>
         <return-variables>true</return-variables>

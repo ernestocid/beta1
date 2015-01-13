@@ -234,4 +234,18 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 		return majorClauseTrueFormula.toString();
 	}
 
+
+
+	@Override
+	public String getName() {
+		return "Active Clause Coverage";
+	}
+
+
+
+	@Override
+	public String getAcronym() {
+		return "LC-ACC";
+	}
+
 }

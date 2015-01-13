@@ -118,5 +118,19 @@ public class ClauseCoverage extends LogicalCoverage {
 
 		return testFomula.toString();
 	}
-	
+
+
+
+	@Override
+	public String getName() {
+		return "Clause Coverage";
+	}
+
+
+
+	@Override
+	public String getAcronym() {
+		return "LC-CC";
+	}
+
 }

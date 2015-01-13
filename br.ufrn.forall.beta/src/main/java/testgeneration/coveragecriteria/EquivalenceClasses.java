@@ -30,4 +30,42 @@ public class EquivalenceClasses extends InputSpacePartitionCriterion {
 		return new ECBlockBuilder(new Partitioner(getOperationUnderTest())).getBlocksAsListsOfBlocks();
 	}
 
+
+
+	@Override
+	public String getName() {
+		String name = "Equivalent Classes ";
+
+		if (getCombinatorialCriterion() == CombinatorialCriteria.EACH_CHOICE) {
+			name = name + " (Each-choice)";
+		} else if (getCombinatorialCriterion() == CombinatorialCriteria.PAIRWISE) {
+			name = name + " (Pairwise)";
+		} else if (getCombinatorialCriterion() == CombinatorialCriteria.ALL_COMBINATIONS) {
+			name = name + " (All-Combinations)";
+		} else {
+			name = name + " (Unknown)";
+		}
+
+		return name;
+	}
+
+
+
+	@Override
+	public String getAcronym() {
+		String acronym = "EC-";
+
+		if (getCombinatorialCriterion() == CombinatorialCriteria.EACH_CHOICE) {
+			acronym = acronym + "EC";
+		} else if (getCombinatorialCriterion() == CombinatorialCriteria.PAIRWISE) {
+			acronym = acronym + "PW";
+		} else if (getCombinatorialCriterion() == CombinatorialCriteria.ALL_COMBINATIONS) {
+			acronym = acronym + "AC";
+		} else {
+			acronym = acronym + "??";
+		}
+
+		return acronym;
+	}
+
 }

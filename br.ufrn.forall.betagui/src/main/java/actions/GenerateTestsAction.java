@@ -35,7 +35,7 @@ public class GenerateTestsAction extends AbstractAction {
 					"Please, go to Settings and inform a valid ProB directory before you proceed.",
 					"Error",
 					JOptionPane.ERROR_MESSAGE);
-		} else if(this.application.getMachine() == null || this.application.getCombinations().isEmpty()) {
+		} else if(this.application.getMachine() == null) {
 			JOptionPane.showMessageDialog(null, "Can't generate report. No tests cases found.", "Error", JOptionPane.ERROR_MESSAGE);
 		} else {
 			displayGenerateReportPanel();

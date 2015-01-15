@@ -37,7 +37,7 @@ public class LoadMachineAction extends AbstractAction{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		int response = this.application.getFileChooser().showOpenDialog(application.getfrmBtest());
+		int response = this.application.getFileChooser().showOpenDialog(application.getMainFrame());
 
 		if(response == JFileChooser.APPROVE_OPTION) {
 			File mch = this.application.getFileChooser().getSelectedFile();

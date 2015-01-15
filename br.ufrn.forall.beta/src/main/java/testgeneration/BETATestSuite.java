@@ -1,6 +1,5 @@
 package testgeneration;
 
-import general.TestingStrategy;
 
 import java.util.ArrayList;
 import java.util.Collections;

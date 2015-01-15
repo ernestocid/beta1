@@ -1,19 +1,18 @@
 package views;
 
-import general.CombinatorialCriteria;
-import general.FunctionalCriterias;
 import general.InputSpaceCoverageCriteria;
 import general.LogicalCoverageCriteria;
 import general.TestingStrategy;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.ItemSelectable;
+import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,7 +24,6 @@ import java.util.Set;
 
 import javax.swing.Action;
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -47,14 +45,13 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import configurations.Configurations;
 import de.prob.Main;
 import de.prob.scripting.Api;
 import parser.Machine;
-import testgeneration.coveragecriteria.CoverageCriterion;
 import actions.DisplayInfoAction;
 import actions.GenerateCBCTestMachineAction;
 import actions.GenerateTestsAction;
@@ -62,27 +59,25 @@ import actions.LoadMachineAction;
 
 public class Application {
 
-	
 	private Machine machine;
 	private JFrame frmBtest;
 	private JFileChooser fileChooser;
 	private final Action openFileAction = new LoadMachineAction(this);
-	private JList operationList;
+	private JList<String> operationList;
 	private JTable inputSpaceTable;
 	private JTable characteristicsTable;
 	private JTable combinations;
 	private JPanel machineInfo;
-	private JLabel lblCoverageCriteria;
-	private JComboBox testingStrategyComboBox;
+	private JComboBox<TestingStrategy> testingStrategyComboBox;
 	private JComboBox coverageCriteriaComboBox;
-	private JLabel lblMachineLoaded;
+	private JLabel operationsListLabel;
 	private final Action displayAction = new DisplayInfoAction(this);
 	private final Action generateTestsAction = new GenerateTestsAction(this);
 	private final Action generateCBCTestMachineAction = new GenerateCBCTestMachineAction(this);
 	private Set<String> combinationsValues = new HashSet<String>();
-	private int selectedOperation;
-	
-	
+	private int selectedOperation = -1;
+
+
 	/**
 	 * Launch the application.
 	 */
@@ -111,34 +106,38 @@ public class Application {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		
+
 		frmBtest = new JFrame();
-//		frmBtest.setIconImage(Toolkit.getDefaultToolkit().getImage(Application.class.getResource("/views/betaico.png")));
 		frmBtest.setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getClassLoader().getResource("betaico.png")));
 		frmBtest.setTitle("BETA");
-		frmBtest.setBounds(100, 100, 1100, 600);
+		frmBtest.setBounds(100, 100, 400, 600);
 		frmBtest.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		frmBtest.setLocationRelativeTo(null);
-		
+
 		fileChooser = new JFileChooser();
 		fileChooser.setFileFilter(new ExtensionFileFilter("B Machines", "mch"));
-		
-		JPanel controls = new JPanel();
-		controls.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		frmBtest.getContentPane().add(controls, BorderLayout.NORTH);
-		controls.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
-		lblMachineLoaded = new JLabel("Machine Loaded: <None>");
-		lblMachineLoaded.setBorder(new EmptyBorder(0, 0, 0, 40));
-		controls.add(lblMachineLoaded);
-		
-		JLabel lblTestingStrategy = new JLabel("Testing Strategy:");
-		lblTestingStrategy.setHorizontalAlignment(SwingConstants.RIGHT);
-		controls.add(lblTestingStrategy);
-		
+
+
+
+		/**************************************************
+		 * Begin: Controls Panel
+		 **************************************************/
+
+		JPanel controlsPanel = new JPanel();
+		controlsPanel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+		controlsPanel.setLayout(new GridLayout(0, 1));
+		controlsPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		frmBtest.getContentPane().add(controlsPanel, BorderLayout.NORTH);
+
+		// Adding Testing Strategy ComboBox to controls panel
+
+		JLabel testingStrategyLabel = new JLabel("Choose a Testing Strategy:");
+		testingStrategyLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+		testingStrategyLabel.setBorder(new EmptyBorder(0, 10, 0, 0));
+		controlsPanel.add(testingStrategyLabel);
+
 		testingStrategyComboBox = new JComboBox<TestingStrategy>();
-		testingStrategyComboBox.setModel(new DefaultComboBoxModel(TestingStrategy.values()));
-		
+		testingStrategyComboBox.setModel(new DefaultComboBoxModel<TestingStrategy>(TestingStrategy.values()));
+
 		ItemListener itemListener = new ItemListener() {
 			public void itemStateChanged(ItemEvent itemEvent) {
 				int state = itemEvent.getStateChange();
@@ -154,15 +153,17 @@ public class Application {
 				}
 			}
 		};
-		
-		testingStrategyComboBox.addItemListener(itemListener);
 
-		controls.add(testingStrategyComboBox);
-		
-		lblCoverageCriteria = new JLabel("Coverage Criteria:");
-		lblCoverageCriteria.setHorizontalAlignment(SwingConstants.RIGHT);
-		controls.add(lblCoverageCriteria);
-		
+		testingStrategyComboBox.addItemListener(itemListener);
+		controlsPanel.add(testingStrategyComboBox);
+
+		// Adding Coverage Criterion ComboBox to controls panel
+
+		JLabel coverageCriterionLabel = new JLabel("Choose a Coverage Criterion:");
+		coverageCriterionLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+		coverageCriterionLabel.setBorder(new EmptyBorder(0, 10, 0, 0));
+		controlsPanel.add(coverageCriterionLabel);
+
 		coverageCriteriaComboBox = new JComboBox();
 
 		if (testingStrategyComboBox.getSelectedItem() == TestingStrategy.INPUT_SPACE_COVERAGE) {
@@ -173,121 +174,99 @@ public class Application {
 			System.out.println("Unknown Testing Strategy");
 		}
 
-		controls.add(coverageCriteriaComboBox);
-		
-		JButton btnDisplayInfo = new JButton();
-		btnDisplayInfo.setAction(displayAction);
-		btnDisplayInfo.setText("Analyze");
-		controls.add(btnDisplayInfo);
-		
-		JPanel opNavigation = new JPanel();
-		opNavigation.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		frmBtest.getContentPane().add(opNavigation, BorderLayout.WEST);
-		opNavigation.setLayout(new BorderLayout(0, 0));
-		
-		JLabel lblOperations = new JLabel("Operations:");
-		lblOperations.setBorder(new EmptyBorder(5, 5, 5, 5));
-		lblOperations.setHorizontalAlignment(SwingConstants.LEFT);
-		opNavigation.add(lblOperations, BorderLayout.NORTH);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setPreferredSize(new Dimension(200, scrollPane.getPreferredSize().height));
-		lblOperations.setLabelFor(scrollPane);
-		scrollPane.setViewportBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		opNavigation.add(scrollPane);
-		
-		operationList = new JList();
+		controlsPanel.add(coverageCriteriaComboBox);
+
+		/**************************************************
+		 * End: Controls Panel
+		 **************************************************/
+
+
+
+		/**************************************************
+		 * Begin: Choose Operation Panel
+		 **************************************************/
+
+		JPanel chooseOperationPanel = new JPanel();
+		chooseOperationPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		chooseOperationPanel.setLayout(new BorderLayout(0, 0));
+		frmBtest.getContentPane().add(chooseOperationPanel, BorderLayout.CENTER);
+
+		operationsListLabel = new JLabel("Operations (no machine loaded):");
+		operationsListLabel.setBorder(new EmptyBorder(10, 10, 10, 5));
+		operationsListLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		chooseOperationPanel.add(operationsListLabel, BorderLayout.NORTH);
+
+		JScrollPane operationsScrollPane = new JScrollPane();
+		operationsScrollPane.setPreferredSize(new Dimension(200, operationsScrollPane.getPreferredSize().height));
+		operationsScrollPane.setViewportBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		operationsListLabel.setLabelFor(operationsScrollPane);
+		chooseOperationPanel.add(operationsScrollPane);
+
+		operationList = new JList<String>();
 		operationList.setValueIsAdjusting(true);
 		operationList.setVisibleRowCount(1);
-		operationList.setModel(new DefaultListModel());
+		operationList.setModel(new DefaultListModel<String>());
 		operationList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		scrollPane.setViewportView(operationList);
-		
-		JPanel actions = new JPanel();
-		FlowLayout flowLayout_2 = (FlowLayout) actions.getLayout();
-		flowLayout_2.setAlignment(FlowLayout.TRAILING);
-		actions.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		frmBtest.getContentPane().add(actions, BorderLayout.SOUTH);
-		
+		operationList.addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				selectedOperation = operationList.getSelectedIndex();
+			}
+		});
+
+		operationsScrollPane.setViewportView(operationList);
+
+		/**************************************************
+		 * End: Choose Operation Panel
+		 **************************************************/
+
+
+
+		/**************************************************
+		 * Begin: Actions Panel
+		 **************************************************/
+
+		JPanel actionsPanel = new JPanel();
+		actionsPanel.setLayout(new FlowLayout());
+		actionsPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		frmBtest.getContentPane().add(actionsPanel, BorderLayout.SOUTH);
+
 		JButton generateCBCTestMachineButton = new JButton("Generate CBC Test Machine");
 		generateCBCTestMachineButton.setAction(generateCBCTestMachineAction);
 		generateCBCTestMachineButton.setText("Generate CBC Test Machine");
 		generateCBCTestMachineButton.setHorizontalAlignment(SwingConstants.TRAILING);
-		actions.add(generateCBCTestMachineButton);
-		
-		JButton generateTestButton = new JButton("Create Test Report");
-		generateTestButton.setAction(generateTestsAction);
-		generateTestButton.setText("Generate Report");
-		generateTestButton.setHorizontalAlignment(SwingConstants.TRAILING);
-		actions.add(generateTestButton);
-		
-		machineInfo = new JPanel();
-		frmBtest.getContentPane().add(machineInfo, BorderLayout.CENTER);
-		machineInfo.setLayout(new BoxLayout(machineInfo, BoxLayout.X_AXIS));
-		
-		JPanel inputSpacePanel = new JPanel();
-		inputSpacePanel.setLayout(new BoxLayout(inputSpacePanel, BoxLayout.Y_AXIS));
-		
-		JScrollPane inputSpaceScroll = new JScrollPane();
-		inputSpacePanel.add(inputSpaceScroll);
-		
-		inputSpaceTable = new JTable();
-		inputSpaceScroll.setViewportView(inputSpaceTable);
-		inputSpaceTable.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Input Space Variables:"
-			}
-		));
-		
-		JScrollPane characteristicsScroll = new JScrollPane();
-		inputSpacePanel.add(characteristicsScroll);
-		
-		characteristicsTable = new JTable();
-		characteristicsScroll.setViewportView(characteristicsTable);
-		characteristicsTable.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Characteristics and Blocks"
-			}
-		));
-		
-		JScrollPane combinationsScroll = new JScrollPane();
-		inputSpacePanel.add(combinationsScroll);
-		
-		combinations = new JTable();
-		combinationsScroll.setViewportView(combinations);
-		combinations.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Num:", "Combinations (Test Cases):"
-			}
-		));
-		TableColumn firstColumn = combinations.getColumnModel().getColumn(0);
-		firstColumn.setMaxWidth(45);
-		machineInfo.add(inputSpacePanel);
-		
-		
-		
+		actionsPanel.add(generateCBCTestMachineButton);
+
+		JButton generateTestsButton = new JButton("Create Test Report");
+		generateTestsButton.setAction(generateTestsAction);
+		generateTestsButton.setText("Generate Report");
+		generateTestsButton.setHorizontalAlignment(SwingConstants.TRAILING);
+		actionsPanel.add(generateTestsButton);
+
+		/**************************************************
+		 * End: Actions Panel
+		 **************************************************/
+
+
+
+		/**************************************************
+		 * Begin: Menu Bar
+		 **************************************************/
+
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(Color.LIGHT_GRAY);
 		frmBtest.setJMenuBar(menuBar);
-		
-		JMenu mnFile = new JMenu("BETA");
-		mnFile.setBackground(Color.LIGHT_GRAY);
-		menuBar.add(mnFile);
-		
-		JMenuItem mntmLoadMachine = new JMenuItem("Load Machine");
-		mntmLoadMachine.setAction(openFileAction);
-		mnFile.add(mntmLoadMachine);
-		
-		// Configurations Menu
-		
-		JMenuItem mntmConfigureProBPath = new JMenuItem("Settings");
-		mntmConfigureProBPath.addActionListener(new ActionListener() {
+
+		JMenu betaMenu = new JMenu("BETA");
+		betaMenu.setBackground(Color.LIGHT_GRAY);
+		menuBar.add(betaMenu);
+
+		JMenuItem betaMenuLoadMachineItem = new JMenuItem("Load Machine");
+		betaMenuLoadMachineItem.setAction(openFileAction);
+		betaMenu.add(betaMenuLoadMachineItem);
+
+		JMenuItem betaMenuSettingsItem = new JMenuItem("Settings");
+		betaMenuSettingsItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
@@ -484,76 +463,117 @@ public class Application {
 				configFrame.setVisible(true);
 			}
 		});
-		mnFile.add(mntmConfigureProBPath);
+
+		betaMenu.add(betaMenuSettingsItem);
 	}
+
+	/**************************************************
+	 * End: Menu Bar
+	 **************************************************/
+
+
 
 	public Machine getMachine() {
 		return machine;
 	}
-	
+
+
+
 	public void setMachine(Machine machine) {
 		this.machine = machine;
 	}
-	
-	public JList getOperationList() {
+
+
+
+	public JList<String> getOperationList() {
 		return operationList;
 	}
-	
+
+
+
 	public JFrame getfrmBtest() {
 		return frmBtest;
 	}
-	
+
+
+
 	public JFileChooser getFileChooser() {
 		return fileChooser;
 	}
 
+
+
 	public JPanel getMachineInfo() {
 		return machineInfo;
 	}
-	
+
+
+
 	public JTable getInputSpaceTable() {
 		return inputSpaceTable;
 	}
+
+
 
 	public JTable getCharacteristicsAndBlocksTable() {
 		return characteristicsTable;
 	}
 
+
+
 	public JTable getCombinationsTable() {
 		return combinations;
 	}
 
+
+
 	public JComboBox getTestingStrategy() {
 		return testingStrategyComboBox;
 	}
-	
+
+
+
 	public JComboBox getCoverageCriteria() {
 		return coverageCriteriaComboBox;
 	}
-	
-	public JLabel getLabelMachineLoaded() {
-		return lblMachineLoaded;
+
+
+
+	public JLabel getOperationsListLabel() {
+		return operationsListLabel;
 	}
-	
+
+
+
 	public void setCombinations(Set<String> combinationsValues) {
 		this.combinationsValues = combinationsValues;
 	}
-	
+
+
+
 	public Set<String> getCombinations() {
 		return combinationsValues;
 	}
+
+
 
 	public void setSelectedOperation(int selectedOperation) {
 		this.selectedOperation = selectedOperation;
 	}
 
+
+
 	public int getSelectedOperation() {
 		return selectedOperation;
 	}
-	
+
+
+
 	public int getChosenTestingStrategy() {
 		return this.testingStrategyComboBox.getSelectedIndex();
 	}
+
+
 
 	public int getChosenCoverageCriteria() {
 		return this.coverageCriteriaComboBox.getSelectedIndex();

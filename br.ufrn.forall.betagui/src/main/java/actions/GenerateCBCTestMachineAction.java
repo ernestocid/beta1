@@ -35,13 +35,12 @@ public class GenerateCBCTestMachineAction extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		boolean isNotReadyToGenerateMachine = this.application.getSelectedOperation() < 0 || this.application.getMachine() == null
-				|| this.application.getCombinations().isEmpty();
+		boolean isNotReadyToGenerateMachine = this.application.getSelectedOperation() < 0 || this.application.getMachine() == null;
 		if (isNotReadyToGenerateMachine) {
 			JOptionPane
 					.showMessageDialog(
 							null,
-							"Can't generate CBC test machine. You should load a machine, select an operation to test, the criteria to use and click on the Analyze button.",
+							"Can't generate CBC test machine. You should load a machine, select an operation to test, \nthe test strategy and the coverage criterion before you can generate it.",
 							"Error", JOptionPane.ERROR_MESSAGE);
 		} else {
 			Operation operationUnderTest = this.application.getMachine().getOperation(this.application.getSelectedOperation());

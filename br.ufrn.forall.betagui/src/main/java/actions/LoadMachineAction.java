@@ -30,7 +30,7 @@ public class LoadMachineAction extends AbstractAction{
 	public LoadMachineAction(Application application) {
 		this.application = application;
 		putValue(NAME, "Load Machine");
-		putValue(SHORT_DESCRIPTION, "Some short description");
+		putValue(SHORT_DESCRIPTION, "Loads the machine to be tested");
 	}
 
 

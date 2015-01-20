@@ -275,7 +275,7 @@ public class Application {
 		menuBar.setBackground(Color.LIGHT_GRAY);
 		mainFrame.setJMenuBar(menuBar);
 
-		betaMenu = new JMenu("BETA");
+		betaMenu = new JMenu("Options");
 		betaMenu.setBackground(Color.LIGHT_GRAY);
 		menuBar.add(betaMenu);
 

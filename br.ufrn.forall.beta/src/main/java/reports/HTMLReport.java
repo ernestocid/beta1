@@ -54,12 +54,25 @@ public class HTMLReport {
 		Map<String, String> tagsAndReplacement = new HashMap<String, String>();
 
 		tagsAndReplacement.put("{{MACHINE_NAME}}", this.testSuite.getOperationUnderTest().getMachine().getName());
+		System.out.println("Got machine name...");
+		
 		tagsAndReplacement.put("{{OPERATION_NAME}}", this.testSuite.getOperationUnderTest().getName());
+		System.out.println("Got operation name...");
+		
 		tagsAndReplacement.put("{{TESTING_STRATEGY}}", getTestingStrategy());
+		System.out.println("Got testing strategy...");
+		
 		tagsAndReplacement.put("{{COVERAGE_CRITERION}}", getCoverageCriteria());
+		System.out.println("Got coverage criterion...");
+		
 		tagsAndReplacement.put("{{INVARIANT_CLAUSES}}", generateInvariantRestrictionsList());
+		System.out.println("Got invariant clauses...");
+		
 		tagsAndReplacement.put("{{TESTCASE_LIST}}", createTestCaseListHTML());
+		System.out.println("Created test case list...");
+		
 		tagsAndReplacement.put("{{UNSOLVABLE_TEST_FORMULAS}}", createUnsolvableTestFormulasList());
+		System.out.println("Created infeasible test cases list...");
 
 		String textWithReplacement = replaceTagsWithParameters(tagsAndReplacement, getReportTemplate());
 

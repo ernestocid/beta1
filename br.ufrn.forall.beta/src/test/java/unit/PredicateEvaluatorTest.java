@@ -129,11 +129,11 @@ public class PredicateEvaluatorTest {
 
 		Map<String, String> expectedSolutions = new HashMap<String, String>();
 
-		expectedSolutions.put("students", "{STUDENT2}");
-		expectedSolutions.put("student", "STUDENT2");
-		expectedSolutions.put("has_taken_lab_classes", "{(STUDENT2|->TRUE)}");
+		expectedSolutions.put("students", "{STUDENT1}");
+		expectedSolutions.put("student", "STUDENT1");
+		expectedSolutions.put("has_taken_lab_classes", "{(STUDENT1|->TRUE)}");
 		expectedSolutions.put("finished", "TRUE");
-		expectedSolutions.put("grades", "{(STUDENT2|->4)}");
+		expectedSolutions.put("grades", "{(STUDENT1|->4)}");
 
 		assertEquals(expectedFormula, pe.getSolutions().get(0).getFormula());
 		assertEquals(expectedSolutions, pe.getSolutions().get(0).getValues().get(0));

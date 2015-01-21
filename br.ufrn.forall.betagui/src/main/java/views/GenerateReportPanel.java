@@ -248,6 +248,7 @@ public class GenerateReportPanel extends JPanel implements ActionListener,
 
     		if(!testSuite.getTestCases().isEmpty()) {
     			if(htmlReportCheckBox.isSelected()) {
+    				System.out.println("HTML report option was selected... Creating HTML report file...");
                 	createHTMLReportFile(operationUnderTest, testSuite);
                 }
                 
@@ -306,9 +307,12 @@ public class GenerateReportPanel extends JPanel implements ActionListener,
     		String reportFileName = ConventionTools.getReportFileName(operationUnderTest, testSuite.getCoverageCriterion().getAcronym(), "html");
 			String outputFilePath = sourceMachineDirectory + System.getProperty("file.separator") + reportFileName;
 			
+			System.out.println("File will be created on: " + outputFilePath);
+			
 			HTMLReport htmlReport = new HTMLReport(testSuite, new File(outputFilePath));
 			htmlReport.generateReport();
 			
+			System.out.println("HTML report created!");
 			taskOutput.append("HTML Report generated at: " + outputFilePath + "\n");
     	}
         

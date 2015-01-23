@@ -63,8 +63,10 @@ public class PreambleCalculation {
 			Document doc = documentBuilder.parse(outputXMLFile);
 			doc.getDocumentElement().normalize();
 
-			preamble.add(getInitialisationEvent(doc));
-			preamble.addAll(getOtherEvents(doc));
+			if (hasNoInitialisation(doc)) {
+				preamble.add(getInitialisationEvent(doc));
+				preamble.addAll(getOtherEvents(doc));
+			}
 
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
@@ -75,6 +77,12 @@ public class PreambleCalculation {
 		}
 
 		return preamble;
+	}
+
+
+
+	private boolean hasNoInitialisation(Document doc) {
+		return doc.getElementsByTagName("initialisation").getLength() != 0;
 	}
 
 
@@ -111,6 +119,7 @@ public class PreambleCalculation {
 
 	private Event getInitialisationEvent(Document doc) {
 		NodeList initialisation = doc.getElementsByTagName("initialisation");
+
 		NodeList childNodes = initialisation.item(0).getChildNodes();
 
 		Map<String, String> initialisationParameters = new HashMap<String, String>();

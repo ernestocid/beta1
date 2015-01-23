@@ -16,7 +16,7 @@ import static com.google.common.truth.Truth.*;
 public class PreambleCalculationTest {
 
 	@Test
-	public void shouldFindPreambleForTest() {
+	public void shouldFindPreamble_returnsFourEventsPreamble() {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/Classroom.mch"));
 		Operation operationUnderTest = machine.getOperation(3);
 		String stateGoal = "grades(student) > 2 & grades(student) > 3 & has_taken_lab_classes(student) = TRUE & student : dom(grades) & student : dom(has_taken_lab_classes) & student : students";
@@ -62,4 +62,47 @@ public class PreambleCalculationTest {
 		assertThat(preamble.get(3).getEventParameters()).isEqualTo(event4Params);
 	}
 
+
+
+	@Test
+	public void shouldFindPreamble_returnsOnlyInitialisationPreamble() {
+		Machine machine = new Machine(new File("src/test/resources/machines/others/atm.mch"));
+		Operation operationUnderTest = machine.getOperation(1);
+		String stateGoal = "mm : INT & not((account_balance - mm) >= 0)";
+		PreambleCalculation preambleCalculation = new PreambleCalculation(operationUnderTest, stateGoal);
+
+		// Setting up expected results
+
+		Map<String, String> expectedInitialisationParameters = new HashMap<String, String>();
+		expectedInitialisationParameters.put("account_id", "1");
+		expectedInitialisationParameters.put("account_balance", "0");
+
+		// Getting actual result
+
+		List<Event> preamble = preambleCalculation.getPathToState();
+
+		// Assertions
+
+		assertThat(preamble).hasSize(1);
+		assertThat(preamble.get(0).getEventName()).isEqualTo("initialisation");
+		assertThat(preamble.get(0).getEventParameters()).isEqualTo(expectedInitialisationParameters);
+	}
+
+
+
+	@Test
+	public void shouldFindPreamble_CannotFindPreambleForGoal() {
+		Machine machine = new Machine(new File("src/test/resources/machines/others/atm.mch"));
+		Operation operationUnderTest = machine.getOperation(1);
+		String stateGoal = "mm : INT & 1=2";
+		PreambleCalculation preambleCalculation = new PreambleCalculation(operationUnderTest, stateGoal);
+
+		// Getting actual result
+
+		List<Event> preamble = preambleCalculation.getPathToState();
+
+		// Assertions
+
+		assertThat(preamble).hasSize(0);
+	}
 }

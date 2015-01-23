@@ -8,7 +8,6 @@ import javax.swing.JOptionPane;
 
 import configurations.Configurations;
 
-
 public class SaveSettingsAction extends AbstractAction {
 
 	/**
@@ -16,12 +15,15 @@ public class SaveSettingsAction extends AbstractAction {
 	 */
 	private static final long serialVersionUID = 1L;
 	private DisplaySettingsAction displaySettings;
-	
-	
+
+
+
 	public SaveSettingsAction(DisplaySettingsAction displaySettings) {
 		this.displaySettings = displaySettings;
 	}
-	
+
+
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		File probcli = new File(displaySettings.getProbPathField().getText() + "probcli");
@@ -40,7 +42,8 @@ public class SaveSettingsAction extends AbstractAction {
 
 		// Set Oracles strategies
 
-		Configurations.setOracleStrategy(displaySettings.getStateVariablesOracCB().isSelected(), displaySettings.getReturnVariablesOracCB().isSelected(), displaySettings.getInvariantOKOracCB().isSelected());
+		Configurations.setOracleStrategy(displaySettings.getStateVariablesOracCB().isSelected(), displaySettings.getReturnVariablesOracCB().isSelected(),
+				displaySettings.getInvariantOKOracCB().isSelected());
 
 		// Set Delete temporary files
 
@@ -66,7 +69,15 @@ public class SaveSettingsAction extends AbstractAction {
 
 		Configurations.setMinIntProperties(Integer.valueOf(displaySettings.getMinintField().getText()));
 		Configurations.setMaxIntProperties(Integer.valueOf(displaySettings.getMaxintField().getText()));
-		Configurations.setProBTimeout(Integer.valueOf(displaySettings.getProbTimeoutField().getText()));		
+		Configurations.setProBTimeout(Integer.valueOf(displaySettings.getProbTimeoutField().getText()));
+
+		// Set find_preamble
+
+		Configurations.setFindPreamble(displaySettings.getFindPreambleCB().isSelected());
+
+		// Set CBC depth
+
+		Configurations.setCBCDepth(Integer.valueOf(displaySettings.getCbcDepthField().getText()));
 	}
 
 }

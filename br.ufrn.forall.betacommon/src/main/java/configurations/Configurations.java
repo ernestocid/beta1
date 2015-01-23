@@ -434,7 +434,7 @@ public class Configurations {
 			config.setProperty("use_prob_api", useProBApi);
 			config.save();
 		} catch (ConfigurationException e) {
-			System.err.println("Could not set value for use_kodkod: " + e.getMessage());
+			System.err.println("Could not set value for use_prob_api: " + e.getMessage());
 		}
 	}
 
@@ -473,6 +473,82 @@ public class Configurations {
 			config.save();
 		} catch (ConfigurationException e) {
 			System.err.println("Could not set value for prob_timeout: " + e.getMessage());
+		}
+	}
+
+
+
+	/**
+	 * Gets the value for the cbc_depth on the config.properties file
+	 * 
+	 * @return int value for cbc_depth
+	 */
+	public static int getCBCDepth() {
+		int cbcDepth = 5;
+
+		try {
+			PropertiesConfiguration config = new PropertiesConfiguration(getPathToPropertiesFile());
+			cbcDepth = config.getInt("cbc_depth");
+		} catch (ConfigurationException e) {
+			System.err.println("Could not get value for cbc_depth: " + e.getMessage());
+		}
+
+		return cbcDepth;
+	}
+
+
+
+	/**
+	 * Sets the value for the cbc_depth on the config.properties file
+	 * 
+	 * @param cbcDepth
+	 *            int value for cbc_depth
+	 */
+	public static void setCBCDepth(int cbcDepth) {
+		try {
+			PropertiesConfiguration config = new PropertiesConfiguration(getPathToPropertiesFile());
+			config.setProperty("cbc_depth", cbcDepth);
+			config.save();
+		} catch (ConfigurationException e) {
+			System.err.println("Could not set value for cbc_depth: " + e.getMessage());
+		}
+	}
+
+
+
+	/**
+	 * Gets the value for the find_preamble on the config.properties file
+	 * 
+	 * @return boolean value for find_preamble
+	 */
+	public static boolean isFindPreamble() {
+		boolean findPreamble = false;
+
+		try {
+			PropertiesConfiguration config = new PropertiesConfiguration(getPathToPropertiesFile());
+			findPreamble = config.getBoolean("find_preamble");
+		} catch (ConfigurationException e) {
+			System.err.println("Could not get value for find_preamble: " + e.getMessage());
+		}
+
+		return findPreamble;
+	}
+
+
+
+	/**
+	 * Sets the value for the find_preamble on the config.properties file
+	 * 
+	 * @param findPreamble
+	 *            boolean value for find_preamble
+	 */
+	public static void setFindPreamble(boolean findPreamble) {
+		try {
+			PropertiesConfiguration config = new PropertiesConfiguration(getPathToPropertiesFile());
+			config.setProperty("find_preamble", findPreamble);
+			config.save();
+		} catch (ConfigurationException e) {
+			System.err.println("Could not set value for find_preamble: " + e.getMessage());
 		}
 	}
 

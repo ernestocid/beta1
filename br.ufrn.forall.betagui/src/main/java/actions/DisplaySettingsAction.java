@@ -52,6 +52,10 @@ public class DisplaySettingsAction extends AbstractAction {
 	private JLabel probTimeoutLabel;
 	private JLabel downloadProBCliLabel;
 	private JButton downloadProBClitButton;
+	private JLabel cbcDepthLabel;
+	private JTextField cbcDepthField;
+	private JLabel findPreambleLabel;
+	private JCheckBox findPreambleCB;
 
 
 
@@ -127,6 +131,13 @@ public class DisplaySettingsAction extends AbstractAction {
 		saveButton = new JButton("Save Settings");
 		saveButton.addActionListener(new SaveSettingsAction(this));
 
+		findPreambleLabel = createLabel("Find preamble: ");
+		findPreambleCB = new JCheckBox("Use ProB's CBC to find test preamble (experimental)");
+		findPreambleCB.setSelected(Configurations.isFindPreamble());
+
+		cbcDepthLabel = createLabel("CBC Search Depth: ");
+		cbcDepthField = new JTextField(String.valueOf(Configurations.getCBCDepth()), 4);
+
 		configPanel.add(probPathLabel, gbc(0, 0, GridBagConstraints.EAST));
 		configPanel.add(getProbPathField(), gbc(1, 0, GridBagConstraints.WEST));
 
@@ -160,7 +171,13 @@ public class DisplaySettingsAction extends AbstractAction {
 		configPanel.add(probTimeoutLabel, gbc(0, 10, GridBagConstraints.EAST));
 		configPanel.add(probTimeoutField, gbc(1, 10, GridBagConstraints.WEST));
 
-		configPanel.add(saveButton, gbc(1, 11, GridBagConstraints.EAST));
+		configPanel.add(findPreambleLabel, gbc(0, 11, GridBagConstraints.EAST));
+		configPanel.add(findPreambleCB, gbc(1, 11, GridBagConstraints.WEST));
+
+		configPanel.add(cbcDepthLabel, gbc(0, 12, GridBagConstraints.EAST));
+		configPanel.add(cbcDepthField, gbc(1, 12, GridBagConstraints.WEST));
+
+		configPanel.add(saveButton, gbc(1, 13, GridBagConstraints.EAST));
 
 		settingsFrame.getContentPane().add(configPanel);
 		settingsFrame.pack();
@@ -265,4 +282,17 @@ public class DisplaySettingsAction extends AbstractAction {
 	public JCheckBox getInvariantOKOracCB() {
 		return invariantOKOracCB;
 	}
+
+
+
+	public JCheckBox getFindPreambleCB() {
+		return findPreambleCB;
+	}
+
+
+
+	public JTextField getCbcDepthField() {
+		return cbcDepthField;
+	}
+
 }

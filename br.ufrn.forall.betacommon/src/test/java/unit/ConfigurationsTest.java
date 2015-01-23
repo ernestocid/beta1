@@ -59,4 +59,18 @@ public class ConfigurationsTest {
 	public void shouldGetUseProBRandomEnumeration() {
 		assertFalse(Configurations.getRandomiseEnumerationOrder());
 	}
+
+
+
+	@Test
+	public void shouldGetCBCDepth() {
+		assertEquals(5, Configurations.getCBCDepth());
+	}
+
+
+
+	@Test
+	public void shouldGetFindPreamble() {
+		assertFalse(Configurations.isFindPreamble());
+	}
 }

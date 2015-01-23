@@ -34,7 +34,7 @@ public class GenerateCBCTestsCommand {
 				Configurations.getProBPath() + "probcli",
 				this.machine.getAbsolutePath(),
 				"-cbc_tests",
-				"5", // depth used in the search TODO: Make this a setting
+				String.valueOf(Configurations.getCBCDepth()),
 				"1=1",
 				this.outputXML.getAbsolutePath(),
 				"-cbc_cover",

@@ -94,7 +94,7 @@ public class PreambleCalculationTest {
 	public void shouldFindPreamble_CannotFindPreambleForGoal() {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/atm.mch"));
 		Operation operationUnderTest = machine.getOperation(1);
-		String stateGoal = "mm : INT & 1=2";
+		String stateGoal = "mm : INT & 0 > 1";
 		PreambleCalculation preambleCalculation = new PreambleCalculation(operationUnderTest, stateGoal);
 
 		// Getting actual result

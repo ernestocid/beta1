@@ -55,7 +55,11 @@ public class CBCMachineBuilder {
 
 
 	private String createPromotedOperations() {
-		return "PROMOTES " + operationsFromOriginalMachineWithoutOperationUnderTest();
+		if(operationsFromOriginalMachineWithoutOperationUnderTest().trim().equals("")) {
+			return "";
+		} else {
+			return "PROMOTES " + operationsFromOriginalMachineWithoutOperationUnderTest();
+		}
 	}
 
 

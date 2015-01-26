@@ -18,6 +18,7 @@ import testgeneration.BETATestSuite;
 import testgeneration.OracleEvaluation;
 import testgeneration.coveragecriteria.InputSpacePartitionCriterion;
 import testgeneration.coveragecriteria.LogicalCoverage;
+import testgeneration.preamblecalculation.Event;
 import tools.FileTools;
 
 public class HTMLReport {
@@ -150,6 +151,7 @@ public class HTMLReport {
 
 			tags.put("{{TESTCASE_ID}}", Integer.toString(i + 1) + " " + isNegativeOrPositive(testCase));
 			tags.put("{{TESTCASE_FORMULA}}", testCase.getTestFormulaWithoutInvariant());
+			tags.put("{{PREAMBLE}}", generatePreambleList(testCase));
 			tags.put("{{STATE_VARIABLES_LIST}}", generateStateVariablesList(testCase));
 			tags.put("{{INPUT_VALUES_LIST}}", generateInputParametersList(testCase));
 
@@ -165,6 +167,30 @@ public class HTMLReport {
 		}
 
 		return testCaseListHTML.toString();
+	}
+
+
+
+	private String generatePreambleList(BETATestCase testCase) {
+		StringBuffer preambleText = new StringBuffer("");
+		
+		List<Event> preamble = testCase.getPreamble();
+		
+		if(preamble.size() > 0) {
+			preambleText.append("<ol>\n");
+
+			for(Event event : preamble) {
+				preambleText.append("\t<li>\n");
+				preambleText.append("\t" + event.getEventName() + "(" + event.getEventParameters() + ")");
+				preambleText.append("\t</li>\n");
+			}
+
+			preambleText.append("</ol>");
+		} else {
+			preambleText.append("<h4>No preamble generated</h4>");
+		}
+		
+		return preambleText.toString();
 	}
 
 

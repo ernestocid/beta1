@@ -15,6 +15,7 @@ import parser.Operation;
 import reports.HTMLReport;
 import testgeneration.BETATestSuite;
 import testgeneration.coveragecriteria.BoundaryValueAnalysis;
+import testgeneration.coveragecriteria.ClauseCoverage;
 import testgeneration.coveragecriteria.CoverageCriterion;
 import testgeneration.coveragecriteria.EquivalenceClasses;
 import tools.FileTools;
@@ -29,6 +30,7 @@ public class HTMLReportGenerationTest {
 		Configurations.setUseKodkod(false);
 		Configurations.setRandomiseEnumerationOrder(false);
 		Configurations.setUseProBApiToSolvePredicates(false);
+		Configurations.setFindPreamble(false);
 	}
 
 
@@ -132,6 +134,30 @@ public class HTMLReportGenerationTest {
 
 		assertEquals(expectedReport, actualReport);
 	}
+
+
+
+	@Test
+	public void shouldGenerateHTMLReportForWithPreambles() {
+		Configurations.setFindPreamble(true);
+		Configurations.setAutomaticOracleEvaluation(false);
+
+		Machine machine = new Machine(new File("src/test/resources/machines/others/Course.mch"));
+		Operation operationUnderTest = machine.getOperation(3); // student_pass_or_fail
+		CoverageCriterion coverageCriterion = new ClauseCoverage(operationUnderTest);
+
+		BETATestSuite testSuite = new BETATestSuite(coverageCriterion);
+
+		HTMLReport report = new HTMLReport(testSuite, new File("src/test/resources/test_reports/html/student_pass_or_fail_LC_CC_report.html"));
+		report.generateReport();
+
+		String expectedReport = FileTools.getFileContent(new File("src/test/resources/test_reports/html/expected_student_pass_or_fail_LC_CC_report.html"));
+		String actualReport = FileTools.getFileContent(new File("src/test/resources/test_reports/html/student_pass_or_fail_LC_CC_report.html"));
+
+		assertEquals(expectedReport, actualReport);
+	}
+
+
 
 	// TODO: We cannot put a machine in the state we want if one of its state
 	// variables is related to an abstract set.

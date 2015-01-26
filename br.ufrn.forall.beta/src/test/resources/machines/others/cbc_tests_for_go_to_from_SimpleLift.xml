@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extended_test_suite>
+  <test_case>
+    <initialisation>
+      <value type="variable" name="floor">1</value>
+    </initialisation>
+    <step name="go_to_test1">
+      <value name="nFloor">-1</value>
+    </step>
+  </test_case>
+</extended_test_suite>

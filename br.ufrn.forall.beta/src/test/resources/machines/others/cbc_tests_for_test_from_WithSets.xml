@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extended_test_suite>
+  <test_case>
+    <initialisation>
+      <value type="variable" name="temp">{1,2,3}</value>
+    </initialisation>
+    <step name="test_test1" />
+  </test_case>
+</extended_test_suite>

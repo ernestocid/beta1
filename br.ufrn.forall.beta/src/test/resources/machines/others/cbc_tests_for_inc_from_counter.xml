@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extended_test_suite>
+  <test_case>
+    <initialisation>
+      <value type="variable" name="value">0</value>
+      <value type="variable" name="overflow">FALSE</value>
+    </initialisation>
+    <step name="inc_test1" />
+  </test_case>
+</extended_test_suite>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extended_test_suite>
+  <test_case>
+    <initialisation>
+    </initialisation>
+    <step name="op_test1">
+      <value name="yy">-1</value>
+    </step>
+  </test_case>
+</extended_test_suite>

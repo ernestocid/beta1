@@ -41,13 +41,14 @@ public class PreambleCalculation {
 
 		CBCMachineBuilder cbcMachineBuilder = new CBCMachineBuilder(getOperationUnderTest(), testCasePredicates);
 		File cbcMachine = cbcMachineBuilder.getBuiltMachine();
-		File outputXMLFile = getOutputFileFor(cbcMachine);
+		String outputXMLFile = getOutputFileFor(cbcMachine);
+
 		String operationToCover = new Machine(cbcMachine).getOperation(0).getName();
 
 		GenerateCBCTestsCommand cbcCmd = new GenerateCBCTestsCommand(cbcMachine, operationToCover, outputXMLFile);
 		cbcCmd.execute();
 
-		List<Event> preamble = getListOfEventsFromXML(outputXMLFile);
+		List<Event> preamble = getListOfEventsFromXML(new File(outputXMLFile));
 
 		return preamble;
 	}
@@ -63,8 +64,13 @@ public class PreambleCalculation {
 			Document doc = documentBuilder.parse(outputXMLFile);
 			doc.getDocumentElement().normalize();
 
-			if (hasNoInitialisation(doc)) {
-				preamble.add(getInitialisationEvent(doc));
+			if (hasAtLeastOneElementChild(doc.getElementsByTagName("extended_test_suite"))) {
+				NodeList initialisationNodes = doc.getElementsByTagName("initialisation");
+
+				if (hasAtLeastOneElementChild(initialisationNodes)) {
+					preamble.add(getInitialisationEvent(initialisationNodes));
+				}
+
 				preamble.addAll(getOtherEvents(doc));
 			}
 
@@ -81,8 +87,14 @@ public class PreambleCalculation {
 
 
 
-	private boolean hasNoInitialisation(Document doc) {
-		return doc.getElementsByTagName("initialisation").getLength() != 0;
+	private boolean hasAtLeastOneElementChild(NodeList nodeChildren) {
+		for (int i = 0; i < nodeChildren.getLength(); i++) {
+			if (nodeChildren.item(i).getNodeType() == Node.ELEMENT_NODE) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 
@@ -110,40 +122,45 @@ public class PreambleCalculation {
 		}
 
 		// Remove last event that was only used as a goal
-		events.remove(events.size() - 1);
+		if (events.size() > 0) {
+			events.remove(events.size() - 1);
+		}
 
 		return events;
 	}
 
 
 
-	private Event getInitialisationEvent(Document doc) {
-		NodeList initialisation = doc.getElementsByTagName("initialisation");
+	private Event getInitialisationEvent(NodeList initialisationNodes) {
+		Node someInitialisation = initialisationNodes.item(0);
 
-		NodeList childNodes = initialisation.item(0).getChildNodes();
+		if (hasAtLeastOneElementChild(someInitialisation.getChildNodes())) {
+			NodeList initialisationSteps = someInitialisation.getChildNodes();
+			Map<String, String> initialisationParameters = new HashMap<String, String>();
 
-		Map<String, String> initialisationParameters = new HashMap<String, String>();
+			for (int i = 0; i < initialisationSteps.getLength(); i++) {
+				if (initialisationSteps.item(i).getNodeType() == Node.ELEMENT_NODE) {
+					String variableName = initialisationSteps.item(i).getAttributes().getNamedItem("name").getTextContent();
+					String variableValue = initialisationSteps.item(i).getTextContent();
 
-		for (int i = 0; i < childNodes.getLength(); i++) {
-			if (childNodes.item(i).getNodeType() == Node.ELEMENT_NODE) {
-				String variableName = childNodes.item(i).getAttributes().getNamedItem("name").getTextContent();
-				String variableValue = childNodes.item(i).getTextContent();
-
-				initialisationParameters.put(variableName, variableValue);
+					initialisationParameters.put(variableName, variableValue);
+				}
 			}
+
+			Event initialisationEvent = new Event("initialisation", initialisationParameters);
+			return initialisationEvent;
+		} else {
+			Event initialisationEvent = new Event("initialisation", new HashMap<String, String>());
+			return initialisationEvent;
 		}
-
-		Event initialisationEvent = new Event("initialisation", initialisationParameters);
-
-		return initialisationEvent;
 	}
 
 
 
-	private File getOutputFileFor(File sourceMachine) {
+	private String getOutputFileFor(File sourceMachine) {
 		String outputXMLFile = sourceMachine.getParentFile().getAbsolutePath() + "/cbc_tests_for_" + operationUnderTest.getName() + "_from_"
 				+ operationUnderTest.getMachine().getName() + ".xml";
-		return new File(outputXMLFile);
+		return outputXMLFile;
 	}
 
 

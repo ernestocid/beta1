@@ -12,8 +12,8 @@
     </step>
     <step name="add_grade">
       <value name="student">STUDENT1</value>
-      <value name="grade">4</value>
-      <modified name="grades">{(STUDENT1|->4)}</modified>
+      <value name="grade">0</value>
+      <modified name="grades">{(STUDENT1|->0)}</modified>
     </step>
     <step name="present_on_lab_classes">
       <value name="student">STUDENT1</value>

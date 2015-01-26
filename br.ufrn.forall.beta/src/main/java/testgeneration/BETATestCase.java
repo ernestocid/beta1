@@ -1,6 +1,9 @@
 package testgeneration;
 
+import java.util.List;
 import java.util.Map;
+
+import testgeneration.preamblecalculation.Event;
 
 public class BETATestCase implements Comparable<BETATestCase> {
 
@@ -9,18 +12,20 @@ public class BETATestCase implements Comparable<BETATestCase> {
 	private Map<String, String> stateValues;
 	private Map<String, String> inputParamValues;
 	private boolean negative;
+	private List<Event> preamble;
 	private BETATestSuite testSuite;
 
 
 
 	public BETATestCase(String testFormula, String testFormulaWithoutInvariant, Map<String, String> stateValues, Map<String, String> inputParamValues,
-			boolean negative, BETATestSuite testSuite) {
+			boolean negative, List<Event> preamble, BETATestSuite testSuite) {
 
 		this.testFormula = testFormula;
 		this.testFormulaWithoutInvariant = testFormulaWithoutInvariant;
 		this.stateValues = stateValues;
 		this.inputParamValues = inputParamValues;
 		this.negative = negative;
+		this.preamble = preamble;
 		this.testSuite = testSuite;
 	}
 
@@ -103,5 +108,11 @@ public class BETATestCase implements Comparable<BETATestCase> {
 		testCaseRepresentation.append("Negative: " + this.negative + "\n");
 
 		return testCaseRepresentation.toString();
+	}
+
+
+
+	public List<Event> getPreamble() {
+		return preamble;
 	}
 }

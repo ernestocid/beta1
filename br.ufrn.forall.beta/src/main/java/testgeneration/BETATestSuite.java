@@ -1,6 +1,5 @@
 package testgeneration;
 
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -12,6 +11,8 @@ import java.util.Set;
 import parser.Operation;
 import parser.decorators.predicates.MyPredicate;
 import testgeneration.coveragecriteria.CoverageCriterion;
+import testgeneration.preamblecalculation.Event;
+import testgeneration.preamblecalculation.PreambleCalculation;
 import testgeneration.predicateevaluators.AuxiliarMachinePredicateEvaluator;
 import testgeneration.predicateevaluators.IPredicateEvaluator;
 import testgeneration.predicateevaluators.ProBApiPredicateEvaluator;
@@ -78,15 +79,30 @@ public class BETATestSuite {
 
 			// Setting up test case and adding to test suite.
 
-			BETATestCase testCase = new BETATestCase(animation.getFormula(), generateTestFormulaWithoutInvariant(animation.getPredicate()),
-					getAttributeValues(animationValues), getParamValues(animationValues), isNegativeTest(animation, mappingOfPositiveAndNegativeTestFormulas),
-					this);
+			String testFomula = animation.getFormula();
+			String testFormulaWithoutInvariant = generateTestFormulaWithoutInvariant(animation.getPredicate());
+			HashMap<String, String> attributeValues = getAttributeValues(animationValues);
+			HashMap<String, String> paramValues = getParamValues(animationValues);
+			boolean isNegative = isNegativeTest(animation, mappingOfPositiveAndNegativeTestFormulas);
+			List<Event> preamble = new ArrayList<Event>();
+
+			if(Configurations.isFindPreamble()) {
+				preamble = getPreamble(getOperationUnderTest(), testFomula);
+			}
+
+			BETATestCase testCase = new BETATestCase(testFomula, testFormulaWithoutInvariant, attributeValues, paramValues, isNegative, preamble, this);
 
 			testCases.add(testCase);
-
 		}
 
 		Collections.sort(testCases);
+	}
+
+
+
+	private List<Event> getPreamble(Operation operation, String stateGoal) {
+		PreambleCalculation preambleCalculation = new PreambleCalculation(operation, stateGoal);
+		return preambleCalculation.getPathToState();
 	}
 
 
@@ -250,11 +266,5 @@ public class BETATestSuite {
 	public CoverageCriterion getCoverageCriterion() {
 		return coverageCriterion;
 	}
-
-
-
-//	public TestingStrategy getTestingStrategy() {
-//		return this.coverageCriterion;
-//	}
 
 }

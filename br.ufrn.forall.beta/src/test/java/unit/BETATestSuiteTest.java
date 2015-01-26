@@ -1,16 +1,22 @@
 package unit;
 
 import static org.junit.Assert.*;
+import static com.google.common.truth.Truth.*;
+import static org.mockito.Mockito.*;
 import general.CombinatorialCriteria;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
+import org.junit.Before;
 import org.junit.Test;
 
+import configurations.Configurations;
 import parser.Machine;
 import parser.Operation;
 import testgeneration.BETATestCase;
@@ -22,8 +28,17 @@ import testgeneration.coveragecriteria.CombinatorialClauseCoverage;
 import testgeneration.coveragecriteria.CoverageCriterion;
 import testgeneration.coveragecriteria.EquivalenceClasses;
 import testgeneration.coveragecriteria.PredicateCoverage;
+import testgeneration.preamblecalculation.Event;
 
 public class BETATestSuiteTest {
+
+
+	@Before
+	public void setup() {
+		Configurations.setFindPreamble(false);
+	}
+
+
 
 	@Test
 	public void shouldGenerateTestCasesForSingleCharacteristics() {
@@ -194,4 +209,65 @@ public class BETATestSuiteTest {
 		// Asserting infeasible test cases are correct
 		assertEquals("((averageGrade : 0..5 & 1 = 1) <=> (not(averageGrade : 0..5 & 1 = 2))) & not(averageGrade : INT)", testSuite.getUnsolvableFormulas().get(0));
 	}
+	
+	
+	
+	
+	@Test
+	public void shouldCreateTestCasesForActiveClauseCoverageAndFindPreamble() {
+		Configurations.setFindPreamble(true);
+
+		Machine machine = new Machine(new File("src/test/resources/machines/others/PassFinalOrFailIFELSIFELSE.mch"));
+		Operation operationUnderTest = machine.getOperation(0);
+		CoverageCriterion coverageCriterion = new ActiveClauseCoverage(operationUnderTest);
+
+		BETATestSuite testSuite = new BETATestSuite(coverageCriterion);
+
+		assertThat(testSuite.getTestCases().get(0).getTestFormula()).isEqualTo("((1 = 1 & averageGrade : INT) <=> (not(1 = 2 & averageGrade : INT))) & not(averageGrade : 0..5)");
+		assertThat(testSuite.getTestCases().get(1).getTestFormula()).isEqualTo("((averageGrade : 0..5 & 1 = 1) <=> (not(averageGrade : 0..5 & 1 = 2))) & averageGrade : INT");
+		assertThat(testSuite.getTestCases().get(2).getTestFormula()).isEqualTo("averageGrade : 0..5 & ((1 = 1 & averageGrade : INT) <=> (not(1 = 2 & averageGrade : INT)))");
+		assertThat(testSuite.getTestCases().get(3).getTestFormula()).isEqualTo("averageGrade : 0..5 & ((1 = 1 & averageGrade < 4) <=> (not(1 = 2 & averageGrade < 4))) & not(averageGrade >= 2) & averageGrade : INT");
+		assertThat(testSuite.getTestCases().get(4).getTestFormula()).isEqualTo("averageGrade : 0..5 & ((averageGrade >= 2 & 1 = 1) <=> (not(averageGrade >= 2 & 1 = 2))) & averageGrade < 4 & averageGrade : INT");
+		assertThat(testSuite.getTestCases().get(5).getTestFormula()).isEqualTo("averageGrade : 0..5 & ((averageGrade >= 2 & 1 = 1) <=> (not(averageGrade >= 2 & 1 = 2))) & not(averageGrade < 4) & averageGrade : INT");
+		assertThat(testSuite.getTestCases().get(6).getTestFormula()).isEqualTo("averageGrade : 0..5 & averageGrade >= 2 & ((1 = 1 & averageGrade < 4) <=> (not(1 = 2 & averageGrade < 4))) & averageGrade : INT");
+		assertThat(testSuite.getTestCases().get(7).getTestFormula()).isEqualTo("averageGrade : 0..5 & averageGrade >= 4 & averageGrade : INT");
+		assertThat(testSuite.getTestCases().get(8).getTestFormula()).isEqualTo("averageGrade : 0..5 & not(averageGrade >= 4) & averageGrade : INT");
+
+		List<Event> preambleTC1 = new ArrayList<Event>(); 
+		preambleTC1.add(new Event("initialisation", new HashMap<String, String>()));
+		assertThat(testSuite.getTestCases().get(0).getPreamble()).isEqualTo(preambleTC1);
+
+		List<Event> preambleTC2 = new ArrayList<Event>(); 
+		preambleTC2.add(new Event("initialisation", new HashMap<String, String>()));
+		assertThat(testSuite.getTestCases().get(1).getPreamble()).isEqualTo(preambleTC2);
+		
+		List<Event> preambleTC3 = new ArrayList<Event>(); 
+		preambleTC3.add(new Event("initialisation", new HashMap<String, String>()));
+		assertThat(testSuite.getTestCases().get(2).getPreamble()).isEqualTo(preambleTC3);
+		
+		List<Event> preambleTC4 = new ArrayList<Event>(); 
+		preambleTC4.add(new Event("initialisation", new HashMap<String, String>()));
+		assertThat(testSuite.getTestCases().get(3).getPreamble()).isEqualTo(preambleTC4);
+		
+		List<Event> preambleTC5 = new ArrayList<Event>(); 
+		preambleTC5.add(new Event("initialisation", new HashMap<String, String>()));
+		assertThat(testSuite.getTestCases().get(4).getPreamble()).isEqualTo(preambleTC5);
+		
+		List<Event> preambleTC6 = new ArrayList<Event>();
+		assertThat(testSuite.getTestCases().get(5).getPreamble()).isEqualTo(preambleTC6);
+		
+		List<Event> preambleTC7 = new ArrayList<Event>(); 
+		preambleTC7.add(new Event("initialisation", new HashMap<String, String>()));
+		assertThat(testSuite.getTestCases().get(6).getPreamble()).isEqualTo(preambleTC7);
+		
+		List<Event> preambleTC8 = new ArrayList<Event>(); 
+		assertThat(testSuite.getTestCases().get(7).getPreamble()).isEqualTo(preambleTC8);
+		
+		List<Event> preambleTC9 = new ArrayList<Event>(); 
+		preambleTC9.add(new Event("initialisation", new HashMap<String, String>()));
+		assertThat(testSuite.getTestCases().get(8).getPreamble()).isEqualTo(preambleTC9);
+
+		assertThat(testSuite.getUnsolvableFormulas()).contains("((averageGrade : 0..5 & 1 = 1) <=> (not(averageGrade : 0..5 & 1 = 2))) & not(averageGrade : INT)");
+	}
+
 }

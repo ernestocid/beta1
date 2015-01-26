@@ -5,17 +5,18 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import tools.FileTools;
 import configurations.Configurations;
 
 public class GenerateCBCTestsCommand {
 
 	private File machine;
 	private String operationToCover;
-	private File outputXML;
+	private String outputXML;
 
 
 
-	public GenerateCBCTestsCommand(File machine, String operationToCover, File outputXML) {
+	public GenerateCBCTestsCommand(File machine, String operationToCover, String outputXML) {
 		this.machine = machine;
 		this.operationToCover = operationToCover;
 		this.outputXML = outputXML;
@@ -35,10 +36,18 @@ public class GenerateCBCTestsCommand {
 				this.machine.getAbsolutePath(),
 				"-cbc_tests",
 				String.valueOf(Configurations.getCBCDepth()),
-				"1=1",
-				this.outputXML.getAbsolutePath(),
+				"TRUE=TRUE",
+				this.outputXML,
 				"-cbc_cover",
-				this.operationToCover
+				this.operationToCover,
+				"-cbc_cover_final",
+//				"-p",
+//				"CLPFD",
+//				"TRUE",
+				"-p", 
+				"TIME_OUT", 
+				"10000"
+//				String.valueOf(Configurations.getProBTimeout())
 		};
 
 		return command;

@@ -13,6 +13,7 @@
         <test-case>
             <id>1</id>
             <formula>yy : INT &amp; xx : INT</formula>
+            <preamble/>
             <isNegative>false</isNegative>
             <state-variables/>
             <operation-parameters>

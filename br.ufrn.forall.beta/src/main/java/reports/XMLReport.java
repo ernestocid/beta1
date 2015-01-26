@@ -7,12 +7,14 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import testgeneration.BETATestCase;
 import testgeneration.BETATestSuite;
 import testgeneration.OracleEvaluation;
 import testgeneration.coveragecriteria.InputSpacePartitionCriterion;
 import testgeneration.coveragecriteria.LogicalCoverage;
+import testgeneration.preamblecalculation.Event;
 import configurations.Configurations;
 import nu.xom.Document;
 import nu.xom.Element;
@@ -112,7 +114,7 @@ public class XMLReport {
 
 
 	private String getTestingStrategy() {
-		if(this.testSuite.getCoverageCriterion() instanceof InputSpacePartitionCriterion) {
+		if (this.testSuite.getCoverageCriterion() instanceof InputSpacePartitionCriterion) {
 			return "Input Space Partition";
 		} else if (this.testSuite.getCoverageCriterion() instanceof LogicalCoverage) {
 			return "Logical Coverage";
@@ -161,6 +163,7 @@ public class XMLReport {
 
 		testCaseElement.appendChild(createTestCaseIdElement(testCase));
 		testCaseElement.appendChild(createTestCaseFormulaElement(testCase));
+		testCaseElement.appendChild(createTestCasePreambleElement(testCase));
 		testCaseElement.appendChild(createIsNegativeElement(testCase));
 		testCaseElement.appendChild(createStateVariablesElement(testCase));
 		testCaseElement.appendChild(createParametersElement(testCase));
@@ -171,6 +174,66 @@ public class XMLReport {
 		}
 
 		return testCaseElement;
+	}
+
+
+
+	private Element createTestCasePreambleElement(BETATestCase testCase) {
+		Element preambleElement = new Element("preamble");
+		List<Event> preamble = testCase.getPreamble();
+
+		for (Event event : preamble) {
+			preambleElement.appendChild(createPreambleEventElement(event));
+		}
+
+		return preambleElement;
+	}
+
+
+
+	private Element createPreambleEventElement(Event event) {
+		Element eventElement = new Element("event");
+
+		eventElement.appendChild(createPreambleEventNameElement(event));
+		eventElement.appendChild(createPreambleEventParametersElement(event));
+
+		return eventElement;
+	}
+
+
+
+	private Element createPreambleEventParametersElement(Event event) {
+		Map<String, String> eventParameters = event.getEventParameters();
+
+		Element eventParametersElement = new Element("event-parameters");
+
+		if (!eventParameters.isEmpty()) {
+			for (Entry<String, String> parameter : eventParameters.entrySet()) {
+				Element parameterElement = new Element("parameter");
+
+				Element parameterNameElement = new Element("parameter-name");
+				parameterNameElement.appendChild(parameter.getKey());
+
+				Element parameterValueElement = new Element("parameter-value");
+				parameterValueElement.appendChild(parameter.getValue());
+
+				parameterElement.appendChild(parameterNameElement);
+				parameterElement.appendChild(parameterValueElement);
+
+				eventParametersElement.appendChild(parameterElement);
+			}
+		}
+
+		return eventParametersElement;
+	}
+
+
+
+	private Element createPreambleEventNameElement(Event event) {
+		Element eventNameElement = new Element("event-name");
+		eventNameElement.appendChild(event.getEventName());
+
+		return eventNameElement;
 	}
 
 

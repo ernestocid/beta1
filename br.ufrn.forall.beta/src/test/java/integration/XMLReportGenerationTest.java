@@ -14,6 +14,7 @@ import parser.Machine;
 import parser.Operation;
 import reports.XMLReport;
 import testgeneration.BETATestSuite;
+import testgeneration.coveragecriteria.ClauseCoverage;
 import testgeneration.coveragecriteria.CoverageCriterion;
 import testgeneration.coveragecriteria.EquivalenceClasses;
 import tools.FileTools;
@@ -25,6 +26,7 @@ public class XMLReportGenerationTest {
 		Configurations.setMaxIntProperties(20);
 		Configurations.setMinIntProperties(-1);
 		Configurations.setAutomaticOracleEvaluation(true);
+		Configurations.setFindPreamble(false);
 	}
 
 
@@ -87,6 +89,28 @@ public class XMLReportGenerationTest {
 
 		String expectedReport = FileTools.getFileContent(new File("src/test/resources/test_reports/xml/expected_Calc_sum_EC_AC_report.xml"));
 		String actualReport = FileTools.getFileContent(new File("src/test/resources/test_reports/xml/Calc_sum_EC_AC_report.xml"));
+
+		assertEquals(expectedReport, actualReport);
+	}
+
+
+
+	@Test
+	public void shouldGenerateXMLReportForWithPreambles() {
+		Configurations.setFindPreamble(true);
+		Configurations.setAutomaticOracleEvaluation(false);
+
+		Machine machine = new Machine(new File("src/test/resources/machines/others/Course.mch"));
+		Operation operationUnderTest = machine.getOperation(3); // student_pass_or_fail
+		CoverageCriterion coverageCriterion = new ClauseCoverage(operationUnderTest);
+
+		BETATestSuite testSuite = new BETATestSuite(coverageCriterion);
+
+		XMLReport report = new XMLReport(testSuite, new File("src/test/resources/test_reports/xml/student_pass_or_fail_LC_CC_report.xml"));
+		report.generateReport();
+
+		String expectedReport = FileTools.getFileContent(new File("src/test/resources/test_reports/xml/expected_student_pass_or_fail_LC_CC_report.xml"));
+		String actualReport = FileTools.getFileContent(new File("src/test/resources/test_reports/xml/student_pass_or_fail_LC_CC_report.xml"));
 
 		assertEquals(expectedReport, actualReport);
 	}

@@ -16,6 +16,7 @@
         <test-case>
             <id>1</id>
             <formula>nFloor : 1..5 &amp; floor : 1..5 &amp; not(nFloor /= floor)</formula>
+            <preamble/>
             <isNegative>true</isNegative>
             <state-variables>
                 <variable>
@@ -46,6 +47,7 @@
         <test-case>
             <id>2</id>
             <formula>nFloor : MININT..((1 - 1)) &amp; floor : 1..5 &amp; nFloor /= floor</formula>
+            <preamble/>
             <isNegative>true</isNegative>
             <state-variables>
                 <variable>

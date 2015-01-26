@@ -16,13 +16,13 @@ public class Event {
 
 
 
-	public Object getEventName() {
+	public String getEventName() {
 		return this.eventName;
 	}
 
 
 
-	public Object getEventParameters() {
+	public Map<String, String> getEventParameters() {
 		return this.eventParameters;
 	}
 

@@ -1,3 +1,8 @@
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+
 subprojects {
     apply plugin: 'eclipse'
 	apply plugin: 'java'
@@ -17,6 +22,17 @@ subprojects {
     dependencies {
         testCompile "junit:junit:4.11"
     }
+}
+
+task configurationsFiles {
+	println 'Copying properties files to proper folders'
+	
+	Path source = Paths.get("config.properties");
+	Path target = Paths.get("br.ufrn.forall.betacommon/build/libs/config.properties");
+	
+	Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
+	
+	println 'Done!'
 }
 
 project(':br.ufrn.forall.beta') {

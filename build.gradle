@@ -28,6 +28,7 @@ project(':br.ufrn.forall.beta') {
 		compile project(':br.ufrn.forall.betaanimator'), project(':br.ufrn.forall.betacommon'), project(':br.ufrn.forall.betaparser'), project(':br.ufrn.forall.datacomb')
 		compile group: "de.prob2", name: "de.prob2.kernel", version: core_version , changing: true
 		compile group: "com.google.truth", name: "truth", version: "0.25" , changing: true
+		compile group: "net.sf.supercsv", name: "super-csv", version: "2.2.1" , changing: true
 		compile 'commons-io:commons-io:2.4'
 		compile 'commons-lang:commons-lang:2.2'
 		compile 'org.mockito:mockito-all:1.9.5'

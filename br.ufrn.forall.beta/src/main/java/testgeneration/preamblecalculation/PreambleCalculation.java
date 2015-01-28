@@ -16,6 +16,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import configurations.Configurations;
 import machinebuilder.CBCMachineBuilder;
 import parser.Machine;
 import parser.Operation;
@@ -41,14 +42,23 @@ public class PreambleCalculation {
 
 		CBCMachineBuilder cbcMachineBuilder = new CBCMachineBuilder(getOperationUnderTest(), testCasePredicates);
 		File cbcMachine = cbcMachineBuilder.getBuiltMachine();
-		String outputXMLFile = getOutputFileFor(cbcMachine);
+		File outputXMLFile = getOutputFileFor(cbcMachine);
 
 		String operationToCover = new Machine(cbcMachine).getOperation(0).getName();
 
 		GenerateCBCTestsCommand cbcCmd = new GenerateCBCTestsCommand(cbcMachine, operationToCover, outputXMLFile);
 		cbcCmd.execute();
 
-		List<Event> preamble = getListOfEventsFromXML(new File(outputXMLFile));
+		List<Event> preamble = getListOfEventsFromXML(outputXMLFile);
+
+		if (Configurations.isDeleteTempFiles()) {
+			cbcMachine.delete();
+			outputXMLFile.delete();
+
+			String probFilePath = cbcMachine.getAbsolutePath().replaceAll(".mch", ".prob");
+			File probFile = new File(probFilePath);
+			probFile.delete();
+		}
 
 		return preamble;
 	}
@@ -157,10 +167,10 @@ public class PreambleCalculation {
 
 
 
-	private String getOutputFileFor(File sourceMachine) {
+	private File getOutputFileFor(File sourceMachine) {
 		String outputXMLFile = sourceMachine.getParentFile().getAbsolutePath() + "/cbc_tests_for_" + operationUnderTest.getName() + "_from_"
 				+ operationUnderTest.getMachine().getName() + ".xml";
-		return outputXMLFile;
+		return new File(outputXMLFile);
 	}
 
 

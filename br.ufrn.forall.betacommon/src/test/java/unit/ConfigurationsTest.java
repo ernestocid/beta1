@@ -16,6 +16,7 @@ public class ConfigurationsTest {
 		Configurations.setUseProBApiToSolvePredicates(false);
 		Configurations.setMaxIntProperties(20);
 		Configurations.setMinIntProperties(-10);
+		Configurations.setFindPreamble(false);;
 	}
 
 

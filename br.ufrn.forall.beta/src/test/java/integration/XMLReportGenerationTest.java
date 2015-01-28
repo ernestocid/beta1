@@ -27,6 +27,7 @@ public class XMLReportGenerationTest {
 		Configurations.setMinIntProperties(-1);
 		Configurations.setAutomaticOracleEvaluation(true);
 		Configurations.setFindPreamble(false);
+		Configurations.setDeleteTempFiles(true);
 	}
 
 

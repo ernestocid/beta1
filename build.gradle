@@ -83,14 +83,14 @@ project(':br.ufrn.forall.betagui') {
 }
 
 project(':br.ufrn.forall.betaparser') {
-	def parser_version = '2.4.32'
+	def parser_version = '2.4.34'
 
 	dependencies {
 		compile group: "de.prob", name: "answerparser", version: parser_version , changing: true
 		compile group: "de.prob", name: "bparser", version: parser_version , changing: true
 		compile group: "de.prob", name: "cliparser", version: parser_version , changing: true
 		compile group: "de.prob", name: "parserbase", version: parser_version , changing: true
-	//	compile files('libs/probcliparser-2.4.18-SNAPSHOT.jar')
+		compile group: "com.google.truth", name: "truth", version: "0.25" , changing: true
 		compile 'org.mockito:mockito-all:1.9.5'
 	}
 }

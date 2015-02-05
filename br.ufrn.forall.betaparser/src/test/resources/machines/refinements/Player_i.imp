@@ -1,0 +1,67 @@
+IMPLEMENTATION
+   Player_i
+REFINES
+   Player
+VALUES
+    PLAYER = 1..22
+CONCRETE_VARIABLES
+    team_array
+INVARIANT
+    team_array : 0..10 >-> 1..22 &
+    ran(team_array) = team    
+INITIALISATION
+     team_array(0) :=1;
+     team_array(1) :=2;
+     team_array(2) :=3;
+     team_array(3) :=4;
+     team_array(4) :=5;
+     team_array(5) :=6;
+     team_array(6) :=7;
+     team_array(7) :=8;
+     team_array(8) :=9;
+     team_array(9) :=10;
+     team_array(10) :=11
+OPERATIONS
+   substitute ( pp , rr ) =
+   BEGIN
+       VAR ii, pl IN
+           ii := 0;
+           pl := 0;
+           WHILE ii < 11 DO
+               pl := team_array(ii);
+               IF pl = pp THEN
+                   team_array(ii) := rr;
+                   ii := 11
+               ELSE
+                   ii := ii + 1
+               END
+           INVARIANT
+               ii : 0..11
+           VARIANT
+               11 - ii
+           END
+        END
+   END;
+
+   aa <-- in_team( pp ) =
+   BEGIN
+       VAR ii, pl IN
+           ii := 0;
+           pl := 0;
+           aa := FALSE;
+           WHILE ii < 11 DO
+               pl := team_array(ii);
+               IF pl = pp THEN
+                   aa := TRUE;
+                   ii := 11
+               ELSE
+                   ii := ii + 1
+               END
+           INVARIANT
+               ii : 0..11
+           VARIANT
+               11 - ii
+           END
+       END
+   END
+END

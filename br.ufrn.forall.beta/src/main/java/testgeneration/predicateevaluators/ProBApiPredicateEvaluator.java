@@ -3,6 +3,7 @@ package testgeneration.predicateevaluators;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -35,57 +36,50 @@ public class ProBApiPredicateEvaluator extends AbstractPredicateEvaluator {
 
 	private void evaluate() {
 		List<Animation> animations = new ArrayList<Animation>();
-		String pathToMachine = getOperationUnderTest().getMachine().getFile().getAbsolutePath();
 		List<String> combinations = getCombinationsAsStrings();
 
-		try {
-			ClassicalBModel model = ProBApi.getInstance().b_load(pathToMachine, getPreferences());
-			StateSpace stateSpace = model.getStateSpace();
+		for (String formulaForEvaluation : combinations) {
+			List<Map<String, String>> solutions = new ArrayList<Map<String, String>>();
 
-			for (String formulaForEvaluation : combinations) {
-				List<Map<String, String>> solutions = new ArrayList<Map<String, String>>();
+			String quantifiedFormula = createQuantifiedFormula(formulaForEvaluation);
 
-				Trace trace = new Trace(stateSpace);
-				trace = trySetupConstants(trace);
+			Map<String, String> formulaSolution = evaluateFormula(quantifiedFormula);
 
-				trace = trace.execute("$initialise_machine", new ArrayList<String>());
+			solutions.add(formulaSolution);
 
-				try {
-					System.out.println("Using ProB API to solve: " + formulaForEvaluation);
-					trace = stateSpace.getTraceToState(new ClassicalB(formulaForEvaluation));
-
-					IEvalResult evalCurrent = trace.evalCurrent(new ClassicalB(formulaForEvaluation));
-
-					if (evalCurrent instanceof EvalResult) {
-						EvalResult result = (EvalResult) evalCurrent;
-
-						Map<String, String> solution = new HashMap<String, String>();
-						solution.putAll(getValuesForInputParams(result));
-						solution.putAll(getValuesForStateVariables(trace));
-
-						System.out.println("Found Solution: " + solution);
-						
-						solutions.add(solution);
-
-						Animation animation = new Animation(converFormulaToMyPredicate(formulaForEvaluation), solutions);
-						animations.add(animation);
-					} else {
-						System.out.println("Not an EvalResult");
-					}
-				} catch (RuntimeException e) {
-					System.out.println("Could not find solution!");
-					getInfeasibleFormulas().add(formulaForEvaluation);
-				}
-
-			}
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (BException e) {
-			e.printStackTrace();
+			Animation animation = new Animation(converFormulaToMyPredicate(formulaForEvaluation), solutions);
+			animations.add(animation);
 		}
 
 		super.getAnimations().addAll(animations);
+	}
+
+
+
+	private String createQuantifiedFormula(String formulaForEvaluation) {
+		StringBuffer quantifiedFormula = new StringBuffer("");
+
+		quantifiedFormula.append("#");
+
+		List<String> quantifiedVariables = new ArrayList<String>();
+
+		quantifiedVariables.addAll(getOperationUnderTest().getParameters());
+
+		if (getOperationUnderTest().getMachine().getVariables() != null) {
+			quantifiedVariables.addAll(getOperationUnderTest().getMachine().getVariables().getAll());
+		}
+
+		for (int i = 0; i < quantifiedVariables.size(); i++) {
+			if (i < quantifiedVariables.size() - 1) {
+				quantifiedFormula.append(quantifiedVariables.get(i) + ", ");
+			} else {
+				quantifiedFormula.append(quantifiedVariables.get(i) + ".");
+			}
+		}
+
+		quantifiedFormula.append("(" + formulaForEvaluation + ")");
+
+		return quantifiedFormula.toString();
 	}
 
 
@@ -176,6 +170,49 @@ public class ProBApiPredicateEvaluator extends AbstractPredicateEvaluator {
 		}
 
 		return valuesForInputParams;
+	}
+
+
+
+	public Map<String, String> evaluateFormula(String formula) {
+		String pathToMachine = getOperationUnderTest().getMachine().getFile().getAbsolutePath();
+
+		try {
+			ClassicalBModel model = ProBApi.getInstance().b_load(pathToMachine, getPreferences());
+			StateSpace stateSpace = model.getStateSpace();
+
+			Trace trace = new Trace(stateSpace);
+			trace = trySetupConstants(trace);
+			trace = trace.execute("$initialise_machine", new ArrayList<String>());
+
+			System.out.println("Using ProB API to solve: " + formula);
+			trace = stateSpace.getTraceToState(new ClassicalB(formula));
+
+			IEvalResult evalCurrent = trace.evalCurrent(new ClassicalB(formula));
+
+			if (evalCurrent instanceof EvalResult) {
+				EvalResult result = (EvalResult) evalCurrent;
+
+				Map<String, String> solution = new HashMap<String, String>();
+
+				solution.putAll(result.getSolutions());
+
+				System.out.println("Found Solution: " + solution);
+
+				return solution;
+			} else {
+				System.out.println("Not an EvalResult");
+			}
+		} catch (RuntimeException e) {
+			System.out.println("Could not find solution!");
+			getInfeasibleFormulas().add(formula);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (BException e) {
+			e.printStackTrace();
+		}
+
+		return new HashMap<String, String>();
 	}
 
 }

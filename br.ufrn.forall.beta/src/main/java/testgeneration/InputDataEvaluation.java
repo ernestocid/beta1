@@ -99,7 +99,13 @@ public class InputDataEvaluation {
 
 		if (this.operationUnderTest.getMachine().getVariables() != null) {
 			for (String variable : this.operationUnderTest.getMachine().getVariables().getAll()) {
-				valuesForStateVariables.put(variable, trace.evalCurrent(variable).toString());
+				IEvalResult evalCurrent = trace.evalCurrent(variable);
+
+				if (evalCurrent instanceof EvalResult) {
+					EvalResult result = (EvalResult) evalCurrent;
+					valuesForStateVariables.put(variable, result.getValue());
+				}
+
 			}
 		}
 

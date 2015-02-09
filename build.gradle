@@ -27,10 +27,18 @@ subprojects {
 task configurationsFiles {
 	println 'Copying properties files to proper folders'
 	
-	Path source = Paths.get("config.properties");
-	Path target = Paths.get("br.ufrn.forall.betacommon/build/libs/config.properties");
+	// to libs folder
 	
-	Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
+	Path source = Paths.get("config.properties");
+	Path libsFolder = Paths.get("br.ufrn.forall.betacommon/build/libs/config.properties");
+	
+	Files.copy(source, libsFolder, StandardCopyOption.REPLACE_EXISTING);
+	
+	// todo resources folder
+
+	Path resourcesFolder = Paths.get("br.ufrn.forall.betagui/build/resources/main/config.properties");
+	
+	Files.copy(source, resourcesFolder, StandardCopyOption.REPLACE_EXISTING);
 	
 	println 'Done!'
 }

@@ -406,6 +406,20 @@ public class PartitionerTest {
 
 		Set<Characteristic> expected = new HashSet<Characteristic>();
 
+//		ThreeInRow(bposn) = TRUE, 
+//		ThreeInRow(rposn) = TRUE, 
+//		bposn \/ rposn = 0..8,		
+//		bposn <: 0..8
+//		rposn <: 0..8, 
+//		bposn /\ rposn = {}, 
+//		turn : Player, 
+		
+ 
+//		 
+//		 
+//		 
+//		 
+		
 		Characteristic mockedChar1 = mock(Characteristic.class);
 		when(mockedChar1.toString()).thenReturn("bposn \\/ rposn = 0..8");
 		when(mockedChar1.getCharacteristic()).thenReturn("bposn \\/ rposn = 0..8");
@@ -433,7 +447,24 @@ public class PartitionerTest {
 		Characteristic mockedChar7 = mock(Characteristic.class);
 		when(mockedChar7.toString()).thenReturn("bposn <: 0..8");
 		when(mockedChar7.getCharacteristic()).thenReturn("bposn <: 0..8");
+		
+		Characteristic mockedChar8 = mock(Characteristic.class);
+		when(mockedChar8.toString()).thenReturn("((ThreeInRow(bposn) = TRUE) => (ThreeInRow(rposn) = FALSE))");
+		when(mockedChar8.getCharacteristic()).thenReturn("((ThreeInRow(bposn) = TRUE) => (ThreeInRow(rposn) = FALSE))");
 
+		Characteristic mockedChar9 = mock(Characteristic.class);
+		when(mockedChar9.toString()).thenReturn("((ThreeInRow(rposn) = TRUE) => (ThreeInRow(bposn) = FALSE))");
+		when(mockedChar9.getCharacteristic()).thenReturn("((ThreeInRow(rposn) = TRUE) => (ThreeInRow(bposn) = FALSE))");
+		
+		Characteristic mockedChar10 = mock(Characteristic.class);
+		when(mockedChar10.toString()).thenReturn("((turn = red) => (card(rposn) <= card(bposn) & card(bposn) <= (card(rposn) + 1)))");
+		when(mockedChar10.getCharacteristic()).thenReturn("((turn = red) => (card(rposn) <= card(bposn) & card(bposn) <= (card(rposn) + 1)))");
+		
+		Characteristic mockedChar11 = mock(Characteristic.class);
+		when(mockedChar11.toString()).thenReturn("((turn = blue) => (card(bposn) <= card(rposn) & card(rposn) <= (card(bposn) + 1)))");
+		when(mockedChar11.getCharacteristic()).thenReturn("((turn = blue) => (card(bposn) <= card(rposn) & card(rposn) <= (card(bposn) + 1)))");
+		
+		
 		expected.add(mockedChar1);
 		expected.add(mockedChar2);
 		expected.add(mockedChar3);
@@ -441,8 +472,13 @@ public class PartitionerTest {
 		expected.add(mockedChar5);
 		expected.add(mockedChar6);
 		expected.add(mockedChar7);
+		expected.add(mockedChar8);
+		expected.add(mockedChar9);
+		expected.add(mockedChar10);
+		expected.add(mockedChar11);
 
-		assertEquals(7, partitioner.getOperationCharacteristics().size());
+		
+		assertEquals(11, partitioner.getOperationCharacteristics().size());
 		assertTrue(compareSetsOfCharacteristics(expected, partitioner.getOperationCharacteristics()));
 	}
 
@@ -457,7 +493,7 @@ public class PartitionerTest {
 			characteristics1.add(c.getCharacteristic());
 		}
 
-		for (Characteristic c : setOne) {
+		for (Characteristic c : setTwo) {
 			characteristics2.add(c.getCharacteristic());
 		}
 

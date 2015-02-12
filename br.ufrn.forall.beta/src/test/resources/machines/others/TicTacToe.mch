@@ -1,13 +1,8 @@
-/* TicTacToe
- * Author: 
- * Creation date: 30/07/14
- */
 MACHINE
     TicTacToe
 
 SETS
-    Player = {blue, red};
-    Result = {blue_win, red_win, draw}
+    Player = {blue, red}/*//;Result = {blue_win, red_win, draw}*/
 
 ABSTRACT_CONSTANTS
     WinnerRows,
@@ -27,7 +22,11 @@ INVARIANT
     bposn <: 0..8 &
     rposn <: 0..8 &
     bposn /\ rposn = {} &
-    turn : Player
+    (ThreeInRow(bposn) = TRUE => ThreeInRow(rposn) = FALSE) &
+    (ThreeInRow(rposn) = TRUE => ThreeInRow(bposn) = FALSE) &
+    turn : Player &
+    (turn = blue => card(bposn) <= card(rposn) & card(rposn) <= (card(bposn) + 1)) &
+    (turn = red => card(rposn) <= card(bposn) & card(bposn) <= (card(rposn) + 1))
 
 INITIALISATION
     bposn := {} ||
@@ -62,11 +61,11 @@ OPERATIONS
         (bposn \/ rposn) = 0..8
     THEN
         IF ThreeInRow(bposn) = TRUE THEN
-            result := blue_win
+            result := 1/*//blue_win*/
         ELSIF ThreeInRow(rposn) = TRUE THEN
-            result := red_win
+            result := 2 /*red_win*/
         ELSE
-            result := draw
+            result := 0 /*//draw*/
         END
     END
 END

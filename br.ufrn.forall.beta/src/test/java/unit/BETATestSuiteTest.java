@@ -2,7 +2,6 @@ package unit;
 
 import static org.junit.Assert.*;
 import static com.google.common.truth.Truth.*;
-import static org.mockito.Mockito.*;
 import general.CombinatorialCriteria;
 
 import java.io.File;
@@ -270,4 +269,44 @@ public class BETATestSuiteTest {
 		assertThat(testSuite.getUnsolvableFormulas()).contains("((averageGrade : 0..5 & 1 = 1) <=> (not(averageGrade : 0..5 & 1 = 2))) & not(averageGrade : INT)");
 	}
 
+
+
+	@Test
+	public void shouldGenerateTestsForMachinesWithAbstractVariables() {
+		Machine machine = new Machine(new File("src/test/resources/machines/others/TicTacToe.mch"));
+		Operation operationUnderTest = machine.getOperation(0);
+		CoverageCriterion coverageCriterion = new EquivalenceClasses(operationUnderTest, CombinatorialCriteria.EACH_CHOICE);
+
+		BETATestSuite testSuite = new BETATestSuite(coverageCriterion);
+
+		// Setting up expected values
+		
+		Map<String, String> expectedInputParamsTC1 = new HashMap<String,String>();
+		expectedInputParamsTC1.put("pp", "0");
+		
+		Map<String,String> expectedStateVariablesTC1 = new HashMap<String,String>();
+		expectedStateVariablesTC1.put("turn", "red");
+		expectedStateVariablesTC1.put("bposn", "{3,4,6}");
+		expectedStateVariablesTC1.put("rposn", "{0,1,2}");
+		
+		Map<String, String> expectedInputParamsTC2 = new HashMap<String,String>();
+		expectedInputParamsTC2.put("pp", "-1");
+		
+		Map<String,String> expectedStateVariablesTC2 = new HashMap<String,String>();
+		expectedStateVariablesTC2.put("turn", "blue");
+		expectedStateVariablesTC2.put("bposn", "{}");
+		expectedStateVariablesTC2.put("rposn", "{}");
+		
+		// Making Assertions
+		
+		assertThat(testSuite.getTestCases()).hasSize(2);
+		
+		assertThat(testSuite.getTestCases().get(0).getTestFormulaWithoutInvariant()).isEqualTo("not(ThreeInRow(rposn) = FALSE) & not(pp /: bposn \\/ rposn) & not(turn = blue) & pp : 0..8");
+		assertThat(testSuite.getTestCases().get(0).getInputParamValues()).isEqualTo(expectedInputParamsTC1);
+		assertThat(testSuite.getTestCases().get(0).getStateValues()).isEqualTo(expectedStateVariablesTC1);
+		
+		assertThat(testSuite.getTestCases().get(1).getTestFormulaWithoutInvariant()).isEqualTo("ThreeInRow(rposn) = FALSE & pp /: bposn \\/ rposn & pp : MININT..((0 - 1)) & turn = blue");
+		assertThat(testSuite.getTestCases().get(1).getInputParamValues()).isEqualTo(expectedInputParamsTC2);
+		assertThat(testSuite.getTestCases().get(1).getStateValues()).isEqualTo(expectedStateVariablesTC2);
+	}
 }

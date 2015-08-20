@@ -270,29 +270,6 @@ public abstract class LogicalCoverage extends CoverageCriterion {
 
 
 
-//	protected String varListForExistential() {
-//		StringBuffer variables = new StringBuffer("#");
-//		List<String> variablesList = new ArrayList<String>();
-//
-//		if (getOperationUnderTest().getMachine().getVariables() != null) {
-//			variablesList.addAll(getOperationUnderTest().getMachine().getVariables().getAll());
-//		}
-//
-//		variablesList.addAll(operationUnderTest.getParameters());
-//
-//		for (int i = 0; i < variablesList.size(); i++) {
-//			if (i < variablesList.size() - 1) {
-//				variables.append(variablesList.get(i) + ",");
-//			} else {
-//				variables.append(variablesList.get(i) + ".");
-//			}
-//		}
-//
-//		return variables.toString();
-//	}
-
-
-
 	@Override
 	public Set<List<Block>> getCombinationsAsListsOfBlocks() {
 		Set<List<Block>> combinations = new HashSet<List<Block>>();

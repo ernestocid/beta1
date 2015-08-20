@@ -117,115 +117,115 @@ public class LogicalCoverageTest extends TestingUtils {
 	
 	
 	
-	@Test
-	public void shouldGetPredicatesForAnyStatement() {
-		Machine machine = new Machine(new File("src/test/resources/machines/others/Any.mch"));
-		Operation operationUnderTest = machine.getOperation(0);
-		
-		PredicateCoverage pc = new PredicateCoverage(operationUnderTest);
-		
-		// Setting up expected results
-		
-		Set<MyPredicate> expectedPredicates = new HashSet<MyPredicate>();
-		
-		MyPredicate mockedPredicate1 = mock(MyPredicate.class);
-		when(mockedPredicate1.toString()).thenReturn("x : COLOURS & x /: col1");
-		
-		expectedPredicates.add(mockedPredicate1);
-		
-		// Assertions
-		
-		assertTrue(compare(expectedPredicates, pc.getPredicates()));
-	}
+//	@Test
+//	public void shouldGetPredicatesForAnyStatement() {
+//		Machine machine = new Machine(new File("src/test/resources/machines/others/Any.mch"));
+//		Operation operationUnderTest = machine.getOperation(0);
+//		
+//		PredicateCoverage pc = new PredicateCoverage(operationUnderTest);
+//		
+//		// Setting up expected results
+//		
+//		Set<MyPredicate> expectedPredicates = new HashSet<MyPredicate>();
+//		
+//		MyPredicate mockedPredicate1 = mock(MyPredicate.class);
+//		when(mockedPredicate1.toString()).thenReturn("x : COLOURS & x /: col1");
+//		
+//		expectedPredicates.add(mockedPredicate1);
+//		
+//		// Assertions
+//		
+//		assertTrue(compare(expectedPredicates, pc.getPredicates()));
+//	}
 	
 	
 	
-	@Test
-	public void shouldGetPredicatesForAnyStatementWithPrecondition() {
-		Machine machine = new Machine(new File("src/test/resources/machines/others/PlayerAny.mch"));
-		Operation operationUnderTest = machine.getOperation(0);
-		
-		PredicateCoverage pc = new PredicateCoverage(operationUnderTest);
-		
-		// Setting up expected results
-		
-		Set<MyPredicate> expectedPredicates = new HashSet<MyPredicate>();
-		
-		MyPredicate mockedPredicate1 = mock(MyPredicate.class);
-		when(mockedPredicate1.toString()).thenReturn("xx <: PLAYER & card(xx) = ss");
-		
-		MyPredicate mockedPredicate2 = mock(MyPredicate.class);
-		when(mockedPredicate2.toString()).thenReturn("ss : INT");
-		
-		expectedPredicates.add(mockedPredicate1);
-		expectedPredicates.add(mockedPredicate2);
-		
-		// Assertions
-		
-		assertTrue(compare(expectedPredicates, pc.getPredicates()));
-	}
+//	@Test
+//	public void shouldGetPredicatesForAnyStatementWithPrecondition() {
+//		Machine machine = new Machine(new File("src/test/resources/machines/others/PlayerAny.mch"));
+//		Operation operationUnderTest = machine.getOperation(0);
+//		
+//		PredicateCoverage pc = new PredicateCoverage(operationUnderTest);
+//		
+//		// Setting up expected results
+//		
+//		Set<MyPredicate> expectedPredicates = new HashSet<MyPredicate>();
+//		
+//		MyPredicate mockedPredicate1 = mock(MyPredicate.class);
+//		when(mockedPredicate1.toString()).thenReturn("xx <: PLAYER & card(xx) = ss");
+//		
+//		MyPredicate mockedPredicate2 = mock(MyPredicate.class);
+//		when(mockedPredicate2.toString()).thenReturn("ss : INT");
+//		
+//		expectedPredicates.add(mockedPredicate1);
+//		expectedPredicates.add(mockedPredicate2);
+//		
+//		// Assertions
+//		
+//		assertTrue(compare(expectedPredicates, pc.getPredicates()));
+//	}
 	
 	
 	
-	@Test
-	public void shouldGetPredicatesForAssertStatement() {
-		Machine machine = new Machine(new File("src/test/resources/machines/others/LeaderElectionRing.mch"));
-		Operation operationUnderTest = machine.getOperation(2); // Elect operation
-		
-		PredicateCoverage pc = new PredicateCoverage(operationUnderTest);
-		
-		// Setting up expected results
-		
-		Set<MyPredicate> expectedPredicates = new HashSet<MyPredicate>();
-		
-		MyPredicate mockedPredicate1 = mock(MyPredicate.class);
-		when(mockedPredicate1.toString()).thenReturn("x : dom(b) & b(x) = x");
-		
-		MyPredicate mockedPredicate2 = mock(MyPredicate.class);
-		when(mockedPredicate2.toString()).thenReturn("x = max(N)");
-		
-		expectedPredicates.add(mockedPredicate1);
-		expectedPredicates.add(mockedPredicate2);
-		
-		// Assertions
-		
-		assertTrue(compare(expectedPredicates, pc.getPredicates()));
-	}
+//	@Test
+//	public void shouldGetPredicatesForAssertStatement() {
+//		Machine machine = new Machine(new File("src/test/resources/machines/others/LeaderElectionRing.mch"));
+//		Operation operationUnderTest = machine.getOperation(2); // Elect operation
+//		
+//		PredicateCoverage pc = new PredicateCoverage(operationUnderTest);
+//		
+//		// Setting up expected results
+//		
+//		Set<MyPredicate> expectedPredicates = new HashSet<MyPredicate>();
+//		
+//		MyPredicate mockedPredicate1 = mock(MyPredicate.class);
+//		when(mockedPredicate1.toString()).thenReturn("x : dom(b) & b(x) = x");
+//		
+//		MyPredicate mockedPredicate2 = mock(MyPredicate.class);
+//		when(mockedPredicate2.toString()).thenReturn("x = max(N)");
+//		
+//		expectedPredicates.add(mockedPredicate1);
+//		expectedPredicates.add(mockedPredicate2);
+//		
+//		// Assertions
+//		
+//		assertTrue(compare(expectedPredicates, pc.getPredicates()));
+//	}
 	
 	
 	
-	@Test
-	public void shouldGetPredicatesFromParallelSubstitutions() {
-		Machine machine = new Machine(new File("src/test/resources/machines/others/Parallel.mch"));
-		Operation operationUnderTest = machine.getOperation(0);
-		
-		PredicateCoverage pc = new PredicateCoverage(operationUnderTest);
-		
-		// Setting up expected results
-		
-		Set<MyPredicate> expectedPredicates = new HashSet<MyPredicate>();
-		
-		MyPredicate mockedPredicate1 = mock(MyPredicate.class);
-		when(mockedPredicate1.toString()).thenReturn("zz : ID");
-		
-		MyPredicate mockedPredicate2 = mock(MyPredicate.class);
-		when(mockedPredicate2.toString()).thenReturn("tt <: ID & zz : tt");
-		
-		MyPredicate mockedPredicate3 = mock(MyPredicate.class);
-		when(mockedPredicate3.toString()).thenReturn("tt <: ID & zz /: tt");
-		
-		MyPredicate mockedPredicate4 = mock(MyPredicate.class);
-		when(mockedPredicate4.toString()).thenReturn("tt <: ID & card(tt) > 2");
-		
-		expectedPredicates.add(mockedPredicate1);
-		expectedPredicates.add(mockedPredicate2);
-		expectedPredicates.add(mockedPredicate3);
-		expectedPredicates.add(mockedPredicate4);
-		
-		// Assertions
-		
-		assertTrue(compare(expectedPredicates, pc.getPredicates()));
-	}
+//	@Test
+//	public void shouldGetPredicatesFromParallelSubstitutions() {
+//		Machine machine = new Machine(new File("src/test/resources/machines/others/Parallel.mch"));
+//		Operation operationUnderTest = machine.getOperation(0);
+//		
+//		PredicateCoverage pc = new PredicateCoverage(operationUnderTest);
+//		
+//		// Setting up expected results
+//		
+//		Set<MyPredicate> expectedPredicates = new HashSet<MyPredicate>();
+//		
+//		MyPredicate mockedPredicate1 = mock(MyPredicate.class);
+//		when(mockedPredicate1.toString()).thenReturn("zz : ID");
+//		
+//		MyPredicate mockedPredicate2 = mock(MyPredicate.class);
+//		when(mockedPredicate2.toString()).thenReturn("tt <: ID & zz : tt");
+//		
+//		MyPredicate mockedPredicate3 = mock(MyPredicate.class);
+//		when(mockedPredicate3.toString()).thenReturn("tt <: ID & zz /: tt");
+//		
+//		MyPredicate mockedPredicate4 = mock(MyPredicate.class);
+//		when(mockedPredicate4.toString()).thenReturn("tt <: ID & card(tt) > 2");
+//		
+//		expectedPredicates.add(mockedPredicate1);
+//		expectedPredicates.add(mockedPredicate2);
+//		expectedPredicates.add(mockedPredicate3);
+//		expectedPredicates.add(mockedPredicate4);
+//		
+//		// Assertions
+//		
+//		assertTrue(compare(expectedPredicates, pc.getPredicates()));
+//	}
 	
 	
 	

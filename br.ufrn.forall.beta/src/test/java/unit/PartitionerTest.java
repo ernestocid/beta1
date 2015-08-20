@@ -406,20 +406,6 @@ public class PartitionerTest {
 
 		Set<Characteristic> expected = new HashSet<Characteristic>();
 
-//		ThreeInRow(bposn) = TRUE, 
-//		ThreeInRow(rposn) = TRUE, 
-//		bposn \/ rposn = 0..8,		
-//		bposn <: 0..8
-//		rposn <: 0..8, 
-//		bposn /\ rposn = {}, 
-//		turn : Player, 
-		
- 
-//		 
-//		 
-//		 
-//		 
-		
 		Characteristic mockedChar1 = mock(Characteristic.class);
 		when(mockedChar1.toString()).thenReturn("bposn \\/ rposn = 0..8");
 		when(mockedChar1.getCharacteristic()).thenReturn("bposn \\/ rposn = 0..8");

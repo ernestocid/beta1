@@ -95,24 +95,24 @@ public class PredicateCoverageTest extends TestingUtils {
 	
 	
 	
-	@Test
-	public void shouldGenerateTestFormulasForAnyStatement() {
-		Machine machine = new Machine(new File("src/test/resources/machines/others/Any.mch"));
-		Operation operationUnderTest = machine.getOperation(0); // Add
-		
-		PredicateCoverage pc = new PredicateCoverage(operationUnderTest);
-		
-		// Setting up expected results
-		
-		Set<String> expectedTestFormulas = new HashSet<String>();
-		
-		expectedTestFormulas.add("((col1 : POW(COLOURS) & col2 : POW(COLOURS) & !(cc).((cc : col1) => (cc /: col2)) & !(cc2).((cc2 : col2) => (cc2 /: col1)) & b : BOOL & col : COLOURS) & (x : COLOURS & x /: col1))");
-		expectedTestFormulas.add("((col1 : POW(COLOURS) & col2 : POW(COLOURS) & !(cc).((cc : col1) => (cc /: col2)) & !(cc2).((cc2 : col2) => (cc2 /: col1)) & b : BOOL & col : COLOURS) & not(x : COLOURS & x /: col1))");
-		
-		// Assertions
-		
-		assertEquals(expectedTestFormulas, pc.getTestFormulas());
-	}
+//	@Test
+//	public void shouldGenerateTestFormulasForAnyStatement() {
+//		Machine machine = new Machine(new File("src/test/resources/machines/others/Any.mch"));
+//		Operation operationUnderTest = machine.getOperation(0); // Add
+//		
+//		PredicateCoverage pc = new PredicateCoverage(operationUnderTest);
+//		
+//		// Setting up expected results
+//		
+//		Set<String> expectedTestFormulas = new HashSet<String>();
+//		
+//		expectedTestFormulas.add("((col1 : POW(COLOURS) & col2 : POW(COLOURS) & !(cc).((cc : col1) => (cc /: col2)) & !(cc2).((cc2 : col2) => (cc2 /: col1)) & b : BOOL & col : COLOURS) & (x : COLOURS & x /: col1))");
+//		expectedTestFormulas.add("((col1 : POW(COLOURS) & col2 : POW(COLOURS) & !(cc).((cc : col1) => (cc /: col2)) & !(cc2).((cc2 : col2) => (cc2 /: col1)) & b : BOOL & col : COLOURS) & not(x : COLOURS & x /: col1))");
+//		
+//		// Assertions
+//		
+//		assertEquals(expectedTestFormulas, pc.getTestFormulas());
+//	}
 	
 	
 	

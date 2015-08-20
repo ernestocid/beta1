@@ -381,10 +381,10 @@ public class Operation {
 			AIfElsifSubstitution ifElsifSubstitution = (AIfElsifSubstitution) substitution;
 			getPredicatesFromElsifSubstitution(predicates, ifElsifSubstitution);
 			
-		} else if(substitution instanceof AAnySubstitution) {
-			
-			AAnySubstitution anySubstitution = (AAnySubstitution) substitution;
-			getPredicatesFromAnySubstitution(predicates, anySubstitution);
+//		} else if(substitution instanceof AAnySubstitution) {
+//			
+//			AAnySubstitution anySubstitution = (AAnySubstitution) substitution;
+//			getPredicatesFromAnySubstitution(predicates, anySubstitution);
 			
 		} else if (substitution instanceof AAssertionSubstitution) {
 			

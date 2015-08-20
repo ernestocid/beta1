@@ -8,9 +8,9 @@ import java.util.Map;
 import de.be4.classicalb.core.parser.exceptions.BException;
 import de.prob.Main;
 import de.prob.animator.domainobjects.ClassicalB;
-import de.prob.model.classicalb.ClassicalBModel;
 import de.prob.scripting.Api;
 import de.prob.statespace.State;
+import de.prob.statespace.StateSpace;
 import de.prob.statespace.Trace;
 
 public class TestTraceToState {
@@ -22,10 +22,10 @@ public class TestTraceToState {
 			Map<String, String> preferences = new HashMap<String, String>();
 			preferences.put("MAXINT", "25");
 
-			ClassicalBModel bModel = api.b_load("/Users/ernestocid/Temp/counter.mch", preferences);
-			Trace traceToState = bModel.getStateSpace().getTraceToState(new ClassicalB("value=5"));
+			StateSpace bModel = api.b_load("/Users/ernestocid/Temp/counter.mch", preferences);
+			Trace traceToState = bModel.getTraceToState(new ClassicalB("value=5"));
 			
-			List<State> states = bModel.getStateSpace().getStatesFromPredicate(new ClassicalB("value=5"));
+			List<State> states = bModel.getStatesFromPredicate(new ClassicalB("value=5"));
 			
 			System.out.println(states);
 			

@@ -31,7 +31,7 @@ public class HTMLReportGenerationTest {
 		Configurations.setRandomiseEnumerationOrder(false);
 		Configurations.setUseProBApiToSolvePredicates(false);
 		Configurations.setFindPreamble(false);
-		Configurations.setDeleteTempFiles(true);;
+		Configurations.setDeleteTempFiles(true);
 	}
 
 

@@ -6,14 +6,30 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.Before;
 import org.junit.Test;
 
+import configurations.Configurations;
 import parser.Implementation;
 import parser.Machine;
 import parser.Operation;
 import testgeneration.concretization.ConcretizeTestCaseInputs;
 
 public class ConcretizeTestCaseInputsTest {
+
+	@Before
+	public void setUp() {
+		Configurations.setMaxIntProperties(20);
+		Configurations.setMinIntProperties(-1);
+		Configurations.setAutomaticOracleEvaluation(true);
+		Configurations.setUseKodkod(false);
+		Configurations.setRandomiseEnumerationOrder(false);
+		Configurations.setUseProBApiToSolvePredicates(false);
+		Configurations.setFindPreamble(false);
+		Configurations.setDeleteTempFiles(true);
+	}
+
+
 
 	@Test
 	public void shouldConcretizeTestCaseInputs() {
@@ -26,7 +42,7 @@ public class ConcretizeTestCaseInputsTest {
 		ConcretizeTestCaseInputs concretization = new ConcretizeTestCaseInputs(testFormula, operationUnderTest, implementation);
 
 		Map<String, String> expectedConcreteInputValues = new HashMap<String, String>();
-		expectedConcreteInputValues.put("team_array", "{(0|->1),(1|->8),(2|->2),(3|->10),(4|->7),(5|->9),(6|->6),(7|->5),(8|->4),(9|->3),(10|->11)}");
+		expectedConcreteInputValues.put("team_array", "{(0|->1),(1|->2),(2|->3),(3|->4),(4|->5),(5|->6),(6|->7),(7|->8),(8|->9),(9|->10),(10|->11)}");
 
 		assertThat(concretization.getConcreteInputValues()).isEqualTo(expectedConcreteInputValues);
 	}

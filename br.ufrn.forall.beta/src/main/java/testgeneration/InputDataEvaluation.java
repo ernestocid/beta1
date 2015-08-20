@@ -9,10 +9,9 @@ import configurations.Configurations;
 import parser.Operation;
 import tools.ProBApi;
 import de.be4.classicalb.core.parser.exceptions.BException;
+import de.prob.animator.domainobjects.AbstractEvalResult;
 import de.prob.animator.domainobjects.ClassicalB;
 import de.prob.animator.domainobjects.EvalResult;
-import de.prob.animator.domainobjects.IEvalResult;
-import de.prob.model.classicalb.ClassicalBModel;
 import de.prob.scripting.Api;
 import de.prob.statespace.StateSpace;
 import de.prob.statespace.Trace;
@@ -44,8 +43,7 @@ public class InputDataEvaluation {
 			String pathToMachine = this.operationUnderTest.getMachine().getFile().getAbsolutePath();
 			String formulaForEvaluation = this.getTestCase().getTestFormula();
 
-			ClassicalBModel model = probApi.b_load(pathToMachine, getPreferences());
-			StateSpace stateSpace = model.getStateSpace();
+			StateSpace stateSpace = probApi.b_load(pathToMachine, getPreferences());
 			Trace trace = new Trace(stateSpace);
 
 			trace = trySetupConstants(trace);
@@ -53,7 +51,7 @@ public class InputDataEvaluation {
 			trace = trace.execute("$initialise_machine", new ArrayList<String>());
 			trace = stateSpace.getTraceToState(new ClassicalB(formulaForEvaluation));
 
-			IEvalResult evalCurrent = trace.evalCurrent(new ClassicalB(formulaForEvaluation));
+			AbstractEvalResult evalCurrent = trace.evalCurrent(new ClassicalB(formulaForEvaluation));
 
 			if (evalCurrent instanceof EvalResult) {
 				EvalResult result = (EvalResult) evalCurrent;
@@ -99,7 +97,7 @@ public class InputDataEvaluation {
 
 		if (this.operationUnderTest.getMachine().getVariables() != null) {
 			for (String variable : this.operationUnderTest.getMachine().getVariables().getAll()) {
-				IEvalResult evalCurrent = trace.evalCurrent(variable);
+				AbstractEvalResult evalCurrent = trace.evalCurrent(variable);
 
 				if (evalCurrent instanceof EvalResult) {
 					EvalResult result = (EvalResult) evalCurrent;

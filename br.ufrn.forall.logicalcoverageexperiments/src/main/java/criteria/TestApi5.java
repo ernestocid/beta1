@@ -7,7 +7,6 @@ import java.util.Map;
 
 import tools.ProBApi;
 import de.be4.classicalb.core.parser.exceptions.BException;
-import de.prob.model.classicalb.ClassicalBModel;
 import de.prob.statespace.StateSpace;
 import de.prob.statespace.Trace;
 
@@ -26,9 +25,7 @@ public class TestApi5 {
 		probPreferences.put("CHR", "false");
 
 		try {
-//			ClassicalBModel model = probApi.b_load("/Users/ernestocid/Temp/scheduler.mch", probPreferences);
-			ClassicalBModel model = ProBApi.getInstance().b_load("/Users/ernestocid/Temp/test.directory/scheduler.mch", probPreferences);
-			StateSpace stateSpace = model.getStateSpace();
+			StateSpace stateSpace = ProBApi.getInstance().b_load("/Users/ernestocid/Temp/test.directory/scheduler.mch", probPreferences);
 			Trace trace = new Trace(stateSpace);
 
 			trace = trace.execute("$initialise_machine", new ArrayList<String>());

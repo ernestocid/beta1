@@ -12,11 +12,6 @@ subprojects {
     
     repositories {   	
         mavenCentral()
-        
-        //maven {
-		//	name "cobra"
-		//	url "http://cobra.cs.uni-duesseldorf.de/artifactory/repo"
-		//}
 		
 		maven {
 			name "sonatype snapshots"
@@ -50,8 +45,6 @@ task configurationsFiles {
 
 project(':br.ufrn.forall.beta') {
 	
-	// def core_version = '2.0.0-milestone-14-SNAPSHOT'
-	// def core_version = '2.0.0-milestone-23-SNAPSHOT'
 	def core_version = '2.0.0-SNAPSHOT'
 	
 	dependencies {
@@ -97,7 +90,6 @@ project(':br.ufrn.forall.betagui') {
 }
 
 project(':br.ufrn.forall.betaparser') {
-	// def parser_version = '2.4.34'
 	def parser_version = '2.5.0-SNAPSHOT'
 
 	dependencies {
@@ -105,11 +97,6 @@ project(':br.ufrn.forall.betaparser') {
 		compile group: "de.hhu.stups", name: "bparser", version: parser_version , changing: true
 		compile group: "de.hhu.stups", name: "cliparser", version: parser_version , changing: true
 		compile group: "de.hhu.stups", name: "parserbase", version: parser_version , changing: true
-
-//		compile group: "de.prob", name: "answerparser", version: parser_version , changing: true
-//		compile group: "de.prob", name: "bparser", version: parser_version , changing: true
-//		compile group: "de.prob", name: "cliparser", version: parser_version , changing: true
-//		compile group: "de.prob", name: "parserbase", version: parser_version , changing: true
 		compile group: "com.google.truth", name: "truth", version: "0.25" , changing: true
 		compile 'org.mockito:mockito-all:1.9.5'
 	}
@@ -151,13 +138,14 @@ project('br.ufrn.forall.betagui') {
 // Experiment projects
 
 project(':br.ufrn.forall.logicalcoverageexperiments') {
-	
-	// def core_version = '2.0.0-milestone-14-SNAPSHOT'
-	def core_version = '2.0.0-milestone-23-SNAPSHOT'
+
+//	def core_version = '2.0.0-milestone-23-SNAPSHOT'
+	def core_version = '2.0.0-SNAPSHOT'
 	
 	dependencies {
 		compile project(':br.ufrn.forall.beta'), project(':br.ufrn.forall.betacommon'), project(':br.ufrn.forall.betaparser'), project(':br.ufrn.forall.datacomb')
-		compile group: "de.prob2", name: "de.prob2.kernel", version: core_version , changing: true
+		compile group: "de.hhu.stups", name: "de.prob2.kernel", version: core_version , changing: true
+//		compile group: "de.prob2", name: "de.prob2.kernel", version: core_version , changing: true
 		compile 'commons-io:commons-io:2.4'
 		compile 'commons-lang:commons-lang:2.2'
 		compile 'org.mockito:mockito-all:1.9.5'

@@ -7,11 +7,10 @@ import java.util.Map;
 
 import configurations.Configurations;
 import de.be4.classicalb.core.parser.exceptions.BException;
+import de.prob.animator.domainobjects.AbstractEvalResult;
 import de.prob.animator.domainobjects.ClassicalB;
 import de.prob.animator.domainobjects.EvalResult;
-import de.prob.animator.domainobjects.IEvalResult;
 import de.prob.exception.ProBError;
-import de.prob.model.classicalb.ClassicalBModel;
 import de.prob.scripting.Api;
 import de.prob.statespace.StateSpace;
 import de.prob.statespace.Trace;
@@ -47,15 +46,14 @@ public class FormulaEvaluation {
 		String pathToMachine = getMachine().getFile().getAbsolutePath();
 
 		try {
-			ClassicalBModel model = ProBApi.getInstance().b_load(pathToMachine, Configurations.getProBApiPreferences());
-			StateSpace stateSpace = model.getStateSpace();
+			StateSpace stateSpace = ProBApi.getInstance().b_load(pathToMachine, Configurations.getProBApiPreferences());
 			Trace trace = new Trace(stateSpace);
 
 			trace = setupConstants(trace);
 			trace = initialiseMachine(trace);
 
 			try {
-				IEvalResult evalCurrent = trace.evalCurrent(new ClassicalB(formula));
+				AbstractEvalResult evalCurrent = trace.evalCurrent(new ClassicalB(formula));
 
 				if (evalCurrent instanceof EvalResult) {
 

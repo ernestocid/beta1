@@ -3,7 +3,6 @@ package testgeneration.predicateevaluators;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -12,10 +11,9 @@ import configurations.Configurations;
 import de.be4.classicalb.core.parser.exceptions.BException;
 import de.be4.classicalb.core.parser.node.APredicateParseUnit;
 import de.be4.classicalb.core.parser.node.PParseUnit;
+import de.prob.animator.domainobjects.AbstractEvalResult;
 import de.prob.animator.domainobjects.ClassicalB;
 import de.prob.animator.domainobjects.EvalResult;
-import de.prob.animator.domainobjects.IEvalResult;
-import de.prob.model.classicalb.ClassicalBModel;
 import de.prob.statespace.StateSpace;
 import de.prob.statespace.Trace;
 import parser.Operation;
@@ -178,8 +176,7 @@ public class ProBApiPredicateEvaluator extends AbstractPredicateEvaluator {
 		String pathToMachine = getOperationUnderTest().getMachine().getFile().getAbsolutePath();
 
 		try {
-			ClassicalBModel model = ProBApi.getInstance().b_load(pathToMachine, getPreferences());
-			StateSpace stateSpace = model.getStateSpace();
+			StateSpace stateSpace = ProBApi.getInstance().b_load(pathToMachine, getPreferences());
 
 			Trace trace = new Trace(stateSpace);
 			trace = trySetupConstants(trace);
@@ -188,7 +185,7 @@ public class ProBApiPredicateEvaluator extends AbstractPredicateEvaluator {
 			System.out.println("Using ProB API to solve: " + formula);
 			trace = stateSpace.getTraceToState(new ClassicalB(formula));
 
-			IEvalResult evalCurrent = trace.evalCurrent(new ClassicalB(formula));
+			AbstractEvalResult evalCurrent = trace.evalCurrent(new ClassicalB(formula));
 
 			if (evalCurrent instanceof EvalResult) {
 				EvalResult result = (EvalResult) evalCurrent;

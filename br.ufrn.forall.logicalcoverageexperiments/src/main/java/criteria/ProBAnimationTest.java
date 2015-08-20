@@ -1,18 +1,14 @@
 package criteria;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import parser.Machine;
-import parser.Operation;
 import configurations.Configurations;
 import de.be4.classicalb.core.parser.exceptions.BException;
 import de.prob.Main;
+import de.prob.animator.domainobjects.AbstractEvalResult;
 import de.prob.animator.domainobjects.ClassicalB;
 import de.prob.animator.domainobjects.EvalResult;
-import de.prob.animator.domainobjects.IEvalResult;
-import de.prob.model.classicalb.ClassicalBModel;
 import de.prob.scripting.Api;
 import de.prob.statespace.StateSpace;
 import de.prob.statespace.Trace;
@@ -30,8 +26,7 @@ public class ProBAnimationTest {
 		Api probApi = Main.getInjector().getInstance(Api.class);
 		
 		try {
-			ClassicalBModel model = probApi.b_load("src/test/resources/machines/Priorityqueue.mch", Configurations.getProBApiPreferences());
-			StateSpace stateSpace = model.getStateSpace();
+			StateSpace stateSpace = probApi.b_load("src/test/resources/machines/Priorityqueue.mch", Configurations.getProBApiPreferences());
 			Trace trace = new Trace(stateSpace);
 			
 //			try {
@@ -48,7 +43,7 @@ public class ProBAnimationTest {
 			
 			trace = trace.execute("$initialise_machine", new ArrayList<String>());
 			
-			IEvalResult evalCurrent = trace.evalCurrent(new ClassicalB(formula));
+			AbstractEvalResult evalCurrent = trace.evalCurrent(new ClassicalB(formula));
 			
 			if(evalCurrent instanceof EvalResult) {
 				EvalResult result = (EvalResult) evalCurrent;

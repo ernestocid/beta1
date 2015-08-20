@@ -11,10 +11,9 @@ import configurations.Configurations;
 import parser.Operation;
 import tools.ProBApi;
 import de.be4.classicalb.core.parser.exceptions.BException;
+import de.prob.animator.domainobjects.AbstractEvalResult;
 import de.prob.animator.domainobjects.ClassicalB;
 import de.prob.animator.domainobjects.EvalResult;
-import de.prob.animator.domainobjects.IEvalResult;
-import de.prob.model.classicalb.ClassicalBModel;
 import de.prob.scripting.Api;
 import de.prob.statespace.StateSpace;
 import de.prob.statespace.Trace;
@@ -42,11 +41,11 @@ public class OracleEvaluation {
 
 	private void generateExpectedResults() {
 
-		ClassicalBModel model = getModel();
-		Trace traceBeforeTest = getInitialTrace(model);
+		StateSpace stateSpace = getModelStateSpace();
+		Trace traceBeforeTest = getInitialTrace(stateSpace);
 
 		if (!testCase.getStateValues().isEmpty()) {
-			traceBeforeTest = model.getStateSpace().getTraceToState(new ClassicalB(stateDefinition()));
+			traceBeforeTest = stateSpace.getTraceToState(new ClassicalB(stateDefinition()));
 		}
 
 		executeOperation(traceBeforeTest);
@@ -54,28 +53,27 @@ public class OracleEvaluation {
 
 
 
-	private Trace getInitialTrace(ClassicalBModel model) {
-		StateSpace stateSpace = model.getStateSpace();
+	private Trace getInitialTrace(StateSpace stateSpace) {
 		Trace traceBeforeTest = new Trace(stateSpace);
 		return traceBeforeTest.randomAnimation(1);
 	}
 
 
 
-	private ClassicalBModel getModel() {
+	private StateSpace getModelStateSpace() {
 		String pathToMachine = operationUnderTest.getMachine().getFile().getAbsolutePath();
 
-		ClassicalBModel model = null;
+		StateSpace stateSpace = null;
 
 		try {
-			model = getProbApi().b_load(pathToMachine, this.preferences);
+			stateSpace = getProbApi().b_load(pathToMachine, this.preferences);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (BException e) {
 			e.printStackTrace();
 		}
 
-		return model;
+		return stateSpace;
 	}
 
 
@@ -102,7 +100,7 @@ public class OracleEvaluation {
 
 		if (operationUnderTest.getMachine().getVariables() != null) {
 			for (String variable : operationUnderTest.getMachine().getVariables().getAll()) {
-				IEvalResult result = afterTrace.evalCurrent(variable);
+				AbstractEvalResult result = afterTrace.evalCurrent(variable);
 
 				if (result instanceof EvalResult) {
 					EvalResult res = (EvalResult) result;

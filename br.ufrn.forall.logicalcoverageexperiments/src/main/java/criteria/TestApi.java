@@ -6,11 +6,10 @@ import java.util.ArrayList;
 
 import de.be4.classicalb.core.parser.exceptions.BException;
 import de.prob.Main;
+import de.prob.animator.domainobjects.AbstractEvalResult;
 import de.prob.animator.domainobjects.ClassicalB;
 import de.prob.animator.domainobjects.EvalResult;
-import de.prob.animator.domainobjects.IEvalResult;
 import de.prob.exception.ProBError;
-import de.prob.model.classicalb.ClassicalBModel;
 import de.prob.scripting.Api;
 import de.prob.statespace.StateSpace;
 import de.prob.statespace.Trace;
@@ -53,15 +52,14 @@ public class TestApi {
 		Api probApi = Main.getInjector().getInstance(Api.class);
 		
 		try {
-			ClassicalBModel model = probApi.b_load(machine.getAbsolutePath());
-			StateSpace stateSpace = model.getStateSpace();
+			StateSpace stateSpace = probApi.b_load(machine.getAbsolutePath());
 			Trace trace = new Trace(stateSpace);
 			
 //			trace = trace.execute("$setup_constants", new ArrayList<String>());
 			trace = trace.execute("$initialise_machine", new ArrayList<String>());
 			
 			try {
-				IEvalResult evalCurrent = trace.evalCurrent(new ClassicalB(formula));
+				AbstractEvalResult evalCurrent = trace.evalCurrent(new ClassicalB(formula));
 				
 				if(evalCurrent instanceof EvalResult) {
 					

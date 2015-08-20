@@ -8,7 +8,6 @@ import java.util.Map;
 
 import de.be4.classicalb.core.parser.exceptions.BException;
 import de.prob.Main;
-import de.prob.model.classicalb.ClassicalBModel;
 import de.prob.scripting.Api;
 import de.prob.statespace.StateSpace;
 import de.prob.statespace.Trace;
@@ -26,8 +25,7 @@ public class TestApi2 {
 		// Player's variable 'team' is a subset of the set PLAYER
 		
 		try {
-			ClassicalBModel model = probApi.b_load("/Users/ernestocid/Temp/Player.mch", probPreferences);
-			StateSpace stateSpace = model.getStateSpace();
+			StateSpace stateSpace = probApi.b_load("/Users/ernestocid/Temp/Player.mch", probPreferences);
 			Trace trace = new Trace(stateSpace);
 
 			List<String> substituteParams = new ArrayList<String>();

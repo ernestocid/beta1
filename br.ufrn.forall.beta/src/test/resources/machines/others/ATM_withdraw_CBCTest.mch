@@ -7,7 +7,7 @@ PROMOTES balance, deposit
 OPERATIONS
 withdraw_test1(mm) =
 PRE
-mm : INT & 0 > 1
+mm : INT & not((account_balance - mm) >= 0)
 THEN skip
 END
 

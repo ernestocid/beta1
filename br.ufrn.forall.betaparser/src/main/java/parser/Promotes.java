@@ -27,7 +27,7 @@ public class Promotes {
 		List<Operation> promotedOperations = new ArrayList<Operation>();
 		
 		if (this.promotes != null) {
-			for (PExpression opNameExpr : this.promotes.getMachineNames()) {
+			for (PExpression opNameExpr : this.promotes.getOperationNames()) {
 				MyExpression expression = MyExpressionFactory.convertExpression(opNameExpr);
 				String promotedOpName = expression.toString();
 				for (Machine machineIncluded : this.machine.getIncludes().getMachinesIncluded()) {

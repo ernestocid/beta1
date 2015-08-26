@@ -3,7 +3,7 @@
  * Creation date: 08/10/14
  */
 MACHINE
-    ATM
+    atm
 VARIABLES
     account_id, account_balance
 INVARIANT

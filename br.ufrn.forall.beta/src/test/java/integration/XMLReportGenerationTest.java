@@ -26,6 +26,9 @@ public class XMLReportGenerationTest {
 		Configurations.setMaxIntProperties(20);
 		Configurations.setMinIntProperties(-1);
 		Configurations.setAutomaticOracleEvaluation(true);
+		Configurations.setUseKodkod(false);
+		Configurations.setRandomiseEnumerationOrder(false);
+		// Configurations.setUseProBApiToSolvePredicates(false);
 		Configurations.setFindPreamble(false);
 		Configurations.setDeleteTempFiles(true);
 	}

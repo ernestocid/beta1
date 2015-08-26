@@ -331,7 +331,7 @@
                 <variable>
                     <identifier>has_taken_lab_classes</identifier>
                     <values>
-                        <value>(STUDENT1|-&gt;TRUE)</value>
+                        <value>(STUDENT1|-&gt;FALSE)</value>
                     </values>
                 </variable>
                 <variable>
@@ -418,7 +418,7 @@
                 <variable>
                     <identifier>has_taken_lab_classes</identifier>
                     <values>
-                        <value>(STUDENT1|-&gt;TRUE)</value>
+                        <value>(STUDENT1|-&gt;FALSE)</value>
                     </values>
                 </variable>
                 <variable>
@@ -505,7 +505,7 @@
                 <variable>
                     <identifier>has_taken_lab_classes</identifier>
                     <values>
-                        <value>(STUDENT1|-&gt;TRUE)</value>
+                        <value>(STUDENT1|-&gt;FALSE)</value>
                     </values>
                 </variable>
                 <variable>
@@ -592,7 +592,7 @@
                 <variable>
                     <identifier>has_taken_lab_classes</identifier>
                     <values>
-                        <value>(STUDENT1|-&gt;TRUE)</value>
+                        <value>(STUDENT1|-&gt;FALSE)</value>
                     </values>
                 </variable>
                 <variable>
@@ -666,7 +666,7 @@
                 <variable>
                     <identifier>has_taken_lab_classes</identifier>
                     <values>
-                        <value>(STUDENT1|-&gt;TRUE)</value>
+                        <value>(STUDENT1|-&gt;FALSE)</value>
                     </values>
                 </variable>
                 <variable>
@@ -753,7 +753,7 @@
                 <variable>
                     <identifier>has_taken_lab_classes</identifier>
                     <values>
-                        <value>(STUDENT1|-&gt;TRUE)</value>
+                        <value>(STUDENT1|-&gt;FALSE)</value>
                     </values>
                 </variable>
                 <variable>

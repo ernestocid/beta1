@@ -22,20 +22,40 @@ import parser.Machine;
 import parser.Operation;
 import probcliinterface.commands.GenerateCBCTestsCommand;
 
+
+/**
+ * This class is used to build preambles for the test cases. It uses the ProB CBC test case generator 
+ * to help create the preambles. To calculate a preamble it is necessary to define a state goal. A state goal
+ * is a predicate that defines the state that we want the preamble to lead to.
+ * 
+ * @author ernestocid
+ *
+ */
 public class PreambleCalculation {
 
 	private Operation operationUnderTest;
 	private String stateGoal;
 
 
-
+	/**
+	 * @param operationUnderTest the operation that is being tested.
+	 * @param stateGoal the predicate that defines the state that we want to achieve using the preamble.
+	 */
 	public PreambleCalculation(Operation operationUnderTest, String stateGoal) {
 		this.operationUnderTest = operationUnderTest;
 		this.stateGoal = stateGoal;
 	}
 
 
-
+	/**
+	 * This method creates a list of events that compose the preamble for the test case.
+	 * It creates an auxiliary machine that is used to calculate the preamble
+	 * using ProB's CBC algorithm. Once the machine is built, it executes the CBCTestsCommand
+	 * using this machine. The command creates an XML file that is read by the method to build
+	 * the list of events.
+	 *  
+	 * @return a List of events that compose the preamble for the test case.
+	 */
 	public List<Event> getPathToState() {
 		List<String> testCasePredicates = new ArrayList<String>();
 		testCasePredicates.add(getStateGoal());

@@ -2,6 +2,15 @@ package testgeneration.preamblecalculation;
 
 import java.util.Map;
 
+
+/**
+ * This class is used by the preamble calculation feature. An event represents
+ * an operation call. Each operation call is composed by the operation name and
+ * the parameters for the operation. A test case preamble is a List of Event objects.
+ * 
+ * @author ernestocid
+ *
+ */
 public class Event {
 
 	private String eventName;

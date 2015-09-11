@@ -659,6 +659,7 @@ public class TestMachineBuilder {
 
 		operationInputSpace.addAll(this.partitioner.getOperation().getStateVariablesUsedOnBody());
 		operationInputSpace.removeAll(this.operation.getMachine().getAllMachineConstants());
+		
 		return operationInputSpace;
 	}
 

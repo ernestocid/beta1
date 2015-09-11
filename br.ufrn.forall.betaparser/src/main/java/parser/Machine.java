@@ -533,4 +533,89 @@ public class Machine {
 		return variables;
 	}
 
+
+
+	public Set<String> getSetNamesFromAllMachines() {
+		Set<String> setNamesFromAllMachines = new HashSet<String>();
+		
+		setNamesFromAllMachines.addAll(getMachineSetNames());
+		setNamesFromAllMachines.addAll(getSetNamesFromSeenMachines());
+		setNamesFromAllMachines.addAll(getSetNamesFromUsedMachines());
+		setNamesFromAllMachines.addAll(getSetNamesFromIncludedOrExtendedMachines());
+		
+		return setNamesFromAllMachines;
+	}
+
+
+
+	public Set<String> getMachineSetNames() {
+		Set<String> machineSetNames = new HashSet<String>();
+		
+		if(this.getSets() != null) {
+			machineSetNames.addAll(this.getSets().getDeferredSets());
+			machineSetNames.addAll(this.getSets().getEnumeratedSets());
+		}
+		
+		return machineSetNames;
+	}
+	
+	
+	
+	private Set<String> getSetNamesFromSeenMachines() {
+		Set<String> setNames = new HashSet<String>();
+
+		if (getSees() != null) {
+			for (Machine machineSeen : getSees().getMachinesSeen()) {
+				setNames.addAll(machineSeen.getMachineSetNames());
+			}
+		}
+
+		return setNames;
+	}
+
+	
+	
+	private Set<String> getSetNamesFromUsedMachines() {
+		Set<String> setNames = new HashSet<String>();
+
+		if (getUses() != null) {
+			for (Machine machineUsed : getUses().getMachinesUsed()) {
+				setNames.addAll(machineUsed.getMachineSetNames());
+			}
+		}
+
+		return setNames;
+	}
+	
+	
+	
+	private Set<String> getSetNamesFromIncludedOrExtendedMachines() {
+		return getSetNamesFromIncludedOrExtendedMachinesHelper(this);
+	}
+
+
+
+	private Set<String> getSetNamesFromIncludedOrExtendedMachinesHelper(Machine machine) {
+		Set<String> setNames = new HashSet<String>();
+
+		setNames.addAll(machine.getMachineSetNames());
+
+		if (machine.getIncludes() != null) {
+			List<Machine> machinesIncluded = machine.getIncludes().getMachinesIncluded();
+
+			for (Machine machineIncluded : machinesIncluded) {
+				setNames.addAll(getSetNamesFromIncludedOrExtendedMachinesHelper(machineIncluded));
+			}
+		}
+
+		if (machine.getExtends() != null) {
+			List<Machine> machinesExtended = machine.getExtends().getMachinesExtended();
+
+			for (Machine extendedMachine : machinesExtended) {
+				setNames.addAll(getSetNamesFromIncludedOrExtendedMachinesHelper(extendedMachine));
+			}
+		}
+
+		return setNames;
+	}
 }

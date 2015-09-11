@@ -1,6 +1,7 @@
 package unit;
 
 import static org.junit.Assert.*;
+import static com.google.common.truth.Truth.*;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -178,10 +179,23 @@ public class ReadMachineInfoTest {
 		assertEquals(expectedAbstractConstats, machine.getAbstractConstants().getAll());
 	}
 
+	
+	
+	@Test
+	public void shouldGetAllSets() {
+		Machine machine = getMachineInstance("src/test/resources/machines/others/Marriage/Marriage.mch");
+		
+		Set<String> expectedSetNames = new HashSet<String>();
+		expectedSetNames.add("person");
+		expectedSetNames.add("SEX");
+		
+		assertThat(machine.getSetNamesFromAllMachines()).isEqualTo(expectedSetNames);
+	}
+	
 
 
 	@Test
-	public void shouldGetAllCConstants() {
+	public void shouldGetAllConstants() {
 		Machine machine = getMachineInstance("src/test/resources/machines/others/TicTacToe.mch");
 
 		Set<String> expectedAbstractConstats = new HashSet<String>();

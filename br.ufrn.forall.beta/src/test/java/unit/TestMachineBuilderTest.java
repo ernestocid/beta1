@@ -169,10 +169,28 @@ public class TestMachineBuilderTest {
 		assertEquals(SIMPLEDEATH_TESTMACHINE, testMachineText);
 	}
 	
-	
+		
 	
 	@Test
 	public void shouldGenerateTestMachineForOperationsOnMachinesWithUses2() {
+		Machine machine = getMachineInstance("src/test/resources/machines/others/Marriage/Marriage.mch");
+		Operation operationUnderTest = machine.getOperation(1); // "part(mm, ff)" operation
+		
+		ECBlockBuilder blockBuilder = new ECBlockBuilder(new Partitioner(operationUnderTest));
+		
+		List<List<Block>> blocks = blockBuilder.getBlocksAsListsOfBlocks();
+		Criteria<Block> criteria = new EachChoice<Block>(blocks);
+		
+		TestMachineBuilder builder = new TestMachineBuilder(operationUnderTest, criteria.getCombinations());
+		String testMachineText = builder.generateTestMachine();
+
+		assertEquals(USESMACHINEB_TESTMACHINE, testMachineText);
+	}
+	
+	
+	
+	@Test
+	public void shouldGenerateTestMachineForOperationOnMachinesWithUses3() {
 		Machine machine = getMachineInstance("src/test/resources/machines/others/TestUsesMachineB.mch");
 		Operation operationUnderTest = machine.getOperation(0);
 		
@@ -186,7 +204,7 @@ public class TestMachineBuilderTest {
 
 		assertEquals(USESMACHINEB_TESTMACHINE, testMachineText);
 	}
-	
+		
 	
 	
 	@Test

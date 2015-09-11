@@ -147,118 +147,7 @@ public class TestMachineBuilder {
 		testMachine.append("MACHINE " + ConventionTools.getTestMachineName(this.operation) + "\n\n");
 	}
 
-
-
-	// private void addSets(StringBuffer testMachine) {
-	// StringBuffer setsClause = new StringBuffer("");
-	// Set<String> sets = new HashSet<String>();
-	//
-	// addSetsFromAllDependantMachines(this.operation.getMachine(), sets);
-	//
-	// List<String> setsList = new ArrayList<String>(sets);
-	//
-	// if(!setsList.isEmpty()) {
-	// setsClause.append("SETS\n");
-	//
-	// for(int i = 0; i < setsList.size(); i++) {
-	// if(i < setsList.size() - 1) {
-	// setsClause.append(setsList.get(i) + ";\n");
-	// } else {
-	// setsClause.append(setsList.get(i) + "\n\n");
-	// }
-	// }
-	// }
-	//
-	// testMachine.append(setsClause.toString());
-	// }
-
-	// private void addConstants(StringBuffer testMachine) {
-	// StringBuffer constantsClause = new StringBuffer("");
-	// Set<String> constants = new HashSet<String>();
-	//
-	// addConstantsFromAllDependantMachines(this.operation.getMachine(),
-	// constants);
-	//
-	// List<String> constantsList = new ArrayList<String>(constants);
-	//
-	// if(!constantsList.isEmpty()) {
-	// constantsClause.append("CONSTANTS ");
-	//
-	// for(int i = 0; i < constantsList.size(); i++) {
-	// if(i < constantsList.size() - 1) {
-	// constantsClause.append(constantsList.get(i) + ", ");
-	// } else {
-	// constantsClause.append(constantsList.get(i) + "\n\n");
-	// }
-	// }
-	// }
-	//
-	// testMachine.append(constantsClause.toString());
-	// }
-
-	// private void addProperties(StringBuffer testMachine) {
-	// StringBuffer propertiesClause = new StringBuffer("");
-	// Set<String> properties = new HashSet<String>();
-	//
-	// addPropertiesFromAllDependantMachines(this.operation.getMachine(),
-	// properties);
-	//
-	// List<String> propertiesList = new ArrayList<String>(properties);
-	//
-	// if(!properties.isEmpty()) {
-	// propertiesClause.append("PROPERTIES\n");
-	//
-	// for (int i = 0; i < propertiesList.size(); i++) {
-	// if(i < propertiesList.size() - 1) {
-	// propertiesClause.append(propertiesList.get(i) + " &\n");
-	// } else {
-	// propertiesClause.append(propertiesList.get(i) + "\n\n");
-	// }
-	// }
-	//
-	// }
-	//
-	// testMachine.append(propertiesClause.toString());
-	// }
-
-	// /**
-	// * The auxiliary machine should have sets from other modules as well.
-	// * Sets should be imported from machines on the clauses:
-	// * - SEES;
-	// * - INCLUDES (Transitive: should also check for machines included by the
-	// included machine);
-	// * - EXTENDS (Also transitive);
-	// * - USES.
-	// * @param testMachine
-	// */
-	// private void addSets(StringBuffer testMachine) {
-	// StringBuffer setsClause = new StringBuffer("");
-	// List<String> sets = new ArrayList<String>();
-	//
-	// if (this.operation.getMachine().getSets() != null) {
-	// sets.addAll(this.operation.getMachine().getSets().getDeferredSets());
-	// sets.addAll(this.operation.getMachine().getSets().getEnumeratedSetsWithElements());
-	// }
-	//
-	// addSetsFromSeenMachines(sets);
-	// addSetsFromUsedMachines(sets);
-	// addSetsFromIncludedMachines(sets);
-	// addSetsFromExtendedMachines(sets);
-	//
-	// if(!sets.isEmpty()) {
-	// setsClause.append("SETS\n");
-	//
-	// for(int i = 0; i < sets.size(); i++) {
-	// if(i < sets.size() - 1) {
-	// setsClause.append(sets.get(i) + ";\n");
-	// } else {
-	// setsClause.append(sets.get(i) + "\n\n");
-	// }
-	// }
-	// }
-	//
-	// testMachine.append(setsClause.toString());
-	// }
+	
 
 	private void addPropertiesFromAllDependantMachines(Machine machine, Set<String> properties) {
 		if (machine.getProperties() != null) {
@@ -453,34 +342,7 @@ public class TestMachineBuilder {
 		}
 	}
 
-
-
-	// private void addConstants(StringBuffer testMachine) {
-	// List<String> constants = new ArrayList<String>();
-	//
-	// constants.addAll(this.operation.getMachine().getAllConstants());
-	//
-	// addConstantsFromSeenMachines(constants);
-	// addConstantsFromUsedMachines(constants);
-	// addConstantsFromIncludedMachines(constants);
-	// addConstantsFromExtendedMachines(constants);
-	//
-	// if(!constants.isEmpty()) {
-	// StringBuffer constantsClause = new StringBuffer();
-	//
-	// constantsClause.append("CONSTANTS ");
-	//
-	// for (int i = 0; i < constants.size(); i++) {
-	// if(i < constants.size() - 1) {
-	// constantsClause.append(constants.get(i) + ", ");
-	// } else {
-	// constantsClause.append(constants.get(i) + "\n\n");
-	// }
-	// }
-	//
-	// testMachine.append(constantsClause.toString());
-	// }
-	// }
+	
 
 	private void addConstantsFromExtendedMachines(List<String> constants) {
 		if (this.operation.getMachine().getExtends() != null) {
@@ -553,35 +415,7 @@ public class TestMachineBuilder {
 
 	}
 
-
-
-	// private void addProperties(StringBuffer testMachine) {
-	// List<String> properties = new ArrayList<String>();
-	//
-	// if (this.operation.getMachine().getProperties() != null) {
-	// properties.addAll(this.operation.getMachine().getProperties().getPropertiesClausesList());
-	// }
-	//
-	// addPropertiesFromSeenMachines(properties);
-	// addPropertiesFromUsedMachines(properties);
-	// addPropertiesFromIncludedMachines(properties);
-	// addPropertiesFromExtendedMachines(properties);
-	//
-	// if(!properties.isEmpty()) {
-	// StringBuffer propertiesClause = new StringBuffer("PROPERTIES\n");
-	//
-	// for (int i = 0; i < properties.size(); i++) {
-	// if(i < properties.size() - 1) {
-	// propertiesClause.append(properties.get(i) + " &\n");
-	// } else {
-	// propertiesClause.append(properties.get(i) + "\n\n");
-	// }
-	// }
-	//
-	// testMachine.append(propertiesClause.toString());
-	// }
-	//
-	// }
+	
 
 	private void addPropertiesFromExtendedMachines(List<String> properties) {
 		if (this.operation.getMachine().getExtends() != null) {
@@ -665,31 +499,7 @@ public class TestMachineBuilder {
 		}
 	}
 
-
-
-	// private void addDefinitions(StringBuffer testMachine) {
-	// StringBuffer definitionsClause = new StringBuffer("");
-	// Set<String> definitions = new HashSet<String>();
-	//
-	// addDefinitionsFromAllDependantMachines(this.operation.getMachine(),
-	// definitions);
-	//
-	// List<String> definitionsList = new ArrayList<String>(definitions);
-	//
-	// if(!definitionsList.isEmpty()) {
-	// definitionsClause.append("DEFINITIONS\n");
-	//
-	// for (int i = 0; i < definitionsList.size(); i++) {
-	// if(i < definitionsList.size() - 1) {
-	// definitionsClause.append(definitionsList.get(i) + ";\n");
-	// } else {
-	// definitionsClause.append(definitionsList.get(i) + "\n\n");
-	// }
-	// }
-	// }
-	//
-	// testMachine.append(definitionsClause.toString());
-	// }
+	
 
 	private void addDefinitionsFromAllDependantMachines(Machine machine, Set<String> definitions) {
 		if (machine.getDefinitions() != null) {
@@ -730,13 +540,7 @@ public class TestMachineBuilder {
 	}
 
 
-
-	// private void addDefinitions(StringBuffer testMachine) {
-	// if (this.operation.getMachine().getDefinitions() != null) {
-	// testMachine.append(this.operation.getMachine().getDefinitions().toString());
-	// }
-	// }
-
+	
 	private String addOperations(StringBuffer testMachine) {
 		StringBuffer testOperation = new StringBuffer("");
 

@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.junit.Test;
 
+import configurations.Configurations;
 import parser.Machine;
 import parser.Operation;
 import testgeneration.preamblecalculation.Event;
@@ -91,7 +92,7 @@ public class PreambleCalculationTest {
 
 
 	@Test
-	public void shouldFindPreamble_CannotFindPreambleForGoal() {
+	public void shouldFindPreamble_cannotFindPreambleForGoal() {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/atm.mch"));
 		Operation operationUnderTest = machine.getOperation(1);
 		String stateGoal = "mm : INT & 0 > 1";
@@ -104,5 +105,27 @@ public class PreambleCalculationTest {
 		// Assertions
 
 		assertThat(preamble).hasSize(0);
+	}
+
+
+
+	@Test
+	public void shouldFindPreamble_returnsLargePreamble() {
+		Configurations.setCBCDepth(40);
+
+		Machine machine = new Machine(new File("src/test/resources/machines/others/IncOrDec.mch"));
+		Operation operationUnderTest = machine.getOperation(1);
+		String stateGoal = "count = 40";
+		PreambleCalculation preambleCalculation = new PreambleCalculation(operationUnderTest, stateGoal);
+
+		// Getting actual result
+
+		List<Event> preamble = preambleCalculation.getPathToState();
+
+		Configurations.setCBCDepth(5);
+
+		// Assertions
+
+		assertThat(preamble).hasSize(40);
 	}
 }

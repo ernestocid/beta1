@@ -184,7 +184,7 @@ public class TestMachineBuilderTest {
 		TestMachineBuilder builder = new TestMachineBuilder(operationUnderTest, criteria.getCombinations());
 		String testMachineText = builder.generateTestMachine();
 
-		assertEquals(USESMACHINEB_TESTMACHINE, testMachineText);
+		assertEquals(MARRIAGE_TESTMACHINE, testMachineText);
 	}
 	
 	
@@ -411,6 +411,7 @@ public class TestMachineBuilderTest {
 			"END";
 	
 	
+	
 	public static final String INCLUDEMACHINEC_TESTMACHINE = 
 			"MACHINE TestsForOp_opC_From_TestIncludeMachineC" + "\n" +
 			"\n" +
@@ -435,6 +436,8 @@ public class TestMachineBuilderTest {
 			"skip" + "\n" +
 			"END" + "\n" +
 			"END";
+	
+	
 	
 	public static final String EXTENDSMACHINEC_TESTMACHINE = 
 			"MACHINE TestsForOp_opC_From_TestExtendsMachineC" + "\n" +
@@ -462,6 +465,7 @@ public class TestMachineBuilderTest {
 			"END";
 	
 	
+	
 	public static final String TESTSEESMACHINEB_TESTMACHINE = 
 			"MACHINE TestsForOp_opB_From_TestSEESMachineB" + "\n" +
 			"\n" +
@@ -487,6 +491,8 @@ public class TestMachineBuilderTest {
 			"END" + "\n" +
 			"END";
 	
+	
+	
 	public static final String USESMACHINEB_TESTMACHINE = 
 			"MACHINE TestsForOp_opB_From_TestUsesMachineB" + "\n" +
 			"\n" +
@@ -507,6 +513,43 @@ public class TestMachineBuilderTest {
 			") =" + "\n" +
 			"PRE" + "\n" +
 			"i__yy : SETB /* POSITIVE */" + "\n" +
+			"THEN" + "\n" +
+			"skip" + "\n" +
+			"END" + "\n" +
+			"END";
+	
+	
+	
+	public static final String MARRIAGE_TESTMACHINE =
+			"MACHINE TestsForOp_part_From_Marriage" + "\n" +
+			"\n" +
+			"USES Life" + "\n" +
+			"\n" +
+			"OPERATIONS" + "\n" +
+			"/* Equivalence Class test data for part */" + "\n" +
+			"part_test1(" + "\n" +
+			"i__mm," + "\n" +
+			"i__marriage," + "\n" +
+			"i__female," + "\n" +
+			"i__male," + "\n" +
+			"i__ff" + "\n" +
+			") =" + "\n" +
+			"PRE" + "\n" +
+			"i__male <: person & i__mm : i__male & i__male /\\ i__female = {} & i__mm |-> i__ff : i__marriage & i__female <: person & i__ff : i__female & i__marriage : (i__male >+> i__female) /* POSITIVE */" + "\n" +
+			"THEN" + "\n" +
+			"skip" + "\n" +
+			"END" + "\n" +
+			";" + "\n" +
+			"/* Equivalence Class test data for part */" + "\n" +
+			"part_test2(" + "\n" +
+			"i__mm," + "\n" +
+			"i__marriage," + "\n" +
+			"i__female," + "\n" +
+			"i__male," + "\n" +
+			"i__ff" + "\n" +
+			") =" + "\n" +
+			"PRE" + "\n" +
+			"i__male <: person & not(i__mm : i__male) & i__male /\\ i__female = {} & not(i__mm |-> i__ff : i__marriage) & i__female <: person & not(i__ff : i__female) & i__marriage : (i__male >+> i__female) /* NEGATIVE */" + "\n" +
 			"THEN" + "\n" +
 			"skip" + "\n" +
 			"END" + "\n" +

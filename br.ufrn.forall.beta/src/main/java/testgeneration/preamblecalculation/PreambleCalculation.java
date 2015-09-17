@@ -21,6 +21,7 @@ import machinebuilder.CBCMachineBuilder;
 import parser.Machine;
 import parser.Operation;
 import probcliinterface.commands.GenerateCBCTestsCommand;
+import tools.FileTools;
 
 
 /**
@@ -60,7 +61,6 @@ public class PreambleCalculation {
 		CBCMachineBuilder cbcMachineBuilder = new CBCMachineBuilder(getOperationUnderTest(), getStateGoal());
 		File cbcMachine = cbcMachineBuilder.getBuiltMachine();
 		File outputXMLFile = getOutputFileFor(cbcMachine);
-
 		String operationToCover = new Machine(cbcMachine).getOperation(0).getName();
 
 		GenerateCBCTestsCommand cbcCmd = new GenerateCBCTestsCommand(cbcMachine, operationToCover, outputXMLFile);

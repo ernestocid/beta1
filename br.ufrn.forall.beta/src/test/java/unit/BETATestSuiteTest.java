@@ -253,6 +253,7 @@ public class BETATestSuiteTest {
 		assertThat(testSuite.getTestCases().get(4).getPreamble()).isEqualTo(preambleTC5);
 		
 		List<Event> preambleTC6 = new ArrayList<Event>();
+		preambleTC6.add(new Event("initialisation", new HashMap<String, String>()));
 		assertThat(testSuite.getTestCases().get(5).getPreamble()).isEqualTo(preambleTC6);
 		
 		List<Event> preambleTC7 = new ArrayList<Event>(); 
@@ -260,6 +261,7 @@ public class BETATestSuiteTest {
 		assertThat(testSuite.getTestCases().get(6).getPreamble()).isEqualTo(preambleTC7);
 		
 		List<Event> preambleTC8 = new ArrayList<Event>(); 
+		preambleTC8.add(new Event("initialisation", new HashMap<String, String>()));
 		assertThat(testSuite.getTestCases().get(7).getPreamble()).isEqualTo(preambleTC8);
 		
 		List<Event> preambleTC9 = new ArrayList<Event>(); 

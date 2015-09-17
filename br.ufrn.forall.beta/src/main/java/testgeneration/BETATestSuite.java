@@ -105,7 +105,7 @@ public class BETATestSuite {
 		StringBuffer stateGoal = new StringBuffer("");
 		
 		if(attributeValues.isEmpty()) {
-			stateGoal.append("TRUE");
+			stateGoal.append("1 = 1");
 		} else {
 			int count = 0;
 			

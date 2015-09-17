@@ -58,7 +58,7 @@ public class GenerateCBCTestMachineAction extends AbstractAction {
 			BETATestSuite testSuite = new BETATestSuite(coverageCriterion);
 			List<String> testCasePredicates = testSuite.getFeasbileTestCaseFormulasWithoutInvariant();
 
-			CBCMachineBuilder cbcMchBuilder = new CBCMachineBuilder(operationUnderTest, testCasePredicates);
+			CBCMachineBuilder cbcMchBuilder = new CBCMachineBuilder(operationUnderTest, "1=1");
 			String cbcTestMachinePath = cbcMchBuilder.getBuiltMachine().getAbsolutePath();
 			
 			JOptionPane

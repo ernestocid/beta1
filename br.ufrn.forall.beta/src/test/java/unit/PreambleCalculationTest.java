@@ -18,9 +18,9 @@ public class PreambleCalculationTest {
 
 	@Test
 	public void shouldFindPreamble_returnsFourEventsPreamble() {
-		Machine machine = new Machine(new File("src/test/resources/machines/others/Classroom.mch"));
+		Machine machine = new Machine(new File("src/test/resources/machines/others/ClassroomWithoutDeferredSets.mch"));
 		Operation operationUnderTest = machine.getOperation(3);
-		String stateGoal = "grades(student) > 2 & grades(student) > 3 & has_taken_lab_classes(student) = TRUE & student : dom(grades) & student : dom(has_taken_lab_classes) & student : students";
+		String stateGoal = "students = {st1} & grades = {(st1|->4)} & has_taken_lab_classes = {(st1|->TRUE)}";
 		PreambleCalculation preambleCalculation = new PreambleCalculation(operationUnderTest, stateGoal);
 
 		// Setting up expected results
@@ -29,17 +29,16 @@ public class PreambleCalculationTest {
 		event1Params.put("students", "{}");
 		event1Params.put("grades", "{}");
 		event1Params.put("has_taken_lab_classes", "{}");
-		event1Params.put("finished", "FALSE");
 
 		Map<String, String> event2Params = new HashMap<String, String>();
-		event2Params.put("student", "STUDENT1");
+		event2Params.put("student", "st1");
 
 		Map<String, String> event3Params = new HashMap<String, String>();
-		event3Params.put("student", "STUDENT1");
+		event3Params.put("student", "st1");
 		event3Params.put("grade", "4");
 
 		Map<String, String> event4Params = new HashMap<String, String>();
-		event4Params.put("student", "STUDENT1");
+		event4Params.put("student", "st1");
 		event4Params.put("present", "TRUE");
 
 		// Getting actual result
@@ -69,7 +68,7 @@ public class PreambleCalculationTest {
 	public void shouldFindPreamble_returnsOnlyInitialisationPreamble() {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/atm.mch"));
 		Operation operationUnderTest = machine.getOperation(1);
-		String stateGoal = "mm : INT & not((account_balance - mm) >= 0)";
+		String stateGoal = "account_id = 1 & account_balance = 0";
 		PreambleCalculation preambleCalculation = new PreambleCalculation(operationUnderTest, stateGoal);
 
 		// Setting up expected results
@@ -95,7 +94,7 @@ public class PreambleCalculationTest {
 	public void shouldFindPreamble_cannotFindPreambleForGoal() {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/atm.mch"));
 		Operation operationUnderTest = machine.getOperation(1);
-		String stateGoal = "mm : INT & 0 > 1";
+		String stateGoal = "0 > 1";
 		PreambleCalculation preambleCalculation = new PreambleCalculation(operationUnderTest, stateGoal);
 
 		// Getting actual result

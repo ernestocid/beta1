@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import parser.Operation;
@@ -87,7 +88,7 @@ public class BETATestSuite {
 			List<Event> preamble = new ArrayList<Event>();
 
 			if(Configurations.isFindPreamble()) {
-				preamble = getPreamble(getOperationUnderTest(), testFomula);
+				preamble = getPreamble(getOperationUnderTest(), getStateGoal(attributeValues));
 			}
 
 			BETATestCase testCase = new BETATestCase(testFomula, testFormulaWithoutInvariant, attributeValues, paramValues, isNegative, preamble, this);
@@ -96,6 +97,30 @@ public class BETATestSuite {
 		}
 
 		Collections.sort(testCases);
+	}
+
+
+
+	private String getStateGoal(HashMap<String, String> attributeValues) {
+		StringBuffer stateGoal = new StringBuffer("");
+		
+		if(attributeValues.isEmpty()) {
+			stateGoal.append("TRUE");
+		} else {
+			int count = 0;
+			
+			for(Entry<String, String> stateValue : attributeValues.entrySet()) {
+				stateGoal.append(stateValue.getKey() + " = " + stateValue.getValue());
+				
+				if(count < attributeValues.size() - 1) {
+					stateGoal.append(" & ");
+				}
+				
+				count++;
+			}
+		}
+				
+		return stateGoal.toString();
 	}
 
 

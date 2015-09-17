@@ -57,10 +57,7 @@ public class PreambleCalculation {
 	 * @return a List of events that compose the preamble for the test case.
 	 */
 	public List<Event> getPathToState() {
-		List<String> testCasePredicates = new ArrayList<String>();
-		testCasePredicates.add(getStateGoal());
-
-		CBCMachineBuilder cbcMachineBuilder = new CBCMachineBuilder(getOperationUnderTest(), testCasePredicates);
+		CBCMachineBuilder cbcMachineBuilder = new CBCMachineBuilder(getOperationUnderTest(), getStateGoal());
 		File cbcMachine = cbcMachineBuilder.getBuiltMachine();
 		File outputXMLFile = getOutputFileFor(cbcMachine);
 

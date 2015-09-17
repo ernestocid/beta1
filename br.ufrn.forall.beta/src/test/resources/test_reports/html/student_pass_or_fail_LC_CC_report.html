@@ -155,7 +155,7 @@ tr.odd td {
 	</br>
 	
 	<ul>
-		<li>students <: STUDENT</li>
+		<li>students <: all_students</li>
 		<li>grades : (students +-> 0..5)</li>
 		<li>has_taken_lab_classes : (students +-> BOOL)</li>
 	</ul>
@@ -176,9 +176,9 @@ tr.odd td {
 	<li>
 	initialisation({students={}, has_taken_lab_classes={}, grades={}})	</li>
 	<li>
-	add_student({student=STUDENT1})	</li>
+	add_student({student=st1})	</li>
 	<li>
-	add_grade({student=STUDENT1, grade=0})	</li>
+	add_grade({student=st1, grade=0})	</li>
 </ol>
 
 		</br>
@@ -197,7 +197,7 @@ tr.odd td {
 
 			<tr class="even">
 				<td>students</td>
-				<td><i>{STUDENT1}</i></td>
+				<td><i>{st1}</i></td>
 			</tr>
 			<tr class="odd">
 				<td>has_taken_lab_classes</td>
@@ -205,7 +205,7 @@ tr.odd td {
 			</tr>
 <tr class="even">
 				<td>grades</td>
-				<td><i>{(STUDENT1|->0)}</i></td>
+				<td><i>{(st1|->0)}</i></td>
 			</tr>
 
 
@@ -220,7 +220,7 @@ tr.odd td {
 
 			<tr class="even">
 				<td>student</td>
-				<td><i>STUDENT1</i></td>
+				<td><i>st1</i></td>
 			</tr>
 
 		</table>
@@ -283,11 +283,11 @@ tr.odd td {
 	<li>
 	initialisation({students={}, has_taken_lab_classes={}, grades={}})	</li>
 	<li>
-	add_student({student=STUDENT1})	</li>
+	add_student({student=st1})	</li>
 	<li>
-	add_grade({student=STUDENT1, grade=0})	</li>
+	add_grade({student=st1, grade=0})	</li>
 	<li>
-	present_on_lab_classes({present=TRUE, student=STUDENT1})	</li>
+	present_on_lab_classes({present=TRUE, student=st1})	</li>
 </ol>
 
 		</br>
@@ -306,15 +306,15 @@ tr.odd td {
 
 			<tr class="even">
 				<td>students</td>
-				<td><i>{STUDENT1}</i></td>
+				<td><i>{st1}</i></td>
 			</tr>
 			<tr class="odd">
 				<td>has_taken_lab_classes</td>
-				<td><i>{(STUDENT1|->TRUE)}</i></td>
+				<td><i>{(st1|->TRUE)}</i></td>
 			</tr>
 <tr class="even">
 				<td>grades</td>
-				<td><i>{(STUDENT1|->0)}</i></td>
+				<td><i>{(st1|->0)}</i></td>
 			</tr>
 
 
@@ -329,7 +329,7 @@ tr.odd td {
 
 			<tr class="even">
 				<td>student</td>
-				<td><i>STUDENT1</i></td>
+				<td><i>st1</i></td>
 			</tr>
 
 		</table>
@@ -392,11 +392,11 @@ tr.odd td {
 	<li>
 	initialisation({students={}, has_taken_lab_classes={}, grades={}})	</li>
 	<li>
-	add_student({student=STUDENT1})	</li>
+	add_student({student=st1})	</li>
 	<li>
-	add_grade({student=STUDENT1, grade=0})	</li>
+	add_grade({student=st1, grade=0})	</li>
 	<li>
-	present_on_lab_classes({present=FALSE, student=STUDENT1})	</li>
+	present_on_lab_classes({present=FALSE, student=st1})	</li>
 </ol>
 
 		</br>
@@ -415,15 +415,15 @@ tr.odd td {
 
 			<tr class="even">
 				<td>students</td>
-				<td><i>{STUDENT1}</i></td>
+				<td><i>{st1}</i></td>
 			</tr>
 			<tr class="odd">
 				<td>has_taken_lab_classes</td>
-				<td><i>{(STUDENT1|->FALSE)}</i></td>
+				<td><i>{(st1|->FALSE)}</i></td>
 			</tr>
 <tr class="even">
 				<td>grades</td>
-				<td><i>{(STUDENT1|->0)}</i></td>
+				<td><i>{(st1|->0)}</i></td>
 			</tr>
 
 
@@ -438,7 +438,7 @@ tr.odd td {
 
 			<tr class="even">
 				<td>student</td>
-				<td><i>STUDENT1</i></td>
+				<td><i>st1</i></td>
 			</tr>
 
 		</table>
@@ -501,11 +501,11 @@ tr.odd td {
 	<li>
 	initialisation({students={}, has_taken_lab_classes={}, grades={}})	</li>
 	<li>
-	add_student({student=STUDENT1})	</li>
+	add_student({student=st1})	</li>
 	<li>
-	add_grade({student=STUDENT1, grade=3})	</li>
+	add_grade({student=st1, grade=3})	</li>
 	<li>
-	present_on_lab_classes({present=TRUE, student=STUDENT1})	</li>
+	present_on_lab_classes({present=FALSE, student=st1})	</li>
 </ol>
 
 		</br>
@@ -524,15 +524,15 @@ tr.odd td {
 
 			<tr class="even">
 				<td>students</td>
-				<td><i>{STUDENT1}</i></td>
+				<td><i>{st1}</i></td>
 			</tr>
 			<tr class="odd">
 				<td>has_taken_lab_classes</td>
-				<td><i>{(STUDENT1|->FALSE)}</i></td>
+				<td><i>{(st1|->FALSE)}</i></td>
 			</tr>
 <tr class="even">
 				<td>grades</td>
-				<td><i>{(STUDENT1|->3)}</i></td>
+				<td><i>{(st1|->3)}</i></td>
 			</tr>
 
 
@@ -547,7 +547,7 @@ tr.odd td {
 
 			<tr class="even">
 				<td>student</td>
-				<td><i>STUDENT1</i></td>
+				<td><i>st1</i></td>
 			</tr>
 
 		</table>
@@ -610,11 +610,11 @@ tr.odd td {
 	<li>
 	initialisation({students={}, has_taken_lab_classes={}, grades={}})	</li>
 	<li>
-	add_student({student=STUDENT1})	</li>
+	add_student({student=st1})	</li>
 	<li>
-	add_grade({student=STUDENT1, grade=4})	</li>
+	add_grade({student=st1, grade=4})	</li>
 	<li>
-	present_on_lab_classes({present=TRUE, student=STUDENT1})	</li>
+	present_on_lab_classes({present=FALSE, student=st1})	</li>
 </ol>
 
 		</br>
@@ -633,15 +633,15 @@ tr.odd td {
 
 			<tr class="even">
 				<td>students</td>
-				<td><i>{STUDENT1}</i></td>
+				<td><i>{st1}</i></td>
 			</tr>
 			<tr class="odd">
 				<td>has_taken_lab_classes</td>
-				<td><i>{(STUDENT1|->FALSE)}</i></td>
+				<td><i>{(st1|->FALSE)}</i></td>
 			</tr>
 <tr class="even">
 				<td>grades</td>
-				<td><i>{(STUDENT1|->4)}</i></td>
+				<td><i>{(st1|->4)}</i></td>
 			</tr>
 
 
@@ -656,7 +656,7 @@ tr.odd td {
 
 			<tr class="even">
 				<td>student</td>
-				<td><i>STUDENT1</i></td>
+				<td><i>st1</i></td>
 			</tr>
 
 		</table>
@@ -719,11 +719,11 @@ tr.odd td {
 	<li>
 	initialisation({students={}, has_taken_lab_classes={}, grades={}})	</li>
 	<li>
-	add_student({student=STUDENT1})	</li>
+	add_student({student=st1})	</li>
 	<li>
-	add_grade({student=STUDENT1, grade=0})	</li>
+	add_grade({student=st1, grade=0})	</li>
 	<li>
-	present_on_lab_classes({present=TRUE, student=STUDENT1})	</li>
+	present_on_lab_classes({present=FALSE, student=st1})	</li>
 </ol>
 
 		</br>
@@ -742,15 +742,15 @@ tr.odd td {
 
 			<tr class="even">
 				<td>students</td>
-				<td><i>{STUDENT1}</i></td>
+				<td><i>{st1}</i></td>
 			</tr>
 			<tr class="odd">
 				<td>has_taken_lab_classes</td>
-				<td><i>{(STUDENT1|->FALSE)}</i></td>
+				<td><i>{(st1|->FALSE)}</i></td>
 			</tr>
 <tr class="even">
 				<td>grades</td>
-				<td><i>{(STUDENT1|->0)}</i></td>
+				<td><i>{(st1|->0)}</i></td>
 			</tr>
 
 
@@ -765,7 +765,7 @@ tr.odd td {
 
 			<tr class="even">
 				<td>student</td>
-				<td><i>STUDENT1</i></td>
+				<td><i>st1</i></td>
 			</tr>
 
 		</table>
@@ -828,11 +828,11 @@ tr.odd td {
 	<li>
 	initialisation({students={}, has_taken_lab_classes={}, grades={}})	</li>
 	<li>
-	add_student({student=STUDENT1})	</li>
+	add_student({student=st1})	</li>
 	<li>
-	add_grade({student=STUDENT1, grade=0})	</li>
+	add_grade({student=st1, grade=0})	</li>
 	<li>
-	present_on_lab_classes({present=TRUE, student=STUDENT1})	</li>
+	present_on_lab_classes({present=FALSE, student=st1})	</li>
 </ol>
 
 		</br>
@@ -851,15 +851,15 @@ tr.odd td {
 
 			<tr class="even">
 				<td>students</td>
-				<td><i>{STUDENT1}</i></td>
+				<td><i>{st1}</i></td>
 			</tr>
 			<tr class="odd">
 				<td>has_taken_lab_classes</td>
-				<td><i>{(STUDENT1|->FALSE)}</i></td>
+				<td><i>{(st1|->FALSE)}</i></td>
 			</tr>
 <tr class="even">
 				<td>grades</td>
-				<td><i>{(STUDENT1|->0)}</i></td>
+				<td><i>{(st1|->0)}</i></td>
 			</tr>
 
 
@@ -874,7 +874,7 @@ tr.odd td {
 
 			<tr class="even">
 				<td>student</td>
-				<td><i>STUDENT1</i></td>
+				<td><i>st1</i></td>
 			</tr>
 
 		</table>
@@ -937,9 +937,9 @@ tr.odd td {
 	<li>
 	initialisation({students={}, has_taken_lab_classes={}, grades={}})	</li>
 	<li>
-	add_student({student=STUDENT1})	</li>
+	add_student({student=st1})	</li>
 	<li>
-	present_on_lab_classes({present=TRUE, student=STUDENT1})	</li>
+	present_on_lab_classes({present=FALSE, student=st1})	</li>
 </ol>
 
 		</br>
@@ -958,11 +958,11 @@ tr.odd td {
 
 			<tr class="even">
 				<td>students</td>
-				<td><i>{STUDENT1}</i></td>
+				<td><i>{st1}</i></td>
 			</tr>
 			<tr class="odd">
 				<td>has_taken_lab_classes</td>
-				<td><i>{(STUDENT1|->FALSE)}</i></td>
+				<td><i>{(st1|->FALSE)}</i></td>
 			</tr>
 <tr class="even">
 				<td>grades</td>
@@ -981,7 +981,7 @@ tr.odd td {
 
 			<tr class="even">
 				<td>student</td>
-				<td><i>STUDENT1</i></td>
+				<td><i>st1</i></td>
 			</tr>
 
 		</table>
@@ -1044,11 +1044,11 @@ tr.odd td {
 	<li>
 	initialisation({students={}, has_taken_lab_classes={}, grades={}})	</li>
 	<li>
-	add_student({student=STUDENT1})	</li>
+	add_student({student=st1})	</li>
 	<li>
-	add_grade({student=STUDENT1, grade=0})	</li>
+	add_grade({student=st1, grade=0})	</li>
 	<li>
-	present_on_lab_classes({present=TRUE, student=STUDENT1})	</li>
+	present_on_lab_classes({present=FALSE, student=st1})	</li>
 </ol>
 
 		</br>
@@ -1067,15 +1067,15 @@ tr.odd td {
 
 			<tr class="even">
 				<td>students</td>
-				<td><i>{STUDENT1}</i></td>
+				<td><i>{st1}</i></td>
 			</tr>
 			<tr class="odd">
 				<td>has_taken_lab_classes</td>
-				<td><i>{(STUDENT1|->FALSE)}</i></td>
+				<td><i>{(st1|->FALSE)}</i></td>
 			</tr>
 <tr class="even">
 				<td>grades</td>
-				<td><i>{(STUDENT1|->0)}</i></td>
+				<td><i>{(st1|->0)}</i></td>
 			</tr>
 
 
@@ -1090,7 +1090,7 @@ tr.odd td {
 
 			<tr class="even">
 				<td>student</td>
-				<td><i>STUDENT1</i></td>
+				<td><i>st1</i></td>
 			</tr>
 
 		</table>

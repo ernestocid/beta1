@@ -4,21 +4,24 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import parser.Operation;
+import testgeneration.BETATestCase;
 import tools.FileTools;
 
 public class CBCMachineBuilder {
 
 	private Operation operationUnderTest;
-	private List<String> testCasePredicates;
+	private String stateGoal;
 	private File builtMachine;
 
 
 
-	public CBCMachineBuilder(Operation operationUnderTest, List<String> testCasePredicates) {
+	public CBCMachineBuilder(Operation operationUnderTest, String stateGoal) {
 		this.operationUnderTest = operationUnderTest;
-		this.testCasePredicates = testCasePredicates;
+		this.stateGoal = stateGoal;
 		this.builtMachine = buildCBCTestMachine();
 	}
 
@@ -39,10 +42,8 @@ public class CBCMachineBuilder {
 		cbcTestMachine.append("OPERATIONS");
 		cbcTestMachine.append("\n");
 
-		for (int testIndex = 0; testIndex < testCasePredicates.size(); testIndex++) {
-			createTestOperation(cbcTestMachine, testIndex);
-		}
-
+		cbcTestMachine.append(createTestOperation());
+		
 		cbcTestMachine.append("END");
 
 		String cbcMachineFilePath = getSourceMachineDirectory() + getSourceMachineName() + "_" + getOperationUnderTest().getName() + "_" + "CBCTest.mch";
@@ -76,22 +77,42 @@ public class CBCMachineBuilder {
 
 
 
-	private void createTestOperation(StringBuffer cbcTestMachine, int testIndex) {
-		cbcTestMachine.append(getOperationUnderTest().getName() + "_test" + String.valueOf(testIndex + 1));
-		cbcTestMachine.append(operationUnderTestParameters() + " =");
-		cbcTestMachine.append("\n");
-		cbcTestMachine.append("PRE");
-		cbcTestMachine.append("\n");
-		cbcTestMachine.append(this.testCasePredicates.get(testIndex));
-		cbcTestMachine.append("\n");
-		cbcTestMachine.append("THEN skip");
-		cbcTestMachine.append("\n");
-		if (testIndex == testCasePredicates.size() - 1) {
-			cbcTestMachine.append("END");
-		} else {
-			cbcTestMachine.append("END;");
+	private String createTestOperation() {
+		StringBuffer cbcTestOperation = new StringBuffer("");
+		
+		cbcTestOperation.append(getOperationUnderTest().getName() + "_test" + " =");
+		cbcTestOperation.append("\n");
+		cbcTestOperation.append("PRE");
+		cbcTestOperation.append("\n");
+		cbcTestOperation.append(getStateGoal());
+		cbcTestOperation.append("\n");
+		cbcTestOperation.append("THEN skip");
+		cbcTestOperation.append("\n");
+		cbcTestOperation.append("END");
+		cbcTestOperation.append("\n\n");
+		
+		return cbcTestOperation.toString();
+	}
+
+
+
+	private String createStateGoal(BETATestCase testCase) {
+		StringBuffer stateGoal = new StringBuffer("");
+		Map<String, String> stateValues = testCase.getStateValues();
+		
+		int count = 0;
+		
+		for(Entry<String, String> stateValue : stateValues.entrySet()) {
+			stateGoal.append(stateValue.getKey() + " = " + stateValue.getValue());
+			
+			if(count < stateValues.size() - 1) {
+				stateGoal.append(" & ");
+			}
+			
+			count++;
 		}
-		cbcTestMachine.append("\n\n");
+		
+		return stateGoal.toString();
 	}
 
 
@@ -155,7 +176,13 @@ public class CBCMachineBuilder {
 		return operationUnderTest;
 	}
 
+	
+	
+	public String getStateGoal() {
+		return this.stateGoal;
+	}
 
+	
 
 	private String getSourceMachineName() {
 		return getOperationUnderTest().getMachine().getName();

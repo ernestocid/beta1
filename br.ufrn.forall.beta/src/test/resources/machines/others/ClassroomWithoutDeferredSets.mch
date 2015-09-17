@@ -1,14 +1,13 @@
-MACHINE Course
+MACHINE ClassroomWithoutDeferredSets
 
 SETS
- all_students = {st1,st2,st3,st4,st5}; 
+ all_students = {st1,st2,st3,st4,st5,st6,st7,st8,st9,st10}; 
  result = {pass, final_exam, fail}
 
-
 VARIABLES
- students,
  grades,
- has_taken_lab_classes
+ has_taken_lab_classes,
+ students
 
 INVARIANT
  students <: all_students &

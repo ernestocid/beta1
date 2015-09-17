@@ -1,0 +1,14 @@
+MACHINE PassFinalOrFailIFELSIFELSECBCTest
+
+INCLUDES PassFinalOrFailIFELSIFELSE
+
+
+
+OPERATIONS
+checkResult_test =
+PRE
+TRUE
+THEN skip
+END
+
+END

@@ -66,8 +66,19 @@ public class PreambleCalculation {
 		GenerateCBCTestsCommand cbcCmd = new GenerateCBCTestsCommand(cbcMachine, operationToCover, outputXMLFile);
 		cbcCmd.execute();
 
-		List<Event> preamble = getListOfEventsFromXML(outputXMLFile);
-
+		List<Event> preamble = new ArrayList<Event>();
+		
+		// If CBC command finishes it outputs a XML file and then we extract the preamble from the XML. 
+		// If it does not output the XML file then it couldn't find the preamble and we return an empty 
+		// list of events (which means no preamble was found).
+		
+		if(outputXMLFile.exists()) {
+			preamble = getListOfEventsFromXML(outputXMLFile);
+		} 
+		
+		// If 'Delete Temp Files' is active then we delete all temporary files created 
+		// during this process.
+		
 		if (Configurations.isDeleteTempFiles()) {
 			cbcMachine.delete();
 			outputXMLFile.delete();

@@ -127,4 +127,23 @@ public class PreambleCalculationTest {
 
 		assertThat(preamble).hasSize(40);
 	}
+	
+	
+	
+	@Test
+	public void shouldNotFindPreambleForMachineWithNoState_returnsAnEmptyPreamble() {
+		Machine machine = new Machine(new File("src/test/resources/machines/others/NoState.mch"));
+				
+		Operation operationUnderTest = machine.getOperation(0); // Set(xx, yy)
+		String stateGoal = "xx > 0";
+		PreambleCalculation preambleCalculation = new PreambleCalculation(operationUnderTest, stateGoal);
+
+		// Getting actual result
+
+		List<Event> preamble = preambleCalculation.getPathToState();
+
+		// Assertions
+		
+		assertThat(preamble).isEmpty();
+	}
 }

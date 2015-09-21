@@ -12,58 +12,5 @@
         <return-variables>true</return-variables>
         <invariant-ok>true</invariant-ok>
     </oracle-strategy>
-    <test-cases>
-        <test-case>
-            <id>1</id>
-            <formula>not(temp = {1, 2, 3}) &amp; temp &lt;: NAT1</formula>
-            <preamble/>
-            <isNegative>true</isNegative>
-            <state-variables>
-                <variable>
-                    <identifier>temp</identifier>
-                    <values>
-                        <value>{-}</value>
-                    </values>
-                </variable>
-            </state-variables>
-            <operation-parameters/>
-            <expected-state-values>
-                <variable>
-                    <identifier>temp</identifier>
-                    <values>
-                        <value>unknown</value>
-                    </values>
-                </variable>
-            </expected-state-values>
-            <return-variables/>
-        </test-case>
-        <test-case>
-            <id>2</id>
-            <formula>temp = {1, 2, 3} &amp; temp &lt;: NAT1</formula>
-            <preamble/>
-            <isNegative>false</isNegative>
-            <state-variables>
-                <variable>
-                    <identifier>temp</identifier>
-                    <values>
-                        <value>1</value>
-                        <value>2</value>
-                        <value>3</value>
-                    </values>
-                </variable>
-            </state-variables>
-            <operation-parameters/>
-            <expected-state-values>
-                <variable>
-                    <identifier>temp</identifier>
-                    <values>
-                        <value>1</value>
-                        <value>2</value>
-                        <value>3</value>
-                    </values>
-                </variable>
-            </expected-state-values>
-            <return-variables/>
-        </test-case>
-    </test-cases>
+    <test-cases/>
 </test-suite>

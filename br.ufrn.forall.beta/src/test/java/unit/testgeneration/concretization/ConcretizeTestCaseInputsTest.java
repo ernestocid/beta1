@@ -31,20 +31,20 @@ public class ConcretizeTestCaseInputsTest {
 
 
 
-	@Test
-	public void shouldConcretizeTestCaseInputs() {
-		String testFormula = "#team, pp, rr.(team <: PLAYER & card(team) = 11 & pp : PLAYER & pp : team & rr /: team & rr : PLAYER)";
-		Machine machine = new Machine(new File("/Users/ernestocid/Temp/PlayerRefined/Player.mch"));
-		Operation operationUnderTest = machine.getOperation(0); // substitute
-
-		Implementation implementation = new Implementation(new File("/Users/ernestocid/Temp/PlayerRefined/Player_i.imp"));
-
-		ConcretizeTestCaseInputs concretization = new ConcretizeTestCaseInputs(testFormula, operationUnderTest, implementation);
-
-		Map<String, String> expectedConcreteInputValues = new HashMap<String, String>();
-		expectedConcreteInputValues.put("team_array", "{(0|->1),(1|->2),(2|->3),(3|->4),(4|->5),(5|->6),(6|->7),(7|->8),(8|->9),(9|->10),(10|->11)}");
-
-		assertThat(concretization.getConcreteInputValues()).isEqualTo(expectedConcreteInputValues);
-	}
+//	@Test
+//	public void shouldConcretizeTestCaseInputs() {
+//		String testFormula = "#team, pp, rr.(team <: PLAYER & card(team) = 11 & pp : PLAYER & pp : team & rr /: team & rr : PLAYER)";
+//		Machine machine = new Machine(new File("/Users/ernestocid/Temp/PlayerRefined/Player.mch"));
+//		Operation operationUnderTest = machine.getOperation(0); // substitute
+//
+//		Implementation implementation = new Implementation(new File("/Users/ernestocid/Temp/PlayerRefined/Player_i.imp"));
+//
+//		ConcretizeTestCaseInputs concretization = new ConcretizeTestCaseInputs(testFormula, operationUnderTest, implementation);
+//
+//		Map<String, String> expectedConcreteInputValues = new HashMap<String, String>();
+//		expectedConcreteInputValues.put("team_array", "{(0|->1),(1|->2),(2|->3),(3|->4),(4|->5),(5|->6),(6|->7),(7|->8),(8|->9),(9|->10),(10|->11)}");
+//
+//		assertThat(concretization.getConcreteInputValues()).isEqualTo(expectedConcreteInputValues);
+//	}
 
 }

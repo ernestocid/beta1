@@ -20,7 +20,7 @@ public class PreambleCalculationTest {
 	public void shouldFindPreamble_returnsFourEventsPreamble() {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/ClassroomWithoutDeferredSets.mch"));
 		Operation operationUnderTest = machine.getOperation(3);
-		String stateGoal = "students = {st1} & grades = {(st1|->4)} & has_taken_lab_classes = {(st1|->TRUE)}";
+		String stateGoal = "students = {st4} & grades = {(st4|->4)} & has_taken_lab_classes = {(st4|->TRUE)}";
 		PreambleCalculation preambleCalculation = new PreambleCalculation(operationUnderTest, stateGoal);
 
 		// Setting up expected results
@@ -31,14 +31,14 @@ public class PreambleCalculationTest {
 		event1Params.put("has_taken_lab_classes", "{}");
 
 		Map<String, String> event2Params = new HashMap<String, String>();
-		event2Params.put("student", "st1");
+		event2Params.put("student", "st4");
 
 		Map<String, String> event3Params = new HashMap<String, String>();
-		event3Params.put("student", "st1");
+		event3Params.put("student", "st4");
 		event3Params.put("grade", "4");
 
 		Map<String, String> event4Params = new HashMap<String, String>();
-		event4Params.put("student", "st1");
+		event4Params.put("student", "st4");
 		event4Params.put("present", "TRUE");
 
 		// Getting actual result

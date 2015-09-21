@@ -12,5 +12,68 @@
         <return-variables>true</return-variables>
         <invariant-ok>true</invariant-ok>
     </oracle-strategy>
-    <test-cases/>
+    <test-cases>
+        <test-case>
+            <id>1</id>
+            <formula>nFloor : 1..5 &amp; floor : 1..5 &amp; not(nFloor /= floor)</formula>
+            <preamble/>
+            <isNegative>true</isNegative>
+            <state-variables>
+                <variable>
+                    <identifier>floor</identifier>
+                    <values>
+                        <value>1</value>
+                    </values>
+                </variable>
+            </state-variables>
+            <operation-parameters>
+                <parameter>
+                    <identifier>nFloor</identifier>
+                    <values>
+                        <value>1</value>
+                    </values>
+                </parameter>
+            </operation-parameters>
+            <expected-state-values>
+                <variable>
+                    <identifier>floor</identifier>
+                    <values>
+                        <value>unknown</value>
+                    </values>
+                </variable>
+            </expected-state-values>
+            <return-variables/>
+        </test-case>
+        <test-case>
+            <id>2</id>
+            <formula>nFloor : MININT..((1 - 1)) &amp; floor : 1..5 &amp; nFloor /= floor</formula>
+            <preamble/>
+            <isNegative>true</isNegative>
+            <state-variables>
+                <variable>
+                    <identifier>floor</identifier>
+                    <values>
+                        <value>1</value>
+                    </values>
+                </variable>
+            </state-variables>
+            <operation-parameters>
+                <parameter>
+                    <identifier>nFloor</identifier>
+                    <values>
+                        <value>-1</value>
+                    </values>
+                </parameter>
+            </operation-parameters>
+            <expected-state-values>
+                <variable>
+                    <identifier>floor</identifier>
+                    <values>
+                        <value>unknown</value>
+                    </values>
+                </variable>
+            </expected-state-values>
+            <return-variables/>
+        </test-case>
+    </test-cases>
 </test-suite>

@@ -146,4 +146,23 @@ public class PreambleCalculationTest {
 		
 		assertThat(preamble).isEmpty();
 	}
+	
+	
+	
+	@Test
+	public void shouldFindPreamblesForOperationsWithReturnVariables_returnsXEventsPreamble() {
+		Machine machine = new Machine(new File("src/test/resources/machines/others/PlayerWithEnumeratedSets.mch"));
+				
+		Operation operationUnderTest = machine.getOperation(2); // aa <-- query(pp)
+		String stateGoal = "team = {p1,p2,p3}";
+		PreambleCalculation preambleCalculation = new PreambleCalculation(operationUnderTest, stateGoal);
+
+		// Getting actual result
+
+		List<Event> preamble = preambleCalculation.getPathToState();
+		
+		// Assertions
+				
+		assertThat(preamble).isNotEmpty();
+	}
 }

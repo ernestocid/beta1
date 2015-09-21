@@ -150,7 +150,7 @@ public class PreambleCalculationTest {
 	
 	
 	@Test
-	public void shouldFindPreamblesForOperationsWithReturnVariables_returnsXEventsPreamble() {
+	public void shouldFindPreamblesForOperationsWithReturnVariables_returnsFiveEventsPreamble() {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/PlayerWithEnumeratedSets.mch"));
 				
 		Operation operationUnderTest = machine.getOperation(2); // aa <-- query(pp)
@@ -163,6 +163,6 @@ public class PreambleCalculationTest {
 		
 		// Assertions
 				
-		assertThat(preamble).isNotEmpty();
+		assertThat(preamble).hasSize(5);;
 	}
 }

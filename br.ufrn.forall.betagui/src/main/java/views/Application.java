@@ -249,11 +249,11 @@ public class Application {
 		actionsPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		mainFrame.getContentPane().add(actionsPanel, BorderLayout.SOUTH);
 
-		generateCBCTestMachineButton = new JButton("Generate CBC Machine");
-		generateCBCTestMachineButton.setAction(generateCBCTestMachineAction);
-		generateCBCTestMachineButton.setText("Generate CBC Machine");
-		generateCBCTestMachineButton.setHorizontalAlignment(SwingConstants.TRAILING);
-		actionsPanel.add(generateCBCTestMachineButton);
+//		generateCBCTestMachineButton = new JButton("Generate CBC Machine");
+//		generateCBCTestMachineButton.setAction(generateCBCTestMachineAction);
+//		generateCBCTestMachineButton.setText("Generate CBC Machine");
+//		generateCBCTestMachineButton.setHorizontalAlignment(SwingConstants.TRAILING);
+//		actionsPanel.add(generateCBCTestMachineButton);
 
 		generateTestsButton = new JButton("Generate Tests");
 		generateTestsButton.setAction(generateTestsAction);

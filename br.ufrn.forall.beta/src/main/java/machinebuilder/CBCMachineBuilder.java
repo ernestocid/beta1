@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import parser.Machine;
 import parser.Operation;
 import testgeneration.BETATestCase;
 import tools.FileTools;
@@ -59,14 +60,50 @@ public class CBCMachineBuilder {
 		if(operationsFromOriginalMachineWithoutOperationUnderTest().trim().equals("")) {
 			return "";
 		} else {
-			return "PROMOTES " + operationsFromOriginalMachineWithoutOperationUnderTest();
+			StringBuffer promotes = new StringBuffer();
+			
+			promotes.append("PROMOTES ");
+			promotes.append(operationsFromOriginalMachineWithoutOperationUnderTest());
+			
+			for(Machine machine : getMachinesIncludedOrUsed()) {
+				for(Operation operation : machine.getOperations()) {
+					promotes.append(", " + operation.getName());
+				}
+			}
+			
+			return promotes.toString();
 		}
 	}
 
 
 
 	private String createMachineIncludes() {
-		return "INCLUDES " + getOperationUnderTest().getMachine().getName();
+		StringBuffer includes = new StringBuffer("");
+
+		includes.append("INCLUDES ");
+		
+		for(Machine machine : getMachinesIncludedOrUsed()) {
+			includes.append(machine.getName() + ", ");
+		}
+		
+		includes.append(getOperationUnderTest().getMachine().getName());
+		
+		return includes.toString();
+	}
+
+
+
+	private List<Machine> getMachinesIncludedOrUsed() {
+		List<Machine> machinesIncludedOrUsed = new ArrayList<Machine>();
+		
+		if(operationUnderTest.getMachine().getIncludes() != null) {
+			machinesIncludedOrUsed.addAll(operationUnderTest.getMachine().getIncludes().getMachinesIncluded());
+		}
+		
+		if(operationUnderTest.getMachine().getUses() != null) {
+			machinesIncludedOrUsed.addAll(operationUnderTest.getMachine().getUses().getMachinesUsed());
+		}
+		return machinesIncludedOrUsed;
 	}
 
 

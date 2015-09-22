@@ -165,4 +165,54 @@ public class PreambleCalculationTest {
 				
 		assertThat(preamble).hasSize(5);;
 	}
+	
+	
+	
+	@Test
+	public void shouldFindPreamblesForOperationsFromModularSpecifications_returnsFiveEventsPreamble() {
+		Machine machine = new Machine(new File("src/test/resources/machines/schneider/LifeMarriage/Marriage.mch"));
+		
+		Operation operationUnderTest = machine.getOperation(1); // part(mm, ff)
+		String stateGoal = "male = {p1} & female = {p2} & marriage = {(p1|->p2)}";
+		PreambleCalculation preambleCalculation = new PreambleCalculation(operationUnderTest, stateGoal);
+
+		// Setting up expected results
+
+		Map<String, String> event1Params = new HashMap<String, String>();
+		event1Params.put("female", "{}");
+		event1Params.put("male", "{}");
+		event1Params.put("marriage", "{}");
+
+		Map<String, String> event2Params = new HashMap<String, String>();
+		event2Params.put("nn", "p1");
+		event2Params.put("ss", "boy");
+
+		Map<String, String> event3Params = new HashMap<String, String>();
+		event3Params.put("nn", "p2");
+		event3Params.put("ss", "girl");
+
+		Map<String, String> event4Params = new HashMap<String, String>();
+		event4Params.put("mm", "p1");
+		event4Params.put("ff", "p2");
+
+		// Getting actual result
+
+		List<Event> preamble = preambleCalculation.getPathToState();
+
+		// Assertions
+
+		assertThat(preamble).hasSize(4);
+
+		assertThat(preamble.get(0).getEventName()).isEqualTo("initialisation");
+		assertThat(preamble.get(0).getEventParameters()).isEqualTo(event1Params);
+
+		assertThat(preamble.get(1).getEventName()).isEqualTo("born");
+		assertThat(preamble.get(1).getEventParameters()).isEqualTo(event2Params);
+
+		assertThat(preamble.get(2).getEventName()).isEqualTo("born");
+		assertThat(preamble.get(2).getEventParameters()).isEqualTo(event3Params);
+
+		assertThat(preamble.get(3).getEventName()).isEqualTo("wed");
+		assertThat(preamble.get(3).getEventParameters()).isEqualTo(event4Params);
+	}
 }

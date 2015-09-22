@@ -4,12 +4,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
 import parser.Machine;
 import parser.Operation;
-import testgeneration.BETATestCase;
 import tools.FileTools;
 
 public class CBCMachineBuilder {
@@ -129,51 +126,6 @@ public class CBCMachineBuilder {
 		cbcTestOperation.append("\n\n");
 		
 		return cbcTestOperation.toString();
-	}
-
-
-
-	private String createStateGoal(BETATestCase testCase) {
-		StringBuffer stateGoal = new StringBuffer("");
-		Map<String, String> stateValues = testCase.getStateValues();
-		
-		int count = 0;
-		
-		for(Entry<String, String> stateValue : stateValues.entrySet()) {
-			stateGoal.append(stateValue.getKey() + " = " + stateValue.getValue());
-			
-			if(count < stateValues.size() - 1) {
-				stateGoal.append(" & ");
-			}
-			
-			count++;
-		}
-		
-		return stateGoal.toString();
-	}
-
-
-
-	private String operationUnderTestParameters() {
-		List<String> parameters = getOperationUnderTest().getParameters();
-
-		if (parameters.isEmpty()) {
-			return "";
-		}
-
-		StringBuffer listOfParameters = new StringBuffer("(");
-
-		for (int i = 0; i < parameters.size(); i++) {
-			if (i < parameters.size() - 1) {
-				listOfParameters.append(parameters.get(i) + ", ");
-			} else {
-				listOfParameters.append(parameters.get(i));
-			}
-		}
-
-		listOfParameters.append(")");
-
-		return listOfParameters.toString();
 	}
 
 

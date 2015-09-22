@@ -21,7 +21,6 @@ import machinebuilder.CBCMachineBuilder;
 import parser.Machine;
 import parser.Operation;
 import probcliinterface.commands.GenerateCBCTestsCommand;
-import tools.FileTools;
 
 
 /**

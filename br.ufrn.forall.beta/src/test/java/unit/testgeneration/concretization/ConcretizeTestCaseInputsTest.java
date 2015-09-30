@@ -34,10 +34,10 @@ public class ConcretizeTestCaseInputsTest {
 	@Test
 	public void shouldConcretizeTestCaseInputs() {
 		String testFormula = "#team, pp, rr.(team <: PLAYER & card(team) = 11 & pp : PLAYER & pp : team & rr /: team & rr : PLAYER)";
-		Machine machine = new Machine(new File("src/test/resources/machines/others/PlayerRefined/Player.mch"));
+		Machine machine = new Machine(new File("src/test/resources/machines/others/RefinementExamples/Player.mch"));
 		Operation operationUnderTest = machine.getOperation(0); // substitute
 
-		Implementation implementation = new Implementation(new File("/Users/ernestocid/Temp/PlayerRefined/Player_i.imp"));
+		Implementation implementation = new Implementation(new File("src/test/resources/machines/others/RefinementExamples/Player_i.imp"));
 
 		ConcretizeTestCaseInputs concretization = new ConcretizeTestCaseInputs(testFormula, operationUnderTest, implementation);
 

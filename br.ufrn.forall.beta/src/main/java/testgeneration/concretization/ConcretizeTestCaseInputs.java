@@ -19,6 +19,16 @@ import parser.decorators.predicates.MyPredicateFactory;
 import testgeneration.Block;
 import testgeneration.predicateevaluators.ProBApiPredicateEvaluator;
 
+
+/**
+ * This class is responsible for test data concretization. Based on the 
+ * implementations glue invariant, we find the relation between the concrete
+ * variables and the abstract variables, and translate the abstract data generated
+ * for the test cases into concrete data that is suitable for the implementation.
+ *  
+ * @author ernestocid
+ *
+ */
 public class ConcretizeTestCaseInputs {
 
 	private String testFormula;
@@ -33,12 +43,17 @@ public class ConcretizeTestCaseInputs {
 		this.implementation = implementation;
 	}
 
+	
 
-
+	/**
+	 * Concretizes the abstract test data and returns a Map where each entry
+	 * is a concrete variable and its respective value for the test case.
+	 * 
+	 * @return a Map<String,String> where each entry key is a concrete variable
+	 * and its value is the value for the concrete variable.
+	 */
 	public Map<String, String> getConcreteInputValues() {
-		MyPredicate testPredicate = convertTestFormulaToPredicate(getTestFormula());
-		String concretizationFormula = createConcretizationFormula(testPredicate);
-
+		String concretizationFormula = createConcretizationFormula(convertTestFormulaToPredicate(getTestFormula()));
 		return evaluateConcreteVariables(concretizationFormula);
 	}
 
@@ -61,38 +76,74 @@ public class ConcretizeTestCaseInputs {
 
 
 
-	private String createConcretizationFormula(MyPredicate testPredicate) {
-		StringBuffer concretizationFormula = new StringBuffer("");
-
-		if (testPredicate instanceof MyAExistsPredicate) {
-			MyAExistsPredicate exists = (MyAExistsPredicate) testPredicate;
-
-			concretizationFormula.append("#");
-
-			for (String var : exists.getQuantifiedVariables()) {
-				concretizationFormula.append(var + ", ");
-			}
-
-			List<String> concreteVariables = getImplementation().getConcreteVariables();
-
-			for (int i = 0; i < concreteVariables.size(); i++) {
-				if (i < concreteVariables.size() - 1) {
-					concretizationFormula.append(concreteVariables.get(i) + ", ");
-				} else {
-					concretizationFormula.append(concreteVariables.get(i) + ".");
-				}
-			}
-
-			Invariant implementationInvariant = implementation.getInvariant();
-
-			concretizationFormula.append("(");
-			concretizationFormula.append(exists.getQuantifiedPredicate().toString());
-			concretizationFormula.append(" & ");
-			concretizationFormula.append(implementationInvariant.toString().trim());
-			concretizationFormula.append(")");
+	private String createConcretizationFormula(MyPredicate testFormulaPredicate) {
+		String concretizationFormula = "";
+		StringBuffer formulaBuffer = new StringBuffer("");
+		MyAExistsPredicate testCaseFormulaPredicate = null;
+		
+		if ((testCaseFormulaPredicate = checksTestCasePredicateValidity(testFormulaPredicate)) != null) {
+			formulaBuffer.append("#" + createAbstractVariablesList(testCaseFormulaPredicate) + createConcreteVariablesList());
+			formulaBuffer.append("(" + getTestCasePredicate(testCaseFormulaPredicate) + "&" + getImplementationInvariant() + ")");
+			concretizationFormula = replaceDeferredSetsForValues(formulaBuffer);
 		}
+		
+		return concretizationFormula;
+	}
 
-		return replaceDeferredSetsForValues(concretizationFormula);
+	
+
+	private String getImplementationInvariant() {
+		if(getImplementation().getInvariant() != null) {
+			return getImplementation().getInvariant().toString().trim();
+		} else {
+			return "";
+		}
+	}
+
+
+
+	private String getTestCasePredicate(MyAExistsPredicate testCaseFormulaPredicate) {
+		return testCaseFormulaPredicate.getQuantifiedPredicate().toString();
+	}
+
+
+
+	private String createConcreteVariablesList() {
+		StringBuffer concreteVariablesList = new StringBuffer("");
+
+		List<String> concreteVariables = getImplementation().getConcreteVariables();
+
+		for (int i = 0; i < concreteVariables.size(); i++) {
+			if (i < concreteVariables.size() - 1) {
+				concreteVariablesList.append(concreteVariables.get(i) + ", ");
+			} else {
+				concreteVariablesList.append(concreteVariables.get(i) + ".");
+			}
+		}
+		
+		return concreteVariablesList.toString();
+	}
+
+
+
+	private String createAbstractVariablesList(MyAExistsPredicate testCaseFormulaPredicate) {
+		StringBuffer abstractVariablesList = new StringBuffer("");
+		
+		for (String var : testCaseFormulaPredicate.getQuantifiedVariables()) {
+			abstractVariablesList.append(var + ", ");
+		}
+		
+		return abstractVariablesList.toString();
+	}
+
+
+
+	private MyAExistsPredicate checksTestCasePredicateValidity(MyPredicate testFormulaPredicate) {
+		if(testFormulaPredicate instanceof MyAExistsPredicate) {
+			return (MyAExistsPredicate) testFormulaPredicate;
+		} else {
+			return null;
+		}
 	}
 
 

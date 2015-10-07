@@ -5,20 +5,20 @@ import java.util.Set;
 
 import de.be4.classicalb.core.parser.node.PExpression;
 
-public class MyAEitherCaseExpression extends MyExpressionDecorator {
+public class MyACaseOrExpression extends MyExpressionDecorator {
 
 	
 	private MyExpression expression;
 	private String caseVariable;
-
 	
-	public MyAEitherCaseExpression(MyExpression expression, String caseVariable) {
+	
+	public MyACaseOrExpression(MyExpression expression, String caseVariable) {
 		this.expression = expression;
 		this.caseVariable = caseVariable;
 	}
-
 	
-
+	
+	
 	@Override
 	public PExpression getNode() {
 		return this.expression.getNode();

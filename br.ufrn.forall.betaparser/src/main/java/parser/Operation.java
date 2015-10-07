@@ -10,26 +10,35 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import parser.decorators.expressions.MyACaseOrExpression;
 import parser.decorators.expressions.MyAEitherCaseExpression;
 import parser.decorators.expressions.MyExpression;
 import parser.decorators.expressions.MyExpressionFactory;
 import parser.decorators.predicates.MyPredicate;
 import parser.decorators.predicates.MyPredicateFactory;
+import de.be4.classicalb.core.parser.BParser;
+import de.be4.classicalb.core.parser.ClassicalBParser;
+import de.be4.classicalb.core.parser.exceptions.BException;
 import de.be4.classicalb.core.parser.node.AAnySubstitution;
 import de.be4.classicalb.core.parser.node.AAssertionSubstitution;
 import de.be4.classicalb.core.parser.node.ACaseOrSubstitution;
 import de.be4.classicalb.core.parser.node.ACaseSubstitution;
+import de.be4.classicalb.core.parser.node.AEqualPredicate;
 import de.be4.classicalb.core.parser.node.AIdentifierExpression;
 import de.be4.classicalb.core.parser.node.AIfElsifSubstitution;
 import de.be4.classicalb.core.parser.node.AIfSubstitution;
 import de.be4.classicalb.core.parser.node.AOperation;
 import de.be4.classicalb.core.parser.node.AParallelSubstitution;
 import de.be4.classicalb.core.parser.node.APreconditionSubstitution;
+import de.be4.classicalb.core.parser.node.APredicateParseUnit;
 import de.be4.classicalb.core.parser.node.ASelectSubstitution;
 import de.be4.classicalb.core.parser.node.ASelectWhenSubstitution;
 import de.be4.classicalb.core.parser.node.PExpression;
+import de.be4.classicalb.core.parser.node.PParseUnit;
 import de.be4.classicalb.core.parser.node.PPredicate;
 import de.be4.classicalb.core.parser.node.PSubstitution;
+import de.be4.classicalb.core.parser.node.Start;
+import de.prob.animator.domainobjects.ClassicalB;
 
 public class Operation {
 
@@ -192,21 +201,62 @@ public class Operation {
 	private void addCaseOrConditions(Set<Characteristic> conditions, ACaseSubstitution caseSubstitution) {
 		MyExpression caseExpression = MyExpressionFactory.convertExpression(caseSubstitution.getExpression());
 		String caseVar = caseExpression.toString();
+		
+		conditions.addAll(getConditionsFromEitherExpression(caseSubstitution, caseVar));
+		conditions.addAll(getConditionsFromOrExpressions(caseSubstitution, caseVar));
+	}
+
+
+
+	private Set<Characteristic> getConditionsFromOrExpressions(ACaseSubstitution caseSubstitution, String caseVar) {
+		Set<Characteristic> orConditions = new HashSet<Characteristic>();
+		LinkedList<PSubstitution> orSubstitutions = caseSubstitution.getOrSubstitutions();
+		
+		for(PSubstitution orSubst : orSubstitutions) {
+			if (orSubst instanceof ACaseOrSubstitution) {
+				ACaseOrSubstitution caseOrSubst = (ACaseOrSubstitution) orSubst;
+				MyExpression orExp = MyExpressionFactory.convertExpression(caseOrSubst.getExpressions().get(0));
+				String caseCondition = caseVar + " = " + orExp.toString();
+					
+				PParseUnit pu = new ClassicalB(caseCondition).getAst().getPParseUnit();
+				
+				if(pu instanceof APredicateParseUnit) {
+					APredicateParseUnit predicateUnit = (APredicateParseUnit) pu;								
+					Characteristic ch = new PredicateCharacteristic(MyPredicateFactory.convertPredicate(predicateUnit.getPredicate()), CharacteristicType.CONDITIONAL);
+					orConditions.add(ch);									
+				}
+			}
+		}
+		
+		return orConditions;
+	}
+
+
+
+	private Set<Characteristic> getConditionsFromEitherExpression(ACaseSubstitution caseSubstitution, String caseVar) {
+		Set<Characteristic> eitherConditions = new HashSet<Characteristic>();
 		LinkedList<PExpression> eitherExpr = caseSubstitution.getEitherExpr();
 		
 		for (PExpression exp : eitherExpr) {
 			MyExpression eitherExpression = MyExpressionFactory.convertExpression(exp);
-			Characteristic ch = new ExpressionCharacteristic(new MyAEitherCaseExpression(eitherExpression, caseVar), CharacteristicType.CONDITIONAL);
-			conditions.add(ch);
+			String caseCondition = caseVar + " = " + eitherExpression.toString();
+			
+			PParseUnit pu = new ClassicalB(caseCondition).getAst().getPParseUnit();
+			
+			if(pu instanceof APredicateParseUnit) {
+				APredicateParseUnit predicateUnit = (APredicateParseUnit) pu;								
+				Characteristic ch = new PredicateCharacteristic(MyPredicateFactory.convertPredicate(predicateUnit.getPredicate()), CharacteristicType.CONDITIONAL);
+				eitherConditions.add(ch);									
+			}
 		}
+		
+		return eitherConditions;
 	}
 
 	
 	
 	private void addIfElseConditions(Set<Characteristic> conditions, AIfSubstitution ifSubstitution) {
 		Characteristic characteristic = new PredicateCharacteristic(MyPredicateFactory.convertPredicate(ifSubstitution.getCondition()), CharacteristicType.CONDITIONAL);
-		
-//		String ifCondition = MyPredicateFactory.convertPredicate(ifSubstitution.getCondition()).toString();
 		conditions.add(characteristic);
 		addElseConditions(conditions, ifSubstitution);
 	}
@@ -218,7 +268,6 @@ public class Operation {
 			if(substitution instanceof AIfElsifSubstitution) {
 				AIfElsifSubstitution elsifSubstitution = (AIfElsifSubstitution) substitution;
 				Characteristic characteristic = new PredicateCharacteristic(MyPredicateFactory.convertPredicate(elsifSubstitution.getCondition()), CharacteristicType.CONDITIONAL);
-//				conditions.add(MyPredicateFactory.convertPredicate(elsifSubstitution.getCondition()).toString());
 				conditions.add(characteristic);
 			}
 		}

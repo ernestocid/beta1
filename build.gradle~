@@ -100,6 +100,7 @@ project(':br.ufrn.forall.betaparser') {
 		compile group: "de.hhu.stups", name: "cliparser", version: parser_version , changing: true
 		compile group: "de.hhu.stups", name: "parserbase", version: parser_version , changing: true
 		compile group: "com.google.truth", name: "truth", version: "0.25" , changing: true
+		compile group: "com.google.truth", name: "truth", version: "0.25" , changing: true
 		compile 'org.mockito:mockito-all:1.9.5'
 	}
 }

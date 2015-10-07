@@ -181,12 +181,38 @@ public class ReadOperationInfoTest extends TestingUtils {
 
 
 	@Test
-	public void shouldGetCaseCommandConditions() {
+	public void shouldGetConditionsFromCaseCommandWithEitherExpression() {
 		Machine machine = getMachineInstance("src/test/resources/machines/others/CASEMachine.mch");
 		Operation operationUnderTest = machine.getOperation(0);
 
 		Set<String> expectedConditions = new HashSet<String>();
-		expectedConditions.add("var2 : {0}");
+		expectedConditions.add("var2 = 0");
+
+		Set<String> ifConditions = parseSetOfCharacteristicsToSetOfStrings(operationUnderTest.getConditionalCharacteristics());
+
+		assertEquals(expectedConditions, ifConditions);
+	}
+	
+	
+	
+	@Test
+	public void shouldGetConditionsFromCaseCommandWithEitherAndOrExpressions() {
+		Machine machine = getMachineInstance("src/test/resources/machines/others/Calendar.mch");
+		Operation operationUnderTest = machine.getOperation(0);
+
+		Set<String> expectedConditions = new HashSet<String>();
+		expectedConditions.add("nn = 1");
+		expectedConditions.add("nn = 2");
+		expectedConditions.add("nn = 3");
+		expectedConditions.add("nn = 4");
+		expectedConditions.add("nn = 5");
+		expectedConditions.add("nn = 6");
+		expectedConditions.add("nn = 7");
+		expectedConditions.add("nn = 8");
+		expectedConditions.add("nn = 9");
+		expectedConditions.add("nn = 10");
+		expectedConditions.add("nn = 11");
+		expectedConditions.add("nn = 12");
 
 		Set<String> ifConditions = parseSetOfCharacteristicsToSetOfStrings(operationUnderTest.getConditionalCharacteristics());
 

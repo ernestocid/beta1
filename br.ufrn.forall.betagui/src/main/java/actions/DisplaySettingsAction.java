@@ -112,7 +112,7 @@ public class DisplaySettingsAction extends AbstractAction {
 		useKodkodCB.setSelected(Configurations.getUseKodkod());
 
 		useProbRandomEnumerationLabel = createLabel("Use ProB's random enumeration: ");
-		useProbRandomEnumerationCB = new JCheckBox("Random enumeration (experimental)");
+		useProbRandomEnumerationCB = new JCheckBox("Random enumeration");
 		useProbRandomEnumerationCB.setSelected(Configurations.getRandomiseEnumerationOrder());
 
 		minintLabel = createLabel("MININT Value: ");

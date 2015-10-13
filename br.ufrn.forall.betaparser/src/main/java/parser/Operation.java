@@ -10,20 +10,14 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import parser.decorators.expressions.MyACaseOrExpression;
-import parser.decorators.expressions.MyAEitherCaseExpression;
 import parser.decorators.expressions.MyExpression;
 import parser.decorators.expressions.MyExpressionFactory;
 import parser.decorators.predicates.MyPredicate;
 import parser.decorators.predicates.MyPredicateFactory;
-import de.be4.classicalb.core.parser.BParser;
-import de.be4.classicalb.core.parser.ClassicalBParser;
-import de.be4.classicalb.core.parser.exceptions.BException;
 import de.be4.classicalb.core.parser.node.AAnySubstitution;
 import de.be4.classicalb.core.parser.node.AAssertionSubstitution;
 import de.be4.classicalb.core.parser.node.ACaseOrSubstitution;
 import de.be4.classicalb.core.parser.node.ACaseSubstitution;
-import de.be4.classicalb.core.parser.node.AEqualPredicate;
 import de.be4.classicalb.core.parser.node.AIdentifierExpression;
 import de.be4.classicalb.core.parser.node.AIfElsifSubstitution;
 import de.be4.classicalb.core.parser.node.AIfSubstitution;
@@ -37,7 +31,6 @@ import de.be4.classicalb.core.parser.node.PExpression;
 import de.be4.classicalb.core.parser.node.PParseUnit;
 import de.be4.classicalb.core.parser.node.PPredicate;
 import de.be4.classicalb.core.parser.node.PSubstitution;
-import de.be4.classicalb.core.parser.node.Start;
 import de.prob.animator.domainobjects.ClassicalB;
 
 public class Operation {
@@ -173,11 +166,8 @@ public class Operation {
 	
 	
 	private void addSelectWhenConditions(Set<Characteristic> conditions, ASelectSubstitution selectSubstitution) {
-		String selectCondition = MyPredicateFactory.convertPredicate(selectSubstitution.getCondition()).toString();
-		
 		Characteristic characteristic = new PredicateCharacteristic(MyPredicateFactory.convertPredicate(selectSubstitution.getCondition()), CharacteristicType.CONDITIONAL);
 		conditions.add(characteristic);
-//		conditions.add(selectCondition);
 		addWhenConditions(conditions, selectSubstitution);
 	}
 
@@ -187,10 +177,8 @@ public class Operation {
 		for (PSubstitution subs : selectSubstitution.getWhenSubstitutions()) {
 			if (subs instanceof ASelectWhenSubstitution) {
 				ASelectWhenSubstitution when = (ASelectWhenSubstitution) subs;
-				String whenText = MyPredicateFactory.convertPredicate(when.getCondition()).toString();
 				Characteristic characteristic = new PredicateCharacteristic(MyPredicateFactory.convertPredicate(when.getCondition()), CharacteristicType.CONDITIONAL);
 				conditions.add(characteristic);
-//				conditions.add(whenText);
 			}
 			
 		}

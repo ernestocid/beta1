@@ -511,6 +511,35 @@ public class ReadOperationInfoTest extends TestingUtils {
 
 		assertTrue(compare(expectedRelatedClauses, operationUnderTest.getGuardsThatLeadToPredicate(mockedClause)));
 	}
+	
+	
+	
+	@Test
+	public void shouldGetPredicatesFromNestedIf() {
+		Machine machine = getMachineInstance("src/test/resources/machines/others/NestedIF.mch");
+		Operation operationUnderTest = machine.getOperation(0);
+
+		Set<String> expectedPredicates = new HashSet<String>();
+		expectedPredicates.add("yy > 0");
+		expectedPredicates.add("xx > 1");
+		expectedPredicates.add("xx = 2");
+
+		Set<String> actualPredicates = parseListOfPredicatesToSetOfStrings(operationUnderTest.getPredicatesFromOperationBody());
+		
+		assertEquals(expectedPredicates, actualPredicates);
+	}
+
+
+
+	private Set<String> parseListOfPredicatesToSetOfStrings(List<MyPredicate> predicatesFromOperationBody) {
+		Set<String> actualPredicates = new HashSet<String>();
+		
+		
+		for(MyPredicate p : predicatesFromOperationBody) {
+			actualPredicates.add(p.toString());
+		}
+		return actualPredicates;
+	}
 
 
 

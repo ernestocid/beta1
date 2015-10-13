@@ -9,33 +9,5 @@
         <return-variables>true</return-variables>
         <invariant-ok>true</invariant-ok>
     </oracle-strategy>
-    <test-cases>
-        <test-case>
-            <id>1</id>
-            <formula>yy : INT &amp; xx : INT</formula>
-            <preamble/>
-            <isNegative>false</isNegative>
-            <state-variables/>
-            <operation-parameters>
-                <parameter>
-                    <identifier>yy</identifier>
-                    <values>
-                        <value>-1</value>
-                    </values>
-                </parameter>
-                <parameter>
-                    <identifier>xx</identifier>
-                    <values>
-                        <value>-1</value>
-                    </values>
-                </parameter>
-            </operation-parameters>
-            <expected-state-values/>
-            <return-variables>
-                <variable>
-                    <identifier>rr</identifier>
-                </variable>
-            </return-variables>
-        </test-case>
-    </test-cases>
+    <test-cases/>
 </test-suite>

@@ -466,6 +466,8 @@ public class Operation {
 		MyPredicate ifCondition = MyPredicateFactory.convertPredicate(ifSubstitution.getCondition());
 		predicates.add(ifCondition);
 		
+		getPredicatesFromAllSubstitutions(ifSubstitution.getThen(), predicates);
+		
 		for(PSubstitution sub : ifSubstitution.getElsifSubstitutions()) {
 			getPredicatesFromAllSubstitutions(sub, predicates);
 		}

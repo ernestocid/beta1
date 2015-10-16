@@ -133,8 +133,15 @@ public class BETATestSuite {
 
 
 	private boolean isNegativeTest(Animation animation, Map<String, Boolean> mappingCombinationToTypeOfTest) {
-		String formula = animation.getFormula().replaceAll("[()]", "");
-		Boolean isNegative = mappingCombinationToTypeOfTest.get(formula);
+		String formula = animation.getFormula().replaceAll("[()]", "").replaceAll("\\s+","");
+		
+		Map<String, Boolean> cleanTypeOfTestMap = new HashMap<String, Boolean>();
+
+		for(Entry<String, Boolean> entry : mappingCombinationToTypeOfTest.entrySet()) {
+			cleanTypeOfTestMap.put(entry.getKey().replaceAll("\\s+",""), entry.getValue());
+		}		
+		
+		Boolean isNegative = cleanTypeOfTestMap.get(formula);
 		return isNegative.booleanValue();
 	}
 

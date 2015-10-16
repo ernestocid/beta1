@@ -311,4 +311,26 @@ public class BETATestSuiteTest {
 		assertThat(testSuite.getTestCases().get(1).getInputParamValues()).isEqualTo(expectedInputParamsTC2);
 		assertThat(testSuite.getTestCases().get(1).getStateValues()).isEqualTo(expectedStateVariablesTC2);
 	}
+	
+	
+	
+	@Test
+	public void shouldGenerateTestsForMachinesWithPropertiesButNoInvariant() {
+		Machine machine = new Machine(new File("src/test/resources/machines/others/Division.mch"));
+		Operation operationUnderTest = machine.getOperation(0);
+		CoverageCriterion coverageCriterion = new BoundaryValueAnalysis(operationUnderTest, CombinatorialCriteria.EACH_CHOICE);
+
+		BETATestSuite testSuite = new BETATestSuite(coverageCriterion);
+
+		// Making Assertions
+		
+		assertThat(testSuite.getTestCases()).hasSize(6);
+		
+		assertThat(testSuite.getTestCases().get(0).getTestFormulaWithoutInvariant()).isEqualTo("aa = (MAXINT + 1) & bb = (MAXINT + 1)");
+		assertThat(testSuite.getTestCases().get(1).getTestFormulaWithoutInvariant()).isEqualTo("aa = (MAXINT - 1) & bb = (MAXINT - 1)");
+		assertThat(testSuite.getTestCases().get(2).getTestFormulaWithoutInvariant()).isEqualTo("aa = -1 & bb = 0");
+		assertThat(testSuite.getTestCases().get(3).getTestFormulaWithoutInvariant()).isEqualTo("aa = 0 & bb = 1");
+		assertThat(testSuite.getTestCases().get(4).getTestFormulaWithoutInvariant()).isEqualTo("aa = 1 & bb = 2");
+		assertThat(testSuite.getTestCases().get(5).getTestFormulaWithoutInvariant()).isEqualTo("aa = MAXINT & bb = MAXINT");
+	}
 }

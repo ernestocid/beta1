@@ -1,0 +1,460 @@
+<head>
+<title>BETA Report - Machine: ATM2 Operation: withdraw</title>
+</head>
+
+<style type="text/css">
+
+* {
+	margin : 0;
+	padding : 0;
+	font-family : Helvetica;
+}
+
+#header {
+	background-color : #19428A;
+	color : #FFFFFF;
+	padding : 9px;
+	border-bottom : 1px solid #DEDEDE;
+}
+
+#header h3 {
+	font-weight : normal;
+	font-size: 16;
+}
+
+#nav ul {
+	list-style : none;
+}
+
+#nav ul li {
+	display : inline-block;
+	background-color: #19428A;
+	padding: 7px;
+	margin-left : 5px;
+	margin-top : -1px;
+	border-bottom : 1px solid #DEDEDE;
+	border-right : 1px solid #DEDEDE; 
+}
+
+#nav ul li a {
+	color : #FFFFFF;
+	text-decoration : none;
+}
+
+#nav ul li a:hover {
+	color : #D6EDFF;
+}
+
+#info {
+	background-color : #F2F2F2;
+	margin : 20px;
+}
+
+#info ul {
+	list-style : none;
+}
+
+#info ul li {
+	margin : 3px;
+}
+
+
+#test_cases {
+	background-color : #F2F2F2;
+	margin : 20px;
+}
+
+#test_cases h4 {
+	margin-top : 20px;
+	margin-left : 15px;
+	font-weight : 300;
+}
+
+#test_cases h5 {
+	margin-left : 3px;
+	margin-top : 10px;
+	margin-bottom : 10px;
+	font-size : 14;
+}
+
+#test_cases ol li {
+	margin-left: 40px;
+}
+
+table {
+	width : 100%;
+	text-align : left;
+	border-collapse : collapse;
+	font-size : 14px;
+}
+
+table, th, td {
+	border : 2px solid #F2F2F2;
+	padding : 4px;
+}
+
+th {
+	background-color : #19428A;
+	color : #FFFFFF;
+	font-weight : normal;
+}
+
+tr.even td {
+	background-color : #FFFFFF;
+}
+
+tr.odd td {
+	background-color : #D1E7FF;
+}
+
+.content_block {
+	border-right : 1px solid #DEDEDE;
+	border-bottom : 1px solid #DEDEDE;
+	padding : 20px;
+}
+
+#unsolvable_test_formulas {
+	background-color : #F2F2F2;
+	margin : 20px;
+}
+
+#unsolvable_test_formulas ul {
+	list-style : none;
+}
+
+</style>
+
+<body>
+
+<div id="wrapper">
+
+<div id="header">
+	<h3>BETA Report - Machine: ATM2 - Operation: withdraw
+</div>
+
+<div id="nav">
+	<ul>
+		<li><a href="#">Test Cases</a></li>
+	</ul>
+</div>
+
+<div class="content_block" id="info">
+	<h3>Test Case Generation Info:</h3>
+
+	</br>	
+
+	<ul>
+		<li>Testing Strategy: Logical Coverage</li>
+		<li>Coverage Criterion: Clause Coverage</li>
+	</ul>
+	
+	</br>
+	
+	<h4>Invariant restrictions: </h4>
+	
+	</br>
+	
+	<ul>
+		<li>account_id > 0</li>
+		<li>account_balance : INT</li>
+		<li>account_balance >= 0</li>
+		<li>account_id : INT</li>
+	</ul>
+	
+</div>
+
+<div class="content_block" id="test_cases">
+
+	<div class="test_case">
+		<h3>Test Case 1 (Positive)</h3>
+
+		<h4>Formula: <i>account_balance >= mm & mm : INT & not(mm > 0)</i></h4>
+
+		</br>
+
+		<h5>Preamble: </h5>
+			<ol>
+	<li>
+	initialisation({account_id=1, account_balance=0})	</li>
+</ol>
+
+		</br>
+
+		<h5>Input data: </h5>
+
+		<table>
+			<tr>
+				<th colspan="2">State</th>
+			</tr>
+
+			<tr>
+				<th>Variable</th>
+				<th>Value</th>
+			</tr>
+
+			<tr class="even">
+				<td>account_id</td>
+				<td><i>1</i></td>
+			</tr>
+			<tr class="odd">
+				<td>account_balance</td>
+				<td><i>0</i></td>
+			</tr>
+
+
+			<tr>
+				<th colspan="2">Input Values</th>
+			</tr>
+
+			<tr>
+				<th>Parameter</th>
+				<th>Value</th>
+			</tr>
+
+			<tr class="even">
+				<td>mm</td>
+				<td><i>-1</i></td>
+			</tr>
+
+		</table>
+
+		<h5>Expected results: </h5>
+
+		<table>
+			<tr>
+				<th colspan="2">State</th>
+			</tr>
+
+			<tr>
+				<th>Variable</th>
+				<th>Value</th>
+			</tr>
+
+			<tr class="even">
+				<td>account_id</td>
+				<td><i>Unknown</i></td>
+			</tr>
+			<tr class="odd">
+				<td>account_balance</td>
+				<td><i>Unknown</i></td>
+			</tr>
+
+
+			<tr>
+				<th colspan="2">Return Variables</th>
+			</tr>
+
+			<tr>
+				<th>Return Variable</th>
+				<th>Value</th>
+			</tr>
+
+			<tr class="even"><td colspan="2"><center><i>This operation has no return variables</i></center></td></tr>
+
+		</table>
+	</div>
+
+	</br>
+
+	<div class="test_case">
+		<h3>Test Case 2 (Positive)</h3>
+
+		<h4>Formula: <i>account_balance >= mm & mm : INT & mm > 0</i></h4>
+
+		</br>
+
+		<h5>Preamble: </h5>
+			<ol>
+	<li>
+	initialisation({account_id=1, account_balance=0})	</li>
+	<li>
+	deposit({mm=1})	</li>
+</ol>
+
+		</br>
+
+		<h5>Input data: </h5>
+
+		<table>
+			<tr>
+				<th colspan="2">State</th>
+			</tr>
+
+			<tr>
+				<th>Variable</th>
+				<th>Value</th>
+			</tr>
+
+			<tr class="even">
+				<td>account_id</td>
+				<td><i>1</i></td>
+			</tr>
+			<tr class="odd">
+				<td>account_balance</td>
+				<td><i>1</i></td>
+			</tr>
+
+
+			<tr>
+				<th colspan="2">Input Values</th>
+			</tr>
+
+			<tr>
+				<th>Parameter</th>
+				<th>Value</th>
+			</tr>
+
+			<tr class="even">
+				<td>mm</td>
+				<td><i>1</i></td>
+			</tr>
+
+		</table>
+
+		<h5>Expected results: </h5>
+
+		<table>
+			<tr>
+				<th colspan="2">State</th>
+			</tr>
+
+			<tr>
+				<th>Variable</th>
+				<th>Value</th>
+			</tr>
+
+			<tr class="even">
+				<td>account_id</td>
+				<td><i>Unknown</i></td>
+			</tr>
+			<tr class="odd">
+				<td>account_balance</td>
+				<td><i>Unknown</i></td>
+			</tr>
+
+
+			<tr>
+				<th colspan="2">Return Variables</th>
+			</tr>
+
+			<tr>
+				<th>Return Variable</th>
+				<th>Value</th>
+			</tr>
+
+			<tr class="even"><td colspan="2"><center><i>This operation has no return variables</i></center></td></tr>
+
+		</table>
+	</div>
+
+	</br>
+
+	<div class="test_case">
+		<h3>Test Case 3 (Positive)</h3>
+
+		<h4>Formula: <i>mm : INT & mm > 0 & not(account_balance >= mm)</i></h4>
+
+		</br>
+
+		<h5>Preamble: </h5>
+			<ol>
+	<li>
+	initialisation({account_id=1, account_balance=0})	</li>
+</ol>
+
+		</br>
+
+		<h5>Input data: </h5>
+
+		<table>
+			<tr>
+				<th colspan="2">State</th>
+			</tr>
+
+			<tr>
+				<th>Variable</th>
+				<th>Value</th>
+			</tr>
+
+			<tr class="even">
+				<td>account_id</td>
+				<td><i>1</i></td>
+			</tr>
+			<tr class="odd">
+				<td>account_balance</td>
+				<td><i>0</i></td>
+			</tr>
+
+
+			<tr>
+				<th colspan="2">Input Values</th>
+			</tr>
+
+			<tr>
+				<th>Parameter</th>
+				<th>Value</th>
+			</tr>
+
+			<tr class="even">
+				<td>mm</td>
+				<td><i>1</i></td>
+			</tr>
+
+		</table>
+
+		<h5>Expected results: </h5>
+
+		<table>
+			<tr>
+				<th colspan="2">State</th>
+			</tr>
+
+			<tr>
+				<th>Variable</th>
+				<th>Value</th>
+			</tr>
+
+			<tr class="even">
+				<td>account_id</td>
+				<td><i>Unknown</i></td>
+			</tr>
+			<tr class="odd">
+				<td>account_balance</td>
+				<td><i>Unknown</i></td>
+			</tr>
+
+
+			<tr>
+				<th colspan="2">Return Variables</th>
+			</tr>
+
+			<tr>
+				<th>Return Variable</th>
+				<th>Value</th>
+			</tr>
+
+			<tr class="even"><td colspan="2"><center><i>This operation has no return variables</i></center></td></tr>
+
+		</table>
+	</div>
+
+	</br>
+
+
+
+</div>
+
+<div class="content_block" id="unsolvable_test_formulas">
+
+	<h4>Infeasible Test Cases:</h4>
+	</br>
+
+<ul>
+	<li>None</li>
+</ul>
+
+</div>
+
+</div>
+
+</body>

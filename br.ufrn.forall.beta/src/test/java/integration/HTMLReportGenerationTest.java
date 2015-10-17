@@ -158,8 +158,8 @@ public class HTMLReportGenerationTest {
 		assertEquals(expectedReport, actualReport);
 	}
 
-
-
+	
+	
 	// TODO: We cannot put a machine in the state we want if one of its state
 	// variables is related to an abstract set.
 	// The getTraceToState from prob2 api does not work for this kind of

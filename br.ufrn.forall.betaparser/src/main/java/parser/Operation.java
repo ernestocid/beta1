@@ -190,52 +190,60 @@ public class Operation {
 		MyExpression caseExpression = MyExpressionFactory.convertExpression(caseSubstitution.getExpression());
 		String caseVar = caseExpression.toString();
 		
-		conditions.addAll(getConditionsFromEitherExpression(caseSubstitution, caseVar));
-		conditions.addAll(getConditionsFromOrExpressions(caseSubstitution, caseVar));
+		List<String> caseConditions = new ArrayList<String>();
+		caseConditions.addAll(getConditionsFromEitherExpression(caseSubstitution, caseVar));
+		caseConditions.addAll(getConditionsFromOrExpressions(caseSubstitution, caseVar));
+		
+		Collections.sort(caseConditions);
+		
+		StringBuffer caseCharacteristic = new StringBuffer("");
+		
+		for(int i = 0; i < caseConditions.size(); i++) {
+			if(i < caseConditions.size() - 1) {
+				caseCharacteristic.append(caseConditions.get(i) + " or ");
+			} else {
+				caseCharacteristic.append(caseConditions.get(i));
+			}
+		}
+
+		PParseUnit pu = new ClassicalB(caseCharacteristic.toString()).getAst().getPParseUnit();
+		
+		if(pu instanceof APredicateParseUnit) {
+			APredicateParseUnit predicateUnit = (APredicateParseUnit) pu;								
+			Characteristic ch = new PredicateCharacteristic(MyPredicateFactory.convertPredicate(predicateUnit.getPredicate()), CharacteristicType.CONDITIONAL_CASE);
+			conditions.add(ch);
+		}
 	}
 
 
 
-	private Set<Characteristic> getConditionsFromOrExpressions(ACaseSubstitution caseSubstitution, String caseVar) {
-		Set<Characteristic> orConditions = new HashSet<Characteristic>();
+	private Set<String> getConditionsFromOrExpressions(ACaseSubstitution caseSubstitution, String caseVar) {
+		Set<String> orConditions = new HashSet<String>();
 		LinkedList<PSubstitution> orSubstitutions = caseSubstitution.getOrSubstitutions();
-		
+
 		for(PSubstitution orSubst : orSubstitutions) {
 			if (orSubst instanceof ACaseOrSubstitution) {
 				ACaseOrSubstitution caseOrSubst = (ACaseOrSubstitution) orSubst;
 				MyExpression orExp = MyExpressionFactory.convertExpression(caseOrSubst.getExpressions().get(0));
-				String caseCondition = caseVar + " = " + orExp.toString();
-					
-				PParseUnit pu = new ClassicalB(caseCondition).getAst().getPParseUnit();
+				String condition = caseVar + " = " + orExp.toString();
 				
-				if(pu instanceof APredicateParseUnit) {
-					APredicateParseUnit predicateUnit = (APredicateParseUnit) pu;								
-					Characteristic ch = new PredicateCharacteristic(MyPredicateFactory.convertPredicate(predicateUnit.getPredicate()), CharacteristicType.CONDITIONAL);
-					orConditions.add(ch);									
-				}
+				orConditions.add(condition);
 			}
 		}
-		
+
 		return orConditions;
 	}
 
 
 
-	private Set<Characteristic> getConditionsFromEitherExpression(ACaseSubstitution caseSubstitution, String caseVar) {
-		Set<Characteristic> eitherConditions = new HashSet<Characteristic>();
+	private Set<String> getConditionsFromEitherExpression(ACaseSubstitution caseSubstitution, String caseVar) {
+		Set<String> eitherConditions = new HashSet<String>();
 		LinkedList<PExpression> eitherExpr = caseSubstitution.getEitherExpr();
 		
 		for (PExpression exp : eitherExpr) {
 			MyExpression eitherExpression = MyExpressionFactory.convertExpression(exp);
-			String caseCondition = caseVar + " = " + eitherExpression.toString();
-			
-			PParseUnit pu = new ClassicalB(caseCondition).getAst().getPParseUnit();
-			
-			if(pu instanceof APredicateParseUnit) {
-				APredicateParseUnit predicateUnit = (APredicateParseUnit) pu;								
-				Characteristic ch = new PredicateCharacteristic(MyPredicateFactory.convertPredicate(predicateUnit.getPredicate()), CharacteristicType.CONDITIONAL);
-				eitherConditions.add(ch);									
-			}
+			String condition = caseVar + " = " + eitherExpression.toString();
+			eitherConditions.add(condition);
 		}
 		
 		return eitherConditions;

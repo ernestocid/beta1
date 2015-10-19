@@ -12,6 +12,7 @@ import parser.decorators.expressions.MyAIntSetExpression;
 import parser.decorators.expressions.MyAIntervalExpression;
 import parser.decorators.expressions.MyANat1SetExpression;
 import parser.decorators.expressions.MyANatSetExpression;
+import parser.decorators.predicates.MyADisjunctPredicate;
 import parser.decorators.predicates.MyAMemberPredicate;
 import parser.decorators.predicates.MyASubsetPredicate;
 import parser.decorators.predicates.MyASubsetStrictPredicate;
@@ -30,18 +31,34 @@ public class ECBlockBuilder extends BlockBuilder {
 		Map<Characteristic, List<Block>> blocks = new HashMap<Characteristic, List<Block>>();
 
 		addGeneralCharacteristicsBlocks(blocks);
-		addConditionalCharacteristicsBlocks(blocks);
+		addBlocksForConditionalCharacteristics(blocks);
 		
 		return blocks;
 	}
 	
 	
 	
-	private void addConditionalCharacteristicsBlocks(Map<Characteristic, List<Block>> blocks) {
+	private void addBlocksForConditionalCharacteristics(Map<Characteristic, List<Block>> blocks) {
 		for (Characteristic conditional : getPartitioner().getOperation().getConditionalCharacteristics()) {
 			List<Block> chBlocks = new ArrayList<Block>();
-			chBlocks.add(new Block(conditional.toString(), false));
-			chBlocks.add(new Block(negateClause(conditional.toString()), true));
+			
+			// Characteristics from CASE statements are treated differently. Each CASE condition will
+			// be considered as a block and the whole case statement is a characteristic
+			
+			if(conditional.getType() == CharacteristicType.CONDITIONAL_CASE) {
+				PredicateCharacteristic pc = (PredicateCharacteristic) conditional;
+
+				if(pc.getPredicate() instanceof MyADisjunctPredicate) {
+					MyADisjunctPredicate disjunct = (MyADisjunctPredicate) pc.getPredicate();
+					
+					for(MyPredicate caseCondition : disjunct.getClauses()) {
+						chBlocks.add(new Block(caseCondition.toString(), false));
+					}
+				}
+			} else {
+				chBlocks.add(new Block(conditional.toString(), false));
+				chBlocks.add(new Block(negateClause(conditional.toString()), true));				
+			}
 			
 			blocks.put(conditional, chBlocks);
 		}

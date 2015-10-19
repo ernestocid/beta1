@@ -12,9 +12,11 @@ import parser.decorators.expressions.MyAIntSetExpression;
 import parser.decorators.expressions.MyAIntervalExpression;
 import parser.decorators.expressions.MyANat1SetExpression;
 import parser.decorators.expressions.MyANatSetExpression;
+import parser.decorators.predicates.MyADisjunctPredicate;
 import parser.decorators.predicates.MyAMemberPredicate;
 import parser.decorators.predicates.MyASubsetPredicate;
 import parser.decorators.predicates.MyASubsetStrictPredicate;
+import parser.decorators.predicates.MyPredicate;
 
 // TODO: Still needs to be refactored in some parts
 public class BVBlockBuilder extends BlockBuilder {
@@ -40,7 +42,26 @@ public class BVBlockBuilder extends BlockBuilder {
 
 	private void addBlocksForConditionalCharacteristics(Map<Characteristic, List<Block>> blocks) {
 		for (Characteristic conditionalCharacteristic : getPartitioner().getOperation().getConditionalCharacteristics()) {
-			addBasicPositiveAndNegativeBlockPair(blocks, conditionalCharacteristic);
+			
+			// Characteristics from CASE statements are treated differently. Each CASE condition will
+			// be considered as a block and the whole case statement is a characteristic
+
+			if(conditionalCharacteristic.getType() == CharacteristicType.CONDITIONAL_CASE) {
+				PredicateCharacteristic pc = (PredicateCharacteristic) conditionalCharacteristic;
+				List<Block> chBlocks = new ArrayList<Block>();
+
+				if(pc.getPredicate() instanceof MyADisjunctPredicate) {
+					MyADisjunctPredicate disjunct = (MyADisjunctPredicate) pc.getPredicate();
+					
+					for(MyPredicate caseCondition : disjunct.getClauses()) {
+						chBlocks.add(new Block(caseCondition.toString(), false));
+					}
+					
+					blocks.put(pc, chBlocks);
+				} 
+			} else {
+				addBasicPositiveAndNegativeBlockPair(blocks, conditionalCharacteristic);
+			}
 		}
 	}
 

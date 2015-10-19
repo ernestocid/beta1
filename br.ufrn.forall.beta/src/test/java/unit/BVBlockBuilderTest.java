@@ -2674,4 +2674,133 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		assertTrue(compare(expectedBlocks, actualResult));
 	}
 	
+	
+	
+	@Test
+	public void shouldGenerateEquivalenceClassesForCaseStatements() {
+
+		// Setting up basic objects for block generation
+
+		Machine machine = new Machine(new File("src/test/resources/machines/others/Calendar.mch"));
+		Operation operationUnderTest = machine.getOperation(0);
+		Partitioner partitioner = new Partitioner(operationUnderTest);
+
+		// Setting up expected results
+
+		Map<String, List<Block>> expectedBlocks = new HashMap<String, List<Block>>();
+
+		// Characteristic 1
+
+		String characteristic1 = "nn = 1 or nn = 10 or nn = 11 or nn = 12 or nn = 2 or nn = 3 or nn = 4 or nn = 5 or nn = 6 or nn = 7 or nn = 8 or nn = 9";
+		
+		List<Block> ch1Blocks = new ArrayList<Block>();
+
+		Block ch1MockedBlock1 = mock(Block.class);
+		when(ch1MockedBlock1.toString()).thenReturn("Block: nn = 12 isNegative: false");
+		when(ch1MockedBlock1.isNegative()).thenReturn(false);
+
+		Block ch1MockedBlock2 = mock(Block.class);
+		when(ch1MockedBlock2.toString()).thenReturn("Block: nn = 11 isNegative: false");
+		when(ch1MockedBlock2.isNegative()).thenReturn(false);
+		
+		Block ch1MockedBlock3 = mock(Block.class);
+		when(ch1MockedBlock3.toString()).thenReturn("Block: nn = 10 isNegative: false");
+		when(ch1MockedBlock3.isNegative()).thenReturn(false);
+		
+		Block ch1MockedBlock4 = mock(Block.class);
+		when(ch1MockedBlock4.toString()).thenReturn("Block: nn = 2 isNegative: false");
+		when(ch1MockedBlock4.isNegative()).thenReturn(false);
+		
+		Block ch1MockedBlock5 = mock(Block.class);
+		when(ch1MockedBlock5.toString()).thenReturn("Block: nn = 1 isNegative: false");
+		when(ch1MockedBlock5.isNegative()).thenReturn(false);
+		
+		Block ch1MockedBlock6 = mock(Block.class);
+		when(ch1MockedBlock6.toString()).thenReturn("Block: nn = 3 isNegative: false");
+		when(ch1MockedBlock6.isNegative()).thenReturn(false);
+		
+		Block ch1MockedBlock7 = mock(Block.class);
+		when(ch1MockedBlock7.toString()).thenReturn("Block: nn = 4 isNegative: false");
+		when(ch1MockedBlock7.isNegative()).thenReturn(false);
+		
+		Block ch1MockedBlock8 = mock(Block.class);
+		when(ch1MockedBlock8.toString()).thenReturn("Block: nn = 5 isNegative: false");
+		when(ch1MockedBlock8.isNegative()).thenReturn(false);
+		
+		Block ch1MockedBlock9 = mock(Block.class);
+		when(ch1MockedBlock9.toString()).thenReturn("Block: nn = 6 isNegative: false");
+		when(ch1MockedBlock9.isNegative()).thenReturn(false);
+		
+		Block ch1MockedBlock10 = mock(Block.class);
+		when(ch1MockedBlock10.toString()).thenReturn("Block: nn = 7 isNegative: false");
+		when(ch1MockedBlock10.isNegative()).thenReturn(false);
+		
+		Block ch1MockedBlock11 = mock(Block.class);
+		when(ch1MockedBlock11.toString()).thenReturn("Block: nn = 8 isNegative: false");
+		when(ch1MockedBlock11.isNegative()).thenReturn(false);
+		
+		Block ch1MockedBlock12 = mock(Block.class);
+		when(ch1MockedBlock12.toString()).thenReturn("Block: nn = 9 isNegative: false");
+		when(ch1MockedBlock12.isNegative()).thenReturn(false);
+		
+		ch1Blocks.add(ch1MockedBlock1);
+		ch1Blocks.add(ch1MockedBlock2);
+		ch1Blocks.add(ch1MockedBlock3);
+		ch1Blocks.add(ch1MockedBlock4);
+		ch1Blocks.add(ch1MockedBlock5);
+		ch1Blocks.add(ch1MockedBlock6);
+		ch1Blocks.add(ch1MockedBlock7);
+		ch1Blocks.add(ch1MockedBlock8);
+		ch1Blocks.add(ch1MockedBlock9);
+		ch1Blocks.add(ch1MockedBlock10);
+		ch1Blocks.add(ch1MockedBlock11);
+		ch1Blocks.add(ch1MockedBlock12);
+
+		expectedBlocks.put(characteristic1, ch1Blocks);
+
+		// Characteristic 2
+		
+		String characteristic2 = "nn : 1..12"; 
+		List<Block> ch2Blocks = new ArrayList<Block>();
+		
+		Block ch2MockedBlock1 = mock(Block.class);
+		when(ch2MockedBlock1.toString()).thenReturn("Block: nn = 1 - 1 isNegative: true");
+		when(ch2MockedBlock1.isNegative()).thenReturn(true);
+		
+		Block ch2MockedBlock2 = mock(Block.class);
+		when(ch2MockedBlock2.toString()).thenReturn("Block: nn = 1 isNegative: false");
+		when(ch2MockedBlock2.isNegative()).thenReturn(false);
+		
+		Block ch2MockedBlock3 = mock(Block.class);
+		when(ch2MockedBlock3.toString()).thenReturn("Block: nn = 1 + 1 isNegative: false");
+		when(ch2MockedBlock3.isNegative()).thenReturn(false);
+		
+		Block ch2MockedBlock4 = mock(Block.class);
+		when(ch2MockedBlock4.toString()).thenReturn("Block: nn = 12 - 1 isNegative: false");
+		when(ch2MockedBlock4.isNegative()).thenReturn(false);
+		
+		Block ch2MockedBlock5 = mock(Block.class);
+		when(ch2MockedBlock5.toString()).thenReturn("Block: nn = 12 isNegative: false");
+		when(ch2MockedBlock5.isNegative()).thenReturn(false);
+		
+		Block ch2MockedBlock6 = mock(Block.class);
+		when(ch2MockedBlock6.toString()).thenReturn("Block: nn = 12 + 1 isNegative: true");
+		when(ch2MockedBlock6.isNegative()).thenReturn(true);
+		
+		ch2Blocks.add(ch2MockedBlock1);
+		ch2Blocks.add(ch2MockedBlock2);
+		ch2Blocks.add(ch2MockedBlock3);
+		ch2Blocks.add(ch2MockedBlock4);
+		ch2Blocks.add(ch2MockedBlock5);
+		ch2Blocks.add(ch2MockedBlock6);
+		
+		expectedBlocks.put(characteristic2, ch2Blocks);
+		
+		// Getting actual result and doing verifications
+
+		BVBlockBuilder blockBuilder = new BVBlockBuilder(partitioner);
+		Map<String, List<Block>> result = parseMapKeysToStrings(blockBuilder.getBlocks());
+		
+		assertTrue(compare(expectedBlocks, result));
+	}
 }

@@ -201,19 +201,8 @@ public class ReadOperationInfoTest extends TestingUtils {
 		Operation operationUnderTest = machine.getOperation(0);
 
 		Set<String> expectedConditions = new HashSet<String>();
-		expectedConditions.add("nn = 1");
-		expectedConditions.add("nn = 2");
-		expectedConditions.add("nn = 3");
-		expectedConditions.add("nn = 4");
-		expectedConditions.add("nn = 5");
-		expectedConditions.add("nn = 6");
-		expectedConditions.add("nn = 7");
-		expectedConditions.add("nn = 8");
-		expectedConditions.add("nn = 9");
-		expectedConditions.add("nn = 10");
-		expectedConditions.add("nn = 11");
-		expectedConditions.add("nn = 12");
-
+		expectedConditions.add("nn = 1 or nn = 10 or nn = 11 or nn = 12 or nn = 2 or nn = 3 or nn = 4 or nn = 5 or nn = 6 or nn = 7 or nn = 8 or nn = 9");
+		
 		Set<String> ifConditions = parseSetOfCharacteristicsToSetOfStrings(operationUnderTest.getConditionalCharacteristics());
 
 		assertEquals(expectedConditions, ifConditions);

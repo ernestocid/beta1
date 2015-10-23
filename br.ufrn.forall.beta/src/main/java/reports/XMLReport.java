@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -162,6 +163,7 @@ public class XMLReport {
 		Element testCaseElement = new Element("test-case");
 
 		testCaseElement.appendChild(createTestCaseIdElement(testCase));
+		testCaseElement.appendChild(createTestCaseExistentialFormula(testCase));
 		testCaseElement.appendChild(createTestCaseFormulaElement(testCase));
 		testCaseElement.appendChild(createTestCasePreambleElement(testCase));
 		testCaseElement.appendChild(createIsNegativeElement(testCase));
@@ -174,6 +176,35 @@ public class XMLReport {
 		}
 
 		return testCaseElement;
+	}
+
+
+
+	private Element createTestCaseExistentialFormula(BETATestCase testCase) {
+		Element existentialFormula = new Element("existential-formula");
+		
+		List<String> inputSpaceVariables = new ArrayList<String>();
+		inputSpaceVariables.addAll(testCase.getInputParamValues().keySet());
+		inputSpaceVariables.addAll(testCase.getStateValues().keySet());
+		
+		StringBuffer formula = new StringBuffer("");
+		formula.append("#");
+		
+		for(int i = 0; i < inputSpaceVariables.size(); i++) {
+			formula.append(inputSpaceVariables.get(i));
+			
+			if(i < inputSpaceVariables.size() - 1) {
+				formula.append(", ");
+			} else {
+				formula.append(".");
+			}
+		}
+		
+		formula.append("(" + testCase.getTestFormula() + ")");
+
+		existentialFormula.appendChild(formula.toString());
+		
+		return existentialFormula;
 	}
 
 

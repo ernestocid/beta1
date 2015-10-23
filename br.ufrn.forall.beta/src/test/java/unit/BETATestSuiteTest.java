@@ -35,6 +35,7 @@ public class BETATestSuiteTest {
 	@Before
 	public void setup() {
 		Configurations.setFindPreamble(false);
+		Configurations.setUseProBApiToSolvePredicates(false);
 	}
 
 

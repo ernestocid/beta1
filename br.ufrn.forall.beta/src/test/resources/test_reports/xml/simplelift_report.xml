@@ -15,6 +15,7 @@
     <test-cases>
         <test-case>
             <id>1</id>
+            <existential-formula>#nFloor, floor.(nFloor : 1..5 &amp; floor : 1..5 &amp; not(nFloor /= floor))</existential-formula>
             <formula>nFloor : 1..5 &amp; floor : 1..5 &amp; not(nFloor /= floor)</formula>
             <preamble/>
             <isNegative>true</isNegative>
@@ -46,6 +47,7 @@
         </test-case>
         <test-case>
             <id>2</id>
+            <existential-formula>#nFloor, floor.(nFloor : MININT..((1 - 1)) &amp; floor : 1..5 &amp; nFloor /= floor)</existential-formula>
             <formula>nFloor : MININT..((1 - 1)) &amp; floor : 1..5 &amp; nFloor /= floor</formula>
             <preamble/>
             <isNegative>true</isNegative>

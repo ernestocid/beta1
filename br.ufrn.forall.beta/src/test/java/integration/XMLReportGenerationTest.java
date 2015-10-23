@@ -1,10 +1,12 @@
 package integration;
 
 import static org.junit.Assert.*;
+import static com.google.common.truth.Truth.*;
 import general.CombinatorialCriteria;
 
 import java.io.File;
 
+import org.apache.commons.io.input.XmlStreamReader;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,7 +30,7 @@ public class XMLReportGenerationTest {
 		Configurations.setAutomaticOracleEvaluation(true);
 		Configurations.setUseKodkod(false);
 		Configurations.setRandomiseEnumerationOrder(false);
-		// Configurations.setUseProBApiToSolvePredicates(false);
+		Configurations.setUseProBApiToSolvePredicates(false);
 		Configurations.setFindPreamble(false);
 		Configurations.setDeleteTempFiles(true);
 	}
@@ -117,5 +119,29 @@ public class XMLReportGenerationTest {
 		String actualReport = FileTools.getFileContent(new File("src/test/resources/test_reports/xml/student_pass_or_fail_LC_CC_report.xml"));
 
 		assertEquals(expectedReport, actualReport);
+	}
+	
+	
+	
+	@Test
+	public void shouldContainExistentialTestFormula() {
+		Configurations.setAutomaticOracleEvaluation(false);
+		Configurations.setUseProBApiToSolvePredicates(true);
+		
+		Machine machine = new Machine(new File("src/test/resources/machines/others/RefinementExamples/Player.mch"));
+		Operation operationUnderTest = machine.getOperation(0); // substitute
+		CoverageCriterion coverageCriterion = new ClauseCoverage(operationUnderTest);
+		
+		BETATestSuite testSuite = new BETATestSuite(coverageCriterion);
+
+		XMLReport report = new XMLReport(testSuite, new File("src/test/resources/test_reports/xml/substitute_LC_CC_report.xml"));
+		report.generateReport();
+		
+		String XML = FileTools.getFileContent(new File("src/test/resources/test_reports/xml/substitute_LC_CC_report.xml"));
+		
+		assertThat(XML).contains("<existential-formula>#rr, pp, team.(not(pp : team) &amp; team &lt;: PLAYER &amp; rr /: team &amp; rr : PLAYER &amp; pp : PLAYER &amp; card(team) = 11)</existential-formula>");
+		assertThat(XML).contains("<existential-formula>#rr, pp, team.(pp : team &amp; team &lt;: PLAYER &amp; not(rr /: team) &amp; rr : PLAYER &amp; pp : PLAYER &amp; card(team) = 11)</existential-formula>");
+		assertThat(XML).contains("<existential-formula>#rr, pp, team.(pp : team &amp; team &lt;: PLAYER &amp; rr /: team &amp; rr : PLAYER &amp; pp : PLAYER &amp; card(team) = 11)</existential-formula>");
+		assertThat(XML).contains("<existential-formula>#rr, pp, team.(pp : team &amp; team &lt;: PLAYER &amp; rr : PLAYER &amp; rr /: team &amp; pp : PLAYER &amp; card(team) = 11)</existential-formula>");
 	}
 }

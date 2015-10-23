@@ -12,6 +12,7 @@
     <test-cases>
         <test-case>
             <id>1</id>
+            <existential-formula>#yy, xx.(yy : INT &amp; xx : INT)</existential-formula>
             <formula>yy : INT &amp; xx : INT</formula>
             <preamble/>
             <isNegative>false</isNegative>

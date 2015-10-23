@@ -1,16 +1,35 @@
 package testgeneration.concretization;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+import org.apache.commons.io.FilenameUtils;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
 import de.be4.classicalb.core.parser.node.APredicateParseUnit;
 import de.be4.classicalb.core.parser.node.PParseUnit;
 import de.prob.animator.domainobjects.ClassicalB;
 import parser.Implementation;
-import parser.Invariant;
 import parser.Operation;
 import parser.decorators.expressions.MyExpression;
 import parser.decorators.predicates.MyAExistsPredicate;
@@ -18,6 +37,7 @@ import parser.decorators.predicates.MyPredicate;
 import parser.decorators.predicates.MyPredicateFactory;
 import testgeneration.Block;
 import testgeneration.predicateevaluators.ProBApiPredicateEvaluator;
+import tools.FileTools;
 
 
 /**
@@ -31,32 +51,148 @@ import testgeneration.predicateevaluators.ProBApiPredicateEvaluator;
  */
 public class ConcretizeTestCaseInputs {
 
-	private String testFormula;
+	private File xmlReport;
 	private Operation operationUnderTest;
 	private Implementation implementation;
 
 
-
-	public ConcretizeTestCaseInputs(String testFormula, Operation operationUnderTest, Implementation implementation) {
-		this.testFormula = testFormula;
+	public ConcretizeTestCaseInputs(File xmlReport, Operation operationUnderTest, Implementation implementation) {
+		this.xmlReport = xmlReport;
 		this.operationUnderTest = operationUnderTest;
 		this.implementation = implementation;
 	}
 
 	
-
 	/**
-	 * Concretizes the abstract test data and returns a Map where each entry
-	 * is a concrete variable and its respective value for the test case.
+	 * Creates a new XML file in the same directory of the original XML report. This 
+	 * new XML file contains a node for each test cast that contains the concretized 
+	 * test data.
 	 * 
-	 * @return a Map<String,String> where each entry key is a concrete variable
-	 * and its value is the value for the concrete variable.
+	 * @return the new XML file with concretized data.
 	 */
-	public Map<String, String> getConcreteInputValues() {
-		String concretizationFormula = createConcretizationFormula(convertTestFormulaToPredicate(getTestFormula()));
-		return evaluateConcreteVariables(concretizationFormula);
+	public File concretizeTestData() {
+		File newXMLReportWithConcretization = createNewXMLFileToAddConcretizationData();
+        addConcretizationNodesToXMLReport(newXMLReportWithConcretization);
+		
+		return newXMLReportWithConcretization;
 	}
 
+
+
+	private void addConcretizationNodesToXMLReport(File newXMLReportWithConcretization) {
+		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder dBuilder;
+		
+        try {
+			dBuilder = dbFactory.newDocumentBuilder();
+			Document doc = dBuilder.parse(newXMLReportWithConcretization);
+			Element root = doc.getDocumentElement();
+			NodeList testCaseList = root.getElementsByTagName("test-case");
+			
+			for(int i = 0; i < testCaseList.getLength(); i++) {
+				Node testCaseNode = testCaseList.item(i);
+				appendConcretizationNodes(doc, testCaseNode);
+				updateXMLFileWithConcretizationData(doc, newXMLReportWithConcretization);
+			}
+			
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		} catch (SAXException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+	}
+
+
+
+	private void updateXMLFileWithConcretizationData(Document doc, File newXMLReportWithConcretization) {
+		DOMSource source = new DOMSource(doc);
+		TransformerFactory transformerFactory = TransformerFactory.newInstance();
+		Transformer transformer;
+		
+		try {
+			transformer = transformerFactory.newTransformer();
+			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+			StreamResult result = new StreamResult(newXMLReportWithConcretization);
+			transformer.transform(source, result);
+		} catch (TransformerConfigurationException e) {
+			e.printStackTrace();
+		} catch (TransformerException e) {
+			e.printStackTrace();
+		}
+	}
+
+
+
+	private void appendConcretizationNodes(Document doc, Node testCaseNode) {
+		Node existentialFormulaNode = getExistentialFormulaNode(testCaseNode);
+		String existentialFormula = existentialFormulaNode.getTextContent();
+		String concretizationFormula = createConcretizationFormula(convertTestFormulaToPredicate(existentialFormula));
+		
+		Map<String, String> inputSpaceVariablesValues = evaluateConcreteVariables(concretizationFormula);
+
+		appendConcretizationDataNode(doc, testCaseNode, inputSpaceVariablesValues);
+	}
+
+
+
+	private void appendConcretizationDataNode(Document doc, Node testCaseNode, Map<String, String> inputSpaceVariablesValues) {
+		Element concreteDataElement = doc.createElement("data-concretization");
+		
+		for(Entry<String, String> concreteData : inputSpaceVariablesValues.entrySet()) {
+			Element inputVariable = doc.createElement("input-variable");
+			
+			Element variableName = doc.createElement("variable-name");
+			variableName.setTextContent(concreteData.getKey());
+			
+			Element variableValue = doc.createElement("variable-value");
+			variableValue.setTextContent(concreteData.getValue());
+			
+			inputVariable.appendChild(variableName);
+			inputVariable.appendChild(variableValue);
+			
+			concreteDataElement.appendChild(inputVariable);
+		}
+		
+		// Hack to fix indentation
+		testCaseNode.appendChild(doc.createTextNode("    "));
+		testCaseNode.appendChild(concreteDataElement);
+	}
+
+
+
+	private File createNewXMLFileToAddConcretizationData() {
+		String xmlReportContent = FileTools.getFileContent(xmlReport);
+		File xmlReportWithConcreteData = FileTools.createFileWithContent(createXMLFileConcretizedPath(), xmlReportContent);
+		return xmlReportWithConcreteData;
+	}
+
+
+
+	private Node getExistentialFormulaNode(Node testCaseNode) {
+		NodeList testCaseChildren = testCaseNode.getChildNodes();
+		
+		for(int i = 0; i < testCaseChildren.getLength(); i++) {
+			if(testCaseChildren.item(i).getNodeName().equals("existential-formula")) {
+				return testCaseChildren.item(i);
+			}
+		}
+		
+		return null;
+	}
+
+
+
+	private String createXMLFileConcretizedPath() {
+		String parentDirectoryPath = xmlReport.getAbsoluteFile().getParentFile().getAbsolutePath();
+		String originalFileName = xmlReport.getName();
+		String originalFileNameWithoutExtension = FilenameUtils.removeExtension(originalFileName);
+		
+		return parentDirectoryPath + File.separator + originalFileNameWithoutExtension + "_concrete.xml";
+	}
+	
 
 
 	private Map<String, String> evaluateConcreteVariables(String concretizationFormula) {
@@ -68,6 +204,12 @@ public class ConcretizeTestCaseInputs {
 		for (String concreteVariable : implementation.getConcreteVariables()) {
 			if (solutions.containsKey(concreteVariable)) {
 				concreteVariableValues.put(concreteVariable, solutions.get(concreteVariable));
+			}
+		}
+		
+		for(String param : operationUnderTest.getParameters()) {
+			if(solutions.containsKey(param)) {
+				concreteVariableValues.put(param, solutions.get(param));
 			}
 		}
 
@@ -162,9 +304,9 @@ public class ConcretizeTestCaseInputs {
 
 
 
-	private MyPredicate convertTestFormulaToPredicate(String testFormula2) {
+	private MyPredicate convertTestFormulaToPredicate(String testFormula) {
 		MyPredicate predicate = null;
-		PParseUnit parseUnit = new ClassicalB(getTestFormula()).getAst().getPParseUnit();
+		PParseUnit parseUnit = new ClassicalB(testFormula).getAst().getPParseUnit();
 
 		if (parseUnit instanceof APredicateParseUnit) {
 			APredicateParseUnit predicateUnit = (APredicateParseUnit) parseUnit;
@@ -176,8 +318,8 @@ public class ConcretizeTestCaseInputs {
 
 
 
-	public String getTestFormula() {
-		return testFormula;
+	public File getXMLReport() {
+		return xmlReport;
 	}
 
 

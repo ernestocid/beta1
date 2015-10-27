@@ -15,6 +15,15 @@ public class ImplementationTest {
 
 		assertThat(implementation.getName()).isEqualTo("Player_i");
 	}
+	
+	
+	
+	@Test
+	public void shouldGetNameOfMachineRefined() {
+		Implementation implementation = new Implementation(new File("src/test/resources/machines/refinements/Player_i.imp"));
+
+		assertThat(implementation.getNameOfMachineRefined()).isEqualTo("Player");
+	}
 
 
 

@@ -57,6 +57,7 @@ import actions.DisplaySettingsAction;
 import actions.GenerateCBCTestMachineAction;
 import actions.GenerateTestsAction;
 import actions.LoadMachineAction;
+import actions.WindowForTestDataConcretizationAction;
 
 public class Application {
 
@@ -64,6 +65,7 @@ public class Application {
 	private JFrame mainFrame;
 	private JFileChooser fileChooser;
 	private final Action loadMachineAction = new LoadMachineAction(this);
+	private final Action concretizeTestDataAction = new WindowForTestDataConcretizationAction(this);
 	private JList<String> operationList;
 	private JTable inputSpaceTable;
 	private JTable characteristicsTable;
@@ -88,6 +90,7 @@ public class Application {
 	private JMenuBar menuBar;
 	private JMenu betaMenu;
 	private JMenuItem betaMenuLoadMachineItem;
+	private JMenuItem betaMenuConcretizeTestDataItem;
 	private JMenuItem betaMenuSettingsItem;
 
 
@@ -282,6 +285,10 @@ public class Application {
 		betaMenuLoadMachineItem = new JMenuItem("Load Machine");
 		betaMenuLoadMachineItem.setAction(loadMachineAction);
 		betaMenu.add(betaMenuLoadMachineItem);
+		
+		betaMenuConcretizeTestDataItem = new JMenuItem("Concretize Test Data");
+		betaMenuConcretizeTestDataItem.setAction(concretizeTestDataAction);
+		betaMenu.add(betaMenuConcretizeTestDataItem);
 
 		betaMenuSettingsItem = new JMenuItem("Settings");
 		betaMenuSettingsItem.setText("Settings");

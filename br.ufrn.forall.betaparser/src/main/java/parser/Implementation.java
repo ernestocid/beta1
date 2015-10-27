@@ -162,4 +162,10 @@ public class Implementation {
 	public Invariant getInvariant() {
 		return invariant;
 	}
+
+
+
+	public String getNameOfMachineRefined() {
+		return getParsedImplementation().getRefMachine().toString().trim();
+	}
 }

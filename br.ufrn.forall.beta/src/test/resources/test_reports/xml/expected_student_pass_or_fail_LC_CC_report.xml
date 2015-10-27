@@ -19,6 +19,7 @@
             <id>1</id>
             <existential-formula>#student, students, has_taken_lab_classes, grades.(students &lt;: all_students &amp; grades : (students +-&gt; 0..5) &amp; student : dom(grades) &amp; not(student : dom(has_taken_lab_classes)) &amp; has_taken_lab_classes : (students +-&gt; BOOL) &amp; student : students)</existential-formula>
             <formula>students &lt;: all_students &amp; grades : (students +-&gt; 0..5) &amp; student : dom(grades) &amp; not(student : dom(has_taken_lab_classes)) &amp; has_taken_lab_classes : (students +-&gt; BOOL) &amp; student : students</formula>
+            <test-inputs-as-formula>students = {st1} &amp; student = st1 &amp; has_taken_lab_classes = {} &amp; grades = {(st1|-&gt;0)}</test-inputs-as-formula>
             <preamble>
                 <event>
                     <event-name>initialisation</event-name>
@@ -94,6 +95,7 @@
             <id>2</id>
             <existential-formula>#student, students, has_taken_lab_classes, grades.(students &lt;: all_students &amp; grades : (students +-&gt; 0..5) &amp; student : dom(has_taken_lab_classes) &amp; has_taken_lab_classes(student) = TRUE &amp; student : dom(grades) &amp; has_taken_lab_classes : (students +-&gt; BOOL) &amp; student : students)</existential-formula>
             <formula>students &lt;: all_students &amp; grades : (students +-&gt; 0..5) &amp; student : dom(has_taken_lab_classes) &amp; has_taken_lab_classes(student) = TRUE &amp; student : dom(grades) &amp; has_taken_lab_classes : (students +-&gt; BOOL) &amp; student : students</formula>
+            <test-inputs-as-formula>students = {st1} &amp; student = st1 &amp; has_taken_lab_classes = {(st1|-&gt;TRUE)} &amp; grades = {(st1|-&gt;0)}</test-inputs-as-formula>
             <preamble>
                 <event>
                     <event-name>initialisation</event-name>
@@ -182,6 +184,7 @@
             <id>3</id>
             <existential-formula>#student, students, has_taken_lab_classes, grades.(students &lt;: all_students &amp; grades : (students +-&gt; 0..5) &amp; student : dom(has_taken_lab_classes) &amp; not(has_taken_lab_classes(student) = TRUE) &amp; student : dom(grades) &amp; has_taken_lab_classes : (students +-&gt; BOOL) &amp; student : students)</existential-formula>
             <formula>students &lt;: all_students &amp; grades : (students +-&gt; 0..5) &amp; student : dom(has_taken_lab_classes) &amp; not(has_taken_lab_classes(student) = TRUE) &amp; student : dom(grades) &amp; has_taken_lab_classes : (students +-&gt; BOOL) &amp; student : students</formula>
+            <test-inputs-as-formula>students = {st1} &amp; student = st1 &amp; has_taken_lab_classes = {(st1|-&gt;FALSE)} &amp; grades = {(st1|-&gt;0)}</test-inputs-as-formula>
             <preamble>
                 <event>
                     <event-name>initialisation</event-name>
@@ -270,6 +273,7 @@
             <id>4</id>
             <existential-formula>#student, students, has_taken_lab_classes, grades.(students &lt;: all_students &amp; grades : (students +-&gt; 0..5) &amp; student : dom(has_taken_lab_classes) &amp; student : dom(grades) &amp; grades(student) &gt; 2 &amp; has_taken_lab_classes : (students +-&gt; BOOL) &amp; student : students)</existential-formula>
             <formula>students &lt;: all_students &amp; grades : (students +-&gt; 0..5) &amp; student : dom(has_taken_lab_classes) &amp; student : dom(grades) &amp; grades(student) &gt; 2 &amp; has_taken_lab_classes : (students +-&gt; BOOL) &amp; student : students</formula>
+            <test-inputs-as-formula>students = {st1} &amp; student = st1 &amp; has_taken_lab_classes = {(st1|-&gt;FALSE)} &amp; grades = {(st1|-&gt;3)}</test-inputs-as-formula>
             <preamble>
                 <event>
                     <event-name>initialisation</event-name>
@@ -358,6 +362,7 @@
             <id>5</id>
             <existential-formula>#student, students, has_taken_lab_classes, grades.(students &lt;: all_students &amp; grades : (students +-&gt; 0..5) &amp; student : dom(has_taken_lab_classes) &amp; student : dom(grades) &amp; grades(student) &gt; 3 &amp; has_taken_lab_classes : (students +-&gt; BOOL) &amp; student : students)</existential-formula>
             <formula>students &lt;: all_students &amp; grades : (students +-&gt; 0..5) &amp; student : dom(has_taken_lab_classes) &amp; student : dom(grades) &amp; grades(student) &gt; 3 &amp; has_taken_lab_classes : (students +-&gt; BOOL) &amp; student : students</formula>
+            <test-inputs-as-formula>students = {st1} &amp; student = st1 &amp; has_taken_lab_classes = {(st1|-&gt;FALSE)} &amp; grades = {(st1|-&gt;4)}</test-inputs-as-formula>
             <preamble>
                 <event>
                     <event-name>initialisation</event-name>
@@ -446,6 +451,7 @@
             <id>6</id>
             <existential-formula>#student, students, has_taken_lab_classes, grades.(students &lt;: all_students &amp; grades : (students +-&gt; 0..5) &amp; student : dom(has_taken_lab_classes) &amp; student : dom(grades) &amp; has_taken_lab_classes : (students +-&gt; BOOL) &amp; student : students &amp; not(grades(student) &gt; 3))</existential-formula>
             <formula>students &lt;: all_students &amp; grades : (students +-&gt; 0..5) &amp; student : dom(has_taken_lab_classes) &amp; student : dom(grades) &amp; has_taken_lab_classes : (students +-&gt; BOOL) &amp; student : students &amp; not(grades(student) &gt; 3)</formula>
+            <test-inputs-as-formula>students = {st1} &amp; student = st1 &amp; has_taken_lab_classes = {(st1|-&gt;FALSE)} &amp; grades = {(st1|-&gt;0)}</test-inputs-as-formula>
             <preamble>
                 <event>
                     <event-name>initialisation</event-name>
@@ -534,6 +540,7 @@
             <id>7</id>
             <existential-formula>#student, students, has_taken_lab_classes, grades.(students &lt;: all_students &amp; grades : (students +-&gt; 0..5) &amp; student : dom(has_taken_lab_classes) &amp; student : dom(grades) &amp; not(grades(student) &gt; 2) &amp; has_taken_lab_classes : (students +-&gt; BOOL) &amp; student : students)</existential-formula>
             <formula>students &lt;: all_students &amp; grades : (students +-&gt; 0..5) &amp; student : dom(has_taken_lab_classes) &amp; student : dom(grades) &amp; not(grades(student) &gt; 2) &amp; has_taken_lab_classes : (students +-&gt; BOOL) &amp; student : students</formula>
+            <test-inputs-as-formula>students = {st1} &amp; student = st1 &amp; has_taken_lab_classes = {(st1|-&gt;FALSE)} &amp; grades = {(st1|-&gt;0)}</test-inputs-as-formula>
             <preamble>
                 <event>
                     <event-name>initialisation</event-name>
@@ -622,6 +629,7 @@
             <id>8</id>
             <existential-formula>#student, students, has_taken_lab_classes, grades.(students &lt;: all_students &amp; student : dom(has_taken_lab_classes) &amp; grades : (students +-&gt; 0..5) &amp; not(student : dom(grades)) &amp; has_taken_lab_classes : (students +-&gt; BOOL) &amp; student : students)</existential-formula>
             <formula>students &lt;: all_students &amp; student : dom(has_taken_lab_classes) &amp; grades : (students +-&gt; 0..5) &amp; not(student : dom(grades)) &amp; has_taken_lab_classes : (students +-&gt; BOOL) &amp; student : students</formula>
+            <test-inputs-as-formula>students = {st1} &amp; student = st1 &amp; has_taken_lab_classes = {(st1|-&gt;FALSE)} &amp; grades = {}</test-inputs-as-formula>
             <preamble>
                 <event>
                     <event-name>initialisation</event-name>
@@ -697,6 +705,7 @@
             <id>9</id>
             <existential-formula>#student, students, has_taken_lab_classes, grades.(students &lt;: all_students &amp; student : dom(has_taken_lab_classes) &amp; grades : (students +-&gt; 0..5) &amp; student : dom(grades) &amp; has_taken_lab_classes : (students +-&gt; BOOL) &amp; student : students)</existential-formula>
             <formula>students &lt;: all_students &amp; student : dom(has_taken_lab_classes) &amp; grades : (students +-&gt; 0..5) &amp; student : dom(grades) &amp; has_taken_lab_classes : (students +-&gt; BOOL) &amp; student : students</formula>
+            <test-inputs-as-formula>students = {st1} &amp; student = st1 &amp; has_taken_lab_classes = {(st1|-&gt;FALSE)} &amp; grades = {(st1|-&gt;0)}</test-inputs-as-formula>
             <preamble>
                 <event>
                     <event-name>initialisation</event-name>

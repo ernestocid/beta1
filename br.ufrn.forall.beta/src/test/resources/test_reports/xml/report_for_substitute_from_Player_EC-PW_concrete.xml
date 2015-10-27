@@ -3,7 +3,7 @@
     <machine-name>Player</machine-name>
     <machine-invariant>
         <invariant-clause>card(team) = 11</invariant-clause>
-        <invariant-clause>team &lt;: PLAYER</invariant-clause>
+        <invariant-clause>team &lt;: 1..22</invariant-clause>
     </machine-invariant>
     <operation-under-test>substitute</operation-under-test>
     <testing-strategy>Input Space Partition</testing-strategy>
@@ -16,184 +16,26 @@
     <test-cases>
         <test-case>
             <id>1</id>
-            <existential-formula>#rr, pp, team.(not(pp : team) &amp; team &lt;: PLAYER &amp; not(rr /: team) &amp; rr : PLAYER &amp; pp : PLAYER &amp; card(team) = 11)</existential-formula>
-            <formula>not(pp : team) &amp; team &lt;: PLAYER &amp; not(rr /: team) &amp; rr : PLAYER &amp; pp : PLAYER &amp; card(team) = 11</formula>
-            <preamble/>
-            <isNegative>true</isNegative>
-            <state-variables>
-                <variable>
-                    <identifier>team</identifier>
-                    <values>
-                        <value>PLAYER1</value>
-                        <value>PLAYER3</value>
-                        <value>PLAYER4</value>
-                        <value>PLAYER5</value>
-                        <value>PLAYER6</value>
-                        <value>PLAYER7</value>
-                        <value>PLAYER8</value>
-                        <value>PLAYER9</value>
-                        <value>PLAYER10</value>
-                        <value>PLAYER11</value>
-                        <value>PLAYER12</value>
-                    </values>
-                </variable>
-            </state-variables>
-            <operation-parameters>
-                <parameter>
-                    <identifier>rr</identifier>
-                    <values>
-                        <value>PLAYER1</value>
-                    </values>
-                </parameter>
-                <parameter>
-                    <identifier>pp</identifier>
-                    <values>
-                        <value>PLAYER2</value>
-                    </values>
-                </parameter>
-            </operation-parameters>
-            <data-concretization>
-                <input-variable>
-                    <variable-name>rr</variable-name>
-                    <variable-value>1</variable-value>
-                </input-variable>
-                <input-variable>
-                    <variable-name>team_array</variable-name>
-                    <variable-value>{(0|-&gt;1),(1|-&gt;9),(2|-&gt;2),(3|-&gt;11),(4|-&gt;3),(5|-&gt;4),(6|-&gt;8),(7|-&gt;6),(8|-&gt;7),(9|-&gt;5),(10|-&gt;10)}</variable-value>
-                </input-variable>
-                <input-variable>
-                    <variable-name>pp</variable-name>
-                    <variable-value>12</variable-value>
-                </input-variable>
-            </data-concretization>
-        </test-case>
-        <test-case>
-            <id>2</id>
-            <existential-formula>#rr, pp, team.(not(pp : team) &amp; team &lt;: PLAYER &amp; rr /: team &amp; rr : PLAYER &amp; pp : PLAYER &amp; card(team) = 11)</existential-formula>
-            <formula>not(pp : team) &amp; team &lt;: PLAYER &amp; rr /: team &amp; rr : PLAYER &amp; pp : PLAYER &amp; card(team) = 11</formula>
-            <preamble/>
-            <isNegative>true</isNegative>
-            <state-variables>
-                <variable>
-                    <identifier>team</identifier>
-                    <values>
-                        <value>PLAYER2</value>
-                        <value>PLAYER3</value>
-                        <value>PLAYER4</value>
-                        <value>PLAYER5</value>
-                        <value>PLAYER6</value>
-                        <value>PLAYER7</value>
-                        <value>PLAYER8</value>
-                        <value>PLAYER9</value>
-                        <value>PLAYER10</value>
-                        <value>PLAYER11</value>
-                        <value>PLAYER12</value>
-                    </values>
-                </variable>
-            </state-variables>
-            <operation-parameters>
-                <parameter>
-                    <identifier>rr</identifier>
-                    <values>
-                        <value>PLAYER1</value>
-                    </values>
-                </parameter>
-                <parameter>
-                    <identifier>pp</identifier>
-                    <values>
-                        <value>PLAYER1</value>
-                    </values>
-                </parameter>
-            </operation-parameters>
-            <data-concretization>
-                <input-variable>
-                    <variable-name>rr</variable-name>
-                    <variable-value>12</variable-value>
-                </input-variable>
-                <input-variable>
-                    <variable-name>team_array</variable-name>
-                    <variable-value>{(0|-&gt;1),(1|-&gt;2),(2|-&gt;3),(3|-&gt;4),(4|-&gt;5),(5|-&gt;6),(6|-&gt;7),(7|-&gt;8),(8|-&gt;9),(9|-&gt;10),(10|-&gt;11)}</variable-value>
-                </input-variable>
-                <input-variable>
-                    <variable-name>pp</variable-name>
-                    <variable-value>12</variable-value>
-                </input-variable>
-            </data-concretization>
-        </test-case>
-        <test-case>
-            <id>3</id>
-            <existential-formula>#rr, pp, team.(pp : team &amp; team &lt;: PLAYER &amp; not(rr /: team) &amp; rr : PLAYER &amp; pp : PLAYER &amp; card(team) = 11)</existential-formula>
-            <formula>pp : team &amp; team &lt;: PLAYER &amp; not(rr /: team) &amp; rr : PLAYER &amp; pp : PLAYER &amp; card(team) = 11</formula>
-            <preamble/>
-            <isNegative>true</isNegative>
-            <state-variables>
-                <variable>
-                    <identifier>team</identifier>
-                    <values>
-                        <value>PLAYER1</value>
-                        <value>PLAYER2</value>
-                        <value>PLAYER3</value>
-                        <value>PLAYER4</value>
-                        <value>PLAYER5</value>
-                        <value>PLAYER6</value>
-                        <value>PLAYER7</value>
-                        <value>PLAYER8</value>
-                        <value>PLAYER9</value>
-                        <value>PLAYER10</value>
-                        <value>PLAYER11</value>
-                    </values>
-                </variable>
-            </state-variables>
-            <operation-parameters>
-                <parameter>
-                    <identifier>rr</identifier>
-                    <values>
-                        <value>PLAYER1</value>
-                    </values>
-                </parameter>
-                <parameter>
-                    <identifier>pp</identifier>
-                    <values>
-                        <value>PLAYER1</value>
-                    </values>
-                </parameter>
-            </operation-parameters>
-            <data-concretization>
-                <input-variable>
-                    <variable-name>rr</variable-name>
-                    <variable-value>1</variable-value>
-                </input-variable>
-                <input-variable>
-                    <variable-name>team_array</variable-name>
-                    <variable-value>{(0|-&gt;1),(1|-&gt;9),(2|-&gt;2),(3|-&gt;10),(4|-&gt;3),(5|-&gt;4),(6|-&gt;8),(7|-&gt;6),(8|-&gt;7),(9|-&gt;5),(10|-&gt;11)}</variable-value>
-                </input-variable>
-                <input-variable>
-                    <variable-name>pp</variable-name>
-                    <variable-value>1</variable-value>
-                </input-variable>
-            </data-concretization>
-        </test-case>
-        <test-case>
-            <id>4</id>
-            <existential-formula>#rr, pp, team.(pp : team &amp; team &lt;: PLAYER &amp; rr /: team &amp; rr : PLAYER &amp; pp : PLAYER &amp; card(team) = 11)</existential-formula>
-            <formula>pp : team &amp; team &lt;: PLAYER &amp; rr /: team &amp; rr : PLAYER &amp; pp : PLAYER &amp; card(team) = 11</formula>
+            <existential-formula>#rr, pp, team.(pp : 1..22 &amp; rr : 1..22 &amp; pp : team &amp; rr /: team &amp; team &lt;: 1..22 &amp; card(team) = 11)</existential-formula>
+            <formula>pp : 1..22 &amp; rr : 1..22 &amp; pp : team &amp; rr /: team &amp; team &lt;: 1..22 &amp; card(team) = 11</formula>
+            <test-inputs-as-formula>rr = 1 &amp; team = {2,3,4,5,6,7,8,9,10,11,12} &amp; pp = 2</test-inputs-as-formula>
             <preamble/>
             <isNegative>false</isNegative>
             <state-variables>
                 <variable>
                     <identifier>team</identifier>
                     <values>
-                        <value>PLAYER2</value>
-                        <value>PLAYER3</value>
-                        <value>PLAYER4</value>
-                        <value>PLAYER5</value>
-                        <value>PLAYER6</value>
-                        <value>PLAYER7</value>
-                        <value>PLAYER8</value>
-                        <value>PLAYER9</value>
-                        <value>PLAYER10</value>
-                        <value>PLAYER11</value>
-                        <value>PLAYER12</value>
+                        <value>2</value>
+                        <value>3</value>
+                        <value>4</value>
+                        <value>5</value>
+                        <value>6</value>
+                        <value>7</value>
+                        <value>8</value>
+                        <value>9</value>
+                        <value>10</value>
+                        <value>11</value>
+                        <value>12</value>
                     </values>
                 </variable>
             </state-variables>
@@ -201,28 +43,28 @@
                 <parameter>
                     <identifier>rr</identifier>
                     <values>
-                        <value>PLAYER1</value>
+                        <value>1</value>
                     </values>
                 </parameter>
                 <parameter>
                     <identifier>pp</identifier>
                     <values>
-                        <value>PLAYER2</value>
+                        <value>2</value>
                     </values>
                 </parameter>
             </operation-parameters>
             <data-concretization>
                 <input-variable>
                     <variable-name>rr</variable-name>
-                    <variable-value>12</variable-value>
+                    <variable-value>1</variable-value>
                 </input-variable>
                 <input-variable>
                     <variable-name>team_array</variable-name>
-                    <variable-value>{(0|-&gt;1),(1|-&gt;9),(2|-&gt;2),(3|-&gt;11),(4|-&gt;3),(5|-&gt;4),(6|-&gt;8),(7|-&gt;6),(8|-&gt;7),(9|-&gt;5),(10|-&gt;10)}</variable-value>
+                    <variable-value>{(0|-&gt;2),(1|-&gt;3),(2|-&gt;4),(3|-&gt;5),(4|-&gt;6),(5|-&gt;7),(6|-&gt;8),(7|-&gt;9),(8|-&gt;10),(9|-&gt;11),(10|-&gt;12)}</variable-value>
                 </input-variable>
                 <input-variable>
                     <variable-name>pp</variable-name>
-                    <variable-value>1</variable-value>
+                    <variable-value>2</variable-value>
                 </input-variable>
             </data-concretization>
         </test-case>

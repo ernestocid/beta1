@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -129,7 +130,7 @@ public class ConcretizeTestCaseInputs {
 	private void appendConcretizationNodes(Document doc, Node testCaseNode) {
 		Node existentialFormulaNode = getExistentialFormulaNode(testCaseNode);
 		String existentialFormula = existentialFormulaNode.getTextContent();
-		String concretizationFormula = createConcretizationFormula(convertTestFormulaToPredicate(existentialFormula));
+		String concretizationFormula = createConcretizationFormula(testCaseNode, convertTestFormulaToPredicate(existentialFormula));
 		
 		Map<String, String> inputSpaceVariablesValues = evaluateConcreteVariables(concretizationFormula);
 
@@ -218,18 +219,60 @@ public class ConcretizeTestCaseInputs {
 
 
 
-	private String createConcretizationFormula(MyPredicate testFormulaPredicate) {
+	private String createConcretizationFormula(Node testCaseNode, MyPredicate testFormulaPredicate) {
 		String concretizationFormula = "";
 		StringBuffer formulaBuffer = new StringBuffer("");
 		MyAExistsPredicate testCaseFormulaPredicate = null;
 		
 		if ((testCaseFormulaPredicate = checksTestCasePredicateValidity(testFormulaPredicate)) != null) {
-			formulaBuffer.append("#" + createAbstractVariablesList(testCaseFormulaPredicate) + createConcreteVariablesList());
-			formulaBuffer.append("(" + getTestCasePredicate(testCaseFormulaPredicate) + "&" + getImplementationInvariant() + ")");
+			formulaBuffer.append("#" + createQuantifiedVariablesList(testFormulaPredicate));
+			formulaBuffer.append("(" + getStateAndParametersValues(testCaseNode) + " & " + getTestCasePredicate(testCaseFormulaPredicate) + "&" + getImplementationInvariant() + ")");
 			concretizationFormula = replaceDeferredSetsForValues(formulaBuffer);
 		}
 		
 		return concretizationFormula;
+	}
+
+	
+
+	private String getStateAndParametersValues(Node testCaseNode) {
+		NodeList testCaseChildren = testCaseNode.getChildNodes();
+		
+		for (int i = 0; i < testCaseChildren.getLength(); i++) {
+			if(testCaseChildren.item(i).getNodeName().equals("test-inputs-as-formula")) {
+				return testCaseChildren.item(i).getTextContent();
+			}
+		}
+		
+		return "";
+	}
+
+	
+
+	private String createQuantifiedVariablesList(MyPredicate testFormulaPredicate) {
+		StringBuffer varList = new StringBuffer("");
+		Set<String> variables = new HashSet<String>();
+		
+		if(testFormulaPredicate instanceof MyAExistsPredicate) {
+			MyAExistsPredicate existentialFormula = (MyAExistsPredicate) testFormulaPredicate;
+			variables.addAll(existentialFormula.getQuantifiedVariables());
+		}
+		
+		variables.addAll(getImplementation().getConcreteVariables());
+
+		int count = 0;
+		
+		for(String variable : variables) {
+			if(count < variables.size() - 1) {
+				varList.append(variable + ", ");
+			} else {
+				varList.append(variable + ".");
+			}
+			
+			count++;
+		}
+
+		return varList.toString();
 	}
 
 	
@@ -248,37 +291,7 @@ public class ConcretizeTestCaseInputs {
 		return testCaseFormulaPredicate.getQuantifiedPredicate().toString();
 	}
 
-
-
-	private String createConcreteVariablesList() {
-		StringBuffer concreteVariablesList = new StringBuffer("");
-
-		List<String> concreteVariables = getImplementation().getConcreteVariables();
-
-		for (int i = 0; i < concreteVariables.size(); i++) {
-			if (i < concreteVariables.size() - 1) {
-				concreteVariablesList.append(concreteVariables.get(i) + ", ");
-			} else {
-				concreteVariablesList.append(concreteVariables.get(i) + ".");
-			}
-		}
-		
-		return concreteVariablesList.toString();
-	}
-
-
-
-	private String createAbstractVariablesList(MyAExistsPredicate testCaseFormulaPredicate) {
-		StringBuffer abstractVariablesList = new StringBuffer("");
-		
-		for (String var : testCaseFormulaPredicate.getQuantifiedVariables()) {
-			abstractVariablesList.append(var + ", ");
-		}
-		
-		return abstractVariablesList.toString();
-	}
-
-
+	
 
 	private MyAExistsPredicate checksTestCasePredicateValidity(MyPredicate testFormulaPredicate) {
 		if(testFormulaPredicate instanceof MyAExistsPredicate) {
@@ -291,12 +304,14 @@ public class ConcretizeTestCaseInputs {
 
 
 	private String replaceDeferredSetsForValues(StringBuffer concretizationFormula) {
-		Map<String, MyExpression> valueClauseEntries = implementation.getValues().getEntries();
-
 		String concretizationFormulaWithSetsReplaced = concretizationFormula.toString();
+		
+		if(implementation.getValues() != null) {
+			Map<String, MyExpression> valueClauseEntries = implementation.getValues().getEntries();
 
-		for (Entry<String, MyExpression> valuesEntry : valueClauseEntries.entrySet()) {
-			concretizationFormulaWithSetsReplaced = concretizationFormulaWithSetsReplaced.replaceAll(valuesEntry.getKey(), valuesEntry.getValue().toString());
+			for (Entry<String, MyExpression> valuesEntry : valueClauseEntries.entrySet()) {
+				concretizationFormulaWithSetsReplaced = concretizationFormulaWithSetsReplaced.replaceAll(valuesEntry.getKey(), valuesEntry.getValue().toString());
+			}
 		}
 
 		return concretizationFormulaWithSetsReplaced;
@@ -333,5 +348,4 @@ public class ConcretizeTestCaseInputs {
 	public Implementation getImplementation() {
 		return implementation;
 	}
-
 }

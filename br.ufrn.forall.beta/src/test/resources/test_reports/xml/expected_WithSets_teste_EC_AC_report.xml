@@ -17,6 +17,7 @@
             <id>1</id>
             <existential-formula>#temp.(not(temp = {1, 2, 3}) &amp; temp &lt;: NAT1)</existential-formula>
             <formula>not(temp = {1, 2, 3}) &amp; temp &lt;: NAT1</formula>
+            <test-inputs-as-formula>temp = {}</test-inputs-as-formula>
             <preamble/>
             <isNegative>true</isNegative>
             <state-variables>
@@ -42,6 +43,7 @@
             <id>2</id>
             <existential-formula>#temp.(temp = {1, 2, 3} &amp; temp &lt;: NAT1)</existential-formula>
             <formula>temp = {1, 2, 3} &amp; temp &lt;: NAT1</formula>
+            <test-inputs-as-formula>temp = {1,2,3}</test-inputs-as-formula>
             <preamble/>
             <isNegative>false</isNegative>
             <state-variables>

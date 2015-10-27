@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -165,6 +166,7 @@ public class XMLReport {
 		testCaseElement.appendChild(createTestCaseIdElement(testCase));
 		testCaseElement.appendChild(createTestCaseExistentialFormula(testCase));
 		testCaseElement.appendChild(createTestCaseFormulaElement(testCase));
+		testCaseElement.appendChild(createTestCaseInputAsFormulaElement(testCase));
 		testCaseElement.appendChild(createTestCasePreambleElement(testCase));
 		testCaseElement.appendChild(createIsNegativeElement(testCase));
 		testCaseElement.appendChild(createStateVariablesElement(testCase));
@@ -176,6 +178,34 @@ public class XMLReport {
 		}
 
 		return testCaseElement;
+	}
+
+
+
+	private Element createTestCaseInputAsFormulaElement(BETATestCase testCase) {
+		Map<String, String> testCaseInputs = new HashMap<String, String>();
+		testCaseInputs.putAll(testCase.getInputParamValues());
+		testCaseInputs.putAll(testCase.getStateValues());
+
+		StringBuffer testCaseInputsFormula = new StringBuffer();
+
+		int count = 0;
+		
+		for(Entry<String, String> input : testCaseInputs.entrySet()) {
+			
+			if(count < testCaseInputs.size() - 1) {
+				testCaseInputsFormula.append(input.getKey() + " = " + input.getValue() + " & ");
+			} else {
+				testCaseInputsFormula.append(input.getKey() + " = " + input.getValue());
+			}
+			
+			count++;
+		}
+		
+		Element testCaseInputAsFormula = new Element("test-inputs-as-formula");
+		testCaseInputAsFormula.appendChild(testCaseInputsFormula.toString());
+		
+		return testCaseInputAsFormula;
 	}
 
 

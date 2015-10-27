@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-suite>
+    <machine-name>Counter</machine-name>
+    <machine-invariant>
+        <invariant-clause>((overflow = TRUE) =&gt; (value = MAXINT))</invariant-clause>
+        <invariant-clause>((underflow = TRUE) =&gt; (value = MININT))</invariant-clause>
+        <invariant-clause>overflow : BOOL</invariant-clause>
+        <invariant-clause>underflow : BOOL</invariant-clause>
+        <invariant-clause>value : INT</invariant-clause>
+        <invariant-clause>value &lt;= MAXINT</invariant-clause>
+        <invariant-clause>value &gt;= MININT</invariant-clause>
+    </machine-invariant>
+    <operation-under-test>dec</operation-under-test>
+    <testing-strategy>Logical Coverage</testing-strategy>
+    <coverage-criteria>Combinatorial Clause Coverage</coverage-criteria>
+    <oracle-strategy>
+        <state-variables>true</state-variables>
+        <return-variables>true</return-variables>
+        <invariant-ok>true</invariant-ok>
+    </oracle-strategy>
+    <test-cases>
+        <test-case>
+            <id>1</id>
+            <existential-formula>#overflow, value, underflow.(underflow : BOOL &amp; value &gt;= MININT &amp; value &lt;= MAXINT &amp; not(value &gt; MININT) &amp; value : MININT..MAXINT &amp; overflow : BOOL &amp; ((underflow = TRUE) =&gt; (value = MININT)) &amp; value : INT &amp; ((overflow = TRUE) =&gt; (value = MAXINT)))</existential-formula>
+            <formula>underflow : BOOL &amp; value &gt;= MININT &amp; value &lt;= MAXINT &amp; not(value &gt; MININT) &amp; value : MININT..MAXINT &amp; overflow : BOOL &amp; ((underflow = TRUE) =&gt; (value = MININT)) &amp; value : INT &amp; ((overflow = TRUE) =&gt; (value = MAXINT))</formula>
+            <test-inputs-as-formula>overflow = FALSE &amp; value = -1 &amp; underflow = TRUE</test-inputs-as-formula>
+            <preamble/>
+            <isNegative>false</isNegative>
+            <state-variables>
+                <variable>
+                    <identifier>overflow</identifier>
+                    <values>
+                        <value>FALSE</value>
+                    </values>
+                </variable>
+                <variable>
+                    <identifier>value</identifier>
+                    <values>
+                        <value>-1</value>
+                    </values>
+                </variable>
+                <variable>
+                    <identifier>underflow</identifier>
+                    <values>
+                        <value>TRUE</value>
+                    </values>
+                </variable>
+            </state-variables>
+            <operation-parameters/>
+            <expected-state-values>
+                <variable>
+                    <identifier>overflow</identifier>
+                    <values>
+                        <value>FALSE</value>
+                    </values>
+                </variable>
+                <variable>
+                    <identifier>value</identifier>
+                    <values>
+                        <value>-1</value>
+                    </values>
+                </variable>
+                <variable>
+                    <identifier>underflow</identifier>
+                    <values>
+                        <value>TRUE</value>
+                    </values>
+                </variable>
+            </expected-state-values>
+            <return-variables/>
+            <data-concretization>
+                <input-variable>
+                    <variable-name>overflow_error</variable-name>
+                    <variable-value>FALSE</variable-value>
+                </input-variable>
+                <input-variable>
+                    <variable-name>value</variable-name>
+                    <variable-value>-1</variable-value>
+                </input-variable>
+                <input-variable>
+                    <variable-name>underflow_error</variable-name>
+                    <variable-value>TRUE</variable-value>
+                </input-variable>
+            </data-concretization>
+        </test-case>
+        <test-case>
+            <id>2</id>
+            <existential-formula>#overflow, value, underflow.(underflow : BOOL &amp; value &gt;= MININT &amp; value &lt;= MAXINT &amp; value : MININT..MAXINT &amp; overflow : BOOL &amp; ((underflow = TRUE) =&gt; (value = MININT)) &amp; value : INT &amp; ((overflow = TRUE) =&gt; (value = MAXINT)))</existential-formula>
+            <formula>underflow : BOOL &amp; value &gt;= MININT &amp; value &lt;= MAXINT &amp; value : MININT..MAXINT &amp; overflow : BOOL &amp; ((underflow = TRUE) =&gt; (value = MININT)) &amp; value : INT &amp; ((overflow = TRUE) =&gt; (value = MAXINT))</formula>
+            <test-inputs-as-formula>overflow = FALSE &amp; value = -1 &amp; underflow = TRUE</test-inputs-as-formula>
+            <preamble/>
+            <isNegative>false</isNegative>
+            <state-variables>
+                <variable>
+                    <identifier>overflow</identifier>
+                    <values>
+                        <value>FALSE</value>
+                    </values>
+                </variable>
+                <variable>
+                    <identifier>value</identifier>
+                    <values>
+                        <value>-1</value>
+                    </values>
+                </variable>
+                <variable>
+                    <identifier>underflow</identifier>
+                    <values>
+                        <value>TRUE</value>
+                    </values>
+                </variable>
+            </state-variables>
+            <operation-parameters/>
+            <expected-state-values>
+                <variable>
+                    <identifier>overflow</identifier>
+                    <values>
+                        <value>FALSE</value>
+                    </values>
+                </variable>
+                <variable>
+                    <identifier>value</identifier>
+                    <values>
+                        <value>-1</value>
+                    </values>
+                </variable>
+                <variable>
+                    <identifier>underflow</identifier>
+                    <values>
+                        <value>TRUE</value>
+                    </values>
+                </variable>
+            </expected-state-values>
+            <return-variables/>
+            <data-concretization>
+                <input-variable>
+                    <variable-name>overflow_error</variable-name>
+                    <variable-value>FALSE</variable-value>
+                </input-variable>
+                <input-variable>
+                    <variable-name>value</variable-name>
+                    <variable-value>-1</variable-value>
+                </input-variable>
+                <input-variable>
+                    <variable-name>underflow_error</variable-name>
+                    <variable-value>TRUE</variable-value>
+                </input-variable>
+            </data-concretization>
+        </test-case>
+        <test-case>
+            <id>3</id>
+            <existential-formula>#overflow, value, underflow.(underflow : BOOL &amp; value &gt;= MININT &amp; value &lt;= MAXINT &amp; value : MININT..MAXINT &amp; value &gt; MININT &amp; overflow : BOOL &amp; ((underflow = TRUE) =&gt; (value = MININT)) &amp; value : INT &amp; ((overflow = TRUE) =&gt; (value = MAXINT)))</existential-formula>
+            <formula>underflow : BOOL &amp; value &gt;= MININT &amp; value &lt;= MAXINT &amp; value : MININT..MAXINT &amp; value &gt; MININT &amp; overflow : BOOL &amp; ((underflow = TRUE) =&gt; (value = MININT)) &amp; value : INT &amp; ((overflow = TRUE) =&gt; (value = MAXINT))</formula>
+            <test-inputs-as-formula>overflow = TRUE &amp; value = 20 &amp; underflow = FALSE</test-inputs-as-formula>
+            <preamble/>
+            <isNegative>false</isNegative>
+            <state-variables>
+                <variable>
+                    <identifier>overflow</identifier>
+                    <values>
+                        <value>TRUE</value>
+                    </values>
+                </variable>
+                <variable>
+                    <identifier>value</identifier>
+                    <values>
+                        <value>20</value>
+                    </values>
+                </variable>
+                <variable>
+                    <identifier>underflow</identifier>
+                    <values>
+                        <value>FALSE</value>
+                    </values>
+                </variable>
+            </state-variables>
+            <operation-parameters/>
+            <expected-state-values>
+                <variable>
+                    <identifier>overflow</identifier>
+                    <values>
+                        <value>FALSE</value>
+                    </values>
+                </variable>
+                <variable>
+                    <identifier>value</identifier>
+                    <values>
+                        <value>19</value>
+                    </values>
+                </variable>
+                <variable>
+                    <identifier>underflow</identifier>
+                    <values>
+                        <value>FALSE</value>
+                    </values>
+                </variable>
+            </expected-state-values>
+            <return-variables/>
+            <data-concretization>
+                <input-variable>
+                    <variable-name>overflow_error</variable-name>
+                    <variable-value>TRUE</variable-value>
+                </input-variable>
+                <input-variable>
+                    <variable-name>value</variable-name>
+                    <variable-value>20</variable-value>
+                </input-variable>
+                <input-variable>
+                    <variable-name>underflow_error</variable-name>
+                    <variable-value>FALSE</variable-value>
+                </input-variable>
+            </data-concretization>
+        </test-case>
+    </test-cases>
+</test-suite>

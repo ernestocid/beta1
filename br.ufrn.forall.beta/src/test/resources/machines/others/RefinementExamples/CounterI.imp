@@ -1,0 +1,60 @@
+IMPLEMENTATION
+   CounterI
+REFINES
+   Counter
+
+CONCRETE_VARIABLES
+   value ,
+   overflow_error ,
+   underflow_error
+
+INVARIANT
+    value : INT &
+    overflow_error : BOOL &
+    underflow_error : BOOL &
+    overflow_error = overflow &
+    underflow_error = underflow
+
+INITIALISATION
+   value := 0;
+   overflow_error := FALSE;
+   underflow_error := FALSE
+
+OPERATIONS
+   zero =
+   BEGIN
+       value := 0;
+       overflow_error := FALSE;
+       underflow_error := FALSE
+   END
+   ;
+
+   inc =
+   BEGIN
+       IF value < MAXINT
+       THEN
+           value := succ ( value );
+           underflow_error := FALSE
+       ELSE
+           overflow_error := TRUE
+       END
+   END
+   ;
+
+   dec =
+   BEGIN
+       IF value > MININT
+       THEN
+           value := value -1 /*pred ( value )*/;
+           overflow_error := FALSE
+       ELSE
+           underflow_error := TRUE
+       END
+   END
+   ;
+
+   res <-- get =
+   BEGIN
+       res := value
+   END
+END

@@ -139,9 +139,10 @@ public class XMLReportGenerationTest {
 		
 		String XML = FileTools.getFileContent(new File("src/test/resources/test_reports/xml/substitute_LC_CC_report.xml"));
 		
-		assertThat(XML).contains("<existential-formula>#rr, pp, team.(not(pp : team) &amp; team &lt;: PLAYER &amp; rr /: team &amp; rr : PLAYER &amp; pp : PLAYER &amp; card(team) = 11)</existential-formula>");
-		assertThat(XML).contains("<existential-formula>#rr, pp, team.(pp : team &amp; team &lt;: PLAYER &amp; not(rr /: team) &amp; rr : PLAYER &amp; pp : PLAYER &amp; card(team) = 11)</existential-formula>");
-		assertThat(XML).contains("<existential-formula>#rr, pp, team.(pp : team &amp; team &lt;: PLAYER &amp; rr /: team &amp; rr : PLAYER &amp; pp : PLAYER &amp; card(team) = 11)</existential-formula>");
-		assertThat(XML).contains("<existential-formula>#rr, pp, team.(pp : team &amp; team &lt;: PLAYER &amp; rr : PLAYER &amp; rr /: team &amp; pp : PLAYER &amp; card(team) = 11)</existential-formula>");
+		assertThat(XML).contains("<existential-formula>#rr, pp, team.(not(rr : 1..22) &amp; pp : 1..22 &amp; pp : team &amp; rr /: team &amp; team &lt;: 1..22 &amp; card(team) = 11)</existential-formula>");
+		assertThat(XML).contains("<existential-formula>#rr, pp, team.(pp : 1..22 &amp; rr : 1..22 &amp; not(pp : team) &amp; rr /: team &amp; team &lt;: 1..22 &amp; card(team) = 11)</existential-formula>");
+		assertThat(XML).contains("<existential-formula>#rr, pp, team.(pp : 1..22 &amp; rr : 1..22 &amp; pp : team &amp; not(rr /: team) &amp; team &lt;: 1..22 &amp; card(team) = 11)</existential-formula>");
+		assertThat(XML).contains("<existential-formula>#rr, pp, team.(rr : 1..22 &amp; pp : 1..22 &amp; pp : team &amp; rr /: team &amp; team &lt;: 1..22 &amp; card(team) = 11)</existential-formula>");
+		assertThat(XML).contains("<existential-formula>#rr, pp.(rr : 1..22 &amp; pp : team &amp; not(pp : 1..22) &amp; rr /: team &amp; team &lt;: 1..22 &amp; card(team) = 11)</existential-formula>");
 	}
 }

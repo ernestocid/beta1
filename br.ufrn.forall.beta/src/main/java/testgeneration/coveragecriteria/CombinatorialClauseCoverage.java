@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Set;
 
 import criteria.AllCombinations;
+import parser.Invariant;
 import parser.Operation;
 import parser.decorators.predicates.MyPredicate;
-
 
 
 public class CombinatorialClauseCoverage extends LogicalCoverage {
@@ -29,6 +29,9 @@ public class CombinatorialClauseCoverage extends LogicalCoverage {
 	 * it creates all the possible combinations of truth values for the clauses of the predicate and then
 	 * append each of the created formulas to the invariant and the precondition (if possible). 
 	 * 
+	 * If the operation has no precondition and the operation has no predicates in its body
+	 * then a single formula that is equal to the invariant is added to the set of formulas.
+	 * 
 	 * @return a Set of test formulas that satisfy Combinatorial Coverage.
 	 */
 	@Override
@@ -36,6 +39,18 @@ public class CombinatorialClauseCoverage extends LogicalCoverage {
 		Set<String> testFormulas = new HashSet<String>();
 		MyPredicate precondition = getOperationUnderTest().getPrecondition();
 
+		// if operation has no precondition and has no predicates inside its body
+		
+		if(!operationHasPrecondition() && getPredicates().isEmpty()) {
+			Invariant invariant = getOperationUnderTest().getMachine().getInvariant();
+			
+			// but machine has invariant
+			
+			if(invariant != null) {
+				testFormulas.add(invariant.getPredicate().toString());
+			}
+		}
+		
 		if(operationHasPrecondition()) {
 			testFormulas.addAll(createPreconditionTestFormulas(precondition));
 		}

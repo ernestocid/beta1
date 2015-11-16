@@ -1,5 +1,6 @@
 package unit;
 
+import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.*;
 
 import java.io.File;
@@ -14,6 +15,26 @@ import testgeneration.coveragecriteria.CombinatorialClauseCoverage;
 
 public class CombinatorialCoverageTest extends TestingUtils{
 
+	
+	@Test
+	public void shouldGenerateFormulasForOperationWithoutPredicatesButWithInvariant() {
+		Machine machine = new Machine(new File("src/test/resources/machines/others/swap.mch"));
+		Operation operationUnderTest = machine.getOperation(0); // step 
+		
+		CombinatorialClauseCoverage coc = new CombinatorialClauseCoverage(operationUnderTest);
+		
+		// Setting up expected result
+		
+		Set<String> expectedTestFormulas = new HashSet<String>();
+		
+		expectedTestFormulas.add("v1 : INT & v2 : INT");
+		
+		// Assertions
+		
+		assertThat(expectedTestFormulas).isEqualTo(coc.getTestFormulas());
+	}
+	
+	
 	
 	@Test
 	public void shouldGetTestsForCombinatorialCoverage() {

@@ -21,7 +21,7 @@ public class ClauseCoverageTest extends TestingUtils {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/swap.mch"));
 		Operation operationUnderTest = machine.getOperation(0); // step 
 		
-		ClauseCoverage acc = new ClauseCoverage(operationUnderTest);
+		ClauseCoverage cc = new ClauseCoverage(operationUnderTest);
 		
 		// Setting up expected result
 		
@@ -31,7 +31,7 @@ public class ClauseCoverageTest extends TestingUtils {
 		
 		// Assertions
 		
-		assertThat(expectedTestFormulas).isEqualTo(acc.getTestFormulas());
+		assertThat(expectedTestFormulas).isEqualTo(cc.getTestFormulas());
 	}
 	
 	

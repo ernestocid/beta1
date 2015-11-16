@@ -21,7 +21,7 @@ public class PredicateCoverageTest extends TestingUtils {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/swap.mch"));
 		Operation operationUnderTest = machine.getOperation(0); // step 
 		
-		PredicateCoverage acc = new PredicateCoverage(operationUnderTest);
+		PredicateCoverage pc = new PredicateCoverage(operationUnderTest);
 		
 		// Setting up expected result
 		
@@ -31,7 +31,7 @@ public class PredicateCoverageTest extends TestingUtils {
 		
 		// Assertions
 		
-		assertThat(expectedTestFormulas).isEqualTo(acc.getTestFormulas());
+		assertThat(expectedTestFormulas).isEqualTo(pc.getTestFormulas());
 	}
 	
 	

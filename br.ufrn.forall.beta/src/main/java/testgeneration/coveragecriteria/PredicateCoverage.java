@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import parser.Invariant;
 import parser.Operation;
 import parser.decorators.predicates.MyPredicate;
 
@@ -18,13 +19,15 @@ public class PredicateCoverage extends LogicalCoverage {
 	
 	
 	/**
-	 * This method a Set of test formulas which intend to satisfy
+	 * This method returns a Set of test formulas which intend to satisfy
 	 * the Predicate Coverage criterion. When generating the formulas
 	 * special formulas for the precondition, one where the precondition
 	 * holds true and another where the precondition holds false. For the 
 	 * remainder of the predicates it creates one formula concatenating  
 	 * precondition + predicate and another formula concatenating 
-	 * precondition + not(predicate).
+	 * precondition + not(predicate). If the operation under test has no
+	 * precondition and no predicates in its body a single formula that is
+	 * equal to the invariant is added to the set of test formulas.
 	 * 
 	 * @return a Set for test formulas for Predicate Coverage.
 	 */
@@ -32,6 +35,18 @@ public class PredicateCoverage extends LogicalCoverage {
 		Set<String> testFormulas = new HashSet<String>();
 
 		MyPredicate precondition = getOperationUnderTest().getPrecondition();
+	
+		// if operation has no precondition and no predicates in the body
+		
+		if(precondition == null && getPredicates().isEmpty()) {
+			Invariant invariant = getOperationUnderTest().getMachine().getInvariant();
+
+			// but machine has invariant
+			
+			if(invariant != null) {
+				testFormulas.add(invariant.getPredicate().toString());
+			}
+		}
 		
 		for(MyPredicate predicate : getPredicates()) {
 			boolean operationHasPrecondition = getOperationUnderTest().getPrecondition() != null;

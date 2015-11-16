@@ -1,5 +1,6 @@
 package unit;
 
+import static com.google.common.truth.Truth.*;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
@@ -14,6 +15,26 @@ import testgeneration.coveragecriteria.PredicateCoverage;
 
 public class PredicateCoverageTest extends TestingUtils {
 
+	
+	@Test
+	public void shouldGenerateFormulasForOperationWithoutPredicatesButWithInvariant() {
+		Machine machine = new Machine(new File("src/test/resources/machines/others/swap.mch"));
+		Operation operationUnderTest = machine.getOperation(0); // step 
+		
+		PredicateCoverage acc = new PredicateCoverage(operationUnderTest);
+		
+		// Setting up expected result
+		
+		Set<String> expectedTestFormulas = new HashSet<String>();
+		
+		expectedTestFormulas.add("v1 : INT & v2 : INT");
+		
+		// Assertions
+		
+		assertThat(expectedTestFormulas).isEqualTo(acc.getTestFormulas());
+	}
+	
+	
 	
 	@Test
 	public void shouldGetTestsFormulasIfElsifElseStatement() {

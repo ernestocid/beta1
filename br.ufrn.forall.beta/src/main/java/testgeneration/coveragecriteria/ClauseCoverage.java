@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import parser.Invariant;
 import parser.Operation;
 import parser.decorators.predicates.MyPredicate;
 
@@ -24,7 +25,9 @@ public class ClauseCoverage extends LogicalCoverage {
 	 * formula in the form of invariant + precondition + clause and another one
 	 * in the form of invariant + precondition + not(clause). Both invariant and
 	 * precondition are only added to the formula when available. If a clause is
-	 * a typing clause we do not try to generate a false value for it.
+	 * a typing clause we do not try to generate a false value for it. If the operation
+	 * has no precondition and no clauses in its body a single formula that is equal
+	 * to the invariant is added to the set of test formulas.
 	 * 
 	 * @return a Set of test formulas that satisfy Clause Coverage.
 	 */
@@ -33,6 +36,18 @@ public class ClauseCoverage extends LogicalCoverage {
 
 		MyPredicate precondition = getOperationUnderTest().getPrecondition();
 
+		// if operation has no precondition and no clauses in its body
+		
+		if(!operationHasPrecondition() && getClauses().isEmpty()) {
+			Invariant invariant = getOperationUnderTest().getMachine().getInvariant();
+			
+			// but machine has invariant
+			
+			if(invariant != null) {
+				testFormulas.add(invariant.getPredicate().toString());
+			}
+		}
+		
 		if (operationHasPrecondition()) {
 			testFormulas.addAll(createTestFormulasForPrecondition(precondition));
 		}

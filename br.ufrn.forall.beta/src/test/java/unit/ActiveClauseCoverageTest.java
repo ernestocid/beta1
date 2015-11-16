@@ -2,6 +2,7 @@ package unit;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
+import static com.google.common.truth.Truth.*;
 
 import java.io.File;
 import java.util.HashSet;
@@ -16,6 +17,26 @@ import testgeneration.coveragecriteria.ActiveClauseCoverage;
 
 public class ActiveClauseCoverageTest {
 
+	
+	@Test
+	public void shouldGenerateFormulasForOperationWithoutPredicatesButWithInvariant() {
+		Machine machine = new Machine(new File("src/test/resources/machines/others/swap.mch"));
+		Operation operationUnderTest = machine.getOperation(0); // step 
+		
+		ActiveClauseCoverage acc = new ActiveClauseCoverage(operationUnderTest);
+		
+		// Setting up expected result
+		
+		Set<String> expectedTestFormulas = new HashSet<String>();
+		
+		expectedTestFormulas.add("v1 : INT & v2 : INT");
+		
+		// Assertions
+		
+		assertThat(expectedTestFormulas).isEqualTo(acc.getTestFormulas());
+	}
+	
+	
 	
 	@Test
 	public void shouldGetFormulasForMajorClause() {

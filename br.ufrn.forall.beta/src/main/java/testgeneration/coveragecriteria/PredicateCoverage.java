@@ -22,8 +22,10 @@ public class PredicateCoverage extends LogicalCoverage {
 	 * This method returns a Set of test formulas which intend to satisfy
 	 * the Predicate Coverage criterion. When generating the formulas
 	 * special formulas for the precondition, one where the precondition
-	 * holds true and another where the precondition holds false. For the 
-	 * remainder of the predicates it creates one formula concatenating  
+	 * holds true and another where the precondition holds false (Typing 
+	 * clauses are not negated). 
+	 * 
+	 * For the remainder of the predicates it creates one formula concatenating  
 	 * precondition + predicate and another formula concatenating 
 	 * precondition + not(predicate). If the operation under test has no
 	 * precondition and no predicates in its body a single formula that is
@@ -130,10 +132,106 @@ public class PredicateCoverage extends LogicalCoverage {
 	private Set<String> createPreconditionFormulas(MyPredicate predicate) {
 		Set<String> testFormulas = new HashSet<String>();
 		
-		testFormulas.add("(" + invariant() + "(" + predicate.toString() + "))");
-		testFormulas.add("(" + invariant() + "not(" + predicate.toString() + ")" + ")");
+		Set<MyPredicate> preconditionClauses = predicate.getClauses();
+		
+		String typingClausesFormula = getTypingClausesFromPrecondtion(preconditionClauses);
+		String remainderClausesFormula = getNonTypingClausesFromPrecondtion(preconditionClauses);
+		
+		StringBuffer positiveFormula = new StringBuffer("");
+		StringBuffer negativeFormula = new StringBuffer("");
+		
+		// creating positive formula
+		
+		positiveFormula.append("(");
+		positiveFormula.append(invariant());
+		
+		if(!typingClausesFormula.equals("")) {
+			positiveFormula.append(typingClausesFormula);
+		}
+		
+		if(!remainderClausesFormula.equals("")) {
+			positiveFormula.append(" & " + remainderClausesFormula);
+		}
+		
+		positiveFormula.append(")");
+		
+		// creating negative formula
+		
+		negativeFormula.append("(");
+		negativeFormula.append(invariant());
+		
+		if(!typingClausesFormula.equals("")) {
+			negativeFormula.append(typingClausesFormula);
+		}
+		
+		if(!remainderClausesFormula.equals("")) {
+			negativeFormula.append(" & " + "not(" + remainderClausesFormula + ")");
+		}
+		
+		negativeFormula.append(")");
+		
+		// adding formulas
+		
+		testFormulas.add(positiveFormula.toString());
+		testFormulas.add(negativeFormula.toString());
 		
 		return testFormulas;
+	}
+
+
+
+	private String getNonTypingClausesFromPrecondtion(Set<MyPredicate> preconditionClauses) {
+		Set<MyPredicate> nonTypingClauses = new HashSet<MyPredicate>();
+		
+		for(MyPredicate clause : preconditionClauses) {
+			if(!clause.isTypingClause()) {
+				nonTypingClauses.add(clause);
+			}
+		}
+		
+		StringBuffer formula = new StringBuffer("");
+		
+		int count = 0;
+		
+		for(MyPredicate nonTypingClause : nonTypingClauses) {
+			if(count < nonTypingClauses.size() - 1) {
+				formula.append(nonTypingClause.toString() + " & ");
+			} else {
+				formula.append(nonTypingClause.toString());
+			}
+
+			count++;
+		}
+		
+		return formula.toString();
+	}
+
+
+
+	private String getTypingClausesFromPrecondtion(Set<MyPredicate> preconditionClauses) {
+		Set<MyPredicate> typingClauses = new HashSet<MyPredicate>();
+		
+		for(MyPredicate clause : preconditionClauses) {
+			if(clause.isTypingClause()) {
+				typingClauses.add(clause);
+			}
+		}
+		
+		StringBuffer formula = new StringBuffer("");
+		
+		int count = 0;
+		
+		for(MyPredicate typingClause : typingClauses) {
+			if(count < typingClauses.size() - 1) {
+				formula.append(typingClause.toString() + " & ");
+			} else {
+				formula.append(typingClause.toString());
+			}
+
+			count++;
+		}
+		
+		return formula.toString();
 	}
 
 

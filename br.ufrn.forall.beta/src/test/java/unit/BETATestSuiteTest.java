@@ -123,7 +123,7 @@ public class BETATestSuiteTest {
 		Set<String> expectedTestCaseFormulas = new HashSet<String>();
 
 		expectedTestCaseFormulas.add("averageGrade : 0..5 & averageGrade : INT");
-		expectedTestCaseFormulas.add("not(averageGrade : 0..5 & averageGrade : INT)");
+		expectedTestCaseFormulas.add("not(averageGrade : 0..5) & averageGrade : INT");
 		expectedTestCaseFormulas.add("averageGrade : 0..5 & averageGrade >= 2 & averageGrade < 4 & averageGrade : INT");
 		expectedTestCaseFormulas.add("averageGrade : 0..5 & not(averageGrade >= 2 & averageGrade < 4) & averageGrade : INT");
 		expectedTestCaseFormulas.add("averageGrade : 0..5 & averageGrade >= 4 & averageGrade : INT");

@@ -102,8 +102,10 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 		Set<String> testFormulas = new HashSet<String>();
 		
 		for(int i = 0; i < clauses.size(); i++) {
-			MyPredicate majorClause = clauses.get(i);
-			testFormulas.addAll(createTestFormulasForMajorClause(majorClause, clauses, predicate));
+			if(!clauses.get(i).isTypingClause()) {
+				MyPredicate majorClause = clauses.get(i);
+				testFormulas.addAll(createTestFormulasForMajorClause(majorClause, clauses, predicate));
+			}
 		}
 		
 		return testFormulas;

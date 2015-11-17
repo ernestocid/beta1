@@ -73,8 +73,6 @@ public class ActiveClauseCoverageTest {
 		
 		Set<String> expectedTestFormulas = new HashSet<String>();
 		
-		expectedTestFormulas.add("((averageGrade : INT) & ((averageGrade : 0..5 & 1=1) <=> not(averageGrade : 0..5 & 1=2)))");
-		expectedTestFormulas.add("(not(averageGrade : INT) & ((averageGrade : 0..5 & 1=1) <=> not(averageGrade : 0..5 & 1=2)))");
 		expectedTestFormulas.add("((averageGrade : 0..5) & ((1=1 & averageGrade : INT) <=> not(1=2 & averageGrade : INT)))");
 		expectedTestFormulas.add("(not(averageGrade : 0..5) & ((1=1 & averageGrade : INT) <=> not(1=2 & averageGrade : INT)))");
 		
@@ -219,11 +217,6 @@ public class ActiveClauseCoverageTest {
 		// Setting up expected results
 		
 		Set<String> expectedTestFormulas = new HashSet<String>();
-		
-		expectedTestFormulas.add("((yy : NAT) & ((xx : NAT & 1=1) <=> not(xx : NAT & 1=2)))");
-		expectedTestFormulas.add("(not(yy : NAT) & ((xx : NAT & 1=1) <=> not(xx : NAT & 1=2)))");
-		expectedTestFormulas.add("((xx : NAT) & ((1=1 & yy : NAT) <=> not(1=2 & yy : NAT)))");
-		expectedTestFormulas.add("(not(xx : NAT) & ((1=1 & yy : NAT) <=> not(1=2 & yy : NAT)))");
 		
 		expectedTestFormulas.add("((xx : NAT & yy : NAT) & (xx /= yy))");
 		expectedTestFormulas.add("((xx : NAT & yy : NAT) & (not(xx /= yy)))");

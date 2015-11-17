@@ -189,7 +189,6 @@ public class BETATestSuiteTest {
 		expectedTestCaseFormulas.add("averageGrade : 0..5 & ((averageGrade >= 2 & 1 = 1) <=> (not(averageGrade >= 2 & 1 = 2))) & not(averageGrade < 4) & averageGrade : INT");
 		expectedTestCaseFormulas.add("averageGrade : 0..5 & ((averageGrade >= 2 & 1 = 1) <=> (not(averageGrade >= 2 & 1 = 2))) & averageGrade < 4 & averageGrade : INT");
 		expectedTestCaseFormulas.add("((1 = 1 & averageGrade : INT) <=> (not(1 = 2 & averageGrade : INT))) & not(averageGrade : 0..5)");
-		expectedTestCaseFormulas.add("((averageGrade : 0..5 & 1 = 1) <=> (not(averageGrade : 0..5 & 1 = 2))) & averageGrade : INT");
 		expectedTestCaseFormulas.add("averageGrade : 0..5 & averageGrade >= 4 & averageGrade : INT");
 		expectedTestCaseFormulas.add("averageGrade : 0..5 & not(averageGrade >= 4) & averageGrade : INT");
 		expectedTestCaseFormulas.add("averageGrade : 0..5 & averageGrade >= 2 & ((1 = 1 & averageGrade < 4) <=> (not(1 = 2 & averageGrade < 4))) & averageGrade : INT");
@@ -207,7 +206,7 @@ public class BETATestSuiteTest {
 		assertEquals(expectedTestCaseFormulas, actualTestCaseFormulas);
 
 		// Asserting infeasible test cases are correct
-		assertEquals("((averageGrade : 0..5 & 1 = 1) <=> (not(averageGrade : 0..5 & 1 = 2))) & not(averageGrade : INT)", testSuite.getUnsolvableFormulas().get(0));
+		assertTrue(testSuite.getUnsolvableFormulas().isEmpty());
 	}
 	
 	
@@ -224,14 +223,13 @@ public class BETATestSuiteTest {
 		BETATestSuite testSuite = new BETATestSuite(coverageCriterion);
 
 		assertThat(testSuite.getTestCases().get(0).getTestFormula()).isEqualTo("((1 = 1 & averageGrade : INT) <=> (not(1 = 2 & averageGrade : INT))) & not(averageGrade : 0..5)");
-		assertThat(testSuite.getTestCases().get(1).getTestFormula()).isEqualTo("((averageGrade : 0..5 & 1 = 1) <=> (not(averageGrade : 0..5 & 1 = 2))) & averageGrade : INT");
-		assertThat(testSuite.getTestCases().get(2).getTestFormula()).isEqualTo("averageGrade : 0..5 & ((1 = 1 & averageGrade : INT) <=> (not(1 = 2 & averageGrade : INT)))");
-		assertThat(testSuite.getTestCases().get(3).getTestFormula()).isEqualTo("averageGrade : 0..5 & ((1 = 1 & averageGrade < 4) <=> (not(1 = 2 & averageGrade < 4))) & not(averageGrade >= 2) & averageGrade : INT");
-		assertThat(testSuite.getTestCases().get(4).getTestFormula()).isEqualTo("averageGrade : 0..5 & ((averageGrade >= 2 & 1 = 1) <=> (not(averageGrade >= 2 & 1 = 2))) & averageGrade < 4 & averageGrade : INT");
-		assertThat(testSuite.getTestCases().get(5).getTestFormula()).isEqualTo("averageGrade : 0..5 & ((averageGrade >= 2 & 1 = 1) <=> (not(averageGrade >= 2 & 1 = 2))) & not(averageGrade < 4) & averageGrade : INT");
-		assertThat(testSuite.getTestCases().get(6).getTestFormula()).isEqualTo("averageGrade : 0..5 & averageGrade >= 2 & ((1 = 1 & averageGrade < 4) <=> (not(1 = 2 & averageGrade < 4))) & averageGrade : INT");
-		assertThat(testSuite.getTestCases().get(7).getTestFormula()).isEqualTo("averageGrade : 0..5 & averageGrade >= 4 & averageGrade : INT");
-		assertThat(testSuite.getTestCases().get(8).getTestFormula()).isEqualTo("averageGrade : 0..5 & not(averageGrade >= 4) & averageGrade : INT");
+		assertThat(testSuite.getTestCases().get(1).getTestFormula()).isEqualTo("averageGrade : 0..5 & ((1 = 1 & averageGrade : INT) <=> (not(1 = 2 & averageGrade : INT)))");
+		assertThat(testSuite.getTestCases().get(2).getTestFormula()).isEqualTo("averageGrade : 0..5 & ((1 = 1 & averageGrade < 4) <=> (not(1 = 2 & averageGrade < 4))) & not(averageGrade >= 2) & averageGrade : INT");
+		assertThat(testSuite.getTestCases().get(3).getTestFormula()).isEqualTo("averageGrade : 0..5 & ((averageGrade >= 2 & 1 = 1) <=> (not(averageGrade >= 2 & 1 = 2))) & averageGrade < 4 & averageGrade : INT");
+		assertThat(testSuite.getTestCases().get(4).getTestFormula()).isEqualTo("averageGrade : 0..5 & ((averageGrade >= 2 & 1 = 1) <=> (not(averageGrade >= 2 & 1 = 2))) & not(averageGrade < 4) & averageGrade : INT");
+		assertThat(testSuite.getTestCases().get(5).getTestFormula()).isEqualTo("averageGrade : 0..5 & averageGrade >= 2 & ((1 = 1 & averageGrade < 4) <=> (not(1 = 2 & averageGrade < 4))) & averageGrade : INT");
+		assertThat(testSuite.getTestCases().get(6).getTestFormula()).isEqualTo("averageGrade : 0..5 & averageGrade >= 4 & averageGrade : INT");
+		assertThat(testSuite.getTestCases().get(7).getTestFormula()).isEqualTo("averageGrade : 0..5 & not(averageGrade >= 4) & averageGrade : INT");
 
 		List<Event> preambleTC1 = new ArrayList<Event>(); 
 		preambleTC1.add(new Event("initialisation", new HashMap<String, String>()));
@@ -265,11 +263,7 @@ public class BETATestSuiteTest {
 		preambleTC8.add(new Event("initialisation", new HashMap<String, String>()));
 		assertThat(testSuite.getTestCases().get(7).getPreamble()).isEqualTo(preambleTC8);
 		
-		List<Event> preambleTC9 = new ArrayList<Event>(); 
-		preambleTC9.add(new Event("initialisation", new HashMap<String, String>()));
-		assertThat(testSuite.getTestCases().get(8).getPreamble()).isEqualTo(preambleTC9);
-
-		assertThat(testSuite.getUnsolvableFormulas()).contains("((averageGrade : 0..5 & 1 = 1) <=> (not(averageGrade : 0..5 & 1 = 2))) & not(averageGrade : INT)");
+		assertThat(testSuite.getUnsolvableFormulas()).isEmpty();
 	}
 
 

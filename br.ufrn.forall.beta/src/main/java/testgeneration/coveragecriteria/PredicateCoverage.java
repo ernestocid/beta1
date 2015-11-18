@@ -83,10 +83,73 @@ public class PredicateCoverage extends LogicalCoverage {
 		negativeTestFormula.append(invariant());
 		negativeTestFormula.append(precondition());
 		negativeTestFormula.append(clausesRelatedTo(predicate));
-		negativeTestFormula.append("not(" + predicate.toString() + ")");
+		
+		Set<MyPredicate> typingClauses = getTypingClases(predicate);
+		Set<MyPredicate> nonTypingClauses = getNonTypingClases(predicate);
+		
+		StringBuffer typingFormula = new StringBuffer("");
+		
+		int countTyping = 0;
+		
+		for(MyPredicate typingClause : typingClauses) {
+			if(countTyping < typingClauses.size() - 1) {
+				typingFormula.append(typingClause.toString() + " & ");
+			} else {
+				typingFormula.append(typingClause.toString());
+			}
+			countTyping++;
+		}
+		
+		StringBuffer nonTypingFormula = new StringBuffer("");
+		
+		int countNonTyping = 0;
+		
+		for(MyPredicate nonTypingClause : nonTypingClauses) {
+			if(countNonTyping < nonTypingClauses.size() - 1) {
+				nonTypingFormula.append(nonTypingClause.toString() + " & ");
+			} else {
+				nonTypingFormula.append(nonTypingClause.toString());
+			}
+			countNonTyping++;
+		}
+		
+		if(typingFormula.toString().equals("")) {
+			negativeTestFormula.append("not(" + nonTypingFormula.toString() + ")");
+		} else {
+			negativeTestFormula.append(typingFormula.toString() + " & " + "not(" + nonTypingFormula.toString() + ")");
+		}
+
 		negativeTestFormula.append(")");
 		
 		return negativeTestFormula.toString();
+	}
+
+
+
+	private Set<MyPredicate> getNonTypingClases(MyPredicate predicate) {
+		Set<MyPredicate> typingClauses = new HashSet<MyPredicate>();
+		
+		for(MyPredicate clause : predicate.getClauses()) {
+			if(!clause.isTypingClause()) {
+				typingClauses.add(clause);
+			}
+		}
+		
+		return typingClauses;
+	}
+
+
+
+	private Set<MyPredicate> getTypingClases(MyPredicate predicate) {
+		Set<MyPredicate> typingClauses = new HashSet<MyPredicate>();
+		
+		for(MyPredicate clause : predicate.getClauses()) {
+			if(clause.isTypingClause()) {
+				typingClauses.add(clause);
+			}
+		}
+		
+		return typingClauses;
 	}
 
 

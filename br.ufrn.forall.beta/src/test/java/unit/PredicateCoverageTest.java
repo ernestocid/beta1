@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import parser.Machine;
 import parser.Operation;
+import testgeneration.coveragecriteria.ActiveClauseCoverage;
 import testgeneration.coveragecriteria.PredicateCoverage;
 
 public class PredicateCoverageTest extends TestingUtils {
@@ -102,10 +103,10 @@ public class PredicateCoverageTest extends TestingUtils {
 		expectedTestFormulas.add("((queue : seq(NAT) & !(xx).((xx : 1..((size(queue) - 1))) => (queue(xx) <= queue((xx + 1))))) & (nn : NAT) & not(queue = []))");
 		
 		expectedTestFormulas.add("((queue : seq(NAT) & !(xx).((xx : 1..((size(queue) - 1))) => (queue(xx) <= queue((xx + 1))))) & (nn : NAT) & (queue /= [] & nn <= min(ran(queue))))");
-		expectedTestFormulas.add("((queue : seq(NAT) & !(xx).((xx : 1..((size(queue) - 1))) => (queue(xx) <= queue((xx + 1))))) & (nn : NAT) & not(queue /= [] & nn <= min(ran(queue))))");
+		expectedTestFormulas.add("((queue : seq(NAT) & !(xx).((xx : 1..((size(queue) - 1))) => (queue(xx) <= queue((xx + 1))))) & (nn : NAT) & not(nn <= min(ran(queue)) & queue /= []))");
 		
 		expectedTestFormulas.add("((queue : seq(NAT) & !(xx).((xx : 1..((size(queue) - 1))) => (queue(xx) <= queue((xx + 1))))) & (nn : NAT) & (queue /= [] & nn >= max(ran(queue))))");
-		expectedTestFormulas.add("((queue : seq(NAT) & !(xx).((xx : 1..((size(queue) - 1))) => (queue(xx) <= queue((xx + 1))))) & (nn : NAT) & not(queue /= [] & nn >= max(ran(queue))))");
+		expectedTestFormulas.add("((queue : seq(NAT) & !(xx).((xx : 1..((size(queue) - 1))) => (queue(xx) <= queue((xx + 1))))) & (nn : NAT) & not(nn >= max(ran(queue)) & queue /= []))");
 		
 		// Assertions
 		
@@ -133,5 +134,25 @@ public class PredicateCoverageTest extends TestingUtils {
 		
 		assertEquals(expectedFormulas, pc.getTestFormulas());
 	}
+	
+	
+	
+	@Test
+	public void shouldGenerateTestFormulasForAnyStatement() {
+		Machine machine = new Machine(new File("src/test/resources/machines/others/AnyStmt.mch"));
+		Operation operationUnderTest = machine.getOperation(0);
+		
+		PredicateCoverage pc = new PredicateCoverage(operationUnderTest);
+		
+		// Setting up expected results
+		
+		Set<String> expectedTestFormulas = new HashSet<String>();
 
+		expectedTestFormulas.add("((xx : NAT) & yy : NAT & not(yy : 1..20))");
+		expectedTestFormulas.add("((xx : NAT) & (yy : NAT & yy : 1..20))");
+		
+		// Assertions
+		
+		assertEquals(expectedTestFormulas, pc.getTestFormulas());
+	}
 }

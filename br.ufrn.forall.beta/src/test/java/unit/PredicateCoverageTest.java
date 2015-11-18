@@ -11,7 +11,6 @@ import org.junit.Test;
 
 import parser.Machine;
 import parser.Operation;
-import testgeneration.coveragecriteria.ActiveClauseCoverage;
 import testgeneration.coveragecriteria.PredicateCoverage;
 
 public class PredicateCoverageTest extends TestingUtils {

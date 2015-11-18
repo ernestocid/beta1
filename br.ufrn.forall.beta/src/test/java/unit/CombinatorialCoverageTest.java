@@ -122,24 +122,24 @@ public class CombinatorialCoverageTest extends TestingUtils{
 	
 	
 	
-//	@Test
-//	public void shouldGenerateTestFormulasForAnyStatement() {
-//		Machine machine = new Machine(new File("src/test/resources/machines/others/Any.mch"));
-//		Operation operationUnderTest = machine.getOperation(0);
-//		
-//		CombinatorialClauseCoverage coc = new CombinatorialClauseCoverage(operationUnderTest);
-//		
-//		// Setting up expected results
-//		
-//		Set<String> expectedTestFormulas = new HashSet<String>();
-//
-//		expectedTestFormulas.add("((col1 : POW(COLOURS) & col2 : POW(COLOURS) & !(cc).((cc : col1) => (cc /: col2)) & !(cc2).((cc2 : col2) => (cc2 /: col1)) & b : BOOL & col : COLOURS) & (x /: col1 & x : COLOURS))");
-//		expectedTestFormulas.add("((col1 : POW(COLOURS) & col2 : POW(COLOURS) & !(cc).((cc : col1) => (cc /: col2)) & !(cc2).((cc2 : col2) => (cc2 /: col1)) & b : BOOL & col : COLOURS) & (not(x /: col1) & x : COLOURS))");
-//		
-//		// Assertions
-//		
-//		assertEquals(expectedTestFormulas, coc.getTestFormulas());
-//	}
+	@Test
+	public void shouldGenerateTestFormulasForAnyStatement() {
+		Machine machine = new Machine(new File("src/test/resources/machines/others/AnyStmt.mch"));
+		Operation operationUnderTest = machine.getOperation(0);
+		
+		CombinatorialClauseCoverage coc = new CombinatorialClauseCoverage(operationUnderTest);
+		
+		// Setting up expected results
+		
+		Set<String> expectedTestFormulas = new HashSet<String>();
+
+		expectedTestFormulas.add("((xx : NAT) & (yy : 1..20 & yy : NAT))");
+		expectedTestFormulas.add("((xx : NAT) & (not(yy : 1..20) & yy : NAT))");
+		
+		// Assertions
+		
+		assertEquals(expectedTestFormulas, coc.getTestFormulas());
+	}
 	
 	
 	

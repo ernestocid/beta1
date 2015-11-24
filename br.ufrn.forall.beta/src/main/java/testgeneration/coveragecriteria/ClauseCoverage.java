@@ -1,5 +1,6 @@
 package testgeneration.coveragecriteria;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -68,10 +69,55 @@ public class ClauseCoverage extends LogicalCoverage {
 	private Set<String> createFormulasForOtherClausesWithoutPrecondition(MyPredicate clause) {
 		Set<String> testFormulas = new HashSet<String>();
 
-		testFormulas.add("(" + invariant() + "(" + clause.toString() + "))");
-
+		List<String> testFormulaQueue = new ArrayList<String>();
+		
+		if(!invariant().equals("")) {
+			testFormulaQueue.add(invariant());
+		}
+		
+		testFormulaQueue.add("(" + clause.toString() + ")");
+		
+		StringBuffer testFormula = new StringBuffer("");
+		
+		testFormula.append("(");
+		
+		for(int i = 0; i < testFormulaQueue.size(); i++) {
+			if(i < testFormulaQueue.size() - 1) {
+				testFormula.append(testFormulaQueue.get(i) + " & ");
+			} else {
+				testFormula.append(testFormulaQueue.get(i));
+			}
+		}
+		
+		testFormula.append(")");
+		
+		testFormulas.add(testFormula.toString());
+		
+		
 		if (!clause.isTypingClause()) {
-			testFormulas.add("(" + invariant() + "not(" + clause.toString() + ")" + ")");
+			List<String> testFormulaWithNegationQueue = new ArrayList<String>();
+			
+			if(!invariant().equals("")) {
+				testFormulaWithNegationQueue.add(invariant());
+			}
+			
+			testFormulaWithNegationQueue.add("not(" + clause.toString() + ")");
+			
+			StringBuffer testFormulaWithOneClauseNegated = new StringBuffer("");
+			
+			testFormulaWithOneClauseNegated.append("(");
+			
+			for(int i = 0; i < testFormulaWithNegationQueue.size(); i++) {
+				if(i < testFormulaWithNegationQueue.size() - 1) {
+					testFormulaWithOneClauseNegated.append(testFormulaWithNegationQueue.get(i) + " & ");
+				} else {
+					testFormulaWithOneClauseNegated.append(testFormulaWithNegationQueue.get(i));
+				}
+			}
+			
+			testFormulaWithOneClauseNegated.append(")");
+			
+			testFormulas.add(testFormulaWithOneClauseNegated.toString());
 		}
 
 		return testFormulas;
@@ -83,10 +129,62 @@ public class ClauseCoverage extends LogicalCoverage {
 		Set<String> testFormulas = new HashSet<String>();
 
 		if (!clauseBelongsToPredicate(clause, precondition)) {
-			testFormulas.add("(" + invariant() + precondition() + "(" + clause.toString() + "))");
-
+			List<String> testFormulaQueue = new ArrayList<String>();
+			
+			if(!invariant().equals("")) {
+				testFormulaQueue.add(invariant());
+			}
+			
+			if(!precondition().equals("")) {
+				testFormulaQueue.add(precondition());
+			}
+			
+			testFormulaQueue.add("(" + clause.toString() + ")");
+			
+			StringBuffer testFormula = new StringBuffer("");
+			
+			testFormula.append("(");
+			
+			for(int i = 0; i < testFormulaQueue.size(); i++) {
+				if(i < testFormulaQueue.size() - 1) {
+					testFormula.append(testFormulaQueue.get(i) + " & ");
+				} else {
+					testFormula.append(testFormulaQueue.get(i));
+				}
+			}
+			
+			testFormula.append(")");
+			
+			testFormulas.add(testFormula.toString());
+			
 			if (!clause.isTypingClause()) {
-				testFormulas.add("(" + invariant() + precondition() + "not(" + clause.toString() + ")" + ")");
+				List<String> testFormulaWithNegationQueue = new ArrayList<String>();
+				
+				if(!invariant().equals("")) {
+					testFormulaWithNegationQueue.add(invariant());
+				}
+				
+				if(!precondition().equals("")) {
+					testFormulaWithNegationQueue.add(precondition());
+				}
+				
+				testFormulaWithNegationQueue.add("not(" + clause.toString() + ")");
+				
+				StringBuffer testFormulaWithOneClauseNegated = new StringBuffer("");
+				
+				testFormulaWithOneClauseNegated.append("(");
+				
+				for(int i = 0; i < testFormulaWithNegationQueue.size(); i++) {
+					if(i < testFormulaWithNegationQueue.size() - 1) {
+						testFormulaWithOneClauseNegated.append(testFormulaWithNegationQueue.get(i) + " & ");
+					} else {
+						testFormulaWithOneClauseNegated.append(testFormulaWithNegationQueue.get(i));
+					}
+				}
+				
+				testFormulaWithOneClauseNegated.append(")");
+				
+				testFormulas.add(testFormulaWithOneClauseNegated.toString());
 			}
 		}
 
@@ -98,15 +196,60 @@ public class ClauseCoverage extends LogicalCoverage {
 	private Set<String> createTestFormulasForPrecondition(MyPredicate precondition) {
 		Set<String> testFormulas = new HashSet<String>();
 
-		testFormulas.add("(" + invariant() + "(" + precondition.toString() + "))");
+		List<String> testFormulaQueue = new ArrayList<String>();
+		
+		if(!invariant().equals("")) {
+			testFormulaQueue.add(invariant());
+		}
+		
+		testFormulaQueue.add("(" + precondition.toString() + ")");
+		
+		StringBuffer allPositiveFormula = new StringBuffer("");
+		
+		allPositiveFormula.append("(");
+		
+		for(int i = 0; i < testFormulaQueue.size(); i++) {
+			if(i < testFormulaQueue.size() - 1) {
+				allPositiveFormula.append(testFormulaQueue.get(i) + " & ");
+			} else {
+				allPositiveFormula.append(testFormulaQueue.get(i));
+			}
+		}
+		
+		allPositiveFormula.append(")");
+		
+		testFormulas.add(allPositiveFormula.toString());
+		
+		// add test formulas with one clause negated each
 
 		List<MyPredicate> sortedPreconditionClauses = sortPredicates(precondition.getClauses());
 
-		String testFormula;
-
+		
 		for (int i = 0; i < sortedPreconditionClauses.size(); i++) {
-			testFormula = "(" + invariant() + "(" + createTestFormulaNegatingAClause(sortedPreconditionClauses, i) + "))";
-			testFormulas.add(testFormula);
+			
+			List<String> testFormulaWithNegationQueue = new ArrayList<String>();
+
+			if(!invariant().equals("")) {
+				testFormulaWithNegationQueue.add(invariant());
+			}
+			
+			testFormulaWithNegationQueue.add("(" + createTestFormulaNegatingAClause(sortedPreconditionClauses, i)  + ")");
+			
+			StringBuffer formulaWithOneClauseNegated = new StringBuffer("");
+			
+			formulaWithOneClauseNegated.append("(");
+			
+			for(int j = 0; j < testFormulaWithNegationQueue.size(); j++) {
+				if(j < testFormulaWithNegationQueue.size() - 1) {
+					formulaWithOneClauseNegated.append(testFormulaWithNegationQueue.get(j) + " & ");
+				} else {
+					formulaWithOneClauseNegated.append(testFormulaWithNegationQueue.get(j));
+				}
+			}
+			
+			formulaWithOneClauseNegated.append(")");
+			
+			testFormulas.add(formulaWithOneClauseNegated.toString());
 		}
 
 		return testFormulas;
@@ -147,5 +290,4 @@ public class ClauseCoverage extends LogicalCoverage {
 	public String getAcronym() {
 		return "LC-CC";
 	}
-
 }

@@ -79,13 +79,8 @@ public class PredicateCoverage extends LogicalCoverage {
 	private String createNegativeTestFormulaForPredicate(MyPredicate predicate) {
 		StringBuffer negativeTestFormula = new StringBuffer("");
 		
-		negativeTestFormula.append("(");
-		negativeTestFormula.append(invariant());
-		negativeTestFormula.append(precondition());
-		negativeTestFormula.append(clausesRelatedTo(predicate));
 		
 		Set<MyPredicate> typingClauses = getTypingClases(predicate);
-		Set<MyPredicate> nonTypingClauses = getNonTypingClases(predicate);
 		
 		StringBuffer typingFormula = new StringBuffer("");
 		
@@ -100,6 +95,8 @@ public class PredicateCoverage extends LogicalCoverage {
 			countTyping++;
 		}
 		
+		Set<MyPredicate> nonTypingClauses = getNonTypingClases(predicate);
+		
 		StringBuffer nonTypingFormula = new StringBuffer("");
 		
 		int countNonTyping = 0;
@@ -113,12 +110,38 @@ public class PredicateCoverage extends LogicalCoverage {
 			countNonTyping++;
 		}
 		
-		if(typingFormula.toString().equals("")) {
-			negativeTestFormula.append("not(" + nonTypingFormula.toString() + ")");
-		} else {
-			negativeTestFormula.append(typingFormula.toString() + " & " + "not(" + nonTypingFormula.toString() + ")");
+		List<String> negativeTestFormulaQueue = new ArrayList<String>();
+		
+		if(!invariant().equals("")) {
+			negativeTestFormulaQueue.add(invariant());
 		}
 
+		if(!precondition().equals("")) {
+			negativeTestFormulaQueue.add(precondition());
+		}
+
+		if(!clausesRelatedTo(predicate).equals("")) {
+			negativeTestFormulaQueue.add(clausesRelatedTo(predicate));
+		}
+		
+		if(!typingFormula.toString().equals("")) {
+			negativeTestFormulaQueue.add(typingFormula.toString());
+		}
+		
+		if(!nonTypingFormula.toString().equals("")) {
+			negativeTestFormulaQueue.add("not(" + nonTypingFormula.toString() + ")");
+		}
+		
+		negativeTestFormula.append("(");
+		
+		for(int i = 0; i < negativeTestFormulaQueue.size(); i++) {
+			if(i < negativeTestFormulaQueue.size() - 1 && !negativeTestFormulaQueue.get(i).equals("")) {
+				negativeTestFormula.append(negativeTestFormulaQueue.get(i) + " & ");
+			} else {
+				negativeTestFormula.append(negativeTestFormulaQueue.get(i));
+			}
+		}
+		
 		negativeTestFormula.append(")");
 		
 		return negativeTestFormula.toString();
@@ -157,11 +180,32 @@ public class PredicateCoverage extends LogicalCoverage {
 	private String createPostiveTestFormulaForPredicate(MyPredicate predicate) {
 		StringBuffer positiveTestFormula = new StringBuffer("");
 		
+		List<String> positiveTestFormulaQueue = new ArrayList<String>();
+		
+		if(!invariant().equals("")) {
+			positiveTestFormulaQueue.add(invariant());
+		}
+
+		if(!precondition().equals("")) {
+			positiveTestFormulaQueue.add(precondition());
+		}
+
+		if(!clausesRelatedTo(predicate).equals("")) {
+			positiveTestFormulaQueue.add(clausesRelatedTo(predicate));
+		}
+		
+		positiveTestFormulaQueue.add("(" + predicate.toString() + ")");
+		
 		positiveTestFormula.append("(");
-		positiveTestFormula.append(invariant());
-		positiveTestFormula.append(precondition());
-		positiveTestFormula.append(clausesRelatedTo(predicate));
-		positiveTestFormula.append("(" + predicate.toString() + ")");
+		
+		for(int i = 0; i < positiveTestFormulaQueue.size(); i++) {
+			if(i < positiveTestFormulaQueue.size() - 1 && !positiveTestFormulaQueue.get(i).equals("")) {
+				positiveTestFormula.append(positiveTestFormulaQueue.get(i) + " & ");
+			} else {
+				positiveTestFormula.append(positiveTestFormulaQueue.get(i));
+			}
+		}
+		
 		positiveTestFormula.append(")");
 		
 		return positiveTestFormula.toString();
@@ -205,37 +249,62 @@ public class PredicateCoverage extends LogicalCoverage {
 		
 		// creating positive formula
 		
-		positiveFormula.append("(");
-		positiveFormula.append(invariant());
+		List<String> positiveFormulaQueue = new ArrayList<String>();
+
+		if(!invariant().equals("")) {
+			positiveFormulaQueue.add(invariant());
+		}
 		
 		if(!typingClausesFormula.equals("")) {
-			positiveFormula.append(typingClausesFormula);
+			positiveFormulaQueue.add(typingClausesFormula);
 		}
 		
 		if(!remainderClausesFormula.equals("")) {
-			positiveFormula.append(" & " + remainderClausesFormula);
+			positiveFormulaQueue.add(remainderClausesFormula);
 		}
 		
+		positiveFormula.append("(");
+		
+		for(int i = 0; i < positiveFormulaQueue.size(); i++) {
+			if(i < positiveFormulaQueue.size() - 1 && !positiveFormulaQueue.get(i).equals("")) {
+				positiveFormula.append(positiveFormulaQueue.get(i) + " & ");
+			} else if (!positiveFormulaQueue.get(i).equals("")) {
+				positiveFormula.append(positiveFormulaQueue.get(i));
+			}
+		}
+
 		positiveFormula.append(")");
+		
+		testFormulas.add(positiveFormula.toString());
 		
 		// creating negative formula
 		
-		negativeFormula.append("(");
-		negativeFormula.append(invariant());
+		List<String> negativeFormulaQueue = new ArrayList<String>();
 		
+		if(!invariant().equals("")) {
+			negativeFormulaQueue.add(invariant());
+		}
+
 		if(!typingClausesFormula.equals("")) {
-			negativeFormula.append(typingClausesFormula);
+			negativeFormulaQueue.add(typingClausesFormula);
 		}
 		
 		if(!remainderClausesFormula.equals("")) {
-			negativeFormula.append(" & " + "not(" + remainderClausesFormula + ")");
+			negativeFormulaQueue.add("not(" + remainderClausesFormula + ")");
+		}
+		
+		negativeFormula.append("(");
+		
+		for(int i = 0; i < negativeFormulaQueue.size(); i++) {
+			if(i < negativeFormulaQueue.size() - 1 && !negativeFormulaQueue.get(i).equals("")) {
+				negativeFormula.append(negativeFormulaQueue.get(i) + " & ");
+			} else if (!negativeFormulaQueue.get(i).equals("")) {
+				negativeFormula.append(negativeFormulaQueue.get(i));
+			}
 		}
 		
 		negativeFormula.append(")");
 		
-		// adding formulas
-		
-		testFormulas.add(positiveFormula.toString());
 		testFormulas.add(negativeFormula.toString());
 		
 		return testFormulas;

@@ -81,16 +81,106 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 	private Set<String> createACCFormulasForPredicateWithSingleClause(MyPredicate predicate, List<MyPredicate> clauses) {
 		Set<String> testFormulas = new HashSet<String>();
 		
-		String existentialListAndInvariant = "(" + invariant();
-		String clause = "(" + clauses.get(0) + "))";
-		String clauseNegation =  "(" + "not(" + clauses.get(0) + ")" + "))";
-		
 		if(operationHasPrecondition() && comparePredicates(predicate, getOperationUnderTest().getPrecondition())) {
-			testFormulas.add(existentialListAndInvariant + getReachabiltyPredicate(predicate) + clause);
-			testFormulas.add(existentialListAndInvariant + getReachabiltyPredicate(predicate) + clauseNegation);
+			List<String> testFormulaQueue = new ArrayList<String>();
+			List<String> testFormulaWithNegationQueue = new ArrayList<String>();
+			
+			if(!invariant().equals("")) {
+				testFormulaQueue.add(invariant());
+				testFormulaWithNegationQueue.add(invariant());
+			}
+			
+			if(!getReachabiltyPredicate(predicate).equals("")) {
+				testFormulaQueue.add(getReachabiltyPredicate(predicate));
+				testFormulaWithNegationQueue.add(getReachabiltyPredicate(predicate));
+			}
+			
+			testFormulaQueue.add("(" + clauses.get(0) + ")");
+			testFormulaWithNegationQueue.add("(not(" + clauses.get(0) + "))");
+			
+			StringBuffer testFormula = new StringBuffer("");
+			
+			testFormula.append("(");
+			
+			for(int i = 0; i < testFormulaQueue.size(); i++) {
+				if(i < testFormulaQueue.size() - 1) {
+					testFormula.append(testFormulaQueue.get(i) + " & ");
+				} else {
+					testFormula.append(testFormulaQueue.get(i));
+				}
+			}
+			
+			testFormula.append(")");
+			testFormulas.add(testFormula.toString());
+			
+			
+			StringBuffer testFormulaWithNegation = new StringBuffer("");
+			
+			testFormulaWithNegation.append("(");
+			
+			for(int i = 0; i < testFormulaWithNegationQueue.size(); i++) {
+				if(i < testFormulaWithNegationQueue.size() - 1) {
+					testFormulaWithNegation.append(testFormulaWithNegationQueue.get(i) + " & ");
+				} else {
+					testFormulaWithNegation.append(testFormulaWithNegationQueue.get(i));
+				}
+			}
+			
+			testFormulaWithNegation.append(")");
+			testFormulas.add(testFormulaWithNegation.toString());			
+
 		} else {
-			testFormulas.add(existentialListAndInvariant + precondition() + getReachabiltyPredicate(predicate) + clause);
-			testFormulas.add(existentialListAndInvariant + precondition() + getReachabiltyPredicate(predicate) + clauseNegation);	
+			List<String> testFormulaQueue = new ArrayList<String>();
+			List<String> testFormulaWithNegationQueue = new ArrayList<String>();
+			
+			if(!invariant().equals("")) {
+				testFormulaQueue.add(invariant());
+				testFormulaWithNegationQueue.add(invariant());
+			}
+			
+			if(!precondition().equals("")) {
+				testFormulaQueue.add(precondition());
+				testFormulaWithNegationQueue.add(precondition());
+			}
+			
+			if(!getReachabiltyPredicate(predicate).equals("")) {
+				testFormulaQueue.add(getReachabiltyPredicate(predicate));
+				testFormulaWithNegationQueue.add(getReachabiltyPredicate(predicate));
+			}
+			
+			testFormulaQueue.add("(" + clauses.get(0) + ")");
+			testFormulaWithNegationQueue.add("(not(" + clauses.get(0) + "))");
+			
+			StringBuffer testFormula = new StringBuffer("");
+			
+			testFormula.append("(");
+			
+			for(int i = 0; i < testFormulaQueue.size(); i++) {
+				if(i < testFormulaQueue.size() - 1) {
+					testFormula.append(testFormulaQueue.get(i) + " & ");
+				} else {
+					testFormula.append(testFormulaQueue.get(i));
+				}
+			}
+			
+			testFormula.append(")");
+			testFormulas.add(testFormula.toString());
+			
+			
+			StringBuffer testFormulaWithNegation = new StringBuffer("");
+			
+			testFormulaWithNegation.append("(");
+			
+			for(int i = 0; i < testFormulaWithNegationQueue.size(); i++) {
+				if(i < testFormulaWithNegationQueue.size() - 1) {
+					testFormulaWithNegation.append(testFormulaWithNegationQueue.get(i) + " & ");
+				} else {
+					testFormulaWithNegation.append(testFormulaWithNegationQueue.get(i));
+				}
+			}
+			
+			testFormulaWithNegation.append(")");
+			testFormulas.add(testFormulaWithNegation.toString());	
 		}
 		
 		return testFormulas;
@@ -128,7 +218,7 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 				}
 			}
 
-			return "(" + reachabilityPredicate.toString() + ") & ";
+			return "(" + reachabilityPredicate.toString() + ")";
 		}
 	}
 
@@ -190,11 +280,26 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 	
 	private String createMajorClauseFalseFormulaWithPrecondition(MyPredicate majorClause, MyPredicate predicate) {
 		StringBuffer majorClauseFalseFormula = new StringBuffer("");
+		List<String> testFormulaQueue = new ArrayList<String>();
 		
-		majorClauseFalseFormula.append(invariant());
-		majorClauseFalseFormula.append(precondition());
-		majorClauseFalseFormula.append("not(" + majorClause.toString() + ")" + " & ");
-		majorClauseFalseFormula.append(createFormulaToFindValuesForMinorClauses(majorClause, predicate));
+		if(!invariant().equals("")) {
+			testFormulaQueue.add(invariant());
+		}
+		
+		if(!precondition().equals("")) {
+			testFormulaQueue.add(precondition());
+		}
+		
+		testFormulaQueue.add("not(" + majorClause.toString() + ")");
+		testFormulaQueue.add(createFormulaToFindValuesForMinorClauses(majorClause, predicate));
+		
+		for(int i = 0; i < testFormulaQueue.size(); i++) {
+			if(i < testFormulaQueue.size() - 1) {
+				majorClauseFalseFormula.append(testFormulaQueue.get(i) + " & ");
+			} else {
+				majorClauseFalseFormula.append(testFormulaQueue.get(i));
+			}
+		}
 		
 		return majorClauseFalseFormula.toString();
 	}
@@ -203,11 +308,26 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 
 	private String createMajorClauseTrueFormulaWithPrecondition(MyPredicate majorClause, MyPredicate predicate) {
 		StringBuffer majorClauseTrueFormula = new StringBuffer("");
+		List<String> testFormulaQueue = new ArrayList<String>();
 		
-		majorClauseTrueFormula.append(invariant());
-		majorClauseTrueFormula.append(precondition());
-		majorClauseTrueFormula.append("(" + majorClause.toString() + ") & ");
-		majorClauseTrueFormula.append(createFormulaToFindValuesForMinorClauses(majorClause, predicate));
+		if(!invariant().equals("")) {
+			testFormulaQueue.add(invariant());
+		}
+		
+		if(!precondition().equals("")) {
+			testFormulaQueue.add(precondition());
+		}
+		
+		testFormulaQueue.add("(" + majorClause.toString() + ")");
+		testFormulaQueue.add(createFormulaToFindValuesForMinorClauses(majorClause, predicate));
+		
+		for(int i = 0; i < testFormulaQueue.size(); i++) {
+			if(i < testFormulaQueue.size() - 1) {
+				majorClauseTrueFormula.append(testFormulaQueue.get(i) + " & ");
+			} else {
+				majorClauseTrueFormula.append(testFormulaQueue.get(i));
+			}
+		}
 		
 		return majorClauseTrueFormula.toString();
 	}
@@ -216,10 +336,22 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 	
 	private String createMajorClauseFalseFormulaWithoutPrecondition(MyPredicate majorClause, MyPredicate predicate) {
 		StringBuffer majorClauseFalseFormula = new StringBuffer("");
+		List<String> testFormulaQueue = new ArrayList<String>();
 		
-		majorClauseFalseFormula.append(invariant());
-		majorClauseFalseFormula.append("not(" + majorClause.toString() + ")" + " & ");
-		majorClauseFalseFormula.append(createFormulaToFindValuesForMinorClauses(majorClause, predicate));
+		if(!invariant().equals("")) {
+			testFormulaQueue.add(invariant());
+		}
+		
+		testFormulaQueue.add("not(" + majorClause.toString() + ")");
+		testFormulaQueue.add(createFormulaToFindValuesForMinorClauses(majorClause, predicate));
+		
+		for(int i = 0; i < testFormulaQueue.size(); i++) {
+			if(i < testFormulaQueue.size() - 1) {
+				majorClauseFalseFormula.append(testFormulaQueue.get(i) + " & ");
+			} else {
+				majorClauseFalseFormula.append(testFormulaQueue.get(i));
+			}
+		}
 		
 		return majorClauseFalseFormula.toString();
 	}
@@ -228,10 +360,22 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 
 	private String createMajorClauseTrueFormulaWithoutPrecondition(MyPredicate majorClause, MyPredicate predicate) {
 		StringBuffer majorClauseTrueFormula = new StringBuffer("");
+		List<String> testFormulaQueue = new ArrayList<String>();
 		
-		majorClauseTrueFormula.append(invariant());
-		majorClauseTrueFormula.append("(" + majorClause.toString() + ") & ");
-		majorClauseTrueFormula.append(createFormulaToFindValuesForMinorClauses(majorClause, predicate));
+		if(!invariant().equals("")) {
+			testFormulaQueue.add(invariant());
+		}
+		
+		testFormulaQueue.add("(" + majorClause.toString() + ")");
+		testFormulaQueue.add(createFormulaToFindValuesForMinorClauses(majorClause, predicate));
+		
+		for(int i = 0; i < testFormulaQueue.size(); i++) {
+			if(i < testFormulaQueue.size() - 1) {
+				majorClauseTrueFormula.append(testFormulaQueue.get(i) + " & ");
+			} else {
+				majorClauseTrueFormula.append(testFormulaQueue.get(i));
+			}
+		}
 		
 		return majorClauseTrueFormula.toString();
 	}

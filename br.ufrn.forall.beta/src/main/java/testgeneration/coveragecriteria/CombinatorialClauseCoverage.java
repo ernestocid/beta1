@@ -74,7 +74,28 @@ public class CombinatorialClauseCoverage extends LogicalCoverage {
 		Set<String> allCombinationsForPredicate = createAllCombinationsOfClauses(predicate);
 		
 		for (String combination : allCombinationsForPredicate) {
-			testFormulas.add("(" + invariant() + "(" + combination + "))");
+			StringBuffer testFormula = new StringBuffer("");
+			List<String> testFormulaQueue = new ArrayList<String>();
+			
+			if(!invariant().equals("")) {
+				testFormulaQueue.add(invariant());
+			}
+			
+			testFormulaQueue.add("(" + combination + ")");
+			
+			testFormula.append("(");
+			
+			for(int i = 0; i < testFormulaQueue.size(); i++) {
+				if(i < testFormulaQueue.size() - 1) {
+					testFormula.append(testFormulaQueue.get(i) + " & ");
+				} else {
+					testFormula.append(testFormulaQueue.get(i));
+				}
+			}
+			
+			testFormula.append(")");
+			
+			testFormulas.add(testFormula.toString());
 		}
 		
 		return testFormulas;
@@ -89,7 +110,33 @@ public class CombinatorialClauseCoverage extends LogicalCoverage {
 			Set<String> allCombinationsForPredicate = createAllCombinationsOfClauses(predicate);
 			
 			for (String combination : allCombinationsForPredicate) {
-				testFormulas.add("(" + invariant() + precondition() + "(" + combination + "))");
+				List<String> testFormulaQueue = new ArrayList<String>();
+				
+				if(!invariant().equals("")) {
+					testFormulaQueue.add(invariant());
+				}
+				
+				if(!precondition().equals("")) {
+					testFormulaQueue.add(precondition());
+				}
+				
+				testFormulaQueue.add("(" + combination + ")");
+				
+				StringBuffer testFormula = new StringBuffer("");
+				
+				testFormula.append("(");
+				
+				for(int i = 0; i < testFormulaQueue.size(); i++) {
+					if(i < testFormulaQueue.size() - 1) {
+						testFormula.append(testFormulaQueue.get(i) + " & ");
+					} else {
+						testFormula.append(testFormulaQueue.get(i));
+					}
+				}
+				
+				testFormula.append(")");
+				
+				testFormulas.add(testFormula.toString());
 			}
 		}
 		

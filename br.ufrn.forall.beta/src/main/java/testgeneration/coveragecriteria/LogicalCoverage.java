@@ -244,7 +244,7 @@ public abstract class LogicalCoverage extends CoverageCriterion {
 		if (getMachineInvariant().equals("")) {
 			return "";
 		} else {
-			return "(" + getMachineInvariant() + ") & ";
+			return "(" + getMachineInvariant() + ")";
 		}
 	}
 
@@ -254,7 +254,7 @@ public abstract class LogicalCoverage extends CoverageCriterion {
 		if (getOperationPrecondition().equals("")) {
 			return "";
 		} else {
-			return "(" + getOperationPrecondition() + ") & ";
+			return "(" + getOperationPrecondition() + ")";
 		}
 	}
 

@@ -930,5 +930,43 @@ public class Operation {
 		
 		return false;
 	}
+
+
+
+	public Set<String> getAnyCommandVariables() {
+		Set<String> anyCommandVariables = new HashSet<String>();
+		
+		PSubstitution bodyInsides = getBodyInsides(operation.getOperationBody());
+		
+		getAnyCommandVariablesHelper(anyCommandVariables, bodyInsides);
+		
+		// Remove possible constants like set values
+		anyCommandVariables.removeAll(this.machine.getConstantValues());
+		
+		return anyCommandVariables;
+	}
 	
+	
+	
+	private void getAnyCommandVariablesHelper(Set<String> anyCommandVariables, PSubstitution bodyInsides) {
+		if (bodyInsides instanceof AAnySubstitution) {
+			AAnySubstitution anySubstitution = (AAnySubstitution) bodyInsides;
+			anyCommandVariables.addAll(getAnyCmdVariablesHelper(anySubstitution));
+		} 
+	}
+
+	
+	
+	private Set<String> getAnyCmdVariablesHelper(AAnySubstitution anySubstitution) {
+		if(anySubstitution.getThen() instanceof AAnySubstitution) {
+			Set<String> anyVariables = new HashSet<String>();
+			anyVariables.addAll(getAnyCmdVariablesHelper((AAnySubstitution) anySubstitution.getThen()));
+			anyVariables.addAll(MyPredicateFactory.convertPredicate(anySubstitution.getWhere()).getVariables());
+			return anyVariables;
+		} else {
+			Set<String> anyVariables = new HashSet<String>();
+			anyVariables.addAll(MyPredicateFactory.convertPredicate(anySubstitution.getWhere()).getVariables());
+			return anyVariables;
+		}
+	}
 }

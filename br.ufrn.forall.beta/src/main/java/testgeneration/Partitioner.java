@@ -49,6 +49,7 @@ public class Partitioner {
 		Set<String> inputSpace = new HashSet<String>();
 		inputSpace.addAll(getRelatedVariables(this.operation));
 		inputSpace.addAll(this.operation.getIfCommandVariables());
+		inputSpace.addAll(this.operation.getAnyCommandVariables());
 		return inputSpace;
 	}
 

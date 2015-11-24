@@ -202,6 +202,39 @@ public class PartitionerTest {
 
 		assertEquals(expectedInputSpace, partitioner.getOperationInputSpace());
 	}
+	
+	
+	
+	@Test
+	public void shouldGetInputSpaceForOperationsWithAnyStatements() {
+		Machine machine = getMachineInstance("src/test/resources/machines/others/AnyStmt.mch");
+		Operation operationUnderTest = machine.getOperation(0);
+
+		Partitioner partitioner = new Partitioner(operationUnderTest);
+
+		Set<String> expectedInputSpace = new HashSet<String>();
+		expectedInputSpace.add("xx");
+		expectedInputSpace.add("yy");
+
+		assertEquals(expectedInputSpace, partitioner.getOperationInputSpace());
+	}
+	
+	
+	
+	@Test
+	public void shouldGetInputSpaceForOperationsWithAnyStatements2() {
+		Machine machine = getMachineInstance("src/test/resources/machines/others/Sort.mch");
+		Operation operationUnderTest = machine.getOperation(0);
+
+		Partitioner partitioner = new Partitioner(operationUnderTest);
+
+		Set<String> expectedInputSpace = new HashSet<String>();
+		expectedInputSpace.add("vector");
+		expectedInputSpace.add("descending_sort");
+		expectedInputSpace.add("sorted_vector");
+
+		assertEquals(expectedInputSpace, partitioner.getOperationInputSpace());
+	}
 
 
 
@@ -502,5 +535,4 @@ public class PartitionerTest {
 		Machine machine = new Machine(new File(path));
 		return machine;
 	}
-
 }

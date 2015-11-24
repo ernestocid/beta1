@@ -31,6 +31,9 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 	 * reachability for a predicate. If the predicate is nested inside another conditional, the previous conditions 
 	 * must be true so the predicate we are trying to cover can be reached.
 	 * 
+	 * If no test formulas were generated but the operation has a precondition, a single test formula
+	 * that is equal to the precondition is added to the set.
+	 * 
 	 * @return a Set with test formulas that satisfy Active Clause Coverage for an operation.
 	 */
 	public Set<String> getTestFormulas() {
@@ -42,6 +45,10 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 		} else {
 			for(MyPredicate predicate : getPredicates()) {
 				testFormulas.addAll(createACCFormulasForPredicate(predicate));
+			}
+			
+			if(testFormulas.isEmpty() && getOperationUnderTest().getPrecondition() != null) {
+				testFormulas.add(getOperationUnderTest().getPrecondition().toString());
 			}
 		}
 		

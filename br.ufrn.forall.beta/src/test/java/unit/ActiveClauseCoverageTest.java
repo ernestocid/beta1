@@ -39,6 +39,26 @@ public class ActiveClauseCoverageTest {
 	
 	
 	@Test
+	public void shouldGenerateFormulasForOperationWithPreconditionAndOnlyTypingClauses() {
+		Machine machine = new Machine(new File("src/test/resources/machines/others/Calculator.mch"));
+		Operation operationUnderTest = machine.getOperation(0); // add 
+		
+		ActiveClauseCoverage acc = new ActiveClauseCoverage(operationUnderTest);
+		
+		// Setting up expected result
+		
+		Set<String> expectedTestFormulas = new HashSet<String>();
+		
+		expectedTestFormulas.add("numberA : INT & numberB : INT");
+		
+		// Assertions
+		
+		assertThat(expectedTestFormulas).isEqualTo(acc.getTestFormulas());
+	}
+	
+	
+	
+	@Test
 	public void shouldGetFormulasForMajorClause() {
 		Machine machine = new Machine(new File("src/test/resources/machines/others/PassFinalOrFailIFELSIFELSE.mch"));
 		Operation operationUnderTest = machine.getOperation(0);

@@ -7,8 +7,14 @@ import java.util.List;
 import java.util.Set;
 
 import animator.ConventionTools;
+import de.be4.classicalb.core.parser.node.APredicateParseUnit;
+import de.be4.classicalb.core.parser.node.PParseUnit;
+import de.be4.classicalb.core.parser.node.PPredicate;
+import de.be4.classicalb.core.parser.node.Start;
+import de.prob.animator.domainobjects.ClassicalB;
 import parser.Machine;
 import parser.Operation;
+import parser.decorators.predicates.MyPredicateFactory;
 
 /**
  * This class is responsible for generating the auxiliary B Machine used to
@@ -614,7 +620,7 @@ public class TestMachineBuilder {
 	private void addOperationForCombination(StringBuffer testOperation, int operationIndex, String combination) {
 		addOpComment(testOperation);
 		addOpName(testOperation, operationIndex);
-		addOperationParameters(testOperation);
+		addOperationParameters(testOperation, combination);
 		addOperationPrecondition(testOperation, combination);
 		addOperationBody(testOperation);
 	}
@@ -634,8 +640,27 @@ public class TestMachineBuilder {
 
 
 	// TODO: Fix getInputSpace method.
-	private void addOperationParameters(StringBuffer testOperation) {
-		Set<String> operationInputSpaceAdapted = adaptInputSpace(getInputSpace());
+	private void addOperationParameters(StringBuffer testOperation, String combination) {
+		Set<String> inputSpaceVariables = getInputSpace();
+
+		try {
+			PParseUnit parseUnit = new ClassicalB(combination).getAst().getPParseUnit();
+			
+			if(parseUnit instanceof APredicateParseUnit) {
+				APredicateParseUnit predicate = (APredicateParseUnit) parseUnit;
+				Set<String> variablesOnCombination = MyPredicateFactory.convertPredicate(predicate.getPredicate()).getVariables();
+				
+				for(String variable : getInputSpace()) {
+					if(!variablesOnCombination.contains(variable)) {
+						inputSpaceVariables.remove(variable);
+					}
+				}
+			}
+		} catch (Exception e) {
+			System.err.println("Tried to transform a String into a predicate and failed!");
+		}
+		
+		Set<String> operationInputSpaceAdapted = adaptInputSpace(inputSpaceVariables);
 		testOperation.append(formatOperationParameters(operationInputSpaceAdapted));
 		testOperation.append(" =\n");
 	}

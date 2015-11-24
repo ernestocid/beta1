@@ -46,5 +46,11 @@ public class MyATotalFunctionExpression extends MyExpressionDecorator {
 		MyExpression right = MyExpressionFactory.convertExpression(this.totalFunction.getRight());
 		return "(" + left.toString() + " --> " + right.toString() + ")";
 	}
-
+	
+	
+	
+	@Override
+	public boolean isBasicType() {
+		return true;
+	}
 }

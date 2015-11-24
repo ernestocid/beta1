@@ -47,4 +47,10 @@ public class MyATotalSurjectionExpression extends MyExpressionDecorator {
 		return "(" + left.toString() + " -->> " + right.toString() + ")";
 	}
 
+	
+	
+	@Override
+	public boolean isBasicType() {
+		return true;
+	}
 }

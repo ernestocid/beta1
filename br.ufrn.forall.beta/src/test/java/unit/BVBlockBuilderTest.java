@@ -363,12 +363,7 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		when(ch10MockedBlock1.toString()).thenReturn("Block: jj : (NAT --> NAT) isNegative: false");
 		when(ch10MockedBlock1.isNegative()).thenReturn(false);
 		
-		Block ch10MockedBlock2 = mock(Block.class);
-		when(ch10MockedBlock2.toString()).thenReturn("Block: not(jj : (NAT --> NAT)) isNegative: true");
-		when(ch10MockedBlock2.isNegative()).thenReturn(true);
-		
 		ch10Blocks.add(ch10MockedBlock1);
-		ch10Blocks.add(ch10MockedBlock2);
 		
 		expectedBlocks.put("jj : (NAT --> NAT)", ch10Blocks);
 		
@@ -380,12 +375,7 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		when(ch11MockedBlock1.toString()).thenReturn("Block: kk : (NAT >-> NAT) isNegative: false");
 		when(ch11MockedBlock1.isNegative()).thenReturn(false);
 		
-		Block ch11MockedBlock2 = mock(Block.class);
-		when(ch11MockedBlock2.toString()).thenReturn("Block: not(kk : (NAT >-> NAT)) isNegative: true");
-		when(ch11MockedBlock2.isNegative()).thenReturn(true);
-		
 		ch11Blocks.add(ch11MockedBlock1);
-		ch11Blocks.add(ch11MockedBlock2);
 		
 		expectedBlocks.put("kk : (NAT >-> NAT)", ch11Blocks);
 		
@@ -397,12 +387,7 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		when(ch12MockedBlock1.toString()).thenReturn("Block: ll : (NAT -->> NAT) isNegative: false");
 		when(ch12MockedBlock1.isNegative()).thenReturn(false);
 		
-		Block ch12MockedBlock2 = mock(Block.class);
-		when(ch12MockedBlock2.toString()).thenReturn("Block: not(ll : (NAT -->> NAT)) isNegative: true");
-		when(ch12MockedBlock2.isNegative()).thenReturn(true);
-
 		ch12Blocks.add(ch12MockedBlock1);
-		ch12Blocks.add(ch12MockedBlock2);
 		
 		expectedBlocks.put("ll : (NAT -->> NAT)", ch12Blocks);
 
@@ -414,12 +399,7 @@ public class BVBlockBuilderTest extends BlockBuilderTest{
 		when(ch13MockedBlock1.toString()).thenReturn("Block: mm : (NAT >->> NAT) isNegative: false");
 		when(ch13MockedBlock1.isNegative()).thenReturn(false);
 		
-		Block ch13MockedBlock2 = mock(Block.class);
-		when(ch13MockedBlock2.toString()).thenReturn("Block: not(mm : (NAT >->> NAT)) isNegative: true");
-		when(ch13MockedBlock2.isNegative()).thenReturn(true);
-		
 		ch13Blocks.add(ch13MockedBlock1);
-		ch13Blocks.add(ch13MockedBlock2);
 		
 		expectedBlocks.put("mm : (NAT >->> NAT)", ch13Blocks);
 		

@@ -134,8 +134,8 @@ public class ClauseCoverageTest extends TestingUtils {
 		Set<String> expectedTestFormulas = new HashSet<String>();
 
 		expectedTestFormulas.add("((xx : NAT) & (yy : NAT))");
-		expectedTestFormulas.add("((xx : NAT) & (yy : 1..20))");
-		expectedTestFormulas.add("((xx : NAT) & not(yy : 1..20))");
+		expectedTestFormulas.add("((xx : NAT) & (yy : NAT) & (yy : 1..20))");
+		expectedTestFormulas.add("((xx : NAT) & (yy : NAT) & not(yy : 1..20))");
 		
 		// Assertions
 		
@@ -181,18 +181,14 @@ public class ClauseCoverageTest extends TestingUtils {
 		
 		Set<String> expectedTestFormulas = new HashSet<String>();
 
-		expectedTestFormulas.add("((vector : (0..9 --> 0..10) & !(ii,jj).((ii : 0..9 & jj : 0..9) => (((ii /= jj) => (vector(ii) /= vector(jj))))) & descending_sort : BOOL & ((descending_sort = TRUE) => (!(ii).((ii : 0..8) => (vector(ii) > vector((ii + 1))))))) & (not(descending_sort = FALSE)))");
 		expectedTestFormulas.add("((vector : (0..9 --> 0..10) & !(ii,jj).((ii : 0..9 & jj : 0..9) => (((ii /= jj) => (vector(ii) /= vector(jj))))) & descending_sort : BOOL & ((descending_sort = TRUE) => (!(ii).((ii : 0..8) => (vector(ii) > vector((ii + 1))))))) & (descending_sort = FALSE))");
-		
-		expectedTestFormulas.add("((vector : (0..9 --> 0..10) & !(ii,jj).((ii : 0..9 & jj : 0..9) => (((ii /= jj) => (vector(ii) /= vector(jj))))) & descending_sort : BOOL & ((descending_sort = TRUE) => (!(ii).((ii : 0..8) => (vector(ii) > vector((ii + 1))))))) & (descending_sort = FALSE) & not(ran(sorted_vector) = ran(vector)))");
-		expectedTestFormulas.add("((vector : (0..9 --> 0..10) & !(ii,jj).((ii : 0..9 & jj : 0..9) => (((ii /= jj) => (vector(ii) /= vector(jj))))) & descending_sort : BOOL & ((descending_sort = TRUE) => (!(ii).((ii : 0..8) => (vector(ii) > vector((ii + 1))))))) & (descending_sort = FALSE) & (ran(sorted_vector) = ran(vector)))");
-		
-		expectedTestFormulas.add("((vector : (0..9 --> 0..10) & !(ii,jj).((ii : 0..9 & jj : 0..9) => (((ii /= jj) => (vector(ii) /= vector(jj))))) & descending_sort : BOOL & ((descending_sort = TRUE) => (!(ii).((ii : 0..8) => (vector(ii) > vector((ii + 1))))))) & (descending_sort = FALSE) & (!(ii).((ii : 0..8) => (sorted_vector(ii) > sorted_vector((ii + 1))))))");
-		expectedTestFormulas.add("((vector : (0..9 --> 0..10) & !(ii,jj).((ii : 0..9 & jj : 0..9) => (((ii /= jj) => (vector(ii) /= vector(jj))))) & descending_sort : BOOL & ((descending_sort = TRUE) => (!(ii).((ii : 0..8) => (vector(ii) > vector((ii + 1))))))) & (descending_sort = FALSE) & not(!(ii).((ii : 0..8) => (sorted_vector(ii) > sorted_vector((ii + 1))))))");
-		
+		expectedTestFormulas.add("((vector : (0..9 --> 0..10) & !(ii,jj).((ii : 0..9 & jj : 0..9) => (((ii /= jj) => (vector(ii) /= vector(jj))))) & descending_sort : BOOL & ((descending_sort = TRUE) => (!(ii).((ii : 0..8) => (vector(ii) > vector((ii + 1))))))) & (not(descending_sort = FALSE)))");
 		expectedTestFormulas.add("((vector : (0..9 --> 0..10) & !(ii,jj).((ii : 0..9 & jj : 0..9) => (((ii /= jj) => (vector(ii) /= vector(jj))))) & descending_sort : BOOL & ((descending_sort = TRUE) => (!(ii).((ii : 0..8) => (vector(ii) > vector((ii + 1))))))) & (descending_sort = FALSE) & (sorted_vector : (0..9 --> 0..10)))");
-		expectedTestFormulas.add("((vector : (0..9 --> 0..10) & !(ii,jj).((ii : 0..9 & jj : 0..9) => (((ii /= jj) => (vector(ii) /= vector(jj))))) & descending_sort : BOOL & ((descending_sort = TRUE) => (!(ii).((ii : 0..8) => (vector(ii) > vector((ii + 1))))))) & (descending_sort = FALSE) & not(sorted_vector : (0..9 --> 0..10)))");
-		
+		expectedTestFormulas.add("((vector : (0..9 --> 0..10) & !(ii,jj).((ii : 0..9 & jj : 0..9) => (((ii /= jj) => (vector(ii) /= vector(jj))))) & descending_sort : BOOL & ((descending_sort = TRUE) => (!(ii).((ii : 0..8) => (vector(ii) > vector((ii + 1))))))) & (descending_sort = FALSE) & (sorted_vector : (0..9 --> 0..10)) & (ran(sorted_vector) = ran(vector)))");
+		expectedTestFormulas.add("((vector : (0..9 --> 0..10) & !(ii,jj).((ii : 0..9 & jj : 0..9) => (((ii /= jj) => (vector(ii) /= vector(jj))))) & descending_sort : BOOL & ((descending_sort = TRUE) => (!(ii).((ii : 0..8) => (vector(ii) > vector((ii + 1))))))) & (descending_sort = FALSE) & (sorted_vector : (0..9 --> 0..10)) & not(ran(sorted_vector) = ran(vector)))");
+		expectedTestFormulas.add("((vector : (0..9 --> 0..10) & !(ii,jj).((ii : 0..9 & jj : 0..9) => (((ii /= jj) => (vector(ii) /= vector(jj))))) & descending_sort : BOOL & ((descending_sort = TRUE) => (!(ii).((ii : 0..8) => (vector(ii) > vector((ii + 1))))))) & (descending_sort = FALSE) & (sorted_vector : (0..9 --> 0..10)) & (!(ii).((ii : 0..8) => (sorted_vector(ii) > sorted_vector((ii + 1))))))");
+		expectedTestFormulas.add("((vector : (0..9 --> 0..10) & !(ii,jj).((ii : 0..9 & jj : 0..9) => (((ii /= jj) => (vector(ii) /= vector(jj))))) & descending_sort : BOOL & ((descending_sort = TRUE) => (!(ii).((ii : 0..8) => (vector(ii) > vector((ii + 1))))))) & (descending_sort = FALSE) & (sorted_vector : (0..9 --> 0..10)) & not(!(ii).((ii : 0..8) => (sorted_vector(ii) > sorted_vector((ii + 1))))))");
+
 		// Assertions
 		
 		assertEquals(expectedTestFormulas, cc.getTestFormulas());

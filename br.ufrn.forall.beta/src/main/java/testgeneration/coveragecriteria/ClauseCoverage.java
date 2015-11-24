@@ -75,6 +75,10 @@ public class ClauseCoverage extends LogicalCoverage {
 			testFormulaQueue.add(invariant());
 		}
 		
+		if(!getTypesFormulaWithoutPrecondition(clause).equals("")) {
+			testFormulaQueue.add("(" + getTypesFormulaWithoutPrecondition(clause) + ")");
+		}
+		
 		testFormulaQueue.add("(" + clause.toString() + ")");
 		
 		StringBuffer testFormula = new StringBuffer("");
@@ -99,6 +103,10 @@ public class ClauseCoverage extends LogicalCoverage {
 			
 			if(!invariant().equals("")) {
 				testFormulaWithNegationQueue.add(invariant());
+			}
+			
+			if(!getTypesFormulaWithoutPrecondition(clause).equals("")) {
+				testFormulaWithNegationQueue.add("(" + getTypesFormulaWithoutPrecondition(clause) + ")");
 			}
 			
 			testFormulaWithNegationQueue.add("not(" + clause.toString() + ")");
@@ -139,6 +147,10 @@ public class ClauseCoverage extends LogicalCoverage {
 				testFormulaQueue.add(precondition());
 			}
 			
+			if(!getTypesFormulaWithPrecondition(precondition, clause).equals("")) {
+				testFormulaQueue.add("(" + getTypesFormulaWithPrecondition(precondition, clause) + ")");
+			}
+			
 			testFormulaQueue.add("(" + clause.toString() + ")");
 			
 			StringBuffer testFormula = new StringBuffer("");
@@ -166,6 +178,10 @@ public class ClauseCoverage extends LogicalCoverage {
 				
 				if(!precondition().equals("")) {
 					testFormulaWithNegationQueue.add(precondition());
+				}
+				
+				if(!getTypesFormulaWithPrecondition(precondition, clause).equals("")) {
+					testFormulaWithNegationQueue.add("(" + getTypesFormulaWithPrecondition(precondition, clause) + ")");
 				}
 				
 				testFormulaWithNegationQueue.add("not(" + clause.toString() + ")");
@@ -277,7 +293,67 @@ public class ClauseCoverage extends LogicalCoverage {
 		return testFomula.toString();
 	}
 
+	
+	
+	private String getTypesFormulaWithPrecondition(MyPredicate precondition, MyPredicate currentClause) {
+		Set<MyPredicate> clauses = getClauses();
+		Set<MyPredicate> typingClausesThatAreNotFromPrecondition = new HashSet<MyPredicate>();
+		
+		for(MyPredicate clause : clauses) {
+			if (!clauseBelongsToPredicate(clause, precondition) && !clause.equals(currentClause) && clause.isTypingClause()) {
+				typingClausesThatAreNotFromPrecondition.add(clause);
+			}
+		}
+		
+		StringBuffer typesFormula = new StringBuffer("");
+		
+		int count = 0;
+		
+		for(MyPredicate clause : typingClausesThatAreNotFromPrecondition) {
+			
+			if(count < typingClausesThatAreNotFromPrecondition.size() - 1) {
+				typesFormula.append(clause.toString() + " & ");
+			} else {
+				typesFormula.append(clause.toString());
+			}
+			
+			count++;
+		}
+		
+		return typesFormula.toString();
+	}
+	
+	
+	
+	private String getTypesFormulaWithoutPrecondition(MyPredicate currentClause) {
+		Set<MyPredicate> clauses = getClauses();
+		Set<MyPredicate> typingClausesThatAreNotFromPrecondition = new HashSet<MyPredicate>();
+		
+		for(MyPredicate clause : clauses) {
+			if (!clause.equals(currentClause) && clause.isTypingClause()) {
+				typingClausesThatAreNotFromPrecondition.add(clause);
+			}
+		}
+		
+		StringBuffer typesFormula = new StringBuffer("");
+		
+		int count = 0;
+		
+		for(MyPredicate clause : typingClausesThatAreNotFromPrecondition) {
+			
+			if(count < typingClausesThatAreNotFromPrecondition.size() - 1) {
+				typesFormula.append(clause.toString() + " & ");
+			} else {
+				typesFormula.append(clause.toString());
+			}
+			
+			count++;
+		}
+		
+		return typesFormula.toString();
+	}
 
+	
 
 	@Override
 	public String getName() {

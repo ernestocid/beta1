@@ -46,4 +46,10 @@ public class MyATotalInjectionExpression extends MyExpressionDecorator {
 		return "(" + left.toString() + " >-> " + right.toString() + ")";
 	}
 
+	
+	
+	@Override
+	public boolean isBasicType() {
+		return true;
+	}
 }

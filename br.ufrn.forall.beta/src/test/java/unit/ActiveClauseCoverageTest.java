@@ -310,4 +310,24 @@ public class ActiveClauseCoverageTest {
 
 		assertEquals(expectedTestFormulas, acc.getTestFormulas());
 	}
+	
+	
+	
+	@Test
+	public void shouldGenerateTestFormulasForOperationThatOnlyHasTypingClauses() {
+		Machine machine = new Machine(new File("src/test/resources/machines/others/swap.mch"));
+		Operation operationUnderTest = machine.getOperation(1); // set
+		
+		ActiveClauseCoverage acc = new ActiveClauseCoverage(operationUnderTest);
+		
+		// Setting up expected results
+		
+		Set<String> expectedTestFormulas = new HashSet<String>();
+		
+		expectedTestFormulas.add("v1 : INT & v2 : INT & av1 : INT & av2 : INT");
+
+		// Assertions
+
+		assertEquals(expectedTestFormulas, acc.getTestFormulas());
+	}
 }

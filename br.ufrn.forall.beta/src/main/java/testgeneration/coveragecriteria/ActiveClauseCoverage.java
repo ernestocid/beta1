@@ -47,12 +47,40 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 				testFormulas.addAll(createACCFormulasForPredicate(predicate));
 			}
 			
-			if(testFormulas.isEmpty() && getOperationUnderTest().getPrecondition() != null) {
-				testFormulas.add(getOperationUnderTest().getPrecondition().toString());
+			boolean noACCFormulasGeneratedAndOperationHasPrecondition = testFormulas.isEmpty() && getOperationUnderTest().getPrecondition() != null;
+			
+			if(noACCFormulasGeneratedAndOperationHasPrecondition) {
+				testFormulas.add(createSimplePreconditionFormula());
 			}
 		}
 		
 		return testFormulas;
+	}
+
+
+
+	private String createSimplePreconditionFormula() {
+		List<String> testFormulaQueue = new ArrayList<String>();
+		
+		if(getOperationUnderTest().getMachine().getInvariant() != null) {
+			testFormulaQueue.add(getOperationUnderTest().getMachine().getInvariant().getPredicate().toString());
+		}
+		
+		if(getOperationUnderTest().getPrecondition() != null) {
+			testFormulaQueue.add(getOperationUnderTest().getPrecondition().toString());
+		}
+		
+		StringBuffer testFormula = new StringBuffer("");
+		
+		for(int i = 0; i < testFormulaQueue.size(); i++) {
+			if(i < testFormulaQueue.size() - 1) {
+				testFormula.append(testFormulaQueue.get(i) + " & ");
+			} else {
+				testFormula.append(testFormulaQueue.get(i));
+			}
+		}
+		
+		return testFormula.toString();
 	}
 
 

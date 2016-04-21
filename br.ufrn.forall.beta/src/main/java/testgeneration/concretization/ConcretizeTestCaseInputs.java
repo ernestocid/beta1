@@ -226,7 +226,7 @@ public class ConcretizeTestCaseInputs {
 		
 		if ((testCaseFormulaPredicate = checksTestCasePredicateValidity(testFormulaPredicate)) != null) {
 			formulaBuffer.append("#" + createQuantifiedVariablesList(testFormulaPredicate));
-			formulaBuffer.append("(" + getStateAndParametersValues(testCaseNode) + " & " + getTestCasePredicate(testCaseFormulaPredicate) + "&" + getImplementationInvariant() + ")");
+			formulaBuffer.append("(" + getStateAndParametersValues(testCaseNode) + " & " + getTestCasePredicate(testCaseFormulaPredicate) + " & " + getImplementationInvariant() + ")");
 			concretizationFormula = replaceDeferredSetsForValues(formulaBuffer);
 		}
 		

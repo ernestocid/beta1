@@ -20,8 +20,8 @@ public class DownloadProBBinariesAction extends AbstractAction {
 	public void actionPerformed(ActionEvent e) {
 		System.out.println("Downloading probcli");
 
-		Api probApi = Main.getInjector().getInstance(Api.class);
-		probApi.upgrade("latest");
+//		Api probApi = Main.getInjector().getInstance(Api.class);
+//		probApi.upgrade("latest");
 
 		System.out.println("probcli download finished");
 	}

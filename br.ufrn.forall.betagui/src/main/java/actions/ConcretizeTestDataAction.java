@@ -46,8 +46,6 @@ public class ConcretizeTestDataAction extends AbstractAction {
 		
 		this.operationUnderTest = getOperationUnderTestFromXML(xmlSpecification);
 		
-		System.out.println(this.operationUnderTest.getName());
-		
 		ConcretizeTestCaseInputs concretizeTestCaseInputs = new ConcretizeTestCaseInputs(xmlSpecification, operationUnderTest, implementation);
 		File xmlWithConcreteData = concretizeTestCaseInputs.concretizeTestData();
 		

@@ -6,7 +6,6 @@ import general.CombinatorialCriteria;
 
 import java.io.File;
 
-import org.apache.commons.io.input.XmlStreamReader;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,6 +32,7 @@ public class XMLReportGenerationTest {
 		Configurations.setUseProBApiToSolvePredicates(false);
 		Configurations.setFindPreamble(false);
 		Configurations.setDeleteTempFiles(true);
+		Configurations.setOracleStrategy(true, true, true);
 	}
 
 

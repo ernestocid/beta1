@@ -1,6 +1,7 @@
 package testgeneration.coveragecriteria;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -43,14 +44,30 @@ public abstract class LogicalCoverage extends CoverageCriterion {
 	 * @return String representation of the machine's invariant.
 	 */
 	public String getMachineInvariant() {
-		boolean machineHasInvariant = this.operationUnderTest.getMachine().getInvariant() != null;
+//		boolean machineHasInvariant = this.operationUnderTest.getMachine().getInvariant() != null;
 
-		StringBuffer invariantText = new StringBuffer("");
-
-		if (machineHasInvariant) {
-			Invariant invariant = getOperationUnderTest().getMachine().getInvariant();
-			invariantText.append(invariant.toString().trim());
+		List<String> invariantsFromAllMachines = new ArrayList<String>();
+		
+		for(MyPredicate p : this.operationUnderTest.getMachine().getCondensedInvariantFromAllMachines()) {
+			invariantsFromAllMachines.add(p.toString());
 		}
+
+		Collections.sort(invariantsFromAllMachines);
+		
+		StringBuffer invariantText = new StringBuffer("");
+		
+		for (int i = 0; i < invariantsFromAllMachines.size() - 1; i++) {
+			invariantText.append(invariantsFromAllMachines.get(i).toString() + " & ");
+		}
+		
+		if (!invariantsFromAllMachines.isEmpty()) {
+			invariantText.append(invariantsFromAllMachines.get(invariantsFromAllMachines.size() - 1));
+		}
+
+//		if (machineHasInvariant) {
+//			Invariant invariant = getOperationUnderTest().getMachine().getInvariant();
+//			invariantText.append(invariant.toString().trim());
+//		}
 
 		return invariantText.toString();
 	}

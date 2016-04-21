@@ -310,7 +310,13 @@ public class ConcretizeTestCaseInputs {
 			Map<String, MyExpression> valueClauseEntries = implementation.getValues().getEntries();
 
 			for (Entry<String, MyExpression> valuesEntry : valueClauseEntries.entrySet()) {
-				concretizationFormulaWithSetsReplaced = concretizationFormulaWithSetsReplaced.replaceAll(valuesEntry.getKey(), valuesEntry.getValue().toString());
+				// Remove mentions to the deferred set using a regular expression
+				String setMentionRegex = "\\b" + valuesEntry.getKey() + "\\b";
+				concretizationFormulaWithSetsReplaced = concretizationFormulaWithSetsReplaced.replaceAll(setMentionRegex, valuesEntry.getValue().toString());
+				
+				// Remove mentions to deferred set elements by removing the the name of the deferred set from all elements
+				// leaving only the ID numbers. E.g. If we mentions to PLAYER12, we remove the PLAYER part and leave only 12.
+				concretizationFormulaWithSetsReplaced = concretizationFormulaWithSetsReplaced.replaceAll(valuesEntry.getKey(), "");
 			}
 		}
 

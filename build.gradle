@@ -8,17 +8,17 @@ subprojects {
 	apply plugin: 'java'
     apply plugin: 'maven'
     version = '1.2'
-    sourceCompatibility = 1.6    
-    
-    repositories {   	
+    sourceCompatibility = 1.6
+
+    repositories {
         mavenCentral()
-		
+
 		maven {
 			name "sonatype snapshots"
 			url "https://oss.sonatype.org/content/repositories/snapshots"
 		}
     }
-    
+
     dependencies {
         testCompile "junit:junit:4.11"
     }
@@ -26,27 +26,27 @@ subprojects {
 
 task configurationsFiles {
 	println 'Copying properties files to proper folders'
-	
+
 	// to libs folder
-	
+
 	Path source = Paths.get("config.properties");
 	Path libsFolder = Paths.get("br.ufrn.forall.betacommon/build/libs/config.properties");
-	
+
 	Files.copy(source, libsFolder, StandardCopyOption.REPLACE_EXISTING);
-	
+
 	// todo resources folder
 
 	Path resourcesFolder = Paths.get("br.ufrn.forall.betagui/build/resources/main/config.properties");
-	
+
 	Files.copy(source, resourcesFolder, StandardCopyOption.REPLACE_EXISTING);
-	
+
 	println 'Done!'
 }
 
 project(':br.ufrn.forall.beta') {
-	
+
 	def core_version = '2.0.0-SNAPSHOT'
-	
+
 	dependencies {
 		compile project(':br.ufrn.forall.betaanimator'), project(':br.ufrn.forall.betacommon'), project(':br.ufrn.forall.betaparser'), project(':br.ufrn.forall.datacomb')
 		compile group: "de.hhu.stups", name: "de.prob2.kernel", version: core_version , changing: true
@@ -57,7 +57,7 @@ project(':br.ufrn.forall.beta') {
 		compile 'org.mockito:mockito-all:1.9.5'
 		compile 'com.io7m.xom:xom:1.2.10'
 	}
-	
+
 }
 
 project(':br.ufrn.forall.betaanimator') {
@@ -90,8 +90,11 @@ project(':br.ufrn.forall.betagui') {
 }
 
 project(':br.ufrn.forall.betaparser') {
-	def parser_version = '2.5.0-SNAPSHOT'
-	def core_version = '2.0.0-SNAPSHOT'
+
+	// def parser_version = '2.5.0-SNAPSHOT'
+	def parser_version = '2.5.1'
+	// def core_version = '2.0.0-SNAPSHOT'
+	def core_version = '2.0.1-SNAPSHOT'
 
 	dependencies {
 		compile group: "de.hhu.stups", name: "de.prob2.kernel", version: core_version , changing: true
@@ -107,7 +110,7 @@ project(':br.ufrn.forall.betaparser') {
 project('br.ufrn.forall.betagui') {
 	apply plugin: 'application'
 	mainClassName = "views.Application"
-	
+
 	task createPropertiesFile {
 		def propertiesFile = file("$buildDir/resources/main/config.properties")
 		outputs.file propertiesFile
@@ -116,9 +119,9 @@ project('br.ufrn.forall.betagui') {
 	applicationDistribution.from(createPropertiesFile) {
     	into "lib"
 	}
-	
+
 	distZip {
-		
+
 		// Getting current date to put on the distribution file
 
 		def cal = Calendar.instance
@@ -142,8 +145,9 @@ project('br.ufrn.forall.betagui') {
 project(':br.ufrn.forall.logicalcoverageexperiments') {
 
 //	def core_version = '2.0.0-milestone-23-SNAPSHOT'
-	def core_version = '2.0.0-SNAPSHOT'
-	
+//	def core_version = '2.0.0-SNAPSHOT'
+	def core_version = '2.0.1-SNAPSHOT'
+
 	dependencies {
 		compile project(':br.ufrn.forall.beta'), project(':br.ufrn.forall.betacommon'), project(':br.ufrn.forall.betaparser'), project(':br.ufrn.forall.datacomb')
 		compile group: "de.hhu.stups", name: "de.prob2.kernel", version: core_version , changing: true

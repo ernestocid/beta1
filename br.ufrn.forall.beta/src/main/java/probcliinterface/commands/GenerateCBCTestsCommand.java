@@ -45,7 +45,13 @@ public class GenerateCBCTestsCommand {
 //				"TRUE",
 				"-p", 
 				"TIME_OUT", 
-				"10000"
+				"10000",
+				"-p", 
+				"MAXINT", 
+				String.valueOf(Configurations.getMaxIntProperties()),
+				"-p", 
+				"MININT", 
+				String.valueOf(Configurations.getMinIntProperties())
 //				String.valueOf(Configurations.getProBTimeout())
 		};
 

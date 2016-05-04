@@ -15,7 +15,8 @@ import testgeneration.Partitioner;
 import static org.mockito.Mockito.*;
 
 public class PartitionerTest {
-
+	
+	
 	@Test
 	public void shouldGetInputSpaceVariables() {
 		Machine machine = getMachineInstance("src/test/resources/machines/others/Test.mch");
@@ -55,6 +56,24 @@ public class PartitionerTest {
 		assertEquals(expectedVariables, partitioner.getOperationInputSpace());
 	}
 
+	
+	
+	@Test
+	public void shouldGetInputSpaceVariablesForMachinesWithDefinitionsAndImports() {
+		Machine machine = getMachineInstance("src/test/resources/machines/SpecLuaReduced/TypeCheckOperations.mch");
+		Operation op = machine.getOperation(4); // lua_type
+		
+		Partitioner partitioner = new Partitioner(op);
+		
+		Set<String> expectedResult = new HashSet<String>();
+		
+		expectedResult.add("max_stack_top");
+		expectedResult.add("index");
+		expectedResult.add("stack_top");
+		
+		assertEquals(expectedResult, partitioner.getOperationInputSpace());
+	}
+	
 
 
 	@Test

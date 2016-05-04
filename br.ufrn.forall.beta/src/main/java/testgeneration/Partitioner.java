@@ -1,13 +1,17 @@
 package testgeneration;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import parser.Characteristic;
 import parser.CharacteristicType;
+import parser.Definitions;
 import parser.Operation;
 import parser.PredicateCharacteristic;
+import parser.decorators.expressions.MyExpression;
 import parser.decorators.predicates.MyPredicate;
 
 /**
@@ -83,19 +87,71 @@ public class Partitioner {
 			// to the
 			// related variables set
 			relatedVariables.addAll(getRelatedVariablesOnInvariants(relatedVariables));
-
+			
+			// Search for related variables on machine definitions
+			relatedVariables.addAll(getRelatedVariablesOnDefinitions(relatedVariables));
+			
 			// Remove set names that might be added in the previous steps
 			removeSets(relatedVariables);
 
 			// Remove constants from enumerated sets that might be added in the
 			// previous steps
 			removeConstantsFromSets(relatedVariables);
-
+			
 			// Remove constants that might have been added in the previous steps
 			removeConstants(relatedVariables);
+			
+			// Remove definition names, they are only used for reference
+			removeDefinitionsNames(relatedVariables);
 		}
 
 		return relatedVariables;
+	}
+
+
+
+	private void removeDefinitionsNames(Set<String> relatedVariables) {
+		Definitions definitions = this.operation.getMachine().getDefinitions();
+		
+		if(definitions != null) {
+			relatedVariables.removeAll(definitions.getDefinitions().keySet());
+		}
+	}
+
+
+
+	private Set<String> getRelatedVariablesOnDefinitions(Set<String> relatedVariables) {
+		Set<String> relatedDefinitionVariables = new HashSet<String>(relatedVariables);
+		Set<String> oldRelatedVariables = new HashSet<String>();
+
+		if(this.operation.getMachine().getDefinitions() != null) {
+			while (!relatedDefinitionVariables.equals(oldRelatedVariables)) {
+				oldRelatedVariables.addAll(relatedDefinitionVariables);
+				searchMoreRelatedVariablesOnDefinitions(relatedDefinitionVariables);
+			}
+		}
+		
+		return relatedDefinitionVariables;
+	}
+	
+	
+	
+	private void searchMoreRelatedVariablesOnDefinitions(Set<String> relatedVariables) {
+		Set<Entry<String, MyExpression>> definitionEntries = this.operation.getMachine().getDefinitions().getDefinitions().entrySet();
+
+		for (Entry<String, MyExpression> definition : definitionEntries) {
+			Set<String> definitionVariables = new HashSet<String>();
+			
+			definitionVariables.add(definition.getKey());
+			definitionVariables.addAll(definition.getValue().getVariables());
+			
+			for (String variable : definitionVariables) {
+				if (relatedVariables.contains(variable)) {
+					relatedVariables.addAll(definitionVariables);
+					break;
+				}
+			}
+		}
 	}
 
 

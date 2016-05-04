@@ -1,18 +1,24 @@
 package testgeneration;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import de.be4.classicalb.core.parser.node.AExpressionParseUnit;
+import de.be4.classicalb.core.parser.node.APredicateParseUnit;
+import de.be4.classicalb.core.parser.node.PParseUnit;
+import de.prob.animator.domainobjects.ClassicalB;
 import parser.Characteristic;
 import parser.CharacteristicType;
 import parser.Definitions;
+import parser.ExpressionCharacteristic;
 import parser.Operation;
 import parser.PredicateCharacteristic;
 import parser.decorators.expressions.MyExpression;
+import parser.decorators.expressions.MyExpressionFactory;
 import parser.decorators.predicates.MyPredicate;
+import parser.decorators.predicates.MyPredicateFactory;
 
 /**
  * This class is responsible for gathering machine information for test case
@@ -273,7 +279,72 @@ public class Partitioner {
 		characteristics.addAll(generalCharacteristics);
 		characteristics.addAll(conditionalCharacteristics);
 
+		characteristics = expandDefinitions(characteristics);
+		
 		return characteristics;
+	}
+
+
+
+	private Set<Characteristic> expandDefinitions(Set<Characteristic> characteristics) {
+		Set<Characteristic> characteristicsWithDefinitionsExpanded = new HashSet<Characteristic>();
+		
+		for(Characteristic ch : characteristics) {
+
+			if(ch instanceof PredicateCharacteristic) {
+				PredicateCharacteristic predCh = (PredicateCharacteristic) ch;
+				String predicateExpanded = expandAllDefinitions(predCh.getPredicate().toString());
+				
+				PParseUnit pu = new ClassicalB(predicateExpanded).getAst().getPParseUnit();
+				
+				if(pu instanceof APredicateParseUnit) {
+					APredicateParseUnit predPU = (APredicateParseUnit) pu;
+					MyPredicate myPredicate = MyPredicateFactory.convertPredicate(predPU.getPredicate());
+					
+					characteristicsWithDefinitionsExpanded.add(new PredicateCharacteristic(myPredicate, predCh.getType()));
+				}
+				
+			} else if (ch instanceof ExpressionCharacteristic) {
+				ExpressionCharacteristic expCh = (ExpressionCharacteristic) ch;
+				String expressionExpanded = expandAllDefinitions(expCh.toString());
+				
+				PParseUnit pu = new ClassicalB(expressionExpanded).getAst().getPParseUnit();
+				
+				if(pu instanceof AExpressionParseUnit) {
+					AExpressionParseUnit expPU = (AExpressionParseUnit) pu;
+					MyExpression myExpression = MyExpressionFactory.convertExpression(expPU.getExpression());
+					
+					characteristicsWithDefinitionsExpanded.add(new ExpressionCharacteristic(myExpression, expCh.getType()));
+				}
+				
+			}
+		}
+		
+		return characteristicsWithDefinitionsExpanded;
+	}
+
+
+
+	private String expandAllDefinitions(String predicate) {
+		Definitions definitions = this.operation.getMachine().getDefinitions();
+		
+		if(definitions != null) {
+			String oldPredicate = "";
+			String newPredicate = predicate;
+			
+			while(!oldPredicate.equals(newPredicate)) {
+				oldPredicate = newPredicate;
+				
+				for(Entry<String, MyExpression> entry : definitions.getDefinitions().entrySet()) {
+					newPredicate = newPredicate.replace(entry.getKey(), entry.getValue().toString());
+				}
+				
+			}
+
+			return newPredicate;
+		}
+		
+		return predicate;
 	}
 
 

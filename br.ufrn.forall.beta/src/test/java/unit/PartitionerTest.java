@@ -425,6 +425,26 @@ public class PartitionerTest {
 
 		assertEquals(expectedCharacteristics, partitioner.getOperationCharacteristicsAsStrings());
 	}
+	
+	
+	
+	@Test
+	public void shouldGetCharacteristicsForMachinesWithDefinitionsAndImports() {
+		Machine machine = getMachineInstance("src/test/resources/machines/SpecLuaReduced/TypeCheckOperations.mch");
+		Operation op = machine.getOperation(4); // lua_type
+		
+		Partitioner partitioner = new Partitioner(op);
+		
+		Set<String> expectedResult = new HashSet<String>();
+		expectedResult.add("index : INT");
+		expectedResult.add("index : -stack_top..-1 \\/ 1..stack_top \\/ pseudo_bottom..MAXINT \\/ ((stack_top + 1))..max_stack_top");
+		expectedResult.add("max_stack_top < pseudo_bottom");
+		expectedResult.add("stack_top : NAT");
+		expectedResult.add("stack_top <= max_stack_top");
+		expectedResult.add("max_stack_top : NAT1");
+		
+		assertEquals(expectedResult, partitioner.getOperationCharacteristicsAsStrings());
+	}
 
 
 

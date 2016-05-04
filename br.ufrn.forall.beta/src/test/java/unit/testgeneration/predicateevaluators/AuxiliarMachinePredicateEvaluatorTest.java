@@ -69,15 +69,15 @@ public class AuxiliarMachinePredicateEvaluatorTest {
 
 		IPredicateEvaluator pe = new AuxiliarMachinePredicateEvaluator(operationUnderTest, combinations);
 
-		String expectedFormula = "students <: STUDENT & grades : (students +-> 0..5) & student : dom(has_taken_lab_classes) & student : dom(grades) & finished : BOOL & grades(student) > 3 & has_taken_lab_classes(student) = TRUE & has_taken_lab_classes : (students +-> BOOL) & grades(student) > 2 & has_taken_lab_classes(student) = TRUE & student : students";
+		String expectedFormula = "students <: STUDENT & student : dom(has_taken_lab_classes) & grades : (students +-> 0..5) & student : dom(grades) & finished : BOOL & not(grades(student) > 3 & has_taken_lab_classes(student) = TRUE) & has_taken_lab_classes : (students +-> BOOL) & not(grades(student) > 2 & has_taken_lab_classes(student) = TRUE) & student : students";
 
 		Map<String, String> expectedSolutions = new HashMap<String, String>();
 
 		expectedSolutions.put("students", "{STUDENT1}");
 		expectedSolutions.put("student", "STUDENT1");
-		expectedSolutions.put("has_taken_lab_classes", "{(STUDENT1|->TRUE)}");
+		expectedSolutions.put("has_taken_lab_classes", "{(STUDENT1|->FALSE)}");
 		expectedSolutions.put("finished", "TRUE");
-		expectedSolutions.put("grades", "{(STUDENT1|->4)}");
+		expectedSolutions.put("grades", "{(STUDENT1|->0)}");
 
 		assertEquals(expectedFormula, pe.getSolutions().get(0).getFormula());
 		assertEquals(expectedSolutions, pe.getSolutions().get(0).getValues().get(0));

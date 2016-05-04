@@ -62,8 +62,10 @@ public class CombinatorialClauseCoverage extends LogicalCoverage {
 				testFormulas.addAll(createFormulasForOtherPredicatesWithoutPrecondition(predicate));
 			}
 		}
+		
+		Set<String> expandedTestFormulas = expandDefinitionsTestFormulas(testFormulas);
 
-		return testFormulas;
+		return expandedTestFormulas;
 	}
 
 

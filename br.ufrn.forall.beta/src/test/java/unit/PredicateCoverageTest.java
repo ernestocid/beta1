@@ -174,4 +174,25 @@ public class PredicateCoverageTest extends TestingUtils {
 		
 		assertEquals(expectedTestFormulas, pc.getTestFormulas());
 	}
+	
+	
+	
+	@Test
+	public void shouldGenerateTestFormulasForMachineWithImportsAndDefinitions() {
+		Machine machine = new Machine(new File("src/test/resources/machines/SpecLuaReduced/TypeCheckOperations.mch"));
+		Operation operationUnderTest = machine.getOperation(4); // lua_type
+		
+		PredicateCoverage pc = new PredicateCoverage(operationUnderTest);
+		
+		// Setting up expected results
+		
+		Set<String> expectedTestFormulas = new HashSet<String>();
+
+		expectedTestFormulas.add("((max_stack_top : NAT1 & max_stack_top < pseudo_bottom & stack : (NAT1 --> LUA_VALUES) & stack_top : NAT & stack_top <= max_stack_top) & index : INT & not(index : -stack_top..-1 \\/ 1..stack_top \\/ pseudo_bottom..MAXINT \\/ ((stack_top + 1))..max_stack_top))"); 
+		expectedTestFormulas.add("((max_stack_top : NAT1 & max_stack_top < pseudo_bottom & stack : (NAT1 --> LUA_VALUES) & stack_top : NAT & stack_top <= max_stack_top) & index : INT & index : -stack_top..-1 \\/ 1..stack_top \\/ pseudo_bottom..MAXINT \\/ ((stack_top + 1))..max_stack_top)"); 
+
+		// Assertions
+		
+		assertEquals(expectedTestFormulas, pc.getTestFormulas());
+	}
 }

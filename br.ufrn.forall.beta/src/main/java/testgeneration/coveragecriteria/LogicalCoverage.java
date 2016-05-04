@@ -5,12 +5,14 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.Map.Entry;
 
 import de.be4.classicalb.core.parser.node.APredicateParseUnit;
 import de.be4.classicalb.core.parser.node.PParseUnit;
 import de.prob.animator.domainobjects.ClassicalB;
-import parser.Invariant;
+import parser.Definitions;
 import parser.Operation;
+import parser.decorators.expressions.MyExpression;
 import parser.decorators.predicates.MyPredicate;
 import parser.decorators.predicates.MyPredicateFactory;
 import testgeneration.Block;
@@ -316,5 +318,46 @@ public abstract class LogicalCoverage extends CoverageCriterion {
 		}
 
 		return combinations;
+	}
+	
+	
+	
+	protected Set<String> expandDefinitionsTestFormulas(Set<String> testFormulas) {
+		Definitions definitions = getOperationUnderTest().getMachine().getDefinitions();
+		
+		if(definitions != null) {
+			Set<String> expandedFormulas = new HashSet<String>();
+			
+			for(String formula : testFormulas) {
+				String expandedFormula = expandDefinitions(formula, definitions);
+				expandedFormulas.add(expandedFormula);
+			}	
+			
+			return expandedFormulas;
+		}
+		
+		return testFormulas;
+	}
+
+
+	
+	private String expandDefinitions(String formula, Definitions definitions) {
+		if(definitions != null) {
+			String oldFormula = "";
+			String newFormula = formula;
+			
+			while(!oldFormula.equals(newFormula)) {
+				oldFormula = newFormula;
+				
+				for(Entry<String, MyExpression> entry : definitions.getDefinitions().entrySet()) {
+					newFormula = newFormula.replace(entry.getKey(), entry.getValue().toString());
+				}
+				
+			}
+
+			return newFormula;
+		}
+		
+		return formula;
 	}
 }

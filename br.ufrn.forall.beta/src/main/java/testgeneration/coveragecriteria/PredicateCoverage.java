@@ -60,7 +60,9 @@ public class PredicateCoverage extends LogicalCoverage {
 			}
 		}
 
-		return testFormulas;
+		Set<String> expandedTestFormulas = expandDefinitionsTestFormulas(testFormulas);
+		
+		return expandedTestFormulas;
 	}
 
 

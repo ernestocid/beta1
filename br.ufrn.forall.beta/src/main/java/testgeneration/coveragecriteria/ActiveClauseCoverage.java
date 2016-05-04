@@ -54,7 +54,9 @@ public class ActiveClauseCoverage extends LogicalCoverage {
 			}
 		}
 		
-		return testFormulas;
+		Set<String> expandedTestFormulas = expandDefinitionsTestFormulas(testFormulas);
+		
+		return expandedTestFormulas;
 	}
 
 

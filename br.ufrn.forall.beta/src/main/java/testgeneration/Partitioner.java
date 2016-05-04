@@ -374,6 +374,8 @@ public class Partitioner {
 			}
 		}
 
+		characs = expandDefinitions(characs);
+		
 		return characs;
 	}
 

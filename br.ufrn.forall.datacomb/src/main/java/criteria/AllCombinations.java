@@ -87,10 +87,6 @@ public class AllCombinations<T> extends Criteria<T> {
 				combinations.add(singleElementList);
 			}
 			
-			
-//			List<T> singleElement = new ArrayList<T>();
-//			singleElement.add(getParametersInputValues().get(0).get(0));
-//			combinations.add(singleElement);
 			return combinations;
 		} else {
 			return combinations;

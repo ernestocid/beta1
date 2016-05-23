@@ -446,7 +446,30 @@ public class PartitionerTest {
 		assertEquals(expectedResult, partitioner.getOperationCharacteristicsAsStrings());
 	}
 
+	
+	
+	@Test
+	public void shouldGetCharacteristicsForOperationWithIfElsifSubstitutions() {
+		Machine machine = getMachineInstance("src/test/resources/machines/others/Classroom.mch");
+		Operation operationUnderTest = machine.getOperation(3); // rr <-- student_pass_or_fail(student)
+		Partitioner partitioner = new Partitioner(operationUnderTest);
 
+		Set<String> expectedCharacteristics = new HashSet<String>();		
+		
+		expectedCharacteristics.add("students <: STUDENT");
+		expectedCharacteristics.add("finished : BOOL");
+		expectedCharacteristics.add("grades : (students +-> 0..5)");
+		expectedCharacteristics.add("has_taken_lab_classes : (students +-> BOOL)");
+		expectedCharacteristics.add("student : dom(has_taken_lab_classes)");
+		expectedCharacteristics.add("student : dom(grades)");
+		expectedCharacteristics.add("student : students");
+		expectedCharacteristics.add("grades(student) > 3 & has_taken_lab_classes(student) = TRUE");
+		expectedCharacteristics.add("grades(student) > 2 & has_taken_lab_classes(student) = TRUE");
+		
+		assertEquals(expectedCharacteristics, partitioner.getOperationCharacteristicsAsStrings());
+	}
+
+	
 
 	@Test
 	public void shouldGetTypingClauses() {

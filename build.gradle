@@ -7,7 +7,7 @@ subprojects {
     apply plugin: 'eclipse'
 	apply plugin: 'java'
     apply plugin: 'maven'
-    version = '1.2'
+    version = '2.0'
     sourceCompatibility = 1.6
 
     repositories {
@@ -106,7 +106,7 @@ project(':br.ufrn.forall.betaparser') {
 	// def parser_version = '2.5.0-SNAPSHOT'
 	def parser_version = '2.5.1'
 	// def core_version = '2.0.0-SNAPSHOT'
-	def core_version = '2.0.1-SNAPSHOT'
+	def core_version = '2.0.4-SNAPSHOT'
 
 	dependencies {
 		compile group: "de.hhu.stups", name: "de.prob2.kernel", version: core_version , changing: true

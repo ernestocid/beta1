@@ -36,6 +36,7 @@ public class BETATestSuiteTest {
 	public void setup() {
 		Configurations.setFindPreamble(false);
 		Configurations.setUseProBApiToSolvePredicates(false);
+		Configurations.setMinIntProperties(-10);
 	}
 
 
@@ -287,7 +288,7 @@ public class BETATestSuiteTest {
 		expectedStateVariablesTC1.put("rposn", "{0,1,2}");
 		
 		Map<String, String> expectedInputParamsTC2 = new HashMap<String,String>();
-		expectedInputParamsTC2.put("pp", "-1");
+		expectedInputParamsTC2.put("pp", "-10");
 		
 		Map<String,String> expectedStateVariablesTC2 = new HashMap<String,String>();
 		expectedStateVariablesTC2.put("turn", "blue");

@@ -11,6 +11,7 @@ import de.prob.animator.domainobjects.ClassicalB;
 import de.prob.animator.domainobjects.EvalResult;
 import de.prob.exception.ProBError;
 import de.prob.scripting.Api;
+import de.prob.scripting.ModelTranslationError;
 import de.prob.statespace.StateSpace;
 import de.prob.statespace.Trace;
 
@@ -79,8 +80,8 @@ public class TestApi {
 			
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (BException e) {
-			e.printStackTrace();
+		} catch (ModelTranslationError e1) {
+			e1.printStackTrace();
 		}
 	}
 

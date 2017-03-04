@@ -70,10 +70,6 @@
             <return-variables/>
             <data-concretization>
                 <input-variable>
-                    <variable-name>overflow_error</variable-name>
-                    <variable-value>FALSE</variable-value>
-                </input-variable>
-                <input-variable>
                     <variable-name>value</variable-name>
                     <variable-value>-1</variable-value>
                 </input-variable>
@@ -134,10 +130,6 @@
             <return-variables/>
             <data-concretization>
                 <input-variable>
-                    <variable-name>overflow_error</variable-name>
-                    <variable-value>FALSE</variable-value>
-                </input-variable>
-                <input-variable>
                     <variable-name>value</variable-name>
                     <variable-value>-1</variable-value>
                 </input-variable>
@@ -197,10 +189,6 @@
             </expected-state-values>
             <return-variables/>
             <data-concretization>
-                <input-variable>
-                    <variable-name>overflow_error</variable-name>
-                    <variable-value>TRUE</variable-value>
-                </input-variable>
                 <input-variable>
                     <variable-name>value</variable-name>
                     <variable-value>20</variable-value>

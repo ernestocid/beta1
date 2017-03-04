@@ -7,6 +7,7 @@ import java.util.Map;
 
 import tools.ProBApi;
 import de.be4.classicalb.core.parser.exceptions.BException;
+import de.prob.scripting.ModelTranslationError;
 import de.prob.statespace.StateSpace;
 import de.prob.statespace.Trace;
 
@@ -35,7 +36,8 @@ public class TestApi5 {
 
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (BException e) {
+		} catch (ModelTranslationError e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

@@ -8,12 +8,12 @@ import java.util.Map;
 import java.util.Set;
 
 import configurations.Configurations;
-import de.be4.classicalb.core.parser.exceptions.BException;
 import de.be4.classicalb.core.parser.node.APredicateParseUnit;
 import de.be4.classicalb.core.parser.node.PParseUnit;
 import de.prob.animator.domainobjects.AbstractEvalResult;
 import de.prob.animator.domainobjects.ClassicalB;
 import de.prob.animator.domainobjects.EvalResult;
+import de.prob.scripting.ModelTranslationError;
 import de.prob.statespace.StateSpace;
 import de.prob.statespace.Trace;
 import parser.Operation;
@@ -205,7 +205,7 @@ public class ProBApiPredicateEvaluator extends AbstractPredicateEvaluator {
 			getInfeasibleFormulas().add(formula);
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (BException e) {
+		} catch (ModelTranslationError e) {
 			e.printStackTrace();
 		}
 

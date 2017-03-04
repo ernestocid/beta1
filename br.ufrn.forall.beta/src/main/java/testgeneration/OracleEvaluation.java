@@ -10,11 +10,11 @@ import java.util.Map.Entry;
 import configurations.Configurations;
 import parser.Operation;
 import tools.ProBApi;
-import de.be4.classicalb.core.parser.exceptions.BException;
 import de.prob.animator.domainobjects.AbstractEvalResult;
 import de.prob.animator.domainobjects.ClassicalB;
 import de.prob.animator.domainobjects.EvalResult;
 import de.prob.scripting.Api;
+import de.prob.scripting.ModelTranslationError;
 import de.prob.statespace.StateSpace;
 import de.prob.statespace.Trace;
 
@@ -69,7 +69,8 @@ public class OracleEvaluation {
 			stateSpace = getProbApi().b_load(pathToMachine, this.preferences);
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (BException e) {
+		} catch (ModelTranslationError e) {
+
 			e.printStackTrace();
 		}
 

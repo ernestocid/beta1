@@ -9,6 +9,7 @@ import de.be4.classicalb.core.parser.exceptions.BException;
 import de.prob.Main;
 import de.prob.animator.domainobjects.ClassicalB;
 import de.prob.scripting.Api;
+import de.prob.scripting.ModelTranslationError;
 import de.prob.statespace.StateSpace;
 import de.prob.statespace.Trace;
 
@@ -60,7 +61,7 @@ public class TestApi3 {
 
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (BException e) {
+		} catch (ModelTranslationError e) {
 			e.printStackTrace();
 		}
 

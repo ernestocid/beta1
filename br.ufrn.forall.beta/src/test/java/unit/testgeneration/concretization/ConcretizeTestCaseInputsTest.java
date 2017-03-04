@@ -62,7 +62,7 @@ public class ConcretizeTestCaseInputsTest {
 
 		String expectedResult = FileTools.getFileContent(new File("src/test/resources/test_reports/xml/expected_report_for_dec_from_Counter_LC-CoC_concrete.xml"));
 		String actualResult = FileTools.getFileContent(xmlWithConcreteData);
-		
+
 		assertThat(actualResult).isEqualTo(expectedResult);
 	}
 

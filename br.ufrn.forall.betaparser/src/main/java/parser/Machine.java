@@ -10,7 +10,7 @@ import java.util.Set;
 import parser.decorators.predicates.MyPredicate;
 import utils.MachineClausesTool;
 import de.be4.classicalb.core.parser.BParser;
-import de.be4.classicalb.core.parser.exceptions.BException;
+import de.be4.classicalb.core.parser.exceptions.BCompoundException;
 import de.be4.classicalb.core.parser.node.AAbstractConstantsMachineClause;
 import de.be4.classicalb.core.parser.node.AAbstractMachineParseUnit;
 import de.be4.classicalb.core.parser.node.AConstantsMachineClause;
@@ -75,7 +75,7 @@ public class Machine {
 			start = parser.parseFile(machine, false);
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (BException e) {
+		} catch (BCompoundException e) {
 			System.err.println("Error while parsing the machine: " + e.getMessage());
 			return null;
 		}

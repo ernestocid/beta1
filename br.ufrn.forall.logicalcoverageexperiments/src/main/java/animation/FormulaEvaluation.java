@@ -6,12 +6,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import configurations.Configurations;
-import de.be4.classicalb.core.parser.exceptions.BException;
 import de.prob.animator.domainobjects.AbstractEvalResult;
 import de.prob.animator.domainobjects.ClassicalB;
 import de.prob.animator.domainobjects.EvalResult;
 import de.prob.exception.ProBError;
 import de.prob.scripting.Api;
+import de.prob.scripting.ModelTranslationError;
 import de.prob.statespace.StateSpace;
 import de.prob.statespace.Trace;
 import parser.Machine;
@@ -72,8 +72,8 @@ public class FormulaEvaluation {
 
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (BException e) {
-			e.printStackTrace();
+		} catch (ModelTranslationError e1) {
+			e1.printStackTrace();
 		}
 	}
 

@@ -8,7 +8,7 @@ import java.util.List;
 
 import parser.decorators.expressions.MyExpressionFactory;
 import de.be4.classicalb.core.parser.BParser;
-import de.be4.classicalb.core.parser.exceptions.BException;
+import de.be4.classicalb.core.parser.exceptions.BCompoundException;
 import de.be4.classicalb.core.parser.node.AConcreteVariablesMachineClause;
 import de.be4.classicalb.core.parser.node.AImplementationMachineParseUnit;
 import de.be4.classicalb.core.parser.node.AInvariantMachineClause;
@@ -54,7 +54,7 @@ public class Implementation {
 			start = parser.parseFile(getImplementation(), false);
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (BException e) {
+		} catch (BCompoundException e) {
 			System.err.println("Error while parsing the implementation: " + e.getMessage());
 			return null;
 		}

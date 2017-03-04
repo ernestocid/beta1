@@ -10,6 +10,7 @@ import de.prob.animator.domainobjects.AbstractEvalResult;
 import de.prob.animator.domainobjects.ClassicalB;
 import de.prob.animator.domainobjects.EvalResult;
 import de.prob.scripting.Api;
+import de.prob.scripting.ModelTranslationError;
 import de.prob.statespace.StateSpace;
 import de.prob.statespace.Trace;
 
@@ -57,7 +58,7 @@ public class ProBAnimationTest {
 			
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (BException e) {
+		} catch (ModelTranslationError e) {
 			e.printStackTrace();
 		}
 	}

@@ -16,7 +16,7 @@ Here you will find the code for the BETA test generation tool. More information 
 - On the 'Options' section make sure the checkbox 'Search for nested projects' is checked. This will show all the subprojects of the main folder.
 - Finally, select all the subprojects (don't select the main project folder) and click on 'Finish'
 
-#License
+# License
 
 Copyright (c) 2014, Ernesto C. B. de Matos, Anamaria M. Moreira, João B. de S. Neto.
 All rights reserved.

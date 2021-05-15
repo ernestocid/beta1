@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8"/>
+		<title>BETA: a tool supported approach to generate tests from B specifications</title>
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link rel="stylesheet" media="all" href="style.css"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<!-- Adding "maximum-scale=1" fixes the Mobile Safari auto-zoom bug: http://filamentgroup.com/examples/iosScaleBug/ -->
+		<link rel="shortcut icon" href="favicon.ico"/>
+		<link rel="icon" href="favicon.ico"/>
+	</head>
+	
+	<body lang="en">
+		<div id="header">
+			<div id="logo">
+				<h1><a href="index.html"><img src="images/beta_logo.png"/></a></h1>
+			</div>
+
+			<div id="title_line">
+				<h2><a href="http://www.forall.ufrn.br">ForAll</a> / <a href="http://www.dimap.ufrn.br">DIMAp</a> / <a href="http://www.ufrn.br">UFRN</a></h4> 
+			</div>
+		</div>
+
+		<div id="nav">
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="download.html">Download</a></li>
+				<li><a href="installation.html">Install</a></li>
+				<li><a href="user_guide.html">User Guide</a></li>
+				<li><a href="publications.html">Publications</a></li>
+				<li><a href="contact.html">Contact</a></li>
+			</ul>
+		</div>
+
+		<div class="shadow" id="content">
+			<h1 id="user_guide">User Guide</h1>
+
+<h2 id="first_steps">First steps</h2>
+
+<p>When you open BETA for the first time you’ll be welcomed by the following screen:</p>
+
+<p><a href="images/guide/screen1.png"><img src="images/guide/screen1.png" alt="BETA first screen" /></a></p>
+
+<p>The first thing you should do before you start using the tool is to make sure you have the path to the ProB directory configured on the <em>Settings</em> menu. To do this you should click on the <em>Options</em> menu on the top left and select <em>Settings</em> as presented bellow:</p>
+
+<p><a href="images/guide/screen2.png"><img src="images/guide/screen2.png" alt="Settings" /></a></p>
+
+<h2 id="loading_a_machine">Loading a machine</h2>
+
+<p>The BETA approach generates unit tests for operations of an abstract B machine individually. The first thing you should do to generate tests for an operation is to open it respective machine. You can download the <a href="files/SimpleLift.mch">SimpleLift.mch</a> machine and use it to follow the remainder of this guide.</p>
+
+<p>Proceed clicking on the <em>Options</em> menu and selecting the <em>Load Machine</em> option. Locate the <em>SimpleLift.mch</em> file you just downloaded and click on <em>Open</em>. You’ll be presented to the following screen:</p>
+
+<p><a href="images/guide/screen3.png"><img src="images/guide/screen3.png" alt="Load Machine" /></a></p>
+
+<p>At this step the tool will present the following information (highlighted on the image above):</p>
+
+<ol>
+<li>
+<p>The name of the machine you just loaded;</p>
+</li>
+
+<li>
+<p>The list of operations specified in this machine.</p>
+</li>
+</ol>
+
+<h2 id="generating_tests">Generating tests</h2>
+
+<p>Now that we have loaded a machine on the tool we have to select the operation we intend to generate unit tests for. For this example we are going to select the <em>“go_up”</em> operation. Before we generate the unit test report we have to define the parameters of our report wich are defined on the menu shown bellow:</p>
+
+<p><a href="images/guide/screen4.png"><img src="images/guide/screen4.png" alt="Test Case Generation Parameters" /></a></p>
+
+<p>The image presents in:</p>
+
+<ol>
+<li>
+<p>The <strong>Testing Strategy</strong> to be used in the unit test generation. To tool provides two options: <em>Input Space Coverage</em> and <em>Logical Coverage</em>;</p>
+</li>
+
+<li>
+<p>The <strong>Coverage Criteria</strong> that will be used to define the requirements of the test cases generated. For <em>Input Space Coverage</em> the tool provides six options: <em>Equivalent Classes (Each-Choice)</em>, <em>Equivalent Classes (Pairwise)</em>, <em>Equivalent Classes (All-Combinations)</em>, <em>Boundary Analysis (Each-Choice)</em>, <em>Boundary Analysis (Pairwise)</em> and <em>Boundary Analysis (All-Combinations)</em>. For <em>Logical Coverage</em> the tool provides four options: <em>Predicate Coverage</em>, <em>Clause Coverage</em>, <em>Combinatorial Clause Coverage</em> and <em>Active Clause Coverage</em>.</p>
+</li>
+</ol>
+
+<p>Once the test generation parameters are defined, the user should click on the <em>Generate Tests button</em>. Then, following screen will be presented:</p>
+
+<p><a href="images/guide/screen5.png"><img src="images/guide/screen5.png" alt="Report Generation Window" /></a></p>
+
+<p>In this window the user is able to select how he or she wants to generate the test cases. The tool currently supports the generation of HTML and XML test case specifications. It also has a separate module that is capable of generating partial test scripts in Java and C++. Once the types of test cases are selected, the user should click on the <em>Generate Report</em> button. After the tests are generated, the tool should present the following window:</p>
+
+<p><a href="images/guide/screen6.png"><img src="images/guide/screen6.png" alt="Reports Generated Window" /></a></p>
+
+<p>The test cases generated will be located in the same directory of the machine we are testing. You can navigate through the generated report clicking <a href="files/report_for_go_down_from_SimpleLift_LC-PC_0711151448.html">here</a>. This is how the report looks like:</p>
+
+<p><a href="images/guide/report_example.png"><img src="images/guide/report_example.png" alt="Report Example" /></a></p>
+
+<h2 id="further_info">Other Information</h2>
+
+<p>In <a href="https://docs.google.com/spreadsheets/d/1s6JWHc3hVoKoIMVppmCujnN2So6g_PjH486DgiU-8HY/edit?usp=sharing">this spreadsheet</a> you will find an overview on how predicates are partitioned into blocks for different types of characteristics extracted from the model. For more detailed information on this topic, read <a href="files/BETA_IPS_Map_03_08_2015.pdf">this report</a></p>
+
+<h2 id="more_examples">More examples</h2>
+
+<p>You can download more examples of B specifications to use in the tool clicking <a href="files/examples.zip">here</a></p>
+
+<h2 id="case_studies">Case Studies</h2>
+
+<p>So far we have done two case studies: <a href="CGP_case_study.html">CGP</a> and <a href="FreeRTOS_case_study.html">FreeRTOS</a>.</p>
+
+<h2 id="how_to_use_the_generated_xml_file">How to use the generated XML file</h2>
+
+<p>BETA is able to generate a test suite using the XML format. Visit <a href="xml_usage_guide.html">this link</a> to learn how to use it so you can integrate the tests generated by BETA into your own tool.</p>
+		</div>
+
+		<div id="footer">
+			<p>www.beta-tool.info</p>
+		</div>
+	</body>
+	
+</html>

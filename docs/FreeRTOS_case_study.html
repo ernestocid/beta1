@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8"/>
+		<title>BETA: a tool supported approach to generate tests from B specifications</title>
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link rel="stylesheet" media="all" href="style.css"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<!-- Adding "maximum-scale=1" fixes the Mobile Safari auto-zoom bug: http://filamentgroup.com/examples/iosScaleBug/ -->
+		<link rel="shortcut icon" href="favicon.ico"/>
+		<link rel="icon" href="favicon.ico"/>
+	</head>
+	
+	<body lang="en">
+		<div id="header">
+			<div id="logo">
+				<h1><a href="index.html"><img src="images/beta_logo.png"/></a></h1>
+			</div>
+
+			<div id="title_line">
+				<h2><a href="http://www.forall.ufrn.br">ForAll</a> / <a href="http://www.dimap.ufrn.br">DIMAp</a> / <a href="http://www.ufrn.br">UFRN</a></h4> 
+			</div>
+		</div>
+
+		<div id="nav">
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="download.html">Download</a></li>
+				<li><a href="installation.html">Install</a></li>
+				<li><a href="user_guide.html">User Guide</a></li>
+				<li><a href="publications.html">Publications</a></li>
+				<li><a href="contact.html">Contact</a></li>
+			</ul>
+		</div>
+
+		<div class="shadow" id="content">
+			<h1 id="freertos_case_study">FreeRTOS Case Study</h1>
+
+<p>In our second case study, the objetive was to evaluate the tool we developed using specifications for the FreeRTOS micro kernel. FreeRTOS provides a layer of abstraction for developers to access hardware features on real time systems. In this case study we have focused on the Queue modelue of the system which is responsible for controlling its message queues.</p>
+
+<p>A simplified specification of the Queue module can be found <a href="files/SimpleQueue.zip">here</a>. You can download the generated test reports clicking <a href="files/FreeRTOS_Reports.zip">here</a>.</p>
+
+<p>On the table below we present an overview of the generated test cases:</p>
+<table>
+	<tr>
+		<th>Op.</th>
+		<th>EC</th>
+		<th>EC*</th>
+		<th>AC</th>
+		<th>AC*</th>
+		<th>PW</th>
+		<th>PW*</th>
+	</tr>
+	<tr>
+		<td>q_queueCreate</td>
+		<td>2</td>
+		<td>0</td>
+		<td>4</td>
+		<td>0</td>
+		<td>4</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>q_queueDelete</td>
+		<td>2</td>
+		<td>0</td>
+		<td>32</td>
+		<td>12</td>
+		<td>7</td>
+		<td>2</td>
+	</tr>
+	<tr>
+		<td>q_sendItem</td>
+		<td>2</td>
+		<td>1</td>
+		<td>64</td>
+		<td>12</td>
+		<td>7</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>q_receivedItem</td>
+		<td>2</td>
+		<td>1</td>
+		<td>4</td>
+		<td>3</td>
+		<td>4</td>
+		<td>3</td>
+	</tr>
+</table>
+<p><br /></p>
+
+<p>During the case study we have faced some problems related to infeasible test cases. An infeasible test case happens when we combine two blocks which require a scenario that is impossible to happen (e.g. x &gt; 10 and x &lt; 0). We noticed this usually happened due to combination of multiple negative blocks.</p>
+
+<p>To reduce this kind of scenarios we now generate negative blocks only for precondition and conditional characteristics and do not generate negative blocks for invariant characteristics. There is still a high number of test cases lost due to infeasibility as can be easily seen on the presented table. We have to refine our combination algorithms to reduce this scenarios even more.</p>
+		</div>
+
+		<div id="footer">
+			<p>www.beta-tool.info</p>
+		</div>
+	</body>
+	
+</html>
